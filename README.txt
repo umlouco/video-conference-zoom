@@ -1,5 +1,5 @@
 === Video Conferencing with Zoom API ===
-Contributors: j__3rk
+Contributors: dpEN
 Donate link: http://deepenbajracharya.com.np
 Tags: zoom video conference, meetings, users, REST API, video conference, settings, zoom
 Requires at least: 3.5.1
