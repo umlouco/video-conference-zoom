@@ -13,7 +13,7 @@ if(get_option('zoom_api_key') && get_option('zoom_api_secret')){
 	$data = $zoom->listUsers();
 	$result = json_decode($data, true);
 	$count = 1;
-	if($result['error']) {
+	if(isset($result['error'])) {
 		?>	
 		<div id="message" class="notice notice-error is-dismissible">
 			<p><?php echo $result['error']['message'] ?></p><button type="button" class="notice-dismiss"><span class="screen-reader-text"><?php _e('Dismiss this notice.', 'zoom-video-conference'); ?></span></button>
@@ -30,7 +30,7 @@ if(get_option('zoom_api_key') && get_option('zoom_api_secret')){
 	$query_string = parse_url($url, PHP_URL_QUERY); //FILTERING THE QUERY VAR OF THE URL
 	if($query_string == 'page=zoom_users'):
 		?>
-	<div class="wrap"><h1>Users List <a href="?page=add_zoom_users" class="page-title-action"><?php _e('Add a User', 'zoom-video-conference'); ?></a><a href="?page=zoom_users&zoom_status=pending" class="page-title-action"><?php _e('Add a User', 'zoom-video-conference'); ?>Pending Users (<?php echo $cnt; ?>)</a></h1>
+	<div class="wrap"><h1>Users List <a href="?page=add_zoom_users" class="page-title-action"><?php _e('Add a User', 'zoom-video-conference'); ?></a><a href="?page=zoom_users&zoom_status=pending" class="page-title-action"><?php _e('Pending Users ('.$cnt.')', 'zoom-video-conference'); ?></a></h1>
 		<div id="message" class="notice notice-success is-dismissible delete_success" style="display:none;">
 			<p><?php _e('Successfully Deleted', 'zoom-video-conference'); ?></p><button type="button" class="notice-dismiss"><span class="screen-reader-text"><?php _e('Dismiss this notice.', 'zoom-video-conference'); ?></span></button>
 		</div>
@@ -88,7 +88,7 @@ if(get_option('zoom_api_key') && get_option('zoom_api_secret')){
 	$result = json_decode($data, true);
 	$count = 1;
 
-	if($result['error']) {
+	if(isset($result['error'])) {
 		?>	
 		<div id="message" class="notice notice-error is-dismissible">
 			<p><?php echo $result['error']['message'] ?></p><button type="button" class="notice-dismiss"><span class="screen-reader-text"><?php _e('Dismiss this notice.', 'zoom-video-conference'); ?></span></button>

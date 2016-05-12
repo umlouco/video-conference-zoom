@@ -18,6 +18,9 @@ if(isset($_POST['save_zoom_settings'])) {
   update_option( 'zoom_api_key', $_POST['zoom_api_key'], 'yes' );
   update_option( 'zoom_api_secret', $_POST['zoom_api_secret'], 'yes' );
 
+  $zoom_custom_css_field = isset($_REQUEST['zoom_custom_css_field']) ? $_REQUEST['zoom_custom_css_field'] : null;
+  $dynamic_css = ZOOM_API_PATH . 'public/css/zoom-video-conference-public.css';
+  file_put_contents($dynamic_css, $zoom_custom_css_field);
   ?>
   <div id="message" class="notice notice-success is-dismissible">
     <p><?php _e('Successfully Updated. Please Refresh the Page.', 'zoom-video-conference'); ?></p><button type="button" class="notice-dismiss"><span class="screen-reader-text"><?php _e('Dismiss this notice.', 'zoom-video-conference'); ?></span></button>
@@ -45,6 +48,7 @@ if(isset($_POST['save_zoom_settings'])) {
               </div>
             </div>
           </div>
+          <p class="creator_of_all"><?php _e('Developed by <a target="_blank" href="http://deepenbajracharya.com.np">Deepen</a> @2016<br>Plugin Version '.ZOOM_API_VERSION); ?></p>
         </div>
         <div id="postbox-container-2" class="postbox-container">
           <div id="date-settings" class="postbox ">
@@ -62,7 +66,19 @@ if(isset($_POST['save_zoom_settings'])) {
               </table>
             </div>
           </div>
+          <div id="zoom_custom_css" class="postbox">
+            <h3 class="hndle"><?php _e('Custom CSS', 'tf'); ?></h3> 
+            <div class="inside">
+              <?php 
+              $dynamic_css = ZOOM_API_PATH . 'public/css/zoom-video-conference-public.css';
+              $css_contents = file_get_contents($dynamic_css); 
+              ?>
+              <p><?php _e('Write the custom css coding here in order bring styles to the twitter feeds.', 'tf'); ?></p>
+              <textarea name="zoom_custom_css_field" cols="90" rows="10"><?php echo !empty($css_contents) ? $css_contents : null; ?></textarea>
+            </div>
+          </div>
         </div>
+        
       </form>
     </div>
   </div>

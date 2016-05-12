@@ -74,7 +74,7 @@ class Zoom_Video_Conference_Public {
 		 */
 
 		wp_enqueue_style( 'zoom-frontend-css', plugin_dir_url( __FILE__ ) . 'css/zoom-video-conference-public.css', array(), $this->version, 'all' );
-		wp_enqueue_style( 'zoom-timepicker-css', plugin_dir_url( __FILE__ ) . 'css/jquery.timepicker.css', array(), $this->version	);
+		#wp_enqueue_style( 'zoom-timepicker-css', plugin_dir_url( __FILE__ ) . 'css/jquery.timepicker.css', array(), $this->version	);
 
 	}
 
@@ -97,8 +97,8 @@ class Zoom_Video_Conference_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( 'zoom-frontend-js', plugin_dir_url( __FILE__ ) . 'js/zoom-video-conference-public.js', array( 'jquery' ), $this->version, false );
-		wp_enqueue_script( 'zoom-timepicker-js', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.8.9/jquery.timepicker.min.js', array( 'jquery' ), $this->version, false);
+		#wp_enqueue_script( 'zoom-frontend-js', plugin_dir_url( __FILE__ ) . 'js/zoom-video-conference-public.js', array( 'jquery' ), $this->version, false );
+		#wp_enqueue_script( 'zoom-timepicker-js', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.8.9/jquery.timepicker.min.js', array( 'jquery' ), $this->version, false);
 
 	}
 

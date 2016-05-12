@@ -4,10 +4,11 @@
  *  @since  1.0.0
  */
 
-.zoom_api_table tr th {text-align: left;}
-
-.wait { color:red ;}
-.modalDialog {
+ .zoom_api_table tr th {text-align: left;width:220px; font-size: 14px}
+ .zoom_api_table select,input {height: 30px;}
+ .zoom_api_table tr td{padding: 6px 0px;}
+ .wait { color:red ;}
+ .modalDialog {
     position: fixed;
     font-family: Arial, Helvetica, sans-serif;
     top: 0;
@@ -72,4 +73,11 @@
 	border-top: #eee solid 1px;
   text-align: right;
   padding: 20px;
+}
+
+.creator_of_all {
+    font-size: 16px;
+    font-style: italic;
+    background: #ccc;
+    padding: 10px;
 }
