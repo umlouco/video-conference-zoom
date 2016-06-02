@@ -23,7 +23,7 @@
               </div>
             </div>
           </div>
-          <p class="creator_of_all"><?php _e('Developed by <a target="_blank" href="http://deepenbajracharya.com.np">Deepen</a> @2016<br>Plugin Version '.ZOOM_API_VERSION); ?></p>
+          <p class="creator_of_all"><?php _e('Developed by <a target="_blank" href="http://deepenbajracharya.com.np">Deepen</a><br>Plugin Version '.ZOOM_API_VERSION); ?></p>
         </div>
         <div id="postbox-container-2" class="postbox-container">
           <div id="date-settings" class="postbox ">

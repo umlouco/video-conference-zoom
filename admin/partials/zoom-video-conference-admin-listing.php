@@ -32,14 +32,8 @@
 				}
 			}
 			endif;
-			$current_user = wp_get_current_user(); 
-			$host_id_meta = get_user_meta( get_current_user_id(), 'zoom_meta_for_user', true );
 			?>
-			
 			<div class="wrap"><h1><?php _e('Meeting List<a href="?page=add_meeting" class="page-title-action">Add Meeting</a>', 'zoom-video-conference'); ?></h1>
-				<div id="message" class="notice notice-success is-dismissible">
-					<p><?php _e('psst...!! Try adding this code to front to display your meeting : <strong>[zoom_api_link meeting_id="meeting_ID" class="your_class" id="your_id" title="Text of Link"]</strong>', 'zoom-video-conference'); ?></p><button type="button" class="notice-dismiss"><span class="screen-reader-text"><?php _e('Dismiss this notice.', 'zoom-video-conference'); ?></span></button>
-				</div>
 				<div id="message" class="notice notice-success is-dismissible delete_success" style="display:none;">
 					<p><?php _e('Successfully Deleted', 'zoom-video-conference'); ?></p><button type="button" class="notice-dismiss"><span class="screen-reader-text"><?php _e('Dismiss this notice.', 'zoom-video-conference'); ?></span></button>
 				</div>
@@ -69,13 +63,13 @@
 										<td><?php $type = $result['status']; 
 											switch($type) {
 												case 0;
-												echo '<img src="'.plugins_url().'/video-conferencing-zoom-api/admin/img/2.png" style="width:14px;">';
+												echo '<img src="'.ZOOM_URI_PATH.'admin/img/2.png" style="width:14px;" title="Not Started" alt="Not Started">';
 												break;
 												case 1;
-												echo '<img src="'.plugins_url().'/video-conferencing-zoom-api/admin/img/3.png" style="width:14px;">';
+												echo '<img src="'.ZOOM_URI_PATH.'admin/img/3.png" style="width:14px;" title="Completed" alt="Completed">';
 												break;
 												case 2;
-												echo '<img src="'.plugins_url().'/video-conferencing-zoom-api/admin/img/1.png" style="width:14px;">';
+												echo '<img src="'.ZOOM_URI_PATH.'admin/img/1.png" style="width:14px;" title="Currently Live" alt="Live">';
 												break;
 												default;
 												break;
@@ -83,7 +77,7 @@
 											?></td>
 											<td><?php echo date('F j, Y, g:i a', strtotime($result['start_time'])); ?></td>
 											<td><?php echo $result['host_id']; ?></td>
-											<td><?php echo $result['created_at']; ?></td>	
+											<td><?php echo date('F j, Y, g:i a', strtotime($result['created_at'])); ?></td>	
 										</tr>
 									<?php endforeach; ?>
 								<?php else: ?>
@@ -201,7 +195,7 @@
 								</div>
 							</div>
 						</div>
-						<p class="creator_of_all"><?php _e('Developed by <a target="_blank" href="http://deepenbajracharya.com.np">Deepen</a> @2016<br>Plugin Version '.ZOOM_API_VERSION); ?></p>
+						<p class="creator_of_all"><?php _e('Developed by <a target="_blank" href="http://deepenbajracharya.com.np">Deepen</a><br>Plugin Version '.ZOOM_API_VERSION); ?></p>
 					</div>
 
 					<div id="postbox-container-2" class="postbox-container">

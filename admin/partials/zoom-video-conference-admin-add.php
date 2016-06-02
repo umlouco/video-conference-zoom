@@ -1,51 +1,4 @@
-<?php
-$zoom = new ZoomAPI();
-if(isset($_POST['add_meeting'])) {
-  $result = $zoom->createAMeeting();
-  $data = json_decode($result, true);
-  if( isset($data['id']) && isset($data['join_url']) && isset($data['start_time']) && isset($data['timezone']) && isset($data['duration']) && isset($data['created_at']) ) {
-    ?>
-     <div id="message" class="notice notice-success is-dismissible">
-      <p><?php _e('Added New Meeting with ID: ', 'zoom-video-conference'); ?><?php echo '<strong>'.$data['id'].'</strong>'; ?></p>
-      <p><?php _e('Join URL: ', 'zoom-video-conference'); ?><?php echo '<a href="'.$data['join_url'].'">'.$data['join_url'].'</a>'; ?></p>
-      <p><?php _e('Meeting Start Time: ', 'zoom-video-conference'); ?><?php echo '<strong>'.$data['start_time'].'</strong>'; ?></p>
-      <p><?php _e('Meeting TimeZone: ', 'zoom-video-conference'); ?><?php echo '<strong>'.$data['timezone'].'</strong>'; ?></p>
-      <p><?php _e('Meeting Duration: ', 'zoom-video-conference'); ?><?php echo '<strong>'.$data['duration'].'</strong>'; ?></p>
-      <p><?php _e('Thread Created On: ', 'zoom-video-conference'); ?><?php echo '<strong>'.$data['created_at'].'</strong>'; ?></p>
-      <button type="button" class="notice-dismiss"><span class="screen-reader-text"><?php _e('Dismiss this notice.', 'zoom-video-conference'); ?></span></button>
-    </div>
-    <script type="text/javascript">
-      var reload = function() {
-        location.reload();
-      };
-      setTimeout(reload, 1000);
-    </script>
-    <?php
-  } else {
-    ?>
-    <div id="message" class="notice notice-error is-dismissible">
-      <p><?php _e('Required Fields are Missing !!', 'zoom-video-conference'); ?></p>
-    </div>
-    <?php
-  }
-}
-$listUsers = $zoom->listUsers();
-$listingUsers = json_decode($listUsers, true);
-?>
-<script>
-  jQuery(function($) {
-    $( "#datepicker1" ).datepicker();
-    $( "#datepicker1" ).datepicker( "option", "dateFormat", "yy-mm-ddT" );
-    $('input.timepicker1').timepicker({ timeFormat: 'H:mm:ssZ',  interval: 15 });
-    $('.pwd_enabled').click(function() {
-      if(this.checked){
-       $(".password_zoom").show();
-     } else {
-       $(".password_zoom").hide();
-     }
-   });
-  });
-</script>
+<?php $listingUsers = Zoom_Video_Api_Essentials::zoom_api_add_conference_html(); ?>
 <div class="wrap">
   <h1><?php _e('Add a Meeting', 'zoom-video-conference'); ?></h1>
   <div id="poststuff">
@@ -67,7 +20,7 @@ $listingUsers = json_decode($listUsers, true);
               </div>
             </div>
           </div>
-          <p class="creator_of_all"><?php _e('Developed by <a target="_blank" href="http://deepenbajracharya.com.np">Deepen</a> @2016<br>Plugin Version '.ZOOM_API_VERSION); ?></p>
+          <p class="creator_of_all"><?php _e('Developed by <a target="_blank" href="http://deepenbajracharya.com.np">Deepen</a><br>Plugin Version '.ZOOM_API_VERSION); ?></p>
         </div>
         <?php if( get_option('zoom_api_key') == NULL || get_option('zoom_api_secret') == NULL): ?>
           <div id="postbox-container-2" class="postbox-container">  

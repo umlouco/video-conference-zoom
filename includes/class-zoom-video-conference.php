@@ -108,6 +108,12 @@ class Zoom_Video_Conference {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-zoom-video-apifunctions.php';
 
 		/**
+		 * @added on 1.1
+		 * Responsible for the API call functions
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-zoom-video-api-essentials.php';
+
+		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-zoom-video-conference-admin.php';

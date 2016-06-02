@@ -237,17 +237,17 @@ class ZoomAPI{
 
 
 	/*Functions for management of reports*/
-	function getDailyReport(){
+	function getDailyReport($month_int, $year){
 	  $getDailyReportArray = array();
-	  $getDailyReportArray['year'] = $_POST['year'];
-	  $getDailyReportArray['month'] = $_POST['month'];
+	  $getDailyReportArray['year'] = $year;
+	  $getDailyReportArray['month'] = $month_int;
 	  return $this->sendRequest('report/getdailyreport', $getDailyReportArray);
 	}
 
-	function getAccountReport(){
+	function getAccountReport($zoom_account_from, $zoom_account_to){
 	  $getAccountReportArray = array();
-	  $getAccountReportArray['from'] = $_POST['from'];
-	  $getAccountReportArray['to'] = $_POST['to'];
+	  $getAccountReportArray['from'] = $zoom_account_from;
+	  $getAccountReportArray['to'] = $zoom_account_to;
 	  return $this->sendRequest('report/getaccountreport', $getAccountReportArray);
 	}
 
@@ -275,9 +275,9 @@ class ZoomAPI{
 	  return $this->sendRequest('webinar/delete',$deleteAWebinarArray);
 	}
 
-	function listWebinars(){
+	function listWebinars($userid){
 	  $listWebinarsArray = array();
-	  $listWebinarsArray['host_id'] = $_POST['userId'];
+	  $listWebinarsArray['host_id'] = $userid;
 	  return $this->sendRequest('webinar/list',$listWebinarsArray);
 	}
 
@@ -300,5 +300,14 @@ class ZoomAPI{
 	  $endAWebinarArray['id'] = $_POST['webinarId'];
 	  $endAWebinarArray['host_id'] = $_POST['userId'];
 	  return $this->sendRequest('webinar/end',$endAWebinarArray);
+	}
+
+	//For Zoom Dashboard
+	function dashboard_get_meetings() {
+		$dashboardGetMeetings = array();
+		$dashboardGetMeetings['type'] = "2";
+		$dashboardGetMeetings['from'] = "2015-08-02";
+		$dashboardGetMeetings['to'] = "2015-09-02";
+		return $this->sendRequest('metrics/meetings',$dashboardGetMeetings);
 	}
 }

@@ -1,7 +1,7 @@
 === Video Conferencing with Zoom API ===
-Contributors: dpEN
+Contributors: j__3rk
 Donate link: http://deepenbajracharya.com.np
-Tags: zoom video conference, meetings, users, REST API, video conference, zoom
+Tags: zoom video conference, video conference, zoom, zoom video conferencing, web conferencing, online meetings
 Requires at least: 4.4.2
 Tested up to: 4.5.2
 Stable tag: 4.5.2
@@ -23,15 +23,23 @@ Video Conferencing using Zoom plugin for WordPress requires PHP 5.4 or greater t
 * Clean and Friendly UI
 * Easy to output data using a shortcode
 
+**Limitations**
+
+* Webinar module not integrated.
+
+Use shortcode: [zoom_api_link meeting_id="meeting_ID" class="your_class" id="your_id" title="Text of Link"] you can show the link of your meeting in your site anywhere.
+
+Contribute on github: https://github.com/techies23/video-conference-zoom
+
 == Installation ==
 
 Simply search for the plugin via the plugins -> add new dialog and click install, or download and extract the plugin, and copy the the Zoom plugin folder into your wp-content/plugins directory and activate.
 
 == Frequently Asked Questions ==
 
-1. How to show Zoom Meetings on Front
+=  How to show Zoom Meetings on Front =
 
-A. By using shortcode like [zoom_api_link meeting_id="meeting_ID" class="your_class" id="your_id" title="Text of Link"] you can show the link of your meeting in front.
+* By using shortcode like [zoom_api_link meeting_id="meeting_ID" class="your_class" id="your_id" title="Text of Link"] you can show the link of your meeting in front.
 
 == Changelog ==
 
@@ -44,7 +52,11 @@ A. By using shortcode like [zoom_api_link meeting_id="meeting_ID" class="your_cl
 * Added CSS Editor in Settings Page
 * Alot of Minor Bug Fixes
 
-== Upgrade Notice ==
+= 1.0.2 =
+* Minor Changes
 
-= 1.0.0 =
-* Initial Release
+= 1.1 =
+* Added Reports
+* Minor Bug fixes and Changes
+
+

@@ -81,3 +81,17 @@
     background: #ccc;
     padding: 10px;
 }
+.zoom_dateinput_field {
+    display: block;
+    float: left;
+    clear: both;
+    min-width: 400px;
+    width: 96%;
+    margin: 15px 0 15px 0;
+    padding: 15px 20px;
+    border: 1px solid #ccc;
+    background: rgba(255,255,255,0.5);
+}
+.zoom_acount_lists li {
+    font-weight: 800;
+}

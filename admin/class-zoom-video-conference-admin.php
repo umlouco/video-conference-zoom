@@ -98,13 +98,15 @@ class Zoom_Video_Conference_Admin {
 	}
 
 	function zoom_api_add_menu() {
-		add_menu_page( 'Zoom','Zoom', 'edit_posts','list_meetings','zoom_api_list_meetings',	plugin_dir_url( __FILE__ ).'img/zoom.png',	5 );
+		add_menu_page( 'Zoom','Zoom', 'manage_options','list_meetings','zoom_api_list_meetings',	plugin_dir_url( __FILE__ ).'img/zoom.png',	5 );
 		if(get_option('zoom_api_key') && get_option('zoom_api_secret')) {
-			add_submenu_page( 'list_meetings', 'Meeting', 'Add Meeting', 'edit_posts', 'add_meeting', 'zoom_api_add_meeting' );
+			add_submenu_page( 'list_meetings', 'Meeting', 'Add Meeting', 'manage_options', 'add_meeting', 'zoom_api_add_meeting' );
 			add_submenu_page( 'list_meetings', 'Users', 'List Users', 'manage_options', 'zoom_users', 'zoom_api_users' );
 			add_submenu_page( 'list_meetings', 'Add Users', 'Add Users', 'manage_options', 'add_zoom_users', 'zoom_api_add_users' );
+			add_submenu_page( 'list_meetings', 'Reports', 'Reports', 'manage_options', 'zoom_reports', 'zoom_api_reports' );
 		}
 		add_submenu_page( 'list_meetings', 'Settings', 'Settings', 'manage_options', 'zoom_setting', 'zoom_api_settings' );
+
 	}
 
 	function zoom_api_delete_meeting() {
@@ -134,7 +136,7 @@ class Zoom_Video_Conference_Admin {
 		} else {
 			echo '0';
 		}
-		die();
+		wp_die();
 	}
 
 	function zoom_api_delete_linked_post() {
@@ -205,4 +207,8 @@ function zoom_api_users() {
 
 function zoom_api_add_users() {
 	include ZOOM_API_PATH . '/admin/partials/zoom-video-conference-admin-users-add.php';
+}
+
+function zoom_api_reports() {
+	include ZOOM_API_PATH . '/admin/partials/zoom-video-conference-admin-reports.php';
 }

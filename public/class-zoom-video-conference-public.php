@@ -73,7 +73,6 @@ class Zoom_Video_Conference_Public {
 		 * class.
 		 */
 
-		wp_enqueue_style( 'zoom-frontend-css', plugin_dir_url( __FILE__ ) . 'css/zoom-video-conference-public.css', array(), $this->version, 'all' );
 		#wp_enqueue_style( 'zoom-timepicker-css', plugin_dir_url( __FILE__ ) . 'css/jquery.timepicker.css', array(), $this->version	);
 
 	}
