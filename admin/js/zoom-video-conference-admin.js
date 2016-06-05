@@ -35,11 +35,15 @@
  	$( "#datepicker1" ).datepicker();
  	$( "#datepicker1" ).datepicker( "option", "dateFormat", "yy-mm-ddT" );
  	$('input.timepicker1').timepicker({ timeFormat: 'H:mm:ssZ',  interval: 15 });
+ 	$("#datepicker1").datepicker('setDate', $('.start_date_hidden').val());
+
  	$('.pwd_enabled').click(function() {
  		if(this.checked){
  			$(".password_zoom").show();
+ 			$(".password_zoom").css('visibility','visible');
  		} else {
  			$(".password_zoom").hide();
+ 			$(".password_zoom").css('visibility','hidden');
  		}
  	});
 

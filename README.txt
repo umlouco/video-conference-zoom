@@ -1,6 +1,6 @@
 === Video Conferencing with Zoom API ===
 Contributors: j__3rk
-Donate link: http://deepenbajracharya.com.np
+Donate link: http://deepenbajracharya.com.np/donate-via-skrill/
 Tags: zoom video conference, video conference, zoom, zoom video conferencing, web conferencing, online meetings
 Requires at least: 4.4.2
 Tested up to: 4.5.2
@@ -43,8 +43,20 @@ Simply search for the plugin via the plugins -> add new dialog and click install
 
 == Changelog ==
 
-= 1.0.0 =
-* Initial Release
+= 1.2.0 =
+* Various Bug Fixes
+* Validation Errors Fixed
+* Translation Ready
+
+= 1.1.1 =
+* Increased Add Meeting Refresh time interval to 5 seconds.
+
+= 1.1 =
+* Added Reports
+* Minor Bug fixes and Changes
+
+= 1.0.2 =
+* Minor Changes
 
 = 1.0.1 =
 * Minor UI Changes
@@ -52,11 +64,15 @@ Simply search for the plugin via the plugins -> add new dialog and click install
 * Added CSS Editor in Settings Page
 * Alot of Minor Bug Fixes
 
-= 1.0.2 =
-* Minor Changes
+= 1.0.0 =
+* Initial Release
 
-= 1.1 =
-* Added Reports
-* Minor Bug fixes and Changes
+== Upgrade Notice ==
+
+= 1.2.0 =
+* Crucial Security Patches
+
+
+
 
 

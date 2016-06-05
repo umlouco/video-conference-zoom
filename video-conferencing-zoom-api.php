@@ -9,12 +9,12 @@
  * Plugin Name:       Video Conferencing with Zoom API
  * Plugin URI:        http://www.deepenbajracharya.com.np
  * Description:       Add, Handle Zoom meetings from WordPress Dashboard. Manage users, show meeting link using shortcode in frontend.
- * Version:           1.1
+ * Version:           1.2.0
  * Author:            Deepen Bajracharya
  * Author URI:        http://www.deepenbajracharya.com.np
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       zoom-video-conference
+ * Text Domain:       video-conferencing-with-zoom-api
  * Domain Path:       /languages
  */
 
@@ -25,7 +25,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 define('ZOOM_API_PATH', plugin_dir_path( __FILE__ ));
 define('ZOOM_URI_PATH', plugin_dir_url( __FILE__ ));
-define('ZOOM_API_VERSION', '1.1');
+define('ZOOM_API_VERSION', '1.2.0');
 
 /**
  * The code that runs during plugin activation.

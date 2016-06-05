@@ -5,10 +5,10 @@ if(isset($GET['tab'])) {
 $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'zoom_daily_report';
 ?>
 <div class="wrap">
-	<h1><?php _e('Report', 'zoom-video-conference'); ?></h1>
+	<h1><?php _e('Report', 'video-conferencing-with-zoom-api'); ?></h1>
 	<h2 class="nav-tab-wrapper">
-		<a href="?page=zoom_reports&tab=zoom_daily_report" class="nav-tab <?php echo $active_tab == 'zoom_daily_report' ? 'nav-tab-active' : ''; ?>"><?php _e('1. Daily Report', 'zoom-video-conference'); ?></a>
-		<a href="?page=zoom_reports&tab=zoom_acount_report" class="nav-tab <?php echo $active_tab == 'zoom_acount_report' ? 'nav-tab-active' : ''; ?>"><?php _e('2. Account Report', 'zoom-video-conference'); ?></a>
+		<a href="?page=zoom_reports&tab=zoom_daily_report" class="nav-tab <?php echo $active_tab == 'zoom_daily_report' ? 'nav-tab-active' : ''; ?>"><?php _e('1. Daily Report', 'video-conferencing-with-zoom-api'); ?></a>
+		<a href="?page=zoom_reports&tab=zoom_acount_report" class="nav-tab <?php echo $active_tab == 'zoom_acount_report' ? 'nav-tab-active' : ''; ?>"><?php _e('2. Account Report', 'video-conferencing-with-zoom-api'); ?></a>
 	<!-- 	<a href="?page=zoom_reports&tab=zoom_user_report" class="nav-tab <?php echo $active_tab == 'zoom_user_report' ? 'nav-tab-active' : ''; ?>">3. User Report</a> -->
 	</h2>
 
@@ -21,7 +21,7 @@ $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'zoom_daily_report';
 			<?php } ?>
 			<div class="zoom_dateinput_field">
 				<form action="?page=zoom_reports" method="POST">
-					<label><?php _e('Enter the date to check:', 'zoom-video-conference'); ?></label>
+					<label><?php _e('Enter the date to check:', 'video-conferencing-with-zoom-api'); ?></label>
 					<input name="zoom_month_year" class="monthYearPicker" />
 					<input type="submit" name="zoom_check_month_year" value="Check">
 				</form>
@@ -29,11 +29,11 @@ $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'zoom_daily_report';
 			<table class="wp-list-table widefat fixed striped posts">
 				<thead>
 					<tr>
-						<th scope="col" class="manage-column column-primary"><span><?php _e('Date', 'zoom-video-conference'); ?></span></th>
-						<th scope="col" class="manage-column column-primary"><span><?php _e('Meetings', 'zoom-video-conference'); ?></span></th>
-						<th scope="col" class="manage-column column-primary"><span><?php _e('New Users', 'zoom-video-conference'); ?></span></th>
-						<th scope="col"  class="manage-column column-primary"><span><?php _e('Participants', 'zoom-video-conference'); ?></span></th>
-						<th scope="col" class="manage-column column-primary"><span><?php _e('Meeting Minutes', 'zoom-video-conference'); ?></span></th>
+						<th scope="col" class="manage-column column-primary"><span><?php _e('Date', 'video-conferencing-with-zoom-api'); ?></span></th>
+						<th scope="col" class="manage-column column-primary"><span><?php _e('Meetings', 'video-conferencing-with-zoom-api'); ?></span></th>
+						<th scope="col" class="manage-column column-primary"><span><?php _e('New Users', 'video-conferencing-with-zoom-api'); ?></span></th>
+						<th scope="col"  class="manage-column column-primary"><span><?php _e('Participants', 'video-conferencing-with-zoom-api'); ?></span></th>
+						<th scope="col" class="manage-column column-primary"><span><?php _e('Meeting Minutes', 'video-conferencing-with-zoom-api'); ?></span></th>
 					</tr>
 				</thead>
 				<tbody id="the-list">	
@@ -69,21 +69,21 @@ $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'zoom_daily_report';
 	<?php else: ?>
 		<div id="message" class="notice notice-success">
 			<ul class="zoom_acount_lists">
-				<li><?php echo isset($result->from) ? __('Searching From: ', 'zoom-video-conference') . $result->from . ' - ': null ; ?><?php echo isset($result->to) ? $result->to : null ; ?></li>
-				<li><?php echo isset($result->total_records) ? __('Total Records Found: ', 'zoom-video-conference') . $result->total_records : null ; ?></li>
-				<li><?php echo isset($result->total_meetings) ? __('Total Meetings Held: ', 'zoom-video-conference') . $result->total_meetings : null ; ?></li>
-				<li><?php echo isset($result->total_participants) ? __('Total Participants Involved: ', 'zoom-video-conference') . $result->total_participants : null ; ?></li>
-				<li><?php echo isset($result->total_meeting_minutes) ? __('Total Meeting Minutes Combined: ', 'zoom-video-conference') . $result->total_meeting_minutes : null ; ?></li>
+				<li><?php echo isset($result->from) ? __('Searching From: ', 'video-conferencing-with-zoom-api') . $result->from . ' - ': null ; ?><?php echo isset($result->to) ? $result->to : null ; ?></li>
+				<li><?php echo isset($result->total_records) ? __('Total Records Found: ', 'video-conferencing-with-zoom-api') . $result->total_records : null ; ?></li>
+				<li><?php echo isset($result->total_meetings) ? __('Total Meetings Held: ', 'video-conferencing-with-zoom-api') . $result->total_meetings : null ; ?></li>
+				<li><?php echo isset($result->total_participants) ? __('Total Participants Involved: ', 'video-conferencing-with-zoom-api') . $result->total_participants : null ; ?></li>
+				<li><?php echo isset($result->total_meeting_minutes) ? __('Total Meeting Minutes Combined: ', 'video-conferencing-with-zoom-api') . $result->total_meeting_minutes : null ; ?></li>
 			</ul>
 		</div>
 	<?php endif; endif; ?>
 	<div class="zoom_dateinput_field">
-		<p><?php _e('Get account report for a specified period.', 'zoom-video-conference'); ?>  <a onclick="window.print();" href="javascript:void(0);">Print</a></p>
-		<o><strong><?php _e('Note: Report a maximum of one month. For example, if "from" is set to "2015-08-05" and "to" is "2015-10-10" it will adjust "from" to "2015-09-10".', 'zoom-video-conference'); ?></strong></p>
+		<p><?php _e('Get account report for a specified period.', 'video-conferencing-with-zoom-api'); ?>  <a onclick="window.print();" href="javascript:void(0);">Print</a></p>
+		<o><strong><?php _e('Note: Report a maximum of one month. For example, if "from" is set to "2015-08-05" and "to" is "2015-10-10" it will adjust "from" to "2015-09-10".', 'video-conferencing-with-zoom-api'); ?></strong></p>
 			<form action="?page=zoom_reports&tab=zoom_acount_report" method="POST">
-				<label><?php _e('From', 'zoom-video-conference'); ?></label>
+				<label><?php _e('From', 'video-conferencing-with-zoom-api'); ?></label>
 				<input name="zoom_account_from" class="zoom_datepicker" />
-				<label><?php _e('To', 'zoom-video-conference'); ?></label>
+				<label><?php _e('To', 'video-conferencing-with-zoom-api'); ?></label>
 				<input name="zoom_account_to" class="zoom_datepicker" />
 				<input type="submit" name="zoom_check_account_info" value="Check">
 			</form>
@@ -91,11 +91,11 @@ $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'zoom_daily_report';
 		<table class="wp-list-table widefat fixed striped posts">
 			<thead>
 				<tr>
-					<th scope="col" class="manage-column column-primary"><span><?php _e('By', 'zoom-video-conference'); ?></span></th>
-					<th scope="col" class="manage-column column-primary"><span><?php _e('Meetings Held', 'zoom-video-conference'); ?></span></th>
-					<th scope="col"  class="manage-column column-primary"><span><?php _e('Total Participants', 'zoom-video-conference'); ?></span></th>
-					<th scope="col" class="manage-column column-primary"><span><?php _e('Total Meeting Minutes', 'zoom-video-conference'); ?></span></th>
-					<th scope="col" class="manage-column column-primary"><span><?php _e('Last Login Time', 'zoom-video-conference'); ?></span></th>
+					<th scope="col" class="manage-column column-primary"><span><?php _e('By', 'video-conferencing-with-zoom-api'); ?></span></th>
+					<th scope="col" class="manage-column column-primary"><span><?php _e('Meetings Held', 'video-conferencing-with-zoom-api'); ?></span></th>
+					<th scope="col"  class="manage-column column-primary"><span><?php _e('Total Participants', 'video-conferencing-with-zoom-api'); ?></span></th>
+					<th scope="col" class="manage-column column-primary"><span><?php _e('Total Meeting Minutes', 'video-conferencing-with-zoom-api'); ?></span></th>
+					<th scope="col" class="manage-column column-primary"><span><?php _e('Last Login Time', 'video-conferencing-with-zoom-api'); ?></span></th>
 				</tr>
 			</thead>
 			<tbody id="the-list">	

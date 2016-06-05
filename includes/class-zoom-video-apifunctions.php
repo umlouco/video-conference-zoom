@@ -154,10 +154,10 @@ class ZoomAPI{
 	  $createAMeetingArray['type'] = $_POST['meetingType'];
 	  $createAMeetingArray['start_time'] = $_POST['start_date'].$_POST['start_time'];
 	  $createAMeetingArray['timezone'] = $_POST['timezone'];
-	  $createAMeetingArray['password'] = isset($_POST['password_zoom']) ? $_POST['password_zoom'] : false;
+	  $createAMeetingArray['password'] = $_POST['zoom_password_field'] ? $_POST['zoom_password_field'] : false;
 	  $createAMeetingArray['duration'] = $_POST['duration'];
-	  $createAMeetingArray['option_jbh'] = isset($_POST['join_before_host']) ? $_POST['join_before_host'] : false;
-	  $createAMeetingArray['option_participants_video'] = isset($_POST['option_participants_video']) ? $_POST['join_before_host'] : false;
+	  $createAMeetingArray['option_jbh'] = $_POST['join_before_host'] ? $_POST['join_before_host'] : false;
+	  $createAMeetingArray['option_participants_video'] = $_POST['option_participants_video'] ? $_POST['join_before_host'] : false;
 	  return $this->sendRequest('meeting/create', $createAMeetingArray);
 	}
 
@@ -215,7 +215,7 @@ class ZoomAPI{
 	  $updateMeetingInfoArray['type'] = $_POST['meetingType'];
 	  $updateMeetingInfoArray['start_time'] = $start_date;
 	  $updateMeetingInfoArray['timezone'] = $_POST['timezone'];
-	  $updateMeetingInfoArray['password'] = $_POST['password_zoom'];
+	  $updateMeetingInfoArray['password'] = $_POST['zoom_password_field'];
 	  $updateMeetingInfoArray['duration'] = $_POST['duration'];
 	  $updateMeetingInfoArray['option_jbh'] = $_POST['join_before_host'];
 	  $updateMeetingInfoArray['option_participants_video'] = $_POST['option_participants_video'];

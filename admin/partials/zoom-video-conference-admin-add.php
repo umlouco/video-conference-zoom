@@ -1,22 +1,23 @@
 <?php $listingUsers = Zoom_Video_Api_Essentials::zoom_api_add_conference_html(); ?>
 <div class="wrap">
-  <h1><?php _e('Add a Meeting', 'zoom-video-conference'); ?></h1>
+  <h1><?php _e('Add a Meeting', 'video-conferencing-with-zoom-api'); ?></h1>
   <div id="poststuff">
     <div id="post-body" class="metabox-holder columns-2">
       <form action="?page=add_meeting" method="POST">
+        <?php wp_nonce_field( 'zoom_add_meeting_action', 'zoom_add_meeting_nonce' ); ?>
         <div id="post-body-content" style="position: relative;">
           <div id="titlediv">
             <div id="titlewrap">
-              <input type="text" placeholder="Meeting Topic" name="meetingTopic" size="30" value="" id="title" class="meetingTopic" <?php echo (get_option('zoom_api_key') && get_option('zoom_api_secret')) ? null : 'disabled'; ?>>
+              <input type="text" placeholder="Meeting Topic *" name="meetingTopic" size="30" id="title" class="meetingTopic" <?php echo (get_option('zoom_api_key') && get_option('zoom_api_secret')) ? null : 'disabled'; ?>>
             </div>
           </div>
         </div>
         <div id="postbox-container-1" class="postbox-container">
           <div id="submitdiv" class="postbox ">
-            <h2 class="hndle ui-sortable-handle"><span><?php _e('Action', 'zoom-video-conference'); ?></span></h2>
+            <h2 class="hndle ui-sortable-handle"><span><?php _e('Action', 'video-conferencing-with-zoom-api'); ?></span></h2>
             <div class="inside">
               <div id="major-publishing-actions">
-                <input type="submit" name="add_meeting" class="<?php echo (get_option('zoom_api_key') && get_option('zoom_api_secret')) ? null : 'disabled'; ?> button button-primary button-large" value="Create Meeting">
+                <input type="submit" name="add_meeting" class="button button-primary button-large" value="Create Meeting">
               </div>
             </div>
           </div>
@@ -25,21 +26,21 @@
         <?php if( get_option('zoom_api_key') == NULL || get_option('zoom_api_secret') == NULL): ?>
           <div id="postbox-container-2" class="postbox-container">  
             <div id="message" class="notice notice-error">
-              <p><?php _e('The API Key seems to missing. <a href="?page=zoom_setting">Click Here</a> to Configure.', 'zoom-video-conference'); ?></p>
+              <p><?php _e('The API Keys are missing. <a href="?page=zoom_setting">Click Here</a> to Configure.', 'video-conferencing-with-zoom-api'); ?></p>
             </div>
           </div>
         <?php endif; ?>
         <?php if(get_option('zoom_api_key') && get_option('zoom_api_secret')): ?>
           <div id="postbox-container-2" class="postbox-container">
             <div id="date-settings" class="postbox ">
-              <h2 class="hndle ui-sortable-handle"><span><?php _e('Fill the following form:', 'zoom-video-conference'); ?></span></h2>
+              <h2 class="hndle ui-sortable-handle"><span><?php _e('Fill the following form:', 'video-conferencing-with-zoom-api'); ?></span></h2>
               <div class="inside">
                 <table class="zoom_api_table">
                   <tr>
-                    <th><?php _e('Meeting Host:', 'zoom-video-conference'); ?></th>
+                    <th><?php _e('Meeting Host: *', 'video-conferencing-with-zoom-api'); ?></th>
                     <td>
                       <select name="userId">
-                        <option value="0"><?php _e('Select a User', 'zoom-video-conference'); ?></option>
+                        <option value="0"><?php _e('Select a User', 'video-conferencing-with-zoom-api'); ?></option>
                         <?php foreach($listingUsers['users'] as $listingUser):  ?>
                           <option value="<?php echo $listingUser['id']; ?>"><?php echo $listingUser['first_name'] . ' ( '. $listingUser['email'] .' )'; ?></option>
                         <?php endforeach; ?>
@@ -49,12 +50,12 @@
                   <input type="hidden" name="meetingType" id="meetingType" value="2">
 
                   <tr>
-                    <th><?php _e('Start Date/Time: ', 'zoom-video-conference'); ?></th>
+                    <th><?php _e('Start Date/Time: *', 'video-conferencing-with-zoom-api'); ?></th>
                     <td><input type="text" name="start_date"  id="datepicker1" value="">
                       <input type="text" name="start_time"  class="timepicker1" value=""></td>
                     </tr>
                     <tr>
-                      <th><?php _e('Time Zone', 'zoom-video-conference'); ?></th>
+                      <th><?php _e('Time Zone', 'video-conferencing-with-zoom-api'); ?></th>
                       <td><select id="timezone" name="timezone" >
                         <option value="Pacific/Midway">(GMT-11:00) Midway Island, Samoa</option>
                         <option value="Pacific/Pago_Pago">(GMT-11:00) Pago Pago</option>
@@ -193,21 +194,21 @@
                       </select></td>
                     </tr>
                     <tr>
-                      <th><?php _e('Meeting Duration (In Minutes)', 'zoom-video-conference'); ?></th>
-                      <td><input type="text" name="duration" value=""></td>
+                      <th><?php _e('Meeting Duration (In Minutes) *', 'video-conferencing-with-zoom-api'); ?></th>
+                      <td><input type="text" name="duration" value="30"></td>
                     </tr>
                     <tr>
-                      <th><?php _e('Enable join before host', 'zoom-video-conference'); ?></th>
-                      <td><input type="checkbox" name="join_before_host" value="true"></td>
+                      <th><?php _e('Enable Participants join before host ?', 'video-conferencing-with-zoom-api'); ?></th>
+                      <td><input type="checkbox" name="join_before_host"></td>
                     </tr>
                     <tr>
-                      <th><?php _e('Enable Participants Video', 'zoom-video-conference'); ?></th>
-                      <td><input type="checkbox" name="option_participants_video" value="true"></td>
+                      <th><?php _e('Enable Participants Video ?', 'video-conferencing-with-zoom-api'); ?></th>
+                      <td><input type="checkbox" name="option_participants_video"></td>
                     </tr>
                     <tr>
-                      <th><?php _e('Require meeting password', 'zoom-video-conference'); ?></th>
+                      <th><?php _e('Enable Meeting Password ?', 'video-conferencing-with-zoom-api'); ?></th>
                       <td><input type="checkbox" name="pwd_enabled" class="pwd_enabled">
-                        <input type="password" name="password_zoom" class="password_zoom" value="" style="display:none;"></td>
+                        <input type="password" name="zoom_password_field" class="password_zoom" style="display:none;"></td>
                       </tr>
                     </table>
                   </div>

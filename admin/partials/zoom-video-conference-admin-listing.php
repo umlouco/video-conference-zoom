@@ -33,19 +33,19 @@
 			}
 			endif;
 			?>
-			<div class="wrap"><h1><?php _e('Meeting List<a href="?page=add_meeting" class="page-title-action">Add Meeting</a>', 'zoom-video-conference'); ?></h1>
+			<div class="wrap"><h1><?php _e('Meeting List<a href="?page=add_meeting" class="page-title-action">Add Meeting</a>', 'video-conferencing-with-zoom-api'); ?></h1>
 				<div id="message" class="notice notice-success is-dismissible delete_success" style="display:none;">
-					<p><?php _e('Successfully Deleted', 'zoom-video-conference'); ?></p><button type="button" class="notice-dismiss"><span class="screen-reader-text"><?php _e('Dismiss this notice.', 'zoom-video-conference'); ?></span></button>
+					<p><?php _e('Successfully Deleted', 'video-conferencing-with-zoom-api'); ?></p><button type="button" class="notice-dismiss"><span class="screen-reader-text"><?php _e('Dismiss this notice.', 'video-conferencing-with-zoom-api'); ?></span></button>
 				</div>
 				<table class="wp-list-table widefat fixed striped posts">
 					<thead>
 						<tr>
-							<th scope="col" id="meeting_id" class="manage-column column-primary"><span><?php _e('Meeting ID', 'zoom-video-conference'); ?></span></th>
-							<th scope="col" id="topic" class="manage-column column-primary"><span><?php _e('Topic', 'zoom-video-conference'); ?></span></th>
-							<th scope="col" id="status" class="manage-column column-primary"><span><?php _e('Status', 'zoom-video-conference'); ?></span></th>
-							<th scope="col" id="start_time" class="manage-column column-primary"><span><?php _e('Start Time', 'zoom-video-conference'); ?></span></th>
-							<th scope="col" id="join_url" class="manage-column column-primary"><span><?php _e('Host ID', 'zoom-video-conference'); ?></span></th>
-							<th scope="col" id="created_on" class="manage-column column-primary"><span><?php _e('Created On', 'zoom-video-conference'); ?></span></th>
+							<th scope="col" id="meeting_id" class="manage-column column-primary"><span><?php _e('Meeting ID', 'video-conferencing-with-zoom-api'); ?></span></th>
+							<th scope="col" id="topic" class="manage-column column-primary"><span><?php _e('Topic', 'video-conferencing-with-zoom-api'); ?></span></th>
+							<th scope="col" id="status" class="manage-column column-primary"><span><?php _e('Status', 'video-conferencing-with-zoom-api'); ?></span></th>
+							<th scope="col" id="start_time" class="manage-column column-primary"><span><?php _e('Start Time', 'video-conferencing-with-zoom-api'); ?></span></th>
+							<th width="20%" scope="col" id="join_url" class="manage-column column-primary"><span><?php _e('Host ID', 'video-conferencing-with-zoom-api'); ?></span></th>
+							<th scope="col" id="created_on" class="manage-column column-primary"><span><?php _e('Created On', 'video-conferencing-with-zoom-api'); ?></span></th>
 						</tr>
 					</thead>
 					<tbody id="the-list">	
@@ -56,8 +56,8 @@
 									<td><a href="admin.php?page=list_meetings&edit=<?php echo $result['id']; ?>&host_id=<?php echo $result['host_id']; ?>"><?php echo $result['topic']; ?></a>
 										<div class="row-actions">
 											<span class="edit">
-												<span class="trash"><a href="javascript:void(0);" onclick="confirm_delete(<?php echo $result['id']; ?>, '<?php echo $result['host_id']; ?>')" class="submitdelete"><?php _e('Trash', 'zoom-video-conference'); ?></a> | </span>
-												<span class="view"><a href="<?php echo $result['join_url']; ?>" rel="permalink" target="_blank"><?php _e('Start Meeting', 'zoom-video-conference'); ?></a></span>
+												<span class="trash"><a href="javascript:void(0);" onclick="confirm_delete(<?php echo $result['id']; ?>, '<?php echo $result['host_id']; ?>')" class="submitdelete"><?php _e('Trash', 'video-conferencing-with-zoom-api'); ?></a> | </span>
+												<span class="view"><a href="<?php echo $result['join_url']; ?>" rel="permalink" target="_blank"><?php _e('Start Meeting', 'video-conferencing-with-zoom-api'); ?></a></span>
 											</div>
 										</td>
 										<td><?php $type = $result['status']; 
@@ -83,12 +83,12 @@
 								<?php else: ?>
 									<?php if(get_option('zoom_api_key') == NULL ): ?>
 										<div id="message" class="notice notice-error">
-											<p><?php _e('The API Key seems to missing. <a href="?page=zoom_setting">Click Here</a> to Configure.', 'zoom-video-conference'); ?></p></div>
+											<p><?php _e('The API Key seems to missing. <a href="?page=zoom_setting">Click Here</a> to Configure.', 'video-conferencing-with-zoom-api'); ?></p></div>
 										<?php elseif(get_option('zoom_api_secret') == NULL ): ?>
 											<div id="message" class="notice notice-error">
-												<p><?php _e('The Secret Key seems to missing. <a href="?page=zoom_setting">Click Here</a> to Configure.', 'zoom-video-conference'); ?></p></div>
+												<p><?php _e('The Secret Key seems to missing. <a href="?page=zoom_setting">Click Here</a> to Configure.', 'video-conferencing-with-zoom-api'); ?></p></div>
 											<?php endif; ?>
-											<tr><td colspan="9"><?php _e('No meetings created yet, you can create from <a href="?page=add_meeting">Here</a>.', 'zoom-video-conference'); ?></td></tr>
+											<tr><td colspan="9"><?php _e('No meetings created yet, you can create from <a href="?page=add_meeting">Here</a>.', 'video-conferencing-with-zoom-api'); ?></td></tr>
 										<?php endif; ?>
 									</tbody>
 								</table>
@@ -126,10 +126,13 @@
 	$zoom = new ZoomAPI();
 	$data = $zoom->getMeetingInfo($id, $host_id);
 	$results = json_decode($data, true);
+		// echo '<pre>';
+		// var_dump($results);
+		// die;
 	if(isset($results['error'])) {
 		?>	
 		<div id="message" class="notice notice-success is-dismissible">
-			<p><?php echo $results['error']['message'] ?></p><button type="button" class="notice-dismiss"><span class="screen-reader-text"><?php _e('Dismiss this notice.', 'zoom-video-conference'); ?></span></button>
+			<p><?php echo $results['error']['message'] ?></p><button type="button" class="notice-dismiss"><span class="screen-reader-text"><?php _e('Dismiss this notice.', 'video-conferencing-with-zoom-api'); ?></span></button>
 		</div>
 		<?php
 	} else { ?>
@@ -139,6 +142,7 @@
 		$zoom = new ZoomAPI();
 		$data = $zoom->updateMeetingInfo();
 		$results = json_decode($data, true);
+
 		?>
 		<div id="message" class="notice notice-success is-dismissible">
 			<p>Meeting with ID: <strong><?php echo $results['id'] ?></strong> has been Updated on: <strong><?php echo $results['updated_at'] ?></strong></p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button>
@@ -152,26 +156,6 @@
 		<?php
 	}
 	?>
-	<script>
-		jQuery(function($) {
-			$( "#datepicker1" ).datepicker();
-			$( "#datepicker1" ).datepicker( "option", "dateFormat", "yy-mm-ddT" );
-
-			$('input.timepicker1').timepicker({ timeFormat: 'H:mm:ssZ',  interval: 15 });
-
-			$('.pwd_enabled').click(function() {
-				if(this.checked){
-					$(".password_zoom").show();
-				} else {
-					$(".password_zoom").hide();
-				}
-			});
-			$('.pwd_enabled').prop('checked', function() {
-				$(".password_zoom").show();
-			});
-		});
-
-	</script>
 	<div class="wrap">
 		<h1>Edit <?php echo isset($results['topic']) ? $results['topic'] : ''; ?></h1>
 		<div id="poststuff">
@@ -188,7 +172,7 @@
 					</div>
 					<div id="postbox-container-1" class="postbox-container">
 						<div id="submitdiv" class="postbox ">
-							<h2 class="hndle ui-sortable-handle"><span><?php _e('Action', 'zoom-video-conference'); ?></span></h2>
+							<h2 class="hndle ui-sortable-handle"><span><?php _e('Action', 'video-conferencing-with-zoom-api'); ?></span></h2>
 							<div class="inside">
 								<div id="major-publishing-actions">
 									<input type="submit" name="update_meeting" class="button button-primary button-large" value="Update Meeting">
@@ -200,26 +184,26 @@
 
 					<div id="postbox-container-2" class="postbox-container">
 						<div id="date-settings" class="postbox ">
-							<h2 class="hndle ui-sortable-handle"><span><?php _e('Parameters', 'zoom-video-conference'); ?></span></h2>
+							<h2 class="hndle ui-sortable-handle"><span><?php _e('Parameters', 'video-conferencing-with-zoom-api'); ?></span></h2>
 							<div class="inside">
 								<table class="zoom_api_table">
 									<input type="hidden" name="meetingType" id="meetingType" value="2">
 									<tr>
-										<th><?php _e('Start Date/Time: ', 'zoom-video-conference'); ?></th>
+										<th><?php _e('Start Date/Time: ', 'video-conferencing-with-zoom-api'); ?></th>
 										<?php 
 										$dateTime = isset($results['start_time']) ? $results['start_time'] : false; 
 										$splitTimeStamp = explode("T",$dateTime);
 										$date = $splitTimeStamp[0];
 										$time = isset($splitTimeStamp[1]) ? $splitTimeStamp[1] : null;
 										?>
-										<td>Previous Date:<?php echo ($date) ? $date.'T' : ''; ?><br>
-											<input type="hidden" name="start_date_hidden" value="<?php echo ($date) ? $date.'T' : ''; ?>">
-											<input type="text" name="start_date"  id="datepicker1" class="datepicker1"  value="">
+										<td>
+											<input type="hidden" name="start_date_hidden" class="start_date_hidden" value="<?php echo ($date) ? $date.'T' : ''; ?>">
+											<input type="text" name="start_date" id="datepicker1" class="datepicker1"  value="">
 											<input type="hidden" name="start_time_hidden" value="<?php echo ($time) ? $time : ''; ?>">
 											<input type="text" name="start_time"  class="timepicker1" class="timepicker1" value="<?php echo ($time) ? $time : ''; ?>"></td>
 										</tr>
 										<tr>
-											<th><?php _e('Time Zone', 'zoom-video-conference'); ?></th>
+											<th><?php _e('Time Zone', 'video-conferencing-with-zoom-api'); ?></th>
 											<td><select id="timezone" name="timezone" >
 												<option value="Pacific/Midway">(GMT-11:00) Midway Island, Samoa</option>
 												<option value="Pacific/Pago_Pago">(GMT-11:00) Pago Pago</option>
@@ -359,21 +343,21 @@
 										</tr>
 
 										<tr>
-											<th><?php _e('Meeting Duration (In Minutes)', 'zoom-video-conference'); ?></th>
+											<th><?php _e('Meeting Duration (In Minutes)', 'video-conferencing-with-zoom-api'); ?></th>
 											<td><input type="text" name="duration" value="<?php echo isset($results['duration']) ? $results['duration'] : ''; ?>"></td>
 										</tr>
 										<tr>
-											<th><?php _e('Enable join before host', 'zoom-video-conference'); ?></th>
-											<td><input type="checkbox" name="join_before_host" <?php echo (isset($results['option_jbh'])==true) ? 'checked' : ''; ?> value="true"> </td>
+											<th><?php _e('Enable join before host', 'video-conferencing-with-zoom-api'); ?></th>
+											<td><input type="checkbox" name="join_before_host" <?php echo ($results['option_jbh']==true) ? 'checked' : ''; ?> value="true"> </td>
 										</tr>
 										<tr>
-                      <th><?php _e('Enable Participants Video', 'zoom-video-conference'); ?></th>
-                      <td><input type="checkbox" name="option_participants_video" <?php echo (isset($results['option_participants_video'])==true) ? 'checked' : ''; ?> value="true"></td>
+                      <th><?php _e('Enable Participants Video', 'video-conferencing-with-zoom-api'); ?></th>
+                      <td><input type="checkbox" name="option_participants_video" <?php echo ($results['option_participants_video']==true) ? 'checked' : ''; ?> value="true"></td>
                     </tr>
 										<tr>
-											<th><?php _e('Require meeting password', 'zoom-video-conference'); ?></th>
-											<td><input type="checkbox" name="pwd_enabled" class="pwd_enabled" <?php echo isset($results['password']) ? 'checked' : ''; ?> >
-												<input type="password" name="password_zoom" class="password_zoom" value="" style="display:none;"></td>
+											<th><?php _e('Require meeting password', 'video-conferencing-with-zoom-api'); ?></th>
+											<td><input type="checkbox" name="pwd_enabled" class="pwd_enabled" <?php echo ($results['password'] == true) ? 'checked' : ''; ?> >
+												<input type="password" name="zoom_password_field" class="password_zoom" <?php echo ($results['password'] == true) ? null : 'style="visibility: hidden;"' ?>></td>
 											</tr>
 										</table>
 									</div>

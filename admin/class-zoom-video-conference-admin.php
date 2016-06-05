@@ -153,18 +153,18 @@ class Zoom_Video_Conference_Admin {
 		if($data['error']) {
 			?>
 			<div id="message" class="notice notice-error is-dismissible">
-				<p><?php echo $data['error']['message'] ?></p><button type="button" class="notice-dismiss"><span class="screen-reader-text"><?php _e('Dismiss this notice.', 'zoom-video-conference'); ?></span></button>
+				<p><?php echo $data['error']['message'] ?></p><button type="button" class="notice-dismiss"><span class="screen-reader-text"><?php _e('Dismiss this notice.', 'video-conferencing-with-zoom-api'); ?></span></button>
 			</div>
 			<?php
 		}
 		if($data) {
 			?>
 			<div id="message" class="notice notice-success is-dismissible">
-				<p><?php _e('Added New User with ID: ', 'zoom-video-conference'); ?><?php echo '<strong>'.$data['id'].'</strong>'; ?></p>
-				<p><?php _e('Name: ', 'zoom-video-conference'); ?><?php echo '<strong>'.$data['first_name'].' '.$data['last_name'].'</strong>'; ?></p>
-				<p><?php _e('User Created On: ', 'zoom-video-conference'); ?><?php echo '<strong>'.$data['created_at'].'</strong>'; ?></p>
-				<p color="red"><?php _e('Email Appoval Mail has been sent to the user.', 'zoom-video-conference'); ?><?php echo '<strong>'.$data['email'].'</strong>'; ?>.</p>
-				<button type="button" class="notice-dismiss"><span class="screen-reader-text"><?php _e('Dismiss this notice.', 'zoom-video-conference'); ?></span></button>
+				<p><?php _e('Added New User with ID: ', 'video-conferencing-with-zoom-api'); ?><?php echo '<strong>'.$data['id'].'</strong>'; ?></p>
+				<p><?php _e('Name: ', 'video-conferencing-with-zoom-api'); ?><?php echo '<strong>'.$data['first_name'].' '.$data['last_name'].'</strong>'; ?></p>
+				<p><?php _e('User Created On: ', 'video-conferencing-with-zoom-api'); ?><?php echo '<strong>'.$data['created_at'].'</strong>'; ?></p>
+				<p color="red"><?php _e('Email Appoval Mail has been sent to the user.', 'video-conferencing-with-zoom-api'); ?><?php echo '<strong>'.$data['email'].'</strong>'; ?>.</p>
+				<button type="button" class="notice-dismiss"><span class="screen-reader-text"><?php _e('Dismiss this notice.', 'video-conferencing-with-zoom-api'); ?></span></button>
 			</div>
 			<?php
 	    //Adding Meta Values
