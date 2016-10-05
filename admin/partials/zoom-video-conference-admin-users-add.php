@@ -9,7 +9,8 @@
  */
 ?>
 <div class="wrap">
-  <div class="msg_contain"></div>
+  <div class="message_op"></div>
+  <div id="message" style="display:none;" class="notice notice-error is-dismissible"></div>
   <h1><?php _e('Add a User to Zoom', 'video-conferencing-with-zoom-api'); ?></h1>
   <div id="poststuff">
     <div id="post-body" class="metabox-holder columns-2">
@@ -32,14 +33,9 @@
               <table class="zoom_api_table">
                <tr>
                 <th><?php _e('Email Address:', 'video-conferencing-with-zoom-api'); ?></th>
-                <td><select name="email" class="email">
-                <?php $users = get_users(); ?>
-                  <option value="0">Select a User</option>
-                  <?php foreach ( $users as $user ) { ?>
-                  <option inst_id="<?php echo esc_html( $user->id ); ?>" value="<?php echo esc_html( $user->user_email ); ?>"><?php echo esc_html( $user->user_email ); ?></option>
-                  <?php } ?>
-                </select></td>
-                <!--   	<td><input type="text" required name="email" value="" class="email" ></td> -->
+                <td>
+                <input type="email" name="email" required class="email">
+                </td>
               </tr>
               <tr>
                 <th><?php _e('User Type: ', 'video-conferencing-with-zoom-api'); ?></th>

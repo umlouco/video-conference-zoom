@@ -59,147 +59,166 @@ class ZoomAPI{
 		return $this->sendRequest('user/create', $createAUserArray);
 	}   
 
+	function createAUserPara($user_arr = array()){		
+		$createAUserArray = array();
+		$createAUserArray['email'] = $user_arr['email'];
+		$createAUserArray['type'] = $user_arr['type'];
+		$createAUserArray['first_name'] = $user_arr['fname'];
+		$createAUserArray['last_name'] = $user_arr['lname'];
+		return $this->sendRequest('user/create', $createAUserArray);
+	}   
+
 	function autoCreateAUser(){
-	  $autoCreateAUserArray = array();
-	  $autoCreateAUserArray['email'] = $_POST['userEmail'];
-	  $autoCreateAUserArray['type'] = $_POST['userType'];
-	  $autoCreateAUserArray['password'] = $_POST['userPassword'];
-	  return $this->sendRequest('user/autocreate', $autoCreateAUserArray);
+		$autoCreateAUserArray = array();
+		$autoCreateAUserArray['email'] = $_POST['userEmail'];
+		$autoCreateAUserArray['type'] = $_POST['userType'];
+		$autoCreateAUserArray['password'] = $_POST['userPassword'];
+		return $this->sendRequest('user/autocreate', $autoCreateAUserArray);
 	}
 
-	function custCreateAUser(){
-	  $custCreateAUserArray = array();
-	  $custCreateAUserArray['email'] = $_POST['userEmail'];
-	  $custCreateAUserArray['type'] = $_POST['userType'];
-	  return $this->sendRequest('user/custcreate', $custCreateAUserArray);
+	function getUserInfoByEmail( $email, $type ){
+		$getUserInfoByEmailArray = array(); 
+		$getUserInfoByEmailArray['email'] = $email;
+		$getUserInfoByEmailArray['login_type'] = $type;
+		return $this->sendRequest('user/getbyemail',$getUserInfoByEmailArray);
+	}  
+
+	function custCreateAUser($user_arr = array()){
+		$custCreateAUserArray = array();
+		$custCreateAUserArray['email'] = $user_arr['email'];
+		$custCreateAUserArray['type'] = $user_arr['type'];
+		$custCreateAUserArray['first_name'] = $user_arr['fname'];
+		$custCreateAUserArray['last_name'] = $user_arr['lname'];
+		return $this->sendRequest('user/custcreate', $custCreateAUserArray);
 	}  
 
 	function deleteAUser(){
-	  $deleteAUserArray = array();
-	  $deleteAUserArray['id'] = $_POST['userId'];
-	  return $this->sendRequest('user/delete', $deleteAUserArray);
+		$deleteAUserArray = array();
+		$deleteAUserArray['id'] = $_POST['userId'];
+		return $this->sendRequest('user/delete', $deleteAUserArray);
 	}     
 
+	function deleteUserWP( $user_id ){
+		$deleteAUserArray = array();
+		$deleteAUserArray['id'] = $user_id;
+		return $this->sendRequest('user/delete', $deleteAUserArray);
+	}   
+
 	function listUsers(){
-	  $listUsersArray = array();
-	  return $this->sendRequest('user/list', $listUsersArray);
+		$listUsersArray = array();
+		return $this->sendRequest('user/list', $listUsersArray);
 	}   
 
 	function listPendingUsers(){
-	  $listPendingUsersArray = array();
-	  return $this->sendRequest('user/pending', $listPendingUsersArray);
+		$listPendingUsersArray = array();
+		return $this->sendRequest('user/pending', $listPendingUsersArray);
 	}    
 
 	function getUserInfo(){
-	  $getUserInfoArray = array();
-	  $getUserInfoArray['id'] = $_POST['userId'];
-	  return $this->sendRequest('user/get',$getUserInfoArray);
+		$getUserInfoArray = array();
+		$getUserInfoArray['id'] = $_POST['userId'];
+		return $this->sendRequest('user/get',$getUserInfoArray);
 	}   
 
-	function getUserInfoByEmail(){
-	  $getUserInfoByEmailArray = array();
-	  $getUserInfoByEmailArray['email'] = $_POST['userEmail'];
-	  $getUserInfoByEmailArray['login_type'] = $_POST['userLoginType'];
-	  return $this->sendRequest('user/getbyemail',$getUserInfoByEmailArray);
-	}  
-
 	function updateUserInfo(){
-	  $updateUserInfoArray = array();
-	  $updateUserInfoArray['id'] = $_POST['userId'];
-	  return $this->sendRequest('user/update',$updateUserInfoArray);
+		$updateUserInfoArray = array();
+		$updateUserInfoArray['id'] = $_POST['userId'];
+		return $this->sendRequest('user/update',$updateUserInfoArray);
 	}  
 
 	function updateUserPassword(){
-	  $updateUserPasswordArray = array();
-	  $updateUserPasswordArray['id'] = $_POST['userId'];
-	  $updateUserPasswordArray['password'] = $_POST['userNewPassword'];
-	  return $this->sendRequest('user/updatepassword', $updateUserPasswordArray);
+		$updateUserPasswordArray = array();
+		$updateUserPasswordArray['id'] = $_POST['userId'];
+		$updateUserPasswordArray['password'] = $_POST['userNewPassword'];
+		return $this->sendRequest('user/updatepassword', $updateUserPasswordArray);
 	}      
 
 	function setUserAssistant(){
-	  $setUserAssistantArray = array();
-	  $setUserAssistantArray['id'] = $_POST['userId'];
-	  $setUserAssistantArray['host_email'] = $_POST['userEmail'];
-	  $setUserAssistantArray['assistant_email'] = $_POST['assistantEmail'];
-	  return $this->sendRequest('user/assistant/set', $setUserAssistantArray);
+		$setUserAssistantArray = array();
+		$setUserAssistantArray['id'] = $_POST['userId'];
+		$setUserAssistantArray['host_email'] = $_POST['userEmail'];
+		$setUserAssistantArray['assistant_email'] = $_POST['assistantEmail'];
+		return $this->sendRequest('user/assistant/set', $setUserAssistantArray);
 	}     
 
 	function deleteUserAssistant(){
-	  $deleteUserAssistantArray = array();
-	  $deleteUserAssistantArray['id'] = $_POST['userId'];
-	  $deleteUserAssistantArray['host_email'] = $_POST['userEmail'];
-	  $deleteUserAssistantArray['assistant_email'] = $_POST['assistantEmail'];
-	  return $this->sendRequest('user/assistant/delete',$deleteUserAssistantArray);
+		$deleteUserAssistantArray = array();
+		$deleteUserAssistantArray['id'] = $_POST['userId'];
+		$deleteUserAssistantArray['host_email'] = $_POST['userEmail'];
+		$deleteUserAssistantArray['assistant_email'] = $_POST['assistantEmail'];
+		return $this->sendRequest('user/assistant/delete',$deleteUserAssistantArray);
 	}   
 
 	function revokeSSOToken(){
-	  $revokeSSOTokenArray = array();
-	  $revokeSSOTokenArray['id'] = $_POST['userId'];
-	  $revokeSSOTokenArray['email'] = $_POST['userEmail'];
-	  return $this->sendRequest('user/revoketoken', $revokeSSOTokenArray);
+		$revokeSSOTokenArray = array();
+		$revokeSSOTokenArray['id'] = $_POST['userId'];
+		$revokeSSOTokenArray['email'] = $_POST['userEmail'];
+		return $this->sendRequest('user/revoketoken', $revokeSSOTokenArray);
 	}      
 
 	function deleteUserPermanently(){
-	  $deleteUserPermanentlyArray = array();
-	  $deleteUserPermanentlyArray['id'] = $_POST['userId'];
-	  $deleteUserPermanentlyArray['email'] = $_POST['userEmail'];
-	  return $this->sendRequest('user/permanentdelete', $deleteUserPermanentlyArray);
+		$deleteUserPermanentlyArray = array();
+		$deleteUserPermanentlyArray['id'] = $_POST['userId'];
+		$deleteUserPermanentlyArray['email'] = $_POST['userEmail'];
+		return $this->sendRequest('user/permanentdelete', $deleteUserPermanentlyArray);
 	}               
 
 	/*Functions for management of meetings*/
 	function createAMeeting(){
-	  $createAMeetingArray = array();
-	  $createAMeetingArray['host_id'] = $_POST['userId'];
-	  $createAMeetingArray['topic'] = $_POST['meetingTopic'];
-	  $createAMeetingArray['type'] = $_POST['meetingType'];
-	  $createAMeetingArray['start_time'] = $_POST['start_date'].$_POST['start_time'];
-	  $createAMeetingArray['timezone'] = $_POST['timezone'];
-	  $createAMeetingArray['password'] = $_POST['zoom_password_field'] ? $_POST['zoom_password_field'] : false;
-	  $createAMeetingArray['duration'] = $_POST['duration'];
-	  $createAMeetingArray['option_jbh'] = $_POST['join_before_host'] ? $_POST['join_before_host'] : false;
-	  $createAMeetingArray['option_participants_video'] = $_POST['option_participants_video'] ? $_POST['join_before_host'] : false;
-	  return $this->sendRequest('meeting/create', $createAMeetingArray);
+		$createAMeetingArray = array();
+		$createAMeetingArray['host_id'] = $_POST['userId'];
+		$createAMeetingArray['topic'] = $_POST['meetingTopic'];
+		$createAMeetingArray['type'] = $_POST['meetingType'];
+		$createAMeetingArray['start_time'] = $_POST['start_date'].$_POST['start_time'];
+		$createAMeetingArray['timezone'] = $_POST['timezone'];
+		$createAMeetingArray['password'] = $_POST['zoom_password_field'] ? $_POST['zoom_password_field'] : false;
+		$createAMeetingArray['duration'] = $_POST['duration'];
+		$createAMeetingArray['option_jbh'] = $_POST['join_before_host'] ? $_POST['join_before_host'] : false;
+		$createAMeetingArray['option_participants_video'] = $_POST['option_participants_video'] ? $_POST['join_before_host'] : false;
+		return $this->sendRequest('meeting/create', $createAMeetingArray);
 	}
 
 	/*ADD MEETING FUNCTION FOR FRONTEND**/
 	function createFronendMeeting(){
-	  $createAMeetingArray = array();
-	  $createAMeetingArray['host_id'] = $_POST['userId'];
-	  $createAMeetingArray['topic'] = $_POST['course_title'];
-	  $createAMeetingArray['type'] = 2;
-	  $createAMeetingArray['start_time'] = $_POST['start_date'].'T'.$_POST['start_time'].'Z';
-	  $createAMeetingArray['timezone'] = $_POST['timezone'];
-	  $createAMeetingArray['duration'] = $_POST['meeting_duration'];
-	  $createAMeetingArray['option_jbh'] = $_POST['join_before_host'];
-	  $createAMeetingArray['option_participants_video'] = $_POST['participant_video'];
-	  return $this->sendRequest('meeting/create', $createAMeetingArray);
+		$createAMeetingArray = array();
+		$createAMeetingArray['host_id'] = $_POST['userId'];
+		$createAMeetingArray['topic'] = $_POST['course_title'];
+		$createAMeetingArray['type'] = 2;
+		$createAMeetingArray['start_time'] = $_POST['start_date'].'T'.$_POST['start_time'].'Z';
+		$createAMeetingArray['timezone'] = $_POST['timezone'];
+		$createAMeetingArray['duration'] = $_POST['meeting_duration'];
+		$createAMeetingArray['option_jbh'] = $_POST['join_before_host'];
+		$createAMeetingArray['option_participants_video'] = $_POST['participant_video'];
+		return $this->sendRequest('meeting/create', $createAMeetingArray);
 	}
 
 	function deleteAMeeting(){
-	  $deleteAMeetingArray = array();
-	  $deleteAMeetingArray['id'] = $_POST['meeting_id'];
-	  $deleteAMeetingArray['host_id'] = $_POST['host_id'];
-	  return $this->sendRequest('meeting/delete', $deleteAMeetingArray);
+		$deleteAMeetingArray = array();
+		$deleteAMeetingArray['id'] = $_POST['meeting_id'];
+		$deleteAMeetingArray['host_id'] = $_POST['host_id'];
+		return $this->sendRequest('meeting/delete', $deleteAMeetingArray);
 	}
 
 	function listMeetings(){
-	  $listMeetingsArray = array();
-	  $listMeetingsArray['host_id'] = $_POST['userId'];
+		$listMeetingsArray = array();
+		$listMeetingsArray['host_id'] = $_POST['userId'];
 	  //$listMeetingsArray['host_id'] = get_option('zoom_user_id');
-	  return $this->sendRequest('meeting/list',$listMeetingsArray);
+		return $this->sendRequest('meeting/list',$listMeetingsArray);
 	}
 
-	function listMeetingsCustom($userid) {
+	function listMeetingsCustom($userid, $page, $max = 10) {
 		$listMeetingsArray = array();
-	  $listMeetingsArray['host_id'] = $userid;
-	  return $this->sendRequest('meeting/list',$listMeetingsArray);
+		$listMeetingsArray['host_id'] = $userid;
+		$listMeetingsArray['page_number'] = $page;
+		$listMeetingsArray['page_size'] = $max;
+		return $this->sendRequest('meeting/list',$listMeetingsArray);
 	}
 
 	function getMeetingInfo($id, $host_id) {
-    $getMeetingInfoArray = array();
-	  $getMeetingInfoArray['id'] = $id;
-	  $getMeetingInfoArray['host_id'] = $host_id;
-	  return $this->sendRequest('meeting/get', $getMeetingInfoArray);
+		$getMeetingInfoArray = array();
+		$getMeetingInfoArray['id'] = $id;
+		$getMeetingInfoArray['host_id'] = $host_id;
+		return $this->sendRequest('meeting/get', $getMeetingInfoArray);
 	}
 
 	function updateMeetingInfo(){
@@ -208,98 +227,99 @@ class ZoomAPI{
 		} else {
 			$start_date = $_POST['start_date'].$_POST['start_time'];
 		}
-	  $updateMeetingInfoArray = array();
-	  $updateMeetingInfoArray['id'] = $_POST['meetingId'];
-	  $updateMeetingInfoArray['host_id'] = $_POST['userId'];
-	  $updateMeetingInfoArray['topic'] = $_POST['meetingTopic'];
-	  $updateMeetingInfoArray['type'] = $_POST['meetingType'];
-	  $updateMeetingInfoArray['start_time'] = $start_date;
-	  $updateMeetingInfoArray['timezone'] = $_POST['timezone'];
-	  $updateMeetingInfoArray['password'] = $_POST['zoom_password_field'];
-	  $updateMeetingInfoArray['duration'] = $_POST['duration'];
-	  $updateMeetingInfoArray['option_jbh'] = $_POST['join_before_host'];
-	  $updateMeetingInfoArray['option_participants_video'] = $_POST['option_participants_video'];
-	  return $this->sendRequest('meeting/update', $updateMeetingInfoArray);
+
+		$updateMeetingInfoArray = array();
+		$updateMeetingInfoArray['id'] = $_POST['meetingId'];
+		$updateMeetingInfoArray['host_id'] = $_POST['userId'];
+		$updateMeetingInfoArray['topic'] = $_POST['meetingTopic'];
+		$updateMeetingInfoArray['type'] = $_POST['meetingType'];
+		$updateMeetingInfoArray['start_time'] = $start_date;
+		$updateMeetingInfoArray['timezone'] = $_POST['timezone'];
+		$updateMeetingInfoArray['password'] = isset($_POST['zoom_password_field']) ? $_POST['zoom_password_field'] : null;
+		$updateMeetingInfoArray['duration'] = $_POST['duration'];
+		$updateMeetingInfoArray['option_jbh'] = isset($_POST['join_before_host']) ? $_POST['join_before_host'] : false;
+		$updateMeetingInfoArray['option_participants_video'] = isset($_POST['option_participants_video']) ? $_POST['option_participants_video'] : false;
+		return $this->sendRequest('meeting/update', $updateMeetingInfoArray);
 	}
 
 	function endAMeeting(){
-    $endAMeetingArray = array();
-	  $endAMeetingArray['id'] = $_POST['meetingId'];
-	  $endAMeetingArray['host_id'] = $_POST['userId'];
-	  return $this->sendRequest('meeting/end', $endAMeetingArray);
+		$endAMeetingArray = array();
+		$endAMeetingArray['id'] = $_POST['meetingId'];
+		$endAMeetingArray['host_id'] = $_POST['userId'];
+		return $this->sendRequest('meeting/end', $endAMeetingArray);
 	}
 
 	function listRecording(){
-    $listRecordingArray = array();
-	  $listRecordingArray['host_id'] = $_POST['userId'];
-	  return $this->sendRequest('recording/list', $listRecordingArray);
+		$listRecordingArray = array();
+		$listRecordingArray['host_id'] = $_POST['userId'];
+		return $this->sendRequest('recording/list', $listRecordingArray);
 	}
 
 
 	/*Functions for management of reports*/
 	function getDailyReport($month_int, $year){
-	  $getDailyReportArray = array();
-	  $getDailyReportArray['year'] = $year;
-	  $getDailyReportArray['month'] = $month_int;
-	  return $this->sendRequest('report/getdailyreport', $getDailyReportArray);
+		$getDailyReportArray = array();
+		$getDailyReportArray['year'] = $year;
+		$getDailyReportArray['month'] = $month_int;
+		return $this->sendRequest('report/getdailyreport', $getDailyReportArray);
 	}
 
 	function getAccountReport($zoom_account_from, $zoom_account_to){
-	  $getAccountReportArray = array();
-	  $getAccountReportArray['from'] = $zoom_account_from;
-	  $getAccountReportArray['to'] = $zoom_account_to;
-	  return $this->sendRequest('report/getaccountreport', $getAccountReportArray);
+		$getAccountReportArray = array();
+		$getAccountReportArray['from'] = $zoom_account_from;
+		$getAccountReportArray['to'] = $zoom_account_to;
+		return $this->sendRequest('report/getaccountreport', $getAccountReportArray);
 	}
 
 	function getUserReport(){
-	  $getUserReportArray = array();
-	  $getUserReportArray['user_id'] = $_POST['userId'];
-	  $getUserReportArray['from'] = $_POST['from'];
-	  $getUserReportArray['to'] = $_POST['to'];
-	  return $this->sendRequest('report/getuserreport', $getUserReportArray);
+		$getUserReportArray = array();
+		$getUserReportArray['user_id'] = $_POST['userId'];
+		$getUserReportArray['from'] = $_POST['from'];
+		$getUserReportArray['to'] = $_POST['to'];
+		return $this->sendRequest('report/getuserreport', $getUserReportArray);
 	}
 
 
 	/*Functions for management of webinars*/
 	function createAWebinar(){
-	  $createAWebinarArray = array();
-	  $createAWebinarArray['host_id'] = $_POST['userId'];
-	  $createAWebinarArray['topic'] = $_POST['topic'];
-	  return $this->sendRequest('webinar/create',$createAWebinarArray);
+		$createAWebinarArray = array();
+		$createAWebinarArray['host_id'] = $_POST['userId'];
+		$createAWebinarArray['topic'] = $_POST['topic'];
+		return $this->sendRequest('webinar/create',$createAWebinarArray);
 	}
 
 	function deleteAWebinar(){
-	  $deleteAWebinarArray = array();
-	  $deleteAWebinarArray['id'] = $_POST['webinarId'];
-	  $deleteAWebinarArray['host_id'] = $_POST['userId'];
-	  return $this->sendRequest('webinar/delete',$deleteAWebinarArray);
+		$deleteAWebinarArray = array();
+		$deleteAWebinarArray['id'] = $_POST['webinarId'];
+		$deleteAWebinarArray['host_id'] = $_POST['userId'];
+		return $this->sendRequest('webinar/delete',$deleteAWebinarArray);
 	}
 
 	function listWebinars($userid){
-	  $listWebinarsArray = array();
-	  $listWebinarsArray['host_id'] = $userid;
-	  return $this->sendRequest('webinar/list',$listWebinarsArray);
+		$listWebinarsArray = array();
+		$listWebinarsArray['host_id'] = $userid;
+		return $this->sendRequest('webinar/list',$listWebinarsArray);
 	}
 
 	function getWebinarInfo(){
-	  $getWebinarInfoArray = array();
-	  $getWebinarInfoArray['id'] = $_POST['webinarId'];
-	  $getWebinarInfoArray['host_id'] = $_POST['userId'];
-	  return $this->sendRequest('webinar/get',$getWebinarInfoArray);
+		$getWebinarInfoArray = array();
+		$getWebinarInfoArray['id'] = $_POST['webinarId'];
+		$getWebinarInfoArray['host_id'] = $_POST['userId'];
+		return $this->sendRequest('webinar/get',$getWebinarInfoArray);
 	}
 
 	function updateWebinarInfo(){
-	  $updateWebinarInfoArray = array();
-	  $updateWebinarInfoArray['id'] = $_POST['webinarId'];
-	  $updateWebinarInfoArray['host_id'] = $_POST['userId'];
-	  return $this->sendRequest('webinar/update',$updateWebinarInfoArray);
+		$updateWebinarInfoArray = array();
+		$updateWebinarInfoArray['id'] = $_POST['webinarId'];
+		$updateWebinarInfoArray['host_id'] = $_POST['userId'];
+		return $this->sendRequest('webinar/update',$updateWebinarInfoArray);
 	}
 
 	function endAWebinar(){
-	  $endAWebinarArray = array();
-	  $endAWebinarArray['id'] = $_POST['webinarId'];
-	  $endAWebinarArray['host_id'] = $_POST['userId'];
-	  return $this->sendRequest('webinar/end',$endAWebinarArray);
+		$endAWebinarArray = array();
+		$endAWebinarArray['id'] = $_POST['webinarId'];
+		$endAWebinarArray['host_id'] = $_POST['userId'];
+		return $this->sendRequest('webinar/end',$endAWebinarArray);
 	}
 
 	//For Zoom Dashboard

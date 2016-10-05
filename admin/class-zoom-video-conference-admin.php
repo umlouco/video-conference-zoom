@@ -100,13 +100,19 @@ class Zoom_Video_Conference_Admin {
 	function zoom_api_add_menu() {
 		add_menu_page( 'Zoom','Zoom', 'manage_options','list_meetings','zoom_api_list_meetings',	plugin_dir_url( __FILE__ ).'img/zoom.png',	5 );
 		if(get_option('zoom_api_key') && get_option('zoom_api_secret')) {
-			add_submenu_page( 'list_meetings', 'Meeting', 'Add Meeting', 'manage_options', 'add_meeting', 'zoom_api_add_meeting' );
-			add_submenu_page( 'list_meetings', 'Users', 'List Users', 'manage_options', 'zoom_users', 'zoom_api_users' );
-			add_submenu_page( 'list_meetings', 'Add Users', 'Add Users', 'manage_options', 'add_zoom_users', 'zoom_api_add_users' );
-			add_submenu_page( 'list_meetings', 'Reports', 'Reports', 'manage_options', 'zoom_reports', 'zoom_api_reports' );
+			$api = new ZoomAPI();
+			$users = $api->listUsers();
+			$users_result = json_decode($users, true);
+			if( empty($users_result['error']) ) {
+				if( empty($users_result['error']['code']) == 200 ) {
+					add_submenu_page( 'list_meetings', 'Meeting', 'Add Meeting', 'manage_options', 'add_meeting', 'zoom_api_add_meeting' );
+					add_submenu_page( 'list_meetings', 'Users', 'List Users', 'manage_options', 'zoom_users', 'zoom_api_users' );
+					add_submenu_page( 'list_meetings', 'Add Users', 'Add Users', 'manage_options', 'add_zoom_users', 'zoom_api_add_users' );
+					add_submenu_page( 'list_meetings', 'Reports', 'Reports', 'manage_options', 'zoom_reports', 'zoom_api_reports' );
+				}
+			}
 		}
 		add_submenu_page( 'list_meetings', 'Settings', 'Settings', 'manage_options', 'zoom_setting', 'zoom_api_settings' );
-
 	}
 
 	function zoom_api_delete_meeting() {
@@ -144,8 +150,6 @@ class Zoom_Video_Conference_Admin {
 	}
 
 	function zoom_api_zoom_meta_for_user() {
-		$user_id = $_POST['inst_id'];
-
 		$zoom = new ZoomAPI();
 		$result = $zoom->createAUser();
 		$data = json_decode($result, true);
@@ -177,38 +181,116 @@ class Zoom_Video_Conference_Admin {
 }
 
 function zoom_api_shortcode_video($atts, $content = null) {
-		$atts = shortcode_atts( array(
-				'meeting_id' => '#',
-				'title' => 'Start Video',
-				'id' => 'zoom_video_uri',
-				'class' => 'zoom_video_uri'
-			), $atts
-		);
-		$content .= '<a id="'.esc_html( $atts['id'] ).'" class="'.esc_html( $atts['class'] ).'" href="https://zoom.us/j/'. esc_html( $atts['meeting_id'] ).'">'. esc_html( $atts['title'] ).'</a>';
-		return $content;
-	}
+	$atts = shortcode_atts( array(
+		'meeting_id' => '#',
+		'title' => 'Start Video',
+		'id' => 'zoom_video_uri',
+		'class' => 'zoom_video_uri'
+		), $atts
+	);
+	$content .= '<a id="'.esc_html( $atts['id'] ).'" class="'.esc_html( $atts['class'] ).'" href="https://zoom.us/j/'. esc_html( $atts['meeting_id'] ).'">'. esc_html( $atts['title'] ).'</a>';
+	return $content;
+}
 add_shortcode( 'zoom_api_link', 'zoom_api_shortcode_video' );
 
-function zoom_api_add_meeting() {
-	include ZOOM_API_PATH . '/admin/partials/zoom-video-conference-admin-add.php';
+function zoom_api_shortcode_video_link($atts, $content = null) {
+	$atts = shortcode_atts( array(
+		'meeting_id' => 'your_meeting_id',
+		), $atts
+	);
+	$content .= $atts['meeting_id'] ? "https://zoom.us/j/". esc_html( $atts['meeting_id'] ) : false;
+	return $content;
 }
+add_shortcode( 'zoom_api_video_uri', 'zoom_api_shortcode_video_link' );
 
-function zoom_api_list_meetings() {
-	include ZOOM_API_PATH . '/admin/partials/zoom-video-conference-admin-listing.php';
-}
+/**
+ * Pagination Function
+ * @since 1.3.0
+ * @author  Deepen <dpen.connectify@gmail.com>
+ */
+function pagination($totalposts,$p,$lpm1,$prev,$next) {
+	$adjacents = 3;
+	if($totalposts > 1)
+	{
+		$pagination = "<ul class='pagination'>";
+        //previous button
+		if ($p > 1)
+			$pagination.= "<li><a href=\"?page=list_meetings&pg=$prev\"><<</a></li>";
+		else
+			$pagination.= "<li class=\"disabled\"><a href=\"javascript:void(0);\"><<</a></li>";
+		if ($totalposts < 7 + ($adjacents * 2)){
+			for ($counter = 1; $counter <= $totalposts; $counter++){
+				if ($counter == $p)
+					$pagination.= "<li><a class=\"active\" href=\"javascript:void(0);\">$counter</a></li>";
+				else
+					$pagination.= "<li><a href=\"?page=list_meetings&pg=$counter\">$counter</a></li>";}
+			}elseif($totalposts > 5 + ($adjacents * 2)){
+				if($p < 1 + ($adjacents * 2)){
+					for ($counter = 1; $counter < 4 + ($adjacents * 2); $counter++){
+						if ($counter == $p)
+							$pagination.= "<li><a class=\"active\" href=\"javascript:void(0);\">$counter</a></li>";
+						else
+							$pagination.= "<li><a href=\"?page=list_meetings&pg=$counter\">$counter</a></li>";
+					}
+					$pagination.= " ... ";
+					$pagination.= "<li><a href=\"?page=list_meetings&pg=$lpm1\">$lpm1</a></li>";
+					$pagination.= "<li><a href=\"?page=list_meetings&pg=$totalposts\">$totalposts</a></li>";
+				}
+            //in middle; hide some front and some back
+				elseif($totalposts - ($adjacents * 2) > $p && $p > ($adjacents * 2)){
+					$pagination.= "<li><a href=\"?page=list_meetings&pg=1\">1</a></li>";
+					$pagination.= "<li><a href=\"?page=list_meetings&pg=2\">2</a></li>";
+					$pagination.= " ... ";
+					for ($counter = $p - $adjacents; $counter <= $p + $adjacents; $counter++){
+						if ($counter == $p)
+							$pagination.= "<li><a class=\"active\" href=\"javascript:void(0);\">$counter</a></li>";
+						else
+							$pagination.= "<li><a href=\"?page=list_meetings&pg=$counter\">$counter</a></li>";
+					}
+					$pagination.= " ... ";
+					$pagination.= "<li><a href=\"?page=list_meetings&pg=$lpm1\">$lpm1</a></li>";
+					$pagination.= "<li><a href=\"?page=list_meetings&pg=$totalposts\">$totalposts</a></li>";
+				}else{
+					$pagination.= "<li><a href=\"?page=list_meetings&pg=1\">1</a></li>";
+					$pagination.= "<li><a href=\"?page=list_meetings&pg=2\">2</a></li>";
+					$pagination.= " ... ";
+					for ($counter = $totalposts - (2 + ($adjacents * 2)); $counter <= $totalposts; $counter++){
+						if ($counter == $p)
+							$pagination.= "<li><a class=\"active\" href=\"javascript:void(0);\">$counter</a></li>";
+						else
+							$pagination.= "<li><a href=\"?page=list_meetings&pg=$counter\">$counter</a></li>";
+					}
+				}
+			}
+			if ($p < $counter - 1)
+				$pagination.= "<li><a href=\"?page=list_meetings&pg=$next\">>></a></li>";
+			else
+				$pagination.= "<li class=\"disabled\"><a href=\"javascript:void(0);\">>></a></li>";
+			$pagination.= "</ul>";
+		}
+		return $pagination;
+	}
 
-function zoom_api_settings() {
-	include ZOOM_API_PATH . '/admin/partials/zoom-video-conference-admin-settings.php';
-}
+	function zoom_api_add_meeting() {
+		include ZOOM_API_PATH . '/admin/partials/zoom-video-conference-admin-add.php';
+	}
 
-function zoom_api_users() {
-	include ZOOM_API_PATH . '/admin/partials/zoom-video-conference-admin-users.php';
-}
+	function zoom_api_list_meetings() {
+		include ZOOM_API_PATH . '/admin/partials/zoom-video-conference-admin-listing.php';
+	}
 
-function zoom_api_add_users() {
-	include ZOOM_API_PATH . '/admin/partials/zoom-video-conference-admin-users-add.php';
-}
+	function zoom_api_settings() {
+		include ZOOM_API_PATH . '/admin/partials/zoom-video-conference-admin-settings.php';
+	}
 
-function zoom_api_reports() {
-	include ZOOM_API_PATH . '/admin/partials/zoom-video-conference-admin-reports.php';
-}
+	function zoom_api_users() {
+		include ZOOM_API_PATH . '/admin/partials/zoom-video-conference-admin-users.php';
+	}
+
+	function zoom_api_add_users() {
+		include ZOOM_API_PATH . '/admin/partials/zoom-video-conference-admin-users-add.php';
+	}
+
+	function zoom_api_reports() {
+		include ZOOM_API_PATH . '/admin/partials/zoom-video-conference-admin-reports.php';
+	}
