@@ -5,7 +5,7 @@
  * @link       http://www.deepenbajracharya.com.np
  * @since      1.0.0
  *
- * @package    Zoom_Video_Conference
+ * @package    Video Conferencing with Zoom API
  */
 
 // If uninstall not called from WordPress, then exit.

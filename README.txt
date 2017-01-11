@@ -1,54 +1,77 @@
 === Video Conferencing with Zoom API ===
 Contributors: j__3rk
-Donate link: http://deepenbajracharya.com.np/donate-via-skrill/
 Tags: zoom video conference, video conference, zoom, zoom video conferencing, web conferencing, online meetings
-Requires at least: 4.5.0
-Tested up to: 4.6.1
-Stable tag: 4.5.3
+Donate link: http://deepenbajracharya.com.np/donate-via-skrill/
+Requires at least: 4.5.2
+Tested up to: 4.7
+Stable tag: 4.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Video Conferencing using Zoom plugin for WordPress gives you the power to manage Zoom Meetings from your WordPress dashboard iteself.
+Video Conferencing using Zoom plugin gives you the power to manage Zoom Meetings, check reports and create users from your WordPress dashboard.
 
 == Description ==
-
-Video Conferencing with Zoom for WordPress gives you the power to manage Zoom Meetings from your WordPress dashboard iteself. Manage Meetings, Manage Users, Show meetings in Front pages using shortcodes.
+This is a simple plugin which gives you the extensive functionality to manage zoom meetings, users, reports from WordPress. From new update 2.0 it has a more friendly and clean design with lots of bug fixes. Users can now paginate through meetings and select users to view each users meetings. However, still webinar module is not integrated.
 
 **Features:**
 
-* Add Meetings - Simply Add the Meetings through WP Panel
-* Easily List/Add Users - Easily list and add users
+* Manage Meetings 
+* List/Add Users
 * Clean and Friendly UI
-* Easy to output data using a shortcode
-* Check Daily and Account Reports
+* Shortcodes
+* Daily and Account Reports
 
 **Limitations**
 
-* Webinar module not integrated. ( Comming Soon )
+* Webinar module not integrated
 
-Use shortcode: 
+**Use shortcode**
 
-* [zoom_api_link meeting_id="meeting_ID" class="your_class" id="your_id" title="Text of Link"] you can show the link of your meeting in your site anywhere.
+* [zoom_api_link meeting_id=\"meeting_ID\" class=\"your_class\" id=\"your_id\" title=\"Text of Link\"] -> You can show the link of your meeting in your site anywhere using the shortcode. Replace your meeting link in place of \"meeting_ID\".
 
-* [zoom_api_video_uri meeting_id="XXXXXX"] to show only link and customize link according to your needs.
-
-* Additional Features for extracting zoom meetings in front coming soon.
+* Added a button in tinymce where you can choose a meeting to add into your post.
 
 Contribute on github: https://github.com/techies23/video-conference-zoom
 
 I am always open for any suggestions, improvement towards this plugin. Please contact me via email if you have any questions or suggestions.
 
-== Installation ==
+Any additional features, you can contact me via email.
 
-Simply search for the plugin via the plugins -> add new dialog and click install, or download and extract the plugin, and copy the the Zoom plugin folder into your wp-content/plugins directory and activate.
+== Installation ==
+Search for the plugin -> add new dialog and click install, or download and extract the plugin, and copy the the Zoom plugin folder into your wp-content/plugins directory and activate.
 
 == Frequently Asked Questions ==
-
 =  How to show Zoom Meetings on Front =
 
-* By using shortcode like [zoom_api_link meeting_id="meeting_ID" class="your_class" id="your_id" title="Text of Link"] you can show the link of your meeting in front.
+* By using shortcode like [zoom_api_link meeting_id=\"meeting_ID\" class=\"your_class\" id=\"your_id\" title=\"Text of Link\"] you can show the link of your meeting in front.
+
+== Screenshots ==
+1. Meetings Listings. Select a User in order to list meetings for that user.
+2. Add a Meeting.
+3. Add Meeting into a post using tinymce shortcode button.
+4. Users List Screen. Flush cache to clear the cache of users.
+5. Reports Section.
 
 == Changelog ==
+
+= 2.0.0 =
+* Added: Datatables in order to view all listings
+* Added: New shortcode button in tinymce section
+* Added: Bulk delete 
+* Added: Redesigned Zoom Meetings section where meetings can be viewed based on users.
+* Added: Redesigned add meetings section with alot of bug fixes and attractive UI.
+* Changed: Easy datepicker
+* Changed: Removed editing of users capability. Maybe in future again ?
+* Removed: Single link shortcode ( [zoom_api_video_uri] )
+* Bug Fix: Reports section causing to define error when viewing available reports
+* Bug Fix: Error on reload after creating a meeting
+* Bug Fix: Unknown error when trying to connect with api keys ( Rare Case )
+* Changed: Total codebase of the plugin.
+* Fixed: Few security issues such as no nonce validations.
+* Alot of Major Bug Fixes but no breaking change except for a removed shortcode
+
+= 1.3.1 =
+* Minor Bug Fixes
 
 = 1.3.0 =
 * Added Pagination to meetings list
@@ -96,6 +119,9 @@ Simply search for the plugin via the plugins -> add new dialog and click install
 * Initial Release
 
 == Upgrade Notice ==
+
+= 2.0.0 =
+* Please upgrade to 2.0.0 for better performance and lots of bug fixes. Warning! This is a major release so codebase has been changed. Proceed with caution while upgrading. No breaking changes except for one shortcode( [zoom_api_video_uri] ) has been removed.
 
 = 1.2.3 =
 * Validation Errors Added
