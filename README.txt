@@ -15,25 +15,35 @@ This is a simple plugin which gives you the extensive functionality to manage zo
 
 **Features:**
 
-* Manage Meetings 
-* List/Add Users
-* Clean and Friendly UI
-* Shortcodes
-* Daily and Account Reports
+1. Manage Meetings 
+2. List/Add Users
+3. Clean and Friendly UI
+4. Shortcodes
+5. Daily and Account Reports
 
 **Limitations**
-
 * Webinar module not integrated
 
 **Use shortcode**
 
-* [zoom_api_link meeting_id=\"meeting_ID\" class=\"your_class\" id=\"your_id\" title=\"Text of Link\"] -> You can show the link of your meeting in your site anywhere using the shortcode. Replace your meeting link in place of \"meeting_ID\".
-
+* [zoom_api_link meeting_id="meeting_ID" class="your_class" id="your_id" title="Text of Link"] -> You can show the link of your meeting in your site anywhere using the shortcode. Replace your meeting link in place of "meeting_ID".
 * Added a button in tinymce where you can choose a meeting to add into your post.
 
-Contribute on github: https://github.com/techies23/video-conference-zoom
+**Using Action Hooks**
+1. zvc_after_create_meeting( $meeting_id, $host_id )
+Hook this method in your functions.php file in order to run a custom script after a meeting has been created. 
 
-I am always open for any suggestions, improvement towards this plugin. Please contact me via email if you have any questions or suggestions.
+2. zvc_after_update_meeting( $meeting_id )
+Hook this method in your functions.php file in order to run a custom script after a meeting has been updated. 
+
+3. zvc_after_create_user( $created_id, $created_email )
+Hook this method in your functions.php file in order to run a custom script after a user is created. 
+
+**Contribute on github: https://github.com/techies23/video-conference-zoom
+
+Find a Short Documentation or Guide on how to setup: https://deepenbajracharya.com.np/zoom-conference-wp-plugin-documentation/
+
+Please feel free for any suggestions, improvement regarding this plugin or contact me via email if you have any questions or suggestions. Please rate it! Thanx**
 
 Any additional features, you can contact me via email.
 
@@ -41,9 +51,9 @@ Any additional features, you can contact me via email.
 Search for the plugin -> add new dialog and click install, or download and extract the plugin, and copy the the Zoom plugin folder into your wp-content/plugins directory and activate.
 
 == Frequently Asked Questions ==
-=  How to show Zoom Meetings on Front =
+= How to show Zoom Meetings on Front =
 
-* By using shortcode like [zoom_api_link meeting_id=\"meeting_ID\" class=\"your_class\" id=\"your_id\" title=\"Text of Link\"] you can show the link of your meeting in front.
+* By using shortcode like [zoom_api_link meeting_id="meeting_ID" class="your_class" id="your_id" title="Text of Link"] you can show the link of your meeting in front.
 
 == Screenshots ==
 1. Meetings Listings. Select a User in order to list meetings for that user.
@@ -53,6 +63,11 @@ Search for the plugin -> add new dialog and click install, or download and extra
 5. Reports Section.
 
 == Changelog ==
+
+= 2.0.1 =
+* Added: Translation Error Fixed
+* Added: French Translation
+* Added: 3 new hooks see under "Using Action Hook" in description page.
 
 = 2.0.0 =
 * Added: Datatables in order to view all listings
@@ -121,13 +136,13 @@ Search for the plugin -> add new dialog and click install, or download and extra
 == Upgrade Notice ==
 
 = 2.0.0 =
-* Please upgrade to 2.0.0 for better performance and lots of bug fixes. Warning! This is a major release so codebase has been changed. Proceed with caution while upgrading. No breaking changes except for one shortcode( [zoom_api_video_uri] ) has been removed.
+This is a major release. Kindly request to upgrade for better performance and lots of bug fixes.
 
 = 1.2.3 =
-* Validation Errors Added
+Validation Errors Added
 
 = 1.2.0 =
-* Crucial Security Patches
+Crucial Security Patches
 
 
 

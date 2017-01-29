@@ -1,14 +1,13 @@
 <?php
 /**
 * @link              http://www.deepenbajracharya.com.np
-* @since             2.0.0
+* @since             1.0.0
 * @package           Video Conferencing with Zoom API
 *
-* @wordpress-plugin
 * Plugin Name:       Video Conferencing with Zoom API
 * Plugin URI:        http://www.deepenbajracharya.com.np
 * Description:       Add, Handle Zoom meetings from WordPress Dashboard using API
-* Version:           2.0.0
+* Version:           2.0.1
 * Author:            Deepen Bajracharya
 * Author URI:        http://www.deepenbajracharya.com.np
 * License:           GPL-2.0+
@@ -24,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 final class Video_Conferencing_With_Zoom {
 
-	public $version = '2.0.0';
+	public $version = '2.0.1';
 
 	public $required_wp_version = '4.5.2';
 
@@ -67,7 +66,7 @@ final class Video_Conferencing_With_Zoom {
 		$this->zoom_video_conference_init_hooks();
 
 		add_action('admin_enqueue_scripts', array($this, 'zoom_video_conference_enqueue_scripts_backend'));
-		add_action( 'plugins_loaded', array( $this, 'zoom_video_conference_load_plugin_textdomain' ) );
+		add_action( 'init', array( $this, 'zoom_video_conference_load_plugin_textdomain' ) );
 	}
 
 	/**
@@ -110,7 +109,7 @@ final class Video_Conferencing_With_Zoom {
 		$this->define( 'ZOOM_VIDEO_CONFERENCE_PLUGIN_SLUG', 'video-conferencing-with-zoom-api' );
 		$this->define( 'ZOOM_VIDEO_CONFERENCE_PLUGIN_DIR_PATH', plugin_dir_path( __FILE__ ) );
 		$this->define( 'ZOOM_VIDEO_CONFERENCE_PLUGIN_CLASSES_PATH', plugin_dir_path( __FILE__ ) .'classes' );
-		$this->define( 'ZOOM_VIDEO_CONFERENCE_PLUGIN_LANGUAGE_PATH', plugin_dir_path( __FILE__ ) .'languages/' );
+		$this->define( 'ZOOM_VIDEO_CONFERENCE_PLUGIN_LANGUAGE_PATH', trailingslashit( basename( plugin_dir_path( __FILE__ ) ) ) .'languages/' );
 		$this->define( 'ZOOM_VIDEO_CONFERENCE_PLUGIN_ADMIN_PATH', plugin_dir_path( __FILE__ ) .'admin' );
 		$this->define( 'ZOOM_VIDEO_CONFERENCE_PLUGIN_ADMIN_IMAGES_PATH', plugin_dir_url( __FILE__ ) .'admin/images' );
 		$this->define( 'ZOOM_VIDEO_CONFERENCE_PLUGIN_INCLUDES_PATH', plugin_dir_path( __FILE__ ) .'includes' );
@@ -182,12 +181,11 @@ final class Video_Conferencing_With_Zoom {
 	}
 
 	public function zoom_video_conference_load_plugin_textdomain() {
-		load_plugin_textdomain( 'video-conferencing-with-zoom-api', FALSE, ZOOM_VIDEO_CONFERENCE_PLUGIN_LANGUAGE_PATH );
+		$domain = 'video-conferencing-with-zoom-api';
+		$locale = apply_filters( 'plugin_locale', get_locale(), $domain );
+		load_plugin_textdomain( $domain, FALSE, ZOOM_VIDEO_CONFERENCE_PLUGIN_LANGUAGE_PATH );
 	}
 	
 }
 
-function video_conferencing_zoom() {
-	return Video_Conferencing_With_Zoom::instance();
-}
-$GLOBALS['Zoom_VC'] = video_conferencing_zoom();
+add_action( 'plugins_loaded', array( 'Video_Conferencing_With_Zoom', 'instance' ) );

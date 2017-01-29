@@ -219,5 +219,6 @@ if( !class_exists('Zoom_Video_Conferencing_Api') ) {
   function zoom_conference() {
     return Zoom_Video_Conferencing_Api::instance();
   }
-  $GLOBALS['ZOOM_CONFERENCE'] = zoom_conference();
+  
+  zoom_conference();
 }

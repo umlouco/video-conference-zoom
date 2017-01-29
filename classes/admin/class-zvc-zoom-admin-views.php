@@ -23,13 +23,13 @@ class Zoom_Video_Conferencing_Admin_Views {
     if(get_option('zoom_api_key') && get_option('zoom_api_secret')) {
       $encoded_users = zoom_conference()->listUsers();
       if( empty(json_decode($encoded_users)->error) ) {
-        add_submenu_page( 'zoom-video-conferencing', 'Meeting', 'Add Meeting', 'manage_options', 'zoom-video-conferencing-add-meeting', array( $this, 'zoom_video_conference_api_add_meeting' ) );
-        add_submenu_page( 'zoom-video-conferencing', 'Users', 'Users', 'manage_options', 'zoom-video-conferencing-list-users', array( $this, 'zoom_video_conference_api_zoom_list_users' ) );
-        add_submenu_page( 'zoom-video-conferencing', 'Add Users', 'Add Users', 'manage_options', 'zoom-video-conferencing-add-users' , array( $this, 'zoom_video_conference_api_add_zoom_users' ) );
-        add_submenu_page( 'zoom-video-conferencing', 'Reports', 'Reports', 'manage_options', 'zoom-video-conferencing-reports', array( $this, 'zoom_video_conference_api_zoom_reports' ) );
+        add_submenu_page( 'zoom-video-conferencing', 'Meeting', __('Add Meeting', 'video-conferencing-with-zoom-api'), 'manage_options', 'zoom-video-conferencing-add-meeting', array( $this, 'zoom_video_conference_api_add_meeting' ) );
+        add_submenu_page( 'zoom-video-conferencing', 'Users', __('Users', 'video-conferencing-with-zoom-api'), 'manage_options', 'zoom-video-conferencing-list-users', array( $this, 'zoom_video_conference_api_zoom_list_users' ) );
+        add_submenu_page( 'zoom-video-conferencing', 'Add Users', __('Add Users', 'video-conferencing-with-zoom-api'), 'manage_options', 'zoom-video-conferencing-add-users' , array( $this, 'zoom_video_conference_api_add_zoom_users' ) );
+        add_submenu_page( 'zoom-video-conferencing', 'Reports', __('Reports', 'video-conferencing-with-zoom-api'), 'manage_options', 'zoom-video-conferencing-reports', array( $this, 'zoom_video_conference_api_zoom_reports' ) );
       }
     }
-    add_submenu_page( 'zoom-video-conferencing', 'Settings', 'Settings', 'manage_options', 'zoom-video-conferencing-settings', array( $this, 'zoom_video_conference_api_zoom_settings' ) );
+    add_submenu_page( 'zoom-video-conferencing', 'Settings', __('Settings', 'video-conferencing-with-zoom-api'), 'manage_options', 'zoom-video-conferencing-settings', array( $this, 'zoom_video_conference_api_zoom_settings' ) );
   }
 
   /**
@@ -113,6 +113,15 @@ class Zoom_Video_Conferencing_Admin_Views {
       } else {
         $this->_notice = sprintf(__("Updated meeting at %s with ID: %s", "video-conferencing-with-zoom-api"), $meeting_updated->updated_at, $meeting_updated->id );
         ZVC_notice()->zoom_video_conference_displaySuccess( $this->_notice );
+
+        /**
+         * Fires after meeting has been updated
+         *
+         * @since  2.0.1
+         * @param meeting_id
+         */
+        do_action('zvc_after_update_meeting', $meeting_updated->id);
+
         zvc_redirect('?page=zoom-video-conferencing&host_id='.$update_meeting_arr['host_id']);
         exit;
       }
@@ -148,6 +157,15 @@ class Zoom_Video_Conferencing_Admin_Views {
         } else {
           $this->_notice = sprintf(__("Created meeting %s at %s. Join %s", "video-conferencing-with-zoom-api"), $meeting_created->topic, $meeting_created->created_at, "<a target='_blank' href='".$meeting_created->join_url."'>Here</a>" );
           ZVC_notice()->zoom_video_conference_displaySuccess( $this->_notice );
+
+          /**
+          * Fires after meeting has been Created
+          *
+          * @since  2.0.1
+          * @param meeting_id, Host_id
+          */
+          do_action('zvc_after_create_meeting', $meeting_created->id, $meeting_created->host_id);
+
           zvc_redirect('?page=zoom-video-conferencing&host_id='.$meeting_created->host_id);
           exit;
         }
@@ -176,6 +194,15 @@ class Zoom_Video_Conferencing_Admin_Views {
         } else {
           $this->_notice = sprintf(__("Created meeting %s at %s. Join %s", "video-conferencing-with-zoom-api"), $meeting_created->topic, $meeting_created->created_at, "<a target='_blank' href='".$meeting_created->join_url."'>Here</a>" );
           ZVC_notice()->zoom_video_conference_displaySuccess( $this->_notice );
+
+          /**
+          * Fires after meeting has been Created
+          *
+          * @since  2.0.1
+          * @param meeting_id, Host_id
+          */
+          do_action('zvc_after_create_meeting', $meeting_created->id, $meeting_created->host_id);
+
           zvc_redirect('?page=zoom-video-conferencing-add-meeting');
           exit;
         }
@@ -248,6 +275,14 @@ class Zoom_Video_Conferencing_Admin_Views {
 
         //After user has been created delete this transient in order to fetch latest Data.
         delete_transient('_zvc_user_lists');
+
+        /**
+        * Fires after a user has been Created
+        *
+        * @since  2.0.1
+        * @param ID, EMAIL_ADDRESS
+        */
+        do_action( 'zvc_after_create_user', $created_user->id, $created_user->email );
       }
     }
 
