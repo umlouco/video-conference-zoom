@@ -1,7 +1,7 @@
 === Video Conferencing with Zoom API ===
 Contributors: j__3rk
 Tags: zoom video conference, video conference, zoom, zoom video conferencing, web conferencing, online meetings
-Donate link: http://deepenbajracharya.com.np/donate-via-skrill/
+Donate link: https://deepenbajracharya.com.np/donate-via-skrill/
 Requires at least: 4.5.2
 Tested up to: 4.7
 Stable tag: 4.7
@@ -22,6 +22,7 @@ This is a simple plugin which gives you the extensive functionality to manage zo
 5. Daily and Account Reports
 
 **Limitations**
+
 * Webinar module not integrated
 
 **Use shortcode**
@@ -29,7 +30,10 @@ This is a simple plugin which gives you the extensive functionality to manage zo
 * [zoom_api_link meeting_id="meeting_ID" class="your_class" id="your_id" title="Text of Link"] -> You can show the link of your meeting in your site anywhere using the shortcode. Replace your meeting link in place of "meeting_ID".
 * Added a button in tinymce where you can choose a meeting to add into your post.
 
+**Find a Short Documentation or Guide on how to setup: https://deepenbajracharya.com.np/zoom-conference-wp-plugin-documentation/**
+
 **Using Action Hooks**
+
 1. zvc_after_create_meeting( $meeting_id, $host_id )
 Hook this method in your functions.php file in order to run a custom script after a meeting has been created. 
 
@@ -39,13 +43,11 @@ Hook this method in your functions.php file in order to run a custom script afte
 3. zvc_after_create_user( $created_id, $created_email )
 Hook this method in your functions.php file in order to run a custom script after a user is created. 
 
-**Contribute on github: https://github.com/techies23/video-conference-zoom
+**Contribute on github: https://github.com/techies23/video-conference-zoom**
 
-Find a Short Documentation or Guide on how to setup: https://deepenbajracharya.com.np/zoom-conference-wp-plugin-documentation/
+**Please consider giving a [5 star thumbs up](https://wordpress.org/support/plugin/video-conferencing-with-zoom-api/reviews/#new-post "5 star thumbs up") if you found this useful.**
 
-Please feel free for any suggestions, improvement regarding this plugin or contact me via email if you have any questions or suggestions. Please rate it! Thanx**
-
-Any additional features, you can contact me via email.
+Any additional features, suggestions related to translations you can contact me via [email](https://deepenbajracharya.com.np/say-hello/ "Deepen Bajracharya").
 
 == Installation ==
 Search for the plugin -> add new dialog and click install, or download and extract the plugin, and copy the the Zoom plugin folder into your wp-content/plugins directory and activate.

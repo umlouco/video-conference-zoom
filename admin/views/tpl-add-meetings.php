@@ -19,7 +19,7 @@
       <tr>
         <th scope="row"><label for="userId"><?php _e('Meeting Host *', 'video-conferencing-with-zoom-api'); ?></label></th>
         <td>
-          <select name="userId" required>
+          <select name="userId" required class="zvc-hacking-select">
             <option value=""><?php _e('Select a Host', 'video-conferencing-with-zoom-api'); ?></option>
             <?php foreach($users as $user):  ?>
               <option value="<?php echo $user->id; ?>"><?php echo $user->first_name . ' ( '. $user->email.' )'; ?></option>
@@ -39,7 +39,7 @@
         <th scope="row"><label for="timezone"><?php _e('Timezone', 'video-conferencing-with-zoom-api'); ?></label></th>
         <td>
           <?php $tzlists = zvc_get_timezone_options(); ?>
-          <select id="timezone" name="timezone">
+          <select id="timezone" name="timezone" class="zvc-hacking-select">
           <?php foreach($tzlists as $k => $tzlist) { ?>
             <option value="<?php echo $k; ?>"><?php echo $tzlist; ?></option>
             <?php } ?>

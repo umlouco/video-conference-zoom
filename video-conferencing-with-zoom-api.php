@@ -7,7 +7,7 @@
 * Plugin Name:       Video Conferencing with Zoom API
 * Plugin URI:        http://www.deepenbajracharya.com.np
 * Description:       Add, Handle Zoom meetings from WordPress Dashboard using API
-* Version:           2.0.1
+* Version:           2.0.2
 * Author:            Deepen Bajracharya
 * Author URI:        http://www.deepenbajracharya.com.np
 * License:           GPL-2.0+
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 final class Video_Conferencing_With_Zoom {
 
-	public $version = '2.0.1';
+	public $version = '2.0.2';
 
 	public $required_wp_version = '4.5.2';
 
@@ -155,13 +155,15 @@ final class Video_Conferencing_With_Zoom {
 			//Loading Style stylesheet
 			$stylesheets = array(
 				ZOOM_VIDEO_CONFERENCE_PLUGIN_SLUG . '-timepick' => 'jquery.datetimepicker.css',
-				ZOOM_VIDEO_CONFERENCE_PLUGIN_SLUG => 'video-conferencing-with-zoom-api.css'
+				ZOOM_VIDEO_CONFERENCE_PLUGIN_SLUG => 'video-conferencing-with-zoom-api.css',
+				ZOOM_VIDEO_CONFERENCE_PLUGIN_SLUG . '-select2' => 'select2.min.css'
 				);
 
 			//Loading JS Scripts
 			$js_scripts = array(
 				ZOOM_VIDEO_CONFERENCE_PLUGIN_SLUG .'-timepicker-js' => 'jquery.datetimepicker.full.min.js',
-				ZOOM_VIDEO_CONFERENCE_PLUGIN_SLUG .'-js' => 'video-conferencing-with-zoom-api.js'
+				ZOOM_VIDEO_CONFERENCE_PLUGIN_SLUG .'-js' => 'video-conferencing-with-zoom-api.js',
+				ZOOM_VIDEO_CONFERENCE_PLUGIN_SLUG .'-select2-js' => 'select2.min.js'
 				);
 
 			$stylesheets[ZOOM_VIDEO_CONFERENCE_PLUGIN_SLUG .'-datable'] = 'jquery.dataTables.min.css';

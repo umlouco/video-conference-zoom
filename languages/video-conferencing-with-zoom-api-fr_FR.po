@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Video Conferencing with Zoom API\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-29 11:21+0000\n"
-"PO-Revision-Date: 2017-01-29 11:22+0000\n"
-"Last-Translator: admin <dpen.connectify@gmail.com>\n"
+"POT-Creation-Date: 2017-01-31 11:08+0000\n"
+"PO-Revision-Date: 2017-01-31 11:09+0000\n"
+"Last-Translator: Deepen Bajracharya <dpen.connectify@gmail.com>\n"
 "Language-Team: French (France)\n"
 "Language: fr-FR\n"
 "Plural-Forms: nplurals=2; plural=n > 1\n"
@@ -26,15 +26,6 @@ msgstr ""
 #: video-conferencing-with-zoom-api.php:56
 msgid "Cheatin&#8217; huh?"
 msgstr ""
-
-#: classes/admin/class-zvc-zoom-admin-views.php:27
-#: admin/views/tpl-list-users.php:3
-msgid "Users"
-msgstr "Utilisateurs"
-
-#: classes/admin/class-zvc-zoom-admin-views.php:28
-msgid "Add Users"
-msgstr "Ajouter des utilisateurs"
 
 #: classes/admin/class-zvc-zoom-admin-views.php:114
 #, php-format
@@ -63,15 +54,15 @@ msgstr ""
 
 #: admin/views/tpl-edit-meeting.php:40 admin/views/tpl-add-meetings.php:39
 msgid "Timezone"
-msgstr ""
+msgstr "Fuseau horaire"
 
 #: admin/views/tpl-edit-meeting.php:48 admin/views/tpl-add-meetings.php:47
 msgid "Meeting Timezone"
-msgstr ""
+msgstr "Fuseau horaire de la réunion"
 
 #: admin/views/tpl-edit-meeting.php:65 admin/views/tpl-add-meetings.php:71
 msgid "Host join start"
-msgstr ""
+msgstr "Début de l'association hôte"
 
 #: admin/views/tpl-edit-meeting.php:77 admin/views/tpl-add-meetings.php:83
 msgid "Host meeting in China"
@@ -111,7 +102,7 @@ msgstr ""
 
 #: admin/views/tpl-reports.php:29
 msgid "Date"
-msgstr ""
+msgstr "Rendez-vous amoureux"
 
 #: admin/views/tpl-reports.php:32
 msgid "Participants"
@@ -119,7 +110,7 @@ msgstr ""
 
 #: admin/views/tpl-reports.php:33
 msgid "Meeting Minutes"
-msgstr ""
+msgstr "Comptes rendus des réunions"
 
 #: admin/views/tpl-reports.php:73
 msgid "Searching From: "
@@ -214,7 +205,7 @@ msgstr ""
 
 #: admin/views/tpl-list-meetings.php:38
 msgid "Start Time"
-msgstr ""
+msgstr "Heure de début"
 
 #: admin/views/tpl-list-meetings.php:39
 msgid "Host ID"
@@ -235,6 +226,15 @@ msgstr ""
 #: classes/admin/class-zvc-zoom-admin-views.php:26
 msgid "Add Meeting"
 msgstr "Ajouter une réunion"
+
+#: classes/admin/class-zvc-zoom-admin-views.php:27
+#: admin/views/tpl-list-users.php:3
+msgid "Users"
+msgstr "Utilisateurs"
+
+#: classes/admin/class-zvc-zoom-admin-views.php:28
+msgid "Add Users"
+msgstr "Ajouter des utilisateurs"
 
 #: classes/admin/class-zvc-zoom-admin-views.php:29
 #: admin/views/tpl-reports.php:2

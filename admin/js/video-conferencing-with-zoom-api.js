@@ -8,6 +8,8 @@
 */
 window.jQuery = window.$ = jQuery;
 jQuery(document).ready(function($) {
+	$('.zvc-hacking-select').select2();
+
 	//For Datepicker 
 	var d = new Date();
 	var month = d.getMonth()+1;

@@ -17,7 +17,7 @@
 				<input type="submit" id="bulk_delete_meeting_listings" data-hostid="<?php echo $_GET['host_id']; ?>" class="button action" value="Apply">
 			</div>
 			<div class="alignright">
-				<select onchange="location = this.value;">
+				<select onchange="location = this.value;" class="zvc-hacking-select">
 					<option value="?page=zoom-video-conferencing"><?php _e('Select a User', 'video-conferencing-with-zoom-api'); ?></option>
 					<?php foreach ($users as $user) { ?>
 					<option value="?page=zoom-video-conferencing&host_id=<?php echo $user->id; ?>" <?php echo $get_host_id == $user->id ? 'selected' : false; ?>><?php echo $user->first_name . ' ( '. $user->email.' )'; ?></option>
