@@ -3,8 +3,8 @@ Contributors: j__3rk
 Tags: zoom video conference, video conference, zoom, zoom video conferencing, web conferencing, online meetings
 Donate link: https://deepenbajracharya.com.np/donate-via-skrill/
 Requires at least: 4.5.2
-Tested up to: 4.7
-Stable tag: 4.7
+Tested up to: 4.8
+Stable tag: 2.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,9 +13,9 @@ Video Conferencing using Zoom plugin gives you the power to manage Zoom Meetings
 == Description ==
 This is a simple plugin which gives you the extensive functionality to manage zoom meetings, users, reports from WordPress. From new update 2.0 it has a more friendly and clean design with lots of bug fixes. Users can now paginate through meetings and select users to view each users meetings. However, still webinar module is not integrated.
 
-**Features:**
+**Few Features:**
 
-1. Manage Meetings 
+1. Manage Meetings
 2. List/Add Users
 3. Clean and Friendly UI
 4. Shortcodes
@@ -30,20 +30,20 @@ This is a simple plugin which gives you the extensive functionality to manage zo
 * [zoom_api_link meeting_id="meeting_ID" class="your_class" id="your_id" title="Text of Link"] -> You can show the link of your meeting in your site anywhere using the shortcode. Replace your meeting link in place of "meeting_ID".
 * Added a button in tinymce where you can choose a meeting to add into your post.
 
-**Find a Short Documentation or Guide on how to setup: https://deepenbajracharya.com.np/zoom-conference-wp-plugin-documentation/**
+**Find a Short Documentation or Guide on how to setup: [Here](https://deepenbajracharya.com.np/zoom-conference-wp-plugin-documentation/ "Documentation")**
 
 **Using Action Hooks**
 
-1. zvc_after_create_meeting( $meeting_id, $host_id )
-Hook this method in your functions.php file in order to run a custom script after a meeting has been created. 
+* 1. zvc_after_create_meeting( $meeting_id, $host_id ) *
+Hook this method in your functions.php file in order to run a custom script after a meeting has been created.
 
-2. zvc_after_update_meeting( $meeting_id )
-Hook this method in your functions.php file in order to run a custom script after a meeting has been updated. 
+* 2. zvc_after_update_meeting( $meeting_id ) *
+Hook this method in your functions.php file in order to run a custom script after a meeting has been updated.
 
-3. zvc_after_create_user( $created_id, $created_email )
-Hook this method in your functions.php file in order to run a custom script after a user is created. 
+* 3. zvc_after_create_user( $created_id, $created_email ) *
+Hook this method in your functions.php file in order to run a custom script after a user is created.
 
-**Contribute on github: https://github.com/techies23/video-conference-zoom**
+**Contribute on github: [Here](https://github.com/techies23/video-conference-zoom "Contribute")**
 
 **Please consider giving a [5 star thumbs up](https://wordpress.org/support/plugin/video-conferencing-with-zoom-api/reviews/#new-post "5 star thumbs up") if you found this useful.**
 
@@ -66,6 +66,9 @@ Search for the plugin -> add new dialog and click install, or download and extra
 
 == Changelog ==
 
+= 2.0.3 =
+* WordPress 4.8 Compatible
+
 = 2.0.1 =
 * Added: Translation Error Fixed
 * Added: French Translation
@@ -74,7 +77,7 @@ Search for the plugin -> add new dialog and click install, or download and extra
 = 2.0.0 =
 * Added: Datatables in order to view all listings
 * Added: New shortcode button in tinymce section
-* Added: Bulk delete 
+* Added: Bulk delete
 * Added: Redesigned Zoom Meetings section where meetings can be viewed based on users.
 * Added: Redesigned add meetings section with alot of bug fixes and attractive UI.
 * Changed: Easy datepicker
