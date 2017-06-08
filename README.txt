@@ -1,7 +1,7 @@
 === Video Conferencing with Zoom API ===
 Contributors: j__3rk
 Tags: zoom video conference, video conference, zoom, zoom video conferencing, web conferencing, online meetings
-Donate link: https://deepenbajracharya.com.np/donate-via-skrill/
+Donate link: https://deepenbajracharya.com.np
 Requires at least: 4.5.2
 Tested up to: 4.8
 Stable tag: 2.0.3
