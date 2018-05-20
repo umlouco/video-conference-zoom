@@ -49,10 +49,10 @@ class Zoom_Video_Conferencing_AdminNotice {
     }
 
     protected function zoom_video_conference_updateOption($message, $noticeLevel) {
-        update_option(self::NOTICE_FIELD, [
+        update_option(self::NOTICE_FIELD, array(
             'message' => $message,
             'notice-level' => $noticeLevel
-            ]);
+            ));
     }
 }
 
@@ -60,4 +60,4 @@ function ZVC_notice() {
     return Zoom_Video_Conferencing_AdminNotice::getInstance();
 }
 
-add_action( 'admin_notices', [ZVC_notice(), 'zoom_video_conference_render_admin_notice'] );
+add_action( 'admin_notices', array( ZVC_notice(), 'zoom_video_conference_render_admin_notice' ) );

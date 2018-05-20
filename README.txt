@@ -1,10 +1,10 @@
 === Video Conferencing with Zoom API ===
-Contributors: j__3rk
+Contributors: j__3rk, digamberpradhan
 Tags: zoom video conference, video conference, zoom, zoom video conferencing, web conferencing, online meetings
 Donate link: https://deepenbajracharya.com.np
-Requires at least: 4.5.2
-Tested up to: 4.8
-Stable tag: 2.0.3
+Requires at least: 4.5
+Tested up to: 4.9
+Stable tag: 2.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,6 +65,15 @@ Search for the plugin -> add new dialog and click install, or download and extra
 5. Reports Section.
 
 == Changelog ==
+
+= 2.0.6 =
+* Minor Bug Fix
+
+= 2.0.5 =
+* Minor Changes
+
+= 2.0.4 =
+* Minor Change
 
 = 2.0.3 =
 * WordPress 4.8 Compatible

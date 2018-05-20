@@ -1,8 +1,10 @@
 <div class="wrap">
 	<h1><?php _e('Settings', 'video-conferencing-with-zoom-api'); ?></h1>
 	<div id="message" class="notice notice-warning hideme-zoom">
-  <p><?php printf( __('You can call links using shortcode. Check %s for what is changed and removed from version 2.0.0. <br><br>Example: <strong>[zoom_api_link meeting_id="meeting_ID" class="your_class" id="your_id" title="Text of Link"]</strong>.<br><br>Here "meeting_ID" is the zoom link. Copy paste this snippet to any content editor where you want to display a specific video.', 'video-conferencing-with-zoom-api'), '<a href="https://wordpress.org/plugins/video-conferencing-with-zoom-api/changelog/">changelog</a>'); ?> </p>
-</div>
+		<p><?php printf( __('You can call links using shortcode. Check %s for what is changed and removed from version 2.0.0. <br><br>Example: <strong>[zoom_api_link meeting_id="meeting_ID" class="your_class" id="your_id" title="Text of Link"]</strong>.<br><br>Here "meeting_ID" is the zoom link. Copy paste this snippet to any content editor where you want to display a specific video.', 'video-conferencing-with-zoom-api'), '<a href="https://wordpress.org/plugins/video-conferencing-with-zoom-api/#developers">changelog</a>'); ?> </p>
+	</div>
+
+	<div id="message" class="notice notice-warning is-dismissible"><h3><?php _e('Like this plugin ?', 'video-conferencing-with-zoom-api'); ?></h3><p><?php printf( __("Please consider giving a %s if you found this useful at wordpress.org.", "video-conferencing-with-zoom-api"), '<a href="https://wordpress.org/support/plugin/video-conferencing-with-zoom-api/reviews/#new-post">5 star thumbs up</a>'); ?></p><button type="button" class="notice-dismiss"><span class="screen-reader-text"><?php _e("Dismiss this notice.", "video-conferencing-with-zoom-api"); ?></span></button></div>
 	<div id="poststuff">
 		<div id="post-body" class="metabox-holder columns-2">
 			<form action="?page=zoom-video-conferencing-settings" method="POST">
@@ -20,7 +22,7 @@
 						<h3 class="hndle"><span><?php _e('Information', 'video-conferencing-with-zoom-api'); ?></span></h3>
 						<div class="inside">
 							<ul class="zvc-information-sec">
-								<!-- <li><a target="_blank" href="https://drive.google.com/file/d/0Bw_pLxEfyUXWYVEyOFZZOFBtaHc/view"><?php _e('Documentation', 'video-conferencing-with-zoom-api'); ?></a></li> -->
+								<li><a target="_blank" href="https://deepenbajracharya.com.np/zoom-conference-wp-plugin-documentation/"><?php _e('Documentation', 'video-conferencing-with-zoom-api'); ?></a></li>
 								<li><a target="_blank" href="https://deepenbajracharya.com.np/say-hello/"><?php _e('Contact for additional Support', 'video-conferencing-with-zoom-api'); ?></a></li>
 								<li><a target="_blank" href="https://deepenbajracharya.com.np"><?php _e('Developer', 'video-conferencing-with-zoom-api'); ?></a></li>
 							</ul>
@@ -35,11 +37,11 @@
 							<table>
 								<tr>
 									<th><?php _e('API Key :', 'video-conferencing-with-zoom-api'); ?></th>
-									<td><input type="password" name="zoom_api_key" id="zoom_api_key" value="<?php echo (get_option('zoom_api_key')) ? get_option('zoom_api_key') : '' ; ?>"> <a href="javascript:void(0);" onclick="toggle_password_api('zoom_api_key');" id="showhide">Show</a></td>
+									<td><input type="password" style="width: 400px;" name="zoom_api_key" id="zoom_api_key" value="<?php echo (get_option('zoom_api_key')) ? get_option('zoom_api_key') : '' ; ?>"> <a href="javascript:void(0);" onclick="toggle_password_api('zoom_api_key');" id="showhide">Show</a></td>
 								</tr>
 								<tr>
 									<th><?php _e('API Secret Key :', 'video-conferencing-with-zoom-api'); ?></th>
-									<td><input type="password" name="zoom_api_secret" id="zoom_api_secret" value="<?php echo (get_option('zoom_api_secret')) ? get_option('zoom_api_secret') : '' ; ?>"> <a href="javascript:void(0);" onclick="toggle_password_secret('zoom_api_secret');" id="showhide1">Show</a></td>
+									<td><input type="password" style="width: 400px;" name="zoom_api_secret" id="zoom_api_secret" value="<?php echo (get_option('zoom_api_secret')) ? get_option('zoom_api_secret') : '' ; ?>"> <a href="javascript:void(0);" onclick="toggle_password_secret('zoom_api_secret');" id="showhide1">Show</a></td>
 								</tr>
 							</table>
 						</div>

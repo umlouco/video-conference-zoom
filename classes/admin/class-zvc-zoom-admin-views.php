@@ -48,7 +48,7 @@ class Zoom_Video_Conferencing_Admin_Views {
        //Getting All Users
       $encoded_users = zoom_conference()->listUsers();
       if( !empty(json_decode($encoded_users)->error) ) {
-        $error = json_decode($encoded_users)->error->message; 
+        $error = json_decode($encoded_users)->error->message;
       } else {
         //Decoding
         $decoded_users = json_decode($encoded_users);
@@ -93,8 +93,8 @@ class Zoom_Video_Conferencing_Admin_Views {
     if( isset($_POST['update_meeting']) ) {
       check_admin_referer( '_zoom_update_meeting_nonce_action', '_zoom_update_meeting_nonce' );
       $update_meeting_arr = array(
-        'meeting_id' => filter_input( INPUT_POST, 'meeting_id' ), 
-        'host_id' => filter_input( INPUT_POST, 'userId' ), 
+        'meeting_id' => filter_input( INPUT_POST, 'meeting_id' ),
+        'host_id' => filter_input( INPUT_POST, 'userId' ),
         'topic' => filter_input( INPUT_POST, 'meetingTopic' ),
         'start_date' => filter_input( INPUT_POST, 'start_date' ),
         'timezone' => filter_input( INPUT_POST, 'timezone' ),
@@ -137,7 +137,7 @@ class Zoom_Video_Conferencing_Admin_Views {
       if( isset($_POST['create_meeting']) ) {
         check_admin_referer( '_zoom_add_meeting_nonce_action', '_zoom_add_meeting_nonce' );
         $create_meeting_arr = array(
-          'userId' => filter_input( INPUT_POST, 'userId' ), 
+          'userId' => filter_input( INPUT_POST, 'userId' ),
           'meetingTopic' => filter_input( INPUT_POST, 'meetingTopic' ),
           'start_date' => filter_input( INPUT_POST, 'start_date' ),
           'timezone' => filter_input( INPUT_POST, 'timezone' ),
@@ -174,7 +174,7 @@ class Zoom_Video_Conferencing_Admin_Views {
       if( isset($_POST['create_meeting_add_more']) ) {
         check_admin_referer( '_zoom_add_meeting_nonce_action', '_zoom_add_meeting_nonce' );
         $create_meeting_arr = array(
-          'userId' => filter_input( INPUT_POST, 'userId' ), 
+          'userId' => filter_input( INPUT_POST, 'userId' ),
           'meetingTopic' => filter_input( INPUT_POST, 'meetingTopic' ),
           'start_date' => filter_input( INPUT_POST, 'start_date' ),
           'timezone' => filter_input( INPUT_POST, 'timezone' ),
