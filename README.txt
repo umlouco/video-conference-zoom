@@ -2,15 +2,18 @@
 Contributors: j__3rk, digamberpradhan
 Tags: zoom video conference, video conference, zoom, zoom video conferencing, web conferencing, online meetings
 Donate link: https://deepenbajracharya.com.np
-Requires at least: 4.5
+Requires at least: 4.5.2
 Tested up to: 4.9
-Stable tag: 2.0.6
+Stable tag: 2.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Video Conferencing using Zoom plugin gives you the power to manage Zoom Meetings, check reports and create users from your WordPress dashboard.
+Gives you the power to manage Zoom Meetings, check reports and create users from your WordPress dashboard.
 
 == Description ==
+
+**NOTE Update 2.1.0: Before upgrading if you had any customization or custom plugins built extending this plugin then please test with new changes before upgrading to this version. There are alot of breaking changes in this new version. If you have not made any changes then you should be fine to upgrade to this version.**
+
 This is a simple plugin which gives you the extensive functionality to manage zoom meetings, users, reports from WordPress. From new update 2.0 it has a more friendly and clean design with lots of bug fixes. Users can now paginate through meetings and select users to view each users meetings. However, still webinar module is not integrated.
 
 **Few Features:**
@@ -27,8 +30,7 @@ This is a simple plugin which gives you the extensive functionality to manage zo
 
 **Use shortcode**
 
-* [zoom_api_link meeting_id="meeting_ID" class="your_class" id="your_id" title="Text of Link"] -> You can show the link of your meeting in your site anywhere using the shortcode. Replace your meeting link in place of "meeting_ID".
-* Added a button in tinymce where you can choose a meeting to add into your post.
+* [zoom_api_link meeting_id="full_meeting_link" class="your_class" id="your_id" title="Text of Link"] -> You can show the link of your meeting in your site anywhere using the shortcode. Replace your meeting link in place of "meeting_ID". - You need to insert full meeting link because of vanity URL.
 
 **Find a Short Documentation or Guide on how to setup: [Here](https://deepenbajracharya.com.np/zoom-conference-wp-plugin-documentation/ "Documentation")**
 
@@ -66,8 +68,14 @@ Search for the plugin -> add new dialog and click install, or download and extra
 
 == Changelog ==
 
-= 2.0.6 =
-* Minor Bug Fix
+= 2.1.1 =
+* Minor Changes
+
+= 2.1.0 =
+* API version 2 added.
+* Major fixes
+* Major breaking changes in this version.
+* Added: Assign Host ID manually section for Developers
 
 = 2.0.5 =
 * Minor Changes
@@ -148,6 +156,9 @@ Search for the plugin -> add new dialog and click install, or download and extra
 * Initial Release
 
 == Upgrade Notice ==
+
+= 2.1.0 =
+This is a major release. Please check you if you have any customization related to this plugin before upgrading.
 
 = 2.0.0 =
 This is a major release. Kindly request to upgrade for better performance and lots of bug fixes.

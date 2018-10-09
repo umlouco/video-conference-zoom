@@ -1,13 +1,14 @@
 <?php
 /**
- * Class Connecting Zoom APi
+ * Class Connecting Zoom APi V1
  *
  * @since  2.0
  * @author  Deepen
+ * @modifiedn
  */
 if( !class_exists('Zoom_Video_Conferencing_Api') ) {
 
-  final class Zoom_Video_Conferencing_Api {
+  class Zoom_Video_Conferencing_Api {
 
     public $zoom_api_key;
 
@@ -63,7 +64,7 @@ if( !class_exists('Zoom_Video_Conferencing_Api') ) {
      * Create a User
      * @return Object
      */
-    public function createAUser($email, $first_name, $last_name, $type, $dept = ""){    
+    public function createAUser($email, $first_name, $last_name, $type, $dept = ""){
       $createAUserArray = array();
       $createAUserArray['email'] = $email;
       $createAUserArray['type'] = $type;
@@ -81,7 +82,7 @@ if( !class_exists('Zoom_Video_Conferencing_Api') ) {
       $listUsersArray = array();
       $listUsersArray['page_size'] = 300;
       return $this->sendRequest('user/list', $listUsersArray);
-    }  
+    }
 
     /**
      * Get A users info by user Id
@@ -94,17 +95,17 @@ if( !class_exists('Zoom_Video_Conferencing_Api') ) {
     }
 
     /**
-    * Delete a User 
+    * Delete a User
     * @return Boolean
     */
     public function deleteAUser($userid){
       $deleteAUserArray = array();
       $deleteAUserArray['id'] = $userid;
       return $this->sendRequest('user/delete', $deleteAUserArray);
-    }    
+    }
 
     /**
-     * Get Meetings 
+     * Get Meetings
      * @return ARRAY
      */
     public function listMeetings($host_id){
@@ -137,6 +138,7 @@ if( !class_exists('Zoom_Video_Conferencing_Api') ) {
       $createAMeetingArray['option_cn_meeting'] = $data['option_cn_meeting'] ? true : false;
       $createAMeetingArray['option_in_meeting'] = $data['option_in_meeting'] ? true : false;
       $createAMeetingArray['option_enforce_login'] = $data['option_enforce_login'] ? true : false;
+      $createAMeetingArray['option_audio'] = $data['option_audio'] ? true : false;
       return $this->sendRequest('meeting/create', $createAMeetingArray);
     }
 
@@ -162,12 +164,13 @@ if( !class_exists('Zoom_Video_Conferencing_Api') ) {
       $updateMeetingInfoArray['option_cn_meeting'] = $update_data['option_cn_meeting'] ? true : false;
       $updateMeetingInfoArray['option_in_meeting'] = $update_data['option_in_meeting'] ? true : false;
       $updateMeetingInfoArray['option_enforce_login'] = $update_data['option_enforce_login'] ? true : false;
+      $updateMeetingInfoArray['option_audio'] = $data['option_audio'] ? true : false;
       return $this->sendRequest('meeting/update', $updateMeetingInfoArray);
     }
 
     /**
      * Get a Meeting Info
-     * @param  [INT] $id     
+     * @param  [INT] $id
      * @param  [STRING] $host_id
      * @return JSON
      */
@@ -219,6 +222,6 @@ if( !class_exists('Zoom_Video_Conferencing_Api') ) {
   function zoom_conference() {
     return Zoom_Video_Conferencing_Api::instance();
   }
-  
+
   zoom_conference();
 }
