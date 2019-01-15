@@ -70,30 +70,37 @@ A: By using shortcode like `[zoom_api_link meeting_id="meeting_ID" class="your_c
 
 ## Changelog
 
-= 2.1.1 =
+**2.2.0**
+* Removed: API version 1 support. Added to deprecated library.
+* Added: New options when adding meetings
+* Added: Classic editor meeting link add icon
+* Fix: Changed API call implementation to fit WordPress standards
+* Fix: Major bug fixes
+
+**2.1.1**
 * Minor Changes
 
-= 2.1.0 =
+**2.1.0**
 * API version 2 added.
 * Major fixes
 * Major breaking changes in this version.
 * Added: Assign Host ID manually section for Developers
 
-= 2.0.5 =
+**2.0.5**
 * Minor Changes
 
-= 2.0.4 =
+**2.0.4**
 * Minor Change
 
-= 2.0.3 =
+**2.0.3**
 * WordPress 4.8 Compatible
 
-= 2.0.1 =
+**2.0.1**
 * Added: Translation Error Fixed
 * Added: French Translation
 * Added: 3 new hooks see under "Using Action Hook" in description page.
 
-= 2.0.0 =
+**2.0.0**
 * Added: Datatables in order to view all listings
 * Added: New shortcode button in tinymce section
 * Added: Bulk delete
@@ -109,64 +116,50 @@ A: By using shortcode like `[zoom_api_link meeting_id="meeting_ID" class="your_c
 * Fixed: Few security issues such as no nonce validations.
 * Alot of Major Bug Fixes but no breaking change except for a removed shortcode
 
-= 1.3.1 =
+**1.3.1**
 * Minor Bug Fixes
 
-= 1.3.0 =
+**1.3.0**
 * Added Pagination to meetings list
 * Hidden API token fields
 * Fixed various bugs and flaws
 
-= 1.2.4 =
+**1.2.4**
 * WordPress 4.6 Compatible
 
-= 1.2.3 =
+**1.2.3**
 * Validation Errors Added
 * Minor Bug Fixes
 
-= 1.2.2 =
+**1.2.2**
 * Minor Functions Change
 
-= 1.2.1 =
+**1.2.1**
 * Bug Fixes
 * Major Bug fix on problem when adding users
 * Removed only system users on users adding section
 * Added a shortcode which will print out zoom video link. [zoom_api_video_uri]
 
-= 1.2.0 =
+**1.2.0**
 * Various Bug Fixes
 * Validation Errors Fixed
 * Translation Ready
 
-= 1.1.1 =
+**1.1.1**
 * Increased Add Meeting Refresh time interval to 5 seconds.
 
-= 1.1 =
+**1.1**
 * Added Reports
 * Minor Bug fixes and Changes
 
-= 1.0.2 =
+**1.0.2**
 * Minor Changes
 
-= 1.0.1 =
+**1.0.1**
 * Minor UI Changes
 * Removed the unecessary dropdown in Meeting Type since only Scheduled Meetings are allowed to be created.
 * Added CSS Editor in Settings Page
 * Alot of Minor Bug Fixes
 
-= 1.0.0 =
+**1.0.0**
 * Initial Release
-
-## Upgrade Notice
-
-= 2.1.0 =
-This is a major release. Please check you if you have any customization related to this plugin before upgrading.
-
-= 2.0.0 =
-This is a major release. Kindly request to upgrade for better performance and lots of bug fixes.
-
-= 1.2.3 =
-Validation Errors Added
-
-= 1.2.0 =
-Crucial Security Patches

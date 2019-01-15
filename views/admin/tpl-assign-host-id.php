@@ -2,7 +2,9 @@
     <h2><?php _e( "Assign Host ID", "video-conferencing-with-zoom-api" ); ?></h2>
     <div id="message" class="notice notice-warning">
         <p class="description"><strong>This section allows you to assign "Zoom" host ID to your users from WordPress !!!</strong></p>
+        <p>Copy <strong>HOST ID</strong> from <strong>User ID</strong> column in <a href="<?php echo admin_url( 'admin.php?page=zoom-video-conferencing-host-id-assign' ); ?>">users</a> page, then paste it into HOST ID for any users below, to assign this system users to users in zoom system. Please contact developer if this feature is confusing to you.</p>
         <p>In order to pull HOST ID from user meta just do: <code>get_user_meta( $user_id, 'user_zoom_hostid', true );</code></p>
+        <p><strong>THIS FEATURE IS INTENTED FOR DEVLEOPERS AND DEVELOPMENT PURPOSE ONLY !!!</strong></p>
     </div>
 
     <div class="message">
@@ -13,12 +15,6 @@
 		}
 		?>
     </div>
-
-	<?php if ( ZOOM_VIDEO_CONFERENCE_APIVERSION == 1 ) { ?>
-        <div id="message" class="error">
-            <p><strong>Version 1 of the Zoom API is being sunset and will no longer be supported after November 1st, 2018. It is recommended that you select version 2 from <a href="<?php echo admin_url( '/admin.php?page=zoom-video-conferencing-settings' ); ?>">settings</a> page.</strong></p>
-        </div>
-	<?php } ?>
 
     <div class="zvc_listing_table">
         <form action="" method="POST">

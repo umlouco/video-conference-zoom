@@ -12,12 +12,6 @@ $users = video_conferencing_zoom_api_get_user_transients();
 		}
 		?>
     </div>
-
-	<?php if ( ZOOM_VIDEO_CONFERENCE_APIVERSION == 1 ) { ?>
-        <div id="message" class="error">
-            <p><strong>Version 1 of the Zoom API is being sunset and will no longer be supported after November 1st, 2018. It is recommended that you select version 2 from <a href="<?php echo admin_url( '/admin.php?page=zoom-video-conferencing-settings' ); ?>">settings</a> page.</strong></p>
-        </div>
-	<?php } ?>
     <form action="?page=zoom-video-conferencing-add-meeting" method="POST" class="zvc-meetings-form">
 		<?php wp_nonce_field( '_zoom_add_meeting_nonce_action', '_zoom_add_meeting_nonce' ); ?>
         <table class="form-table">
@@ -29,15 +23,13 @@ $users = video_conferencing_zoom_api_get_user_transients();
                     <p class="description" id="meetingTopic-description"><?php _e( 'Meeting topic. (Required).', 'video-conferencing-with-zoom-api' ); ?></p>
                 </td>
             </tr>
-			<?php if ( ! empty( self::$api_version ) && self::$api_version == 2 ) { ?>
-                <tr>
-                    <th scope="row"><label for="meetingAgenda"><?php _e( 'Meeting Agenda', 'video-conferencing-with-zoom-api' ); ?></label></th>
-                    <td>
-                        <input type="text" name="agenda" class="regular-text">
-                        <p class="description" id="meetingTopic-description"><?php _e( 'Meeting Description.', 'video-conferencing-with-zoom-api' ); ?></p>
-                    </td>
-                </tr>
-			<?php } ?>
+            <tr>
+                <th scope="row"><label for="meetingAgenda"><?php _e( 'Meeting Agenda', 'video-conferencing-with-zoom-api' ); ?></label></th>
+                <td>
+                    <input type="text" name="agenda" class="regular-text">
+                    <p class="description" id="meetingTopic-description"><?php _e( 'Meeting Description.', 'video-conferencing-with-zoom-api' ); ?></p>
+                </td>
+            </tr>
             <tr>
                 <th scope="row"><label for="userId"><?php _e( 'Meeting Host *', 'video-conferencing-with-zoom-api' ); ?></label></th>
                 <td>
@@ -102,15 +94,9 @@ $users = video_conferencing_zoom_api_get_user_transients();
                 </td>
             </tr>
             <tr>
-                <th scope="row"><label for="option_cn_meeting"><?php _e( 'Host meeting in China', 'video-conferencing-with-zoom-api' ); ?></label></th>
+                <th scope="row"><label for="option_mute_participants_upon_entry"><?php _e( 'Mute Participants upon entry', 'video-conferencing-with-zoom-api' ); ?></label></th>
                 <td>
-                    <p class="description" id="option_cn_meeting-description"><input type="checkbox" name="option_cn_meeting" value="1" class="regular-text"><?php _e( 'Host meeting in China.', 'video-conferencing-with-zoom-api' ); ?></p>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row"><label for="option_in_meeting"><?php _e( 'Host meeting in India', 'video-conferencing-with-zoom-api' ); ?></label></th>
-                <td>
-                    <p class="description" id="option_in_meeting-description"><input type="checkbox" name="option_in_meeting" value="1" class="regular-text"><?php _e( 'Host meeting in India.', 'video-conferencing-with-zoom-api' ); ?></p>
+                    <p class="description" id="option_mute_participants_upon_entry"><input type="checkbox" name="option_mute_participants" value="1" class="regular-text"><?php _e( 'Mutes Participants when entering the meeting.', 'video-conferencing-with-zoom-api' ); ?></p>
                 </td>
             </tr>
             <tr>
@@ -119,20 +105,29 @@ $users = video_conferencing_zoom_api_get_user_transients();
                     <p class="description" id="option_enforce_login-description"><input type="checkbox" name="option_enforce_login" value="1" class="regular-text"><?php _e( 'Only signed-in users can join this meeting.', 'video-conferencing-with-zoom-api' ); ?></p>
                 </td>
             </tr>
-			<?php if ( ZOOM_VIDEO_CONFERENCE_APIVERSION == 2 ) { ?>
-                <tr>
-                    <th scope="row"><label for="settings_alternative_hosts"><?php _e( 'Alternative Hosts', 'video-conferencing-with-zoom-api' ); ?></label></th>
-                    <td>
-                        <select name="alternative_host_ids[]" multiple class="zvc-hacking-select">
-                            <option value=""><?php _e( 'Select a Host', 'video-conferencing-with-zoom-api' ); ?></option>
-							<?php foreach ( $users as $user ): ?>
-                                <option value="<?php echo $user->id; ?>"><?php echo $user->first_name . ' ( ' . $user->email . ' )'; ?></option>
-							<?php endforeach; ?>
-                        </select>
-                        <p class="description" id="settings_alternative_hosts"><?php _e( 'Alternative hosts IDs. Multiple value separated by comma.', 'video-conferencing-with-zoom-api' ); ?></p>
-                    </td>
-                </tr>
-			<?php } ?>
+            <tr>
+                <th scope="row"><label for="option_auto_recording"><?php _e( 'Auto Recording', 'video-conferencing-with-zoom-api' ); ?></label></th>
+                <td>
+                    <select id="option_auto_recording" name="option_auto_recording">
+                        <option value="none">No Recordings</option>
+                        <option value="local">Local</option>
+                        <option value="cloud">Cloud</option>
+                    </select>
+                    <p class="description" id="option_auto_recording_description"><?php _e( 'Set what type of auto recording feature you want to add. Default is none.', 'video-conferencing-with-zoom-api' ); ?></p>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row"><label for="settings_alternative_hosts"><?php _e( 'Alternative Hosts', 'video-conferencing-with-zoom-api' ); ?></label></th>
+                <td>
+                    <select name="alternative_host_ids[]" multiple class="zvc-hacking-select">
+                        <option value=""><?php _e( 'Select a Host', 'video-conferencing-with-zoom-api' ); ?></option>
+						<?php foreach ( $users as $user ): ?>
+                            <option value="<?php echo $user->id; ?>"><?php echo $user->first_name . ' ( ' . $user->email . ' )'; ?></option>
+						<?php endforeach; ?>
+                    </select>
+                    <p class="description" id="settings_alternative_hosts"><?php _e( 'Alternative hosts IDs. Multiple value separated by comma.', 'video-conferencing-with-zoom-api' ); ?></p>
+                </td>
+            </tr>
             </tbody>
         </table>
         <p class="submit"><input type="submit" name="create_meeting" class="button button-primary" value="Create Meeting"></p>

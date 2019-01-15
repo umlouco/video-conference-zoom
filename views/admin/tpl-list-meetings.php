@@ -11,11 +11,6 @@ if ( isset( $_GET['host_id'] ) ) {
 <div id="zvc-cover" style="display: none;"></div>
 <div class="wrap">
     <h2><?php _e( "Meetings", "video-conferencing-with-zoom-api" ); ?></h2>
-	<?php if ( ZOOM_VIDEO_CONFERENCE_APIVERSION == 1 ) { ?>
-        <div id="message" class="error">
-            <p><strong>Version 1 of the Zoom API is being sunset and will no longer be supported after November 1st, 2018. It is recommended that you select version 2 from <a href="<?php echo admin_url( '/admin.php?page=zoom-video-conferencing-settings' ); ?>">settings</a> page.</strong></p>
-        </div>
-	<?php } ?>
     <!--For Errors while deleteing this user-->
     <div id="message" style="display:none;" class="notice notice-error show_on_meeting_delete_error"><p></p></div>
 	<?php if ( ! empty( $error ) ) { ?>
@@ -93,7 +88,13 @@ if ( isset( $_GET['host_id'] ) ) {
 								}
 								?>
                             </td>
-                            <td><?php echo date( 'F j, Y, g:i a', strtotime( $meeting->start_time ) ); ?></td>
+                            <td><?php
+	                            $timezone = !empty($meeting->timezone) ? $meeting->timezone : "America/Los_Angeles";
+	                            $tz = new DateTimeZone($timezone);
+	                            $date = new DateTime($meeting->start_time);
+	                            $date->setTimezone($tz);
+	                            echo $date->format('F j, Y, g:i a ( e )');
+                                ?></td>
                             <td><?php echo $meeting->host_id; ?></td>
                             <td><?php echo date( 'F j, Y, g:i a', strtotime( $meeting->created_at ) ); ?></td>
                         </tr>

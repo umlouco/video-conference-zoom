@@ -1,6 +1,7 @@
 <?php
 /**
  * Class Connecting Zoom APi V1
+ * Only use for Development purposes as v1 of the API has already been deprecated by zoom
  *
  * @since  2.0
  * @author  Deepen

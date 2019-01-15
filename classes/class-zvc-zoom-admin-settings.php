@@ -66,11 +66,9 @@ class Zoom_Video_Conferencing_Admin_Views {
 			check_admin_referer( '_zoom_settings_update_nonce_action', '_zoom_settings_nonce' );
 			$zoom_api_key    = filter_input( INPUT_POST, 'zoom_api_key' );
 			$zoom_api_secret = filter_input( INPUT_POST, 'zoom_api_secret' );
-			$version         = filter_input( INPUT_POST, 'version' );
 
 			update_option( 'zoom_api_key', $zoom_api_key );
 			update_option( 'zoom_api_secret', $zoom_api_secret );
-			update_option( 'zoom_api_version', $version );
 
 			//After user has been created delete this transient in order to fetch latest Data.
 			delete_transient( '_zvc_user_lists' );

@@ -9,6 +9,9 @@
 class Zoom_Video_Conferencing_Ajax_Calls {
 
 	public function __construct() {
+		//Get Users List AJAX
+		add_action( 'wp_ajax_zvc_get_users_tinymce', array( $this, 'aj_ajax_get_users_data_tinymce' ) );
+
 		//GEt user info ajax
 		add_action( 'wp_ajax_zvc_get_user_info', array( $this, 'get_user_info' ) );
 
@@ -21,6 +24,47 @@ class Zoom_Video_Conferencing_Ajax_Calls {
 	}
 
 	/**
+	 * Get All Users AJX Response here related to TinyMCE
+	 *
+	 * @return array
+	 */
+	public function aj_ajax_get_users_data_tinymce() {
+		$check = $_POST['do'];
+		if ( $check == 'listUsers' ) {
+			//Get users List
+			$encoded_users = zoom_conference()->listUsers();
+			if ( isset( json_decode( $encoded_users )->error ) ) {
+				//Nothing Here so Exit
+				exit;
+			} else {
+				//Decoding
+				$decoded_users = json_decode( $encoded_users )->users;
+
+				//Send Users Data
+				wp_send_json( $decoded_users );
+			}
+		}
+
+		if ( $check == 'getMeetings' ) {
+			$host_id = $_POST['host_id'];
+			//Get Meetings List
+			$encoded_meetings = zoom_conference()->listMeetings( $host_id );
+			if ( isset( json_decode( $encoded_meetings )->error ) ) {
+				//Nothing Here so Exit
+				exit;
+			} else {
+				//Decoding
+				$decoded_meetings = json_decode( $encoded_meetings )->meetings;
+
+				//Send Users Data
+				wp_send_json( $decoded_meetings );
+			}
+		}
+
+		wp_die();
+	}
+
+	/**
 	 * Get a Users Info
 	 *
 	 * @author  Deepen
@@ -28,7 +72,7 @@ class Zoom_Video_Conferencing_Ajax_Calls {
 	 */
 	public function get_user_info() {
 		check_ajax_referer( '_nonce_zvc_security', 'security' );
-		$user_info = json_decode(zoom_conference()->getUserInfo( $_POST['userId'] ));
+		$user_info = json_decode( zoom_conference()->getUserInfo( $_POST['userId'] ) );
 		if ( $user_info ) {
 			//Send Response of Fetched Data
 			wp_send_json( $user_info );

@@ -43,34 +43,27 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 
 		protected function sendRequest( $calledFunction, $data, $request = "GET" ) {
 			$request_url = $this->api_url . $calledFunction;
-			$postFields  = "";
-			if ( ! empty( $data ) ) {
-				if ( $request == "GET" ) {
-					$postFields  = http_build_query( $data );
-					$request_url = $request_url . '?' . $postFields;
-				} else {
-					$postFields = json_encode( $data );
-				}
-			}
+			$args        = array(
+				'body'    => ! empty( $data ) ? json_encode( $data ) : array(),
+				'headers' => array(
+					'Authorization' => 'Bearer ' . $this->generateJWTKey(),
+					'Content-Type'  => 'application/json'
+				)
+			);
 
-			/*Preparing Query...*/
-			$ch = curl_init( $request_url );
-//			curl_setopt( $ch, CURLOPT_URL, $request_url );
-			if ( ! empty( $data ) ) {
-				curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, $request );
-				curl_setopt( $ch, CURLOPT_POSTFIELDS, $postFields );
-				curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+			if ( $request == "GET" ) {
+				$response = wp_remote_get( $request_url, $args );
+			} else if ( $request == "DELETE" ) {
+				$args['method'] = "DELETE";
+				$response       = wp_remote_request( $request_url, $args );
+			} else if ( $request == "PATCH" ) {
+				$args['method'] = "PATCH";
+				$response       = wp_remote_request( $request_url, $args );
 			} else {
-				curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, $request );
-				curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+				$response = wp_remote_post( $request_url, $args );
 			}
 
-			curl_setopt( $ch, CURLOPT_HTTPHEADER, array(
-				'Authorization: Bearer ' . $this->generateJWTKey(),
-				'Content-Type: application/json'
-			) );
-
-			$response = curl_exec( $ch );
+			$response = wp_remote_retrieve_body( $response );
 
 			if ( ! $response ) {
 				return false;
@@ -86,16 +79,22 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 
 			$token = array(
 				"iss" => $key,
-				"exp" => time() + 3600 //1  hour
+				"exp" => time() + 60 //60 seconds as suggested
 			);
 
 			return JWT::encode( $token, $secret );
 		}
 
 		/**
-		 * Create a User
+		 * Creates a User
 		 *
-		 * @return Object
+		 * @param $action
+		 * @param $email
+		 * @param $first_name
+		 * @param $last_name
+		 * @param $type
+		 *
+		 * @return array|bool|string
 		 */
 		public function createAUser( $action, $email, $first_name, $last_name, $type ) {
 			$createAUserArray              = array();
@@ -113,7 +112,7 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 		/**
 		 * User Function to List
 		 *
-		 * @return Array
+		 * @return array
 		 */
 		public function listUsers() {
 			$listUsersArray              = array();
@@ -125,7 +124,9 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 		/**
 		 * Get A users info by user Id
 		 *
-		 * @return JSON DATA
+		 * @param $user_id
+		 *
+		 * @return array|bool|string
 		 */
 		public function getUserInfo( $user_id ) {
 			$getUserInfoArray = array();
@@ -136,19 +137,23 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 		/**
 		 * Delete a User
 		 *
-		 * @return Boolean
+		 * @param $userid
+		 *
+		 * @return array|bool|string
 		 */
 		public function deleteAUser( $userid ) {
 			$deleteAUserArray       = array();
 			$deleteAUserArray['id'] = $userid;
 
-			return $this->sendRequest( 'user/delete', $deleteAUserArray );
+			return $this->sendRequest( 'user/delete', $deleteAUserArray, "DELETE" );
 		}
 
 		/**
 		 * Get Meetings
 		 *
-		 * @return ARRAY
+		 * @param $host_id
+		 *
+		 * @return array
 		 */
 		public function listMeetings( $host_id ) {
 			$listMeetingsArray              = array();
@@ -160,13 +165,13 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 		/**
 		 * Create A meeting API
 		 *
-		 * @param  ARRAY $data
+		 * @param  array $data
 		 *
-		 * @return ARRAY
+		 * @return array
 		 */
 		public function createAMeeting( $data = array() ) {
 			$post_time  = $data['start_date'];
-			$start_time = gmdate( "Y-m-d\TH:i:s\Z", strtotime( $post_time ) );
+			$start_time = gmdate( "Y-m-d\TH:i:s", strtotime( $post_time ) );
 
 			$createAMeetingArray = array();
 
@@ -187,9 +192,9 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 				'join_before_host'  => $data['join_before_host'] ? true : false,
 				'host_video'        => $data['option_host_video'] ? true : false,
 				'participant_video' => $data['option_participants_video'] ? true : false,
-				'cn_meeting'        => $data['option_cn_meeting'] ? true : false,
-				'in_meeting'        => $data['option_in_meeting'] ? true : false,
+				'mute_upon_entry'   => $data['option_mute_participants'] ? true : false,
 				'enforce_login'     => $data['option_enforce_login'] ? true : false,
+				'auto_recording'    => $data['option_auto_recording'] ? $data['option_auto_recording'] : "none",
 				'alternative_hosts' => isset( $alternative_host_ids ) ? $alternative_host_ids : ""
 			);
 
@@ -201,11 +206,11 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 		 *
 		 * @param $update_data
 		 *
-		 * @return JSON
+		 * @return array
 		 */
 		public function updateMeetingInfo( $update_data = array() ) {
 			$post_time  = $update_data['start_date'];
-			$start_time = gmdate( "Y-m-d\TH:i:s\Z", strtotime( $post_time ) );
+			$start_time = gmdate( "Y-m-d\TH:i:s", strtotime( $post_time ) );
 
 			$updateMeetingInfoArray = array();
 
@@ -226,9 +231,9 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 				'join_before_host'  => $update_data['option_jbh'] ? true : false,
 				'host_video'        => $update_data['option_host_video'] ? true : false,
 				'participant_video' => $update_data['option_participants_video'] ? true : false,
-				'cn_meeting'        => $update_data['option_cn_meeting'] ? true : false,
-				'in_meeting'        => $update_data['option_in_meeting'] ? true : false,
+				'mute_upon_entry'   => $update_data['option_mute_participants'] ? true : false,
 				'enforce_login'     => $update_data['option_enforce_login'] ? true : false,
+				'auto_recording'    => $update_data['option_auto_recording'] ? $update_data['option_auto_recording'] : "none",
 				'alternative_hosts' => isset( $alternative_host_ids ) ? $alternative_host_ids : ""
 			);
 
@@ -241,7 +246,7 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 		 * @param  [INT] $id
 		 * @param  [STRING] $host_id
 		 *
-		 * @return JSON
+		 * @return array
 		 */
 		public function getMeetingInfo( $id ) {
 			$getMeetingInfoArray = array();
@@ -253,7 +258,6 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 		 * Delete A Meeting
 		 *
 		 * @param $meeting_id [int]
-		 * @param $host_id    [string]
 		 *
 		 * @return array
 		 */
@@ -349,6 +353,7 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 		 * Get all recordings by USER ID
 		 *
 		 * @param $host_id
+		 * @param $data array
 		 *
 		 * @return bool|mixed
 		 */

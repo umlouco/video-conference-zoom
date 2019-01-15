@@ -35,7 +35,7 @@ class Video_Conferencing_With_Zoom {
 	public function __construct() {
 		$this->define_them_constants();
 		$this->load_dependencies();
-		$this->init_hooks();
+		$this->init_api();
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts_backend' ) );
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
@@ -43,9 +43,7 @@ class Video_Conferencing_With_Zoom {
 	}
 
 	function load_plugin_new_configuration() {
-		if ( empty( get_option( 'zoom_api_version' ) ) ) {
-			update_option( 'zoom_api_version', 2 );
-		}
+		update_option( 'zoom_api_version', 2 );
 	}
 
 	/**
@@ -71,10 +69,10 @@ class Video_Conferencing_With_Zoom {
 	 * @modified 2.1.0
 	 * @author   Deepen Bajracharya
 	 */
-	protected function init_hooks() {
+	protected function init_api() {
 		//Load the Credentials
-		ZOOM_CONFERENCE()->zoom_api_key    = get_option( 'zoom_api_key' );
-		ZOOM_CONFERENCE()->zoom_api_secret = get_option( 'zoom_api_secret' );
+		zoom_conference()->zoom_api_key    = get_option( 'zoom_api_key' );
+		zoom_conference()->zoom_api_secret = get_option( 'zoom_api_secret' );
 	}
 
 	/**
@@ -111,11 +109,7 @@ class Video_Conferencing_With_Zoom {
 	 */
 	protected function load_dependencies() {
 		//Include the Main Class
-		if ( ZOOM_VIDEO_CONFERENCE_APIVERSION == 2 ) {
-			require_once ZOOM_VIDEO_CONFERENCE_PLUGIN_CLASSES_PATH . '/class-zvc-zoom-api-v2.php';
-		} else {
-			require_once ZOOM_VIDEO_CONFERENCE_PLUGIN_CLASSES_PATH . '/class-zvc-zoom-api.php';
-		}
+		require_once ZOOM_VIDEO_CONFERENCE_PLUGIN_CLASSES_PATH . '/class-zvc-zoom-api-v2.php';
 
 		//Loading Includes
 		require_once ZOOM_VIDEO_CONFERENCE_PLUGIN_INCLUDES_PATH . '/video-conferencing-with-zoom-helpers.php';
@@ -140,15 +134,15 @@ class Video_Conferencing_With_Zoom {
 	 */
 	public function enqueue_scripts_backend() {
 		wp_register_style( 'video-conferencing-with-zoom-api-timepick', ZOOM_VIDEO_CONFERENCE_PLUGIN_CSS_PATH . '/jquery.datetimepicker.css', false, time() );
-		wp_register_style( 'video-conferencing-with-zoom-api', ZOOM_VIDEO_CONFERENCE_PLUGIN_CSS_PATH . '/video-conferencing-with-zoom-api.css', false, time() );
 		wp_register_style( 'video-conferencing-with-zoom-api-select2', ZOOM_VIDEO_CONFERENCE_PLUGIN_CSS_PATH . '/select2.min.css', false, time() );
 		wp_register_style( 'video-conferencing-with-zoom-api-datable', ZOOM_VIDEO_CONFERENCE_PLUGIN_CSS_PATH . '/jquery.dataTables.min.css', false, time() );
 		wp_register_style( 'jquery-ui-datepicker-zvc', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css' );
+		wp_register_style( 'video-conferencing-with-zoom-api', ZOOM_VIDEO_CONFERENCE_PLUGIN_CSS_PATH . '/video-conferencing-with-zoom-api.css', false, time() );
 
-		wp_register_script( 'video-conferencing-with-zoom-api-js', ZOOM_VIDEO_CONFERENCE_PLUGIN_JS_PATH . '/video-conferencing-with-zoom-api.js', array( 'jquery' ), time(), true );
 		wp_register_script( 'video-conferencing-with-zoom-api-select2-js', ZOOM_VIDEO_CONFERENCE_PLUGIN_JS_PATH . '/select2.min.js', array( 'jquery' ), time(), true );
 		wp_register_script( 'video-conferencing-with-zoom-api-timepicker-js', ZOOM_VIDEO_CONFERENCE_PLUGIN_JS_PATH . '/jquery.datetimepicker.full.min.js', array( 'jquery' ), time(), true );
 		wp_register_script( 'video-conferencing-with-zoom-api-datable-js', ZOOM_VIDEO_CONFERENCE_PLUGIN_JS_PATH . '/jquery.dataTables.min.js', array( 'jquery' ), time(), true );
+		wp_register_script( 'video-conferencing-with-zoom-api-js', ZOOM_VIDEO_CONFERENCE_PLUGIN_JS_PATH . '/video-conferencing-with-zoom-api.js', array( 'jquery' ), time(), true );
 
 		wp_localize_script( 'video-conferencing-with-zoom-api-js', 'zvc_ajax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ), 'zvc_security' => wp_create_nonce( "_nonce_zvc_security" ) ) );
 	}

@@ -11,7 +11,7 @@
     </div>
 
     <div id="message" class="error">
-        <p><strong>Version 1 of the Zoom API is being sunset and will no longer be supported after November 1st, 2018. It is recommended that you select version 2 from <a href="<?php echo admin_url('/admin.php?page=zoom-video-conferencing-settings'); ?>">settings</a>  page.</strong></p>
+        <p><strong>Version 1 of the Zoom API is no longer supported. So, this plugin uses version 2 of the API.</strong></p>
     </div>
 
     <div class="zvc-position-floater-left">
@@ -19,10 +19,6 @@
 			<?php wp_nonce_field( '_zoom_settings_update_nonce_action', '_zoom_settings_nonce' ); ?>
             <table class="form-table">
                 <tbody>
-                <tr>
-                    <th scope="row"><label for="version"><?php _e( 'API Version', 'video-conferencing-with-zoom-api' ); ?></label></th>
-                    <td>Version 1 <input type="radio" required name="version" value="1" <?php echo ! empty( get_option( 'zoom_api_version' ) ) && get_option( 'zoom_api_version' ) == 1 ? "checked" : false; ?>> <br><br>Version 2 <input type="radio" required name="version" value="2" <?php echo ! empty( get_option( 'zoom_api_version' ) ) && get_option( 'zoom_api_version' ) == 2 ? "checked" : false; ?>></td>
-                </tr>
                 <tr>
                     <th><label><?php _e( 'API Key', 'video-conferencing-with-zoom-api' ); ?></label></th>
                     <td><input type="password" style="width: 400px;" name="zoom_api_key" id="zoom_api_key" value="<?php echo ( get_option( 'zoom_api_key' ) ) ? get_option( 'zoom_api_key' ) : ''; ?>"> <a href="javascript:void(0);" onclick="video_conferencing_zoom_toggle_password_api('zoom_api_key');" id="showhide">Show</a></td>

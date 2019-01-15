@@ -1,12 +1,6 @@
 <div class="wrap">
     <h1><?php _e( 'Reports', 'video-conferencing-with-zoom-api' ); ?></h1>
 
-	<?php if ( ZOOM_VIDEO_CONFERENCE_APIVERSION == 1 ) { ?>
-        <div id="message" class="error">
-            <p><strong>Version 1 of the Zoom API is being sunset and will no longer be supported after November 1st, 2018. It is recommended that you select version 2 from <a href="<?php echo admin_url( '/admin.php?page=zoom-video-conferencing-settings' ); ?>">settings</a> page.</strong></p>
-        </div>
-	<?php } ?>
-
     <h2 class="nav-tab-wrapper">
         <a href="?page=zoom-video-conferencing-reports&tab=zoom_daily_report" class="nav-tab <?php echo $active_tab == 'zoom_daily_report' ? 'nav-tab-active' : ''; ?>"><?php _e( '1. Daily Report', 'video-conferencing-with-zoom-api' ); ?></a>
         <a href="?page=zoom-video-conferencing-reports&tab=zoom_acount_report" class="nav-tab <?php echo $active_tab == 'zoom_acount_report' ? 'nav-tab-active' : ''; ?>"><?php _e( '2. Account Report', 'video-conferencing-with-zoom-api' ); ?></a>
