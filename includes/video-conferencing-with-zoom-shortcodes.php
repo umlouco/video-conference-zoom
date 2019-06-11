@@ -9,16 +9,18 @@
 
 //Adding Shortcode
 add_shortcode( 'zoom_api_link', 'video_conferencing_zoom_render_shortcode' );
+add_shortcode( 'zoom_vanity_link', 'video_conferencing_zoom_render_vanity_shortcode' );
 add_action( 'admin_head', 'video_conferencing_zoom_button_render' );
 
 /**
  * Rendering Shortcode Output
+ * @return string
  */
 function video_conferencing_zoom_render_shortcode( $atts, $content = null ) {
 	ob_start();
 	extract( shortcode_atts( array(
-		'meeting_id' => '#',
-		'title'      => 'Start Video',
+		'meeting_id' => 'javascript:void(0);',
+		'title'      => 'Start Meeting',
 		'id'         => 'zoom_video_uri',
 		'class'      => 'zoom_video_uri',
 		'target'     => '_self'
@@ -26,6 +28,28 @@ function video_conferencing_zoom_render_shortcode( $atts, $content = null ) {
 	) );
 
 	$content = '<a id="' . esc_html( $id ) . '" class="' . esc_html( $class ) . '" target="' . $target . '" href="' . esc_html( $meeting_id ) . '">' . esc_html( $title ) . '</a>';
+	$content .= ob_get_clean();
+
+	return $content;
+}
+
+/**
+ * Shortcode for vanity URL
+ * @return string
+ */
+function video_conferencing_zoom_render_vanity_shortcode( $atts, $content = null ) {
+	ob_start();
+	extract( shortcode_atts( array(
+		'meeting_id' => 'javascript:void(0);',
+		'title'      => 'Start Meeting',
+		'id'         => 'zoom-meeting-link-url',
+		'class'      => 'zoom-meeting-link-url',
+		'target'     => '_self'
+	), $atts
+	) );
+
+	$zoom_vanity_url = get_option( 'zoom_vanity_url' );
+	$content = '<a id="' . esc_html( $id ) . '" class="' . esc_html( $class ) . '" target="' . $target . '" href="' . esc_url( $zoom_vanity_url ) . '/j/'. $meeting_id . '">' . esc_html( $title ) . '</a>';
 	$content .= ob_get_clean();
 
 	return $content;

@@ -38,11 +38,11 @@ $users = video_conferencing_zoom_api_get_user_transients();
                         <td><?php echo $user->id; ?></td>
                         <td><?php echo $user->email; ?></td>
                         <td><?php echo $user->first_name . ' ' . $user->last_name; ?></td>
-                        <td><?php echo date( 'F j, Y, g:i a', strtotime( $user->created_at ) ); ?></td>
+                        <td><?php echo ! empty( $user->created_at ) ? date( 'F j, Y, g:i a', strtotime( $user->created_at ) ) : "N/A"; ?></td>
                         <div id="zvc_getting_user_info" style="display:none;">
                             <div class="zvc_getting_user_info_content"></div>
                         </div>
-                        <td><?php echo date( 'F j, Y, g:i a', strtotime( $user->last_login_time ) ); ?></td>
+                        <td><?php echo ! empty( $user->last_login_time ) ? date( 'F j, Y, g:i a', strtotime( $user->last_login_time ) ) : "N/A"; ?></td>
                         <td><?php echo ! empty( $user->last_client_version ) ? $user->last_client_version : "N/A"; ?></td>
                     </tr>
 					<?php

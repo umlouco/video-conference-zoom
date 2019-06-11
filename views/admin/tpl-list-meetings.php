@@ -64,7 +64,7 @@ if ( isset( $_GET['host_id'] ) ) {
                             <td>
                                 <a href="admin.php?page=zoom-video-conferencing-add-meeting&edit=<?php echo $meeting->id; ?>&host_id=<?php echo $meeting->host_id; ?>"><?php echo $meeting->topic; ?></a>
                                 <div class="row-actions">
-                                    <span class="trash"><a href="javascript:void(0);" onclick="video_conferencing_zoom_confirm_delete_meeting(<?php echo $meeting->id; ?>, '<?php echo $meeting->host_id; ?>')" class="submitdelete"><?php _e( 'Trash', 'video-conferencing-with-zoom-api' ); ?></a> | </span>
+                                    <span class="trash"><a href="javascript:void(0);" data-meetingid="<?php echo $meeting->id; ?>"  data-hostid="<?php echo $meeting->host_id; ?>" class="submitdelete delete-meeting"><?php _e( 'Trash', 'video-conferencing-with-zoom-api' ); ?></a> | </span>
                                     <span class="view"><a href="<?php echo ! empty( $meeting->start_url ) ? $meeting->start_url : $meeting->join_url; ?>" rel="permalink" target="_blank"><?php _e( 'Start Meeting', 'video-conferencing-with-zoom-api' ); ?></a></span>
                                 </div>
                             </td>

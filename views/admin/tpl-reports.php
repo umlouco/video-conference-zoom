@@ -7,7 +7,7 @@
     </h2>
 
 	<?php if ( $active_tab == 'zoom_daily_report' ): ?>
-		<?php $result = zvc_Reports()->get_daily_report_html();
+		<?php $result = zvc_reports()->get_daily_report_html();
 		if ( isset( $_POST['zoom_check_month_year'] ) && empty( $_POST['zoom_month_year'] ) ) { ?>
             <div id="message" class="notice notice-error">
 				<?php if ( isset( $result->error ) ) { ?>
@@ -42,7 +42,7 @@
                     <tr>
                         <td><?php echo date( 'F j, Y', strtotime( $date->date ) ); ?></td>
                         <td><?php echo ( $date->meetings > 0 ) ? '<strong style="color: #4300FF; font-size: 16px;">' . $date->meetings . '</strong>' : '-'; ?></td>
-                        <td><?php echo ( $date->new_user > 0 ) ? '<strong style="color:#00A1B5; font-size: 16px;">' . $date->new_user . '</strong>' : '-'; ?></td>
+                        <td><?php echo ( $date->new_users > 0 ) ? '<strong style="color:#00A1B5; font-size: 16px;">' . $date->new_users . '</strong>' : '-'; ?></td>
                         <td><?php echo ( $date->participants > 0 ) ? '<strong style="color:#00AF00; font-size: 16px;">' . $date->participants . '</strong>' : '-'; ?></td>
                         <td><?php echo ( $date->meeting_minutes > 0 ) ? '<strong style="color:red; font-size: 16px;">' . $date->meeting_minutes . '</strong>' : '-'; ?></td>
                     </tr>
@@ -58,7 +58,7 @@
             </tbody>
         </table>
 	<?php elseif ( $active_tab == 'zoom_acount_report' ):
-		$result = zvc_Reports()->get_account_report_html();
+		$result = zvc_reports()->get_account_report_html();
 		if ( isset( $_POST['zoom_check_account_info'] ) ) {
 			if ( empty( $_POST['zoom_account_from'] ) || empty( $_POST['zoom_account_to'] ) ) { ?>
                 <div id="message" class="notice notice-error">

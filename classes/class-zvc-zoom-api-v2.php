@@ -44,7 +44,6 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 		protected function sendRequest( $calledFunction, $data, $request = "GET" ) {
 			$request_url = $this->api_url . $calledFunction;
 			$args        = array(
-				'body'    => ! empty( $data ) ? json_encode( $data ) : array(),
 				'headers' => array(
 					'Authorization' => 'Bearer ' . $this->generateJWTKey(),
 					'Content-Type'  => 'application/json'
@@ -52,18 +51,25 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 			);
 
 			if ( $request == "GET" ) {
-				$response = wp_remote_get( $request_url, $args );
+				$args['body'] = ! empty( $data ) ? $data : array();
+				$response     = wp_remote_get( $request_url, $args );
 			} else if ( $request == "DELETE" ) {
+				$args['body']   = ! empty( $data ) ? json_encode( $data ) : array();
 				$args['method'] = "DELETE";
 				$response       = wp_remote_request( $request_url, $args );
 			} else if ( $request == "PATCH" ) {
+				$args['body']   = ! empty( $data ) ? json_encode( $data ) : array();
 				$args['method'] = "PATCH";
 				$response       = wp_remote_request( $request_url, $args );
 			} else {
-				$response = wp_remote_post( $request_url, $args );
+				$args['body']   = ! empty( $data ) ? json_encode( $data ) : array();
+				$args['method'] = "POST";
+				$response       = wp_remote_post( $request_url, $args );
 			}
 
 			$response = wp_remote_retrieve_body( $response );
+			/*dump($response);
+			die;*/
 
 			if ( ! $response ) {
 				return false;
@@ -145,7 +151,7 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 			$deleteAUserArray       = array();
 			$deleteAUserArray['id'] = $userid;
 
-			return $this->sendRequest( 'user/delete', $deleteAUserArray, "DELETE" );
+			return $this->sendRequest( 'users/' . $userid, false, "DELETE" );
 		}
 
 		/**
@@ -167,7 +173,7 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 		 *
 		 * @param  array $data
 		 *
-		 * @return array
+		 * @return object
 		 */
 		public function createAMeeting( $data = array() ) {
 			$post_time  = $data['start_date'];
@@ -175,26 +181,28 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 
 			$createAMeetingArray = array();
 
-			if ( count( $data['alternative_host_ids'] ) > 1 ) {
-				$alternative_host_ids = implode( ",", $data['alternative_host_ids'] );
-			} else {
-				$alternative_host_ids = $data['alternative_host_ids'][0];
+			if ( ! empty( $data['alternative_host_ids'] ) ) {
+				if ( count( $data['alternative_host_ids'] ) > 1 ) {
+					$alternative_host_ids = implode( ",", $data['alternative_host_ids'] );
+				} else {
+					$alternative_host_ids = $data['alternative_host_ids'][0];
+				}
 			}
 
 			$createAMeetingArray['topic']      = $data['meetingTopic'];
-			$createAMeetingArray['agenda']     = $data['agenda'];
+			$createAMeetingArray['agenda']     = ! empty( $data['agenda'] ) ? $data['agenda'] : "";
 			$createAMeetingArray['type']       = ! empty( $data['type'] ) ? $data['type'] : 2; //Scheduled
 			$createAMeetingArray['start_time'] = $start_time;
 			$createAMeetingArray['timezone']   = $data['timezone'];
-			$createAMeetingArray['password']   = $data['password'] ? $data['password'] : "";
-			$createAMeetingArray['duration']   = $data['duration'];
+			$createAMeetingArray['password']   = ! empty( $data['password'] ) ? $data['password'] : "";
+			$createAMeetingArray['duration']   = ! empty( $data['duration'] ) ? $data['duration'] : 60;
 			$createAMeetingArray['settings']   = array(
-				'join_before_host'  => $data['join_before_host'] ? true : false,
-				'host_video'        => $data['option_host_video'] ? true : false,
-				'participant_video' => $data['option_participants_video'] ? true : false,
-				'mute_upon_entry'   => $data['option_mute_participants'] ? true : false,
-				'enforce_login'     => $data['option_enforce_login'] ? true : false,
-				'auto_recording'    => $data['option_auto_recording'] ? $data['option_auto_recording'] : "none",
+				'join_before_host'  => ! empty( $data['join_before_host'] ) ? true : false,
+				'host_video'        => ! empty( $data['option_host_video'] ) ? true : false,
+				'participant_video' => ! empty( $data['option_participants_video'] ) ? true : false,
+				'mute_upon_entry'   => ! empty( $data['option_mute_participants'] ) ? true : false,
+				'enforce_login'     => ! empty( $data['option_enforce_login'] ) ? true : false,
+				'auto_recording'    => ! empty( $data['option_auto_recording'] ) ? $data['option_auto_recording'] : "none",
 				'alternative_hosts' => isset( $alternative_host_ids ) ? $alternative_host_ids : ""
 			);
 
@@ -214,26 +222,28 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 
 			$updateMeetingInfoArray = array();
 
-			if ( count( $update_data['alternative_host_ids'] ) > 1 ) {
-				$alternative_host_ids = implode( ",", $update_data['alternative_host_ids'] );
-			} else {
-				$alternative_host_ids = $update_data['alternative_host_ids'][0];
+			if ( ! empty( $update_data['alternative_host_ids'] ) ) {
+				if ( count( $update_data['alternative_host_ids'] ) > 1 ) {
+					$alternative_host_ids = implode( ",", $update_data['alternative_host_ids'] );
+				} else {
+					$alternative_host_ids = $update_data['alternative_host_ids'][0];
+				}
 			}
 
 			$updateMeetingInfoArray['topic']      = $update_data['topic'];
-			$updateMeetingInfoArray['agenda']     = $update_data['agenda'];
+			$updateMeetingInfoArray['agenda']     = ! empty( $update_data['agenda'] ) ? $update_data['agenda'] : "";
 			$updateMeetingInfoArray['type']       = ! empty( $update_data['type'] ) ? $update_data['type'] : 2; //Scheduled
 			$updateMeetingInfoArray['start_time'] = $start_time;
 			$updateMeetingInfoArray['timezone']   = $update_data['timezone'];
-			$updateMeetingInfoArray['password']   = $update_data['password'] ? $update_data['password'] : "";
-			$updateMeetingInfoArray['duration']   = $update_data['duration'];
+			$updateMeetingInfoArray['password']   = ! empty( $update_data['password'] ) ? $update_data['password'] : "";
+			$updateMeetingInfoArray['duration']   = ! empty( $update_data['duration'] ) ? $update_data['duration'] : 60;
 			$updateMeetingInfoArray['settings']   = array(
-				'join_before_host'  => $update_data['option_jbh'] ? true : false,
-				'host_video'        => $update_data['option_host_video'] ? true : false,
-				'participant_video' => $update_data['option_participants_video'] ? true : false,
-				'mute_upon_entry'   => $update_data['option_mute_participants'] ? true : false,
-				'enforce_login'     => $update_data['option_enforce_login'] ? true : false,
-				'auto_recording'    => $update_data['option_auto_recording'] ? $update_data['option_auto_recording'] : "none",
+				'join_before_host'  => ! empty( $update_data['option_jbh'] ) ? true : false,
+				'host_video'        => ! empty( $update_data['option_host_video'] ) ? true : false,
+				'participant_video' => ! empty( $update_data['option_participants_video'] ) ? true : false,
+				'mute_upon_entry'   => ! empty( $update_data['option_mute_participants'] ) ? true : false,
+				'enforce_login'     => ! empty( $update_data['option_enforce_login'] ) ? true : false,
+				'auto_recording'    => ! empty( $update_data['option_auto_recording'] ) ? $update_data['option_auto_recording'] : "none",
 				'alternative_hosts' => isset( $alternative_host_ids ) ? $alternative_host_ids : ""
 			);
 

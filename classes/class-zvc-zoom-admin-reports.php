@@ -28,7 +28,7 @@ class Zoom_Video_Conferencing_Reports {
 	 * @changes in CodeBase
 	 * @author  Deepen Bajracharya <dpen.connectify@gmail.com>
 	 */
-	public function zoom_reports() {
+	public static function zoom_reports() {
 		wp_enqueue_script( 'video-conferencing-with-zoom-api-js' );
 		wp_enqueue_script( 'jquery-ui-datepicker' );
 
@@ -98,6 +98,7 @@ class Zoom_Video_Conferencing_Reports {
 				$return_result = __( "The fields cannot be Empty !!", "zoom-video-conference" );
 			} else {
 				$result        = zoom_conference()->getAccountReport( $zoom_account_from, $zoom_account_to );
+				dump($result);
 				$return_result = json_decode( $result );
 			}
 		}
@@ -106,8 +107,8 @@ class Zoom_Video_Conferencing_Reports {
 	}
 }
 
-function zvc_Reports() {
+function zvc_reports() {
 	return Zoom_Video_Conferencing_Reports::getInstance();
 }
 
-zvc_Reports();
+zvc_reports();

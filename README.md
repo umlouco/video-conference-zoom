@@ -3,8 +3,8 @@ Contributors: j__3rk, digamberpradhan
 Tags: zoom video conference, video conference, zoom, zoom video conferencing, web conferencing, online meetings
 Donate link: https://deepenbajracharya.com.np
 Requires at least: 4.5.2
-Tested up to: 4.9
-Stable tag: 2.1.1
+Tested up to: 5.2
+Stable tag: 2.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -69,6 +69,11 @@ A: By using shortcode like `[zoom_api_link meeting_id="meeting_ID" class="your_c
 5. Reports Section.
 
 ## Changelog
+
+**2.2.2**
+Added: UI changes
+Fixed: Validation Issues fixed
+Fixed: Minor bug fixes
 
 **2.2.0**
 * Removed: API version 1 support. Added to deprecated library.
