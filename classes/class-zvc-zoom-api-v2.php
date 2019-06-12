@@ -102,14 +102,14 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 		 *
 		 * @return array|bool|string
 		 */
-		public function createAUser( $action, $email, $first_name, $last_name, $type ) {
+		public function createAUser( $postedData = array() ) {
 			$createAUserArray              = array();
-			$createAUserArray['action']    = $action;
+			$createAUserArray['action']    = $postedData['action'];
 			$createAUserArray['user_info'] = array(
-				'email'      => $email,
-				'type'       => $type,
-				'first_name' => $first_name,
-				'last_name'  => $last_name
+				'email'      => $postedData['email'],
+				'type'       => $postedData['type'],
+				'first_name' => $postedData['first_name'],
+				'last_name'  => $postedData['last_name']
 			);
 
 			return $this->sendRequest( 'users', $createAUserArray, "POST" );

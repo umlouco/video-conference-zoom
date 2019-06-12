@@ -59,18 +59,22 @@ class Zoom_Video_Conferencing_Admin_Users {
 
 		if ( isset( $_POST['add_zoom_user'] ) ) {
 			check_admin_referer( '_zoom_add_user_nonce_action', '_zoom_add_user_nonce' );
-			$action      = filter_input( INPUT_POST, 'action' );
-			$email      = filter_input( INPUT_POST, 'email' );
-			$first_name = filter_input( INPUT_POST, 'first_name' );
-			$last_name  = filter_input( INPUT_POST, 'last_name' );
-			$type       = filter_input( INPUT_POST, 'type' );
+			$postData = array(
+				'action'     => filter_input( INPUT_POST, 'action' ),
+				'email'      => sanitize_email( filter_input( INPUT_POST, 'email' ) ),
+				'first_name' => sanitize_text_field( filter_input( INPUT_POST, 'first_name' ) ),
+				'last_name'  => sanitize_text_field( filter_input( INPUT_POST, 'last_name' ) ),
+				'type'       => filter_input( INPUT_POST, 'type' )
+			);
 
-			$created_user = zoom_conference()->createAUser( $action, $email, $first_name, $last_name, $type );
+			$created_user = zoom_conference()->createAUser( $postData );
 			$result       = json_decode( $created_user );
-			if ( ! empty( $result->error ) ) {
-				$message['error'] = $result->error->message;
+			if ( ! empty( $result->errors ) ) {
+				foreach( $result->errors as $error ) {
+					self::set_message( 'error', $error->message );
+				}
 			} else {
-				$message['success'] = __( "Created a User. Please check email for confirmation.", "video-conferencing-with-zoom-api" );
+				self::set_message( 'updated', __( "Created a User. Please check email for confirmation. Added user will only appear in the list after approval.", "video-conferencing-with-zoom-api" ) );
 
 				//After user has been created delete this transient in order to fetch latest Data.
 				delete_transient( '_zvc_user_lists' );
