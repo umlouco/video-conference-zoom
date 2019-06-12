@@ -147,8 +147,8 @@ if( !function_exists( 'zvc_get_timezone_options' ) ) {
 			"Pacific/Auckland"               => "(GMT+12:00) Auckland, Wellington"
 		);
 
-		return $zones_array;
-	}
+return $zones_array;
+}
 }
 
 /**
@@ -176,5 +176,21 @@ if( !function_exists( 'video_conferencing_zoom_api_get_user_transients' ) ) {
 		}
 
 		return $users;
+	}
+}
+
+if( !function_exists('video_conferencing_zoom_api_show_like_popup') ) {
+	function video_conferencing_zoom_api_show_like_popup() {
+		?>
+		<div id="message" class="notice notice-warning">
+			<h3><?php esc_html_e( 'Like this plugin ?', 'video-conferencing-with-zoom-api' ); ?></h3>
+			<p>
+				<?php
+				printf( esc_html__( 'Please consider giving a %s if you found this useful at wordpress.org. ', 'video-conferencing-with-zoom-api' ), '<a href="https://wordpress.org/support/plugin/video-conferencing-with-zoom-api/reviews/#new-post">5 star thumbs up</a>' );
+				printf( esc_html__( 'Check %s for shortcode references.', 'video-conferencing-with-zoom-api' ), '<a href="?page=zoom-video-conferencing-settings">settings</a>' );
+				?>
+			</p>
+		</div>
+		<?php
 	}
 }

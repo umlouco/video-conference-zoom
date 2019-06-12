@@ -25,15 +25,15 @@ class Zoom_Video_Conferencing_Admin_Views {
 	public function zoom_video_conference_menus() {
 		add_menu_page( 'Zoom', 'Zoom Meetings', 'manage_options', 'zoom-video-conferencing', array( 'Zoom_Video_Conferencing_Admin_Meetings', 'list_meetings' ), 'dashicons-video-alt2', 5 );
 		if ( get_option( 'zoom_api_key' ) && get_option( 'zoom_api_secret' ) ) {
-			$encoded_users = zoom_conference()->listUsers();
-			if ( empty( json_decode( $encoded_users )->error ) ) {
+			/*$encoded_users = zoom_conference()->listUsers();
+			if ( empty( json_decode( $encoded_users )->error ) ) {*/
 				add_submenu_page( 'zoom-video-conferencing', 'Meeting', __( 'Add Meeting', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing-add-meeting', array( 'Zoom_Video_Conferencing_Admin_Meetings', 'add_meeting' ) );
 				add_submenu_page( 'zoom-video-conferencing', 'Users', __( 'Users', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing-list-users', array( 'Zoom_Video_Conferencing_Admin_Users', 'list_users' ) );
 				add_submenu_page( 'zoom-video-conferencing', 'Add Users', __( 'Add Users', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing-add-users', array( 'Zoom_Video_Conferencing_Admin_Users', 'add_zoom_users' ) );
 				add_submenu_page( 'zoom-video-conferencing', 'Reports', __( 'Reports', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing-reports', array( 'Zoom_Video_Conferencing_Reports', 'zoom_reports' ) );
 				add_submenu_page( 'zoom-video-conferencing', __( 'Assign Host ID', 'video-conferencing-with-zoom-plank' ),
 					__( 'Assign Host ID', 'video-conferencing-with-zoom-plank' ), 'manage_options', 'zoom-video-conferencing-host-id-assign', array( 'Zoom_Video_Conferencing_Admin_Users', 'assign_host_id' ) );
-			}
+			// }
 		}
 		add_submenu_page( 'zoom-video-conferencing', 'Settings', __( 'Settings', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing-settings', array( $this, 'zoom_video_conference_api_zoom_settings' ) );
 	}

@@ -1,4 +1,6 @@
 <?php
+video_conferencing_zoom_api_show_like_popup(); 
+
 //Check if any transient by name is available
 $users = video_conferencing_zoom_api_get_user_transients();
 

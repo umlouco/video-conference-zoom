@@ -1,4 +1,6 @@
 <?php
+video_conferencing_zoom_api_show_like_popup(); 
+
 $users = video_conferencing_zoom_api_get_user_transients();
 ?>
 <div id="zvc-cover" style="display: none;"></div>

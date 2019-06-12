@@ -7,16 +7,9 @@ $zoom_vanity_url = get_option( 'zoom_vanity_url' );
 ?>
 <div class="wrap">
     <h1><?php _e( 'Settings', 'video-conferencing-with-zoom-api' ); ?></h1>
-    <div id="message" class="notice notice-warning">
-        <h3><?php esc_html_e( 'Like this plugin ?', 'video-conferencing-with-zoom-api' ); ?></h3>
-        <p>
-            <?php
-            printf( esc_html__( 'Please consider giving a %s if you found this useful at wordpress.org.', 'video-conferencing-with-zoom-api' ), '<a href="https://wordpress.org/support/plugin/video-conferencing-with-zoom-api/reviews/#new-post">5 star thumbs up</a>' );
-            printf( esc_html__( 'You can call links using shortcode. Check %s for what is added from version 2.1.0.', 'video-conferencing-with-zoom-api' ), '<a href="https://wordpress.org/plugins/video-conferencing-with-zoom-api/#developers">changelog</a>' );
-            ?>
-        </p>
-    </div>
-
+        
+    <?php video_conferencing_zoom_api_show_like_popup(); ?>
+    
     <div id="message" class="error">
         <p><strong>Version 1 of the Zoom API is no longer supported. So, this plugin uses version 2 of the API.</strong></p>
     </div>
