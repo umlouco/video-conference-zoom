@@ -24,6 +24,7 @@ A simple plugin which gives you the extensive functionality to manage zoom meeti
 * Override single and archive page templates via your theme. ( NEW from 3.0.0 )
 * Join links directly from frontend. ( NEW from 3.0.0 )
 * Start Links for post authors. ( NEW from 3.0.0 )
+* CountDown timer to Meeting start shows in individual meeting page. ( NEW from 3.0.0 )
 * Allow posts to be only shown to logged in users. ( NEW from 3.0.0 )
 * Manage Live Zoom Meetings.
 * Listing Users.

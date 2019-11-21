@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Video Conferencing with Zoom API\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-21 06:49+0000\n"
-"PO-Revision-Date: 2019-11-21 06:49+0000\n"
+"POT-Creation-Date: 2019-11-21 07:53+0000\n"
+"PO-Revision-Date: 2019-11-21 07:53+0000\n"
 "Last-Translator: Deepen <dpen.connectify@gmail.com>\n"
 "Language-Team: French (France)\n"
 "Language: fr_FR\n"
@@ -75,7 +75,7 @@ msgstr ""
 msgid "I understand ! Don't show this again !"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:31
+#: includes/class-zvc-shortcodes.php:37
 #, php-format
 msgid ""
 "Please try again ! Some error occured while trying to fetch meeting with id: "
@@ -102,15 +102,15 @@ msgstr ""
 msgid "Saved !"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-ajax.php:32
+#: includes/admin/class-zvc-admin-ajax.php:33
 msgid "Deleted meeting."
 msgstr ""
 
-#: includes/admin/class-zvc-admin-ajax.php:34
+#: includes/admin/class-zvc-admin-ajax.php:35
 msgid "An error occured. Host ID and Meeting ID not defined properly."
 msgstr ""
 
-#: includes/admin/class-zvc-admin-ajax.php:60
+#: includes/admin/class-zvc-admin-ajax.php:61
 #, php-format
 msgid "Deleted %d Meeting(s)."
 msgstr ""
@@ -138,7 +138,7 @@ msgid "Assign Host ID"
 msgstr ""
 
 #: includes/admin/class-zvc-admin-settings.php:42
-#: includes/views/tpl-settings.php:8
+#: includes/views/tpl-settings.php:9
 msgid "Settings"
 msgstr "Paramètres"
 
@@ -567,43 +567,61 @@ msgstr "Email"
 msgid "Name"
 msgstr "prénom"
 
-#: includes/views/tpl-settings.php:14
+#: includes/views/tpl-settings.php:15
 msgid "Please follow"
 msgstr ""
 
-#: includes/views/tpl-settings.php:14
+#: includes/views/tpl-settings.php:15
 msgid "this guide"
 msgstr ""
 
-#: includes/views/tpl-settings.php:14
+#: includes/views/tpl-settings.php:15
 msgid "to generate the below API values from your Zoom account"
 msgstr ""
 
-#: includes/views/tpl-settings.php:21
+#: includes/views/tpl-settings.php:22
 msgid "API Key"
 msgstr ""
 
-#: includes/views/tpl-settings.php:25
+#: includes/views/tpl-settings.php:26
 msgid "API Secret Key"
 msgstr ""
 
-#: includes/views/tpl-settings.php:29
+#: includes/views/tpl-settings.php:30
 msgid "Vanity URL"
 msgstr ""
 
-#: includes/views/tpl-settings.php:60
+#: includes/views/tpl-settings.php:33
+msgid "This URI will be replaced with default zoom link."
+msgstr ""
+
+#: includes/views/tpl-settings.php:38
+msgid ""
+"After you enter your keys. Do save changes before doing \"Check API "
+"Connection\"."
+msgstr ""
+
+#: includes/views/tpl-settings.php:39
+msgid "Save Changes"
+msgstr ""
+
+#: includes/views/tpl-settings.php:39
+msgid "Check API Connection"
+msgstr ""
+
+#: includes/views/tpl-settings.php:62
 msgid "Documentation"
 msgstr ""
 
-#: includes/views/tpl-settings.php:61
+#: includes/views/tpl-settings.php:63
 msgid "Contact for additional Support"
 msgstr "Contact pour un support supplémentaire"
 
-#: includes/views/tpl-settings.php:62
+#: includes/views/tpl-settings.php:64
 msgid "Developer"
 msgstr ""
 
-#: includes/views/tpl-settings.php:68
+#: includes/views/tpl-settings.php:70
 msgid "Try inactive logout"
 msgstr ""
 
