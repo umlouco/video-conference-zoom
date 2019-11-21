@@ -13,8 +13,7 @@ add_action( 'vczoom_single_content_right', 'video_conference_zoom_countdown_time
 add_action( 'vczoom_single_content_right', 'video_conference_zoom_meeting_details', 20 );
 add_action( 'vczoom_single_content_right', 'video_conference_zoom_meeting_join', 30 );
 
-//Filter single content
-add_filter( 'vczoom_single_content_valid_meeting', 'video_conference_zoom_meeting_check_valid_meeting', 10 );
+//single content
 add_action( 'vczoom_meeting_join_links', 'video_conference_zoom_meeting_join_link', 10 );
 
 //Shortcode Hooks

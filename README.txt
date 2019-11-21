@@ -12,7 +12,7 @@ Gives you the power to manage Zoom Meetings, check reports and create users from
 
 == Description ==
 
-**NOTE: Upgrading to version 3.0.0 ? Huge changes from 3.0.0. Please refer to [changelog tab](https://wordpress.org/plugins/video-conferencing-with-zoom-api/#developers "changelog tab")**
+**NOTE: Upgrading to version 3.0.0 ? Please refer to [changelog tab](https://wordpress.org/plugins/video-conferencing-with-zoom-api/#developers "changelog tab")**
 
 A simple plugin which gives you the extensive functionality to manage zoom meetings, users, reports from your WordPress Dashboard. Now, with capabitly to add your own post as a meeting. Create posts as meetings directly from your WordPress dashboard to show in the frontend as a meeting page. Allow users to directly join via that page with click of a button.
 
@@ -20,12 +20,12 @@ A simple plugin which gives you the extensive functionality to manage zoom meeti
 
 **FEATURES:**
 
-* Manage WordPress posts and link them to Live Zoom meetings ( NEW from 3.0.0 )
-* Override single and archive page templates via your theme. ( NEW from 3.0.0 )
-* Join links directly from frontend. ( NEW from 3.0.0 )
-* Start Links for post authors. ( NEW from 3.0.0 )
-* CountDown timer to Meeting start shows in individual meeting page. ( NEW from 3.0.0 )
-* Allow posts to be only shown to logged in users. ( NEW from 3.0.0 )
+* Manage WordPress posts and link them to Live Zoom meetings ( NEW from 3.0.0+ )
+* Override single and archive page templates via your theme. ( NEW from 3.0.0+ )
+* Join links directly from frontend. ( NEW from 3.0.0+ )
+* Start Links for post authors. ( NEW from 3.0.0+ )
+* CountDown timer to Meeting start shows in individual meeting page. ( NEW from 3.0.0+ )
+* Allow posts to be only shown to logged in users. ( NEW from 3.0.0+ )
 * Manage Live Zoom Meetings.
 * Listing Users.
 * Developer Friendly
@@ -51,7 +51,7 @@ Check updates in more details [from here](https://deepenbajracharya.com.np/zoom-
 
 **SHORTCODE:**
 
-From version 3.0.0 - Shortcode has been changed to fit different need:
+From version 3.0.0+ - Shortcode has been changed to fit different need:
 
 * [zoom_api_link meeting_id="123456789"] - Just enter your meeting ID and you are good to show your meeting in any page.
 
@@ -83,10 +83,11 @@ Search for the plugin -> add new dialog and click install, or download and extra
 
 == Changelog ==
 
-= 3.0.0 =
+= 3.0.0 - 3.0.1 =
 Added: Custom post type meetings for seperate post meetings.
 Added: Page template overrides.
 Added: Frontend meeting join links, start links for authors.
+Fixed: Timezone Values
 Changed: Optimized overall codebase.
 Removed: Seperate vanity shortcode removed.
 Fixed: Bug Fixes on creating meetings, Warnings and Notice errors.

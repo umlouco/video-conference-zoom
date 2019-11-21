@@ -157,132 +157,129 @@ if ( ! function_exists( 'zvc_get_timezone_options' ) ) {
  * @since  2.1.0
  * @author Deepen
  */
-if ( ! function_exists( 'video_conferencing_zoom_api_get_user_transients' ) ) {
-	function video_conferencing_zoom_api_get_user_transients() {
-		//Check if any transient by name is available
-		$check_transient = get_transient( '_zvc_user_lists' );
-		if ( $check_transient ) {
-			$users = $check_transient->users;
+function video_conferencing_zoom_api_get_user_transients() {
+	//Check if any transient by name is available
+	$check_transient = get_transient( '_zvc_user_lists' );
+	if ( $check_transient ) {
+		$users = $check_transient->users;
+	} else {
+		$encoded_users = zoom_conference()->listUsers();
+		$decoded_users = json_decode( $encoded_users );
+		if ( ! empty( $decoded_users->code ) && $decoded_users->code == 300 ) {
+			$users = false;
 		} else {
-			$encoded_users = zoom_conference()->listUsers();
-			$decoded_users = json_decode( $encoded_users );
-			if ( ! empty( $decoded_users->code ) && $decoded_users->code == 300 ) {
-				$users = false;
-			} else {
-				//storing data to transient and getting those data for fast load by setting to fetch every 15 minutes
-				set_transient( '_zvc_user_lists', $decoded_users, 900 );
-				$users = $decoded_users->users;
-			}
+			//storing data to transient and getting those data for fast load by setting to fetch every 15 minutes
+			set_transient( '_zvc_user_lists', $decoded_users, 900 );
+			$users = $decoded_users->users;
 		}
-
-		return $users;
 	}
+
+	return $users;
 }
 
-if ( ! function_exists( 'video_conferencing_zoom_api_show_like_popup' ) ) {
-	/**
-	 * @author Deepen
-	 * @since 3.0.0
-	 */
-	function video_conferencing_zoom_api_show_like_popup() {
+/**
+ * @author Deepen
+ * @since 3.0.0
+ */
+function video_conferencing_zoom_api_show_like_popup() {
+	?>
+    <div id="message" class="notice notice-warning">
+        <h3><?php esc_html_e( 'Like this plugin ?', 'video-conferencing-with-zoom-api' ); ?></h3>
+        <p>
+			<?php
+			printf( esc_html__( 'Please consider giving a %s if you found this useful at wordpress.org or ', 'video-conferencing-with-zoom-api' ), '<a href="https://wordpress.org/support/plugin/video-conferencing-with-zoom-api/reviews/#new-post">5 star thumbs up</a>' );
+			printf( esc_html__( 'check %s for shortcode references.', 'video-conferencing-with-zoom-api' ), '<a href="?page=zoom-video-conferencing-settings">settings</a>' );
+			?>
+        </p>
+    </div>
+	<?php
+}
+
+/**
+ * @author Deepen
+ * @since 3.0.0
+ */
+function video_conferencing_zoom_api_show_api_notice() {
+	$notice = get_option( 'zoom_api_notice' );
+	if ( empty( $notice ) ) {
 		?>
-        <div id="message" class="notice notice-warning">
-            <h3><?php esc_html_e( 'Like this plugin ?', 'video-conferencing-with-zoom-api' ); ?></h3>
-            <p>
-				<?php
-				printf( esc_html__( 'Please consider giving a %s if you found this useful at wordpress.org or ', 'video-conferencing-with-zoom-api' ), '<a href="https://wordpress.org/support/plugin/video-conferencing-with-zoom-api/reviews/#new-post">5 star thumbs up</a>' );
-				printf( esc_html__( 'check %s for shortcode references.', 'video-conferencing-with-zoom-api' ), '<a href="?page=zoom-video-conferencing-settings">settings</a>' );
-				?>
-            </p>
-        </div>
+        <div id="message" class="notice notice-success"><p style="font-size:16px;"><strong><?php _e( "Do not get confused here !!", "video-conferencing-with-zoom-api" ); ?></strong>
+            <p><strong><?php _e( "Please read !!! These below meetings are directly from your zoom.us account via API connection. Meetings added from here won't show up on your Post Type list. This will only create meeting in your zoom.us account !", "video-conferencing-with-zoom-api" ); ?></strong> <a href="javascript:void(0);" class="zvc-dismiss-message"><?php _e( "I understand ! Don't show this again !", "video-conferencing-with-zoom-api" ); ?></a></p></div>
 		<?php
 	}
 }
 
-if ( ! function_exists( 'video_conferencing_zoom_api_show_api_notice' ) ) {
-	/**
-	 * @author Deepen
-	 * @since 3.0.0
-	 */
-	function video_conferencing_zoom_api_show_api_notice() {
-		$notice = get_option( 'zoom_api_notice' );
-		if ( empty( $notice ) ) {
-			?>
-            <div id="message" class="notice notice-success"><p style="font-size:16px;"><strong><?php _e( "Do not get confused here !!", "video-conferencing-with-zoom-api" ); ?></strong>
-                <p><strong><?php _e( "Please read !!! These below meetings are directly from your zoom.us account via API connection. Meetings added from here won't show up on your Post Type list. This will only create meeting in your zoom.us account !", "video-conferencing-with-zoom-api" ); ?></strong> <a href="javascript:void(0);" class="zvc-dismiss-message"><?php _e( "I understand ! Don't show this again !", "video-conferencing-with-zoom-api" ); ?></a></p></div>
-			<?php
+function vczapi_get_template( $template_names, $load = false, $require_once = true ) {
+	if ( ! is_array( $template_names ) ) {
+		return '';
+	}
+
+	$located         = false;
+	$this_plugin_dir = ZVC_PLUGIN_DIR_PATH;
+	foreach ( $template_names as $template_name ) {
+		if ( file_exists( STYLESHEETPATH . '/' . ZVC_PLUGIN_SLUG . '/' . $template_name ) ) {
+			$located = STYLESHEETPATH . '/' . ZVC_PLUGIN_SLUG . '/' . $template_name;
+			break;
+		} elseif ( file_exists( TEMPLATEPATH . '/' . ZVC_PLUGIN_SLUG . '/' . $template_name ) ) {
+			$located = TEMPLATEPATH . '/' . ZVC_PLUGIN_SLUG . '/' . $template_name;
+			break;
+		} elseif ( file_exists( $this_plugin_dir . 'templates/' . $template_name ) ) {
+			$located = $this_plugin_dir . 'templates/' . $template_name;
+			break;
 		}
 	}
-}
 
-if ( ! function_exists( 'vczapi_get_template' ) ) {
-	function vczapi_get_template( $template_names, $load = false, $require_once = true ) {
-		if ( ! is_array( $template_names ) ) {
-			return '';
-		}
-
-		$located         = false;
-		$this_plugin_dir = ZVC_PLUGIN_DIR_PATH;
-		foreach ( $template_names as $template_name ) {
-			if ( file_exists( STYLESHEETPATH . '/' . ZVC_PLUGIN_SLUG . '/' . $template_name ) ) {
-				$located = STYLESHEETPATH . '/' . ZVC_PLUGIN_SLUG . '/' . $template_name;
-				break;
-			} elseif ( file_exists( TEMPLATEPATH . '/' . ZVC_PLUGIN_SLUG . '/' . $template_name ) ) {
-				$located = TEMPLATEPATH . '/' . ZVC_PLUGIN_SLUG . '/' . $template_name;
-				break;
-			} elseif ( file_exists( $this_plugin_dir . 'templates/' . $template_name ) ) {
-				$located = $this_plugin_dir . 'templates/' . $template_name;
-				break;
-			}
-		}
-
-		if ( $load && ! empty( $located ) ) {
-			load_template( $located, $require_once );
-		}
-
-		return $located;
+	if ( $load && ! empty( $located ) ) {
+		load_template( $located, $require_once );
 	}
+
+	return $located;
 }
 
-if ( ! function_exists( 'vczapi_get_template_part' ) ) {
-	function vczapi_get_template_part( $slug, $name = '' ) {
-		$template = false;
-		if ( $name ) {
-			$template = locate_template( array(
-				"{$slug}-{$name}.php",
-				ZVC_PLUGIN_SLUG . "{$slug}-{$name}.php",
-			) );
-
-			if ( ! $template ) {
-				$fallback = ZVC_PLUGIN_DIR_PATH . "templates/{$slug}-{$name}.php";
-				$template = file_exists( $fallback ) ? $fallback : '';
-			}
-		}
+function vczapi_get_template_part( $slug, $name = '' ) {
+	$template = false;
+	if ( $name ) {
+		$template = locate_template( array(
+			"{$slug}-{$name}.php",
+			ZVC_PLUGIN_SLUG . "{$slug}-{$name}.php",
+		) );
 
 		if ( ! $template ) {
-			$template = locate_template( array(
-				"{$slug}-{$name}.php",
-				ZVC_PLUGIN_SLUG . "{$slug}-{$name}.php",
-			) );
+			$fallback = ZVC_PLUGIN_DIR_PATH . "templates/{$slug}-{$name}.php";
+			$template = file_exists( $fallback ) ? $fallback : '';
 		}
+	}
 
-		// Allow 3rd party plugins to filter template file from their plugin.
-		$template = apply_filters( 'vcz_get_template_part', $template, $slug, $name );
+	if ( ! $template ) {
+		$template = locate_template( array(
+			"{$slug}-{$name}.php",
+			ZVC_PLUGIN_SLUG . "{$slug}-{$name}.php",
+		) );
+	}
 
-		if ( $template ) {
-			load_template( $template, false );
-		}
+	// Allow 3rd party plugins to filter template file from their plugin.
+	$template = apply_filters( 'vcz_get_template_part', $template, $slug, $name );
+
+	if ( $template ) {
+		load_template( $template, false );
 	}
 }
 
-if ( ! function_exists( 'vczapi_check_author' ) ) {
-	function vczapi_check_author( $post_id ) {
-		$post_author_id = get_post_field( 'post_author', $post_id );
-		$current_user   = get_current_user_id();
-		if ( (int) $post_author_id === $current_user ) {
-			return true;
-		} else {
-			return false;
-		}
+function vczapi_check_author( $post_id ) {
+	$post_author_id = get_post_field( 'post_author', $post_id );
+	$current_user   = get_current_user_id();
+	if ( (int) $post_author_id === $current_user ) {
+		return true;
+	} else {
+		return false;
 	}
+}
+
+function vczapi_dateConverter( $start_time, $tz, $format = 'F j, Y, g:i a ( T )' ) {
+	$timezone = ! empty( $tz ) ? $tz : "America/Los_Angeles";
+	$tz       = new DateTimeZone( $timezone );
+	$date     = new DateTime( $start_time );
+	$date->setTimezone( $tz );
+
+	return $date->format( $format );
 }

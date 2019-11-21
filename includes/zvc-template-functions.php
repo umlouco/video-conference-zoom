@@ -122,8 +122,8 @@ function video_conference_zoom_shortcode_join_link( $zoom_meetings ) {
 	}
 
 	$params['timezone']   = $zoom_meetings->timezone;
-	$params['start_date'] = $zoom_meetings->start_time;
-	if ( video_conference_zoom_meeting_check_valid_meeting( $params ) ) {
+	$params['start_date'] = vczapi_dateConverter( $zoom_meetings->start_time, $zoom_meetings->timezone, 'Y-m-d\TH:i:s\Z' );
+	if ( ! video_conference_zoom_meeting_check_valid_meeting( $params ) ) {
 		?>
         <tr>
             <td colspan="2" class="dpn-zvc-mtglink-no-valid"><?php echo apply_filters( 'vczoom_shortcode_link_not_valid_anymore', __( 'This meeting is no longer valid and cannot be joined !', 'video-conferencing-with-zoom-api' ) ); ?></td>
@@ -149,7 +149,7 @@ function video_conference_zoom_shortcode_join_link( $zoom_meetings ) {
  * @param $zoom_meetings
  */
 function video_conference_zoom_shortcode_table( $zoom_meetings ) {
-    ?>
+	?>
     <table>
         <tr>
             <td>Meeting ID</td>
@@ -168,15 +168,15 @@ function video_conference_zoom_shortcode_table( $zoom_meetings ) {
         </tr>
         <tr>
             <td>Start Time</td>
-            <td><?php echo date( 'F j, Y @ g:i a', strtotime( $zoom_meetings->start_time ) ); ?></td>
-        </tr>
-        <tr>
-            <td>Duration</td>
-            <td><?php echo $zoom_meetings->duration; ?></td>
+            <td><?php echo vczapi_dateConverter( $zoom_meetings->start_time, $zoom_meetings->timezone, 'F j, Y @ g:i a' );; ?></td>
         </tr>
         <tr>
             <td>Timezone</td>
             <td><?php echo $zoom_meetings->timezone; ?></td>
+        </tr>
+        <tr>
+            <td>Duration</td>
+            <td><?php echo $zoom_meetings->duration; ?></td>
         </tr>
 		<?php
 		/**
@@ -203,12 +203,13 @@ function video_conference_zoom_shortcode_table( $zoom_meetings ) {
  */
 function video_conference_zoom_meeting_check_valid_meeting( $zoom ) {
 	$meeting_timezone_time = new DateTime( 'now', new DateTimeZone( $zoom['timezone'] ) );
-	$meeting_timezone_time->modify( "+15 minutes" );
+	$meeting_timezone_time->modify( "-15 minutes" );
 	$current_time = $meeting_timezone_time->format( 'Y-m-d h:i a' );
 	$meeting_time = date( 'Y-m-d h:i a', strtotime( $zoom['start_date'] ) );
-	if ( $current_time > $meeting_time ) {
-		return false;
+	if ( $current_time < $meeting_time ) {
+		//Meeting Still Valid
+		return true;
 	}
 
-	return true;
+	return false;
 }
