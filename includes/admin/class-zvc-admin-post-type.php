@@ -117,7 +117,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
                 <p><strong>Meeting has not been created for this post yet. Publish your meeting or hit update to create a new one for this post !</strong></p>
 			<?php } ?>
             <div class="zoom-metabox-content">
-                <p>Requires Login? <input type="checkbox" name="option_logged_in" value="1" <?php checked( '1', $meeting_fields['site_option_logged_in'] ) ?> class="regular-text"></p>
+                <p>Requires Login? <input type="checkbox" name="option_logged_in" value="1" <?php ! empty( $meeting_fields['site_option_logged_in'] ) ? checked( '1', $meeting_fields['site_option_logged_in'] ) : false; ?> class="regular-text"></p>
                 <p class="description"><?php _e( 'Only logged in users of this site will be able to join this meeting.', 'video-conferencing-with-zoom-api' ); ?></p>
             </div>
         </div>
@@ -326,8 +326,8 @@ class Zoom_Video_Conferencing_Admin_PostType {
 		if ( $screen->id === 'edit-zoom-meetings' || $screen->id === 'zoom-meetings' ) {
 			video_conferencing_zoom_api_show_like_popup();
 		} else {
-		    return;
-        }
+			return;
+		}
 	}
 }
 

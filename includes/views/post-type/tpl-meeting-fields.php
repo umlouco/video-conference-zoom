@@ -13,7 +13,7 @@
             <select name="userId" required class="zvc-hacking-select">
                 <option value=""><?php _e( 'Select a Host', 'video-conferencing-with-zoom-api' ); ?></option>
 				<?php foreach ( $users as $user ): ?>
-                    <option value="<?php echo $user->id; ?>" <?php selected( $meeting_fields['userId'], $user->id ); ?> ><?php echo $user->first_name . ' ( ' . $user->email . ' )'; ?></option>
+                    <option value="<?php echo $user->id; ?>" <?php ! empty( $meeting_fields['userId'] ) ? selected( $meeting_fields['userId'], $user->id ) : false; ?> ><?php echo $user->first_name . ' ( ' . $user->email . ' )'; ?></option>
 				<?php endforeach; ?>
             </select>
             <p class="description" id="userId-description"><?php _e( 'This is host ID for the meeting (Required).', 'video-conferencing-with-zoom-api' ); ?></p>
@@ -32,7 +32,7 @@
 			<?php $tzlists = zvc_get_timezone_options(); ?>
             <select id="timezone" name="timezone" class="zvc-hacking-select">
 				<?php foreach ( $tzlists as $k => $tzlist ) { ?>
-                    <option value="<?php echo $k; ?>" <?php selected( $k, $meeting_fields['timezone'] ); ?>><?php echo $tzlist; ?></option>
+                    <option value="<?php echo $k; ?>" <?php ! empty( $meeting_fields['timezone'] ) ? selected( $k, $meeting_fields['timezone'] ) : false; ?>><?php echo $tzlist; ?></option>
 				<?php } ?>
             </select>
             <p class="description" id="timezone-description"><?php _e( 'Meeting Timezone', 'video-conferencing-with-zoom-api' ); ?></p>
@@ -48,34 +48,34 @@
     <tr>
         <th scope="row"><label for="join_before_host"><?php _e( 'Join Before Host', 'video-conferencing-with-zoom-api' ); ?></label></th>
         <td>
-            <p class="description" id="join_before_host-description"><input type="checkbox" name="join_before_host" value="1" <?php checked( '1', $meeting_fields['join_before_host'] ); ?> class="regular-text"><?php _e( 'Join meeting before host start the meeting. Only for scheduled or recurring meetings.', 'video-conferencing-with-zoom-api' ); ?></p>
+            <p class="description" id="join_before_host-description"><input type="checkbox" name="join_before_host" value="1" <?php ! empty( $meeting_fields['join_before_host'] ) ? checked( '1', $meeting_fields['join_before_host'] ) : false; ?> class="regular-text"><?php _e( 'Join meeting before host start the meeting. Only for scheduled or recurring meetings.', 'video-conferencing-with-zoom-api' ); ?></p>
         </td>
     </tr>
     <tr>
         <th scope="row"><label for="option_host_video"><?php _e( 'Host join start', 'video-conferencing-with-zoom-api' ); ?></label></th>
         <td>
-            <p class="description" id="option_host_video-description"><input type="checkbox" name="option_host_video" value="1" <?php checked( '1', $meeting_fields['option_host_video'] ); ?> class="regular-text"><?php _e( 'Start video when host join meeting.', 'video-conferencing-with-zoom-api' ); ?></p>
+            <p class="description" id="option_host_video-description"><input type="checkbox" name="option_host_video" value="1" <?php ! empty( $meeting_fields['option_host_video'] ) ? checked( '1', $meeting_fields['option_host_video'] ) : false; ?> class="regular-text"><?php _e( 'Start video when host join meeting.', 'video-conferencing-with-zoom-api' ); ?></p>
         </td>
     </tr>
     <tr>
         <th scope="row"><label for="option_participants_video"><?php _e( 'Start After Participants', 'video-conferencing-with-zoom-api' ); ?></label></th>
         <td>
-            <p class="description" id="option_participants_video-description"><input type="checkbox" name="option_participants_video" <?php checked( '1', $meeting_fields['option_participants_video'] ); ?> value="1" class="regular-text"><?php _e( 'Start video when participants join meeting.', 'video-conferencing-with-zoom-api' ); ?></p>
+            <p class="description" id="option_participants_video-description"><input type="checkbox" name="option_participants_video" <?php ! empty( $meeting_fields['option_participants_video'] ) ? checked( '1', $meeting_fields['option_participants_video'] ) : false; ?> value="1" class="regular-text"><?php _e( 'Start video when participants join meeting.', 'video-conferencing-with-zoom-api' ); ?></p>
         </td>
     </tr>
     <tr>
         <th scope="row"><label for="option_mute_participants_upon_entry"><?php _e( 'Mute Participants upon entry', 'video-conferencing-with-zoom-api' ); ?></label></th>
         <td>
-            <p class="description" id="option_mute_participants_upon_entry"><input type="checkbox" name="option_mute_participants" value="1" <?php checked( '1', $meeting_fields['option_mute_participants'] ); ?> class="regular-text"><?php _e( 'Mutes Participants when entering the meeting.', 'video-conferencing-with-zoom-api' ); ?></p>
+            <p class="description" id="option_mute_participants_upon_entry"><input type="checkbox" name="option_mute_participants" value="1" <?php ! empty( $meeting_fields['option_mute_participants'] ) ? checked( '1', $meeting_fields['option_mute_participants'] ) : false; ?> class="regular-text"><?php _e( 'Mutes Participants when entering the meeting.', 'video-conferencing-with-zoom-api' ); ?></p>
         </td>
     </tr>
     <tr>
         <th scope="row"><label for="option_auto_recording"><?php _e( 'Auto Recording', 'video-conferencing-with-zoom-api' ); ?></label></th>
         <td>
             <select id="option_auto_recording" name="option_auto_recording">
-                <option value="none" <?php selected( 'none', $meeting_fields['option_auto_recording'] ); ?>>No Recordings</option>
-                <option value="local" <?php selected( 'local', $meeting_fields['option_auto_recording'] ); ?>>Local</option>
-                <option value="cloud" <?php selected( 'cloud', $meeting_fields['option_auto_recording'] ); ?>>Cloud</option>
+                <option value="none" <?php ! empty( $meeting_fields['option_auto_recording'] ) ? selected( 'none', $meeting_fields['option_auto_recording'] ) : false; ?>>No Recordings</option>
+                <option value="local" <?php ! empty( $meeting_fields['option_auto_recording'] ) ? selected( 'local', $meeting_fields['option_auto_recording'] ) : false; ?>>Local</option>
+                <option value="cloud" <?php ! empty( $meeting_fields['option_auto_recording'] ) ? selected( 'cloud', $meeting_fields['option_auto_recording'] ) : false; ?>>Cloud</option>
             </select>
             <p class="description" id="option_auto_recording_description"><?php _e( 'Set what type of auto recording feature you want to add. Default is none.', 'video-conferencing-with-zoom-api' ); ?></p>
         </td>

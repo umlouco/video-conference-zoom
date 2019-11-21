@@ -12,7 +12,7 @@ Gives you the power to manage Zoom Meetings, check reports and create users from
 
 == Description ==
 
-**NOTE: Upgrading to version 3.0.0 ? Huge changes from 3.0.0. Please refer to [changelog tab](https://wordpress.org/plugins/video-conferencing-with-zoom-api/#developers "changelog tab"). **
+**NOTE: Upgrading to version 3.0.0 ? Huge changes from 3.0.0. Please refer to [changelog tab](https://wordpress.org/plugins/video-conferencing-with-zoom-api/#developers "changelog tab")**
 
 A simple plugin which gives you the extensive functionality to manage zoom meetings, users, reports from your WordPress Dashboard. Now, with capabitly to add your own post as a meeting. Create posts as meetings directly from your WordPress dashboard to show in the frontend as a meeting page. Allow users to directly join via that page with click of a button.
 
@@ -30,9 +30,12 @@ A simple plugin which gives you the extensive functionality to manage zoom meeti
 * Listing Users.
 * Developer Friendly
 * Daily and Account Reports
-* Shortcode Available as well
+* Shortcode
+* Shortcode Template Customize
 
-**COMPATIBILITY**
+Check updates in more details [from here](https://deepenbajracharya.com.np/zoom-api-integration-with-wordpress/ "from here").
+
+**COMPATIBILITY:**
 
 * Enables direct integration of Zoom into WordPress.
 * Compatible with LearnPress, LearnDash 3.
@@ -42,11 +45,11 @@ A simple plugin which gives you the extensive functionality to manage zoom meeti
 * Separate Admin area to manage all meetings.
 * Can add meeting links via shortcode to your WooCommerce product pages as well.
 
-**LIMITATIONS**
+**LIMITATIONS:**
 
 * Webinar module not integrated
 
-**SHORTCODE**
+**SHORTCODE:**
 
 From version 3.0.0 - Shortcode has been changed to fit different need:
 

@@ -27,7 +27,7 @@ class Zoom_Video_Conferencing_Admin_Views {
 		if ( get_option( 'zoom_api_key' ) && get_option( 'zoom_api_secret' ) ) {
 			add_submenu_page( 'edit.php?post_type=zoom-meetings', __( 'Live Meetings', 'video-conferencing-with-zoom-api' ), __( 'Live Meetings', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing', array( 'Zoom_Video_Conferencing_Admin_Meetings', 'list_meetings' ) );
 
-			add_submenu_page( 'edit.php?post_type=zoom-meetings', _( 'Add Live Meeting', 'video-conferencing-with-zoom-api' ), __( 'Add Live Meeting', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing-add-meeting', array( 'Zoom_Video_Conferencing_Admin_Meetings', 'add_meeting' ) );
+			add_submenu_page( 'edit.php?post_type=zoom-meetings', __( 'Add Live Meeting', 'video-conferencing-with-zoom-api' ), __( 'Add Live Meeting', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing-add-meeting', array( 'Zoom_Video_Conferencing_Admin_Meetings', 'add_meeting' ) );
 
 			add_submenu_page( 'edit.php?post_type=zoom-meetings', __( 'Zoom Users', 'video-conferencing-with-zoom-api' ), __( 'Zoom Users', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing-list-users', array( 'Zoom_Video_Conferencing_Admin_Users', 'list_users' ) );
 
