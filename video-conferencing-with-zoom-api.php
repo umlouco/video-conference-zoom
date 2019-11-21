@@ -7,7 +7,7 @@
  * Plugin Name:       Video Conferencing with Zoom API
  * Plugin URI:        http://www.deepenbajracharya.com.np
  * Description:       Add, Handle Zoom meetings from WordPress Dashboard using API
- * Version:           2.2.3
+ * Version:           3.0.0
  * Author:            Deepen Bajracharya
  * Author URI:        http://www.deepenbajracharya.com.np
  * License:           GPL-2.0+
@@ -18,11 +18,25 @@
 
 // If this file is called directly, abort.
 if ( ! defined( 'ABSPATH' ) ) {
-	die( "Not Allowed Here !" );
+	die( "No Kiddie Scripts !" );
 }
 
+define( 'ZVC_PLUGIN_SLUG', 'video-conferencing-zoom' );
+define( 'ZVC_PLUGIN_AUTHOR', 'https://deepenbajracharya.com.np' );
+define( 'ZVC_PLUGIN_DIR_PATH', plugin_dir_path( __FILE__ ) );
+define( 'ZVC_PLUGIN_DIR_URL', plugin_dir_url( __FILE__ ) );
+define( 'ZVC_PLUGIN_ADMIN_ASSETS_URL', ZVC_PLUGIN_DIR_URL . 'assets/admin' );
+define( 'ZVC_PLUGIN_PUBLIC_ASSETS_URL', ZVC_PLUGIN_DIR_URL . 'assets/public' );
+define( 'ZVC_PLUGIN_VENDOR_ASSETS_URL', ZVC_PLUGIN_DIR_URL . 'assets/vendor' );
+define( 'ZVC_PLUGIN_VIEWS_PATH', ZVC_PLUGIN_DIR_PATH . 'includes/views' );
+define( 'ZVC_PLUGIN_INCLUDES_PATH', ZVC_PLUGIN_DIR_PATH . 'includes' );
+define( 'ZVC_PLUGIN_IMAGES_PATH', ZVC_PLUGIN_DIR_URL . 'assets/images' );
+define( 'ZVC_PLUGIN_LANGUAGE_PATH', trailingslashit( basename( ZVC_PLUGIN_DIR_PATH ) ) . 'languages/' );
+
 // the main plugin class
-require_once dirname( __FILE__ ) . '/includes/video-conferencing-with-zoom-init.php';
+if ( ! class_exists( 'Video_Conferencing_With_Zoom' ) ) {
+	require_once ZVC_PLUGIN_INCLUDES_PATH . '/class-zvc-init.php';
+}
 
 add_action( 'plugins_loaded', array( 'Video_Conferencing_With_Zoom', 'instance' ), 99 );
 register_activation_hook( __FILE__, array( 'Video_Conferencing_With_Zoom', 'activator' ) );
