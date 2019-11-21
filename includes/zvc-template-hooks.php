@@ -18,4 +18,5 @@ add_filter( 'vczoom_single_content_valid_meeting', 'video_conference_zoom_meetin
 add_action( 'vczoom_meeting_join_links', 'video_conference_zoom_meeting_join_link', 10 );
 
 //Shortcode Hooks
+add_action( 'vczoom_meeting_before_shortcode', 'video_conference_zoom_shortcode_table', 10 );
 add_action( 'vczoom_meeting_shortcode_join_links', 'video_conference_zoom_shortcode_join_link', 10 );

@@ -13,6 +13,7 @@ class Zoom_Video_Conferencing_Admin_Ajax {
 		add_action( 'wp_ajax_zvc_delete_meeting', array( $this, 'delete_meeting' ) );
 		add_action( 'wp_ajax_zvc_bulk_meetings_delete', array( $this, 'delete_bulk_meeting' ) );
 		add_action( 'wp_ajax_zoom_dimiss_notice', array( $this, 'dismiss_notice' ) );
+		add_action( 'wp_ajax_check_connection', array( $this, 'check_connection' ) );
 	}
 
 	/**
@@ -72,6 +73,31 @@ class Zoom_Video_Conferencing_Admin_Ajax {
 	public function dismiss_notice() {
 		update_option( 'zoom_api_notice', 1 );
 		wp_send_json( 1 );
+		wp_die();
+	}
+
+	/**
+	 * Check API connection
+	 *
+	 * @since 3.0.0
+	 */
+	public function check_connection() {
+		check_ajax_referer( '_nonce_zvc_security', 'security' );
+
+		$test = json_decode( zoom_conference()->listUsers() );
+		if ( ! empty( $test ) ) {
+			if ( $test->code === 124 ) {
+				wp_send_json( $test->message );
+			}
+
+			if( !empty( $test->error ) ) {
+				wp_send_json( "Please check your API keys !" );
+			}
+
+			if( http_response_code() === 200 ) {
+				wp_send_json( "API Connection is good. Please refresh !" );
+			}
+		}
 		wp_die();
 	}
 }

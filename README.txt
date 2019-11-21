@@ -75,6 +75,7 @@ Search for the plugin -> add new dialog and click install, or download and extra
 5. Reports Section.
 6. Settings Page.
 7. Backend Meeting Create via CPT
+8. Shortcode Output
 
 == Changelog ==
 
@@ -82,7 +83,8 @@ Search for the plugin -> add new dialog and click install, or download and extra
 Added: Custom post type meetings for seperate post meetings.
 Added: Page template overrides.
 Added: Frontend meeting join links, start links for authors.
-Removed: Seperate vanity URL removed.
+Changed: Optimized overall codebase.
+Removed: Seperate vanity shortcode removed.
 Fixed: Bug Fixes on creating meetings, Warnings and Notice errors.
 
 = 2.2.3 =

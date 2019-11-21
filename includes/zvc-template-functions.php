@@ -142,6 +142,56 @@ function video_conference_zoom_shortcode_join_link( $zoom_meetings ) {
 }
 
 /**
+ * Render Zoom Meeting ShortCode table in frontend
+ * @since 3.0.0
+ * @author Deepen
+ *
+ * @param $zoom_meetings
+ */
+function video_conference_zoom_shortcode_table( $zoom_meetings ) {
+    ?>
+    <table>
+        <tr>
+            <td>Meeting ID</td>
+            <td><?php echo $zoom_meetings->id; ?></td>
+        </tr>
+        <tr>
+            <td>Topic</td>
+            <td><?php echo $zoom_meetings->topic; ?></td>
+        </tr>
+        <tr>
+            <td>Meeting Status</td>
+            <td>
+				<?php echo $zoom_meetings->status; ?>
+                <p class="small-description">Refresh is needed to change status.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>Start Time</td>
+            <td><?php echo date( 'F j, Y @ g:i a', strtotime( $zoom_meetings->start_time ) ); ?></td>
+        </tr>
+        <tr>
+            <td>Duration</td>
+            <td><?php echo $zoom_meetings->duration; ?></td>
+        </tr>
+        <tr>
+            <td>Timezone</td>
+            <td><?php echo $zoom_meetings->timezone; ?></td>
+        </tr>
+		<?php
+		/**
+		 * Hook: vczoom_meeting_shortcode_join_links
+		 *
+		 * @video_conference_zoom_shortcode_join_link - 10
+		 *
+		 */
+		do_action( 'vczoom_meeting_shortcode_join_links', $zoom_meetings );
+		?>
+    </table>
+	<?php
+}
+
+/**
  * Check if meeting is valid from current time for more 15 minutes
  *
  * @param $zoom

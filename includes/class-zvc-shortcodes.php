@@ -23,12 +23,19 @@ class Zoom_Video_Conferencing_Shorcodes {
 		$GLOBALS['vanity_uri']    = $vanity_uri;
 		$meeting                  = $this->fetch_meeting( $meeting_id );
 		$GLOBALS['zoom_meetings'] = $meeting;
-		if ( $meeting ) {
-			wp_enqueue_style( 'video-conferencing-with-zoom-api' );
-			//Get Template
-			vczapi_get_template( array( 'shortcode/zoom-shortcode.php' ), true );
+
+		if ( ! empty( $meeting ) && $meeting->code === 3001 ) {
+			?>
+            <p class="dpn-error dpn-mtg-not-found"><?php echo $meeting->message; ?></p>
+			<?php
 		} else {
-			printf( __( 'Please try again ! Some error occured while trying to fetch meeting with id:  %d', 'video-conferencing-with-zoom-api' ), $meeting_id );
+			if ( $meeting ) {
+				wp_enqueue_style( 'video-conferencing-with-zoom-api' );
+				//Get Template
+				vczapi_get_template( array( 'shortcode/zoom-shortcode.php' ), true );
+			} else {
+				printf( __( 'Please try again ! Some error occured while trying to fetch meeting with id:  %d', 'video-conferencing-with-zoom-api' ), $meeting_id );
+			}
 		}
 
 		return ob_get_clean();

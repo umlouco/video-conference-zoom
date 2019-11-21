@@ -4,6 +4,7 @@ $zoom_api_key    = get_option( 'zoom_api_key' );
 $zoom_api_secret = get_option( 'zoom_api_secret' );
 $zoom_vanity_url = get_option( 'zoom_vanity_url' );
 ?>
+<div id="zvc-cover" style="display: none;"></div>
 <div class="wrap">
     <h1><?php _e( 'Settings', 'video-conferencing-with-zoom-api' ); ?></h1>
 
@@ -29,12 +30,13 @@ $zoom_vanity_url = get_option( 'zoom_vanity_url' );
                         <th><label><?php _e( 'Vanity URL', 'video-conferencing-with-zoom-api' ); ?></label></th>
                         <td>
                             <input type="url" name="vanity_url" class="regular-text" value="<?php echo ( $zoom_vanity_url ) ? esc_html( $zoom_vanity_url ) : ''; ?>" placeholder="https://example.zoom.us">
-                            <p class="description">This URI will be replaced with default zoom link.</p>
+                            <p class="description"><?php _e('This URI will be replaced with default zoom link.', 'video-conferencing-with-zoom-api'); ?></p>
                         </td>
                     </tr>
                     </tbody>
                 </table>
-                <p class="submit"><input type="submit" name="save_zoom_settings" id="submit" class="button button-primary" value="<?php esc_html_e( 'Save Changes', 'inactive-logout' ); ?>"></p>
+                <p class="description"><?php _e('After you enter your keys. Do save changes before doing "Check API Connection".', 'video-conferencing-with-zoom-api'); ?></p>
+                <p class="submit"><input type="submit" name="save_zoom_settings" id="submit" class="button button-primary" value="<?php esc_html_e( 'Save Changes', 'video-conferencing-with-zoom-api' ); ?>"> <a href="javascript:void(0);" class="button button-primary check-api-connection"><?php esc_html_e( 'Check API Connection', 'video-conferencing-with-zoom-api' ); ?></a></p>
             </form>
 
             <hr>
