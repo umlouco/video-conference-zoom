@@ -5,7 +5,8 @@ Welcome to the Video Conferencing with Zoom API repository on GitHub. Here you c
 If you are not a developer, please use the [Video Conferencing with Zoom API plugin page](https://wordpress.org/plugins/video-conferencing-with-zoom-api/) on WordPress.org.
 
 ## Documentation
-* [Keys Generation Documentation](https://deepenbajracharya.com.np/zoom-conference-wp-plugin-documentation/)
+* [Usage Documentation](https://techies23.github.io/video-conference-zoom/)
+* [Keys Generation Only Documentation](https://deepenbajracharya.com.np/zoom-conference-wp-plugin-documentation/)
 * [Usage Documentation](https://deepenbajracharya.com.np/zoom-api-integration-with-wordpress/)
 
 ## Support
