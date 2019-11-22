@@ -9,7 +9,7 @@ If you are not a developer, please use the [Video Conferencing with Zoom API plu
 * [Usage Documentation](https://deepenbajracharya.com.np/zoom-api-integration-with-wordpress/)
 
 ## Support
-This repository is not suitable for support. Please don't use our issue tracker for support requests, but for core Video Conferencing with Zoom API plugin issues only. Support can take place through the appropriate channels:
+This repository is not suitable for support. Please don't use issue tracker for support requests, but for Video Conferencing with Zoom API plugin issues only.:
 
 * If you have a problem, you may want to start with the [support ticket](https://wordpress.org/support/plugin/video-conferencing-with-zoom-api/).
 * For customizations, you may want to contact [me](https://deepenbajracharya.com.np/say-hello/).
