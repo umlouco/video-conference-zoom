@@ -31,7 +31,11 @@ A simple plugin which gives you the extensive functionality to manage zoom meeti
 * Shortcode
 * Shortcode Template Customize
 
-**CHECK FURTHER UPDATES AND DOCUMENTATION ON NEW UPDATES [FROM THIS POST](https://deepenbajracharya.com.np/zoom-api-integration-with-wordpress/ "from here").**
+**DOCUMENTATION LINKS:**
+
+* [Usage Documentation](https://techies23.github.io/video-conference-zoom/ "Usage Documentation")
+* [Key Generation Only Documentation](https://deepenbajracharya.com.np/zoom-conference-wp-plugin-documentation/ "Key Generation Only Documentation")
+* [Usage Documentation](https://deepenbajracharya.com.np/zoom-api-integration-with-wordpress/ "Usage Documentation")
 
 **OVERRIDDING TEMPLATES:**
 
@@ -60,8 +64,6 @@ From version 3.0.0+ - Shortcode has been changed to fit different need:
 **QUICK DEMO:**
 
 [youtube https://www.youtube.com/watch?v=KNuasepxwfE]
-
-**Find a Short Documentation or Guide on how to setup: [Here](https://deepenbajracharya.com.np/zoom-conference-wp-plugin-documentation/ "Documentation")**
 
 Any additional features, suggestions related to translations, contact me via [email](https://deepenbajracharya.com.np/say-hello/ "Deepen Bajracharya").
 
