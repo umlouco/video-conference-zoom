@@ -1,4 +1,4 @@
-##Video Conferencing with Zoom API
+## Video Conferencing with Zoom API
 
 Welcome to the Video Conferencing with Zoom API repository on GitHub. Here you can browse the source, look at open issues and keep track of development. 
 
