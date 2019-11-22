@@ -4,7 +4,7 @@ Tags: zoom video conference, video conference, zoom, zoom video conferencing, we
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.3
-Stable tag: 3.0.0
+Stable tag: 3.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,8 +15,6 @@ Gives you the power to manage Zoom Meetings, check reports and create users from
 **NOTE: Upgrading to version 3.0.0 ? Please refer to [changelog tab](https://wordpress.org/plugins/video-conferencing-with-zoom-api/#developers "changelog tab")**
 
 A simple plugin which gives you the extensive functionality to manage zoom meetings, users, reports from your WordPress Dashboard. Now, with capabitly to add your own post as a meeting. Create posts as meetings directly from your WordPress dashboard to show in the frontend as a meeting page. Allow users to directly join via that page with click of a button.
-
-**REFER FAQ to override page templates !**
 
 **FEATURES:**
 
@@ -33,7 +31,11 @@ A simple plugin which gives you the extensive functionality to manage zoom meeti
 * Shortcode
 * Shortcode Template Customize
 
-Check updates in more details [from here](https://deepenbajracharya.com.np/zoom-api-integration-with-wordpress/ "from here").
+**CHECK FURTHER UPDATES AND DOCUMENTATION ON NEW UPDATES [FROM THIS POST](https://deepenbajracharya.com.np/zoom-api-integration-with-wordpress/ "from here").**
+
+**OVERRIDDING TEMPLATES:**
+
+REFER FAQ to override page templates!
 
 **COMPATIBILITY:**
 
@@ -55,6 +57,10 @@ From version 3.0.0+ - Shortcode has been changed to fit different need:
 
 * [zoom_api_link meeting_id="123456789"] - Just enter your meeting ID and you are good to show your meeting in any page.
 
+**QUICK DEMO:**
+
+[youtube https://www.youtube.com/watch?v=KNuasepxwfE]
+
 **Find a Short Documentation or Guide on how to setup: [Here](https://deepenbajracharya.com.np/zoom-conference-wp-plugin-documentation/ "Documentation")**
 
 Any additional features, suggestions related to translations, contact me via [email](https://deepenbajracharya.com.np/say-hello/ "Deepen Bajracharya").
@@ -69,7 +75,10 @@ Search for the plugin -> add new dialog and click install, or download and extra
 
 = How to override plugin template to your theme =
 
-* Copy from wp-content/plugins/video-conferencing-with-zoom-api/templates to your yourtheme/video-conferencing-zoom/name-of-the-tempalate-file.php
+1. Goto **wp-content/plugins/video-conferencing-with-zoom-api/templates**
+2. Goto your active theme folder to create new folder. Create a folder such as **yourtheme/video-conferencing-zoom/{template-file.php}**
+3. Replace **template-file.php** with the file you need to override.
+4. Overriding shortcode template is also the same process inside folder **templates/shortcode**
 
 == Screenshots ==
 1. Meetings Listings. Select a User in order to list meetings for that user.

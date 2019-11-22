@@ -1,0 +1,10 @@
+site_name: Video Conferencing with Zoom API Plugin Documentation
+nav:
+  - Getting Started: index.md
+  - API Keys Integration: integration.md
+  - Shortcode Implementation: shortcode.md
+  - Vanity URL: vanity_url.md
+  - Template Override: template_override.md
+  - Meeting Types: meeting_types.md
+  - Assign Host Page: assign_host.md
+theme: readthedocs
