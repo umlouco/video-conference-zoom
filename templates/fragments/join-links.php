@@ -11,7 +11,7 @@
 global $zoom;
 global $zoom_meeting;
 
-$valid_time = apply_filters( 'vczoom_single_content_valid_meeting', $zoom );
+$valid_time = video_conference_zoom_meeting_check_valid_meeting( $zoom );
 if ( ! $valid_time ) {
 	return;
 }

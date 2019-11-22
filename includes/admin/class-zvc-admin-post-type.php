@@ -103,14 +103,14 @@ class Zoom_Video_Conferencing_Admin_PostType {
 		// Add nonce for security and authentication.
 		wp_nonce_field( '_zvc_meeting_save', '_zvc_nonce' );
 
-		$join_url  = get_post_meta( $post->ID, '_meeting_zoom_join_url', true );
-		$start_url = get_post_meta( $post->ID, '_meeting_zoom_start_url', true );
+		$meeting_details  = get_post_meta( $post->ID, '_meeting_zoom_details', true );
 		?>
         <div class="zoom-metabox-wrapper">
-			<?php if ( ! empty( $start_url ) ) { ?>
+			<?php if ( ! empty( $meeting_details ) ) { ?>
                 <div class="zoom-metabox-content">
-                    <p><a href="<?php echo $start_url; ?>" title="Start URL">Start Meeting</a></p>
-                    <p><a href="<?php echo $join_url; ?>" title="Start URL">Join Meeting</a></p>
+                    <p><a href="<?php echo $meeting_details->start_url; ?>" title="Start URL">Start Meeting</a></p>
+                    <p><a href="<?php echo $meeting_details->join_url; ?>" title="Start URL">Join Meeting</a></p>
+                    <p><strong>Meeting ID:</strong> <?php echo $meeting_details->id; ?></p>
                 </div>
                 <hr>
 			<?php } else { ?>
