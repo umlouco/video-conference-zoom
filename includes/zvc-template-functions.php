@@ -9,18 +9,16 @@
  * @author Deepen
  * @since 3.0.0
  */
-if ( ! function_exists( 'video_conference_zoom_check_login' ) ) {
-	function video_conference_zoom_check_login() {
-		global $zoom;
-		if ( ! empty( $zoom ) && ! empty( $zoom['site_option_logged_in'] ) ) {
-			if ( is_user_logged_in() ) {
-				return "loggedin";
-			} else {
-				return false;
-			}
+function video_conference_zoom_check_login() {
+	global $zoom;
+	if ( ! empty( $zoom ) && ! empty( $zoom['site_option_logged_in'] ) ) {
+		if ( is_user_logged_in() ) {
+			return "loggedin";
 		} else {
-			return "no_check";
+			return false;
 		}
+	} else {
+		return "no_check";
 	}
 }
 
@@ -212,4 +210,26 @@ function video_conference_zoom_meeting_check_valid_meeting( $zoom ) {
 	}
 
 	return false;
+}
+
+if ( ! function_exists( 'video_conference_zoom_output_content_start' ) ) {
+	function video_conference_zoom_output_content_start() {
+		vczapi_get_template( array( 'global/wrap-start.php' ), true );
+	}
+}
+
+if ( ! function_exists( 'video_conference_zoom_output_content_end' ) ) {
+	function video_conference_zoom_output_content_end() {
+		vczapi_get_template( array( 'global/wrap-end.php' ), true );
+	}
+}
+
+/**
+ * Get a slug identifying the current theme.
+ *
+ * @since 3.0.2
+ * @return string
+ */
+function video_conference_zoom_get_current_theme_slug() {
+	return apply_filters( 'video_conference_zoom_theme_slug_for_templates', get_option( 'template' ) );
 }

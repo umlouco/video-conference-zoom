@@ -4,6 +4,10 @@
  * @created_on 11/20/19
  */
 
+//Globals
+add_action( 'vczoom_before_main_content', 'video_conference_zoom_output_content_start', 10 );
+add_action( 'vczoom_after_main_content', 'video_conference_zoom_output_content_end', 10 );
+
 //Left Section Single Content
 add_action( 'vczoom_single_content_left', 'video_conference_zoom_featured_image', 10 );
 add_action( 'vczoom_single_content_left', 'video_conference_zoom_main_content', 20 );

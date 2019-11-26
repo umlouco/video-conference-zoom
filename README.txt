@@ -4,7 +4,7 @@ Tags: zoom video conference, video conference, zoom, zoom video conferencing, we
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.3
-Stable tag: 3.0.1
+Stable tag: 3.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -30,6 +30,8 @@ A simple plugin which gives you the extensive functionality to manage zoom meeti
 * Daily and Account Reports
 * Shortcode
 * Shortcode Template Customize
+
+**Please flush your permalink from wp-admin > settings > permalink, if your links to single zoom meetings does not work.**
 
 **DOCUMENTATION LINKS:**
 
@@ -93,6 +95,10 @@ Search for the plugin -> add new dialog and click install, or download and extra
 8. Shortcode Output
 
 == Changelog ==
+
+= 3.0.0 - 3.0.2 =
+Support: Divi template support for frontend
+Fixed: Auto rewrite url flush
 
 = 3.0.0 - 3.0.1 =
 Added: Custom post type meetings for seperate post meetings.

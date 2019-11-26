@@ -9,8 +9,31 @@
 
 class Zoom_Video_Conferencing_Admin_PostType {
 
+	/**
+	 * The single instance of the class.
+	 *
+	 * @var self
+	 * @since  3.0.2
+	 */
+	private static $_instance = null;
+
+	/**
+	 * Allows for accessing single instance of class. Class should only be constructed once per call.
+	 *
+	 * @since  3.0.2
+	 * @static
+	 * @return self Main instance.
+	 */
+	public static function instance() {
+		if ( is_null( self::$_instance ) ) {
+			self::$_instance = new self();
+		}
+
+		return self::$_instance;
+	}
+
 	public function __construct() {
-		add_action( 'init', array( $this, 'post_type' ) );
+		add_action( 'init', array( $this, 'register' ) );
 		add_action( 'add_meta_boxes', array( $this, 'add_metabox' ) );
 		add_action( 'save_post_zoom-meetings', array( $this, 'save_metabox' ), 10, 2 );
 		add_filter( 'single_template', array( $this, 'single' ) );
@@ -25,7 +48,11 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	 * @since 3.0.0
 	 * @author Deepen
 	 */
-	public function post_type() {
+	public function register() {
+		if ( post_type_exists( 'zoom-meetings' ) ) {
+			return;
+		}
+
 		$labels = array(
 			'name'               => _x( 'Zoom Meetings', 'Zoom Meetings', 'video-conferencing-with-zoom-api' ),
 			'singular_name'      => _x( 'Zoom Meeting', 'Zoom Meeting', 'video-conferencing-with-zoom-api' ),
@@ -103,7 +130,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 		// Add nonce for security and authentication.
 		wp_nonce_field( '_zvc_meeting_save', '_zvc_nonce' );
 
-		$meeting_details  = get_post_meta( $post->ID, '_meeting_zoom_details', true );
+		$meeting_details = get_post_meta( $post->ID, '_meeting_zoom_details', true );
 		?>
         <div class="zoom-metabox-wrapper">
 			<?php if ( ! empty( $meeting_details ) ) { ?>
@@ -330,5 +357,3 @@ class Zoom_Video_Conferencing_Admin_PostType {
 		}
 	}
 }
-
-new Zoom_Video_Conferencing_Admin_PostType();

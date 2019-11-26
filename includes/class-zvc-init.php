@@ -39,6 +39,10 @@ class Video_Conferencing_With_Zoom {
 		$this->load_dependencies();
 		$this->init_api();
 
+		$this->post_types = Zoom_Video_Conferencing_Admin_PostType::instance();
+
+		register_activation_hook( basename( dirname( __FILE__ ) ) . '/' . basename( __FILE__ ), array( $this, 'activate' ) );
+
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts_backend' ) );
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
 
@@ -150,9 +154,14 @@ class Video_Conferencing_With_Zoom {
 	 * @since 1.0.0
 	 * @author Deepen
 	 */
-	public static function activator() {
-		global $wp_version;
+	public function activate() {
+		$this->post_types->register();
+		self::install();
+		flush_rewrite_rules();
+	}
 
+	public function install() {
+		global $wp_version;
 		$min_wp_version = 4.8;
 		$exit_msg       = sprintf( __( '%s requires %s or newer.' ), "Video Conferencing with Zoom API", $min_wp_version );
 		if ( version_compare( $wp_version, $min_wp_version, '<' ) ) {
@@ -164,7 +173,9 @@ class Video_Conferencing_With_Zoom {
 			$exit_msg = '<div class="error"><h3>' . __( 'Warning! It is not possible to activate this plugin as it requires above PHP 5.4 and on this server the PHP version installed is: ' ) . '<b>' . PHP_VERSION . '</b></h3><p>' . __( 'For security reasons we <b>suggest</b> that you contact your hosting provider and ask to update your PHP to latest stable version.' ) . '</p><p>' . __( 'If they refuse for whatever reason we suggest you to <b>change provider as soon as possible</b>.' ) . '</p></div>';
 			exit( $exit_msg );
 		}
-
 	}
 
+	public static function deactivate() {
+		flush_rewrite_rules();
+	}
 }
