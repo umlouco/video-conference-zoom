@@ -13,7 +13,7 @@ global $zoom;
 if ( ! empty( $zoom['start_date'] ) ) {
 	?>
     <div class="dpn-zvc-sidebar-box">
-        <div class="dpn-zvc-timer" id="dpn-zvc-timer" data-date="<?php echo $zoom['start_date']; ?>"><?php _e( 'Loading...', 'video-conferencing-with-zoom-api' ); ?></div>
+        <div class="dpn-zvc-timer" id="dpn-zvc-timer" data-date="<?php echo $zoom['start_date']; ?>"></div>
     </div>
 	<?php
 }

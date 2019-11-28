@@ -4,49 +4,59 @@ jQuery(function ($) {
 
         init: function () {
             this.cacheVariables();
-            this.countDownTimer();
+            this.countDownTimerMoment();
         },
 
         cacheVariables: function () {
-            this.$timer = $('.dpn-zvc-timer');
+            this.$timer = $('#dpn-zvc-timer');
         },
 
-        countDownTimer: function () {
-            if (this.$timer.length > 0) {
+        countDownTimerMoment: function () {
+            var clock = this.$timer;
+            var valueDate = clock.data('date');
+            var eventTime = moment(valueDate).unix();
+            var currentTime = moment().unix();
+            var diffTime = eventTime - currentTime;
+            var duration = moment.duration(diffTime * 1000, 'milliseconds');
+            var interval = 1000;
 
-                var valueDate = this.$timer.data('date');
-                // Set the date we're counting down to
-                var countDownDate = new Date(valueDate).getTime();
+            // if time to countdown
+            if (diffTime > 0) {
 
-                // Update the count down every 1 second
-                var x = setInterval(function () {
+                var $d = $('<div class="dpn-zvc-timer-cell"><div class="dpn-zvc-timer-cell-number"><div class="days" ></div></div><div class="dpn-zvc-timer-cell-string">days</div></div>').appendTo(clock),
+                    $h = $('<div class="dpn-zvc-timer-cell"><div class="dpn-zvc-timer-cell-number"><div class="hours" ></div></div><div class="dpn-zvc-timer-cell-string">hours</div></div>').appendTo(clock),
+                    $m = $('<div class="dpn-zvc-timer-cell"><div class="dpn-zvc-timer-cell-number"><div class="minutes" ></div></div><div class="dpn-zvc-timer-cell-string">minutes</div></div>').appendTo(clock),
+                    $s = $('<div class="dpn-zvc-timer-cell"><div class="dpn-zvc-timer-cell-number"><div class="seconds" ></div></div><div class="dpn-zvc-timer-cell-string">seconds</div></div>').appendTo(clock);
 
-                    // Get today's date and time
-                    var now = new Date().getTime();
+                setInterval(function () {
 
-                    // Find the distance between now and the count down date
-                    var distance = countDownDate - now;
+                    duration = moment.duration(duration.asMilliseconds() - interval, 'milliseconds');
+                    if (duration.asMilliseconds() > 0) {
+                        var d = moment.duration(duration).days(),
+                            h = moment.duration(duration).hours(),
+                            m = moment.duration(duration).minutes(),
+                            s = moment.duration(duration).seconds();
 
-                    // Time calculations for days, hours, minutes and seconds
-                    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                        d = $.trim(d).length === 1 ? '0' + d : d;
+                        h = $.trim(h).length === 1 ? '0' + h : h;
+                        m = $.trim(m).length === 1 ? '0' + m : m;
+                        s = $.trim(s).length === 1 ? '0' + s : s;
 
-                    // Output the result in an element with id="demo"
-                    var countdown = '<div class="dpn-zvc-timer-cell"><div class="dpn-zvc-timer-cell-number">' + days + '</div><div class="dpn-zvc-timer-cell-string">days</div></div>';
-                    countdown += '<div class="dpn-zvc-timer-cell"><div class="dpn-zvc-timer-cell-number">' + hours + '</div><div class="dpn-zvc-timer-cell-string">hours</div></div>';
-                    countdown += '<div class="dpn-zvc-timer-cell"><div class="dpn-zvc-timer-cell-number">' + minutes + '</div><div class="dpn-zvc-timer-cell-string">minutes</div></div>';
-                    countdown += '<div class="dpn-zvc-timer-cell"><div class="dpn-zvc-timer-cell-number">' + seconds + '</div><div class="dpn-zvc-timer-cell-string">seconds</div></div>';
-
-                    // If the count down is over, write some text
-                    if (distance < 0) {
-                        clearInterval(x);
-                        countdown = "<div class='dpn-zvc-meeting-ended'><h3>Meeting Has Ended</h3></div>";
+                        // show how many hours, minutes and seconds are left
+                        $d.html(d + '<div class="dpn-zvc-timer-cell-string">days</div>');
+                        $h.html(h + '<div class="dpn-zvc-timer-cell-string">hours</div>');
+                        $m.html(m + '<div class="dpn-zvc-timer-cell-string">minutes</div>');
+                        $s.html(s + '<div class="dpn-zvc-timer-cell-string">seconds</div>');
+                    } else {
+                        $(clock).html("<div class='dpn-zvc-meeting-ended'><h3>Meeting is Starting..</h3></div>");
+                        clearInterval(interval);
                     }
 
-                    document.getElementById("dpn-zvc-timer").innerHTML = countdown;
-                }, 1000);
+                }, interval);
+
+            } else {
+                clearInterval(interval);
+                $(clock).html("<div class='dpn-zvc-meeting-ended'><h3>Meeting Has Started/Ended</h3></div>");
             }
         },
     };

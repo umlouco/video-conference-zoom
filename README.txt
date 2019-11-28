@@ -4,7 +4,7 @@ Tags: zoom video conference, video conference, zoom, zoom video conferencing, we
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.3
-Stable tag: 3.0.2
+Stable tag: 3.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -95,6 +95,12 @@ Search for the plugin -> add new dialog and click install, or download and extra
 8. Shortcode Output
 
 == Changelog ==
+
+= 3.0.3 =
+Fixed: Timer countdown now supports safari
+Updated: Timer Countdown library
+Fixed: Timer will now show "meeting starting" text after countdown is completed.
+Updated: Corrected Localization strings
 
 = 3.0.0 - 3.0.2 =
 Support: Divi template support for frontend
@@ -225,20 +231,3 @@ Fixed: CURL Request fail fixed
 
 = 1.0.0 =
 * Initial Release
-
-== Upgrade Notice ==
-
-= 2.2.0 =
-This is a major release. Please check you if you have any customization related to this plugin before upgrading.
-
-= 2.1.0 =
-This is a major release. Please check you if you have any customization related to this plugin before upgrading.
-
-= 2.0.0 =
-This is a major release. Kindly request to upgrade for better performance and lots of bug fixes.
-
-= 1.2.3 =
-Validation Errors Added
-
-= 1.2.0 =
-Crucial Security Patches

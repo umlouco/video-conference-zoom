@@ -92,7 +92,7 @@ $users = video_conferencing_zoom_api_get_user_transients();
                 </td>
             </tr>
             <tr>
-                <th scope="row"><label for="option_participants_video"><?php _e( 'Start After Participants', 'video-conferencing-with-zoom-api' ); ?></label></th>
+                <th scope="row"><label for="option_participants_video"><?php _e( 'Participants Video', 'video-conferencing-with-zoom-api' ); ?></label></th>
                 <td>
                     <p class="description" id="option_participants_video-description"><input type="checkbox" name="option_participants_video" value="1" class="regular-text"><?php _e( 'Start video when participants join meeting.', 'video-conferencing-with-zoom-api' ); ?></p>
                 </td>

@@ -72,9 +72,13 @@ class Video_Conferencing_With_Zoom {
 		wp_register_style( 'video-conferencing-with-zoom-api', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/css/main.min.css', false, '3.0.0' );
 
 		if ( is_singular( 'zoom-meetings' ) ) {
+			//Enqueue MomentJS
+			wp_register_script( 'video-conferencing-with-zoom-api-moment', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/moment/moment.min.js', array( 'jquery' ), '2.24.0', true );
+			wp_enqueue_script( 'video-conferencing-with-zoom-api-moment' );
+
 			wp_enqueue_style( 'video-conferencing-with-zoom-api' );
 
-			wp_register_script( 'video-conferencing-with-zoom-api', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/js/scripts.min.js', array( 'jquery' ), '3.0.0', true );
+			wp_register_script( 'video-conferencing-with-zoom-api', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/js/scripts.min.js', array( 'jquery', 'video-conferencing-with-zoom-api-moment' ), '3.0.2', true );
 			wp_enqueue_script( 'video-conferencing-with-zoom-api' );
 		}
 

@@ -61,6 +61,12 @@ gulp.task('vendor', function () {
         './node_modules/jquery-datetimepicker/build/**/*',
     ])
         .pipe(gulp.dest('./assets/vendor/dtimepicker'));
+
+    //MomentJS
+    gulp.src([
+        './node_modules/moment/min/**/*',
+    ])
+        .pipe(gulp.dest('./assets/vendor/moment'));
 });
 
 // Public Styles

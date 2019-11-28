@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Video Conferencing with Zoom API\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-21 07:53+0000\n"
-"PO-Revision-Date: 2019-11-21 07:53+0000\n"
+"POT-Creation-Date: 2019-11-28 06:44+0000\n"
+"PO-Revision-Date: 2019-11-28 06:45+0000\n"
 "Last-Translator: Deepen <dpen.connectify@gmail.com>\n"
 "Language-Team: French (France)\n"
 "Language: fr_FR\n"
@@ -23,55 +23,55 @@ msgstr ""
 "X-Generator: Loco https://localise.biz/\n"
 "X-Loco-Version: 2.3.1; wp-5.3"
 
-#: includes/zvc-template-functions.php:91
+#: includes/zvc-template-functions.php:89
 msgid "Join Meeting via Zoom App"
 msgstr ""
 
-#: includes/zvc-template-functions.php:97
-#: includes/zvc-template-functions.php:137
+#: includes/zvc-template-functions.php:95
+#: includes/zvc-template-functions.php:135
 msgid "Join via Web Browser"
 msgstr ""
 
-#: includes/zvc-template-functions.php:129
+#: includes/zvc-template-functions.php:127
 msgid "This meeting is no longer valid and cannot be joined !"
 msgstr ""
 
-#: includes/zvc-template-functions.php:133
+#: includes/zvc-template-functions.php:131
 msgid "Join via Zoom App"
 msgstr ""
 
-#: includes/zvc-template-functions.php:134
-#: includes/zvc-template-functions.php:138
+#: includes/zvc-template-functions.php:132
+#: includes/zvc-template-functions.php:136
 msgid "Join"
 msgstr ""
 
-#: includes/helpers.php:190
+#: includes/helpers.php:187
 msgid "Like this plugin ?"
 msgstr ""
 
-#: includes/helpers.php:193
+#: includes/helpers.php:190
 #, php-format
 msgid ""
 "Please consider giving a %s if you found this useful at wordpress.org or "
 msgstr ""
 
-#: includes/helpers.php:194
+#: includes/helpers.php:191
 #, php-format
 msgid "check %s for shortcode references."
 msgstr ""
 
-#: includes/helpers.php:211
+#: includes/helpers.php:206
 msgid "Do not get confused here !!"
 msgstr ""
 
-#: includes/helpers.php:212
+#: includes/helpers.php:207
 msgid ""
 "Please read !!! These below meetings are directly from your zoom.us account "
 "via API connection. Meetings added from here won't show up on your Post Type "
 "list. This will only create meeting in your zoom.us account !"
 msgstr ""
 
-#: includes/helpers.php:212
+#: includes/helpers.php:207
 msgid "I understand ! Don't show this again !"
 msgstr ""
 
@@ -82,7 +82,7 @@ msgid ""
 " %d"
 msgstr ""
 
-#: templates/single-meeting.php:25
+#: templates/single-meeting.php:30
 msgid ""
 "You do not have enough priviledge to access this page. Please login to "
 "continue or contact administrator."
@@ -150,67 +150,67 @@ msgstr "Mise à jour réussie. Veuillez actualiser cette page."
 msgid "Dismiss this notice."
 msgstr "Ne tenez pas compte de cet avertissement."
 
-#: includes/admin/class-zvc-admin-post-type.php:30
+#: includes/admin/class-zvc-admin-post-type.php:57
 msgctxt "Zoom Meetings"
 msgid "Zoom Meetings"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:31
-#: includes/admin/class-zvc-admin-post-type.php:32
-#: includes/admin/class-zvc-admin-post-type.php:33
+#: includes/admin/class-zvc-admin-post-type.php:58
+#: includes/admin/class-zvc-admin-post-type.php:59
+#: includes/admin/class-zvc-admin-post-type.php:60
 msgctxt "Zoom Meeting"
 msgid "Zoom Meeting"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:34
+#: includes/admin/class-zvc-admin-post-type.php:61
 msgid "Add New"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:35
+#: includes/admin/class-zvc-admin-post-type.php:62
 msgid "Add New meeting"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:36
+#: includes/admin/class-zvc-admin-post-type.php:63
 msgid "New meeting"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:37
+#: includes/admin/class-zvc-admin-post-type.php:64
 msgid "Edit meeting"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:38
+#: includes/admin/class-zvc-admin-post-type.php:65
 msgid "View meetings"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:39
+#: includes/admin/class-zvc-admin-post-type.php:66
 msgid "All meetings"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:40
+#: includes/admin/class-zvc-admin-post-type.php:67
 msgid "Search meetings"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:41
+#: includes/admin/class-zvc-admin-post-type.php:68
 msgid "Parent meetings:"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:42
+#: includes/admin/class-zvc-admin-post-type.php:69
 msgid "No meetings found."
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:43
+#: includes/admin/class-zvc-admin-post-type.php:70
 msgid "No meetings found in Trash."
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:73
+#: includes/admin/class-zvc-admin-post-type.php:100
 msgid "Zoom Details"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:74
+#: includes/admin/class-zvc-admin-post-type.php:101
 msgid "Extra Fields ?"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:121
+#: includes/admin/class-zvc-admin-post-type.php:148
 msgid "Only logged in users of this site will be able to join this meeting."
 msgstr ""
 
@@ -496,8 +496,8 @@ msgstr "Démarrez la vidéo lors de la réunion de réunion d'hôte."
 #: includes/views/tpl-edit-meeting.php:110
 #: includes/views/tpl-add-meetings.php:95
 #: includes/views/post-type/tpl-meeting-fields.php:61
-msgid "Start After Participants"
-msgstr "Début après participants"
+msgid "Participants Video"
+msgstr ""
 
 #: includes/views/tpl-edit-meeting.php:112
 #: includes/views/tpl-add-meetings.php:97
@@ -651,10 +651,6 @@ msgstr "Ajouter une réunion"
 
 #: includes/views/tpl-add-meetings.php:17
 msgid "Back to selected host Meetings list"
-msgstr ""
-
-#: templates/fragments/countdown-timer.php:16
-msgid "Loading..."
 msgstr ""
 
 #: templates/fragments/meeting-details.php:15
