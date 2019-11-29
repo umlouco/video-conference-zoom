@@ -4,7 +4,7 @@ Tags: zoom video conference, video conference, zoom, zoom video conferencing, we
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.3
-Stable tag: 3.0.3
+Stable tag: 3.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -61,7 +61,7 @@ REFER FAQ to override page templates!
 
 From version 3.0.0+ - Shortcode has been changed to fit different need:
 
-* [zoom_api_link meeting_id="123456789"] - Just enter your meeting ID and you are good to show your meeting in any page.
+* [zoom_api_link meeting_id="123456789" link_only="no"] - Just enter your meeting ID and you are good to show your meeting in any page. Adding link_only="yes" would show join link only. See [Usage Documentation](https://techies23.github.io/video-conference-zoom/ "Usage Documentation") for more detail on usage.
 
 **QUICK DEMO:**
 
@@ -95,6 +95,9 @@ Search for the plugin -> add new dialog and click install, or download and extra
 8. Shortcode Output
 
 == Changelog ==
+
+= 3.0.4 =
+* Added: Single link output shortcode parameter added
 
 = 3.0.3 =
 Fixed: Timer countdown now supports safari

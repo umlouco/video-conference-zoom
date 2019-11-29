@@ -46,11 +46,12 @@ $zoom_vanity_url = get_option( 'zoom_vanity_url' );
 
                 <div class="zoom-api-basic-usage">
                     <h3>Basic Usage:</h3>
-                    <code>[zoom_api_link meeting_id="123456789"]</code>
+                    <code>[zoom_api_link meeting_id="123456789" link_only="no"]</code>
                     <div class="zoom-api-basic-usage-description">
                         <label>Parameters:</label>
                         <ul>
                             <li><strong>meeting_id</strong> : Your meeting ID.</li>
+                            <li><strong>link_only</strong> : Yes or No - Adding yes will show join link only. Removing this parameter from shortcode will output description.</li>
                         </ul>
                     </div>
                 </div>

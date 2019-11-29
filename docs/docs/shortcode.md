@@ -2,11 +2,12 @@ Previously, shortcode had to be written in complex way that some people would no
 
 ### Basic Usage
 
-Use: `[zoom_api_link meeting_id=""]`
+Use: `[zoom_api_link meeting_id="" link_only="no"]`
 
 Where,
 
 * `meeting_id` = Your meeting ID.
+* `link_only` = Show only link or not. Change to "yes" instead of "no" to show link only
 
 Your frontend page should look like:
 
