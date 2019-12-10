@@ -17,46 +17,33 @@ jQuery(function ($) {
             var eventTime = moment(valueDate).unix();
             var currentTime = moment().unix();
             var diffTime = eventTime - currentTime;
-            var duration = moment.duration(diffTime * 1000, 'milliseconds');
-            var interval = 1000;
+            var dateFormat = moment(valueDate).format('MMM D, YYYY HH:mm:ss');
+
+            var second = 1000,
+                minute = second * 60,
+                hour = minute * 60,
+                day = hour * 24;
 
             // if time to countdown
             if (diffTime > 0) {
+                var countDown = new Date(dateFormat).getTime();
+                console.log(countDown);
+                var x = setInterval(function () {
+                    var now = new Date().getTime();
+                    var distance = countDown - now;
 
-                var $d = $('<div class="dpn-zvc-timer-cell"><div class="dpn-zvc-timer-cell-number"><div class="days" ></div></div><div class="dpn-zvc-timer-cell-string">days</div></div>').appendTo(clock),
-                    $h = $('<div class="dpn-zvc-timer-cell"><div class="dpn-zvc-timer-cell-number"><div class="hours" ></div></div><div class="dpn-zvc-timer-cell-string">hours</div></div>').appendTo(clock),
-                    $m = $('<div class="dpn-zvc-timer-cell"><div class="dpn-zvc-timer-cell-number"><div class="minutes" ></div></div><div class="dpn-zvc-timer-cell-string">minutes</div></div>').appendTo(clock),
-                    $s = $('<div class="dpn-zvc-timer-cell"><div class="dpn-zvc-timer-cell-number"><div class="seconds" ></div></div><div class="dpn-zvc-timer-cell-string">seconds</div></div>').appendTo(clock);
+                    document.getElementById('dpn-zvc-timer-days').innerText = Math.floor(distance / (day));
+                    document.getElementById('dpn-zvc-timer-hours').innerText = Math.floor((distance % (day)) / (hour));
+                    document.getElementById('dpn-zvc-timer-minutes').innerText = Math.floor((distance % (hour)) / (minute));
+                    document.getElementById('dpn-zvc-timer-seconds').innerText = Math.floor((distance % (minute)) / second);
 
-                setInterval(function () {
-
-                    duration = moment.duration(duration.asMilliseconds() - interval, 'milliseconds');
-                    if (duration.asMilliseconds() > 0) {
-                        var d = moment.duration(duration).days(),
-                            h = moment.duration(duration).hours(),
-                            m = moment.duration(duration).minutes(),
-                            s = moment.duration(duration).seconds();
-
-                        d = $.trim(d).length === 1 ? '0' + d : d;
-                        h = $.trim(h).length === 1 ? '0' + h : h;
-                        m = $.trim(m).length === 1 ? '0' + m : m;
-                        s = $.trim(s).length === 1 ? '0' + s : s;
-
-                        // show how many hours, minutes and seconds are left
-                        $d.html(d + '<div class="dpn-zvc-timer-cell-string">days</div>');
-                        $h.html(h + '<div class="dpn-zvc-timer-cell-string">hours</div>');
-                        $m.html(m + '<div class="dpn-zvc-timer-cell-string">minutes</div>');
-                        $s.html(s + '<div class="dpn-zvc-timer-cell-string">seconds</div>');
-                    } else {
-                        $(clock).html("<div class='dpn-zvc-meeting-ended'><h3>Meeting is Starting..</h3></div>");
-                        clearInterval(interval);
+                    if (distance < 0) {
+                        clearInterval(x);
+                        $(clock).html("<div class='dpn-zvc-meeting-ended'><h3>" + zvc_strings.meeting_starting + "</h3></div>");
                     }
-
-                }, interval);
-
+                }, second);
             } else {
-                clearInterval(interval);
-                $(clock).html("<div class='dpn-zvc-meeting-ended'><h3>Meeting Has Started/Ended</h3></div>");
+                $(clock).html("<div class='dpn-zvc-meeting-ended'><h3>" + zvc_strings.meeting_ended + "</h3></div>");
             }
         },
     };

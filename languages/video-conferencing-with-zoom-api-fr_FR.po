@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Video Conferencing with Zoom API\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-28 06:44+0000\n"
-"PO-Revision-Date: 2019-11-28 06:45+0000\n"
+"POT-Creation-Date: 2019-12-10 05:24+0000\n"
+"PO-Revision-Date: 2019-12-10 05:25+0000\n"
 "Last-Translator: Deepen <dpen.connectify@gmail.com>\n"
 "Language-Team: French (France)\n"
 "Language: fr_FR\n"
@@ -45,6 +45,14 @@ msgstr ""
 msgid "Join"
 msgstr ""
 
+#: includes/class-zvc-init.php:85
+msgid "Meeting Has Started/Ended !"
+msgstr ""
+
+#: includes/class-zvc-init.php:86
+msgid "Meeting is Starting.."
+msgstr ""
+
 #: includes/helpers.php:187
 msgid "Like this plugin ?"
 msgstr ""
@@ -75,7 +83,7 @@ msgstr ""
 msgid "I understand ! Don't show this again !"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:37
+#: includes/class-zvc-shortcodes.php:53
 #, php-format
 msgid ""
 "Please try again ! Some error occured while trying to fetch meeting with id: "
@@ -609,19 +617,19 @@ msgstr ""
 msgid "Check API Connection"
 msgstr ""
 
-#: includes/views/tpl-settings.php:62
+#: includes/views/tpl-settings.php:63
 msgid "Documentation"
 msgstr ""
 
-#: includes/views/tpl-settings.php:63
+#: includes/views/tpl-settings.php:64
 msgid "Contact for additional Support"
 msgstr "Contact pour un support supplémentaire"
 
-#: includes/views/tpl-settings.php:64
+#: includes/views/tpl-settings.php:65
 msgid "Developer"
 msgstr ""
 
-#: includes/views/tpl-settings.php:70
+#: includes/views/tpl-settings.php:71
 msgid "Try inactive logout"
 msgstr ""
 
@@ -653,6 +661,22 @@ msgstr "Ajouter une réunion"
 msgid "Back to selected host Meetings list"
 msgstr ""
 
+#: templates/fragments/countdown-timer.php:21
+msgid "days"
+msgstr ""
+
+#: templates/fragments/countdown-timer.php:27
+msgid "hours"
+msgstr ""
+
+#: templates/fragments/countdown-timer.php:33
+msgid "minutes"
+msgstr ""
+
+#: templates/fragments/countdown-timer.php:39
+msgid "seconds"
+msgstr ""
+
 #: templates/fragments/meeting-details.php:15
 msgid "Details"
 msgstr ""
@@ -666,6 +690,7 @@ msgid "Start"
 msgstr ""
 
 #. Name of the plugin
+msgctxt "Video Conferencing with Zoom API"
 msgid "Video Conferencing with Zoom API"
 msgstr ""
 
@@ -676,9 +701,12 @@ msgstr ""
 "de l'API"
 
 #. URI of the plugin
+#. Author URI of the plugin
+msgctxt "http://www.deepenbajracharya.com.np"
 msgid "http://www.deepenbajracharya.com.np"
 msgstr ""
 
 #. Author of the plugin
+msgctxt "Deepen Bajracharya"
 msgid "Deepen Bajracharya"
 msgstr ""
