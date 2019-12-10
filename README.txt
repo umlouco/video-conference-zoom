@@ -96,6 +96,9 @@ Search for the plugin -> add new dialog and click install, or download and extra
 
 == Changelog ==
 
+= 3.0.5 =
+Fixed: Countdown timer. Countdown fixed on more than a month of countdown.
+
 = 3.0.4 =
 * Added: Single link output shortcode parameter added
 

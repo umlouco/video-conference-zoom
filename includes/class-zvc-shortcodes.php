@@ -6,6 +6,11 @@
  * @author  Deepen
  */
 
+// If this file is called directly, abort.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class Zoom_Video_Conferencing_Shorcodes {
 
 	public function __construct() {

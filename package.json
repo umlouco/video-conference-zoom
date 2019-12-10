@@ -1,7 +1,7 @@
 {
   "title": "Video Conferencing with Zoom API",
   "name": "video-conferencing-with-zoom-api",
-  "version": "3.0.0",
+  "version": "3.0.5",
   "description": "Add, Handle Zoom meetings from WordPress Dashboard using API",
   "author": "Deepen Bajracharya",
   "dependencies": {
