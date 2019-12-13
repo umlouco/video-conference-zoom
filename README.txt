@@ -4,7 +4,7 @@ Tags: zoom video conference, video conference, zoom, zoom video conferencing, we
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.3
-Stable tag: 3.0.4
+Stable tag: 3.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ Gives you the power to manage Zoom Meetings, check reports and create users from
 
 == Description ==
 
-**NOTE: Upgrading to version 3.0.0 ? Please refer to [changelog tab](https://wordpress.org/plugins/video-conferencing-with-zoom-api/#developers "changelog tab")**
+**NOTE: Upgrading to version 3.0.0. Old shortcodes might get affected ? Please refer to [changelog tab](https://wordpress.org/plugins/video-conferencing-with-zoom-api/#developers "changelog tab") as well as new shortcode documentation from below links**
 
 A simple plugin which gives you the extensive functionality to manage zoom meetings, users, reports from your WordPress Dashboard. Now, with capabitly to add your own post as a meeting. Create posts as meetings directly from your WordPress dashboard to show in the frontend as a meeting page. Allow users to directly join via that page with click of a button.
 
@@ -95,6 +95,12 @@ Search for the plugin -> add new dialog and click install, or download and extra
 8. Shortcode Output
 
 == Changelog ==
+
+= 3.1.0 =
+Added: Show past join link meetings on frontend links.
+
+= 3.0.6 =
+Fixed: Multiple link only shortcode in single page output fixed.
 
 = 3.0.5 =
 Fixed: Countdown timer. Countdown fixed on more than a month of countdown.

@@ -67,6 +67,12 @@ gulp.task('vendor', function () {
         './node_modules/moment/min/**/*',
     ])
         .pipe(gulp.dest('./assets/vendor/moment'));
+
+    //MomentJS Timezone
+    gulp.src([
+        './node_modules/moment-timezone/builds/**/*',
+    ])
+        .pipe(gulp.dest('./assets/vendor/moment-timezone'));
 });
 
 // Public Styles

@@ -200,13 +200,18 @@ function video_conference_zoom_shortcode_table( $zoom_meetings ) {
  * @return bool
  */
 function video_conference_zoom_meeting_check_valid_meeting( $zoom ) {
-	$meeting_timezone_time = new DateTime( 'now', new DateTimeZone( $zoom['timezone'] ) );
-	$meeting_timezone_time->modify( "-15 minutes" );
-	$current_time = $meeting_timezone_time->format( 'Y-m-d h:i a' );
-	$meeting_time = date( 'Y-m-d h:i a', strtotime( $zoom['start_date'] ) );
-	if ( $current_time < $meeting_time ) {
-		//Meeting Still Valid
+	$past_join_links = get_option( 'zoom_past_join_links' );
+	if ( !empty( $past_join_links ) ) {
 		return true;
+	} else {
+		$meeting_timezone_time = new DateTime( 'now', new DateTimeZone( $zoom['timezone'] ) );
+		$meeting_timezone_time->modify( "-15 minutes" );
+		$current_time = $meeting_timezone_time->format( 'Y-m-d h:i a' );
+		$meeting_time = date( 'Y-m-d h:i a', strtotime( $zoom['start_date'] ) );
+		if ( $current_time < $meeting_time ) {
+			//Meeting Still Valid
+			return true;
+		}
 	}
 
 	return false;

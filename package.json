@@ -9,6 +9,7 @@
     "datatables.net-dt": "^1.10.20",
     "jquery-datetimepicker": "^2.5.21",
     "moment": "^2.24.0",
+    "moment-timezone": "^0.5.27",
     "select2": "^4.0.12"
   },
   "devDependencies": {

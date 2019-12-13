@@ -76,13 +76,17 @@ class Video_Conferencing_With_Zoom {
 			wp_register_script( 'video-conferencing-with-zoom-api-moment', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/moment/moment.min.js', array( 'jquery' ), '2.24.0', true );
 			wp_enqueue_script( 'video-conferencing-with-zoom-api-moment' );
 
+			//Enqueue MomentJS Timezone
+			/*wp_register_script( 'video-conferencing-with-zoom-api-moment-timezone', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/moment-timezone/moment-timezone-with-data-10-year-range.min.js', array( 'jquery' ), '0.5.27', true );
+			wp_enqueue_script( 'video-conferencing-with-zoom-api-moment-timezone' );*/
+
 			wp_enqueue_style( 'video-conferencing-with-zoom-api' );
 
 			wp_register_script( 'video-conferencing-with-zoom-api', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/js/scripts.min.js', array( 'jquery', 'video-conferencing-with-zoom-api-moment' ), '3.0.2', true );
 			wp_enqueue_script( 'video-conferencing-with-zoom-api' );
 			// Localize the script with new data
 			$translation_array = array(
-				'meeting_ended' => __( 'Meeting Has Started/Ended !', 'video-conferencing-with-zoom-api' ),
+				'meeting_ended'    => __( 'Meeting Has Started/Ended !', 'video-conferencing-with-zoom-api' ),
 				'meeting_starting' => __( 'Meeting is Starting..', 'video-conferencing-with-zoom-api' ),
 			);
 			wp_localize_script( 'video-conferencing-with-zoom-api', 'zvc_strings', $translation_array );

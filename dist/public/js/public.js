@@ -14,6 +14,7 @@ jQuery(function ($) {
         countDownTimerMoment: function () {
             var clock = this.$timer;
             var valueDate = clock.data('date');
+
             var eventTime = moment(valueDate).unix();
             var currentTime = moment().unix();
             var diffTime = eventTime - currentTime;
@@ -27,7 +28,6 @@ jQuery(function ($) {
             // if time to countdown
             if (diffTime > 0) {
                 var countDown = new Date(dateFormat).getTime();
-                console.log(countDown);
                 var x = setInterval(function () {
                     var now = new Date().getTime();
                     var distance = countDown - now;

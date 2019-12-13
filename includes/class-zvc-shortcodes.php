@@ -68,7 +68,7 @@ class Zoom_Video_Conferencing_Shorcodes {
 	 */
 	public function generate_link_only() {
 		//Get Template
-		vczapi_get_template( array( 'shortcode/zoom-single-link.php' ), true );
+		vczapi_get_template( array( 'shortcode/zoom-single-link.php' ), true, false );
 	}
 
 	private function fetch_meeting( $meeting_id ) {

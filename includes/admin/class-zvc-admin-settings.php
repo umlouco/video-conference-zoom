@@ -19,7 +19,7 @@ class Zoom_Video_Conferencing_Admin_Views {
 	 * Register Menus
 	 *
 	 * @since   1.0.0
-     * @updated 3.0.0
+	 * @updated 3.0.0
 	 * @changes in CodeBase
 	 * @author  Deepen Bajracharya <dpen.connectify@gmail.com>
 	 */
@@ -68,14 +68,15 @@ class Zoom_Video_Conferencing_Admin_Views {
 		if ( isset( $_POST['save_zoom_settings'] ) ) {
 			//Nonce
 			check_admin_referer( '_zoom_settings_update_nonce_action', '_zoom_settings_nonce' );
-			$zoom_api_key     = sanitize_text_field( filter_input( INPUT_POST, 'zoom_api_key' ) );
-			$zoom_api_secret  = sanitize_text_field( filter_input( INPUT_POST, 'zoom_api_secret' ) );
-			$vanity_url_check = sanitize_text_field( filter_input( INPUT_POST, 'vanity_url_check' ) );
-			$vanity_url       = esc_url_raw( filter_input( INPUT_POST, 'vanity_url' ) );
+			$zoom_api_key    = sanitize_text_field( filter_input( INPUT_POST, 'zoom_api_key' ) );
+			$zoom_api_secret = sanitize_text_field( filter_input( INPUT_POST, 'zoom_api_secret' ) );
+			$vanity_url      = esc_url_raw( filter_input( INPUT_POST, 'vanity_url' ) );
+			$join_links      = filter_input( INPUT_POST, 'meeting_end_join_link' );
 
 			update_option( 'zoom_api_key', $zoom_api_key );
 			update_option( 'zoom_api_secret', $zoom_api_secret );
 			update_option( 'zoom_vanity_url', $vanity_url );
+			update_option( 'zoom_past_join_links', $join_links );
 
 			//After user has been created delete this transient in order to fetch latest Data.
 			delete_transient( '_zvc_user_lists' );
