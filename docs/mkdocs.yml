@@ -7,4 +7,5 @@ nav:
   - Template Override: template_override.md
   - Meeting Types: meeting_types.md
   - Assign Host Page: assign_host.md
+  - WooCommerce Integration (Addon): woocommerce.md
 theme: readthedocs
