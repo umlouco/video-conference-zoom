@@ -295,6 +295,13 @@ class Zoom_Video_Conferencing_Admin_PostType {
 			$GLOBALS['zoom_meeting']   = get_post_meta( $post->ID, '_meeting_zoom_details', true );
 			$GLOBALS['vanity_enabled'] = get_option( 'zoom_vanity_url' );
 
+			if( !empty($GLOBALS['zoom'])) {
+				$tz = new DateTimeZone($GLOBALS['zoom']['timezone']);
+				$dTObj = new DateTime("now", $tz);
+				$Offset = $dTObj->getOffset();
+				$GLOBALS['zoom']['timezone_offset'] = $Offset;
+            }
+
 			//Render View
 			$templates[] = 'single-meeting.php';
 			$template    = vczapi_get_template( $templates );

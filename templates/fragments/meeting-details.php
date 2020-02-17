@@ -37,5 +37,6 @@ global $zoom;
                 <span><?php echo $zoom['timezone']; ?></span>
             </div>
 		<?php } ?>
+        <p class="dpn-zvc-display-or-hide-localtimezone-notice"><strong>Note:</strong> Countdown time is shown based on your local timezone.</p>
     </div>
 </div>

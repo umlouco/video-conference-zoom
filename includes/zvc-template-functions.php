@@ -194,10 +194,8 @@ function video_conference_zoom_shortcode_table( $zoom_meetings ) {
  *
  * @param $zoom
  *
- * @author Deepen
- * @since 3.0.0
- *
  * @return bool
+ * @throws Exception
  */
 function video_conference_zoom_meeting_check_valid_meeting( $zoom ) {
 	$past_join_links = get_option( 'zoom_past_join_links' );

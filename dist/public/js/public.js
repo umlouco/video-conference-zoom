@@ -14,11 +14,23 @@ jQuery(function ($) {
         countDownTimerMoment: function () {
             var clock = this.$timer;
             var valueDate = clock.data('date');
+            var mtgTimezone = clock.data('tz');
 
-            var eventTime = moment(valueDate).unix();
+            if (mtgTimezone === "Asia/Kathmandu") {
+                mtgTimezone = "Asia/Katmandu";
+            }
+
+            // var dateFormat = moment(valueDate).format('MMM D, YYYY HH:mm:ss');
+
+            //Converting Timezones to locals
+            var source_timezone = moment.tz(valueDate, mtgTimezone).format();
+            var converted_timezone = moment.tz(source_timezone, moment.tz.guess()).format('MMM D, YYYY HH:mm:ss');
+            var convertedTimezonewithoutFormat = moment.tz(source_timezone, moment.tz.guess()).format();
+
+            //Check Time Difference for Validations
             var currentTime = moment().unix();
+            var eventTime = moment(convertedTimezonewithoutFormat).unix();
             var diffTime = eventTime - currentTime;
-            var dateFormat = moment(valueDate).format('MMM D, YYYY HH:mm:ss');
 
             var second = 1000,
                 minute = second * 60,
@@ -27,7 +39,7 @@ jQuery(function ($) {
 
             // if time to countdown
             if (diffTime > 0) {
-                var countDown = new Date(dateFormat).getTime();
+                var countDown = new Date(converted_timezone).getTime();
                 var x = setInterval(function () {
                     var now = new Date().getTime();
                     var distance = countDown - now;

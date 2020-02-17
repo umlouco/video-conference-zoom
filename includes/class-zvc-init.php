@@ -77,8 +77,8 @@ class Video_Conferencing_With_Zoom {
 			wp_enqueue_script( 'video-conferencing-with-zoom-api-moment' );
 
 			//Enqueue MomentJS Timezone
-			/*wp_register_script( 'video-conferencing-with-zoom-api-moment-timezone', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/moment-timezone/moment-timezone-with-data-10-year-range.min.js', array( 'jquery' ), '0.5.27', true );
-			wp_enqueue_script( 'video-conferencing-with-zoom-api-moment-timezone' );*/
+			wp_register_script( 'video-conferencing-with-zoom-api-moment-timezone', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/moment-timezone/moment-timezone-with-data-10-year-range.min.js', array( 'jquery' ), '0.5.27', true );
+			wp_enqueue_script( 'video-conferencing-with-zoom-api-moment-timezone' );
 
 			wp_enqueue_style( 'video-conferencing-with-zoom-api' );
 

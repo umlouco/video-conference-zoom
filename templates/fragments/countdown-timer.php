@@ -13,7 +13,7 @@ global $zoom;
 if ( ! empty( $zoom['start_date'] ) ) {
 	?>
     <div class="dpn-zvc-sidebar-box">
-        <div class="dpn-zvc-timer" id="dpn-zvc-timer" data-date="<?php echo $zoom['start_date']; ?>">
+        <div class="dpn-zvc-timer" id="dpn-zvc-timer" data-date="<?php echo $zoom['start_date']; ?>" data-tz="<?php echo $zoom['timezone']; ?>">
             <div class="dpn-zvc-timer-cell">
                 <div class="dpn-zvc-timer-cell-number">
                     <div id="dpn-zvc-timer-days"></div>
