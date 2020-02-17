@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Video Conferencing with Zoom API\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-10 05:24+0000\n"
-"PO-Revision-Date: 2019-12-10 05:25+0000\n"
+"POT-Creation-Date: 2020-02-17 05:54+0000\n"
+"PO-Revision-Date: 2020-02-17 05:54+0000\n"
 "Last-Translator: Deepen <dpen.connectify@gmail.com>\n"
 "Language-Team: French (France)\n"
 "Language: fr_FR\n"
@@ -21,7 +21,7 @@ msgstr ""
 "esc_html_x:1,2c;comments_number_link:2,3;t:1;st:1;trans:1;transChoice:1,2\n"
 "X-Loco-Target-Locale: fr_FR\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.3.1; wp-5.3"
+"X-Loco-Version: 2.3.1; wp-5.3.2"
 
 #: includes/zvc-template-functions.php:89
 msgid "Join Meeting via Zoom App"
@@ -45,11 +45,11 @@ msgstr ""
 msgid "Join"
 msgstr ""
 
-#: includes/class-zvc-init.php:85
+#: includes/class-zvc-init.php:92
 msgid "Meeting Has Started/Ended !"
 msgstr ""
 
-#: includes/class-zvc-init.php:86
+#: includes/class-zvc-init.php:93
 msgid "Meeting is Starting.."
 msgstr ""
 
@@ -83,7 +83,7 @@ msgstr ""
 msgid "I understand ! Don't show this again !"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:53
+#: includes/class-zvc-shortcodes.php:56
 #, php-format
 msgid ""
 "Please try again ! Some error occured while trying to fetch meeting with id: "
@@ -96,17 +96,17 @@ msgid ""
 "continue or contact administrator."
 msgstr ""
 
-#: includes/admin/class-zvc-admin-users.php:32
+#: includes/admin/class-zvc-admin-users.php:30
 msgid "Flushed User Cache!"
 msgstr "Flushed User Cache!"
 
-#: includes/admin/class-zvc-admin-users.php:77
+#: includes/admin/class-zvc-admin-users.php:71
 msgid ""
 "Created a User. Please check email for confirmation. Added user will only "
 "appear in the list after approval."
 msgstr ""
 
-#: includes/admin/class-zvc-admin-users.php:100
+#: includes/admin/class-zvc-admin-users.php:94
 msgid "Saved !"
 msgstr ""
 
@@ -140,21 +140,26 @@ msgstr ""
 msgid "Reports"
 msgstr "Rapports"
 
-#: includes/admin/class-zvc-admin-settings.php:38
+#: includes/admin/class-zvc-admin-settings.php:36
+#: includes/views/tpl-settings.php:74
+msgid "Addons"
+msgstr ""
+
+#: includes/admin/class-zvc-admin-settings.php:40
 #: includes/views/tpl-assign-host-id.php:2
 msgid "Assign Host ID"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-settings.php:42
-#: includes/views/tpl-settings.php:9
+#: includes/admin/class-zvc-admin-settings.php:44
+#: includes/views/tpl-settings.php:10
 msgid "Settings"
 msgstr "Paramètres"
 
-#: includes/admin/class-zvc-admin-settings.php:84
+#: includes/admin/class-zvc-admin-settings.php:87
 msgid "Successfully Updated. Please refresh this page."
 msgstr "Mise à jour réussie. Veuillez actualiser cette page."
 
-#: includes/admin/class-zvc-admin-settings.php:85
+#: includes/admin/class-zvc-admin-settings.php:88
 msgid "Dismiss this notice."
 msgstr "Ne tenez pas compte de cet avertissement."
 
@@ -218,20 +223,20 @@ msgstr ""
 msgid "Extra Fields ?"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:148
+#: includes/admin/class-zvc-admin-post-type.php:144
 msgid "Only logged in users of this site will be able to join this meeting."
 msgstr ""
 
-#: includes/admin/class-zvc-admin-meetings.php:99
+#: includes/admin/class-zvc-admin-meetings.php:93
 msgid "Updated meeting."
 msgstr ""
 
-#: includes/admin/class-zvc-admin-meetings.php:141
+#: includes/admin/class-zvc-admin-meetings.php:135
 #, php-format
 msgid "Created meeting %s at %s. Join %s"
 msgstr ""
 
-#: includes/views/tpl-list-meetings.php:13 includes/views/tpl-reports.php:32
+#: includes/views/tpl-list-meetings.php:13 includes/views/tpl-reports.php:36
 msgid "Meetings"
 msgstr "Réunions"
 
@@ -289,87 +294,87 @@ msgstr ""
 msgid "2. Account Report"
 msgstr ""
 
-#: includes/views/tpl-reports.php:23
+#: includes/views/tpl-reports.php:28
 msgid "Enter the date to check:"
 msgstr "Entrez la date à vérifier:"
 
-#: includes/views/tpl-reports.php:31
+#: includes/views/tpl-reports.php:35
 msgid "Date"
 msgstr "Rendez-vous amoureux"
 
-#: includes/views/tpl-reports.php:33
+#: includes/views/tpl-reports.php:37
 msgid "New Users"
 msgstr "Nouveaux utilisateurs"
 
-#: includes/views/tpl-reports.php:34
+#: includes/views/tpl-reports.php:38
 msgid "Participants"
 msgstr ""
 
-#: includes/views/tpl-reports.php:35
+#: includes/views/tpl-reports.php:39
 msgid "Meeting Minutes"
 msgstr "Comptes rendus des réunions"
 
-#: includes/views/tpl-reports.php:75
+#: includes/views/tpl-reports.php:85
 msgid "Searching From: "
 msgstr ""
 
-#: includes/views/tpl-reports.php:76
+#: includes/views/tpl-reports.php:86
 msgid "Total Records Found: "
 msgstr ""
 
-#: includes/views/tpl-reports.php:77
+#: includes/views/tpl-reports.php:87
 msgid "Total Meetings Held: "
 msgstr ""
 
-#: includes/views/tpl-reports.php:78
+#: includes/views/tpl-reports.php:88
 msgid "Total Participants Involved: "
 msgstr ""
 
-#: includes/views/tpl-reports.php:79
+#: includes/views/tpl-reports.php:89
 msgid "Total Meeting Minutes Combined: "
 msgstr ""
 
-#: includes/views/tpl-reports.php:87
+#: includes/views/tpl-reports.php:97
 msgid "Get account report for a specified period."
 msgstr ""
 
-#: includes/views/tpl-reports.php:87
+#: includes/views/tpl-reports.php:98
 msgid "Print"
 msgstr ""
 
-#: includes/views/tpl-reports.php:89
+#: includes/views/tpl-reports.php:100
 msgid "From"
 msgstr ""
 
-#: includes/views/tpl-reports.php:91
+#: includes/views/tpl-reports.php:102
 msgid "To"
 msgstr ""
 
-#: includes/views/tpl-reports.php:99
+#: includes/views/tpl-reports.php:109
 msgid "By"
 msgstr ""
 
-#: includes/views/tpl-reports.php:100
+#: includes/views/tpl-reports.php:110
 msgid "Meetings Held"
 msgstr ""
 
-#: includes/views/tpl-reports.php:101
+#: includes/views/tpl-reports.php:111
 msgid "Total Participants"
 msgstr "Nombre total de participants"
 
-#: includes/views/tpl-reports.php:102
+#: includes/views/tpl-reports.php:112
 msgid "Total Meeting Minutes"
 msgstr "Procès-verbaux des réunions"
 
-#: includes/views/tpl-reports.php:103
+#: includes/views/tpl-reports.php:113
 msgid "Last Login Time"
 msgstr "Dernière heure de connexion"
 
-#: includes/views/tpl-reports.php:111
+#: includes/views/tpl-reports.php:121
 msgid "No Records Found.."
 msgstr "Aucun enregistrement trouvé.."
 
-#: includes/views/tpl-reports.php:126
+#: includes/views/tpl-reports.php:136
 msgid "Enter a value to Check..."
 msgstr "Entrez une valeur à Vérifier ..."
 
@@ -575,61 +580,71 @@ msgstr "Email"
 msgid "Name"
 msgstr "prénom"
 
-#: includes/views/tpl-settings.php:15
+#: includes/views/tpl-settings.php:16
 msgid "Please follow"
 msgstr ""
 
-#: includes/views/tpl-settings.php:15
+#: includes/views/tpl-settings.php:16
 msgid "this guide"
 msgstr ""
 
-#: includes/views/tpl-settings.php:15
+#: includes/views/tpl-settings.php:16
 msgid "to generate the below API values from your Zoom account"
 msgstr ""
 
-#: includes/views/tpl-settings.php:22
+#: includes/views/tpl-settings.php:23
 msgid "API Key"
 msgstr ""
 
-#: includes/views/tpl-settings.php:26
+#: includes/views/tpl-settings.php:27
 msgid "API Secret Key"
 msgstr ""
 
-#: includes/views/tpl-settings.php:30
+#: includes/views/tpl-settings.php:31
 msgid "Vanity URL"
 msgstr ""
 
-#: includes/views/tpl-settings.php:33
+#: includes/views/tpl-settings.php:34
 msgid "This URI will be replaced with default zoom link."
 msgstr ""
 
 #: includes/views/tpl-settings.php:38
+msgid "Show Past Join Link ?"
+msgstr ""
+
+#: includes/views/tpl-settings.php:41
+msgid ""
+"This will show join meeting links on frontend even after meeting time is "
+"already past."
+msgstr ""
+
+#: includes/views/tpl-settings.php:46
 msgid ""
 "After you enter your keys. Do save changes before doing \"Check API "
 "Connection\"."
 msgstr ""
 
-#: includes/views/tpl-settings.php:39
+#: includes/views/tpl-settings.php:47
 msgid "Save Changes"
 msgstr ""
 
-#: includes/views/tpl-settings.php:39
+#: includes/views/tpl-settings.php:47
 msgid "Check API Connection"
 msgstr ""
 
-#: includes/views/tpl-settings.php:63
+#: includes/views/tpl-settings.php:71
 msgid "Documentation"
 msgstr ""
 
-#: includes/views/tpl-settings.php:64
+#: includes/views/tpl-settings.php:72
 msgid "Contact for additional Support"
 msgstr "Contact pour un support supplémentaire"
 
-#: includes/views/tpl-settings.php:65
+#: includes/views/tpl-settings.php:73
 msgid "Developer"
 msgstr ""
 
-#: includes/views/tpl-settings.php:71
+#: includes/views/tpl-settings.php:89
 msgid "Try inactive logout"
 msgstr ""
 
@@ -690,7 +705,6 @@ msgid "Start"
 msgstr ""
 
 #. Name of the plugin
-msgctxt "Video Conferencing with Zoom API"
 msgid "Video Conferencing with Zoom API"
 msgstr ""
 
@@ -702,11 +716,9 @@ msgstr ""
 
 #. URI of the plugin
 #. Author URI of the plugin
-msgctxt "http://www.deepenbajracharya.com.np"
 msgid "http://www.deepenbajracharya.com.np"
 msgstr ""
 
 #. Author of the plugin
-msgctxt "Deepen Bajracharya"
 msgid "Deepen Bajracharya"
 msgstr ""

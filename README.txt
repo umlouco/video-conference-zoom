@@ -4,7 +4,7 @@ Tags: zoom video conference, video conference, zoom, zoom video conferencing, we
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.3
-Stable tag: 3.1.0
+Stable tag: 3.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -42,6 +42,18 @@ A simple plugin which gives you the extensive functionality to manage zoom meeti
 **OVERRIDDING TEMPLATES:**
 
 REFER FAQ to override page templates!
+
+**EXTEND OTHER FEATURES:**
+
+Addon: **[WooCommerce Booking Integration](https://www.codemanas.com/downloads/zoom-integration-for-woocommerce-booking/ "WooCommerce Booking Integration")** for:
+
+* Integration with WooCommerce Bookings
+* Automated WooCommerce Booking meeting process.
+* Individual Booking Product Meetings
+* Individual Booking Product Hosts
+* Individual Booking product meeting links for each bookings.
+
+> NOTE: Premium plan users will always be given highest priority over free plan users.
 
 **COMPATIBILITY:**
 
@@ -95,6 +107,10 @@ Search for the plugin -> add new dialog and click install, or download and extra
 8. Shortcode Output
 
 == Changelog ==
+
+= 3.1.1 =
+Fixes: Minor fixes in Reports and enqueue script section.
+Added: Addons page.
 
 = 3.1.0 =
 Added: Show past join link meetings on frontend links.

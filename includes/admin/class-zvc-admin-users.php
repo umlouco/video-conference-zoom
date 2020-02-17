@@ -21,8 +21,6 @@ class Zoom_Video_Conferencing_Admin_Users {
 	public static function list_users() {
 		wp_enqueue_script( 'video-conferencing-with-zoom-api-js' );
 		wp_enqueue_script( 'video-conferencing-with-zoom-api-datable-js' );
-		wp_enqueue_style( 'video-conferencing-with-zoom-api' );
-		wp_enqueue_style( 'video-conferencing-with-zoom-api-datable' );
 
 		//Check if any transient by name is available
 		$check_transient = get_transient( '_zvc_user_lists' );
@@ -52,10 +50,6 @@ class Zoom_Video_Conferencing_Admin_Users {
 		wp_enqueue_script( 'video-conferencing-with-zoom-api-js' );
 		wp_enqueue_script( 'video-conferencing-with-zoom-api-select2-js' );
 		wp_enqueue_script( 'video-conferencing-with-zoom-api-timepicker-js' );
-
-		wp_enqueue_style( 'video-conferencing-with-zoom-api-timepick' );
-		wp_enqueue_style( 'video-conferencing-with-zoom-api' );
-		wp_enqueue_style( 'video-conferencing-with-zoom-api-select2' );
 
 		if ( isset( $_POST['add_zoom_user'] ) ) {
 			check_admin_referer( '_zoom_add_user_nonce_action', '_zoom_add_user_nonce' );

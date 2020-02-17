@@ -112,10 +112,6 @@ class Zoom_Video_Conferencing_Admin_PostType {
 		wp_enqueue_script( 'video-conferencing-with-zoom-api-select2-js' );
 		wp_enqueue_script( 'video-conferencing-with-zoom-api-timepicker-js' );
 
-		wp_enqueue_style( 'video-conferencing-with-zoom-api-timepicker' );
-		wp_enqueue_style( 'video-conferencing-with-zoom-api' );
-		wp_enqueue_style( 'video-conferencing-with-zoom-api-select2' );
-
 		//Check if any transient by name is available
 		$users = video_conferencing_zoom_api_get_user_transients();
 

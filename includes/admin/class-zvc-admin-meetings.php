@@ -25,9 +25,6 @@ class Zoom_Video_Conferencing_Admin_Meetings {
 		wp_enqueue_script( 'video-conferencing-with-zoom-api-js' );
 		wp_enqueue_script( 'video-conferencing-with-zoom-api-select2-js' );
 		wp_enqueue_script( 'video-conferencing-with-zoom-api-datable-js' );
-		wp_enqueue_style( 'video-conferencing-with-zoom-api' );
-		wp_enqueue_style( 'video-conferencing-with-zoom-api-select2' );
-		wp_enqueue_style( 'video-conferencing-with-zoom-api-datable' );
 
 		//Get Template
 		require_once ZVC_PLUGIN_VIEWS_PATH . '/tpl-list-meetings.php';
@@ -44,9 +41,6 @@ class Zoom_Video_Conferencing_Admin_Meetings {
 		wp_enqueue_script( 'video-conferencing-with-zoom-api-js' );
 		wp_enqueue_script( 'video-conferencing-with-zoom-api-select2-js' );
 		wp_enqueue_script( 'video-conferencing-with-zoom-api-timepicker-js' );
-		wp_enqueue_style( 'video-conferencing-with-zoom-api-timepicker' );
-		wp_enqueue_style( 'video-conferencing-with-zoom-api' );
-		wp_enqueue_style( 'video-conferencing-with-zoom-api-select2' );
 
 		//Edit a Meeting
 		if ( isset( $_GET['edit'] ) && isset( $_GET['host_id'] ) ) {

@@ -32,9 +32,6 @@ class Zoom_Video_Conferencing_Reports {
 		wp_enqueue_script( 'jquery-ui-datepicker' );
 		wp_enqueue_script( 'video-conferencing-with-zoom-api-js' );
 
-		wp_enqueue_style( 'jquery-ui-datepicker-zvc', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css' );
-		wp_enqueue_style( 'video-conferencing-with-zoom-api' );
-
 		$active_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : 'zoom_daily_report';
 
 		//Get Template
@@ -63,6 +60,7 @@ class Zoom_Video_Conferencing_Reports {
 			11 => 'November',
 			12 => 'December'
 		);
+
 		if ( isset( $_POST['zoom_check_month_year'] ) ) {
 			$zoom_monthyear = $_POST['zoom_month_year'];
 			if ( $zoom_monthyear == null || $zoom_monthyear == "" ) {

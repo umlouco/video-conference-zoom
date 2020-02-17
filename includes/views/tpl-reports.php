@@ -7,22 +7,26 @@
         <a href="?post_type=zoom-meetings&page=zoom-video-conferencing-reports&tab=zoom_acount_report" class="nav-tab <?php echo $active_tab == 'zoom_acount_report' ? 'nav-tab-active' : ''; ?>"><?php _e( '2. Account Report', 'video-conferencing-with-zoom-api' ); ?></a>
     </h2>
 
-	<?php if ( $active_tab == 'zoom_daily_report' ): ?>
-		<?php $result = zvc_reports()->get_daily_report_html();
-		if ( isset( $_POST['zoom_check_month_year'] ) && empty( $_POST['zoom_month_year'] ) ) { ?>
-            <div id="message" class="notice notice-error">
-				<?php if ( isset( $result->error ) ) { ?>
+	<?php if ( $active_tab == 'zoom_daily_report' ): ?><?php $result = zvc_reports()->get_daily_report_html();
+		if ( isset( $_POST['zoom_check_month_year'] ) ) {
+			if ( isset( $result->error ) ) {
+				?>
+                <div id="message" class="notice notice-error">
                     <p><?php echo $result->error->message; ?></p>
-				<?php } else { ?>
-                    <p><?php echo $result; ?></p>
-				<?php } ?>
-            </div>
-		<?php } ?>
+                </div>
+				<?php
+			}
+
+			if ( isset( $result->message ) ) { ?>
+                <div id="message" class="notice notice-error">
+                    <p><?php echo $result->message; ?></p>
+                </div>
+			<?php }
+		} ?>
         <div class="zoom_dateinput_field">
             <form action="?post_type=zoom-meetings&page=zoom-video-conferencing-reports" class="zvc_daily_reports_check_form" method="POST">
                 <label><?php _e( 'Enter the date to check:', 'video-conferencing-with-zoom-api' ); ?></label>
-                <input name="zoom_month_year" id="reports_date"/>
-                <input type="submit" name="zoom_check_month_year" value="Check">
+                <input name="zoom_month_year" id="reports_date"/> <input type="submit" name="zoom_check_month_year" value="Check">
             </form>
         </div>
         <table class="wp-list-table widefat fixed striped posts">
@@ -69,7 +73,13 @@
                         <p><?php echo $result; ?></p>
 					<?php } ?>
                 </div>
-			<?php } else { ?>
+			<?php } else {
+				if ( isset( $result->message ) ) { ?>
+                    <div id="message" class="notice notice-error">
+                        <p><?php echo $result->message; ?></p>
+                    </div>
+				<?php } ?>
+
                 <div id="message" class="notice notice-success">
                     <ul class="zoom_acount_lists">
                         <li><?php echo isset( $result->from ) ? __( 'Searching From: ', 'video-conferencing-with-zoom-api' ) . $result->from . ' to ' : null; ?><?php echo isset( $result->to ) ? $result->to : null; ?></li>
@@ -84,13 +94,13 @@
 		}
 		?>
         <div class="zoom_dateinput_field">
-            <p><?php _e( 'Get account report for a specified period.', 'video-conferencing-with-zoom-api' ); ?> <a onclick="window.print();" href="javascript:void(0);"><?php _e( 'Print', 'video-conferencing-with-zoom-api' ); ?></a></p>
+            <p><?php _e( 'Get account report for a specified period.', 'video-conferencing-with-zoom-api' ); ?>
+                <a onclick="window.print();" href="javascript:void(0);"><?php _e( 'Print', 'video-conferencing-with-zoom-api' ); ?></a></p>
             <form action="?post_type=zoom-meetings&page=zoom-video-conferencing-reports&tab=zoom_acount_report" class="zvc_accounts_reports_check_form" method="POST">
                 <label><?php _e( 'From', 'video-conferencing-with-zoom-api' ); ?></label>
                 <input name="zoom_account_from" class="zoom_account_datepicker"/>
                 <label><?php _e( 'To', 'video-conferencing-with-zoom-api' ); ?></label>
-                <input name="zoom_account_to" class="zoom_account_datepicker"/>
-                <input type="submit" name="zoom_check_account_info" value="Check">
+                <input name="zoom_account_to" class="zoom_account_datepicker"/> <input type="submit" name="zoom_check_account_info" value="Check">
             </form>
         </div>
         <table class="wp-list-table widefat fixed striped posts">

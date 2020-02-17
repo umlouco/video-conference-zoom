@@ -71,7 +71,17 @@ $past_join_links = get_option( 'zoom_past_join_links' );
                 <li><a target="_blank" href="<?php echo ZVC_PLUGIN_AUTHOR; ?>/zoom-conference-wp-plugin-documentation/"><?php _e( 'Documentation', 'video-conferencing-with-zoom-api' ); ?></a></li>
                 <li><a target="_blank" href="<?php echo ZVC_PLUGIN_AUTHOR; ?>/say-hello/"><?php _e( 'Contact for additional Support', 'video-conferencing-with-zoom-api' ); ?></a></li>
                 <li><a target="_blank" href="https://deepenbajracharya.com.np"><?php _e( 'Developer', 'video-conferencing-with-zoom-api' ); ?></a></li>
+                <li><a target="_blank" href="<?php echo admin_url('edit.php?post_type=zoom-meetings&page=zoom-video-conferencing-addons'); ?>"><?php _e( 'Addons', 'video-conferencing-with-zoom-api' ); ?></a></li>
             </ul>
+            <div class="zvc-information-sec">
+                <h3>WooCommerce Addon</h3>
+                <p>Integrate your Zoom Meetings directly to WooCommerce booking products. Zoom Integration for WooCommerce Booking allows you
+                    to automate your zoom meetings directly from your WordPress dashboard by linking zoom meetings to your WooCommerce Booking
+                    products automatically when a Booking Product is created. Users will receive join links in their booking confirmation
+                    emails.</p>
+                <p><a href="https://www.codemanas.com/downloads/zoom-integration-for-woocommerce-booking/" class="button button-primary">From:
+                        $30</a></p>
+            </div>
             <div class="zvc-information-sec">
                 <h3>Need Idle Auto logout ?</h3>
                 <p>Protect your WordPress users' sessions from shoulder surfers and snoopers!</p>

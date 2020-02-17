@@ -89,3 +89,42 @@
 .zoom-api-vanityurl-usage {
   margin-top: 40px;
 }
+
+.video-conferencing-addons {
+  h3.border-padd {
+    background: #fff;
+    padding: 20px 40px;
+    border: 1px solid #d3d3d3;
+  }
+
+  .video-conferencing-addons-flex {
+    display: flex;
+
+    .video-conferencing-addons-box {
+      background: #fff;
+      padding: 40px;
+      border: 1px solid #d3d3d3;
+      margin: 10px;
+      width: 33.33%;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      .content {
+        p {
+          line-height: 1.8;
+        }
+
+        a {
+          padding: 10px 20px;
+          font-size: 15px;
+        }
+      }
+    }
+  }
+}
