@@ -16,10 +16,6 @@ jQuery(function ($) {
             var valueDate = clock.data('date');
             var mtgTimezone = clock.data('tz');
 
-            if (mtgTimezone === "Asia/Kathmandu") {
-                mtgTimezone = "Asia/Katmandu";
-            }
-
             // var dateFormat = moment(valueDate).format('MMM D, YYYY HH:mm:ss');
 
             //Converting Timezones to locals
