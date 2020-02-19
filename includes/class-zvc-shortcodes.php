@@ -30,6 +30,10 @@ class Zoom_Video_Conferencing_Shorcodes {
 	function render_main( $atts, $content = null ) {
 		ob_start();
 
+		wp_enqueue_script( 'video-conferencing-with-zoom-api-moment' );
+		wp_enqueue_script( 'video-conferencing-with-zoom-api-moment-timezone' );
+		wp_enqueue_script( 'video-conferencing-with-zoom-api' );
+
 		extract( shortcode_atts( array(
 			'meeting_id'   => 'javascript:void(0);',
 			'link_only' => 'no',

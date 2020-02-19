@@ -65,15 +65,25 @@ function video_conference_zoom_meeting_details() {
  * @since 3.0.0
  */
 function video_conference_zoom_meeting_join() {
-	vczapi_get_template( array( 'fragments/join-links.php' ), true );
+	global $zoom;
+	$data = array(
+		'ajaxurl'    => admin_url( 'admin-ajax.php' ),
+		'start_date' => $zoom['start_date'],
+		'timezone'   => $zoom['timezone'],
+		'post_id'    => get_the_ID(),
+		'page'       => 'single-meeting'
+	);
+	wp_localize_script( 'video-conferencing-with-zoom-api', 'mtg_data', $data );
 }
 
 /**
  * Generate join links
- * @author Deepen
- * @since 3.0.0
  *
  * @param $zoom_meeting
+ *
+ * @since 3.0.0
+ *
+ * @author Deepen
  */
 function video_conference_zoom_meeting_join_link( $zoom_meeting ) {
 	global $vanity_enabled;
@@ -86,23 +96,29 @@ function video_conference_zoom_meeting_join_link( $zoom_meeting ) {
 
 	if ( ! empty( $zoom_meeting->join_url ) ) {
 		?>
-        <p><a href="<?php echo esc_url( $zoom_meeting->join_url ); ?>" class="btn btn-join-link"><?php echo apply_filters( 'vczoom_join_meeting_via_app_text', __( 'Join Meeting via Zoom App', 'video-conferencing-with-zoom-api' ) ); ?></a></p>
+        <p>
+            <a href="<?php echo esc_url( $zoom_meeting->join_url ); ?>" class="btn btn-join-link"><?php echo apply_filters( 'vczoom_join_meeting_via_app_text', __( 'Join Meeting via Zoom App', 'video-conferencing-with-zoom-api' ) ); ?></a>
+        </p>
 		<?php
 	}
 
 	if ( ! empty( $zoom_meeting->id ) ) {
 		?>
-        <p><a href="<?php echo esc_url( $browser_url . $zoom_meeting->id ); ?>" class="btn btn-join-link"><?php echo apply_filters( 'vczoom_join_meeting_via_app_text', __( 'Join via Web Browser', 'video-conferencing-with-zoom-api' ) ); ?></a></p>
+        <p>
+            <a href="<?php echo esc_url( $browser_url . $zoom_meeting->id ); ?>" class="btn btn-join-link"><?php echo apply_filters( 'vczoom_join_meeting_via_app_text', __( 'Join via Web Browser', 'video-conferencing-with-zoom-api' ) ); ?></a>
+        </p>
 		<?php
 	}
 }
 
 /**
  * Generate join links
- * @author Deepen
- * @since 3.0.0
  *
  * @param $zoom_meetings
+ *
+ * @since 3.0.0
+ *
+ * @author Deepen
  */
 function video_conference_zoom_shortcode_join_link( $zoom_meetings ) {
 	global $vanity_uri;
@@ -119,61 +135,54 @@ function video_conference_zoom_shortcode_join_link( $zoom_meetings ) {
 		$join_uri    = 'https://zoom.us/j/' . $zoom_meetings->id;
 	}
 
-	$params['timezone']   = $zoom_meetings->timezone;
-	$params['start_date'] = vczapi_dateConverter( $zoom_meetings->start_time, $zoom_meetings->timezone, 'Y-m-d\TH:i:s\Z' );
-	if ( ! video_conference_zoom_meeting_check_valid_meeting( $params ) ) {
-		?>
-        <tr>
-            <td colspan="2" class="dpn-zvc-mtglink-no-valid"><?php echo apply_filters( 'vczoom_shortcode_link_not_valid_anymore', __( 'This meeting is no longer valid and cannot be joined !', 'video-conferencing-with-zoom-api' ) ); ?></td>
-        </tr>
-	<?php } else { ?>
-        <tr>
-            <td><?php _e( 'Join via Zoom App', 'video-conferencing-with-zoom-api' ); ?></td>
-            <td><a class="btn-join-link-shortcode" href="<?php echo $join_uri; ?>" title="<?php echo $zoom_meetings->topic; ?>"><?php _e( 'Join', 'video-conferencing-with-zoom-api' ); ?></a></td>
-        </tr>
-        <tr>
-            <td><?php _e( 'Join via Web Browser', 'video-conferencing-with-zoom-api' ); ?></td>
-            <td><a class="btn-join-link-shortcode" href="<?php echo $browser_url; ?>" title="<?php echo $zoom_meetings->topic; ?>"><?php _e( 'Join', 'video-conferencing-with-zoom-api' ); ?></a></td>
-        </tr>
-		<?php
-	}
+	$data = array(
+		'ajaxurl'     => admin_url( 'admin-ajax.php' ),
+		'start_date'  => $zoom_meetings->start_time,
+		'timezone'    => $zoom_meetings->timezone,
+		'type'        => 'shortcode',
+		'join_uri'    => $join_uri,
+		'browser_url' => $browser_url
+	);
+	wp_localize_script( 'video-conferencing-with-zoom-api', 'mtg_data', $data );
 }
 
 /**
  * Render Zoom Meeting ShortCode table in frontend
- * @since 3.0.0
- * @author Deepen
  *
  * @param $zoom_meetings
+ *
+ * @author Deepen
+ *
+ * @since 3.0.0
  */
 function video_conference_zoom_shortcode_table( $zoom_meetings ) {
 	?>
     <table>
         <tr>
-            <td>Meeting ID</td>
+            <td><?php _e( 'Meeting ID', 'video-conferencing-with-zoom-api' ); ?></td>
             <td><?php echo $zoom_meetings->id; ?></td>
         </tr>
         <tr>
-            <td>Topic</td>
+            <td><?php _e( 'Topic', 'video-conferencing-with-zoom-api' ); ?></td>
             <td><?php echo $zoom_meetings->topic; ?></td>
         </tr>
         <tr>
-            <td>Meeting Status</td>
+            <td><?php _e( 'Meeting Status', 'video-conferencing-with-zoom-api' ); ?></td>
             <td>
 				<?php echo $zoom_meetings->status; ?>
-                <p class="small-description">Refresh is needed to change status.</p>
+                <p class="small-description"><?php _e( 'Refresh is needed to change status.', 'video-conferencing-with-zoom-api' ); ?></p>
             </td>
         </tr>
         <tr>
-            <td>Start Time</td>
+            <td><?php _e( 'Start Time', 'video-conferencing-with-zoom-api' ); ?></td>
             <td><?php echo vczapi_dateConverter( $zoom_meetings->start_time, $zoom_meetings->timezone, 'F j, Y @ g:i a' );; ?></td>
         </tr>
         <tr>
-            <td>Timezone</td>
+            <td><?php _e( 'Timezone', 'video-conferencing-with-zoom-api' ); ?></td>
             <td><?php echo $zoom_meetings->timezone; ?></td>
         </tr>
-        <tr>
-            <td>Duration</td>
+        <tr class="zvc-table-shortcode-duration">
+            <td><?php _e( 'Duration', 'video-conferencing-with-zoom-api' ); ?></td>
             <td><?php echo $zoom_meetings->duration; ?></td>
         </tr>
 		<?php
@@ -187,32 +196,6 @@ function video_conference_zoom_shortcode_table( $zoom_meetings ) {
 		?>
     </table>
 	<?php
-}
-
-/**
- * Check if meeting is valid from current time for more 15 minutes
- *
- * @param $zoom
- *
- * @return bool
- * @throws Exception
- */
-function video_conference_zoom_meeting_check_valid_meeting( $zoom ) {
-	$past_join_links = get_option( 'zoom_past_join_links' );
-	if ( !empty( $past_join_links ) ) {
-		return true;
-	} else {
-		$meeting_timezone_time = new DateTime( 'now', new DateTimeZone( $zoom['timezone'] ) );
-		$meeting_timezone_time->modify( "-15 minutes" );
-		$current_time = $meeting_timezone_time->format( 'Y-m-d h:i a' );
-		$meeting_time = date( 'Y-m-d h:i a', strtotime( $zoom['start_date'] ) );
-		if ( $current_time < $meeting_time ) {
-			//Meeting Still Valid
-			return true;
-		}
-	}
-
-	return false;
 }
 
 if ( ! function_exists( 'video_conference_zoom_output_content_start' ) ) {
@@ -230,8 +213,8 @@ if ( ! function_exists( 'video_conference_zoom_output_content_end' ) ) {
 /**
  * Get a slug identifying the current theme.
  *
- * @since 3.0.2
  * @return string
+ * @since 3.0.2
  */
 function video_conference_zoom_get_current_theme_slug() {
 	return apply_filters( 'video_conference_zoom_theme_slug_for_templates', get_option( 'template' ) );

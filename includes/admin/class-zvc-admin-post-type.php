@@ -20,9 +20,9 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	/**
 	 * Allows for accessing single instance of class. Class should only be constructed once per call.
 	 *
+	 * @return self Main instance.
 	 * @since  3.0.2
 	 * @static
-	 * @return self Main instance.
 	 */
 	public static function instance() {
 		if ( is_null( self::$_instance ) ) {
@@ -97,8 +97,14 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	 * Adds the meta box.
 	 */
 	public function add_metabox() {
-		add_meta_box( 'zoom-meeting-meta', __( 'Zoom Details', 'video-conferencing-with-zoom-api' ), array( $this, 'render_metabox' ), 'zoom-meetings', 'advanced', 'high' );
-		add_meta_box( 'zoom-meeting-meta-side', __( 'Extra Fields ?', 'video-conferencing-with-zoom-api' ), array( $this, 'rendor_sidebox' ), 'zoom-meetings', 'side', 'high' );
+		add_meta_box( 'zoom-meeting-meta', __( 'Zoom Details', 'video-conferencing-with-zoom-api' ), array(
+			$this,
+			'render_metabox'
+		), 'zoom-meetings', 'advanced', 'high' );
+		add_meta_box( 'zoom-meeting-meta-side', __( 'Extra Fields ?', 'video-conferencing-with-zoom-api' ), array(
+			$this,
+			'rendor_sidebox'
+		), 'zoom-meetings', 'side', 'high' );
 	}
 
 	/**
@@ -137,10 +143,13 @@ class Zoom_Video_Conferencing_Admin_PostType {
                 </div>
                 <hr>
 			<?php } else { ?>
-                <p><strong>Meeting has not been created for this post yet. Publish your meeting or hit update to create a new one for this post !</strong></p>
+                <p><strong>Meeting has not been created for this post yet. Publish your meeting or hit update to create a new one for this post
+                        !</strong></p>
 			<?php } ?>
             <div class="zoom-metabox-content">
-                <p>Requires Login? <input type="checkbox" name="option_logged_in" value="1" <?php ! empty( $meeting_fields['site_option_logged_in'] ) ? checked( '1', $meeting_fields['site_option_logged_in'] ) : false; ?> class="regular-text"></p>
+                <p>Requires Login?
+                    <input type="checkbox" name="option_logged_in" value="1" <?php ! empty( $meeting_fields['site_option_logged_in'] ) ? checked( '1', $meeting_fields['site_option_logged_in'] ) : false; ?> class="regular-text">
+                </p>
                 <p class="description"><?php _e( 'Only logged in users of this site will be able to join this meeting.', 'video-conferencing-with-zoom-api' ); ?></p>
             </div>
         </div>
@@ -211,10 +220,11 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	/**
 	 * Create real time zoom meetings
 	 *
-	 * @author Deepen
+	 * @param $post
+	 *
 	 * @since 3.0.0
 	 *
-	 * @param $post
+	 * @author Deepen
 	 */
 	private function create_zoom_meeting( $post ) {
 		$mtg_param = array(
@@ -243,11 +253,12 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	/**
 	 * Update real time zoom meetings
 	 *
+	 * @param $post
+	 * @param $meeting_id
+	 *
 	 * @author Deepen
 	 * @since 3.0.0
 	 *
-	 * @param $post
-	 * @param $meeting_id
 	 */
 	private function update_zoom_meeting( $post, $meeting_id ) {
 		$mtg_param = array(
@@ -281,26 +292,17 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	 *
 	 * @param $template
 	 *
-	 * @author Deepen
+	 * @return bool|string
 	 * @since 3.0.0
 	 *
-	 * @return bool|string
+	 * @author Deepen
 	 */
 	public function single( $template ) {
 		global $post;
 
 		if ( $post->post_type == 'zoom-meetings' ) {
 
-			$GLOBALS['zoom']           = get_post_meta( $post->ID, '_meeting_fields', true );
-			$GLOBALS['zoom_meeting']   = get_post_meta( $post->ID, '_meeting_zoom_details', true );
-			$GLOBALS['vanity_enabled'] = get_option( 'zoom_vanity_url' );
-
-			if( !empty($GLOBALS['zoom'])) {
-				$tz = new DateTimeZone($GLOBALS['zoom']['timezone']);
-				$dTObj = new DateTime("now", $tz);
-				$Offset = $dTObj->getOffset();
-				$GLOBALS['zoom']['timezone_offset'] = $Offset;
-            }
+			$GLOBALS['zoom'] = get_post_meta( $post->ID, '_meeting_fields', true );
 
 			//Render View
 			$templates[] = 'single-meeting.php';
@@ -313,12 +315,12 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	/**
 	 * Archive page template
 	 *
-	 * @author Deepen
-	 * @since 3.0.0
-	 *
 	 * @param $template
 	 *
 	 * @return bool|string
+	 * @author Deepen
+	 * @since 3.0.0
+	 *
 	 */
 	public function archive( $template ) {
 		global $post;
@@ -335,10 +337,11 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	/**
 	 * Delete the meeting
 	 *
-	 * @author Deepen
+	 * @param $post_id
+	 *
 	 * @since 3.0.0
 	 *
-	 * @param $post_id
+	 * @author Deepen
 	 */
 	public function delete( $post_id ) {
 		if ( get_post_type( $post_id ) === "zoom-meetings" ) {

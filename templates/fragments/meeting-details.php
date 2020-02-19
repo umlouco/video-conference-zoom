@@ -37,6 +37,6 @@ global $zoom;
                 <span><?php echo $zoom['timezone']; ?></span>
             </div>
 		<?php } ?>
-        <p class="dpn-zvc-display-or-hide-localtimezone-notice"><?php printf( __( '%sNote%s: Countdown time is shown based on your local timezone.', 'video-conferencing-with-zoom-api' ), '<strong>', '</strong>' ); ?></p>
+        <p class="dpn-zvc-display-or-hide-localtimezone-notice"><?php printf( __( '%sNote%s: Countdown time is shown based on your local timezone. Meeting join links will show before and after 1 hour of meeting time.', 'video-conferencing-with-zoom-api' ), '<strong>', '</strong>' ); ?></p>
     </div>
 </div>

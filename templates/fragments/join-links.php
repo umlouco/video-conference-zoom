@@ -8,15 +8,9 @@
  * @created_on 11/19/19
  */
 
-global $zoom;
 global $zoom_meeting;
 
-$valid_time = video_conference_zoom_meeting_check_valid_meeting( $zoom );
-if ( ! $valid_time ) {
-	return;
-}
-
-if ( ! empty( $zoom['start_date'] ) && ! empty( $zoom_meeting ) ) {
+if ( ! empty( $zoom_meeting ) ) {
 	?>
     <div class="dpn-zvc-sidebar-box">
         <div class="join-links">
@@ -29,7 +23,7 @@ if ( ! empty( $zoom['start_date'] ) && ! empty( $zoom_meeting ) ) {
 			do_action( 'vczoom_meeting_join_links', $zoom_meeting );
 			?>
 
-			<?php if ( ! empty( $zoom_meeting->start_url ) && vczapi_check_author( get_the_id() ) ) { ?>
+			<?php if ( ! empty( $zoom_meeting->start_url ) && vczapi_check_author( $post_id ) ) { ?>
                 <p><a href="<?php echo esc_url( $zoom_meeting->start_url ); ?>" class="btn btn-start-link"><?php _e( 'Start Meeting', 'video-conferencing-with-zoom-api' ); ?></a></p>
 			<?php } ?>
         </div>
