@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Video Conferencing with Zoom API\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/video-"
 "conferencing-with-zoom-api\n"
-"POT-Creation-Date: 2020-02-19 07:24+0000\n"
+"POT-Creation-Date: 2020-02-19 10:16+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,33 +17,59 @@ msgstr ""
 "X-Generator: Loco https://localise.biz/\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;"
 
-#: includes/zvc-template-functions.php:89
+#: includes/zvc-template-functions.php:100
 msgid "Join Meeting via Zoom App"
 msgstr ""
 
-#: includes/zvc-template-functions.php:95
-#: includes/zvc-template-functions.php:135
+#: includes/zvc-template-functions.php:108
+#: templates/shortcode/join-links.php:20
 msgid "Join via Web Browser"
 msgstr ""
 
-#: includes/zvc-template-functions.php:127
-msgid "This meeting is no longer valid and cannot be joined !"
+#: includes/zvc-template-functions.php:162
+#: includes/views/tpl-list-meetings.php:52
+msgid "Meeting ID"
 msgstr ""
 
-#: includes/zvc-template-functions.php:131
-msgid "Join via Zoom App"
+#: includes/zvc-template-functions.php:166
+#: includes/views/tpl-list-meetings.php:53
+msgid "Topic"
 msgstr ""
 
-#: includes/zvc-template-functions.php:132
-#: includes/zvc-template-functions.php:136
-msgid "Join"
+#: includes/zvc-template-functions.php:170
+msgid "Meeting Status"
 msgstr ""
 
-#: includes/class-zvc-init.php:92
+#: includes/zvc-template-functions.php:173
+msgid "Refresh is needed to change status."
+msgstr ""
+
+#: includes/zvc-template-functions.php:177
+#: includes/views/tpl-list-meetings.php:55
+msgid "Start Time"
+msgstr ""
+
+#: includes/zvc-template-functions.php:181
+#: includes/views/tpl-edit-meeting.php:72
+#: includes/views/tpl-add-meetings.php:57
+#: templates/fragments/meeting-details.php:36
+#: includes/views/post-type/tpl-meeting-fields.php:30
+msgid "Timezone"
+msgstr ""
+
+#: includes/zvc-template-functions.php:185
+#: includes/views/tpl-edit-meeting.php:84
+#: includes/views/tpl-add-meetings.php:69
+#: templates/fragments/meeting-details.php:30
+#: includes/views/post-type/tpl-meeting-fields.php:42
+msgid "Duration"
+msgstr ""
+
+#: includes/class-zvc-init.php:91
 msgid "Meeting Has Started/Ended !"
 msgstr ""
 
-#: includes/class-zvc-init.php:93
+#: includes/class-zvc-init.php:92
 msgid "Meeting is Starting.."
 msgstr ""
 
@@ -77,11 +103,15 @@ msgstr ""
 msgid "I understand ! Don't show this again !"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:56
+#: includes/class-zvc-shortcodes.php:60
 #, php-format
 msgid ""
 "Please try again ! Some error occured while trying to fetch meeting with id: "
 " %d"
+msgstr ""
+
+#: includes/class-zvc-timezone.php:51
+msgid "This meeting is no longer valid and cannot be joined !"
 msgstr ""
 
 #: templates/single-meeting.php:30
@@ -213,11 +243,11 @@ msgstr ""
 msgid "Zoom Details"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:101
+#: includes/admin/class-zvc-admin-post-type.php:104
 msgid "Extra Fields ?"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:144
+#: includes/admin/class-zvc-admin-post-type.php:153
 msgid "Only logged in users of this site will be able to join this meeting."
 msgstr ""
 
@@ -246,20 +276,8 @@ msgstr ""
 msgid "Select a User"
 msgstr ""
 
-#: includes/views/tpl-list-meetings.php:52
-msgid "Meeting ID"
-msgstr ""
-
-#: includes/views/tpl-list-meetings.php:53
-msgid "Topic"
-msgstr ""
-
 #: includes/views/tpl-list-meetings.php:54
 msgid "Status"
-msgstr ""
-
-#: includes/views/tpl-list-meetings.php:55
-msgid "Start Time"
 msgstr ""
 
 #: includes/views/tpl-list-meetings.php:56
@@ -276,7 +294,7 @@ msgid "Trash"
 msgstr ""
 
 #: includes/views/tpl-list-meetings.php:72
-#: templates/fragments/join-links.php:33
+#: templates/fragments/join-links.php:27
 msgid "Start Meeting"
 msgstr ""
 
@@ -433,24 +451,10 @@ msgstr ""
 msgid "Starting Date and Time of the Meeting (Required)."
 msgstr ""
 
-#: includes/views/tpl-edit-meeting.php:72
-#: includes/views/tpl-add-meetings.php:57
-#: templates/fragments/meeting-details.php:36
-#: includes/views/post-type/tpl-meeting-fields.php:30
-msgid "Timezone"
-msgstr ""
-
 #: includes/views/tpl-edit-meeting.php:80
 #: includes/views/tpl-add-meetings.php:65
 #: includes/views/post-type/tpl-meeting-fields.php:38
 msgid "Meeting Timezone"
-msgstr ""
-
-#: includes/views/tpl-edit-meeting.php:84
-#: includes/views/tpl-add-meetings.php:69
-#: templates/fragments/meeting-details.php:30
-#: includes/views/post-type/tpl-meeting-fields.php:42
-msgid "Duration"
 msgstr ""
 
 #: includes/views/tpl-edit-meeting.php:87
@@ -700,7 +704,15 @@ msgstr ""
 #, php-format
 msgid ""
 "%sNote%s: Countdown time is shown based on your local timezone. Meeting join "
-"links will show before 15 minutes of meeting time."
+"links will show before and after 1 hour of meeting time."
+msgstr ""
+
+#: templates/shortcode/join-links.php:14
+msgid "Join via Zoom App"
+msgstr ""
+
+#: templates/shortcode/join-links.php:16 templates/shortcode/join-links.php:22
+msgid "Join"
 msgstr ""
 
 #. Name of the plugin

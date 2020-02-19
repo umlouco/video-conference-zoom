@@ -112,10 +112,12 @@ Search for the plugin -> add new dialog and click install, or download and extra
 Fixed: Frontend coutdown timer fixed according to client local timezone.
 Fixed: Join Links show on frontend according to time.
 Fixed: Some minor bug fixes.
-Updated: Join Link timezone with Local Time ( For shortcode and individual meeting pages )
-Updated: Meetings links will now only show in Local Timezone ( For shortcode and individual meeting pages )
-Updated: Meetings links will be valid till 1 hour - Before and after the meeting time. ( For shortcode and individual meeting pages )
-Updated: Localized string values.
+Added: Ajax link fetch in regards to client local time and show join links accordingly.
+Added: Join Link timezone with Local Time ( For shortcode and individual meeting pages )
+Added: Meetings links will now only show in Local Timezone ( For shortcode and individual meeting pages )
+Added: Meetings links will be valid till 1 hour - Before and after the meeting time. ( For shortcode and individual meeting pages )
+Added: Localized string values.
+Added: Shortcode join link template override.
 Bug Fix: Meeting links dissapearing. ( For shortcode and individual meeting pages )
 
 = 3.1.1 =
