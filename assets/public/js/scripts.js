@@ -39,6 +39,8 @@ jQuery(function ($) {
                 var eventTime = moment(convertedTimezonewithoutFormat).unix();
                 var diffTime = eventTime - currentTime;
 
+                $('.sidebar-start-time').html(moment.parseZone(convertedTimezonewithoutFormat).local().format('LLL'));
+
                 var second = 1000,
                     minute = second * 60,
                     hour = minute * 60,

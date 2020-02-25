@@ -9,6 +9,7 @@
  */
 
 global $zoom;
+
 ?>
 <div class="dpn-zvc-sidebar-box">
     <div class="dpn-zvc-sidebar-tile">
@@ -22,7 +23,7 @@ global $zoom;
 		<?php if ( ! empty( $zoom['start_date'] ) ) { ?>
             <div class="dpn-zvc-sidebar-content-list">
                 <span><strong><?php _e( 'Start', 'video-conferencing-with-zoom-api' ); ?>:</strong></span>
-                <span><?php echo date( 'F j, Y @ g:i a', strtotime( $zoom['start_date'] ) ); ?></span>
+                <span class="sidebar-start-time"><?php echo date( 'F j, Y @ g:i a', strtotime( $zoom['start_date'] ) ); ?></span>
             </div>
 		<?php } ?>
 		<?php if ( ! empty( $zoom['duration'] ) ) { ?>

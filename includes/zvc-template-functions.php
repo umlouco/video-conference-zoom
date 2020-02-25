@@ -65,7 +65,6 @@ function video_conference_zoom_meeting_details() {
  * @since 3.0.0
  */
 function video_conference_zoom_meeting_join() {
-	global $zoom;
 	$data = array(
 		'ajaxurl'    => admin_url( 'admin-ajax.php' ),
 		'start_date' => $zoom['start_date'],
@@ -96,17 +95,13 @@ function video_conference_zoom_meeting_join_link( $zoom_meeting ) {
 
 	if ( ! empty( $zoom_meeting->join_url ) ) {
 		?>
-        <p>
-            <a href="<?php echo esc_url( $zoom_meeting->join_url ); ?>" class="btn btn-join-link"><?php echo apply_filters( 'vczoom_join_meeting_via_app_text', __( 'Join Meeting via Zoom App', 'video-conferencing-with-zoom-api' ) ); ?></a>
-        </p>
+        <a href="<?php echo esc_url( $zoom_meeting->join_url ); ?>" class="btn btn-join-link"><?php echo apply_filters( 'vczoom_join_meeting_via_app_text', __( 'Join Meeting via Zoom App', 'video-conferencing-with-zoom-api' ) ); ?></a>
 		<?php
 	}
 
 	if ( ! empty( $zoom_meeting->id ) ) {
 		?>
-        <p>
-            <a href="<?php echo esc_url( $browser_url . $zoom_meeting->id ); ?>" class="btn btn-join-link"><?php echo apply_filters( 'vczoom_join_meeting_via_app_text', __( 'Join via Web Browser', 'video-conferencing-with-zoom-api' ) ); ?></a>
-        </p>
+        <a href="<?php echo esc_url( $browser_url . $zoom_meeting->id ); ?>" class="btn btn-join-link"><?php echo apply_filters( 'vczoom_join_meeting_via_app_text', __( 'Join via Web Browser', 'video-conferencing-with-zoom-api' ) ); ?></a>
 		<?php
 	}
 }

@@ -47,7 +47,7 @@ do_action( 'vczoom_before_content' );
 				 *
 				 * @video_conference_zoom_countdown_timer - 10
 				 * @video_conference_zoom_meeting_details - 20
-				 * @video_conference_zoom_meeting_join - 20
+				 * @video_conference_zoom_meeting_join - 30
 				 *
 				 */
 				do_action( 'vczoom_single_content_right' );

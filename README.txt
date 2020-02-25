@@ -4,7 +4,7 @@ Tags: zoom video conference, video conference, zoom, zoom video conferencing, we
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.3
-Stable tag: 3.1.2
+Stable tag: 3.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,6 +24,7 @@ A simple plugin which gives you the extensive functionality to manage zoom meeti
 * Start Links for post authors. ( NEW from 3.0.0+ )
 * CountDown timer to Meeting start shows in individual meeting page. ( NEW from 3.0.0+ )
 * Allow posts to be only shown to logged in users. ( NEW from 3.0.0+ )
+* Start time and join links are shown according to local time compared with zoom timezone.
 * Manage Live Zoom Meetings.
 * Listing Users.
 * Developer Friendly
@@ -37,7 +38,7 @@ A simple plugin which gives you the extensive functionality to manage zoom meeti
 
 * [Usage Documentation](https://techies23.github.io/video-conference-zoom/ "Usage Documentation")
 * [Key Generation Only Documentation](https://deepenbajracharya.com.np/zoom-conference-wp-plugin-documentation/ "Key Generation Only Documentation")
-* [Usage Documentation](https://deepenbajracharya.com.np/zoom-api-integration-with-wordpress/ "Usage Documentation")
+* [Usage Documentation /w WP](https://deepenbajracharya.com.np/zoom-api-integration-with-wordpress/ "Usage Documentation")
 
 **OVERRIDDING TEMPLATES:**
 
@@ -108,7 +109,11 @@ Search for the plugin -> add new dialog and click install, or download and extra
 
 == Changelog ==
 
-= 3.1.2 =
+= 3.1.3 - Feb 25, 2020 =
+Added: Start time to show according to local time.
+Fixed: Minor bug fixes ( No effect elsewhere ).
+
+= 3.1.2 - Feb 22, 2020 =
 Fixed: Frontend coutdown timer fixed according to client local timezone.
 Fixed: Join Links show on frontend according to time.
 Fixed: Some minor bug fixes.
