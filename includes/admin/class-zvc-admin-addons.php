@@ -10,10 +10,10 @@ class Zoom_Video_Conferencing_Admin_Addons {
 	public function __construct() {
 	}
 
-	public function render() {
+	public static function render() {
 		?>
         <div class="wrap video-conferencing-addons">
-            <h3 class="border-padd">Get more features to your site !</h3>
+            <h3 class="border-padd">Get more features to your Meetings !</h3>
             <div class="video-conferencing-addons-flex">
                 <div class="video-conferencing-addons-box">
                     <div class="image">
@@ -26,7 +26,18 @@ class Zoom_Video_Conferencing_Admin_Addons {
                             products automatically when a Booking Product is created. Users will receive join links in their booking confirmation
                             emails.</p>
                         <a href="https://www.codemanas.com/downloads/zoom-integration-for-woocommerce-booking/" class="button button-primary">From:
-                            $30</a>
+                            $60</a>
+                    </div>
+                </div>
+                <div class="video-conferencing-addons-box">
+                    <div class="image">
+                        <img width="110" src="<?php echo ZVC_PLUGIN_DIR_URL; ?>assets/images/cart.png" alt="WooCommerce">
+                    </div>
+                    <div class="content">
+                        <h3>WooCommerce Integration</h3>
+                        <p>Integrate your Zoom Meetings directly to WooCommerce products. This integration allows you to seamlessly integrate your WooCommerce product into a Zoom Meeting post created from your WordPress dashboard. To make zoom meeting a purchasable product. You'll find an option in your <strong>Zoom Meeting > Add New page</strong>. Checking the option would convert your normal meeting to purchasable meeting page.</p>
+                        <a href="https://www.codemanas.com/downloads/zoom-integration-for-woocommerce-booking/" class="button button-primary">From:
+                            $60</a>
                     </div>
                 </div>
             </div>

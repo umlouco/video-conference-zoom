@@ -4,7 +4,7 @@ Tags: zoom video conference, video conference, zoom, zoom video conferencing, we
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.3
-Stable tag: 3.1.3
+Stable tag: 3.1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -46,15 +46,19 @@ REFER FAQ to override page templates!
 
 **EXTEND OTHER FEATURES:**
 
-Addon: **[WooCommerce Booking Integration](https://www.codemanas.com/downloads/zoom-integration-for-woocommerce-booking/ "WooCommerce Booking Integration")** for:
+Addon: **[WooCommerce and WooCommerce Booking Integration](https://www.codemanas.com/downloads/zoom-integration-for-woocommerce-booking/ "WooCommerce and WooCommerce Booking Integration")** for:
 
+* Integration with WooCommerce and Zoom Meetings Countdown page.
+* Purchasable Single Meetings !
+* WP-Cron emails before 24 hours of the meeting.
+* Separate meeting list page in my-account section.
 * Integration with WooCommerce Bookings
 * Automated WooCommerce Booking meeting process.
 * Individual Booking Product Meetings
 * Individual Booking Product Hosts
 * Individual Booking product meeting links for each bookings.
 
-> NOTE: Premium plan users will always be given highest priority over free plan users.
+> NOTE: This integrates to both WooCommerce as well as WooCommerce Booking plugin as well.
 
 **COMPATIBILITY:**
 
@@ -109,7 +113,10 @@ Search for the plugin -> add new dialog and click install, or download and extra
 
 == Changelog ==
 
-= 3.1.3 - Feb 25, 2020 =
+= 3.1.5 - Feb 27, 2020 =
+Added: Adjustments on settings pages.
+
+= 3.1.3 - 3.1.4 - Feb 25, 2020 =
 Added: Start time to show according to local time.
 Fixed: Minor bug fixes ( No effect elsewhere ).
 

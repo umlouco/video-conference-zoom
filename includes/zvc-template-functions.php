@@ -65,6 +65,7 @@ function video_conference_zoom_meeting_details() {
  * @since 3.0.0
  */
 function video_conference_zoom_meeting_join() {
+	global $zoom;
 	$data = array(
 		'ajaxurl'    => admin_url( 'admin-ajax.php' ),
 		'start_date' => $zoom['start_date'],
