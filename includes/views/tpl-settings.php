@@ -75,12 +75,11 @@ $past_join_links = get_option( 'zoom_past_join_links' );
             </ul>
             <div class="zvc-information-sec">
                 <h3>WooCommerce Addon</h3>
-                <p>Integrate your Zoom Meetings directly to WooCommerce booking products. Zoom Integration for WooCommerce Booking allows you
-                    to automate your zoom meetings directly from your WordPress dashboard by linking zoom meetings to your WooCommerce Booking
-                    products automatically when a Booking Product is created. Users will receive join links in their booking confirmation
+                <p>Integrate your Zoom Meetings directly to WooCommerce or WooCommerce booking products. Zoom Integration for WooCommerce allows you
+                    to automate your zoom meetings directly from your WordPress dashboard by linking zoom meetings to your WooCommerce or WooCommerce Booking
+                    products automatically. Users will receive join links in their booking confirmation
                     emails.</p>
-                <p><a href="https://www.codemanas.com/downloads/zoom-integration-for-woocommerce-booking/" class="button button-primary">From:
-                        $30</a></p>
+                <p><a href="https://www.codemanas.com/downloads/zoom-integration-for-woocommerce-booking/" class="button button-primary">More Details</a></p>
             </div>
             <div class="zvc-information-sec">
                 <h3>Need Idle Auto logout ?</h3>
