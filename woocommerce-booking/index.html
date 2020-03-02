@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>WooCommerce (Addon) - Video Conferencing with Zoom API Plugin Documentation</title>
+  <title>WooCommerce Bookings (Addon) - Video Conferencing with Zoom API Plugin Documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,8 +17,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "WooCommerce (Addon)";
-    var mkdocs_page_input_path = "woocommerce.md";
+    var mkdocs_page_name = "WooCommerce Bookings (Addon)";
+    var mkdocs_page_input_path = "woocommerce-booking.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -83,26 +83,42 @@
     <a class="" href="../assign_host/">Assign Host Page</a>
 	    </li>
           
+            <li class="toctree-l1">
+		
+    <a class="" href="../woocommerce/">WooCommerce (Addon)</a>
+	    </li>
+          
             <li class="toctree-l1 current">
 		
-    <a class="current" href="./">WooCommerce (Addon)</a>
+    <a class="current" href="./">WooCommerce Bookings (Addon)</a>
     <ul class="subnav">
             
-    <li class="toctree-l2"><a href="#purpose">Purpose</a></li>
+    <li class="toctree-l2"><a href="#prerequisite">Prerequisite</a></li>
     
 
-    <li class="toctree-l2"><a href="#whats-required">Whats required ?</a></li>
+    <li class="toctree-l2"><a href="#introduction">Introduction</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#demo-video-of-implementation">Demo Video of Implementation</a></li>
+        
+        </ul>
     
 
-    <li class="toctree-l2"><a href="#demo">Demo</a></li>
+    <li class="toctree-l2"><a href="#features">Features</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#create-automated-zoom-meetings-without-configurations">Create Automated zoom meetings without configurations</a></li>
+        
+            <li><a class="toctree-l3" href="#manually-select-which-host-to-assign-for-the-booking">Manually Select which host to assign for the Booking</a></li>
+        
+            <li><a class="toctree-l3" href="#join-links-and-start-links-in-email-as-well-as-your-frontend-my-account-section">Join links and start links in email as well as your frontend my-account section.</a></li>
+        
+        </ul>
     
 
     </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../woocommerce-booking/">WooCommerce Bookings (Addon)</a>
 	    </li>
           
         </ul>
@@ -127,7 +143,7 @@
     
       
     
-    <li>WooCommerce (Addon)</li>
+    <li>WooCommerce Bookings (Addon)</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -137,21 +153,30 @@
           <div role="main">
             <div class="section">
               
-                <p><strong>This Addon is for WooCommerce Plugin</strong> which acts as an automation process in creating zoom meetings which is available <a href="https://www.codemanas.com/downloads/zoom-integration-for-woocommerce-booking/">here</a>.</p>
-<h2 id="purpose">Purpose</h2>
-<ol>
-<li>Make your meetings purchasable.</li>
-<li>Allow users to join and receive meeting links via emails.</li>
-<li>Automate the meeting creation process.</li>
-</ol>
-<h2 id="whats-required">Whats required ?</h2>
+                <p><strong>This Addon is for WooCommerce Booking Plugin</strong> which acts as an automation process in creating zoom meetings which is available <a href="https://www.codemanas.com/downloads/zoom-integration-for-woocommerce-booking/">here</a>.</p>
+<h2 id="prerequisite">Prerequisite</h2>
 <ol>
 <li>Free version of <a href="https://wordpress.org/plugins/video-conferencing-with-zoom-api/">Video Conferencing with Zoom API </a></li>
 <li>WooCommerce <a href="https://wordpress.org/plugins/woocommerce/">Download Here</a></li>
-<li><a href="https://www.codemanas.com/downloads/zoom-integration-for-woocommerce-booking/">Zoom integration for WooCommerce</a></li>
+<li>WooCommerce Bookings <a href="https://woocommerce.com/products/woocommerce-bookings/">Download Here</a></li>
 </ol>
-<h2 id="demo">Demo</h2>
-<iframe src="https://www.youtube.com/embed/PXjah9xXZbM" width="100%" height="400" allowfullscreen="allowfullscreen"></iframe>
+<h2 id="introduction">Introduction</h2>
+<p>Zoom Integration for WooCommerce Booking allows you to automate your zoom meetings directly from your WordPress dashboard by linking zoom meetings to your WooCommerce Booking products automatically when a Booking Product is created. Users will receive join links in their booking confirmation emails. Admin can directly start meetings from wp-admin &gt; Bookings list page.</p>
+<h3 id="demo-video-of-implementation">Demo Video of Implementation</h3>
+<iframe src="https://www.youtube.com/embed/lozhBjjIZTw" width="100%" height="300" allowfullscreen="allowfullscreen"></iframe>
+
+<p>Implementaion of the plugin video above.</p>
+<h2 id="features">Features</h2>
+<p>Below are few features listed.</p>
+<h3 id="create-automated-zoom-meetings-without-configurations">Create Automated zoom meetings without configurations</h3>
+<p>With this plugin, your zoom meetings are automated when a booking product is booked. A zoom meeting is created once a booking is booked from a customer side. It happens automatically without any configurations.</p>
+<p><img src="https://www.codemanas.com/wp-content/uploads/edd/2020/02/zoom-wordpress.jpg" alt="Zoom and WooCommerce"></p>
+<h3 id="manually-select-which-host-to-assign-for-the-booking">Manually Select which host to assign for the Booking</h3>
+<p>When you create a booking product, you'll be able to select which host to assign that booking product so that the host can manually start the meeting when a booking is booked.</p>
+<p><img src="https://www.codemanas.com/wp-content/uploads/edd/2020/02/selection-of-host.jpg" alt="Zoom and WooCommerce"></p>
+<h3 id="join-links-and-start-links-in-email-as-well-as-your-frontend-my-account-section">Join links and start links in email as well as your frontend my-account section.</h3>
+<p>After a booking is done. Users will be able to join their bookings from email link. Zoom meeting will be included in the booking email as well as inside the users my-account &gt; bookings frontend table section.</p>
+<p><img src="https://www.codemanas.com/wp-content/uploads/edd/2020/02/My-account-WooCommerce.jpg" alt="Zoom and WooCommerce"></p>
               
             </div>
           </div>
@@ -159,10 +184,8 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../woocommerce-booking/" class="btn btn-neutral float-right" title="WooCommerce Bookings (Addon)">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-      
-        <a href="../assign_host/" class="btn btn-neutral" title="Assign Host Page"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../woocommerce/" class="btn btn-neutral" title="WooCommerce (Addon)"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -188,10 +211,8 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../assign_host/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../woocommerce/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
-      
-        <span style="margin-left: 15px"><a href="../woocommerce-booking/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
