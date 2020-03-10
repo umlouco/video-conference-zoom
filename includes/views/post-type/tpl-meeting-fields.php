@@ -1,12 +1,30 @@
 <?php
 /**
- * @author Deepen.
+ * @author     Deepen.
  * @created_on 11/19/19
  */
 ?>
 
 <table class="form-table">
     <tbody>
+	<?php
+	global $post;
+	$meeting_details = get_post_meta( $post->ID, '_meeting_zoom_details', true );
+	if ( $post->post_status == 'publish' && is_object($meeting_details) && isset($meeting_details->id) ) {
+		?>
+        <tr>
+            <th scope="row"><label for="meeting-shortcode">Shortcode</label></th>
+            <td><input class="text regular-text" id="meeting-shortcode" type="text" readonly value='[zoom_api_link meeting_id="<?php echo $meeting_details->id; ?>" link_only="no"]' onclick="this.select(); document.execCommand('copy'); alert('Copied to clipboard');"
+                />
+                <p class="description">
+               <?php _e('If you need to show this meeting on another page or post please use this shortcode','video-conferencing-with-zoom-api'); ?>
+            </p>
+            </td>
+
+        </tr>
+		<?php
+	}
+	?>
     <tr>
         <th scope="row"><label for="userId"><?php _e( 'Meeting Host *', 'video-conferencing-with-zoom-api' ); ?></label></th>
         <td>
