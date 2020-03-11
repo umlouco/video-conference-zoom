@@ -1,4 +1,8 @@
 <?php
+// If this file is called directly, abort.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( ! function_exists( 'dump' ) ) {
 	function dump( $var ) {
@@ -188,7 +192,7 @@ function video_conferencing_zoom_api_show_like_popup() {
         <p>
 			<?php
 			printf( esc_html__( 'Please consider giving a %s if you found this useful at wordpress.org or ', 'video-conferencing-with-zoom-api' ), '<a href="https://wordpress.org/support/plugin/video-conferencing-with-zoom-api/reviews/#new-post">5 star thumbs up</a>' );
-			printf( esc_html__( 'check %s for shortcode references.', 'video-conferencing-with-zoom-api' ), '<a href="?page=zoom-video-conferencing-settings">settings</a>' );
+			printf( esc_html__( 'check %s for shortcode references.', 'video-conferencing-with-zoom-api' ), '<a href="' . admin_url( 'edit.php?post_type=zoom-meetings&page=zoom-video-conferencing-settings' ) . '">settings</a>' );
 			?>
         </p>
     </div>
@@ -203,8 +207,12 @@ function video_conferencing_zoom_api_show_api_notice() {
 	$notice = get_option( 'zoom_api_notice' );
 	if ( empty( $notice ) ) {
 		?>
-        <div id="message" class="notice notice-success"><p style="font-size:16px;"><strong><?php _e( "Do not get confused here !!", "video-conferencing-with-zoom-api" ); ?></strong>
-            <p><strong><?php _e( "Please read !!! These below meetings are directly from your zoom.us account via API connection. Meetings added from here won't show up on your Post Type list. This will only create meeting in your zoom.us account !", "video-conferencing-with-zoom-api" ); ?></strong> <a href="javascript:void(0);" class="zvc-dismiss-message"><?php _e( "I understand ! Don't show this again !", "video-conferencing-with-zoom-api" ); ?></a></p></div>
+        <div id="message" class="notice notice-success"><p style="font-size:16px;">
+                <strong><?php _e( "Do not get confused here !!", "video-conferencing-with-zoom-api" ); ?></strong>
+            <p>
+                <strong><?php _e( "Please read !!! These below meetings are directly from your zoom.us account via API connection. Meetings added from here won't show up on your Post Type list. This will only create meeting in your zoom.us account !", "video-conferencing-with-zoom-api" ); ?></strong>
+                <a href="javascript:void(0);" class="zvc-dismiss-message"><?php _e( "I understand ! Don't show this again !", "video-conferencing-with-zoom-api" ); ?></a>
+            </p></div>
 		<?php
 	}
 }

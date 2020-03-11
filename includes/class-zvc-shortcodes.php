@@ -18,14 +18,14 @@ class Zoom_Video_Conferencing_Shorcodes {
 	}
 
 	/**
-     * Render output for shortcode
-     *
-     * @since 3.0.0
-     * @author Deepen
+	 * Render output for shortcode
+	 *
 	 * @param $atts
 	 * @param null $content
 	 *
 	 * @return string
+	 * @author Deepen
+	 * @since 3.0.0
 	 */
 	function render_main( $atts, $content = null ) {
 		ob_start();
@@ -35,8 +35,8 @@ class Zoom_Video_Conferencing_Shorcodes {
 		wp_enqueue_script( 'video-conferencing-with-zoom-api' );
 
 		extract( shortcode_atts( array(
-			'meeting_id'   => 'javascript:void(0);',
-			'link_only' => 'no',
+			'meeting_id' => 'javascript:void(0);',
+			'link_only'  => 'no',
 		), $atts ) );
 
 		$vanity_uri               = get_option( 'zoom_vanity_url' );
@@ -44,7 +44,7 @@ class Zoom_Video_Conferencing_Shorcodes {
 		$meeting                  = $this->fetch_meeting( $meeting_id );
 		$GLOBALS['zoom_meetings'] = $meeting;
 
-		if ( ! empty( $meeting ) && $meeting->code === 3001 ) {
+		if ( ! empty( $meeting ) && ! empty( $meeting->code ) && $meeting->code === 3001 ) {
 			?>
             <p class="dpn-error dpn-mtg-not-found"><?php echo $meeting->message; ?></p>
 			<?php
@@ -67,8 +67,8 @@ class Zoom_Video_Conferencing_Shorcodes {
 
 	/**
 	 * Output only singel link
-     * @since 3.0.4
-     * @author Deepen
+	 * @since 3.0.4
+	 * @author Deepen
 	 */
 	public function generate_link_only() {
 		//Get Template

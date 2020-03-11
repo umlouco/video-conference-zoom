@@ -39,10 +39,6 @@ class Video_Conferencing_With_Zoom {
 		$this->load_dependencies();
 		$this->init_api();
 
-		$this->post_types = Zoom_Video_Conferencing_Admin_PostType::instance();
-
-		register_activation_hook( basename( dirname( __FILE__ ) ) . '/' . basename( __FILE__ ), array( $this, 'activate' ) );
-
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts_backend' ) );
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
 
@@ -194,13 +190,16 @@ class Video_Conferencing_With_Zoom {
 	 * @since 1.0.0
 	 * @author Deepen
 	 */
-	public function activate() {
-		$this->post_types->register();
+	public static function activate() {
+		require_once ZVC_PLUGIN_INCLUDES_PATH . '/admin/class-zvc-admin-post-type.php';
+		$post_type = new Zoom_Video_Conferencing_Admin_PostType();
+		$post_type->register();
+
 		self::install();
 		flush_rewrite_rules();
 	}
 
-	public function install() {
+	public static function install() {
 		global $wp_version;
 		$min_wp_version = 4.8;
 		$exit_msg       = sprintf( __( '%s requires %s or newer.' ), "Video Conferencing with Zoom API", $min_wp_version );

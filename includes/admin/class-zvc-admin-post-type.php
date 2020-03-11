@@ -9,29 +9,6 @@
 
 class Zoom_Video_Conferencing_Admin_PostType {
 
-	/**
-	 * The single instance of the class.
-	 *
-	 * @var self
-	 * @since  3.0.2
-	 */
-	private static $_instance = null;
-
-	/**
-	 * Allows for accessing single instance of class. Class should only be constructed once per call.
-	 *
-	 * @return self Main instance.
-	 * @since  3.0.2
-	 * @static
-	 */
-	public static function instance() {
-		if ( is_null( self::$_instance ) ) {
-			self::$_instance = new self();
-		}
-
-		return self::$_instance;
-	}
-
 	public function __construct() {
 		add_action( 'init', array( $this, 'register' ) );
 		add_action( 'add_meta_boxes', array( $this, 'add_metabox' ) );
@@ -101,10 +78,20 @@ class Zoom_Video_Conferencing_Admin_PostType {
 			$this,
 			'render_metabox'
 		), 'zoom-meetings', 'advanced', 'high' );
-		add_meta_box( 'zoom-meeting-meta-side', __( 'Extra Fields ?', 'video-conferencing-with-zoom-api' ), array(
+		add_meta_box( 'zoom-meeting-meta-side', __( 'Meeting Details', 'video-conferencing-with-zoom-api' ), array(
 			$this,
 			'rendor_sidebox'
 		), 'zoom-meetings', 'side', 'high' );
+		if ( ! is_plugin_active( 'vczapi-woo-addon/vczapi-woo-addon.php' ) ) {
+			add_meta_box( 'zoom-meeting-woo-integration-info', __( 'WooCommerce Integration?', 'video-conferencing-with-zoom-api' ), array(
+				$this,
+				'render_woo_sidebox'
+			), 'zoom-meetings', 'side', 'high' );
+		}
+	}
+
+	public function render_woo_sidebox() {
+		echo "<p>Enable this meeting to be purchased by your users ? </p><p>Check out <a href='" . admin_url( 'edit.php?post_type=zoom-meetings&page=zoom-video-conferencing-addons' ) . "'>WooCommerce addon</a> for this plugin.</p>";
 	}
 
 	/**
@@ -363,3 +350,5 @@ class Zoom_Video_Conferencing_Admin_PostType {
 		}
 	}
 }
+
+new Zoom_Video_Conferencing_Admin_PostType();

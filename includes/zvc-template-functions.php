@@ -4,6 +4,11 @@
  * @created_on 11/20/19
  */
 
+// If this file is called directly, abort.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Function to check if a user is logged in or not
  * @author Deepen

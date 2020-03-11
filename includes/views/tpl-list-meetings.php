@@ -1,4 +1,10 @@
 <?php
+
+// If this file is called directly, abort.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 //Check if any transient by name is available
 $users = video_conferencing_zoom_api_get_user_transients();
 
@@ -31,7 +37,8 @@ if ( isset( $_GET['host_id'] ) ) {
                     <option value="trash"><?php _e( "Move to Trash", "video-conferencing-with-zoom-api" ); ?></option>
                 </select>
                 <input type="submit" id="bulk_delete_meeting_listings" data-hostid="<?php echo $_GET['host_id']; ?>" class="button action" value="Apply">
-                <a href="?post_type=zoom-meetings&page=zoom-video-conferencing-add-meeting&host_id=<?php echo $_GET['host_id']; ?>" class="button action" title="Add new meeting">Add New Meeting</a>
+                <a href="?post_type=zoom-meetings&page=zoom-video-conferencing-add-meeting&host_id=<?php echo $_GET['host_id']; ?>" class="button action" title="Add new meeting">Add
+                    New Meeting</a>
             </div>
             <div class="alignright">
                 <select onchange="location = this.value;" class="zvc-hacking-select">
@@ -50,6 +57,7 @@ if ( isset( $_GET['host_id'] ) ) {
                 <tr>
                     <th class="zvc-text-center"><input type="checkbox" id="checkall"/></th>
                     <th class="zvc-text-left"><?php _e( 'Meeting ID', 'video-conferencing-with-zoom-api' ); ?></th>
+                    <th class="zvc-text-left"><?php _e( 'Shortcode', 'video-conferencing-with-zoom-api' ); ?></th>
                     <th class="zvc-text-left"><?php _e( 'Topic', 'video-conferencing-with-zoom-api' ); ?></th>
                     <th class="zvc-text-left"><?php _e( 'Status', 'video-conferencing-with-zoom-api' ); ?></th>
                     <th class="zvc-text-left" class="zvc-text-left"><?php _e( 'Start Time', 'video-conferencing-with-zoom-api' ); ?></th>
@@ -63,8 +71,13 @@ if ( isset( $_GET['host_id'] ) ) {
 					foreach ( $meetings as $meeting ) {
 						?>
                         <tr>
-                            <td class="zvc-text-center"><input type="checkbox" name="meeting_id_check[]" class="checkthis" value="<?php echo $meeting->id; ?>"/></td>
+                            <td class="zvc-text-center">
+                                <input type="checkbox" name="meeting_id_check[]" class="checkthis" value="<?php echo $meeting->id; ?>"/></td>
                             <td><?php echo $meeting->id; ?></td>
+                            <td>
+                                <input class="text" id="meeting-shortcode" type="text" readonly value='[zoom_api_link meeting_id="<?php echo $meeting->id; ?>" link_only="no"]' onclick="this.select(); document.execCommand('copy'); alert('Copied to clipboard');"/>
+                                <p class="description"><?php _e( 'Click to Copy Shortcode !', 'video-conferencing-with-zoom-api' ); ?></p>
+                            </td>
                             <td>
                                 <a href="edit.php?post_type=zoom-meetings&page=zoom-video-conferencing-add-meeting&edit=<?php echo $meeting->id; ?>&host_id=<?php echo $meeting->host_id; ?>"><?php echo $meeting->topic; ?></a>
                                 <div class="row-actions">

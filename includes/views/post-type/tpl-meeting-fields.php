@@ -3,6 +3,11 @@
  * @author     Deepen.
  * @created_on 11/19/19
  */
+
+// If this file is called directly, abort.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 ?>
 
 <table class="form-table">

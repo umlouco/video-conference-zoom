@@ -4,6 +4,11 @@
  * @created_on 11/20/19
  */
 
+// If this file is called directly, abort.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 //Globals
 add_action( 'vczoom_before_main_content', 'video_conference_zoom_output_content_start', 10 );
 add_action( 'vczoom_after_main_content', 'video_conference_zoom_output_content_end', 10 );

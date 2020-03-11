@@ -1,4 +1,11 @@
-<?php video_conferencing_zoom_api_show_like_popup(); ?>
+<?php
+
+// If this file is called directly, abort.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+video_conferencing_zoom_api_show_like_popup(); ?>
 <div class="wrap">
     <h1><?php _e( 'Reports', 'video-conferencing-with-zoom-api' ); ?></h1>
 

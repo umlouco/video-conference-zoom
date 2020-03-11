@@ -1,4 +1,9 @@
 <?php
+// If this file is called directly, abort.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 //Check if any transient by name is available
 $users = video_conferencing_zoom_api_get_user_transients();
 ?>

@@ -1,3 +1,10 @@
+<?php
+// If this file is called directly, abort.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
+
 <div class="wrap">
     <h2><?php _e( "Assign Host ID", "video-conferencing-with-zoom-api" ); ?></h2>
     <div id="message" class="notice notice-warning">

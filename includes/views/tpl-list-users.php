@@ -1,4 +1,10 @@
 <?php
+
+// If this file is called directly, abort.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 video_conferencing_zoom_api_show_like_popup(); 
 
 $users = video_conferencing_zoom_api_get_user_transients();
