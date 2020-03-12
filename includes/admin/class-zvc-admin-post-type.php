@@ -56,7 +56,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 			'query_var'          => true,
 			'menu_icon'          => 'dashicons-video-alt2',
 			'capability_type'    => 'post',
-			'has_archive'        => true,
+			'has_archive'        => false,
 			'hierarchical'       => false,
 			'menu_position'      => 5,
 			'supports'           => array(
@@ -82,7 +82,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 			$this,
 			'rendor_sidebox'
 		), 'zoom-meetings', 'side', 'high' );
-		if ( ! is_plugin_active( 'vczapi-woo-addon/vczapi-woo-addon.php' ) ) {
+		if ( is_plugin_inactive( 'vczapi-woo-addon/vczapi-woo-addon.php' ) && is_plugin_inactive( 'vczapi-woocommerce-addon/vczapi-woocommerce-addon.php' ) ) {
 			add_meta_box( 'zoom-meeting-woo-integration-info', __( 'WooCommerce Integration?', 'video-conferencing-with-zoom-api' ), array(
 				$this,
 				'render_woo_sidebox'
