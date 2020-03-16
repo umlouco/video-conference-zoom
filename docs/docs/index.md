@@ -6,6 +6,10 @@
 2. Click on install and activate `OR`
 3. Download and extract the plugin, and copy "Video conferencing with zoom api" plugin folder into your wp-content/plugins directory and activate.
 
+OR
+
+Download Plugin from <a href="https://wordpress.org/plugins/video-conferencing-with-zoom-api/">WordPress.org</a> repository.
+
 ## About Plugin
 
 A simple plugin which gives you the extensive functionality to manage zoom meetings, users, reports from your WordPress Dashboard. Now, with capabitly to add your own post as a meeting. Create posts as meetings directly from your WordPress dashboard to show in the frontend as a meeting page. Allow users to directly join via that page with click of a button.

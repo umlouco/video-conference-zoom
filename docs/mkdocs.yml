@@ -1,6 +1,7 @@
 site_name: Video Conferencing with Zoom API Plugin Documentation
 nav:
   - Getting Started: index.md
+  - Zoom Pro Plans: zoom_plans.md
   - API Keys Integration: integration.md
   - Shortcode Implementation: shortcode.md
   - Vanity URL: vanity_url.md

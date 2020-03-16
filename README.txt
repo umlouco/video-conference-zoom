@@ -46,7 +46,8 @@ REFER FAQ to override page templates!
 
 **EXTEND OTHER FEATURES:**
 
-Addon: **[WooCommerce and WooCommerce Booking Integration](https://www.codemanas.com/downloads/zoom-integration-for-woocommerce-booking/ "WooCommerce and WooCommerce Booking Integration")** for:
+Addon: **[WooCommerce Integration](https://www.codemanas.com/downloads/zoom-meetings-for-woocommerce/ "WooCommerce Integration")** for:
+Addon: **[WooCommerce Booking Integration](https://www.codemanas.com/downloads/zoom-integration-for-woocommerce-booking/ "WooCommerce Booking Integration")** for:
 
 * Integration with WooCommerce and Zoom Meetings Countdown page.
 * Purchasable Single Meetings !
@@ -59,6 +60,10 @@ Addon: **[WooCommerce and WooCommerce Booking Integration](https://www.codemanas
 * Individual Booking product meeting links for each bookings.
 
 > NOTE: This integrates to both WooCommerce as well as WooCommerce Booking plugin as well.
+
+& more functionalities and integrations are on its way!
+
+You can find more information on the Pro version on website: **[codemanas.com](https://www.codemanas.com/ "codemanas.com")**
 
 **COMPATIBILITY:**
 
@@ -75,6 +80,8 @@ Addon: **[WooCommerce and WooCommerce Booking Integration](https://www.codemanas
 * Webinar module not integrated
 
 **SHORTCODE:**
+
+**You can get your shorcodes from individual meetings after creating certain meeting. (From version 3.1.8+)**
 
 From version 3.0.0+ - Shortcode has been changed to fit different need:
 
