@@ -12,7 +12,9 @@ Gives you the power to manage Zoom Meetings, check reports and create users from
 
 == Description ==
 
-Only simple plugin which gives you the extensive functionality to manage zoom meetings, users, reports from your WordPress Dashboard. Now, with capability to add your own post as a meeting. Join meetings directly from Browser without Zoom App. Create posts as meetings directly from your WordPress dashboard to show in the frontend as a meeting page. Allow users to directly join via that page with click of a button.
+Only simple plugin which gives you the extensive functionality to manage zoom meetings, users, reports from your WordPress Dashboard. Now, with capability to add your own post as a meeting. Create posts as meetings directly from your WordPress dashboard to show in the frontend as a meeting page. Allow users to directly join via that page with click of a button.
+
+Now, from 3.2.0 allows you to Join meetings directly from Browser without Zoom App.
 
 **FEATURES:**
 
@@ -76,6 +78,12 @@ You can find more information on the Pro version on website: **[codemanas.com](h
 * Separate Admin area to manage all meetings.
 * Can add meeting links via shortcode to your WooCommerce product pages as well.
 
+**Zoom Web SDK Notice from Zoom Itself**
+
+The Web SDK enables the development of video applications powered by Zoom’s core framework inside an HTML5 web client through a highly optimized WebAssembly module.
+
+As an extension of the Zoom browser client, this SDK is intended for implementations where the end user has a low-bandwidth environment, is behind a network firewall, or has restrictions on their machine which would prevent them from installing the Zoom Desktop or Mobile Clients.
+
 **LIMITATIONS:**
 
 * Webinar module not integrated
@@ -110,14 +118,15 @@ Search for the plugin -> add new dialog and click install, or download and extra
 4. Overriding shortcode template is also the same process inside folder **templates/shortcode**
 
 == Screenshots ==
-1. Meetings Listings. Select a User in order to list meetings for that user.
-2. Add a Meeting.
-3. Frontend Display Page.
-4. Users List Screen. Flush cache to clear the cache of users.
-5. Reports Section.
-6. Settings Page.
-7. Backend Meeting Create via CPT
-8. Shortcode Output
+1. Join via browser
+2. Meetings Listings. Select a User in order to list meetings for that user.
+3. Add a Meeting.
+4. Frontend Display Page.
+5. Users List Screen. Flush cache to clear the cache of users.
+6. Reports Section.
+7. Settings Page.
+8. Backend Meeting Create via CPT
+9. Shortcode Output
 
 == Changelog ==
 
