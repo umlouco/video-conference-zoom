@@ -326,13 +326,6 @@ class Zoom_Video_Conferencing_Admin_PostType {
 				<?php
 				$template = vczapi_get_template( $templates );
 			} else {
-				// Localize the script with new data
-				$translation_array = array(
-					'meeting_ended'    => __( 'Meeting Has Started/Ended !', 'video-conferencing-with-zoom-api' ),
-					'meeting_starting' => __( 'Meeting is Starting..', 'video-conferencing-with-zoom-api' ),
-				);
-				wp_localize_script( 'video-conferencing-with-zoom-api', 'zvc_strings', $translation_array );
-
 				//Render View
 				$templates[] = 'single-meeting.php';
 				$template    = vczapi_get_template( $templates );
