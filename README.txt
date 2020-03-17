@@ -1,4 +1,4 @@
-=== Integration with Zoom Meetings ===
+=== Video Conferencing with Zoom ===
 Contributors: j__3rk, digamberpradhan
 Tags: zoom video conference, video conference, zoom, zoom video conferencing, web conferencing, online meetings
 Donate link: https://deepenbajracharya.com.np/donate
