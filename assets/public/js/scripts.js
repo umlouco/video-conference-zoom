@@ -78,50 +78,54 @@ jQuery(function ($) {
                 timezone = 'Asia/Kathmandu';
             }
 
-            if (typeof mtg_data !== undefined && mtg_data.page === "single-meeting") {
-                $('.dpn-zvc-sidebar-content').after('<div class="dpn-zvc-sidebar-box remove-sidebar-loder-text"><p>Loading..Please wait..</p></div>');
-                var pageData = {
-                    action: 'set_timezone',
-                    user_timezone: timezone,
-                    post_id: mtg_data.post_id,
-                    mtg_timezone: mtg_data.timezone,
-                    start_date: mtg_data.start_date,
-                    type: 'page'
-                };
+            try {
+                if (typeof mtg_data !== undefined && mtg_data.page === "single-meeting") {
+                    $('.dpn-zvc-sidebar-content').after('<div class="dpn-zvc-sidebar-box remove-sidebar-loder-text"><p>Loading..Please wait..</p></div>');
+                    var pageData = {
+                        action: 'set_timezone',
+                        user_timezone: timezone,
+                        post_id: mtg_data.post_id,
+                        mtg_timezone: mtg_data.timezone,
+                        start_date: mtg_data.start_date,
+                        type: 'page'
+                    };
 
-                $.post(mtg_data.ajaxurl, pageData).done(function (response) {
-                    if (response.success) {
-                        $('.dpn-zvc-sidebar-content').after(response.data);
-                    } else {
-                        $('.dpn-zvc-sidebar-content').after('<div class="dpn-zvc-sidebar-box">' + response.data + '</div>');
-                    }
+                    $.post(mtg_data.ajaxurl, pageData).done(function (response) {
+                        if (response.success) {
+                            $('.dpn-zvc-sidebar-content').after(response.data);
+                        } else {
+                            $('.dpn-zvc-sidebar-content').after('<div class="dpn-zvc-sidebar-box">' + response.data + '</div>');
+                        }
 
-                    $('.remove-sidebar-loder-text').remove();
-                });
-            }
+                        $('.remove-sidebar-loder-text').remove();
+                    });
+                }
 
-            //For Shortcode
-            if (typeof mtg_data !== undefined && mtg_data.type === "shortcode") {
-                var shortcodeData = {
-                    action: 'set_timezone',
-                    user_timezone: timezone,
-                    mtg_timezone: mtg_data.timezone,
-                    join_uri: mtg_data.join_uri,
-                    browser_url: mtg_data.browser_url,
-                    start_date: mtg_data.start_date,
-                    type: 'shortcode'
-                };
+                //For Shortcode
+                if (typeof mtg_data !== undefined && mtg_data.type === "shortcode") {
+                    var shortcodeData = {
+                        action: 'set_timezone',
+                        user_timezone: timezone,
+                        mtg_timezone: mtg_data.timezone,
+                        join_uri: mtg_data.join_uri,
+                        browser_url: mtg_data.browser_url,
+                        start_date: mtg_data.start_date,
+                        type: 'shortcode'
+                    };
 
-                $('.zvc-table-shortcode-duration').after('<tr class="remove-shortcode-loder-text"><td colspan="2">Loading.. Please wait..</td></tr>');
-                $.post(mtg_data.ajaxurl, shortcodeData).done(function (response) {
-                    if (response.success) {
-                        $('.zvc-table-shortcode-duration').after(response.data);
-                    } else {
-                        $('.zvc-table-shortcode-duration').after('<tr><td colspan="2">' + response.data + '</td></tr>');
-                    }
+                    $('.zvc-table-shortcode-duration').after('<tr class="remove-shortcode-loder-text"><td colspan="2">Loading.. Please wait..</td></tr>');
+                    $.post(mtg_data.ajaxurl, shortcodeData).done(function (response) {
+                        if (response.success) {
+                            $('.zvc-table-shortcode-duration').after(response.data);
+                        } else {
+                            $('.zvc-table-shortcode-duration').after('<tr><td colspan="2">' + response.data + '</td></tr>');
+                        }
 
-                    $('.remove-shortcode-loder-text').remove();
-                });
+                        $('.remove-shortcode-loder-text').remove();
+                    });
+                }
+            } catch (e) {
+                console.log(e);
             }
         }
     };

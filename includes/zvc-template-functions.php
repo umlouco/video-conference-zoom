@@ -105,10 +105,14 @@ function video_conference_zoom_meeting_join_link( $zoom_meeting ) {
 		<?php
 	}
 
-	if ( ! empty( $zoom_meeting->id ) ) {
-		?>
-        <a href="<?php echo esc_url( $browser_url . $zoom_meeting->id ); ?>" class="btn btn-join-link"><?php echo apply_filters( 'vczoom_join_meeting_via_app_text', __( 'Join via Web Browser', 'video-conferencing-with-zoom-api' ) ); ?></a>
-		<?php
+	if ( wp_doing_ajax() ) {
+		$post_id         = absint( filter_input( INPUT_POST, 'post_id' ) );
+		$meeting_details = get_post_meta( $post_id, '_meeting_fields', true );
+		if ( ! empty( $zoom_meeting->id ) && ! empty( $post_id ) && empty( $meeting_details['site_option_browser_join'] ) ) {
+			?>
+            <a href="<?php echo esc_url( get_permalink( $post_id ) . '?join=' . $zoom_meeting->id . '&type=meeting' ); ?>" class="btn btn-join-link"><?php echo apply_filters( 'vczoom_join_meeting_via_app_text', __( 'Join via Web Browser', 'video-conferencing-with-zoom-api' ) ); ?></a>
+			<?php
+		}
 	}
 }
 

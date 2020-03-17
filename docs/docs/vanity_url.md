@@ -1,5 +1,7 @@
 Vanity URL is a way to change your zoom links from the default one. This is a case when you as a user have purchased a custom URL in zoom to join or start your meetings. 
 
+Read Here for more details <a href="https://support.zoom.us/hc/en-us/articles/215062646-Guidelines-for-Vanity-URL-Requests">https://support.zoom.us/hc/en-us/articles/215062646-Guidelines-for-Vanity-URL-Requests</a>
+
 ### Basic Usage
 
 In the settings page, you will find an option called "`Vanity URL`".

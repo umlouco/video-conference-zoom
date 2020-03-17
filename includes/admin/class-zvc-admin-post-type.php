@@ -134,10 +134,14 @@ class Zoom_Video_Conferencing_Admin_PostType {
                         !</strong></p>
 			<?php } ?>
             <div class="zoom-metabox-content">
-                <p>Requires Login?
+                <p><?php _e( 'Requires Login?', 'video-conferencing-with-zoom-api' ); ?>
                     <input type="checkbox" name="option_logged_in" value="1" <?php ! empty( $meeting_fields['site_option_logged_in'] ) ? checked( '1', $meeting_fields['site_option_logged_in'] ) : false; ?> class="regular-text">
                 </p>
                 <p class="description"><?php _e( 'Only logged in users of this site will be able to join this meeting.', 'video-conferencing-with-zoom-api' ); ?></p>
+                <p><?php _e( 'Hide Join via browser link ?', 'video-conferencing-with-zoom-api' ); ?>
+                    <input type="checkbox" name="option_browser_join" value="1" <?php ! empty( $meeting_fields['site_option_browser_join'] ) ? checked( '1', $meeting_fields['site_option_browser_join'] ) : false; ?> class="regular-text">
+                </p>
+                <p class="description"><?php _e( 'This will disable join via browser link in frontend page.', 'video-conferencing-with-zoom-api' ); ?></p>
             </div>
         </div>
 		<?php
@@ -189,7 +193,8 @@ class Zoom_Video_Conferencing_Admin_PostType {
 			'alternative_host_ids'      => filter_input( INPUT_POST, 'alternative_host_ids', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY )
 		);
 
-		$create_meeting_arr['site_option_logged_in'] = filter_input( INPUT_POST, 'option_logged_in' );
+		$create_meeting_arr['site_option_logged_in']    = filter_input( INPUT_POST, 'option_logged_in' );
+		$create_meeting_arr['site_option_browser_join'] = filter_input( INPUT_POST, 'option_browser_join' );
 		//Update Post Meta Values
 		update_post_meta( $post_id, '_meeting_fields', $create_meeting_arr );
 
@@ -288,12 +293,50 @@ class Zoom_Video_Conferencing_Admin_PostType {
 		global $post;
 
 		if ( $post->post_type == 'zoom-meetings' ) {
-
 			$GLOBALS['zoom'] = get_post_meta( $post->ID, '_meeting_fields', true );
 
-			//Render View
-			$templates[] = 'single-meeting.php';
-			$template    = vczapi_get_template( $templates );
+			if ( isset( $_GET['type'] ) && $_GET['type'] === "meeting" && isset( $_GET['join'] ) ) {
+				wp_enqueue_script( 'video-conferencing-with-zoom-api-react', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react.production.min.js', array( 'jquery' ), '16.8.6', true );
+				wp_enqueue_script( 'video-conferencing-with-zoom-api-react-dom', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react-dom.production.min.js', array( 'jquery' ), '16.8.6', true );
+				wp_enqueue_script( 'video-conferencing-with-zoom-api-redux', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/redux.min.js', array( 'jquery' ), '16.8.6', true );
+				wp_enqueue_script( 'video-conferencing-with-zoom-api-thunk', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/redux-thunk.min.js', array( 'jquery' ), '16.8.6', true );
+				wp_enqueue_script( 'video-conferencing-with-zoom-api-lodash', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/lodash.min.js', array( 'jquery' ), '16.8.6', true );
+				wp_enqueue_script( 'zoom-meeting-source', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/zoomus-websdk.umd.min.js', array(
+					'jquery',
+					'video-conferencing-with-zoom-api-react',
+					'video-conferencing-with-zoom-api-react-dom',
+					'video-conferencing-with-zoom-api-redux',
+					'video-conferencing-with-zoom-api-thunk',
+					'video-conferencing-with-zoom-api-lodash'
+				), '1.0.0', true );
+				wp_enqueue_script( 'video-conferencing-with-zoom-api-browser', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/js/zoom-meeting.min.js', array( 'jquery' ), '16.8.6', true );
+				wp_localize_script( 'video-conferencing-with-zoom-api-browser', 'zvc_ajx', array(
+					'ajaxurl'       => admin_url( 'admin-ajax.php' ),
+					'zvc_security'  => wp_create_nonce( "_nonce_zvc_security" ),
+					'redirect_page' => esc_url( get_permalink( $post->ID ) )
+				) );
+
+				$GLOBALS['zoom']['meeting_id'] = sanitize_text_field( absint( $_GET['join'] ) );
+				//Render View
+				$templates[] = 'join-web-browser.php';
+				?>
+                <link rel='stylesheet' type="text/css" href="<?php echo ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/css/main.min.css'; ?>" media='all'>
+                <link rel='stylesheet' type="text/css" href="<?php echo ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/bootstrap.css'; ?>" media='all'>
+                <link rel='stylesheet' type="text/css" href="<?php echo ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react-select.css'; ?>" media='all'>
+				<?php
+				$template = vczapi_get_template( $templates );
+			} else {
+				// Localize the script with new data
+				$translation_array = array(
+					'meeting_ended'    => __( 'Meeting Has Started/Ended !', 'video-conferencing-with-zoom-api' ),
+					'meeting_starting' => __( 'Meeting is Starting..', 'video-conferencing-with-zoom-api' ),
+				);
+				wp_localize_script( 'video-conferencing-with-zoom-api', 'zvc_strings', $translation_array );
+
+				//Render View
+				$templates[] = 'single-meeting.php';
+				$template    = vczapi_get_template( $templates );
+			}
 		}
 
 		return $template;

@@ -1,4 +1,6 @@
 .dpn-zvc-single-content-wrapper {
+  margin-top: 40px;
+
   .deepn-zvc-single-featured-img {
     margin-bottom: 1rem;
 
@@ -125,6 +127,44 @@
     .dpn-zvc-col-4 {
       width: 33.33333333%;
       float: left;
+    }
+  }
+}
+
+#dpen-zoom-browser-meeting {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+
+  .dpen-zoom-browser-meeting--meeting-form {
+    input[type=text],
+    button[type=submit] {
+      width: 400px;
+      height: 40px;
+      border-radius: 0;
+    }
+
+    button[type=submit] {
+      background-color: #2d8cff;
+      color: #fff;
+    }
+
+    .form-group {
+      margin-bottom: 10px;
+    }
+  }
+
+  .dpen-zoom-browser-meeting--info {
+    background: #fff;
+    padding: 20px 30px;
+    margin-bottom: 10px;
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
     }
   }
 }

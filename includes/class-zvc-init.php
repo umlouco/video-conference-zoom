@@ -77,17 +77,9 @@ class Video_Conferencing_With_Zoom {
 
 		if ( is_singular( 'zoom-meetings' ) ) {
 			wp_enqueue_style( 'video-conferencing-with-zoom-api' );
-
 			wp_enqueue_script( 'video-conferencing-with-zoom-api-moment' );
 			wp_enqueue_script( 'video-conferencing-with-zoom-api-moment-timezone' );
 			wp_enqueue_script( 'video-conferencing-with-zoom-api' );
-
-			// Localize the script with new data
-			$translation_array = array(
-				'meeting_ended'    => __( 'Meeting Has Started/Ended !', 'video-conferencing-with-zoom-api' ),
-				'meeting_starting' => __( 'Meeting is Starting..', 'video-conferencing-with-zoom-api' ),
-			);
-			wp_localize_script( 'video-conferencing-with-zoom-api', 'zvc_strings', $translation_array );
 		}
 
 	}

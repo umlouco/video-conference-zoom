@@ -5,6 +5,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! function_exists( 'dump' ) ) {
+	/**
+	 * @author Deepen
+	 * @since 1.0.0
+	 */
 	function dump( $var ) {
 		echo '<pre>';
 		var_dump( $var );
@@ -13,6 +17,10 @@ if ( ! function_exists( 'dump' ) ) {
 }
 
 if ( ! function_exists( 'zvc_get_timezone_options' ) ) {
+	/**
+	 * @author Deepen
+	 * @since 1.0.0
+	 */
 	function zvc_get_timezone_options() {
 		$zones_array = array(
 			"Pacific/Midway"                 => "(GMT-11:00) Midway Island, Samoa ",
@@ -217,6 +225,10 @@ function video_conferencing_zoom_api_show_api_notice() {
 	}
 }
 
+/**
+ * @author Deepen
+ * @since 3.0.0
+ */
 function vczapi_get_template( $template_names, $load = false, $require_once = true ) {
 	if ( ! is_array( $template_names ) ) {
 		return '';
@@ -244,6 +256,10 @@ function vczapi_get_template( $template_names, $load = false, $require_once = tr
 	return $located;
 }
 
+/**
+ * @author Deepen
+ * @since 3.0.0
+ */
 function vczapi_get_template_part( $slug, $name = '' ) {
 	$template = false;
 	if ( $name ) {
@@ -273,6 +289,10 @@ function vczapi_get_template_part( $slug, $name = '' ) {
 	}
 }
 
+/**
+ * @author Deepen
+ * @since 3.0.0
+ */
 function vczapi_check_author( $post_id ) {
 	$post_author_id = get_post_field( 'post_author', $post_id );
 	$current_user   = get_current_user_id();
@@ -283,6 +303,10 @@ function vczapi_check_author( $post_id ) {
 	}
 }
 
+/**
+ * @author Deepen
+ * @since 1.0.0
+ */
 function vczapi_dateConverter( $start_time, $tz, $format = 'F j, Y, g:i a ( T )' ) {
 	$timezone = ! empty( $tz ) ? $tz : "America/Los_Angeles";
 	$tz       = new DateTimeZone( $timezone );

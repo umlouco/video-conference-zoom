@@ -1,4 +1,4 @@
-**This Addon is for WooCommerce Plugin** which acts as an automation process in creating zoom meetings which is available [here](https://www.codemanas.com/downloads/zoom-integration-for-woocommerce-booking/).
+**This Addon is for WooCommerce Plugin** which acts as an automation process in creating zoom meetings which is available [here](https://www.codemanas.com/downloads/zoom-meetings-for-woocommerce/).
 
 ## Purpose
 
@@ -9,7 +9,7 @@
 ## Whats required ?
 1. Free version of [Video Conferencing with Zoom API ](https://wordpress.org/plugins/video-conferencing-with-zoom-api/)
 2. WooCommerce [Download Here](https://wordpress.org/plugins/woocommerce/)
-3. [Zoom integration for WooCommerce](https://www.codemanas.com/downloads/zoom-integration-for-woocommerce-booking/)
+3. [Zoom integration for WooCommerce](https://www.codemanas.com/downloads/zoom-meetings-for-woocommerce/)
 
 ## Demo
 

@@ -1,10 +1,10 @@
-=== Video Conferencing with Zoom API ===
+=== Integration with Zoom Meetings ===
 Contributors: j__3rk, digamberpradhan
 Tags: zoom video conference, video conference, zoom, zoom video conferencing, web conferencing, online meetings
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.3
-Stable tag: 3.1.8
+Stable tag: 3.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,15 +12,14 @@ Gives you the power to manage Zoom Meetings, check reports and create users from
 
 == Description ==
 
-**NOTE: Upgrading to version 3.0.0. Old shortcodes might get affected ? Please refer to [changelog tab](https://wordpress.org/plugins/video-conferencing-with-zoom-api/#developers "changelog tab") as well as new shortcode documentation from below links**
-
-A simple plugin which gives you the extensive functionality to manage zoom meetings, users, reports from your WordPress Dashboard. Now, with capabitly to add your own post as a meeting. Create posts as meetings directly from your WordPress dashboard to show in the frontend as a meeting page. Allow users to directly join via that page with click of a button.
+Only simple plugin which gives you the extensive functionality to manage zoom meetings, users, reports from your WordPress Dashboard. Now, with capability to add your own post as a meeting. Join meetings directly from Browser without Zoom App. Create posts as meetings directly from your WordPress dashboard to show in the frontend as a meeting page. Allow users to directly join via that page with click of a button.
 
 **FEATURES:**
 
 * Manage WordPress posts and link them to Live Zoom meetings ( NEW from 3.0.0+ )
 * Override single and archive page templates via your theme. ( NEW from 3.0.0+ )
 * Join links directly from frontend. ( NEW from 3.0.0+ )
+* JOIN DIRECTLY VIA WEB BROWSER FROM FRONTEND ( From v3.2.0+ ) !
 * Start Links for post authors. ( NEW from 3.0.0+ )
 * CountDown timer to Meeting start shows in individual meeting page. ( NEW from 3.0.0+ )
 * Allow posts to be only shown to logged in users. ( NEW from 3.0.0+ )
@@ -36,11 +35,13 @@ A simple plugin which gives you the extensive functionality to manage zoom meeti
 
 **DOCUMENTATION LINKS:**
 
-* [Usage Documentation](https://techies23.github.io/video-conference-zoom/ "Usage Documentation")
+* [Full Documentation](https://zoom.codemanas.com/ "Usage Documentation")
 * [Key Generation Only Documentation](https://deepenbajracharya.com.np/zoom-conference-wp-plugin-documentation/ "Key Generation Only Documentation")
 * [Usage Documentation /w WP](https://deepenbajracharya.com.np/zoom-api-integration-with-wordpress/ "Usage Documentation")
 
 **OVERRIDDING TEMPLATES:**
+
+If you use Zoom Meetings > Add new section i.e Post Type meetings then you might need to override the template. Currently this plugin supports default templates.
 
 REFER FAQ to override page templates!
 
@@ -119,6 +120,11 @@ Search for the plugin -> add new dialog and click install, or download and extra
 8. Shortcode Output
 
 == Changelog ==
+
+= 3.2.0 - Mar 17, 2020 =
+Added: Join directly via browser without needing to goto Zoom Website.
+Added: Join links show/hide option in backend.
+Fixed: Minor bugs and fixes
 
 = 3.1.7 - Mar 11, 2020 =
 Added: Shortcode copy button in each meeting page in wp-admin.

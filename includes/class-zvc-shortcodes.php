@@ -83,7 +83,6 @@ class Zoom_Video_Conferencing_Shorcodes {
 
 		return $meeting;
 	}
-
 }
 
 new Zoom_Video_Conferencing_Shorcodes();

@@ -36,6 +36,7 @@ var adminStyleDestination = './assets/admin/css/';
 
 var jsSrc = './dist/public/js/**/*.js';
 var jsDestination = './assets/public/js/';
+var jsSrcVendor = './dist/public/vendor/**/*.js';
 
 var adminJsSrc = './dist/admin/js/**/*.js';
 var adminJsDestination = './assets/admin/js/';
@@ -73,6 +74,18 @@ gulp.task('vendor', function () {
         './node_modules/moment-timezone/builds/**/*',
     ])
         .pipe(gulp.dest('./assets/vendor/moment-timezone'));
+
+    //React Production Copy
+    gulp.src([
+        './node_modules/react/umd/react.production.min.js',
+        './node_modules/react-dom/umd/react-dom.production.min.js',
+        './node_modules/redux/dist/redux.min.js',
+        './node_modules/redux-thunk/dist/redux-thunk.min.js',
+        './node_modules/lodash/lodash.min.js',
+        './node_modules/@zoomus/websdk/dist/css/bootstrap.css',
+        './node_modules/@zoomus/websdk/dist/css/react-select.css',
+    ])
+        .pipe(gulp.dest('./assets/vendor/zoom'));
 });
 
 // Public Styles
@@ -156,6 +169,23 @@ gulp.task('publicJS', function () {
     // .pipe( notify( { message: 'TASK: "customJs" Completed!', onLast: true } ) );
 });
 
+// Public JS
+gulp.task('vendorJS', function () {
+    gulp.src(jsSrcVendor)
+        .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
+        .pipe(jshint())
+        .pipe(jshint.reporter('jshint-stylish'))
+        .pipe(concat('zoom-meeting.js'))
+        .pipe(gulp.dest(jsDestination))
+        .pipe(rename({
+            basename: 'zoom-meeting',
+            suffix: '.min'
+        }))
+        .pipe(uglify())
+        .pipe(gulp.dest(jsDestination))
+    // .pipe( notify( { message: 'TASK: "customJs" Completed!', onLast: true } ) );
+});
+
 // Admin JS
 gulp.task('adminJS', function () {
     gulp.src(adminJsSrc)
@@ -174,9 +204,10 @@ gulp.task('adminJS', function () {
 });
 
 // Default task
-gulp.task('default', ['styles', 'stylesAdmin', 'publicJS', 'adminJS', 'vendor'], function () {
+gulp.task('default', ['styles', 'stylesAdmin', 'publicJS', 'vendorJS', 'adminJS', 'vendor'], function () {
     gulp.watch('./dist/public/sass/*.scss', ['styles']);
     gulp.watch('./dist/admin/sass/*.scss', ['stylesAdmin']);
     gulp.watch('./dist/public/js/*.js', ['publicJS']);
+    gulp.watch('./dist/public/vendor/*.js', ['vendorJS']);
     gulp.watch('./dist/admin/js/*.js', ['adminJS']);
 });
