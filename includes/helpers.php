@@ -265,7 +265,7 @@ function vczapi_get_template_part( $slug, $name = '' ) {
 	if ( $name ) {
 		$template = locate_template( array(
 			"{$slug}-{$name}.php",
-			ZVC_PLUGIN_SLUG . "{$slug}-{$name}.php",
+			ZVC_PLUGIN_SLUG . '/' . "{$slug}-{$name}.php",
 		) );
 
 		if ( ! $template ) {
@@ -277,7 +277,7 @@ function vczapi_get_template_part( $slug, $name = '' ) {
 	if ( ! $template ) {
 		$template = locate_template( array(
 			"{$slug}-{$name}.php",
-			ZVC_PLUGIN_SLUG . "{$slug}-{$name}.php",
+			ZVC_PLUGIN_SLUG . '/' . "{$slug}-{$name}.php",
 		) );
 	}
 
