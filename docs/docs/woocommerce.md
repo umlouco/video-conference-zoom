@@ -13,16 +13,17 @@
 
 ## Demo
 
-<iframe src="https://www.youtube.com/embed/PXjah9xXZbM" width="100%" height="400" allowfullscreen="allowfullscreen"></iframe>
+<iframe src="https://www.youtube.com/embed/V6SfMFatOH8" width="100%" height="400" allowfullscreen="allowfullscreen"></iframe>
 
-##Instructions
+## Instructions
 
 There are 2 ways you can create a Zoom Product
 
 1. Product Linked with Zoom Meeting
 2. Zoom Meeting linked with Product	( Zoom Product )
 
-###Product Linked with Zoom Meeting
+### 1. Product Linked with Zoom Meeting
+
 In this method - you can create a normal WooCommerce Product and simply connect it to a Zoom Meeting.
 
 Let's take an example of a Simple Product Type
@@ -32,30 +33,35 @@ Create a product as you normally would then you will see the Zoom Connection tab
 <img src="https://www.codemanas.com/wp-content/uploads/2020/03/Screen-Shot-2020-03-17-at-22.45.44.png">
 
 After clicking the Zoom Meeting tab, you can see the Enable Zoom Connection Checkbox.
-Checking this box will allow to link this product to a Zoom Meeting. Please note the meeting needs to be created first via Zoom Meeting > All Meetings.
+Checking this box will allow to link this product to a Zoom Meeting. Please note the meeting needs to be created first via `Zoom Meeting > All Meetings`.
 
 After ticking Enable Zoom Connection - you will see further options:
 
 <img src="https://www.codemanas.com/wp-content/uploads/2020/03/Screen-Shot-2020-03-17-at-22.50.20.png">
+
 You can link to Zoom Meeting by searching - after a meeting has been selected it's meeting details will be shown.
+
 <img src="https://www.codemanas.com/wp-content/uploads/2020/03/select-meeting.gif">
 
-Now when the product is purchased - the customer will get the option to join the meeting. They will see this in
+Now when the product is purchased - the customer will get the option to join the meeting. They will see this in:
 
 1. Their Purchase Order Receipt E-mail
 2. If registered or logged in when purchase made in my account page.
+
 <video width="640" heigh="400" controls>
     <source src="https://www.codemanas.com/wp-content/uploads/2020/03/zoom-meeting-purchase.mov" />
-</video>
+</video><br>
 
+### 2. Zoom Meeting linked with Product ( Zoom Product )
 
-### Zoom Meeting linked with Product ( Zoom Product )
 This method should be used to link Zoom Meeting with a Product. The product created using this method will not be shown on shop and search pages. The meeting created using this method is designed to be directly purchased via the zoom meeting single page. See image below.
 
 #### How to create a Zoom Meeting
 
 1. Go to WordPress admin menu "Zoom Meetings"
+
 <img src="https://www.codemanas.com/wp-content/uploads/2020/03/Screen-Shot-2020-03-18-at-11.14.50.png"><br/><br/>
+
 2. Add a New Zoom Meeting - fill out all the details like you would for the Zoom Meeting. After filling everything out there is a sidebar area that says WooCommerce Integration. Check the box that says enable purchase and enter the price that't it - the Zoom Product will then be purchasable via the Zoom Meeting Page. Please see video below.<br/><br/>
 <video controls width="640" controls>
 <source src="https://www.codemanas.com/wp-content/uploads/2020/03/zoom-product.mp4" />

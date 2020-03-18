@@ -7,14 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
-  
   <link rel="shortcut icon" href="../img/favicon.ico">
   <title>WooCommerce (Addon) - Video Conferencing with Zoom API Plugin Documentation</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
-  <link rel="stylesheet" href="../css/theme.css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
@@ -25,7 +24,7 @@
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
@@ -36,7 +35,6 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href=".." class="icon icon-home"> Video Conferencing with Zoom API Plugin Documentation</a>
         <div role="search">
@@ -47,54 +45,95 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="..">Getting Started</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../zoom_plans/">Zoom Pro Plans</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../integration/">API Keys Integration</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../shortcode/">Shortcode Implementation</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../vanity_url/">Vanity URL</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../template_override/">Template Override</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../meeting_types/">Meeting Types</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../join_links/">Join Links</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../assign_host/">Assign Host Page</a>
-                    </li>
-                </ul>
-                <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">WooCommerce (Addon)</a>
-    <ul class="current">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Getting Started</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../zoom_plans/">Zoom Pro Plans</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../integration/">API Keys Integration</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../shortcode/">Shortcode Implementation</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../vanity_url/">Vanity URL</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../template_override/">Template Override</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../meeting_types/">Meeting Types</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../join_links/">Join Links</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../assign_host/">Assign Host Page</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">WooCommerce (Addon)</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#purpose">Purpose</a></li>
+    
+
+    <li class="toctree-l2"><a href="#whats-required">Whats required ?</a></li>
+    
+
+    <li class="toctree-l2"><a href="#demo">Demo</a></li>
+    
+
+    <li class="toctree-l2"><a href="#instructions">Instructions</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#1-product-linked-with-zoom-meeting">1. Product Linked with Zoom Meeting</a></li>
+        
+            <li><a class="toctree-l3" href="#2-zoom-meeting-linked-with-product-zoom-product">2. Zoom Meeting linked with Product ( Zoom Product )</a></li>
+        
+        </ul>
+    
+
     </ul>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../woocommerce-booking/">WooCommerce Bookings (Addon)</a>
-                    </li>
-                </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../woocommerce-booking/">WooCommerce Bookings (Addon)</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../booked/">Booked Appointment Plugin</a>
+	    </li>
+          
+        </ul>
       </div>
-    </div>
+      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -119,7 +158,6 @@
       
     </li>
   </ul>
-  
   <hr/>
 </div>
           <div role="main">
@@ -139,7 +177,7 @@
 <li><a href="https://www.codemanas.com/downloads/zoom-meetings-for-woocommerce/">Zoom integration for WooCommerce</a></li>
 </ol>
 <h2 id="demo">Demo</h2>
-<iframe src="https://www.youtube.com/embed/PXjah9xXZbM" width="100%" height="400" allowfullscreen="allowfullscreen"></iframe>
+<iframe src="https://www.youtube.com/embed/V6SfMFatOH8" width="100%" height="400" allowfullscreen="allowfullscreen"></iframe>
 
 <h2 id="instructions">Instructions</h2>
 <p>There are 2 ways you can create a Zoom Product</p>
@@ -147,31 +185,35 @@
 <li>Product Linked with Zoom Meeting</li>
 <li>Zoom Meeting linked with Product ( Zoom Product )</li>
 </ol>
-<h3 id="product-linked-with-zoom-meeting">Product Linked with Zoom Meeting</h3>
+<h3 id="1-product-linked-with-zoom-meeting">1. Product Linked with Zoom Meeting</h3>
 <p>In this method - you can create a normal WooCommerce Product and simply connect it to a Zoom Meeting.</p>
 <p>Let's take an example of a Simple Product Type</p>
 <p>Create a product as you normally would then you will see the Zoom Connection tab on the product tabs</p>
 <p><img src="https://www.codemanas.com/wp-content/uploads/2020/03/Screen-Shot-2020-03-17-at-22.45.44.png"></p>
 <p>After clicking the Zoom Meeting tab, you can see the Enable Zoom Connection Checkbox.
-Checking this box will allow to link this product to a Zoom Meeting. Please note the meeting needs to be created first via Zoom Meeting &gt; All Meetings.</p>
+Checking this box will allow to link this product to a Zoom Meeting. Please note the meeting needs to be created first via <code>Zoom Meeting &gt; All Meetings</code>.</p>
 <p>After ticking Enable Zoom Connection - you will see further options:</p>
-<p><img src="https://www.codemanas.com/wp-content/uploads/2020/03/Screen-Shot-2020-03-17-at-22.50.20.png">
-You can link to Zoom Meeting by searching - after a meeting has been selected it's meeting details will be shown.
-<img src="https://www.codemanas.com/wp-content/uploads/2020/03/select-meeting.gif"></p>
-<p>Now when the product is purchased - the customer will get the option to join the meeting. They will see this in</p>
+<p><img src="https://www.codemanas.com/wp-content/uploads/2020/03/Screen-Shot-2020-03-17-at-22.50.20.png"></p>
+<p>You can link to Zoom Meeting by searching - after a meeting has been selected it's meeting details will be shown.</p>
+<p><img src="https://www.codemanas.com/wp-content/uploads/2020/03/select-meeting.gif"></p>
+<p>Now when the product is purchased - the customer will get the option to join the meeting. They will see this in:</p>
 <ol>
 <li>Their Purchase Order Receipt E-mail</li>
-<li>If registered or logged in when purchase made in my account page.
+<li>If registered or logged in when purchase made in my account page.</li>
+</ol>
 <video width="640" heigh="400" controls>
     <source src="https://www.codemanas.com/wp-content/uploads/2020/03/zoom-meeting-purchase.mov" />
-</video></li>
-</ol>
-<h3 id="zoom-meeting-linked-with-product-zoom-product">Zoom Meeting linked with Product ( Zoom Product )</h3>
+</video>
+
+<p><br></p>
+<h3 id="2-zoom-meeting-linked-with-product-zoom-product">2. Zoom Meeting linked with Product ( Zoom Product )</h3>
 <p>This method should be used to link Zoom Meeting with a Product. The product created using this method will not be shown on shop and search pages. The meeting created using this method is designed to be directly purchased via the zoom meeting single page. See image below.</p>
 <h4 id="how-to-create-a-zoom-meeting">How to create a Zoom Meeting</h4>
 <ol>
-<li>Go to WordPress admin menu "Zoom Meetings"
-<img src="https://www.codemanas.com/wp-content/uploads/2020/03/Screen-Shot-2020-03-18-at-11.14.50.png"><br/><br/></li>
+<li>Go to WordPress admin menu "Zoom Meetings"</li>
+</ol>
+<p><img src="https://www.codemanas.com/wp-content/uploads/2020/03/Screen-Shot-2020-03-18-at-11.14.50.png"><br/><br/></p>
+<ol>
 <li>Add a New Zoom Meeting - fill out all the details like you would for the Zoom Meeting. After filling everything out there is a sidebar area that says WooCommerce Integration. Check the box that says enable purchase and enter the price that't it - the Zoom Product will then be purchasable via the Zoom Meeting Page. Please see video below.<br/><br/>
 <video controls width="640" controls>
 <source src="https://www.codemanas.com/wp-content/uploads/2020/03/zoom-product.mp4" />
@@ -199,7 +241,7 @@ You can link to Zoom Meeting by searching - after a meeting has been selected it
     
   </div>
 
-  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
         </div>
@@ -209,7 +251,7 @@ You can link to Zoom Meeting by searching - after a meeting has been selected it
 
   </div>
 
-  <div class="rst-versions" role="note" aria-label="versions">
+  <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
@@ -223,11 +265,6 @@ You can link to Zoom Meeting by searching - after a meeting has been selected it
     <script>var base_url = '..';</script>
     <script src="../js/theme.js" defer></script>
       <script src="../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
-            SphinxRtdTheme.Navigation.enable(true);
-        };
-    </script>
 
 </body>
 </html>

@@ -56,7 +56,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 			'query_var'          => true,
 			'menu_icon'          => 'dashicons-video-alt2',
 			'capability_type'    => 'post',
-			'has_archive'        => false,
+			'has_archive'        => true,
 			'hierarchical'       => false,
 			'menu_position'      => 5,
 			'supports'           => array(

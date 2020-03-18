@@ -4,7 +4,7 @@ Tags: zoom video conference, video conference, zoom, zoom video conferencing, we
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.3
-Stable tag: 3.2.0
+Stable tag: 3.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -129,6 +129,9 @@ Search for the plugin -> add new dialog and click install, or download and extra
 9. Shortcode Output
 
 == Changelog ==
+
+= 3.2.1 - Mar 18, 2020 =
+* Fixed: vczapi_get_template_part trailingslashhit fix reported by @https://wordpress.org/support/users/amba_13/
 
 = 3.2.0 - Mar 17, 2020 =
 Added: Join directly via browser without needing to goto Zoom Website.
