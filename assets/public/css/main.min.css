@@ -18,13 +18,14 @@
 .dpn-zvc-single-content-wrapper .dpn-zvc-sidebar-wrapper .dpn-zvc-sidebar-content .dpn-zvc-sidebar-content-list{margin-bottom:1rem}
 .dpn-zvc-single-content-wrapper .dpn-zvc-sidebar-wrapper .dpn-zvc-sidebar-content .dpn-zvc-sidebar-content-list span{display:block}
 @media(min-width:992px){.dpn-zvc-single-content-wrapper .dpn-zvc-col-8{width:66.66666667%;float:left}
-.dpn-zvc-single-content-wrapper .dpn-zvc-col-4{width:33.33333333%;float:left}}#dpen-zoom-browser-meeting{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:1}
+.dpn-zvc-single-content-wrapper .dpn-zvc-col-4{width:33.33333333%;float:left}}.dpn-zvc-shortcode-op-wrapper table{border:1px solid #dee2e6;width:100%;margin-bottom:1rem;color:#212529;border-collapse:collapse}
+.dpn-zvc-shortcode-op-wrapper table tr:nth-of-type(odd){background-color:#e2e2e2 !important}
+.dpn-zvc-shortcode-op-wrapper table tr:nth-of-type(odd) td{background-color:#e2e2e2}
+.dpn-zvc-shortcode-op-wrapper table tr:nth-of-type(odd) td .small-description{font-size:12px;font-style:italic}
+#zvc-cover{background:url(../../images/ajax-loader.gif) no-repeat scroll center center #adadad;position:absolute;height:100%;width:100%;z-index:5;opacity:.9}
+#dpen-zoom-browser-meeting{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:1}
 #dpen-zoom-browser-meeting .dpen-zoom-browser-meeting--meeting-form input[type=text],#dpen-zoom-browser-meeting .dpen-zoom-browser-meeting--meeting-form button[type=submit]{width:400px;height:40px;border-radius:0}
 #dpen-zoom-browser-meeting .dpen-zoom-browser-meeting--meeting-form button[type=submit]{background-color:#2d8cff;color:#fff}
 #dpen-zoom-browser-meeting .dpen-zoom-browser-meeting--meeting-form .form-group{margin-bottom:10px}
 #dpen-zoom-browser-meeting .dpen-zoom-browser-meeting--info{background:#fff;padding:20px 30px;margin-bottom:10px}
 #dpen-zoom-browser-meeting .dpen-zoom-browser-meeting--info ul{list-style:none;padding:0;margin:0}
-.dpn-zvc-shortcode-op-wrapper table{border:1px solid #dee2e6;width:100%;margin-bottom:1rem;color:#212529;border-collapse:collapse}
-.dpn-zvc-shortcode-op-wrapper table tr:nth-of-type(odd){background-color:#e2e2e2 !important}
-.dpn-zvc-shortcode-op-wrapper table tr:nth-of-type(odd) td{background-color:#e2e2e2}
-.dpn-zvc-shortcode-op-wrapper table tr:nth-of-type(odd) td .small-description{font-size:12px;font-style:italic}

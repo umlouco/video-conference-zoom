@@ -114,11 +114,13 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 		/**
 		 * User Function to List
 		 *
+		 * @param $page
 		 * @return array
 		 */
-		public function listUsers() {
-			$listUsersArray              = array();
-			$listUsersArray['page_size'] = 300;
+		public function listUsers( $page = 1 ) {
+			$listUsersArray                = array();
+			$listUsersArray['page_size']   = 300;
+			$listUsersArray['page_number'] = absint( $page );
 
 			return $this->sendRequest( 'users', $listUsersArray, "GET" );
 		}
@@ -167,7 +169,7 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 		/**
 		 * Create A meeting API
 		 *
-		 * @param  array $data
+		 * @param array $data
 		 *
 		 * @return object
 		 */

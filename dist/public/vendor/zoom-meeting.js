@@ -28,6 +28,7 @@ jQuery(function ($) {
             var API_KEY = false;
             var SIGNATURE = false;
             var REDIRECTION = zvc_ajx.redirect_page;
+            $('body').append('<span id="zvc-cover"></span>');
             if (meeting_id) {
                 $.post(zvc_ajx.ajaxurl, {
                     action: 'get_auth',
@@ -35,6 +36,7 @@ jQuery(function ($) {
                     meeting_id: meeting_id,
                 }).done(function (response) {
                     if (response.success) {
+                        $("#zvc-cover").remove();
                         API_KEY = response.data.key;
                         SIGNATURE = response.data.sig;
 
@@ -81,11 +83,13 @@ jQuery(function ($) {
                                 }
                             });
                         } else {
+                            $("#zvc-cover").remove();
                             alert("NOT AUTHORIZED");
                         }
                     }
                 });
             } else {
+                $("#zvc-cover").remove();
                 alert("NOT AUTHORIZED");
             }
         }

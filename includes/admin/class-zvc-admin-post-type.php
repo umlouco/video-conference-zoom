@@ -316,13 +316,13 @@ class Zoom_Video_Conferencing_Admin_PostType {
 					'redirect_page' => esc_url( get_permalink( $post->ID ) )
 				) );
 
-				$GLOBALS['zoom']['meeting_id'] = sanitize_text_field( absint( $_GET['join'] ) );
+				$GLOBALS['zoom']['meeting_id'] = sanitize_text_field( absint( vczapi_decrypt_url( $_GET['join'] ) ) );
 				//Render View
 				$templates[] = 'join-web-browser.php';
 				?>
-                <link rel='stylesheet' type="text/css" href="<?php echo ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/css/main.min.css'; ?>" media='all'>
                 <link rel='stylesheet' type="text/css" href="<?php echo ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/bootstrap.css'; ?>" media='all'>
                 <link rel='stylesheet' type="text/css" href="<?php echo ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react-select.css'; ?>" media='all'>
+                <link rel='stylesheet' type="text/css" href="<?php echo ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/css/main.min.css'; ?>" media='all'>
 				<?php
 				$template = vczapi_get_template( $templates );
 			} else {

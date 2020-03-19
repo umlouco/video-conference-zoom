@@ -170,23 +170,66 @@ if ( ! function_exists( 'zvc_get_timezone_options' ) ) {
  * @author Deepen
  */
 function video_conferencing_zoom_api_get_user_transients() {
-	//Check if any transient by name is available
-	$check_transient = get_transient( '_zvc_user_lists' );
-	if ( $check_transient ) {
-		$users = $check_transient->users;
-	} else {
-		$encoded_users = zoom_conference()->listUsers();
+	if ( isset( $_GET['page'] ) && $_GET['page'] === "zoom-video-conferencing-list-users" && isset( $_GET['pg'] ) ) {
+		$page          = $_GET['pg'];
+		$encoded_users = zoom_conference()->listUsers( $page );
 		$decoded_users = json_decode( $encoded_users );
 		if ( ! empty( $decoded_users->code ) && $decoded_users->code == 300 ) {
 			$users = false;
 		} else {
-			//storing data to transient and getting those data for fast load by setting to fetch every 15 minutes
-			set_transient( '_zvc_user_lists', $decoded_users, 900 );
 			$users = $decoded_users->users;
+		}
+	} else {
+		//Check if any transient by name is available
+		$check_transient = get_transient( '_zvc_user_lists' );
+		if ( $check_transient ) {
+			$users = $check_transient->users;
+		} else {
+			$encoded_users = zoom_conference()->listUsers();
+			$decoded_users = json_decode( $encoded_users );
+			if ( ! empty( $decoded_users->code ) && $decoded_users->code == 300 ) {
+				$users = false;
+			} else {
+				//storing data to transient and getting those data for fast load by setting to fetch every 15 minutes
+				set_transient( '_zvc_user_lists', $decoded_users, 900 );
+				$users = $decoded_users->users;
+			}
 		}
 	}
 
 	return $users;
+}
+
+/**
+ * Pagination next for Zoom API
+ *
+ * @param $type
+ * @param string $page_type
+ * @return string
+ */
+function video_conferencing_zoom_api_pagination_next( $type, $page_type = 'zoom-video-conferencing-list-users' ) {
+	if ( ! empty( $type ) && count( $type ) >= 100 ) {
+		if ( isset( $_GET['pg'] ) ) {
+			$page = absint( $_GET['pg'] ) + 1;
+			return '<strong>Show more records:</strong> <a href="?post_type=zoom-meetings&page=zoom-video-conferencing-list-users&flush=true&pg=' . $page . '">Next Page</a>';
+		} else {
+			return '<strong>Show more records:</strong> <a href="?post_type=zoom-meetings&page=' . $page_type . '&flush=true&pg=2">Next Page</a>';
+		}
+	}
+}
+
+/**
+ * Pagination for prev
+ *
+ * @param $type
+ * @param string $page_type
+ * @return string
+ */
+function video_conferencing_zoom_api_pagination_prev( $type, $page_type = 'zoom-video-conferencing-list-users' ) {
+	if ( isset( $_GET['pg'] ) && $_GET['pg'] != 1 ) {
+		$page = absint( $_GET['pg'] ) - 1;
+		return '<a href="?post_type=zoom-meetings&page=' . $page_type . '&flush=true&pg=' . $page . '">Previous Page</a>';
+	}
 }
 
 /**
@@ -314,4 +357,53 @@ function vczapi_dateConverter( $start_time, $tz, $format = 'F j, Y, g:i a ( T )'
 	$date->setTimezone( $tz );
 
 	return $date->format( $format );
+}
+
+/**
+ * Encrypts URL
+ *
+ * @param $string
+ *
+ * @return string
+ * @author Deepen
+ * @since 3.2.1
+ *
+ */
+function vczapi_encrypt_url( $string ) {
+	$key    = "MAL_979805"; //key to encrypt and decrypts.
+	$result = '';
+	$test   = "";
+	for ( $i = 0; $i < strlen( $string ); $i ++ ) {
+		$char    = substr( $string, $i, 1 );
+		$keychar = substr( $key, ( $i % strlen( $key ) ) - 1, 1 );
+		$char    = chr( ord( $char ) + ord( $keychar ) );
+
+		$test[ $char ] = ord( $char ) + ord( $keychar );
+		$result        .= $char;
+	}
+
+	return urlencode( base64_encode( $result ) );
+}
+
+/**
+ * Decrypts url
+ *
+ * @param $string
+ *
+ * @return string
+ * @author Deepen
+ * @since 3.2.1
+ */
+function vczapi_decrypt_url( $string ) {
+	$key    = "MAL_979805"; //key to encrypt and decrypts.
+	$result = '';
+	$string = base64_decode( urldecode( $string ) );
+	for ( $i = 0; $i < strlen( $string ); $i ++ ) {
+		$char    = substr( $string, $i, 1 );
+		$keychar = substr( $key, ( $i % strlen( $key ) ) - 1, 1 );
+		$char    = chr( ord( $char ) - ord( $keychar ) );
+		$result  .= $char;
+	}
+
+	return $result;
 }

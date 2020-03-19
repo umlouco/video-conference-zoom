@@ -5,12 +5,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-video_conferencing_zoom_api_show_like_popup(); 
+video_conferencing_zoom_api_show_like_popup();
 
 $users = video_conferencing_zoom_api_get_user_transients();
 ?>
 <div class="wrap">
-    <h2><?php _e( "Users", "video-conferencing-with-zoom-api" ); ?></h2> <a href="?post_type=zoom-meetings&page=zoom-video-conferencing-list-users&flush=true"><?php _e( 'Flush User Cache', 'video-conferencing-with-zoom-api' ); ?></a>
+    <h2><?php _e( "Users", "video-conferencing-with-zoom-api" ); ?></h2>
+    <a href="?post_type=zoom-meetings&page=zoom-video-conferencing-list-users&flush=true"><?php _e( 'Flush User Cache', 'video-conferencing-with-zoom-api' ); ?></a>
     <div class="message">
 		<?php
 		$message = self::get_message();
@@ -19,6 +20,7 @@ $users = video_conferencing_zoom_api_get_user_transients();
 		}
 		?>
     </div>
+    <p><?php echo video_conferencing_zoom_api_pagination_next( $users ) . ' ' . video_conferencing_zoom_api_pagination_prev( $users ); ?></p>
 
     <div class="zvc_listing_table">
         <table id="zvc_users_list_table" class="display" width="100%">
