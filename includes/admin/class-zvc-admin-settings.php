@@ -40,6 +40,8 @@ class Zoom_Video_Conferencing_Admin_Views {
 				'list_users'
 			) );
 
+			add_submenu_page( 'edit.php?post_type=zoom-meetings', 'Add Users', __( 'Add Users', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing-add-users', array( 'Zoom_Video_Conferencing_Admin_Users', 'add_zoom_users' ) );
+
 			add_submenu_page( 'edit.php?post_type=zoom-meetings', __( 'Reports', 'video-conferencing-with-zoom-api' ), __( 'Reports', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing-reports', array(
 				'Zoom_Video_Conferencing_Reports',
 				'zoom_reports'

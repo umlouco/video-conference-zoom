@@ -9,7 +9,6 @@
  */
 
 global $zoom;
-
 ?>
 <div class="dpn-zvc-sidebar-box">
     <div class="dpn-zvc-sidebar-tile">
@@ -26,18 +25,23 @@ global $zoom;
                 <span class="sidebar-start-time"><?php echo date( 'F j, Y @ g:i a', strtotime( $zoom['start_date'] ) ); ?></span>
             </div>
 		<?php } ?>
+		<?php if ( ! empty( $zoom['terms'] ) ) { ?>
+            <div class="dpn-zvc-sidebar-content-list">
+                <span><strong><?php _e( 'Category', 'video-conferencing-with-zoom-api' ); ?>:</strong></span>
+                <span class="sidebar-category"><?php echo implode( ', ', $zoom['terms'] ); ?></span>
+            </div>
+		<?php } ?>
 		<?php if ( ! empty( $zoom['duration'] ) ) { ?>
             <div class="dpn-zvc-sidebar-content-list">
                 <span><strong><?php _e( 'Duration', 'video-conferencing-with-zoom-api' ); ?>:</strong></span>
                 <span><?php echo $zoom['duration']; ?></span>
             </div>
-		<?php } ?>
-		<?php if ( ! empty( $zoom['timezone'] ) ) { ?>
+		<?php } ?> <?php if ( ! empty( $zoom['timezone'] ) ) { ?>
             <div class="dpn-zvc-sidebar-content-list">
                 <span><strong><?php _e( 'Timezone', 'video-conferencing-with-zoom-api' ); ?>:</strong></span>
                 <span><?php echo $zoom['timezone']; ?></span>
             </div>
 		<?php } ?>
-        <p class="dpn-zvc-display-or-hide-localtimezone-notice"><?php printf( __( '%sNote%s: Countdown time is shown based on your local timezone. Meeting join links will show before and after 1 hour of meeting time.', 'video-conferencing-with-zoom-api' ), '<strong>', '</strong>' ); ?></p>
+        <p class="dpn-zvc-display-or-hide-localtimezone-notice"><?php printf( __( '%sNote%s: Countdown time is shown based on your local timezone.', 'video-conferencing-with-zoom-api' ), '<strong>', '</strong>' ); ?></p>
     </div>
 </div>

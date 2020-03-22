@@ -32,11 +32,7 @@ class Zoom_Video_Conferencing_Admin_Users {
 		}
 
 		//Get Template
-		if ( isset( $_GET['add_user'] ) ) {
-			require_once ZVC_PLUGIN_VIEWS_PATH . '/tpl-add-user.php';
-		} else {
-			require_once ZVC_PLUGIN_VIEWS_PATH . '/tpl-list-users.php';
-		}
+		require_once ZVC_PLUGIN_VIEWS_PATH . '/tpl-list-users.php';
 	}
 
 	/**
@@ -63,10 +59,8 @@ class Zoom_Video_Conferencing_Admin_Users {
 
 			$created_user = zoom_conference()->createAUser( $postData );
 			$result       = json_decode( $created_user );
-			if ( ! empty( $result->errors ) ) {
-				foreach ( $result->errors as $error ) {
-					self::set_message( 'error', $error->message );
-				}
+			if ( ! empty( $result->code ) ) {
+				self::set_message( 'error', $result->message );
 			} else {
 				self::set_message( 'updated', __( "Created a User. Please check email for confirmation. Added user will only appear in the list after approval.", "video-conferencing-with-zoom-api" ) );
 
@@ -74,6 +68,8 @@ class Zoom_Video_Conferencing_Admin_Users {
 				delete_transient( '_zvc_user_lists' );
 			}
 		}
+
+		require_once ZVC_PLUGIN_VIEWS_PATH . '/tpl-add-user.php';
 	}
 
 	static function assign_host_id() {

@@ -68,6 +68,22 @@ class Zoom_Video_Conferencing_Admin_PostType {
 		);
 
 		register_post_type( 'zoom-meetings', $args );
+
+		// Add new taxonomy, make it hierarchical (like categories)
+		$labels = array(
+			'name'          => _x( 'Category', 'Category', 'video-conferencing-with-zoom-api' ),
+			'singular_name' => _x( 'Category', 'Category', 'video-conferencing-with-zoom-api' ),
+		);
+
+		$args = array(
+			'hierarchical'      => true,
+			'labels'            => $labels,
+			'show_ui'           => true,
+			'show_admin_column' => true,
+			'query_var'         => true,
+		);
+
+		register_taxonomy( 'zoom-meeting', array( 'zoom-meetings' ), $args );
 	}
 
 	/**
@@ -122,14 +138,25 @@ class Zoom_Video_Conferencing_Admin_PostType {
 		$meeting_details = get_post_meta( $post->ID, '_meeting_zoom_details', true );
 		?>
         <div class="zoom-metabox-wrapper">
-			<?php if ( ! empty( $meeting_details ) ) { ?>
-                <div class="zoom-metabox-content">
-                    <p><a href="<?php echo $meeting_details->start_url; ?>" title="Start URL">Start Meeting</a></p>
-                    <p><a href="<?php echo $meeting_details->join_url; ?>" title="Start URL">Join Meeting</a></p>
-                    <p><strong>Meeting ID:</strong> <?php echo $meeting_details->id; ?></p>
-                </div>
-                <hr>
-			<?php } else { ?>
+			<?php
+			if ( ! empty( $meeting_details ) ) {
+				if ( ! empty( $meeting_details->code ) && ! empty( $meeting_details->message ) ) {
+					?>
+                    <p><strong>Meeting has not been created for this post yet. Publish your meeting or hit update to create a new one for this post
+                            !</strong></p>
+					<?php
+					echo 'Zoom Error:' . $meeting_details->message;
+				} else {
+					?>
+                    <div class="zoom-metabox-content">
+                        <p><a href="<?php echo $meeting_details->start_url; ?>" title="Start URL">Start Meeting</a></p>
+                        <p><a href="<?php echo $meeting_details->join_url; ?>" title="Start URL">Join Meeting</a></p>
+                        <p><strong>Meeting ID:</strong> <?php echo $meeting_details->id; ?></p>
+                    </div>
+                    <hr>
+					<?php
+				}
+			} else { ?>
                 <p><strong>Meeting has not been created for this post yet. Publish your meeting or hit update to create a new one for this post
                         !</strong></p>
 			<?php } ?>
@@ -293,7 +320,18 @@ class Zoom_Video_Conferencing_Admin_PostType {
 		global $post;
 
 		if ( $post->post_type == 'zoom-meetings' ) {
+			unset( $GLOBALS['zoom'] );
+
 			$GLOBALS['zoom'] = get_post_meta( $post->ID, '_meeting_fields', true );
+
+			$terms = get_the_terms( $post->ID, 'zoom-meeting' );
+			if ( ! empty( $terms ) ) {
+				$set_terms = array();
+				foreach ( $terms as $term ) {
+					$set_terms[] = $term->name;
+				}
+				$GLOBALS['zoom']['terms'] = $set_terms;
+			}
 
 			if ( isset( $_GET['type'] ) && $_GET['type'] === "meeting" && isset( $_GET['join'] ) ) {
 				wp_enqueue_script( 'video-conferencing-with-zoom-api-react', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react.production.min.js', array( 'jquery' ), '16.8.6', true );

@@ -106,6 +106,13 @@ Any additional features, suggestions related to translations, contact me via [em
 Search for the plugin -> add new dialog and click install, or download and extract the plugin, and copy the the Zoom plugin folder into your wp-content/plugins directory and activate.
 
 == Frequently Asked Questions ==
+
+= Blank page for Single Meetings page =
+
+If you face blank page in this situation you should refer to [Full Documentation](https://zoom.codemanas.com/ "Usage Documentation") and see Template override section. A bit of techinical knowledge is needed.
+
+This happens because of the single meeting page template from the plugin not being supported by your theme and i cannot make my plugin support for every theme page template because of which you'll need to override the plugin template from my plugin to your theme's standard. ( Basically, like how WooCommerce does!! )
+
 = How to show Zoom Meetings on Front =
 
 * By using shortcode like [zoom_api_link meeting_id="123456789"] you can show the link of your meeting in front.
@@ -132,6 +139,10 @@ Search for the plugin -> add new dialog and click install, or download and extra
 
 = 3.2.1 - Mar 18, 2020 =
 * Fixed: vczapi_get_template_part trailingslashhit fix reported by @https://wordpress.org/support/users/amba_13/
+* Added: Users table pagination for WP-Admin section
+* Fixed: Add users section
+* Added: Time format display changed to 'LLLL' /w Day also on single meetings page.
+* Added: Category for Zoom Meetings added
 
 = 3.2.0 - Mar 17, 2020 =
 Added: Join directly via browser without needing to goto Zoom Website.
