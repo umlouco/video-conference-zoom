@@ -12,20 +12,28 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class Zoom_Video_Conferencing_Shorcodes {
+	private $post_type = 'zoom-meetings';
+	public static $meetings_list_number = '0';
 
 	public function __construct() {
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ),100 );
 		add_shortcode( 'zoom_api_link', array( $this, 'render_main' ) );
+		add_shortcode( 'vczapi_list_meetings', array( $this, 'show_meetings' ) );
 	}
+
+	public function enqueue_scripts(){
+	    wp_enqueue_style('video-conferencing-with-zoom-api');
+    }
 
 	/**
 	 * Render output for shortcode
 	 *
-	 * @param $atts
+	 * @param      $atts
 	 * @param null $content
 	 *
 	 * @return string
 	 * @author Deepen
-	 * @since 3.0.0
+	 * @since  3.0.0
 	 */
 	function render_main( $atts, $content = null ) {
 		ob_start();
@@ -66,8 +74,76 @@ class Zoom_Video_Conferencing_Shorcodes {
 	}
 
 	/**
+	 * @param $args
+	 *
+	 * @return string
+	 * @since  3.0.0
+	 */
+	public function show_meetings( $args ) {
+		self::$meetings_list_number ++;
+		$args = shortcode_atts(
+			array(
+				'per_page' => 5,
+				'category' => ''
+			),
+			$args, 'vczapi_lists_meetings'
+		);
+		if ( is_front_page() ) {
+			$paged = ( get_query_var( 'page' ) ) ? get_query_var( 'page' ) : 1;
+		} else {
+			$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+		}
+
+		$query_args = array(
+			'post_type'      => $this->post_type,
+			'posts_per_page' => $args['per_page'],
+			'post_status'    => 'publish',
+			'paged'          => $paged,
+		);
+
+		if ( ! empty( $args['category'] ) ) {
+			$query_args['tax_query'] = [
+				[
+					'taxonomy' => 'zoom-meeting',
+					'field'    => 'slug',
+					'terms'    => [
+						$args['category']
+					]
+				]
+			];
+		}
+		$query = apply_filters( 'vczapi_meeting_list_query_args', $query_args );
+		$zoom_meetings = new \WP_Query( $query );
+		$content       = '';
+
+		if ( $zoom_meetings->have_posts() ):
+			ob_start();
+			vczapi_get_template( array( 'shortcode/zoom-listing.php' ), true, false, $args = [ 'zoom_meetings' => $zoom_meetings ] );
+			$content .= ob_get_clean();
+		endif;
+
+		return $content;
+	}
+
+	public static function pagination( $query ) {
+		$big = 999999999999999;
+		if ( is_front_page() ) {
+			$paged = ( get_query_var( 'page' ) ) ? get_query_var( 'page' ) : 1;
+		} else {
+			$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+		}
+		echo paginate_links( array(
+			'base'    => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+			'format'  => '?paged=%#%',
+			'current' => max( 1, $paged ),
+			'total'   => $query->max_num_pages
+		) );
+	}
+
+	/**
 	 * Output only singel link
-	 * @since 3.0.4
+	 *
+	 * @since  3.0.4
 	 * @author Deepen
 	 */
 	public function generate_link_only() {

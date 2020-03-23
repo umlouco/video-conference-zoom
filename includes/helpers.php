@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! function_exists( 'dump' ) ) {
 	/**
 	 * @author Deepen
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 */
 	function dump( $var ) {
 		echo '<pre>';
@@ -19,7 +19,7 @@ if ( ! function_exists( 'dump' ) ) {
 if ( ! function_exists( 'zvc_get_timezone_options' ) ) {
 	/**
 	 * @author Deepen
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 */
 	function zvc_get_timezone_options() {
 		$zones_array = array(
@@ -203,14 +203,16 @@ function video_conferencing_zoom_api_get_user_transients() {
 /**
  * Pagination next for Zoom API
  *
- * @param $type
+ * @param        $type
  * @param string $page_type
+ *
  * @return string
  */
 function video_conferencing_zoom_api_pagination_next( $type, $page_type = 'zoom-video-conferencing-list-users' ) {
 	if ( ! empty( $type ) && count( $type ) >= 100 ) {
 		if ( isset( $_GET['pg'] ) ) {
 			$page = absint( $_GET['pg'] ) + 1;
+
 			return '<strong>Show more records:</strong> <a href="?post_type=zoom-meetings&page=zoom-video-conferencing-list-users&flush=true&pg=' . $page . '">Next Page</a>';
 		} else {
 			return '<strong>Show more records:</strong> <a href="?post_type=zoom-meetings&page=' . $page_type . '&flush=true&pg=2">Next Page</a>';
@@ -221,20 +223,22 @@ function video_conferencing_zoom_api_pagination_next( $type, $page_type = 'zoom-
 /**
  * Pagination for prev
  *
- * @param $type
+ * @param        $type
  * @param string $page_type
+ *
  * @return string
  */
 function video_conferencing_zoom_api_pagination_prev( $type, $page_type = 'zoom-video-conferencing-list-users' ) {
 	if ( isset( $_GET['pg'] ) && $_GET['pg'] != 1 ) {
 		$page = absint( $_GET['pg'] ) - 1;
+
 		return '<a href="?post_type=zoom-meetings&page=' . $page_type . '&flush=true&pg=' . $page . '">Previous Page</a>';
 	}
 }
 
 /**
  * @author Deepen
- * @since 3.0.0
+ * @since  3.0.0
  */
 function video_conferencing_zoom_api_show_like_popup() {
 	?>
@@ -252,7 +256,7 @@ function video_conferencing_zoom_api_show_like_popup() {
 
 /**
  * @author Deepen
- * @since 3.0.0
+ * @since  3.0.0
  */
 function video_conferencing_zoom_api_show_api_notice() {
 	$notice = get_option( 'zoom_api_notice' );
@@ -270,12 +274,13 @@ function video_conferencing_zoom_api_show_api_notice() {
 
 /**
  * @author Deepen
- * @since 3.0.0
+ * @since  3.0.0
  */
-function vczapi_get_template( $template_names, $load = false, $require_once = true ) {
+function vczapi_get_template( $template_names, $load = false, $require_once = true, $args = array() ) {
 	if ( ! is_array( $template_names ) ) {
 		return '';
 	}
+
 
 	$located         = false;
 	$this_plugin_dir = ZVC_PLUGIN_DIR_PATH;
@@ -293,6 +298,8 @@ function vczapi_get_template( $template_names, $load = false, $require_once = tr
 	}
 
 	if ( $load && ! empty( $located ) ) {
+		$args                           = apply_filters( 'vczapi_passed_args', $args );
+		$GLOBALS['zoom_passed_template_args'] = $args;
 		load_template( $located, $require_once );
 	}
 
@@ -301,7 +308,7 @@ function vczapi_get_template( $template_names, $load = false, $require_once = tr
 
 /**
  * @author Deepen
- * @since 3.0.0
+ * @since  3.0.0
  */
 function vczapi_get_template_part( $slug, $name = '' ) {
 	$template = false;
@@ -334,7 +341,7 @@ function vczapi_get_template_part( $slug, $name = '' ) {
 
 /**
  * @author Deepen
- * @since 3.0.0
+ * @since  3.0.0
  */
 function vczapi_check_author( $post_id ) {
 	$post_author_id = get_post_field( 'post_author', $post_id );
@@ -348,7 +355,7 @@ function vczapi_check_author( $post_id ) {
 
 /**
  * @author Deepen
- * @since 1.0.0
+ * @since  1.0.0
  */
 function vczapi_dateConverter( $start_time, $tz, $format = 'F j, Y, g:i a ( T )' ) {
 	$timezone = ! empty( $tz ) ? $tz : "America/Los_Angeles";
@@ -366,7 +373,7 @@ function vczapi_dateConverter( $start_time, $tz, $format = 'F j, Y, g:i a ( T )'
  *
  * @return string
  * @author Deepen
- * @since 3.2.1
+ * @since  3.2.1
  *
  */
 function vczapi_encrypt_url( $string ) {
@@ -392,7 +399,7 @@ function vczapi_encrypt_url( $string ) {
  *
  * @return string
  * @author Deepen
- * @since 3.2.1
+ * @since  3.2.1
  */
 function vczapi_decrypt_url( $string ) {
 	$key    = "MAL_979805"; //key to encrypt and decrypts.
