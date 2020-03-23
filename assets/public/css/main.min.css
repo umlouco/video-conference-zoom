@@ -29,3 +29,9 @@
 #dpen-zoom-browser-meeting .dpen-zoom-browser-meeting--meeting-form .form-group{margin-bottom:10px}
 #dpen-zoom-browser-meeting .dpen-zoom-browser-meeting--info{background:#fff;padding:20px 30px;margin-bottom:10px}
 #dpen-zoom-browser-meeting .dpen-zoom-browser-meeting--info ul{list-style:none;padding:0;margin:0}
+.vczapi-list-zoom-meetings--items{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}
+.vczapi-list-zoom-meetings--item{width:100%;margin-bottom:20px}@media screen and (min-width:767px){.vczapi-list-zoom-meetings--item{width:45%}
+.vczapi-list-zoom-meetings--item{margin-right:5%}}@media screen and (min-width:1200px){.vczapi-list-zoom-meetings--item{width:25%}
+.vczapi-list-zoom-meetings--item{margin-right:5%}}.vczapi-list-zoom-meetings--item__image{box-shadow:0 0 1px 1px rgba(0,0,0,0.3)}
+.vczapi-list-zoom-meetings--item__details,.vczapi-list-zoom-meetings--item__details h1,.vczapi-list-zoom-meetings h2,.vczapi-list-zoom-meetings h3,.vczapi-list-zoom-meetings h4,.vczapi-list-zoom-meetings h5,.vczapi-list-zoom-meetings h6,.vczapi-list-zoom-meetings--item__details p{font-size:1em}
+.vczapi-list-zoom-meetings--item__details__meta .meta{display:-ms-flexbox;display:flex}
