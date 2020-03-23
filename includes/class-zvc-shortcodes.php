@@ -12,18 +12,32 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class Zoom_Video_Conferencing_Shorcodes {
+
+	/**
+	 * Define post type
+	 *
+	 * @var string
+	 */
 	private $post_type = 'zoom-meetings';
+
+	/**
+	 * Meeting list
+	 * @var string
+	 */
 	public static $meetings_list_number = '0';
 
+	/**
+	 * Zoom_Video_Conferencing_Shorcodes constructor.
+	 */
 	public function __construct() {
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ),100 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 100 );
 		add_shortcode( 'zoom_api_link', array( $this, 'render_main' ) );
-		add_shortcode( 'vczapi_list_meetings', array( $this, 'show_meetings' ) );
+		add_shortcode( 'zoom_list_meetings', array( $this, 'show_meetings' ) );
 	}
 
-	public function enqueue_scripts(){
-	    wp_enqueue_style('video-conferencing-with-zoom-api');
-    }
+	public function enqueue_scripts() {
+		wp_enqueue_style( 'video-conferencing-with-zoom-api' );
+	}
 
 	/**
 	 * Render output for shortcode
@@ -47,9 +61,12 @@ class Zoom_Video_Conferencing_Shorcodes {
 			'link_only'  => 'no',
 		), $atts ) );
 
+		unset( $GLOBALS['vanity_uri'] );
+		unset( $GLOBALS['zoom_meetings'] );
+
 		$vanity_uri               = get_option( 'zoom_vanity_url' );
-		$GLOBALS['vanity_uri']    = $vanity_uri;
 		$meeting                  = $this->fetch_meeting( $meeting_id );
+		$GLOBALS['vanity_uri']    = $vanity_uri;
 		$GLOBALS['zoom_meetings'] = $meeting;
 
 		if ( ! empty( $meeting ) && ! empty( $meeting->code ) && $meeting->code === 3001 ) {
@@ -61,7 +78,6 @@ class Zoom_Video_Conferencing_Shorcodes {
 				$this->generate_link_only();
 			} else {
 				if ( $meeting ) {
-					wp_enqueue_style( 'video-conferencing-with-zoom-api' );
 					//Get Template
 					vczapi_get_template( array( 'shortcode/zoom-shortcode.php' ), true );
 				} else {
@@ -84,9 +100,9 @@ class Zoom_Video_Conferencing_Shorcodes {
 		$args = shortcode_atts(
 			array(
 				'per_page' => 5,
-				'category' => ''
+				'category' => '',
 			),
-			$args, 'vczapi_lists_meetings'
+			$args, 'zoom_list_meetings'
 		);
 		if ( is_front_page() ) {
 			$paged = ( get_query_var( 'page' ) ) ? get_query_var( 'page' ) : 1;
@@ -112,19 +128,27 @@ class Zoom_Video_Conferencing_Shorcodes {
 				]
 			];
 		}
-		$query = apply_filters( 'vczapi_meeting_list_query_args', $query_args );
+		$query         = apply_filters( 'vczapi_meeting_list_query_args', $query_args );
 		$zoom_meetings = new \WP_Query( $query );
 		$content       = '';
 
+		unset( $GLOBALS['zoom_meetings'] );
+		$GLOBALS['zoom_meetings'] = $zoom_meetings;
+
 		if ( $zoom_meetings->have_posts() ):
 			ob_start();
-			vczapi_get_template( array( 'shortcode/zoom-listing.php' ), true, false, $args = [ 'zoom_meetings' => $zoom_meetings ] );
+			vczapi_get_template( array( 'shortcode-listing.php' ), true, false );
 			$content .= ob_get_clean();
 		endif;
 
 		return $content;
 	}
 
+	/**
+	 * Pagination
+	 *
+	 * @param $query
+	 */
 	public static function pagination( $query ) {
 		$big = 999999999999999;
 		if ( is_front_page() ) {
@@ -151,6 +175,13 @@ class Zoom_Video_Conferencing_Shorcodes {
 		vczapi_get_template( array( 'shortcode/zoom-single-link.php' ), true, false );
 	}
 
+	/**
+	 * Get Meeting INFO
+	 *
+	 * @param $meeting_id
+	 *
+	 * @return bool|mixed|null
+	 */
 	private function fetch_meeting( $meeting_id ) {
 		$meeting = json_decode( zoom_conference()->getMeetingInfo( $meeting_id ) );
 		if ( ! empty( $meeting->error ) ) {

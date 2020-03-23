@@ -273,14 +273,18 @@ function video_conferencing_zoom_api_show_api_notice() {
 }
 
 /**
- * @author Deepen
- * @since  3.0.0
+ * Get the template
+ *
+ * @param $template_names
+ * @param bool $load
+ * @param bool $require_once
+ *
+ * @return bool|string
  */
-function vczapi_get_template( $template_names, $load = false, $require_once = true, $args = array() ) {
+function vczapi_get_template( $template_names, $load = false, $require_once = true ) {
 	if ( ! is_array( $template_names ) ) {
 		return '';
 	}
-
 
 	$located         = false;
 	$this_plugin_dir = ZVC_PLUGIN_DIR_PATH;
@@ -298,8 +302,6 @@ function vczapi_get_template( $template_names, $load = false, $require_once = tr
 	}
 
 	if ( $load && ! empty( $located ) ) {
-		$args                           = apply_filters( 'vczapi_passed_args', $args );
-		$GLOBALS['zoom_passed_template_args'] = $args;
 		load_template( $located, $require_once );
 	}
 
@@ -307,8 +309,13 @@ function vczapi_get_template( $template_names, $load = false, $require_once = tr
 }
 
 /**
- * @author Deepen
+ * Get Template Parts
+ *
+ * @param $slug
+ * @param string $name
+ *
  * @since  3.0.0
+ * @author Deepen
  */
 function vczapi_get_template_part( $slug, $name = '' ) {
 	$template = false;

@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Video Conferencing with Zoom API\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/video-"
 "conferencing-with-zoom-api\n"
-"POT-Creation-Date: 2020-03-17 11:04+0000\n"
+"POT-Creation-Date: 2020-03-23 11:14+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -52,7 +52,8 @@ msgstr ""
 #: includes/zvc-template-functions.php:186
 #: includes/views/tpl-edit-meeting.php:78
 #: includes/views/tpl-add-meetings.php:62
-#: templates/fragments/meeting-details.php:37
+#: templates/fragments/meeting-details.php:41
+#: templates/shortcode/zoom-listing.php:30
 #: includes/views/post-type/tpl-meeting-fields.php:53
 msgid "Timezone"
 msgstr ""
@@ -60,7 +61,7 @@ msgstr ""
 #: includes/zvc-template-functions.php:190
 #: includes/views/tpl-edit-meeting.php:90
 #: includes/views/tpl-add-meetings.php:74
-#: templates/fragments/meeting-details.php:31
+#: templates/fragments/meeting-details.php:36
 #: includes/views/post-type/tpl-meeting-fields.php:65
 msgid "Duration"
 msgstr ""
@@ -73,37 +74,37 @@ msgstr ""
 msgid "Meeting is Starting.."
 msgstr ""
 
-#: includes/helpers.php:199
+#: includes/helpers.php:246
 msgid "Like this plugin ?"
 msgstr ""
 
-#: includes/helpers.php:202
+#: includes/helpers.php:249
 #, php-format
 msgid ""
 "Please consider giving a %s if you found this useful at wordpress.org or "
 msgstr ""
 
-#: includes/helpers.php:203
+#: includes/helpers.php:250
 #, php-format
 msgid "check %s for shortcode references."
 msgstr ""
 
-#: includes/helpers.php:219
+#: includes/helpers.php:266
 msgid "Do not get confused here !!"
 msgstr ""
 
-#: includes/helpers.php:221
+#: includes/helpers.php:268
 msgid ""
 "Please read !!! These below meetings are directly from your zoom.us account "
 "via API connection. Meetings added from here won't show up on your Post Type "
 "list. This will only create meeting in your zoom.us account !"
 msgstr ""
 
-#: includes/helpers.php:222
+#: includes/helpers.php:269
 msgid "I understand ! Don't show this again !"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:60
+#: includes/class-zvc-shortcodes.php:84
 #, php-format
 msgid ""
 "Please try again ! Some error occured while trying to fetch meeting with id: "
@@ -129,13 +130,13 @@ msgstr ""
 msgid "Flushed User Cache!"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-users.php:71
+#: includes/admin/class-zvc-admin-users.php:65
 msgid ""
 "Created a User. Please check email for confirmation. Added user will only "
 "appear in the list after approval."
 msgstr ""
 
-#: includes/admin/class-zvc-admin-users.php:94
+#: includes/admin/class-zvc-admin-users.php:90
 msgid "Saved !"
 msgstr ""
 
@@ -165,30 +166,34 @@ msgid "Zoom Users"
 msgstr ""
 
 #: includes/admin/class-zvc-admin-settings.php:43
+msgid "Add Users"
+msgstr ""
+
+#: includes/admin/class-zvc-admin-settings.php:45
 #: includes/views/tpl-reports.php:10
 msgid "Reports"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-settings.php:48
+#: includes/admin/class-zvc-admin-settings.php:50
 #: includes/views/tpl-settings.php:99
 msgid "Addons"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-settings.php:55
+#: includes/admin/class-zvc-admin-settings.php:57
 #: includes/views/tpl-assign-host-id.php:9
 msgid "Assign Host ID"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-settings.php:62
+#: includes/admin/class-zvc-admin-settings.php:64
 #: includes/views/tpl-settings.php:16
 msgid "Settings"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-settings.php:108
+#: includes/admin/class-zvc-admin-settings.php:110
 msgid "Successfully Updated. Please refresh this page."
 msgstr ""
 
-#: includes/admin/class-zvc-admin-settings.php:110
+#: includes/admin/class-zvc-admin-settings.php:112
 msgid "Dismiss this notice."
 msgstr ""
 
@@ -244,31 +249,37 @@ msgstr ""
 msgid "No meetings found in Trash."
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:77
+#: includes/admin/class-zvc-admin-post-type.php:74
+#: includes/admin/class-zvc-admin-post-type.php:75
+msgctxt "Category"
+msgid "Category"
+msgstr ""
+
+#: includes/admin/class-zvc-admin-post-type.php:93
 msgid "Zoom Details"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:81
+#: includes/admin/class-zvc-admin-post-type.php:97
 msgid "Meeting Details"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:86
+#: includes/admin/class-zvc-admin-post-type.php:102
 msgid "WooCommerce Integration?"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:137
+#: includes/admin/class-zvc-admin-post-type.php:164
 msgid "Requires Login?"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:140
+#: includes/admin/class-zvc-admin-post-type.php:167
 msgid "Only logged in users of this site will be able to join this meeting."
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:141
+#: includes/admin/class-zvc-admin-post-type.php:168
 msgid "Hide Join via browser link ?"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:144
+#: includes/admin/class-zvc-admin-post-type.php:171
 msgid "This will disable join via browser link in frontend page."
 msgstr ""
 
@@ -310,7 +321,7 @@ msgstr ""
 msgid "Host ID"
 msgstr ""
 
-#: includes/views/tpl-list-meetings.php:65 includes/views/tpl-list-users.php:31
+#: includes/views/tpl-list-meetings.php:65 includes/views/tpl-list-users.php:33
 msgid "Created On"
 msgstr ""
 
@@ -590,18 +601,82 @@ msgstr ""
 msgid "Alternative hosts IDs. Multiple value separated by comma."
 msgstr ""
 
+#: includes/views/tpl-add-user.php:2
+msgid "Add a User"
+msgstr ""
+
+#: includes/views/tpl-add-user.php:21
+msgid "Action (Required)."
+msgstr ""
+
+#: includes/views/tpl-add-user.php:24
+msgid "Create"
+msgstr ""
+
+#: includes/views/tpl-add-user.php:25
+msgid "Auto Create"
+msgstr ""
+
+#: includes/views/tpl-add-user.php:26
+msgid "Cust Create"
+msgstr ""
+
+#: includes/views/tpl-add-user.php:27
+msgid "SSO Create"
+msgstr ""
+
+#: includes/views/tpl-add-user.php:30 includes/views/tpl-add-user.php:74
+msgid "Type of User (Required)"
+msgstr ""
+
+#: includes/views/tpl-add-user.php:49
+msgid "Email Address"
+msgstr ""
+
+#: includes/views/tpl-add-user.php:51
+msgid "This address is used for zoom (Required)."
+msgstr ""
+
+#: includes/views/tpl-add-user.php:55
+msgid "First Name"
+msgstr ""
+
+#: includes/views/tpl-add-user.php:58
+msgid "First Name of the User (Required)."
+msgstr ""
+
+#: includes/views/tpl-add-user.php:62
+msgid "Last Name"
+msgstr ""
+
+#: includes/views/tpl-add-user.php:64
+msgid "Last Name of the User (Required)."
+msgstr ""
+
+#: includes/views/tpl-add-user.php:68
+msgid "User Type (Required)."
+msgstr ""
+
+#: includes/views/tpl-add-user.php:71
+msgid "Basic User"
+msgstr ""
+
+#: includes/views/tpl-add-user.php:72
+msgid "Pro User"
+msgstr ""
+
 #: includes/views/tpl-assign-host-id.php:32
-#: includes/views/tpl-list-users.php:27
+#: includes/views/tpl-list-users.php:29
 msgid "SN"
 msgstr ""
 
 #: includes/views/tpl-assign-host-id.php:33
-#: includes/views/tpl-list-users.php:29
+#: includes/views/tpl-list-users.php:31
 msgid "Email"
 msgstr ""
 
 #: includes/views/tpl-assign-host-id.php:34
-#: includes/views/tpl-list-users.php:30
+#: includes/views/tpl-list-users.php:32
 msgid "Name"
 msgstr ""
 
@@ -679,19 +754,19 @@ msgstr ""
 msgid "Users"
 msgstr ""
 
-#: includes/views/tpl-list-users.php:13
+#: includes/views/tpl-list-users.php:14
 msgid "Flush User Cache"
 msgstr ""
 
-#: includes/views/tpl-list-users.php:28
+#: includes/views/tpl-list-users.php:30
 msgid "User ID"
 msgstr ""
 
-#: includes/views/tpl-list-users.php:32
+#: includes/views/tpl-list-users.php:34
 msgid "Last Login"
 msgstr ""
 
-#: includes/views/tpl-list-users.php:33
+#: includes/views/tpl-list-users.php:35
 msgid "Last Client"
 msgstr ""
 
@@ -719,23 +794,34 @@ msgstr ""
 msgid "seconds"
 msgstr ""
 
-#: templates/fragments/meeting-details.php:16
+#: templates/fragments/meeting-details.php:15
 msgid "Details"
 msgstr ""
 
-#: templates/fragments/meeting-details.php:20
+#: templates/fragments/meeting-details.php:19
 msgid "Hosted By"
 msgstr ""
 
-#: templates/fragments/meeting-details.php:25
+#: templates/fragments/meeting-details.php:24
+#: templates/shortcode/zoom-listing.php:26
 msgid "Start"
 msgstr ""
 
-#: templates/fragments/meeting-details.php:41
+#: templates/fragments/meeting-details.php:30
+msgid "Category"
+msgstr ""
+
+#: templates/fragments/meeting-details.php:45
 #, php-format
-msgid ""
-"%sNote%s: Countdown time is shown based on your local timezone. Meeting join "
-"links will show before and after 1 hour of meeting time."
+msgid "%sNote%s: Countdown time is shown based on your local timezone."
+msgstr ""
+
+#: templates/shortcode/zoom-listing.php:23
+msgid "Hosted By:"
+msgstr ""
+
+#: templates/shortcode/zoom-listing.php:33
+msgid "See More"
 msgstr ""
 
 #: templates/shortcode/join-links.php:14

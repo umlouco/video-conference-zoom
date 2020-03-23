@@ -1,10 +1,10 @@
 === Video Conferencing with Zoom ===
-Contributors: j__3rk, digamberpradhan
+Contributors: j__3rk, digamberpradhan, codemanas
 Tags: zoom video conference, video conference, zoom, zoom video conferencing, web conferencing, online meetings
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.3
-Stable tag: 3.2.1
+Stable tag: 3.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -92,9 +92,9 @@ As an extension of the Zoom browser client, this SDK is intended for implementat
 
 **You can get your shorcodes from individual meetings after creating certain meeting. (From version 3.1.8+)**
 
-From version 3.0.0+ - Shortcode has been changed to fit different need:
-
 * [zoom_api_link meeting_id="123456789" link_only="no"] - Just enter your meeting ID and you are good to show your meeting in any page. Adding link_only="yes" would show join link only. See [Usage Documentation](https://techies23.github.io/video-conference-zoom/ "Usage Documentation") for more detail on usage.
+
+* [zoom_list_meetings per_page="5" category="test,test2,test3"] - Show list of meetings in frontend via category, Edit shortcode template for table view.
 
 **QUICK DEMO:**
 
@@ -137,10 +137,13 @@ This happens because of the single meeting page template from the plugin not bei
 
 == Changelog ==
 
-= 3.2.1 - Mar 18, 2020 =
+= 3.2.2 - Ongoing =
+* Added: New shortcode for displaying list of meetings in frontend via category.
+
+= 3.2.1 - Mar 23, 2020 =
 * Fixed: vczapi_get_template_part trailingslashhit fix reported by @https://wordpress.org/support/users/amba_13/
 * Added: Users table pagination for WP-Admin section
-* Fixed: Add users section
+* Fixed: Re-Added users section with bug fixed
 * Added: Time format display changed to 'LLLL' /w Day also on single meetings page.
 * Added: Category for Zoom Meetings added
 
