@@ -241,17 +241,24 @@ function video_conferencing_zoom_api_pagination_prev( $type, $page_type = 'zoom-
  * @since  3.0.0
  */
 function video_conferencing_zoom_api_show_like_popup() {
-	?>
-    <div id="message" class="notice notice-warning">
-        <h3><?php esc_html_e( 'Like this plugin ?', 'video-conferencing-with-zoom-api' ); ?></h3>
-        <p>
-			<?php
-			printf( esc_html__( 'Please consider giving a %s if you found this useful at wordpress.org or ', 'video-conferencing-with-zoom-api' ), '<a href="https://wordpress.org/support/plugin/video-conferencing-with-zoom-api/reviews/#new-post">5 star thumbs up</a>' );
-			printf( esc_html__( 'check %s for shortcode references.', 'video-conferencing-with-zoom-api' ), '<a href="' . admin_url( 'edit.php?post_type=zoom-meetings&page=zoom-video-conferencing-settings' ) . '">settings</a>' );
-			?>
-        </p>
-    </div>
-	<?php
+	if ( isset( $_GET['vczapi_dismiss'] ) && $_GET['vczapi_dismiss'] == 1 ) {
+		set_transient( '_vczapi_dismiss_notice', 1, 60 * 60 * 24 * 30 );
+	}
+
+	if ( ! get_transient( '_vczapi_dismiss_notice' ) ) {
+		?>
+        <div id="message" class="notice notice-warning is-dismissible">
+            <h3><?php esc_html_e( 'Like this plugin ?', 'video-conferencing-with-zoom-api' ); ?></h3>
+            <p>
+				<?php
+				printf( esc_html__( 'Please consider giving a %s if you found this useful at wordpress.org or ', 'video-conferencing-with-zoom-api' ), '<a href="https://wordpress.org/support/plugin/video-conferencing-with-zoom-api/reviews/#new-post">5 star thumbs up</a>' );
+				printf( esc_html__( 'check %s for shortcode references.', 'video-conferencing-with-zoom-api' ), '<a href="' . admin_url( 'edit.php?post_type=zoom-meetings&page=zoom-video-conferencing-settings' ) . '">settings</a>.' );
+				?>
+                <a href="<?php echo add_query_arg( 'vczapi_dismiss', 1 ) ?>" class="is-dismissible">I already rated you ! Don't show again !</a>
+            </p>
+        </div>
+		<?php
+	}
 }
 
 /**
