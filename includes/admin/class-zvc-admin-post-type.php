@@ -145,7 +145,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
                     <p><strong>Meeting has not been created for this post yet. Publish your meeting or hit update to create a new one for this post
                             !</strong></p>
 					<?php
-					echo 'Zoom Error:' . $meeting_details->message;
+					echo '<p style="color:red;">Zoom Error:' . $meeting_details->message . '</p>';
 				} else {
 					?>
                     <div class="zoom-metabox-content">

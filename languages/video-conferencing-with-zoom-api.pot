@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Video Conferencing with Zoom API\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/video-"
 "conferencing-with-zoom-api\n"
-"POT-Creation-Date: 2020-03-23 11:14+0000\n"
+"POT-Creation-Date: 2020-03-27 09:01+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -597,7 +597,6 @@ msgstr ""
 
 #: includes/views/tpl-edit-meeting.php:158
 #: includes/views/tpl-add-meetings.php:137
-#: includes/views/post-type/tpl-meeting-fields.php:115
 msgid "Alternative hosts IDs. Multiple value separated by comma."
 msgstr ""
 
@@ -832,4 +831,10 @@ msgstr ""
 msgid ""
 "If you need to show this meeting on another page or post please use this "
 "shortcode"
+msgstr ""
+
+#: includes/views/post-type/tpl-meeting-fields.php:115
+msgid ""
+"Paid Zoom Account is required for this !! Alternative hosts IDs. Multiple "
+"value separated by comma."
 msgstr ""

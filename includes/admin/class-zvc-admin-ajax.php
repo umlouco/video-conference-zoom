@@ -107,6 +107,8 @@ class Zoom_Video_Conferencing_Admin_Ajax {
 
 			if ( http_response_code() === 200 ) {
 				wp_send_json( "API Connection is good. Please refresh !" );
+			} else {
+				wp_send_json( $test );
 			}
 		}
 		wp_die();

@@ -68,7 +68,13 @@
     <a class="current" href="./">Shortcode Implementation</a>
     <ul class="subnav">
             
-    <li class="toctree-l2"><a href="#basic-usage">Basic Usage</a></li>
+    <li class="toctree-l2"><a href="#types">Types</a></li>
+    
+
+    <li class="toctree-l2"><a href="#basic-table-shortcode">Basic Table Shortcode</a></li>
+    
+
+    <li class="toctree-l2"><a href="#list-meeting-shortcode">List Meeting Shortcode</a></li>
     
 
     <li class="toctree-l2"><a href="#how-to-get-meeting-id">How to get Meeting ID</a></li>
@@ -153,7 +159,12 @@
             <div class="section">
               
                 <p>Previously, shortcode had to be written in complex way that some people would not feel reliable for this specific plugin. With new update its pretty easy to remember.</p>
-<h3 id="basic-usage">Basic Usage</h3>
+<h3 id="types">Types</h3>
+<ol>
+<li><code>[zoom_api_link meeting_id="" link_only="no"]</code></li>
+<li><code>[zoom_list_meetings per_page="5" category="test,test2,test3"]</code>  ( In Development version 3.2.2 - Not released )</li>
+</ol>
+<h3 id="basic-table-shortcode">Basic Table Shortcode</h3>
 <p>Use: <code>[zoom_api_link meeting_id="" link_only="no"]</code></p>
 <p>Where,</p>
 <ul>
@@ -162,6 +173,13 @@
 </ul>
 <p>Your frontend page should look like:</p>
 <p><img src="https://deepenbajracharya.com.np/wp-content/uploads/2019/11/Meetings-%E2%80%93-Plugin-Tester-1024x520.png"></p>
+<h3 id="list-meeting-shortcode">List Meeting Shortcode</h3>
+<p>Use: <code>[zoom_list_meetings per_page="5" category="test,test2,test3"]</code></p>
+<p>Where,</p>
+<ul>
+<li><code>per_page</code> = Number of posts to show per page</li>
+<li><code>category</code> = Which categories to show in the list</li>
+</ul>
 <h3 id="how-to-get-meeting-id">How to get Meeting ID</h3>
 <ol>
 <li>Goto your wp-admin</li>

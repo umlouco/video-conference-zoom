@@ -1,5 +1,5 @@
 === Video Conferencing with Zoom ===
-Contributors: j__3rk, digamberpradhan, codemanas
+Contributors: j__3rk, digamberpradhan
 Tags: zoom video conference, video conference, zoom, zoom video conferencing, web conferencing, online meetings
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
@@ -14,7 +14,7 @@ Gives you the power to manage Zoom Meetings, check reports and create users from
 
 Only simple plugin which gives you the extensive functionality to manage zoom meetings, users, reports from your WordPress Dashboard. Now, with capability to add your own post as a meeting. Create posts as meetings directly from your WordPress dashboard to show in the frontend as a meeting page. Allow users to directly join via that page with click of a button.
 
-Now, from 3.2.0 allows you to Join meetings directly from Browser without Zoom App.
+Now, from 3.2.0 allows you to Join meetings directly from Browser without Zoom App using Zoom WebSDK. For audio/video issues check FAQ section.
 
 **FEATURES:**
 
@@ -107,6 +107,10 @@ Search for the plugin -> add new dialog and click install, or download and extra
 
 == Frequently Asked Questions ==
 
+= Join via Browser not working, Camera and Audio not detected =
+
+This issue is because of HTTPS protocol. You need to use HTTPS to be able to allow browser to send audio and video.
+
 = Blank page for Single Meetings page =
 
 If you face blank page in this situation you should refer to [Full Documentation](https://zoom.codemanas.com/ "Usage Documentation") and see Template override section. A bit of techinical knowledge is needed.
@@ -139,6 +143,7 @@ This happens because of the single meeting page template from the plugin not bei
 
 = 3.2.2 - Ongoing =
 * Added: New shortcode for displaying list of meetings in frontend via category.
+* Added: Join link button classes
 
 = 3.2.1 - Mar 23, 2020 =
 * Fixed: vczapi_get_template_part trailingslashhit fix reported by @https://wordpress.org/support/users/amba_13/

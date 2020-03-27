@@ -1,6 +1,11 @@
 Previously, shortcode had to be written in complex way that some people would not feel reliable for this specific plugin. With new update its pretty easy to remember.
 
-### Basic Usage
+### Types
+
+1. `[zoom_api_link meeting_id="" link_only="no"]`
+2. `[zoom_list_meetings per_page="5" category="test,test2,test3"]`  ( In Development version 3.2.2 - Not released )
+
+### Basic Table Shortcode
 
 Use: `[zoom_api_link meeting_id="" link_only="no"]`
 
@@ -12,6 +17,15 @@ Where,
 Your frontend page should look like:
 
 <img src="https://deepenbajracharya.com.np/wp-content/uploads/2019/11/Meetings-%E2%80%93-Plugin-Tester-1024x520.png">
+
+### List Meeting Shortcode
+
+Use: `[zoom_list_meetings per_page="5" category="test,test2,test3"]`
+
+Where,
+
+* `per_page` = Number of posts to show per page
+* `category` = Which categories to show in the list
 
 ### How to get Meeting ID
 

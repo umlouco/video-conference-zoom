@@ -6,7 +6,6 @@
 
 .zvc-row {
   display: flex;
-  flex-wrap: wrap;
 }
 
 .zvc_listing_table {
@@ -52,10 +51,12 @@
   border: 1px solid #ccc;
   background: #fff;
   margin-right: 10px;
+  justify-content: space-between;
 }
 
 .zvc-position-floater-right {
-  width: 24%;
+  width: 30%;
+  justify-content: space-between;
 }
 
 .zvc-position-floater-right .zvc-information-sec {
