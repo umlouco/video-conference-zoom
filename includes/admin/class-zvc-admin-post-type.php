@@ -323,6 +323,9 @@ class Zoom_Video_Conferencing_Admin_PostType {
 			unset( $GLOBALS['zoom'] );
 
 			$GLOBALS['zoom'] = get_post_meta( $post->ID, '_meeting_fields', true );
+			if ( ! empty( $GLOBALS['zoom']['userId'] ) ) {
+				$GLOBALS['zoom']['user'] = json_decode( zoom_conference()->getUserInfo( $GLOBALS['zoom']['userId'] ) );
+			}
 
 			$terms = get_the_terms( $post->ID, 'zoom-meeting' );
 			if ( ! empty( $terms ) ) {
