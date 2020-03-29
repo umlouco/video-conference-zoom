@@ -1,6 +1,6 @@
 ## Video Conferencing with Zoom API
 
-Welcome to the Video Conferencing with Zoom API repository on GitHub. Here you can browse the source, look at open issues and keep track of development. 
+Welcome to the Video Conferencing with Zoom API repository on GitHub. Here you can browse the source, and keep track of development. 
 
 If you are not a developer, please use the [Video Conferencing with Zoom API plugin page](https://wordpress.org/plugins/video-conferencing-with-zoom-api/) on WordPress.org.
 
