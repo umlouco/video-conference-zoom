@@ -4,7 +4,7 @@ Tags: zoom video conference, video conference, zoom, zoom video conferencing, we
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.3
-Stable tag: 3.2.4
+Stable tag: 3.2.31
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -141,7 +141,14 @@ This happens because of the single meeting page template from the plugin not bei
 
 == Changelog ==
 
-= 3.2.2 - Ongoing =
+= 3.2.31 - March 29th, 2020 =
+* Added: Filter hook: vczapi_timezone_list => for timezone list.
+* Added: Meeting link encryption changed.
+* Added: Disable review nag notices
+* Added: French Translation thanks to Julien Laumond
+* Added: Meeting start/ended text filters => vczapi_meeting_event_text
+
+= 3.2.2 - Mar 27th, 2020 =
 * Added: New shortcode for displaying list of meetings in frontend via category.
 * Added: Join link button classes
 

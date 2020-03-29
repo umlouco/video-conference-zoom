@@ -110,7 +110,7 @@ function video_conference_zoom_meeting_join_link( $zoom_meeting ) {
 		$meeting_details = get_post_meta( $post_id, '_meeting_fields', true );
 		if ( ! empty( $zoom_meeting->id ) && ! empty( $post_id ) && empty( $meeting_details['site_option_browser_join'] ) ) {
 			?>
-            <a data-meetingid="<?php echo $zoom_meeting->id; ?>" href="<?php echo esc_url( get_permalink( $post_id ) . '?join=' . vczapi_encrypt_url( $zoom_meeting->id ) . '&type=meeting' ); ?>" class="btn btn-join-link btn-join-via-browser"><?php echo apply_filters( 'vczoom_join_meeting_via_app_text', __( 'Join via Web Browser', 'video-conferencing-with-zoom-api' ) ); ?></a>
+            <a data-meetingid="<?php echo $zoom_meeting->id; ?>" href="<?php echo esc_url( get_permalink( $post_id ) . '?join=' . encrypt_decrypt( 'encrypt', $zoom_meeting->id ) . '&type=meeting' ); ?>" class="btn btn-join-link btn-join-via-browser"><?php echo apply_filters( 'vczoom_join_meeting_via_app_text', __( 'Join via Web Browser', 'video-conferencing-with-zoom-api' ) ); ?></a>
 			<?php
 		}
 	}

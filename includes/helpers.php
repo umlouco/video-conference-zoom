@@ -159,7 +159,7 @@ if ( ! function_exists( 'zvc_get_timezone_options' ) ) {
 			"Pacific/Auckland"               => "(GMT+12:00) Auckland, Wellington"
 		);
 
-		return $zones_array;
+		return apply_filters( 'vczapi_timezone_list', $zones_array );
 	}
 }
 
@@ -383,48 +383,30 @@ function vczapi_dateConverter( $start_time, $tz, $format = 'F j, Y, g:i a ( T )'
 /**
  * Encrypts URL
  *
+ * @param $action
  * @param $string
  *
- * @return string
- * @author Deepen
- * @since  3.2.1
- *
+ * @return bool|string
  */
-function vczapi_encrypt_url( $string ) {
-	$key    = "MAL_979805"; //key to encrypt and decrypts.
-	$result = '';
-	$test   = "";
-	for ( $i = 0; $i < strlen( $string ); $i ++ ) {
-		$char    = substr( $string, $i, 1 );
-		$keychar = substr( $key, ( $i % strlen( $key ) ) - 1, 1 );
-		$char    = chr( ord( $char ) + ord( $keychar ) );
+function encrypt_decrypt( $action, $string ) {
+	$output = false;
 
-		$test[ $char ] = ord( $char ) + ord( $keychar );
-		$result        .= $char;
+	$encrypt_method = "AES-256-CBC";
+	$secret_key     = 'DPEN_X3!3#23121';
+	$secret_iv      = '1231232133213221';
+
+	// hash
+	$key = hash( 'sha256', $secret_key );
+
+	// iv - encrypt method AES-256-CBC expects 16 bytes - else you will get a warning
+	$iv = substr( hash( 'sha256', $secret_iv ), 0, 16 );
+
+	if ( $action == 'encrypt' ) {
+		$output = openssl_encrypt( $string, $encrypt_method, $key, 0, $iv );
+		$output = base64_encode( $output );
+	} else if ( $action == 'decrypt' ) {
+		$output = openssl_decrypt( base64_decode( $string ), $encrypt_method, $key, 0, $iv );
 	}
 
-	return urlencode( base64_encode( $result ) );
-}
-
-/**
- * Decrypts url
- *
- * @param $string
- *
- * @return string
- * @author Deepen
- * @since  3.2.1
- */
-function vczapi_decrypt_url( $string ) {
-	$key    = "MAL_979805"; //key to encrypt and decrypts.
-	$result = '';
-	$string = base64_decode( urldecode( $string ) );
-	for ( $i = 0; $i < strlen( $string ); $i ++ ) {
-		$char    = substr( $string, $i, 1 );
-		$keychar = substr( $key, ( $i % strlen( $key ) ) - 1, 1 );
-		$char    = chr( ord( $char ) - ord( $keychar ) );
-		$result  .= $char;
-	}
-
-	return $result;
+	return $output;
 }

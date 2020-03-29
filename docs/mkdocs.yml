@@ -11,5 +11,4 @@ nav:
   - Assign Host Page: assign_host.md
   - WooCommerce (Addon): woocommerce.md
   - WooCommerce Bookings (Addon): woocommerce-booking.md
-  - Booked Appointment Plugin: booked.md
 theme: readthedocs

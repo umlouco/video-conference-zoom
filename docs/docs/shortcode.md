@@ -3,7 +3,7 @@ Previously, shortcode had to be written in complex way that some people would no
 ### Types
 
 1. `[zoom_api_link meeting_id="" link_only="no"]`
-2. `[zoom_list_meetings per_page="5" category="test,test2,test3"]`  ( In Development version 3.2.2 - Not released )
+2. `[zoom_list_meetings per_page="5" category="test,test2,test3"]` 
 
 ### Basic Table Shortcode
 

@@ -65,6 +65,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 				'author',
 				'thumbnail',
 			),
+			'rewrite'            => array( 'slug' => apply_filters( 'vczapi_cpt_slug', 'zoom-meetings' ) ),
 		);
 
 		register_post_type( 'zoom-meetings', $args );
@@ -357,7 +358,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 					'redirect_page' => esc_url( get_permalink( $post->ID ) )
 				) );
 
-				$GLOBALS['zoom']['meeting_id'] = sanitize_text_field( absint( vczapi_decrypt_url( $_GET['join'] ) ) );
+				$GLOBALS['zoom']['meeting_id'] = sanitize_text_field( absint( encrypt_decrypt( 'decrypt', $_GET['join'] ) ) );
 				//Render View
 				$templates[] = 'join-web-browser.php';
 				?>
