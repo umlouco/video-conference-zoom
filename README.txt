@@ -141,6 +141,10 @@ This happens because of the single meeting page template from the plugin not bei
 
 == Changelog ==
 
+= 3.2.4 Dev =
+* German Translation Added: Thanks to Peter Ginser
+* Slovak Translation Added: Thanks to Branislav Ďorď
+
 = 3.2.31 - March 29th, 2020 =
 * Added: Filter hook: vczapi_timezone_list => for timezone list.
 * Added: Meeting link encryption changed.
