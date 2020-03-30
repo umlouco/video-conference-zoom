@@ -58,11 +58,28 @@ This method should be used to link Zoom Meeting with a Product. The product crea
 
 #### How to create a Zoom Meeting
 
-1. Go to WordPress admin menu "Zoom Meetings"
+* Go to WordPress admin menu "Zoom Meetings"
 
-<img src="https://www.codemanas.com/wp-content/uploads/2020/03/Screen-Shot-2020-03-18-at-11.14.50.png"><br/><br/>
+<img src="``https://www.codemanas.com/wp-content/uploads/2020/03/Screen-Shot-2020-03-18-at-11.14.50.png"><br/><br/>
 
-2. Add a New Zoom Meeting - fill out all the details like you would for the Zoom Meeting. After filling everything out there is a sidebar area that says WooCommerce Integration. Check the box that says enable purchase and enter the price that't it - the Zoom Product will then be purchasable via the Zoom Meeting Page. Please see video below.<br/><br/>
+* Add a New Zoom Meeting - fill out all the details like you would for the Zoom Meeting. After filling everything out there is a sidebar area that says WooCommerce Integration. Check the box that says enable purchase and enter the price that't it - the Zoom Product will then be purchasable via the Zoom Meeting Page. Please see video below.<br/><br/>
 <video controls width="640" controls>
 <source src="https://www.codemanas.com/wp-content/uploads/2020/03/zoom-product.mp4" />
 </video>
+
+### Shortcode
+
+`[vczapi_wc_show_purchasable_meetings per_page="10" type="table" order="DESC" upcoming_only="no"]`
+
+#### Usage:
+
+This allows you to show your purchasable meeting lists. Show in DESC or ASC format as well as show upcoming only or not.
+
+#### Parameters:
+
+* `per_page:` Allows you to define how many list to show per page.
+* `type`: Allows you to show the list in table format or boxed format. Change to `type="boxed"` to show in boxed format
+* `order`: Show list in `ASC` or `DESC` format
+* `upcoming_only`: Show only upcoming meetings based on start time or show all list. Change to "yes" for upcoming only
+
+

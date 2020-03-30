@@ -180,7 +180,7 @@ function video_conference_zoom_shortcode_table( $zoom_meetings ) {
         </tr>
         <tr>
             <td><?php _e( 'Start Time', 'video-conferencing-with-zoom-api' ); ?></td>
-            <td><?php echo vczapi_dateConverter( $zoom_meetings->start_time, $zoom_meetings->timezone, 'F j, Y @ g:i a' );; ?></td>
+            <td><?php echo vczapi_dateConverter( $zoom_meetings->start_time, $zoom_meetings->timezone, 'F j, Y @ g:i a' ); ?></td>
         </tr>
         <tr>
             <td><?php _e( 'Timezone', 'video-conferencing-with-zoom-api' ); ?></td>

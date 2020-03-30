@@ -95,14 +95,15 @@ class Zoom_Video_Conferencing_Shorcodes {
 	 * @return string
 	 * @since  3.0.0
 	 */
-	public function show_meetings( $args ) {
+	public function show_meetings( $atts ) {
 		self::$meetings_list_number ++;
-		$args = shortcode_atts(
+		$atts = shortcode_atts(
 			array(
 				'per_page' => 5,
 				'category' => '',
+				'order'    => 'ASC'
 			),
-			$args, 'zoom_list_meetings'
+			$atts, 'zoom_list_meetings'
 		);
 		if ( is_front_page() ) {
 			$paged = ( get_query_var( 'page' ) ) ? get_query_var( 'page' ) : 1;
@@ -112,18 +113,20 @@ class Zoom_Video_Conferencing_Shorcodes {
 
 		$query_args = array(
 			'post_type'      => $this->post_type,
-			'posts_per_page' => $args['per_page'],
+			'posts_per_page' => $atts['per_page'],
 			'post_status'    => 'publish',
 			'paged'          => $paged,
+			'orderby'        => 'ID',
+			'order'          => $atts['order']
 		);
 
-		if ( ! empty( $args['category'] ) ) {
+		if ( ! empty( $atts['category'] ) ) {
 			$query_args['tax_query'] = [
 				[
 					'taxonomy' => 'zoom-meeting',
 					'field'    => 'slug',
 					'terms'    => [
-						$args['category']
+						$atts['category']
 					]
 				]
 			];
@@ -137,7 +140,7 @@ class Zoom_Video_Conferencing_Shorcodes {
 
 		if ( $zoom_meetings->have_posts() ):
 			ob_start();
-			vczapi_get_template( array( 'shortcode-listing.php' ), true, false );
+			vczapi_get_template( array( 'shortcode-listing.php' ), true );
 			$content .= ob_get_clean();
 		endif;
 

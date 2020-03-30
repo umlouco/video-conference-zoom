@@ -47,7 +47,7 @@ class Zoom_Video_Conferencing_Admin_Views {
 				'zoom_reports'
 			) );
 
-			add_submenu_page( 'edit.php?post_type=zoom-meetings', __( 'Addons', 'video-conferencing-with-zoom-api' ), __( 'Addons', 'video-conferencing-with-zoom-api' ), 'edit_posts', 'zoom-video-conferencing-addons', array(
+			add_submenu_page( 'edit.php?post_type=zoom-meetings', __( 'Addons', 'video-conferencing-with-zoom-api' ), __( 'Addons', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing-addons', array(
 				'Zoom_Video_Conferencing_Admin_Addons',
 				'render'
 			) );

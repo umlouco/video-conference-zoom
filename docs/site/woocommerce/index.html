@@ -115,6 +115,8 @@
         
             <li><a class="toctree-l3" href="#2-zoom-meeting-linked-with-product-zoom-product">2. Zoom Meeting linked with Product ( Zoom Product )</a></li>
         
+            <li><a class="toctree-l3" href="#shortcode">Shortcode</a></li>
+        
         </ul>
     
 
@@ -204,16 +206,27 @@ Checking this box will allow to link this product to a Zoom Meeting. Please note
 <h3 id="2-zoom-meeting-linked-with-product-zoom-product">2. Zoom Meeting linked with Product ( Zoom Product )</h3>
 <p>This method should be used to link Zoom Meeting with a Product. The product created using this method will not be shown on shop and search pages. The meeting created using this method is designed to be directly purchased via the zoom meeting single page. See image below.</p>
 <h4 id="how-to-create-a-zoom-meeting">How to create a Zoom Meeting</h4>
-<ol>
+<ul>
 <li>Go to WordPress admin menu "Zoom Meetings"</li>
-</ol>
-<p><img src="https://www.codemanas.com/wp-content/uploads/2020/03/Screen-Shot-2020-03-18-at-11.14.50.png"><br/><br/></p>
-<ol>
+</ul>
+<p><img src="``https://www.codemanas.com/wp-content/uploads/2020/03/Screen-Shot-2020-03-18-at-11.14.50.png"><br/><br/></p>
+<ul>
 <li>Add a New Zoom Meeting - fill out all the details like you would for the Zoom Meeting. After filling everything out there is a sidebar area that says WooCommerce Integration. Check the box that says enable purchase and enter the price that't it - the Zoom Product will then be purchasable via the Zoom Meeting Page. Please see video below.<br/><br/>
 <video controls width="640" controls>
 <source src="https://www.codemanas.com/wp-content/uploads/2020/03/zoom-product.mp4" />
 </video></li>
-</ol>
+</ul>
+<h3 id="shortcode">Shortcode</h3>
+<p><code>[vczapi_wc_show_purchasable_meetings per_page="10" type="table" order="DESC" upcoming_only="no"]</code></p>
+<h4 id="usage">Usage:</h4>
+<p>This allows you to show your purchasable meeting lists. Show in DESC or ASC format as well as show upcoming only or not.</p>
+<h4 id="parameters">Parameters:</h4>
+<ul>
+<li><code>per_page:</code> Allows you to define how many list to show per page.</li>
+<li><code>type</code>: Allows you to show the list in table format or boxed format. Change to <code>type="boxed"</code> to show in boxed format</li>
+<li><code>order</code>: Show list in <code>ASC</code> or <code>DESC</code> format</li>
+<li><code>upcoming_only</code>: Show only upcoming meetings based on start time or show all list. Change to "yes" for upcoming only</li>
+</ul>
               
             </div>
           </div>
