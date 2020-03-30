@@ -60,7 +60,7 @@ This method should be used to link Zoom Meeting with a Product. The product crea
 
 * Go to WordPress admin menu "Zoom Meetings"
 
-<img src="``https://www.codemanas.com/wp-content/uploads/2020/03/Screen-Shot-2020-03-18-at-11.14.50.png"><br/><br/>
+<img src="https://www.codemanas.com/wp-content/uploads/2020/03/Screen-Shot-2020-03-18-at-11.14.50.png"><br/><br/>
 
 * Add a New Zoom Meeting - fill out all the details like you would for the Zoom Meeting. After filling everything out there is a sidebar area that says WooCommerce Integration. Check the box that says enable purchase and enter the price that't it - the Zoom Product will then be purchasable via the Zoom Meeting Page. Please see video below.<br/><br/>
 <video controls width="640" controls>
@@ -82,4 +82,17 @@ This allows you to show your purchasable meeting lists. Show in DESC or ASC form
 * `order`: Show list in `ASC` or `DESC` format
 * `upcoming_only`: Show only upcoming meetings based on start time or show all list. Change to "yes" for upcoming only
 
+### Reminder E-mails ###
 
+Meeting email reminders can be configured from Zoom > WooCommerce > Email tab. You can either choose to send emails 24 hours before the meeting or 3 hours before.<br />
+#### Meeting Reminder Worklow: ####
+* Meeting reminder email uses your WordPress configuration to send e-mails. Please make sure the mail sent out by your site is not going into spam.<br />
+* Meeting reminder are dependent on cron job - the cron event name is "vczapi_meeting_events_cron" and it is run hourly.
+So please make sure cron jobs are running properly on your system. It is recommended that you switch to a true cron job https://www.siteground.com/tutorials/wordpress/real-cron-job/ to make sure your e-mails are being sent properly.<br />
+* User will not be sent an e-mail if they have purchased the meeting after the initial notification time has passed.
+   So example if meeting time is less than 24 hours away - and new user has purchased the meeting the will not get 24 hour neeting alert. They will only get (if configured) - 3 hours away reminder email.
+ 
+ 
+### Deep dive video for Reminder E-mails ###
+ <iframe width="560" height="315" src="https://www.youtube.com/embed/Qb8OoT1eb2U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
+ 
