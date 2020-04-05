@@ -113,7 +113,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 			'has_archive'        => true,
 			'hierarchical'       => false,
 			'menu_position'      => apply_filters( 'vczapi_cpt_menu_position', 5 ),
-			'map_meta_cap'       => null,
+			'map_meta_cap'       => apply_filters( 'vczapi_cpt_meta_cap', null ),
 			'supports'           => array(
 				'title',
 				'editor',
