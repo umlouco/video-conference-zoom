@@ -182,7 +182,8 @@ class Zoom_Video_Conferencing_Shorcodes {
 			'title'          => '',
 			'id'             => 'zoom_video_uri',
 			'login_required' => "no",
-			'help'           => "yes"
+			'help'           => "yes",
+			'height'         => "500px"
 		), $atts ) );
 
 		ob_start();
@@ -194,6 +195,7 @@ class Zoom_Video_Conferencing_Shorcodes {
 
 		if ( ! empty( $login_required ) && $login_required === "yes" && ! is_user_logged_in() ) {
 			echo '<h3>' . esc_html__( 'Restricted access, please login to continue.', 'video-conferencing-with-zoom-api' ) . '</h3>';
+
 			return;
 		}
 
@@ -333,10 +335,11 @@ class Zoom_Video_Conferencing_Shorcodes {
 									<?php
 								}
 							}
+
+							$styling = ! empty( $height ) ? "height: " . $height : "height: 500px;";
 							?>
                             <div id="<?php echo esc_html( $id ); ?>" class="zoom-iframe-container">
-                                <iframe scrolling="no" style="width:100%; height: 100%;" accelerometer; encrypted-media; gyroscope; picture-in-picture; autoplay; fullscreen; microphone; camera
-                                " src="<?php echo esc_url( $browser_url ); ?>" frameborder="0"></iframe>
+                                <iframe scrolling="no" style="width:100%; <?php echo $styling; ?>" sandbox="allow-forms allow-scripts allow-same-origin" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen" allow="encrypted-media; autoplay; microphone; camera" src="<?php echo esc_url( $browser_url ); ?>" frameborder="0"></iframe>
                             </div>
                         </div>
 					<?php

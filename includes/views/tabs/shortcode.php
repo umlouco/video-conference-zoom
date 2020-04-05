@@ -44,11 +44,11 @@ if ( ! defined( 'ABSPATH' ) ) {
             </div>
             <div class="zoom-api-basic-usage" style="margin-top: 20px;border-top:1px solid #ccc;">
                 <h3><?php _e( 'Embed Zoom Meeting into Browser', 'video-conferencing-with-zoom-api' ); ?>:</h3>
-                <code>[zoom_join_via_browser meeting_id="1234556789" title="Meeting Title" id="div-class-id" login_required="no" help="yes"]</code>
+                <code>[zoom_join_via_browser meeting_id="1234556789" title="Meeting Title" id="div-class-id" login_required="no" help="yes" height="500px"]</code>
                 <div class="zoom-api-basic-usage-description">
                     <label><?php _e( 'Description', 'video-conferencing-with-zoom-api' ); ?>:</label>
                     <p><?php _e( 'Embed a Zoom Meeting into your page or post. This allows you to directly join meeting or start it from the page where you added
-                        this shortcode.', 'video-conferencing-with-zoom-api' ); ?></p>
+                        this shortcode. Remember this is an IFRAME window !', 'video-conferencing-with-zoom-api' ); ?></p>
                     <label><?php _e( 'Parameters', 'video-conferencing-with-zoom-api' ); ?>:</label>
                     <ul>
                         <li><strong>meeting_id</strong> : Meeting ID for the meeting to be joined or started (required).</li>
@@ -56,6 +56,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                         <li><strong>id</strong> : For styling (optional).</li>
                         <li><strong>login_required</strong> : "yes" or "no" - User required to be logged in to join or view (optional).</li>
                         <li><strong>help</strong> : "yes" or "no" - Additional help text in the header. (optional).</li>
+                        <li><strong>height</strong> : in "px" (optional).</li>
                     </ul>
                 </div>
             </div>

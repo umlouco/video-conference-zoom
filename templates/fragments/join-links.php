@@ -24,7 +24,7 @@ if ( ! empty( $zoom_meeting ) ) {
 			?>
 
 			<?php if ( ! empty( $zoom_meeting->start_url ) && vczapi_check_author( $post_id ) ) { ?>
-                <a href="<?php echo esc_url( $zoom_meeting->start_url ); ?>" class="btn btn-start-link"><?php _e( 'Start Meeting', 'video-conferencing-with-zoom-api' ); ?></a>
+                <a target="_blank" href="<?php echo esc_url( $zoom_meeting->start_url ); ?>" class="btn btn-start-link"><?php _e( 'Start Meeting', 'video-conferencing-with-zoom-api' ); ?></a>
 			<?php } ?>
         </div>
     </div>

@@ -82,6 +82,8 @@ class Zoom_Video_Conferencing_Admin_Views {
 		wp_enqueue_script( 'video-conferencing-with-zoom-api-js' );
 		wp_enqueue_style( 'video-conferencing-with-zoom-api' );
 
+		video_conferencing_zoom_api_status();
+
 		video_conferencing_zoom_api_show_like_popup();
 
 		$tab        = filter_input( INPUT_GET, 'tab', FILTER_SANITIZE_STRING );
@@ -93,7 +95,7 @@ class Zoom_Video_Conferencing_Admin_Views {
                 <a href="<?php echo add_query_arg( array( 'tab' => 'api-settings' ) ); ?>" class="nav-tab <?php echo ( 'api-settings' === $active_tab ) ? esc_attr( 'nav-tab-active' ) : ''; ?>">
 					<?php esc_html_e( 'API Settings', 'vczapi-woo-addon' ); ?>
                 </a>
-                <a  style="background: #bf5252;color: #fff;" href="<?php echo add_query_arg( array( 'tab' => 'shortcode' ) ); ?>" class="nav-tab <?php echo ( 'shortcode' === $active_tab ) ? esc_attr( 'nav-tab-active' ) : ''; ?>">
+                <a style="background: #bf5252;color: #fff;" href="<?php echo add_query_arg( array( 'tab' => 'shortcode' ) ); ?>" class="nav-tab <?php echo ( 'shortcode' === $active_tab ) ? esc_attr( 'nav-tab-active' ) : ''; ?>">
 					<?php esc_html_e( 'Shortcode', 'vczapi-woo-addon' ); ?>
                 </a>
                 <a href="<?php echo add_query_arg( array( 'tab' => 'support' ) ); ?>" class="nav-tab <?php echo ( 'support' === $active_tab ) ? esc_attr( 'nav-tab-active' ) : ''; ?>">
@@ -110,12 +112,18 @@ class Zoom_Video_Conferencing_Admin_Views {
 					$vanity_url       = esc_url_raw( filter_input( INPUT_POST, 'vanity_url' ) );
 					$join_links       = filter_input( INPUT_POST, 'meeting_end_join_link' );
 					$zoom_author_show = filter_input( INPUT_POST, 'meeting_show_zoom_author_original' );
+					$started_mtg      = sanitize_text_field( filter_input( INPUT_POST, 'zoom_api_meeting_started_text' ) );
+					$going_to_start   = sanitize_text_field( filter_input( INPUT_POST, 'zoom_api_meeting_goingtostart_text' ) );
+					$ended_mtg        = sanitize_text_field( filter_input( INPUT_POST, 'zoom_api_meeting_ended_text' ) );
 
 					update_option( 'zoom_api_key', $zoom_api_key );
 					update_option( 'zoom_api_secret', $zoom_api_secret );
 					update_option( 'zoom_vanity_url', $vanity_url );
 					update_option( 'zoom_past_join_links', $join_links );
 					update_option( 'zoom_show_author', $zoom_author_show );
+					update_option( 'zoom_started_meeting_text', $started_mtg );
+					update_option( 'zoom_going_tostart_meeting_text', $going_to_start );
+					update_option( 'zoom_ended_meeting_text', $ended_mtg );
 
 					//After user has been created delete this transient in order to fetch latest Data.
 					delete_transient( '_zvc_user_lists' );
@@ -128,6 +136,16 @@ class Zoom_Video_Conferencing_Admin_Views {
                     </div>
 					<?php
 				}
+
+				//Defining Varaibles
+				$zoom_api_key        = get_option( 'zoom_api_key' );
+				$zoom_api_secret     = get_option( 'zoom_api_secret' );
+				$zoom_vanity_url     = get_option( 'zoom_vanity_url' );
+				$past_join_links     = get_option( 'zoom_past_join_links' );
+				$zoom_author_show    = get_option( 'zoom_show_author' );
+				$zoom_started        = get_option( 'zoom_started_meeting_text' );
+				$zoom_going_to_start = get_option( 'zoom_going_tostart_meeting_text' );
+				$zoom_ended          = get_option( 'zoom_ended_meeting_text' );
 
 				//Get Template
 				require_once ZVC_PLUGIN_VIEWS_PATH . '/tabs/api-settings.php';

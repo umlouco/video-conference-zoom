@@ -38,7 +38,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	 * @return mixed
 	 */
 	public function add_columns( $columns ) {
-		$columns['zoom_end_meeting'] = __( 'End', 'video-conferencing-with-zoom-api' );
+		$columns['zoom_end_meeting'] = __( 'Meeting State', 'video-conferencing-with-zoom-api' );
 
 		return $columns;
 	}
@@ -56,13 +56,13 @@ class Zoom_Video_Conferencing_Admin_PostType {
 
 				$meeting = get_post_meta( $post_id, '_meeting_zoom_details', true );
 				if ( empty( $meeting->state ) ) { ?>
-                    <a href="javascript:void(0);" class="vczapi-meeting-state-change" data-type="post_type" data-state="end" data-postid="<?php echo $post_id; ?>" data-id="<?php echo $meeting->id ?>"><?php _e( 'End Meeting', 'video-conferencing-with-zoom-api' ); ?></a>
+                    <a href="javascript:void(0);" class="vczapi-meeting-state-change" data-type="post_type" data-state="end" data-postid="<?php echo $post_id; ?>" data-id="<?php echo $meeting->id ?>"><?php _e( 'Disable Join', 'video-conferencing-with-zoom-api' ); ?></a>
                     <div class="vczapi-admin-info-tooltip">
                         <span class="dashicons dashicons-info"></span>
                         <span class="vczapi-admin-info-tooltip--text"><?php _e( 'Restrict users to join this meeting before the start time or after the meeting is completed.', 'video-conferencing-with-zoom-api' ); ?></span>
                     </div>
 				<?php } else { ?>
-                    <a href="javascript:void(0);" class="vczapi-meeting-state-change" data-type="post_type" data-state="resume" data-postid="<?php echo $post_id; ?>" data-id="<?php echo $meeting->id ?>"><?php _e( 'Resume Meeting', 'video-conferencing-with-zoom-api' ); ?></a>
+                    <a href="javascript:void(0);" class="vczapi-meeting-state-change" data-type="post_type" data-state="resume" data-postid="<?php echo $post_id; ?>" data-id="<?php echo $meeting->id ?>"><?php _e( 'Enable Join', 'video-conferencing-with-zoom-api' ); ?></a>
                     <div class="vczapi-admin-info-tooltip">
                         <span class="dashicons dashicons-info "></span>
                         <span class="vczapi-admin-info-tooltip--text"><?php _e( 'Resuming this will enable users to join this meeting.', 'video-conferencing-with-zoom-api' ); ?></span>
@@ -108,7 +108,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 			'show_in_menu'       => true,
 			'query_var'          => true,
 			'menu_icon'          => 'dashicons-video-alt2',
-			'capability_type'    => 'post',
+			'capability_type'    => apply_filters( 'vczapi_cpt_capabilities_type', 'post' ),
 			'capabilities'       => apply_filters( 'vczapi_cpt_capabilities', array() ),
 			'has_archive'        => true,
 			'hierarchical'       => false,
@@ -206,10 +206,13 @@ class Zoom_Video_Conferencing_Admin_PostType {
 					<?php
 					echo '<p style="color:red;">Zoom Error:' . $meeting_details->message . '</p>';
 				} else {
+					$zoom_host_url = 'https://zoom.us' . '/wc/' . $meeting_details->id . '/start';
+					$zoom_host_url = apply_filters( 'video_conferencing_zoom_join_url_host', $zoom_host_url );
 					?>
                     <div class="zoom-metabox-content">
-                        <p><a href="<?php echo $meeting_details->start_url; ?>" title="Start URL">Start Meeting</a></p>
-                        <p><a href="<?php echo $meeting_details->join_url; ?>" title="Start URL">Join Meeting</a></p>
+                        <p><a target="_blank" href="<?php echo esc_url( $meeting_details->start_url ); ?>" title="Start URL">Start Meeting</a></p>
+                        <p><a target="_blank" href="<?php echo esc_url( $meeting_details->join_url ); ?>" title="Start URL">Join Meeting</a></p>
+                        <p><a target="_blank" href="<?php echo esc_url( $zoom_host_url ); ?>" title="Start URL">Start via Browser</a></p>
                         <p><strong>Meeting ID:</strong> <?php echo $meeting_details->id; ?></p>
                     </div>
                     <hr>

@@ -14,6 +14,19 @@ video_conferencing_zoom_api_show_like_popup(); ?>
         <a href="?post_type=zoom-meetings&page=zoom-video-conferencing-reports&tab=zoom_acount_report" class="nav-tab <?php echo $active_tab == 'zoom_acount_report' ? 'nav-tab-active' : ''; ?>"><?php _e( '2. Account Report', 'video-conferencing-with-zoom-api' ); ?></a>
     </h2>
 
+    <div id="message" class="notice notice-warning">
+        <h2><?php _e( 'ATTENTION: Zoom Account & Setting Prerequisites for Reports Section', 'video-conferencing-with-zoom-api' ); ?></h2>
+
+        <ol>
+            <li><?php _e( 'Pro, Business, Enterprise, Education, or API Account. Check more', 'video-conferencing-with-zoom-api' ); ?>
+                <a target="_blank" href="https://support.zoom.us/hc/en-us/articles/201363173-Account-Types">here</a>.
+            </li>
+            <li><?php _e( 'Account owner or admin permissions to access Usage Reports for all users.', 'video-conferencing-with-zoom-api' ); ?></li>
+            <li><?php _e( 'Account Owner or a user is given the User activities reports.', 'video-conferencing-with-zoom-api' ); ?>
+                <a target="_blank" href="https://support.zoom.us/hc/en-us/articles/115001078646">role</a></li>
+        </ol>
+    </div>
+
 	<?php if ( $active_tab == 'zoom_daily_report' ): ?><?php $result = zvc_reports()->get_daily_report_html();
 		if ( isset( $_POST['zoom_check_month_year'] ) ) {
 			if ( isset( $result->error ) ) {

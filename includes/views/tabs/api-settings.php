@@ -4,13 +4,6 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
-//Defining Varaibles
-$zoom_api_key     = get_option( 'zoom_api_key' );
-$zoom_api_secret  = get_option( 'zoom_api_secret' );
-$zoom_vanity_url  = get_option( 'zoom_vanity_url' );
-$past_join_links  = get_option( 'zoom_past_join_links' );
-$zoom_author_show = get_option( 'zoom_show_author' );
 ?>
 <div id="zvc-cover" style="display: none;"></div>
 <div class="zvc-row" style="margin-top:10px;">
@@ -58,6 +51,21 @@ $zoom_author_show = get_option( 'zoom_show_author' );
                         <span class="description"><?php _e( 'Checking this show Zoom original Author in single meetings page which are created from', 'video-conferencing-with-zoom-api' ); ?>
                                 <a href="<?php echo esc_url( admin_url( '/edit.php?post_type=zoom-meetings' ) ); ?>">Zoom Meetings</a></span>
                     </td>
+                </tr>
+                <tr>
+                    <th><label><?php _e( 'Meeting Started Text', 'video-conferencing-with-zoom-api' ); ?></label></th>
+                    <td>
+                        <input type="text" style="width: 400px;" name="zoom_api_meeting_started_text" id="zoom_api_meeting_started_text" value="<?php echo ! empty( $zoom_started ) ? esc_html( $zoom_started ) : ''; ?>" placeholder="Leave empty for default text">
+                </tr>
+                <tr>
+                    <th><label><?php _e( 'Meeting going to start Text', 'video-conferencing-with-zoom-api' ); ?></label></th>
+                    <td>
+                        <input type="text" style="width: 400px;" name="zoom_api_meeting_goingtostart_text" id="zoom_api_meeting_goingtostart_text" value="<?php echo ! empty( $zoom_going_to_start ) ? esc_html( $zoom_going_to_start ) : ''; ?>" placeholder="Leave empty for default text">
+                </tr>
+                <tr>
+                    <th><label><?php _e( 'Meeting Ended Text', 'video-conferencing-with-zoom-api' ); ?></label></th>
+                    <td>
+                        <input type="text" style="width: 400px;" name="zoom_api_meeting_ended_text" id="zoom_api_meeting_ended_text" value="<?php echo ! empty( $zoom_ended ) ? esc_html( $zoom_ended ) : ''; ?>" placeholder="Leave empty for default text">
                 </tr>
                 </tbody>
             </table>

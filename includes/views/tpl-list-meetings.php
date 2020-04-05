@@ -81,9 +81,15 @@ if ( isset( $_GET['host_id'] ) ) {
                             </td>
                             <td>
                                 <a href="edit.php?post_type=zoom-meetings&page=zoom-video-conferencing-add-meeting&edit=<?php echo $meeting->id; ?>&host_id=<?php echo $meeting->host_id; ?>"><?php echo $meeting->topic; ?></a>
-                                <div class="row-actions">
-                                    <span class="trash"><a href="javascript:void(0);" data-meetingid="<?php echo $meeting->id; ?>" data-hostid="<?php echo $meeting->host_id; ?>" class="submitdelete delete-meeting"><?php _e( 'Trash', 'video-conferencing-with-zoom-api' ); ?></a> | </span>
-                                    <span class="view"><a href="<?php echo ! empty( $meeting->start_url ) ? $meeting->start_url : $meeting->join_url; ?>" rel="permalink" target="_blank"><?php _e( 'Start Meeting', 'video-conferencing-with-zoom-api' ); ?></a></span>
+								<?php
+								$zoom_host_url             = 'https://zoom.us' . '/wc/' . $meeting->id . '/start';
+								$zoom_host_url             = apply_filters( 'video_conferencing_zoom_join_url_host', $zoom_host_url );
+								$start_meeting_via_browser = '<a class="start-meeting-btn reload-meeting-started-button" target="_blank" href="' . esc_url( $zoom_host_url ) . '" class="join-link">' . __( 'Start via Browser', 'video-conferencing-with-zoom-api' ) . '</a>';
+								?>
+                                <div class="row-actionss">
+                                    <span class="trash"><a style="color:red;" href="javascript:void(0);" data-meetingid="<?php echo $meeting->id; ?>" data-hostid="<?php echo $meeting->host_id; ?>" class="submitdelete delete-meeting"><?php _e( 'Trash', 'video-conferencing-with-zoom-api' ); ?></a> | </span>
+                                    <span class="view"><a href="<?php echo ! empty( $meeting->start_url ) ? $meeting->start_url : $meeting->join_url; ?>" rel="permalink" target="_blank"><?php _e( 'Start via App', 'video-conferencing-with-zoom-api' ); ?></a></span>
+                                    <span class="view"> | <?php echo $start_meeting_via_browser; ?></span>
                                 </div>
                             </td>
                             <td><?php
@@ -111,13 +117,13 @@ if ( isset( $_GET['host_id'] ) ) {
 								?></td>
                             <td style="width: 120px;">
 								<?php if ( ! isset( $meeting_states[ $meeting->id ]['state'] ) ) { ?>
-                                    <a href="javascript:void(0);" class="vczapi-meeting-state-change" data-type="shortcode" data-state="end" data-id="<?php echo $meeting->id ?>"><?php _e( 'End Meeting', 'video-conferencing-with-zoom-api' ); ?></a>
+                                    <a href="javascript:void(0);" class="vczapi-meeting-state-change" data-type="shortcode" data-state="end" data-id="<?php echo $meeting->id ?>"><?php _e( 'Disable Join', 'video-conferencing-with-zoom-api' ); ?></a>
                                     <div class="vczapi-admin-info-tooltip">
                                         <span class="dashicons dashicons-info"></span>
                                         <span class="vczapi-admin-info-tooltip--text"><?php _e( 'Ending this will disable users to join this meeting. Applies to any shortcode output only.', 'video-conferencing-with-zoom-api' ); ?></span>
                                     </div>
 								<?php } else { ?>
-                                    <a href="javascript:void(0);" class="vczapi-meeting-state-change" data-type="shortcode" data-state="resume" data-id="<?php echo $meeting->id ?>"><?php _e( 'Resume Meeting', 'video-conferencing-with-zoom-api' ); ?></a>
+                                    <a href="javascript:void(0);" class="vczapi-meeting-state-change" data-type="shortcode" data-state="resume" data-id="<?php echo $meeting->id ?>"><?php _e( 'Enable Join', 'video-conferencing-with-zoom-api' ); ?></a>
                                     <div class="vczapi-admin-info-tooltip">
                                         <span class="dashicons dashicons-info "></span>
                                         <span class="vczapi-admin-info-tooltip--text"><?php _e( 'Resuming this will enable users to join this meeting. Applies to any shortcode output only.', 'video-conferencing-with-zoom-api' ); ?></span>

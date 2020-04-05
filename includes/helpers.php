@@ -236,6 +236,19 @@ function video_conferencing_zoom_api_pagination_prev( $type, $page_type = 'zoom-
 	}
 }
 
+function video_conferencing_zoom_api_status() {
+	?>
+    <div class="zoom-status-notice notice notice-warning is-dismissible">
+        <h3><?php _e( 'ZOOM SERVICES STATUS', 'video-conferencing-with-zoom-api' ); ?></h3>
+        <p>
+			<?php
+			printf( esc_html__( 'Experiencing issues with the Zoom meeting window? Please check the status of Zoom services under Zoom Website -> Web Client %1$s', 'video-conferencing-with-zoom-api' ), '<a target="_blank" href="https://status.zoom.us/">here</a>' );
+			?>
+        </p>
+    </div>
+	<?php
+}
+
 /**
  * @author Deepen
  * @since  3.0.0
@@ -407,13 +420,13 @@ function encrypt_decrypt( $action, $string ) {
 	return $output;
 }
 
-if( !function_exists('vczapi_get_browser_agent_type')) {
+if ( ! function_exists( 'vczapi_get_browser_agent_type' ) ) {
 	function vczapi_get_browser_agent_type() {
 		//Detect special conditions devices
-		$iPod = stripos( $_SERVER['HTTP_USER_AGENT'], "iPod" );
-		$iPhone        = stripos( $_SERVER['HTTP_USER_AGENT'], "iPhone" );
-		$iPad          = stripos( $_SERVER['HTTP_USER_AGENT'], "iPad" );
-		$Android       = stripos( $_SERVER['HTTP_USER_AGENT'], "Android" );
+		$iPod    = stripos( $_SERVER['HTTP_USER_AGENT'], "iPod" );
+		$iPhone  = stripos( $_SERVER['HTTP_USER_AGENT'], "iPhone" );
+		$iPad    = stripos( $_SERVER['HTTP_USER_AGENT'], "iPad" );
+		$Android = stripos( $_SERVER['HTTP_USER_AGENT'], "Android" );
 
 		//do something with this information
 		if ( $iPod || $iPhone || $iPad ) {

@@ -12,13 +12,21 @@ if ( ! defined( 'ABSPATH' ) ) {
             <strong><?php _e( 'This section allows you to assign "Zoom" host ID to your users from WordPress', 'video-conferencing-with-zoom-api' ); ?>
                 !!!</strong></p>
         <p>Copy <strong>HOST ID</strong> from <strong>User ID</strong> column in
-            <a href="<?php echo admin_url( 'edit.php?post_type=zoom-meetings&page=zoom-video-conferencing-list-users' ); ?>">users</a> page, then paste it into HOST ID
-            for any users below, to assign this system users to users in zoom system. Please contact developer if this feature is confusing to you.
-        </p>
+            <a href="<?php echo admin_url( 'edit.php?post_type=zoom-meetings&page=zoom-video-conferencing-list-users' ); ?>">users</a> page, then
+            paste it into HOST ID for any users below, to assign this system users to users in zoom system. Please contact developer if this feature
+            is confusing to you. </p>
         <p><?php _e( 'In order to pull HOST ID from user meta just do', 'video-conferencing-with-zoom-api' ); ?>: <code>get_user_meta( $user_id,
                 'user_zoom_hostid', true );</code></p>
         <p><strong><?php _e( 'THIS FEATURE IS INTENTED FOR DEVLEOPERS AND DEVELOPMENT PURPOSE ONLY', 'video-conferencing-with-zoom-api' ); ?>
                 !!!</strong></p>
+    </div>
+
+    <div id="message" class="notice notice-warning">
+        <h2><?php _e( 'ATTENTION: Zoom Account Prerequisites for User Management', 'video-conferencing-with-zoom-api' ); ?></h2>
+        <ol>
+            <li><?php _e( 'Free with Credit Card, Pro, Business, Education, or Enterprise account. Make sure you are able to access <a target="_blank" href="https://zoom.us/account/user">this area</a> if you are using a Free Zoom account.', 'video-conferencing-with-zoom-api' ); ?></li>
+            <li><?php _e( 'Owner or admin privileges.', 'video-conferencing-with-zoom-api' ); ?></li>
+        </ol>
     </div>
 
     <div class="message">
