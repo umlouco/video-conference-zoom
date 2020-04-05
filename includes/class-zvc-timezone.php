@@ -68,7 +68,7 @@ class Zoom_Video_Conferencing_Timezone {
 		$GLOBALS['vanity_enabled'] = get_option( 'zoom_vanity_url' );
 
 		ob_start(); //Init the output buffering
-		$template = vczapi_get_template( array( 'fragments/join-links.php' ), false );
+		$template = vczapi_get_template( 'fragments/join-links.php', false );
 		include $template;
 		$content = ob_get_clean(); //Get the buffer and erase it
 
@@ -77,7 +77,7 @@ class Zoom_Video_Conferencing_Timezone {
 
 	private function output_join_links_shortcodes( $join_uri, $browser_url ) {
 		ob_start(); //Init the output buffering
-		$template = vczapi_get_template( array( 'shortcode/join-links.php' ), false );
+		$template = vczapi_get_template( 'shortcode/join-links.php', false );
 		include $template;
 		$content = ob_get_clean(); //Get the buffer and erase it
 

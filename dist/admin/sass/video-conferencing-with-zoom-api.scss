@@ -46,11 +46,12 @@
 }
 
 .zvc-position-floater-left {
-  width: 70%;
+  width: 100%;
   padding: 30px;
-  border: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
   background: #fff;
-  margin-right: 10px;
   justify-content: space-between;
 }
 
@@ -91,6 +92,18 @@
   margin-top: 40px;
 }
 
+.vczapi-settings-admin-support-bg {
+  background: #fff;
+  padding: 5px 20px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  font-size: 15px;
+
+  p {
+    font-size: 14px;
+  }
+}
+
 .video-conferencing-addons {
   h3.border-padd {
     background: #fff;
@@ -129,3 +142,47 @@
     }
   }
 }
+
+.vczapi-meeting-state-change {
+  color: #FF0000;
+}
+
+.vczapi-admin-info-tooltip {
+  position: relative;
+  display: inline-block;
+
+  .vczapi-admin-info-tooltip--text {
+    visibility: hidden;
+    width: 200px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    bottom: 100%;
+    left: 6%;
+    margin-left: -60px;
+    margin-bottom: 10px;
+    position: absolute;
+    z-index: 1;
+    font-size: 12px;
+    padding: 14px;
+
+    &::after {
+      content: " ";
+      position: absolute;
+      top: 100%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: black transparent transparent transparent;
+      left: 30%;
+    }
+  }
+
+  &:hover .vczapi-admin-info-tooltip--text {
+    visibility: visible;
+  }
+
+}
+
+

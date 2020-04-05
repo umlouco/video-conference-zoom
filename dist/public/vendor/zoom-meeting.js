@@ -2,14 +2,12 @@ jQuery(function ($) {
     var zoom_browser_integration = {
 
         init: function () {
-            console.log('checkSystemRequirements');
-
             var browseinfo = ZoomMtg.checkSystemRequirements();
             var page_html = '<ul><li><strong>Browser Info:</strong> ' + browseinfo.browserInfo + '</li>';
             page_html += '<li><strong>Browser Name:</strong> ' + browseinfo.browserName + '</li>';
             page_html += '<li><strong>Browser Version:</strong> ' + browseinfo.browserVersion + '</li></ul>';
             // page_html += '<li><strong>Available:</strong> ' + browseinfo.features + '</li></ul>';
-            $('.dpen-zoom-browser-meeting--info').html(page_html);
+            $('.dpen-zoom-browser-meeting--info__browser').html(page_html);
 
             ZoomMtg.preLoadWasm();
             ZoomMtg.prepareJssdk();
@@ -49,9 +47,9 @@ jQuery(function ($) {
 
                             var meetConfig = {
                                 apiKey: API_KEY,
-                                meetingNumber: parseInt(meeting_id),
+                                meetingNumber: parseInt(meeting_id, 10),
                                 userName: document.getElementById('display_name').value,
-                                // passWord: "",
+                                passWord: "",
                                 leaveUrl: REDIRECTION,
                                 signaure: SIGNATURE,
                             };
@@ -67,7 +65,7 @@ jQuery(function ($) {
                                             signature: meetConfig.signaure,
                                             apiKey: meetConfig.apiKey,
                                             // userEmail: 'email@gmail.com',
-                                            // passWord: meetConfig.passWord,
+                                            passWord: meetConfig.passWord,
                                             success: function (res) {
                                                 $('#dpen-zoom-browser-meeting').hide();
                                                 console.log('join meeting success');

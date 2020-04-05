@@ -14,11 +14,35 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 global $zoom;
 
-if ( video_conference_zoom_check_login() === "no_check" || video_conference_zoom_check_login() === "loggedin" ) {
+if ( video_conference_zoom_check_login() ) {
+	if ( ! empty( $zoom['api']->state ) && $zoom['api']->state === "ended" ) {
+		echo "<h3>" . __( 'This meeting has been ended by host.', 'video-conferencing-with-zoom-api' ) . "</h3>";
+		die;
+	}
 	?>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <title>Test</title>
+        <link rel='stylesheet' type="text/css" href="<?php echo ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/bootstrap.css'; ?>" media='all'>
+        <link rel='stylesheet' type="text/css" href="<?php echo ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react-select.css'; ?>" media='all'>
+        <link rel='stylesheet' type="text/css" href="<?php echo ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/css/main.min.css'; ?>" media='all'>
+    </head>
+    <body class="join-via-browser-body">
     <div id="dpen-zoom-browser-meeting" class="dpen-zoom-browser-meeting-wrapper">
         <div id="dpen-zoom-browser-meeting--container">
-            <div class="dpen-zoom-browser-meeting--info"></div>
+            <div class="dpen-zoom-browser-meeting--info">
+				<?php if ( ! is_ssl() ) { ?>
+                    <p style="line-height: 1.5;">
+                        <strong style="color:red;"><?php _e( '!!!ALERT!!!: ', 'video-conferencing-with-zoom-api' ); ?></strong><?php _e(
+							'Browser did not detect a valid SSL certificate. Audio and Video for Zoom meeting will not work on a non HTTPS site, please install a valid SSL certificate to allow audio and video in your Meetings via browser.', 'video-conferencing-with-zoom-api' ); ?>
+                    </p>
+				<?php } ?>
+                <div class="dpen-zoom-browser-meeting--info__browser"></div>
+            </div>
             <form class="dpen-zoom-browser-meeting--meeting-form" id="dpen-zoom-browser-meeting-join-form" action="">
                 <div class="form-group">
                     <input type="text" name="display_name" id="display_name" value="" placeholder="Name" class="form-control" required>
@@ -31,6 +55,10 @@ if ( video_conference_zoom_check_login() === "no_check" || video_conference_zoom
     </div>
 	<?php
 	wp_footer();
+	?>
+    </body>
+    </html>
+	<?php
 } else {
 	echo "<h3>" . __( 'You do not have enough priviledge to access this page. Please login to continue or contact administrator.', 'video-conferencing-with-zoom-api' ) . "</h3>";
 	die;

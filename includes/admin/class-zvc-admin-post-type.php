@@ -9,14 +9,67 @@
 
 class Zoom_Video_Conferencing_Admin_PostType {
 
+	/**
+	 * Post Type Flag
+	 * @var string
+	 */
+	private $post_type = 'zoom-meetings';
+
+	/**
+	 * Zoom_Video_Conferencing_Admin_PostType constructor.
+	 */
 	public function __construct() {
 		add_action( 'init', array( $this, 'register' ) );
 		add_action( 'add_meta_boxes', array( $this, 'add_metabox' ) );
-		add_action( 'save_post_zoom-meetings', array( $this, 'save_metabox' ), 10, 2 );
+		add_action( 'save_post_' . $this->post_type, array( $this, 'save_metabox' ), 10, 2 );
 		add_filter( 'single_template', array( $this, 'single' ) );
 		add_filter( 'archive_template', array( $this, 'archive' ) );
 		add_action( 'before_delete_post', array( $this, 'delete' ) );
 		add_action( 'admin_notices', array( $this, 'admin_notices' ) );
+		add_filter( 'manage_' . $this->post_type . '_posts_columns', array( $this, 'add_columns' ), 20 );
+		add_action( 'manage_' . $this->post_type . '_posts_custom_column', array( $this, 'render_data' ), 20, 2 );
+	}
+
+	/**
+	 * Add New Start Link column
+	 *
+	 * @param $columns
+	 *
+	 * @return mixed
+	 */
+	public function add_columns( $columns ) {
+		$columns['zoom_end_meeting'] = __( 'End', 'video-conferencing-with-zoom-api' );
+
+		return $columns;
+	}
+
+	/**
+	 * Render HTML
+	 *
+	 * @param $column
+	 * @param $post_id
+	 */
+	public function render_data( $column, $post_id ) {
+		switch ( $column ) {
+			case 'zoom_end_meeting' :
+				wp_enqueue_script( 'video-conferencing-with-zoom-api-js' );
+
+				$meeting = get_post_meta( $post_id, '_meeting_zoom_details', true );
+				if ( empty( $meeting->state ) ) { ?>
+                    <a href="javascript:void(0);" class="vczapi-meeting-state-change" data-type="post_type" data-state="end" data-postid="<?php echo $post_id; ?>" data-id="<?php echo $meeting->id ?>"><?php _e( 'End Meeting', 'video-conferencing-with-zoom-api' ); ?></a>
+                    <div class="vczapi-admin-info-tooltip">
+                        <span class="dashicons dashicons-info"></span>
+                        <span class="vczapi-admin-info-tooltip--text"><?php _e( 'Restrict users to join this meeting before the start time or after the meeting is completed.', 'video-conferencing-with-zoom-api' ); ?></span>
+                    </div>
+				<?php } else { ?>
+                    <a href="javascript:void(0);" class="vczapi-meeting-state-change" data-type="post_type" data-state="resume" data-postid="<?php echo $post_id; ?>" data-id="<?php echo $meeting->id ?>"><?php _e( 'Resume Meeting', 'video-conferencing-with-zoom-api' ); ?></a>
+                    <div class="vczapi-admin-info-tooltip">
+                        <span class="dashicons dashicons-info "></span>
+                        <span class="vczapi-admin-info-tooltip--text"><?php _e( 'Resuming this will enable users to join this meeting.', 'video-conferencing-with-zoom-api' ); ?></span>
+                    </div>
+				<?php }
+				break;
+		}
 	}
 
 	/**
@@ -26,7 +79,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	 * @author Deepen
 	 */
 	public function register() {
-		if ( post_type_exists( 'zoom-meetings' ) ) {
+		if ( post_type_exists( $this->post_type ) ) {
 			return;
 		}
 
@@ -56,19 +109,21 @@ class Zoom_Video_Conferencing_Admin_PostType {
 			'query_var'          => true,
 			'menu_icon'          => 'dashicons-video-alt2',
 			'capability_type'    => 'post',
+			'capabilities'       => apply_filters( 'vczapi_cpt_capabilities', array() ),
 			'has_archive'        => true,
 			'hierarchical'       => false,
-			'menu_position'      => 5,
+			'menu_position'      => apply_filters( 'vczapi_cpt_menu_position', 5 ),
+			'map_meta_cap'       => null,
 			'supports'           => array(
 				'title',
 				'editor',
 				'author',
 				'thumbnail',
 			),
-			'rewrite'            => array( 'slug' => apply_filters( 'vczapi_cpt_slug', 'zoom-meetings' ) ),
+			'rewrite'            => array( 'slug' => apply_filters( 'vczapi_cpt_slug', $this->post_type ) ),
 		);
 
-		register_post_type( 'zoom-meetings', $args );
+		register_post_type( $this->post_type, $args );
 
 		// Add new taxonomy, make it hierarchical (like categories)
 		$labels = array(
@@ -84,7 +139,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 			'query_var'         => true,
 		);
 
-		register_taxonomy( 'zoom-meeting', array( 'zoom-meetings' ), $args );
+		register_taxonomy( 'zoom-meeting', array( $this->post_type ), $args );
 	}
 
 	/**
@@ -94,16 +149,20 @@ class Zoom_Video_Conferencing_Admin_PostType {
 		add_meta_box( 'zoom-meeting-meta', __( 'Zoom Details', 'video-conferencing-with-zoom-api' ), array(
 			$this,
 			'render_metabox'
-		), 'zoom-meetings', 'advanced', 'high' );
+		), $this->post_type, 'normal' );
 		add_meta_box( 'zoom-meeting-meta-side', __( 'Meeting Details', 'video-conferencing-with-zoom-api' ), array(
 			$this,
 			'rendor_sidebox'
-		), 'zoom-meetings', 'side', 'high' );
+		), $this->post_type, 'side', 'high' );
+		add_meta_box( 'zoom-meeting-debug-meta', __( 'Debug Log', 'video-conferencing-with-zoom-api' ), array(
+			$this,
+			'debug_metabox'
+		), $this->post_type, 'normal' );
 		if ( is_plugin_inactive( 'vczapi-woo-addon/vczapi-woo-addon.php' ) && is_plugin_inactive( 'vczapi-woocommerce-addon/vczapi-woocommerce-addon.php' ) ) {
 			add_meta_box( 'zoom-meeting-woo-integration-info', __( 'WooCommerce Integration?', 'video-conferencing-with-zoom-api' ), array(
 				$this,
 				'render_woo_sidebox'
-			), 'zoom-meetings', 'side', 'high' );
+			), $this->post_type, 'side', 'high' );
 		}
 	}
 
@@ -135,7 +194,6 @@ class Zoom_Video_Conferencing_Admin_PostType {
 		$meeting_fields = get_post_meta( $post->ID, '_meeting_fields', true );
 		// Add nonce for security and authentication.
 		wp_nonce_field( '_zvc_meeting_save', '_zvc_nonce' );
-
 		$meeting_details = get_post_meta( $post->ID, '_meeting_zoom_details', true );
 		?>
         <div class="zoom-metabox-wrapper">
@@ -173,6 +231,41 @@ class Zoom_Video_Conferencing_Admin_PostType {
             </div>
         </div>
 		<?php
+	}
+
+	public function debug_metabox( $post ) {
+		$meeting_fields  = get_post_meta( $post->ID, '_meeting_fields', true );
+		$meeting_details = get_post_meta( $post->ID, '_meeting_zoom_details', true );
+		?>
+        <div class="zoom-metabox-wrapper">
+            <div class="zoom-metabox-content">
+                <p><?php _e( 'Enable Debug?', 'video-conferencing-with-zoom-api' ); ?>
+                    <input type="checkbox" name="option_enable_debug_logs" value="1" <?php ! empty( $meeting_fields['site_option_enable_debug_log'] ) ? checked( '1', $meeting_fields['site_option_enable_debug_log'] ) : false; ?> class="regular-text">
+                </p>
+            </div>
+        </div>
+        <style>
+            pre {
+                position: relative;
+                width: 100%;
+                padding: 0;
+                margin: 0;
+                overflow: auto;
+                overflow-y: hidden;
+                font-size: 12px;
+                line-height: 20px;
+                background: #efefef;
+                border: 1px solid #777;
+            }
+        </style>
+		<?php
+		if ( ! empty( $meeting_fields['site_option_enable_debug_log'] ) ) {
+			if ( ! empty( $meeting_details->id ) ) {
+				dump( json_decode( zoom_conference()->getMeetingInfo( $meeting_details->id ) ) );
+			} else {
+				dump( $meeting_details );
+			}
+		}
 	}
 
 	/**
@@ -221,8 +314,9 @@ class Zoom_Video_Conferencing_Admin_PostType {
 			'alternative_host_ids'      => filter_input( INPUT_POST, 'alternative_host_ids', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY )
 		);
 
-		$create_meeting_arr['site_option_logged_in']    = filter_input( INPUT_POST, 'option_logged_in' );
-		$create_meeting_arr['site_option_browser_join'] = filter_input( INPUT_POST, 'option_browser_join' );
+		$create_meeting_arr['site_option_logged_in']        = filter_input( INPUT_POST, 'option_logged_in' );
+		$create_meeting_arr['site_option_browser_join']     = filter_input( INPUT_POST, 'option_browser_join' );
+		$create_meeting_arr['site_option_enable_debug_log'] = filter_input( INPUT_POST, 'option_enable_debug_logs' );
 		//Update Post Meta Values
 		update_post_meta( $post_id, '_meeting_fields', $create_meeting_arr );
 
@@ -320,12 +414,21 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	public function single( $template ) {
 		global $post;
 
-		if ( $post->post_type == 'zoom-meetings' ) {
+		if ( $post->post_type == $this->post_type ) {
 			unset( $GLOBALS['zoom'] );
 
-			$GLOBALS['zoom'] = get_post_meta( $post->ID, '_meeting_fields', true );
-			if ( ! empty( $GLOBALS['zoom']['userId'] ) ) {
-				$GLOBALS['zoom']['user'] = json_decode( zoom_conference()->getUserInfo( $GLOBALS['zoom']['userId'] ) );
+			$show_zoom_author_name = get_option( 'zoom_show_author' );
+
+			$GLOBALS['zoom'] = get_post_meta( $post->ID, '_meeting_fields', true ); //For Backwards Compatibility ( Will be removed someday )
+			$meeting_details = get_post_meta( $post->ID, '_meeting_zoom_details', true );
+
+			if ( ! empty( $show_zoom_author_name ) ) {
+				$zoom_user               = json_decode( zoom_conference()->getUserInfo( $meeting_details->host_id ) );
+				$GLOBALS['zoom']['user'] = ! empty( $zoom_user ) ? $zoom_user : false;
+			}
+
+			if ( ! empty( $meeting_details ) ) {
+				$GLOBALS['zoom']['api'] = get_post_meta( $post->ID, '_meeting_zoom_details', true );
 			}
 
 			$terms = get_the_terms( $post->ID, 'zoom-meeting' );
@@ -359,18 +462,10 @@ class Zoom_Video_Conferencing_Admin_PostType {
 				) );
 
 				$GLOBALS['zoom']['meeting_id'] = sanitize_text_field( absint( encrypt_decrypt( 'decrypt', $_GET['join'] ) ) );
-				//Render View
-				$templates[] = 'join-web-browser.php';
-				?>
-                <link rel='stylesheet' type="text/css" href="<?php echo ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/bootstrap.css'; ?>" media='all'>
-                <link rel='stylesheet' type="text/css" href="<?php echo ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react-select.css'; ?>" media='all'>
-                <link rel='stylesheet' type="text/css" href="<?php echo ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/css/main.min.css'; ?>" media='all'>
-				<?php
-				$template = vczapi_get_template( $templates );
+				$template                      = vczapi_get_template( 'join-web-browser.php' );
 			} else {
 				//Render View
-				$templates[] = 'single-meeting.php';
-				$template    = vczapi_get_template( $templates );
+				$template = vczapi_get_template( 'single-meeting.php' );
 			}
 		}
 
@@ -390,10 +485,9 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	public function archive( $template ) {
 		global $post;
 
-		if ( $post->post_type == 'zoom-meetings' ) {
+		if ( $post->post_type == $this->post_type ) {
 			//Render View
-			$templates[] = 'archive-meetings.php';
-			$template    = vczapi_get_template( $templates );
+			$template = vczapi_get_template( 'archive-meetings.php' );
 		}
 
 		return $template;
@@ -409,7 +503,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	 * @author Deepen
 	 */
 	public function delete( $post_id ) {
-		if ( get_post_type( $post_id ) === "zoom-meetings" ) {
+		if ( get_post_type( $post_id ) === $this->post_type ) {
 			$meeting_id = get_post_meta( $post_id, '_meeting_zoom_meeting_id', true );
 			if ( ! empty( $meeting_id ) ) {
 				zoom_conference()->deleteAMeeting( $meeting_id );
@@ -421,7 +515,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 		$screen = get_current_screen();
 
 		//If not on the screen with ID 'edit-post' abort.
-		if ( $screen->id === 'edit-zoom-meetings' || $screen->id === 'zoom-meetings' ) {
+		if ( $screen->id === 'edit-zoom-meetings' || $screen->id === $this->post_type ) {
 			video_conferencing_zoom_api_show_like_popup();
 		} else {
 			return;

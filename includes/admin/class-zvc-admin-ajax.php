@@ -18,6 +18,10 @@ class Zoom_Video_Conferencing_Admin_Ajax {
 		//Join via browser Auth Call
 		add_action( 'wp_ajax_nopriv_get_auth', array( $this, 'get_auth' ) );
 		add_action( 'wp_ajax_get_auth', array( $this, 'get_auth' ) );
+
+		//Call meeting state
+		add_action( 'wp_ajax_nopriv_state_change', array( $this, 'state_change' ) );
+		add_action( 'wp_ajax_state_change', array( $this, 'state_change' ) );
 	}
 
 	/**
@@ -158,6 +162,74 @@ class Zoom_Video_Conferencing_Admin_Ajax {
 
 		//return signature, url safe base64 encoded
 		return rtrim( strtr( base64_encode( $_sig ), '+/', '-_' ), '=' );
+	}
+
+	/**
+	 * Change State of the Meeting from here !
+	 */
+	public function state_change() {
+		check_ajax_referer( '_nonce_zvc_security', 'accss' );
+
+		$type       = sanitize_text_field( filter_input( INPUT_POST, 'type' ) );
+		$state      = sanitize_text_field( filter_input( INPUT_POST, 'state' ) );
+		$meeting_id = sanitize_text_field( filter_input( INPUT_POST, 'id' ) );
+		$post_id    = sanitize_text_field( filter_input( INPUT_POST, 'post_id' ) );
+
+		$success = false;
+		switch ( $state ) {
+			case 'end':
+				if ( $type === "shortcode" ) {
+					$meeting_options = get_option( 'zoom_api_meeting_options' );
+					if ( ! empty( $meeting_options ) ) {
+						$meeting_options[ $meeting_id ]['state'] = 'ended';
+						update_option( 'zoom_api_meeting_options', $meeting_options );
+					} else {
+						$new[ $meeting_id ]['state'] = 'ended';
+						update_option( 'zoom_api_meeting_options', $new );
+					}
+
+					$success = true;
+				}
+
+				if ( $type === "post_type" ) {
+					$meeting = get_post_meta( $post_id, '_meeting_zoom_details', true );
+					if ( ! empty( $meeting ) ) {
+						$meeting->state = 'ended';
+						update_post_meta( $post_id, '_meeting_zoom_details', $meeting );
+					}
+
+					$success = true;
+				}
+
+				break;
+			case 'resume':
+				if ( $type === "shortcode" ) {
+					$meeting_options = get_option( 'zoom_api_meeting_options' );
+					unset( $meeting_options[ $meeting_id ] );
+					update_option( 'zoom_api_meeting_options', $meeting_options );
+					$success = true;
+				}
+
+				if ( $type === "post_type" ) {
+					$meeting = get_post_meta( $post_id, '_meeting_zoom_details', true );
+					if ( ! empty( $meeting ) ) {
+						$meeting->state = '';
+						update_post_meta( $post_id, '_meeting_zoom_details', $meeting );
+					}
+
+					$success = true;
+				}
+				break;
+
+		}
+
+		if ( $success ) {
+			wp_send_json_success( $success );
+		} else {
+			wp_send_json_error( $success );
+		}
+
+		wp_die();
 	}
 }
 

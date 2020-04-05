@@ -34,7 +34,8 @@ var styleDestination = './assets/public/css/';
 var adminStyleSRC = './dist/admin/sass/**/*.scss';
 var adminStyleDestination = './assets/admin/css/';
 
-var jsSrc = './dist/public/js/**/*.js';
+var jsSrc = './dist/public/js/public.js';
+var jsSrcBrowser = './dist/public/js/join-via-browser.js';
 var jsDestination = './assets/public/js/';
 var jsSrcVendor = './dist/public/vendor/**/*.js';
 
@@ -92,14 +93,14 @@ gulp.task('vendor', function () {
 gulp.task('styles', function () {
     return gulp.src(styleSRC)
         .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
-        .pipe(sourcemaps.init())
+        // .pipe(sourcemaps.init())
         .pipe(sass({
             errLogToConsole: true,
             outputStyle: 'compact',
             precision: 10
         }))
-        .pipe(sourcemaps.write({includeContent: false}))
-        .pipe(sourcemaps.init({loadMaps: true}))
+        // .pipe(sourcemaps.write({includeContent: false}))
+        // .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(autoprefixer(
             'last 2 version',
             '> 1%',
@@ -109,7 +110,7 @@ gulp.task('styles', function () {
             'opera 12.1',
             'ios 6',
             'android 4'))
-        .pipe(sourcemaps.write('./maps'))
+        // .pipe(sourcemaps.write('./maps'))
         .pipe(gulp.dest(styleDestination))
         .pipe(minifycss({
             "maxLineLen": 80,
@@ -124,14 +125,14 @@ gulp.task('styles', function () {
 gulp.task('stylesAdmin', function () {
     return gulp.src(adminStyleSRC)
         .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
-        .pipe(sourcemaps.init())
+        // .pipe(sourcemaps.init())
         .pipe(sass({
             errLogToConsole: true,
             outputStyle: 'compact',
             precision: 10
         }))
-        .pipe(sourcemaps.write({includeContent: false}))
-        .pipe(sourcemaps.init({loadMaps: true}))
+        /*.pipe(sourcemaps.write({includeContent: false}))
+        .pipe(sourcemaps.init({loadMaps: true}))*/
         .pipe(autoprefixer(
             'last 2 version',
             '> 1%',
@@ -141,7 +142,7 @@ gulp.task('stylesAdmin', function () {
             'opera 12.1',
             'ios 6',
             'android 4'))
-        .pipe(sourcemaps.write('./maps'))
+        // .pipe(sourcemaps.write('./maps'))
         .pipe(gulp.dest(adminStyleDestination))
         .pipe(minifycss({
             "maxLineLen": 80,
@@ -162,6 +163,23 @@ gulp.task('publicJS', function () {
         .pipe(gulp.dest(jsDestination))
         .pipe(rename({
             basename: 'scripts',
+            suffix: '.min'
+        }))
+        .pipe(uglify())
+        .pipe(gulp.dest(jsDestination))
+    // .pipe( notify( { message: 'TASK: "customJs" Completed!', onLast: true } ) );
+});
+
+// Public JS
+gulp.task('browserJS', function () {
+    gulp.src(jsSrcBrowser)
+        .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
+        .pipe(jshint())
+        .pipe(jshint.reporter('jshint-stylish'))
+        .pipe(concat('join-browser.js'))
+        .pipe(gulp.dest(jsDestination))
+        .pipe(rename({
+            basename: 'join-browser',
             suffix: '.min'
         }))
         .pipe(uglify())
@@ -204,7 +222,7 @@ gulp.task('adminJS', function () {
 });
 
 // Default task
-gulp.task('default', ['styles', 'stylesAdmin', 'publicJS', 'vendorJS', 'adminJS', 'vendor'], function () {
+gulp.task('default', ['styles', 'stylesAdmin', 'publicJS', 'browserJS', 'vendorJS', 'adminJS', 'vendor'], function () {
     gulp.watch('./dist/public/sass/*.scss', ['styles']);
     gulp.watch('./dist/admin/sass/*.scss', ['stylesAdmin']);
     gulp.watch('./dist/public/js/*.js', ['publicJS']);

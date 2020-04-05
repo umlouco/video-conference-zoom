@@ -21,6 +21,7 @@ add_action( 'vczoom_single_content_left', 'video_conference_zoom_main_content', 
 add_action( 'vczoom_single_content_right', 'video_conference_zoom_countdown_timer', 10 );
 add_action( 'vczoom_single_content_right', 'video_conference_zoom_meeting_details', 20 );
 add_action( 'vczoom_single_content_right', 'video_conference_zoom_meeting_join', 30 );
+add_action( 'vczoom_single_content_right', 'video_conference_zoom_meeting_end_author', 40 );
 
 //single content
 add_action( 'vczoom_meeting_join_links', 'video_conference_zoom_meeting_join_link', 10 );

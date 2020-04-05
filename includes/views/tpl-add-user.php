@@ -9,8 +9,9 @@
 		?>
     </div>
     <div class="notice">
-        <p style="color:red;">What does this do ? Check out <a href="https://support.zoom.us/hc/en-us/articles/201363183-Managing-users">Zoom website</a>. Please note this may
-            require a PRO account.</p>
+        <p style="color:red;"><?php _e( 'What does this do ? Check out', 'video-conferencing-with-zoom-api' ); ?>
+            <a href="https://support.zoom.us/hc/en-us/articles/201363183-Managing-users">Zoom <?php _e( 'website', 'video-conferencing-with-zoom-api' ); ?></a>. <?php _e( 'Please note this may require a PRO account.', 'video-conferencing-with-zoom-api' ); ?>
+        </p>
     </div>
 
     <form action="?post_type=zoom-meetings&page=zoom-video-conferencing-add-users" method="POST">
@@ -28,21 +29,21 @@
                     </select>
                     <div id="type-description">
                         <p class="description"><?php _e( 'Type of User (Required)', 'video-conferencing-with-zoom-api' ); ?></p>
-                        <p class="description">1. <strong>"Create"</strong> - User will get an email sent from Zoom. There is a confirmation link in
-                            this email. User will then need to click this link to activate their account to the Zoom service. The user can set or
-                            change their password in Zoom.</p>
+                        <p class="description">1. <strong>"<?php _e( 'Create', 'video-conferencing-with-zoom-api' ); ?>"</strong>
+                            - <?php _e( 'User will get an email sent from Zoom. There is a confirmation link in this email. User will then need to click this link to activate their account to the Zoom service. The user can set or change their password in Zoom.', 'video-conferencing-with-zoom-api' ); ?>
+                        </p>
 
-                        <p class="description">2. <strong>"Auto Create"</strong> - This action is provided for enterprise customer who has a managed
-                            domain. This feature is disabled by default because of the security risk involved in creating a user who does not belong
-                            to your domain without notifying the user.</p>
+                        <p class="description">2. <strong>"<?php _e( 'Auto Create', 'video-conferencing-with-zoom-api' ); ?>"</strong>
+                            - <?php _e( 'This action is provided for enterprise customer who has a managed domain. This feature is disabled by default because of the security risk involved in creating a user who does not belong to your domain without notifying the user.', 'video-conferencing-with-zoom-api' ); ?>
+                        </p>
 
-                        <p class="description">3. <strong>"Cust Create"</strong> - This action is provided for API partner only. User created in this
-                            way has no password and is not able to log into the Zoom web site or client.</p>
+                        <p class="description">3. <strong>"<?php _e( 'Cust Create', 'video-conferencing-with-zoom-api' ); ?>"</strong>
+                            - <?php _e( 'This action is provided for API partner only. User created in this way has no password and is not able to log into the Zoom web site or client.', 'video-conferencing-with-zoom-api' ); ?>
+                        </p>
 
-                        <p class="description">4. <strong>"SSO Create"</strong> - This action is provided for enabled “Pre-provisioning SSO User”
-                            option. User created in this way has no password. If it is not a basic user, will generate a Personal Vanity URL using
-                            user name (no domain) of the provisioning email. If user name or pmi is invalid or occupied, will use random number/random
-                            personal vanity URL. </p></div>
+                        <p class="description">4. <strong>"<?php _e( 'SSO Create', 'video-conferencing-with-zoom-api' ); ?>"</strong>
+                            - <?php _e( 'This action is provided for enabled “Pre-provisioning SSO User” option. User created in this way has no password. If it is not a basic user, will generate a Personal Vanity URL using user name (no domain) of the provisioning email. If user name or pmi is invalid or occupied, will use random number/random personal vanity URL.', 'video-conferencing-with-zoom-api' ); ?>
+                        </p></div>
                 </td>
             </tr>
             <tr>

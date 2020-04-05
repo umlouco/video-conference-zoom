@@ -12,6 +12,7 @@ if ( isset( $_GET['host_id'] ) ) {
 	$encoded_meetings = zoom_conference()->listMeetings( $_GET['host_id'] );
 	$decoded_meetings = json_decode( $encoded_meetings );
 	$meetings         = $decoded_meetings->meetings;
+	$meeting_states   = get_option( 'zoom_api_meeting_options' );
 }
 ?>
 <div id="zvc-cover" style="display: none;"></div>
@@ -61,7 +62,7 @@ if ( isset( $_GET['host_id'] ) ) {
                     <th class="zvc-text-left"><?php _e( 'Topic', 'video-conferencing-with-zoom-api' ); ?></th>
                     <th class="zvc-text-left"><?php _e( 'Status', 'video-conferencing-with-zoom-api' ); ?></th>
                     <th class="zvc-text-left" class="zvc-text-left"><?php _e( 'Start Time', 'video-conferencing-with-zoom-api' ); ?></th>
-                    <th class="zvc-text-left"><?php _e( 'Host ID', 'video-conferencing-with-zoom-api' ); ?></th>
+                    <th class="zvc-text-left"><?php _e( 'Meeting State', 'video-conferencing-with-zoom-api' ); ?></th>
                     <th class="zvc-text-left"><?php _e( 'Created On', 'video-conferencing-with-zoom-api' ); ?></th>
                 </tr>
                 </thead>
@@ -75,7 +76,7 @@ if ( isset( $_GET['host_id'] ) ) {
                                 <input type="checkbox" name="meeting_id_check[]" class="checkthis" value="<?php echo $meeting->id; ?>"/></td>
                             <td><?php echo $meeting->id; ?></td>
                             <td>
-                                <input class="text" id="meeting-shortcode" type="text" readonly value='[zoom_api_link meeting_id="<?php echo $meeting->id; ?>" link_only="no"]' onclick="this.select(); document.execCommand('copy'); alert('Copied to clipboard');"/>
+                                <input class="text" id="meeting-shortcode-<?php echo $meeting->id; ?>" type="text" readonly value='[zoom_api_link meeting_id="<?php echo $meeting->id; ?>" link_only="no"]' onclick="this.select(); document.execCommand('copy'); alert('Copied to clipboard');"/>
                                 <p class="description"><?php _e( 'Click to Copy Shortcode !', 'video-conferencing-with-zoom-api' ); ?></p>
                             </td>
                             <td>
@@ -106,13 +107,23 @@ if ( isset( $_GET['host_id'] ) ) {
 								?>
                             </td>
                             <td><?php
-								$timezone = ! empty( $meeting->timezone ) ? $meeting->timezone : "America/Los_Angeles";
-								$tz       = new DateTimeZone( $timezone );
-								$date     = new DateTime( $meeting->start_time );
-								$date->setTimezone( $tz );
-								echo $date->format( 'F j, Y, g:i a ( e )' );
+								echo vczapi_dateConverter( $meeting->start_time, $meeting->timezone, 'F j, Y, g:i a ( e )' );
 								?></td>
-                            <td><?php echo $meeting->host_id; ?></td>
+                            <td style="width: 120px;">
+								<?php if ( ! isset( $meeting_states[ $meeting->id ]['state'] ) ) { ?>
+                                    <a href="javascript:void(0);" class="vczapi-meeting-state-change" data-type="shortcode" data-state="end" data-id="<?php echo $meeting->id ?>"><?php _e( 'End Meeting', 'video-conferencing-with-zoom-api' ); ?></a>
+                                    <div class="vczapi-admin-info-tooltip">
+                                        <span class="dashicons dashicons-info"></span>
+                                        <span class="vczapi-admin-info-tooltip--text"><?php _e( 'Ending this will disable users to join this meeting. Applies to any shortcode output only.', 'video-conferencing-with-zoom-api' ); ?></span>
+                                    </div>
+								<?php } else { ?>
+                                    <a href="javascript:void(0);" class="vczapi-meeting-state-change" data-type="shortcode" data-state="resume" data-id="<?php echo $meeting->id ?>"><?php _e( 'Resume Meeting', 'video-conferencing-with-zoom-api' ); ?></a>
+                                    <div class="vczapi-admin-info-tooltip">
+                                        <span class="dashicons dashicons-info "></span>
+                                        <span class="vczapi-admin-info-tooltip--text"><?php _e( 'Resuming this will enable users to join this meeting. Applies to any shortcode output only.', 'video-conferencing-with-zoom-api' ); ?></span>
+                                    </div>
+								<?php } ?>
+                            </td>
                             <td><?php echo date( 'F j, Y, g:i a', strtotime( $meeting->created_at ) ); ?></td>
                         </tr>
 						<?php

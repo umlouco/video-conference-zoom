@@ -21,7 +21,8 @@ if ( ! empty( $meeting_info ) ) {
 }
 ?>
 <div class="wrap">
-    <h1><?php _e( 'Edit a Meeting', 'video-conferencing-with-zoom-api' ); ?></h1> <a href="edit.php?post_type=zoom-meetings&page=zoom-video-conferencing&host_id=<?php echo $meeting_info->host_id; ?>"><?php _e( 'Back to List', 'video-conferencing-with-zoom-api' ); ?></a>
+    <h1><?php _e( 'Edit a Meeting', 'video-conferencing-with-zoom-api' ); ?></h1>
+    <a href="edit.php?post_type=zoom-meetings&page=zoom-video-conferencing&host_id=<?php echo $meeting_info->host_id; ?>"><?php _e( 'Back to List', 'video-conferencing-with-zoom-api' ); ?></a>
     <div class="message">
 		<?php
 		$message = self::get_message();
@@ -103,52 +104,73 @@ if ( ! empty( $meeting_info ) ) {
             <tr>
                 <th scope="row"><label for="join_before_host"><?php _e( 'Join Before Host', 'video-conferencing-with-zoom-api' ); ?></label></th>
                 <td>
-                    <p class="description" id="join_before_host-description"><input type="checkbox" <?php echo $option_jbh; ?> name="join_before_host" value="1" class="regular-text"><?php _e( 'Join meeting before host start the meeting. Only for scheduled or recurring meetings.', 'video-conferencing-with-zoom-api' ); ?></p>
+                    <p class="description" id="join_before_host-description">
+                        <input type="checkbox" <?php echo $option_jbh; ?> name="join_before_host" value="1" class="regular-text"><?php _e( 'Join meeting before host start the meeting. Only for scheduled or recurring meetings.', 'video-conferencing-with-zoom-api' ); ?>
+                    </p>
                 </td>
             </tr>
             <tr>
                 <th scope="row"><label for="option_host_video"><?php _e( 'Host join start', 'video-conferencing-with-zoom-api' ); ?></label></th>
                 <td>
-                    <p class="description" id="option_host_video-description"><input type="checkbox" <?php echo $option_host_video; ?> name="option_host_video" value="1" class="regular-text"><?php _e( 'Start video when host join meeting.', 'video-conferencing-with-zoom-api' ); ?></p>
+                    <p class="description" id="option_host_video-description">
+                        <input type="checkbox" <?php echo $option_host_video; ?> name="option_host_video" value="1" class="regular-text"><?php _e( 'Start video when host join meeting.', 'video-conferencing-with-zoom-api' ); ?>
+                    </p>
                 </td>
             </tr>
             <tr>
-                <th scope="row"><label for="option_participants_video"><?php _e( 'Participants Video', 'video-conferencing-with-zoom-api' ); ?></label></th>
+                <th scope="row">
+                    <label for="option_participants_video"><?php _e( 'Participants Video', 'video-conferencing-with-zoom-api' ); ?></label></th>
                 <td>
-                    <p class="description" id="option_participants_video-description"><input type="checkbox" <?php echo $option_participants_video; ?> name="option_participants_video" value="1" class="regular-text"><?php _e( 'Start video when participants join meeting.', 'video-conferencing-with-zoom-api' ); ?></p>
+                    <p class="description" id="option_participants_video-description">
+                        <input type="checkbox" <?php echo $option_participants_video; ?> name="option_participants_video" value="1" class="regular-text"><?php _e( 'Start video when participants join meeting.', 'video-conferencing-with-zoom-api' ); ?>
+                    </p>
                 </td>
             </tr>
             <tr>
-                <th scope="row"><label for="option_mute_participants_upon_entry"><?php _e( 'Mute Participants upon entry', 'video-conferencing-with-zoom-api' ); ?></label></th>
+                <th scope="row">
+                    <label for="option_mute_participants_upon_entry"><?php _e( 'Mute Participants upon entry', 'video-conferencing-with-zoom-api' ); ?></label>
+                </th>
                 <td>
-                    <p class="description" id="option_mute_participants_upon_entry"><input type="checkbox" <?php echo $option_mute_participants; ?> value="1" name="option_mute_participants" class="regular-text"><?php _e( 'Mutes Participants when entering the meeting.', 'video-conferencing-with-zoom-api' ); ?></p>
+                    <p class="description" id="option_mute_participants_upon_entry">
+                        <input type="checkbox" <?php echo $option_mute_participants; ?> value="1" name="option_mute_participants" class="regular-text"><?php _e( 'Mutes Participants when entering the meeting.', 'video-conferencing-with-zoom-api' ); ?>
+                    </p>
                 </td>
             </tr>
             <tr>
                 <th scope="row"><label for="option_enforce_login"><?php _e( 'Enforce Login', 'video-conferencing-with-zoom-api' ); ?></label></th>
                 <td>
-                    <p class="description" id="option_enforce_login"><input type="checkbox" <?php echo $option_enforce_login; ?> name="option_enforce_login" value="1" class="regular-text"><?php _e( 'Only signed-in users can join this meeting.', 'video-conferencing-with-zoom-api' ); ?></p>
+                    <p class="description" id="option_enforce_login">
+                        <input type="checkbox" <?php echo $option_enforce_login; ?> name="option_enforce_login" value="1" class="regular-text"><?php _e( 'Only signed-in users can join this meeting.', 'video-conferencing-with-zoom-api' ); ?>
+                    </p>
                 </td>
             </tr>
             <tr>
                 <th scope="row"><label for="option_auto_recording"><?php _e( 'Auto Recording', 'video-conferencing-with-zoom-api' ); ?></label></th>
                 <td>
                     <select id="option_auto_recording" name="option_auto_recording">
-                        <option value="none" <?php echo ! empty( $meeting_info->settings->auto_recording ) && $meeting_info->settings->auto_recording == "none" ? "selected" : false; ?>>No Recordings</option>
-                        <option value="local" <?php echo ! empty( $meeting_info->settings->auto_recording ) && $meeting_info->settings->auto_recording == "local" ? "selected" : false; ?>>Local</option>
-                        <option value="cloud" <?php echo ! empty( $meeting_info->settings->auto_recording ) && $meeting_info->settings->auto_recording == "cloud" ? "selected" : false; ?>>Cloud</option>
+                        <option value="none" <?php echo ! empty( $meeting_info->settings->auto_recording ) && $meeting_info->settings->auto_recording == "none" ? "selected" : false; ?>>
+	                        <?php _e( 'No Recordings', 'video-conferencing-with-zoom-api' ); ?>
+                        </option>
+                        <option value="local" <?php echo ! empty( $meeting_info->settings->auto_recording ) && $meeting_info->settings->auto_recording == "local" ? "selected" : false; ?>>
+	                        <?php _e( 'Local', 'video-conferencing-with-zoom-api' ); ?>
+                        </option>
+                        <option value="cloud" <?php echo ! empty( $meeting_info->settings->auto_recording ) && $meeting_info->settings->auto_recording == "cloud" ? "selected" : false; ?>>
+	                        <?php _e( 'Cloud', 'video-conferencing-with-zoom-api' ); ?>
+                        </option>
                     </select>
                     <p class="description" id="option_auto_recording_description"><?php _e( 'Set what type of auto recording feature you want to add. Default is none.', 'video-conferencing-with-zoom-api' ); ?></p>
                 </td>
             </tr>
             <tr>
-                <th scope="row"><label for="settings_alternative_hosts"><?php _e( 'Alternative Hosts', 'video-conferencing-with-zoom-api' ); ?></label></th>
+                <th scope="row">
+                    <label for="settings_alternative_hosts"><?php _e( 'Alternative Hosts', 'video-conferencing-with-zoom-api' ); ?></label></th>
                 <td>
                     <select name="alternative_host_ids[]" multiple class="zvc-hacking-select">
                         <option value=""><?php _e( 'Select a Host', 'video-conferencing-with-zoom-api' ); ?></option>
-						<?php foreach ( $users as $user ):
+						<?php
+						foreach ( $users as $user ):
 							$user_found = false;
-							if ( in_array( $user->email, $option_alternative_hosts ) ) {
+							if ( ! empty( $option_alternative_hosts ) && in_array( $user->email, $option_alternative_hosts ) ) {
 								$user_found = true;
 							}
 							?>

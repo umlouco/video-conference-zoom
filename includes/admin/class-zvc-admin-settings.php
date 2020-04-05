@@ -40,7 +40,10 @@ class Zoom_Video_Conferencing_Admin_Views {
 				'list_users'
 			) );
 
-			add_submenu_page( 'edit.php?post_type=zoom-meetings', 'Add Users', __( 'Add Users', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing-add-users', array( 'Zoom_Video_Conferencing_Admin_Users', 'add_zoom_users' ) );
+			add_submenu_page( 'edit.php?post_type=zoom-meetings', 'Add Users', __( 'Add Users', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing-add-users', array(
+				'Zoom_Video_Conferencing_Admin_Users',
+				'add_zoom_users'
+			) );
 
 			add_submenu_page( 'edit.php?post_type=zoom-meetings', __( 'Reports', 'video-conferencing-with-zoom-api' ), __( 'Reports', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing-reports', array(
 				'Zoom_Video_Conferencing_Reports',
@@ -79,43 +82,63 @@ class Zoom_Video_Conferencing_Admin_Views {
 		wp_enqueue_script( 'video-conferencing-with-zoom-api-js' );
 		wp_enqueue_style( 'video-conferencing-with-zoom-api' );
 
-		if ( get_option( 'zoom_api_key' ) && get_option( 'zoom_api_secret' ) ) {
-			$encoded_users = zoom_conference()->listUsers();
-			if ( ! empty( json_decode( $encoded_users )->error ) ) {
-				?>
-                <div id="message" class="notice notice-error">
-                    <p><?php echo json_decode( $encoded_users )->error->message; ?></p>
-                </div>
-				<?php
-			}
-		}
+		video_conferencing_zoom_api_show_like_popup();
 
-		if ( isset( $_POST['save_zoom_settings'] ) ) {
-			//Nonce
-			check_admin_referer( '_zoom_settings_update_nonce_action', '_zoom_settings_nonce' );
-			$zoom_api_key = sanitize_text_field( filter_input( INPUT_POST, 'zoom_api_key' ) );
-			$zoom_api_secret = sanitize_text_field( filter_input( INPUT_POST, 'zoom_api_secret' ) );
-			$vanity_url = esc_url_raw( filter_input( INPUT_POST, 'vanity_url' ) );
-			$join_links = filter_input( INPUT_POST, 'meeting_end_join_link' );
-
-			update_option( 'zoom_api_key', $zoom_api_key );
-			update_option( 'zoom_api_secret', $zoom_api_secret );
-			update_option( 'zoom_vanity_url', $vanity_url );
-			update_option( 'zoom_past_join_links', $join_links );
-
-			//After user has been created delete this transient in order to fetch latest Data.
-			delete_transient( '_zvc_user_lists' );
-			?>
-            <div id="message" class="notice notice-success is-dismissible">
-                <p><?php _e( 'Successfully Updated. Please refresh this page.', 'video-conferencing-with-zoom-api' ); ?></p>
-                <button type="button" class="notice-dismiss">
-                    <span class="screen-reader-text"><?php _e( 'Dismiss this notice.', 'video-conferencing-with-zoom-api' ); ?></span></button>
-            </div>
+		$tab        = filter_input( INPUT_GET, 'tab', FILTER_SANITIZE_STRING );
+		$active_tab = isset( $tab ) ? $tab : 'api-settings';
+		?>
+        <div class="wrap">
+            <h1><?php _e( 'Zoom Integration Settings', 'video-conferencing-with-zoom-api' ); ?></h1>
+            <h2 class="nav-tab-wrapper">
+                <a href="<?php echo add_query_arg( array( 'tab' => 'api-settings' ) ); ?>" class="nav-tab <?php echo ( 'api-settings' === $active_tab ) ? esc_attr( 'nav-tab-active' ) : ''; ?>">
+					<?php esc_html_e( 'API Settings', 'vczapi-woo-addon' ); ?>
+                </a>
+                <a  style="background: #bf5252;color: #fff;" href="<?php echo add_query_arg( array( 'tab' => 'shortcode' ) ); ?>" class="nav-tab <?php echo ( 'shortcode' === $active_tab ) ? esc_attr( 'nav-tab-active' ) : ''; ?>">
+					<?php esc_html_e( 'Shortcode', 'vczapi-woo-addon' ); ?>
+                </a>
+                <a href="<?php echo add_query_arg( array( 'tab' => 'support' ) ); ?>" class="nav-tab <?php echo ( 'support' === $active_tab ) ? esc_attr( 'nav-tab-active' ) : ''; ?>">
+					<?php esc_html_e( 'Support', 'vczapi-woo-addon' ); ?>
+                </a>
+            </h2>
 			<?php
-		}
+			if ( 'api-settings' === $active_tab ) {
+				if ( isset( $_POST['save_zoom_settings'] ) ) {
+					//Nonce
+					check_admin_referer( '_zoom_settings_update_nonce_action', '_zoom_settings_nonce' );
+					$zoom_api_key     = sanitize_text_field( filter_input( INPUT_POST, 'zoom_api_key' ) );
+					$zoom_api_secret  = sanitize_text_field( filter_input( INPUT_POST, 'zoom_api_secret' ) );
+					$vanity_url       = esc_url_raw( filter_input( INPUT_POST, 'vanity_url' ) );
+					$join_links       = filter_input( INPUT_POST, 'meeting_end_join_link' );
+					$zoom_author_show = filter_input( INPUT_POST, 'meeting_show_zoom_author_original' );
 
-		//Get Template
-		require_once ZVC_PLUGIN_VIEWS_PATH . '/tpl-settings.php';
+					update_option( 'zoom_api_key', $zoom_api_key );
+					update_option( 'zoom_api_secret', $zoom_api_secret );
+					update_option( 'zoom_vanity_url', $vanity_url );
+					update_option( 'zoom_past_join_links', $join_links );
+					update_option( 'zoom_show_author', $zoom_author_show );
+
+					//After user has been created delete this transient in order to fetch latest Data.
+					delete_transient( '_zvc_user_lists' );
+					?>
+                    <div id="message" class="notice notice-success is-dismissible">
+                        <p><?php _e( 'Successfully Updated. Please refresh this page.', 'video-conferencing-with-zoom-api' ); ?></p>
+                        <button type="button" class="notice-dismiss">
+                            <span class="screen-reader-text"><?php _e( 'Dismiss this notice.', 'video-conferencing-with-zoom-api' ); ?></span>
+                        </button>
+                    </div>
+					<?php
+				}
+
+				//Get Template
+				require_once ZVC_PLUGIN_VIEWS_PATH . '/tabs/api-settings.php';
+			} else if ( 'shortcode' === $active_tab ) {
+				require_once ZVC_PLUGIN_VIEWS_PATH . '/tabs/shortcode.php';
+			} else if ( 'support' == $active_tab ) {
+				require_once ZVC_PLUGIN_VIEWS_PATH . '/tabs/support.php';
+			}
+			?>
+        </div>
+		<?php
 	}
 
 	static function get_message() {

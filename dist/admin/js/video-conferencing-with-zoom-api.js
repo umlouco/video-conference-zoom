@@ -30,6 +30,8 @@
             $dom.togglePwd = $('.toggle-api');
             $dom.toggleSecret = $('.toggle-secret');
 
+            $dom.changeMeetingState = $('.vczapi-meeting-state-change');
+
             $dom.show_on_meeting_delete_error = $('.show_on_meeting_delete_error');
         },
         eventListeners: function () {
@@ -59,6 +61,9 @@
             $('.zvc-dismiss-message').on('click', this.dismissNotice.bind(this));
 
             $('.check-api-connection').on('click', this.checkConnection.bind(this));
+
+            //End and Resume Meetings
+            $($dom.changeMeetingState).on('click', this.meetingStateChange.bind(this));
         },
 
         initializeDependencies: function () {
@@ -242,6 +247,45 @@
                 //Done
                 $dom.cover.hide();
                 alert(result);
+            });
+        },
+
+        /**
+         * Change Meeting State
+         * @param e
+         */
+        meetingStateChange: function (e) {
+            e.preventDefault();
+            var state = $(e.currentTarget).data('state');
+            var post_id = $(e.currentTarget).data('postid');
+            var postData = {
+                id: $(e.currentTarget).data('id'),
+                state: state,
+                type: $(e.currentTarget).data('type'),
+                post_id: post_id ? post_id : false,
+                action: 'state_change',
+                accss: zvc_ajax.zvc_security
+            };
+
+            if (state === "resume") {
+                this.changeState(postData);
+            } else if (state === "end") {
+                var c = confirm(zvc_ajax.lang.confirm_end);
+                if (c) {
+                    this.changeState(postData);
+                } else {
+                    return;
+                }
+            }
+        },
+
+        /**
+         * Change the state triggere now
+         * @param postData
+         */
+        changeState: function (postData) {
+            $.post(zvc_ajax.ajaxurl, postData).done(function (response) {
+               location.reload();
             });
         }
     };

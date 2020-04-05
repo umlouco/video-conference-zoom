@@ -15,12 +15,32 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 
 	class Zoom_Video_Conferencing_Api {
 
+		/**
+		 * Zoom API KEY
+		 *
+		 * @var
+		 */
 		public $zoom_api_key;
 
+		/**
+		 * Zoom API Secret
+		 *
+		 * @var
+		 */
 		public $zoom_api_secret;
 
+		/**
+		 * Hold my instance
+		 *
+		 * @var
+		 */
 		protected static $_instance;
 
+		/**
+		 * API endpoint base
+		 *
+		 * @var string
+		 */
 		private $api_url = 'https://api.zoom.us/v2/';
 
 		/**
@@ -36,11 +56,26 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 			return self::$_instance;
 		}
 
+		/**
+		 * Zoom_Video_Conferencing_Api constructor.
+		 *
+		 * @param $zoom_api_key
+		 * @param $zoom_api_secret
+		 */
 		public function __construct( $zoom_api_key = '', $zoom_api_secret = '' ) {
 			$this->zoom_api_key    = $zoom_api_key;
 			$this->zoom_api_secret = $zoom_api_secret;
 		}
 
+		/**
+		 * Send request to API
+		 *
+		 * @param $calledFunction
+		 * @param $data
+		 * @param string $request
+		 *
+		 * @return array|bool|string|WP_Error
+		 */
 		protected function sendRequest( $calledFunction, $data, $request = "GET" ) {
 			$request_url = $this->api_url . $calledFunction;
 			$args        = array(
@@ -115,6 +150,7 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 		 * User Function to List
 		 *
 		 * @param $page
+		 *
 		 * @return array
 		 */
 		public function listUsers( $page = 1 ) {
@@ -171,7 +207,7 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 		 *
 		 * @param array $data
 		 *
-		 * @return object
+		 * @return array|bool|string|void|WP_Error
 		 */
 		public function createAMeeting( $data = array() ) {
 			$post_time  = $data['start_date'];
@@ -204,15 +240,20 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 				'alternative_hosts' => isset( $alternative_host_ids ) ? $alternative_host_ids : ""
 			);
 
-			return $this->sendRequest( 'users/' . $data['userId'] . '/meetings', $createAMeetingArray, "POST" );
+			$createAMeetingArray = apply_filters( 'vczapi_createAmeeting', $createAMeetingArray );
+			if ( ! empty( $createAMeetingArray ) ) {
+				return $this->sendRequest( 'users/' . $data['userId'] . '/meetings', $createAMeetingArray, "POST" );
+			} else {
+				return;
+			}
 		}
 
 		/**
 		 * Updating Meeting Info
 		 *
-		 * @param $update_data
+		 * @param array $update_data
 		 *
-		 * @return array
+		 * @return array|bool|string|void|WP_Error
 		 */
 		public function updateMeetingInfo( $update_data = array() ) {
 			$post_time  = $update_data['start_date'];
@@ -245,7 +286,12 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 				'alternative_hosts' => isset( $alternative_host_ids ) ? $alternative_host_ids : ""
 			);
 
-			return $this->sendRequest( 'meetings/' . $update_data['meeting_id'], $updateMeetingInfoArray, "PATCH" );
+			$updateMeetingInfoArray = apply_filters( 'vczapi_updateMeetingInfo', $updateMeetingInfoArray );
+			if ( ! empty( $updateMeetingInfoArray ) ) {
+				return $this->sendRequest( 'meetings/' . $update_data['meeting_id'], $updateMeetingInfoArray, "PATCH" );
+			} else {
+				return;
+			}
 		}
 
 		/**

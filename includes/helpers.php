@@ -282,33 +282,29 @@ function video_conferencing_zoom_api_show_api_notice() {
 /**
  * Get the template
  *
- * @param $template_names
+ * @param $template_name
  * @param bool $load
  * @param bool $require_once
  *
  * @return bool|string
  */
-function vczapi_get_template( $template_names, $load = false, $require_once = true ) {
-	if ( ! is_array( $template_names ) ) {
-		return '';
+function vczapi_get_template( $template_name, $load = false, $require_once = true ) {
+	if ( empty( $template_name ) ) {
+		return false;
 	}
 
-	$located         = false;
-	$this_plugin_dir = ZVC_PLUGIN_DIR_PATH;
-	foreach ( $template_names as $template_name ) {
-		if ( file_exists( STYLESHEETPATH . '/' . ZVC_PLUGIN_SLUG . '/' . $template_name ) ) {
-			$located = STYLESHEETPATH . '/' . ZVC_PLUGIN_SLUG . '/' . $template_name;
-			break;
-		} elseif ( file_exists( TEMPLATEPATH . '/' . ZVC_PLUGIN_SLUG . '/' . $template_name ) ) {
-			$located = TEMPLATEPATH . '/' . ZVC_PLUGIN_SLUG . '/' . $template_name;
-			break;
-		} elseif ( file_exists( $this_plugin_dir . 'templates/' . $template_name ) ) {
-			$located = $this_plugin_dir . 'templates/' . $template_name;
-			break;
-		}
+	$located = false;
+	if ( file_exists( STYLESHEETPATH . '/' . ZVC_PLUGIN_SLUG . '/' . $template_name ) ) {
+		$located = STYLESHEETPATH . '/' . ZVC_PLUGIN_SLUG . '/' . $template_name;
+	} elseif ( file_exists( TEMPLATEPATH . '/' . ZVC_PLUGIN_SLUG . '/' . $template_name ) ) {
+		$located = TEMPLATEPATH . '/' . ZVC_PLUGIN_SLUG . '/' . $template_name;
+	} elseif ( file_exists( ZVC_PLUGIN_DIR_PATH . 'templates/' . $template_name ) ) {
+		$located = ZVC_PLUGIN_DIR_PATH . 'templates/' . $template_name;
 	}
 
-	if ( $load && ! empty( $located ) ) {
+	// Allow 3rd party plugin filter template file from their plugin.
+	$located = apply_filters( 'vczapi_get_template', $located, $template_name );
+	if ( $load && ! empty( $located ) && file_exists( $located ) ) {
 		load_template( $located, $require_once );
 	}
 
@@ -409,4 +405,25 @@ function encrypt_decrypt( $action, $string ) {
 	}
 
 	return $output;
+}
+
+if( !function_exists('vczapi_get_browser_agent_type')) {
+	function vczapi_get_browser_agent_type() {
+		//Detect special conditions devices
+		$iPod = stripos( $_SERVER['HTTP_USER_AGENT'], "iPod" );
+		$iPhone        = stripos( $_SERVER['HTTP_USER_AGENT'], "iPhone" );
+		$iPad          = stripos( $_SERVER['HTTP_USER_AGENT'], "iPad" );
+		$Android       = stripos( $_SERVER['HTTP_USER_AGENT'], "Android" );
+
+		//do something with this information
+		if ( $iPod || $iPhone || $iPad ) {
+			$app_store_link = 'https://apps.apple.com/app/zoom-cloud-meetings/id546505307';
+		} else if ( $Android ) {
+			$app_store_link = 'https://play.google.com/store/apps/details?id=us.zoom.videomeetings';
+		} else {
+			$app_store_link = 'https://zoom.us/support/download';
+		}
+
+		return $app_store_link;
+	}
 }

@@ -3,8 +3,8 @@ Contributors: j__3rk, digamberpradhan
 Tags: zoom video conference, video conference, zoom, zoom video conferencing, web conferencing, online meetings
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
-Tested up to: 5.3
-Stable tag: 3.2.31
+Tested up to: 5.4
+Stable tag: 3.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -94,13 +94,15 @@ As an extension of the Zoom browser client, this SDK is intended for implementat
 
 * [zoom_api_link meeting_id="123456789" link_only="no"] - Just enter your meeting ID and you are good to show your meeting in any page. Adding link_only="yes" would show join link only. See [Usage Documentation](https://techies23.github.io/video-conference-zoom/ "Usage Documentation") for more detail on usage.
 
-* [zoom_list_meetings per_page="5" category="test,test2,test3"] - Show list of meetings in frontend via category, Edit shortcode template for table view.
+* [zoom_list_meetings per_page="5" category="test,test2,test3" order="DESC"] - Show list of meetings in frontend via category, Edit shortcode template for table view.
+
+* [zoom_join_via_browser meeting_id="1234556789" title="Meeting Title" id="div-class-id" login_required="no" help="yes"] - Embed a Zoom Meeting into your page or post. This allows you to directly join meeting or start it from the page where you added this shortcode.
 
 **QUICK DEMO:**
 
 [youtube https://www.youtube.com/watch?v=KNuasepxwfE]
 
-Any additional features, suggestions related to translations, contact me via [email](https://deepenbajracharya.com.np/say-hello/ "Deepen Bajracharya").
+Any additional features, suggestions related to translations, contact me via [email](https://deepenbajracharya.com.np/say-hello/ "Deepen Bajracharya"). Send me your wordpress.org username handle as well if you are willing to contribute in translations.
 
 == Installation ==
 Search for the plugin -> add new dialog and click install, or download and extract the plugin, and copy the the Zoom plugin folder into your wp-content/plugins directory and activate.
@@ -141,9 +143,20 @@ This happens because of the single meeting page template from the plugin not bei
 
 == Changelog ==
 
-= 3.2.4 Dev =
+= 3.3.0 =
 * German Translation Added: Thanks to Peter Ginser
 * Slovak Translation Added: Thanks to Branislav Ďorď
+* Fixed: New shortcode to embed that allows you to directly or start join via page or post. See shortcode section in details page for details.
+* Added: Start or End meeting manually which allows users to end meeting ahead of time and disallowing anyone to join it.
+* Added: New hooks for recurring meetings support
+* Added: Filters for WC Product Vendors Support
+* Fixed: Countdown timer adjusted.
+* Added: Meeting start, end text can be now customized from settings page.
+* Added: Allow original zoom author name to be shown in frontend single pages.
+* Added: Filter added which allows you to modify the post DATA you sent at time of creating meeting as well as updating !
+* Fixed: Responsive issue when join via browser ( link somewhere in the support which i lost it ).
+* Added: Meeting states to be manually changed from users perspective (https://wordpress.org/support/topic/feature-request-more-details-on-meeting-states/)
+* Alot of Bug fixes
 
 = 3.2.31 - March 29th, 2020 =
 * Added: Filter hook: vczapi_timezone_list => for timezone list.

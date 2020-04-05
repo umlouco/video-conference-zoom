@@ -10,10 +10,13 @@ jQuery(function ($) {
 
         cacheVariables: function () {
             this.$timer = $('#dpn-zvc-timer');
+            this.changeMeetingState = $('.vczapi-meeting-state-change');
         },
 
         evntLoaders: function () {
             $(window).on('load', this.setTimezone.bind(this));
+            //End and Resume Meetings
+            $(this.changeMeetingState).on('click', this.meetingStateChange.bind(this));
         },
 
         countDownTimerMoment: function () {
@@ -21,6 +24,7 @@ jQuery(function ($) {
             if (clock.length > 0) {
                 var valueDate = clock.data('date');
                 var mtgTimezone = clock.data('tz');
+                var mtgState = clock.data('state');
 
                 // var dateFormat = moment(valueDate).format('MMM D, YYYY HH:mm:ss');
 
@@ -46,25 +50,29 @@ jQuery(function ($) {
                     hour = minute * 60,
                     day = hour * 24;
 
-                // if time to countdown
-                if (diffTime > 0) {
-                    var countDown = new Date(converted_timezone).getTime();
-                    var x = setInterval(function () {
-                        var now = new Date().getTime();
-                        var distance = countDown - now;
-
-                        document.getElementById('dpn-zvc-timer-days').innerText = Math.floor(distance / (day));
-                        document.getElementById('dpn-zvc-timer-hours').innerText = Math.floor((distance % (day)) / (hour));
-                        document.getElementById('dpn-zvc-timer-minutes').innerText = Math.floor((distance % (hour)) / (minute));
-                        document.getElementById('dpn-zvc-timer-seconds').innerText = Math.floor((distance % (minute)) / second);
-
-                        if (distance < 0) {
-                            clearInterval(x);
-                            $(clock).html("<div class='dpn-zvc-meeting-ended'><h3>" + zvc_strings.meeting_starting + "</h3></div>");
-                        }
-                    }, second);
-                } else {
+                if (mtgState === "ended") {
                     $(clock).html("<div class='dpn-zvc-meeting-ended'><h3>" + zvc_strings.meeting_ended + "</h3></div>");
+                } else {
+                    // if time to countdown
+                    if (diffTime > 0) {
+                        var countDown = new Date(converted_timezone).getTime();
+                        var x = setInterval(function () {
+                            var now = new Date().getTime();
+                            var distance = countDown - now;
+
+                            document.getElementById('dpn-zvc-timer-days').innerText = Math.floor(distance / (day));
+                            document.getElementById('dpn-zvc-timer-hours').innerText = Math.floor((distance % (day)) / (hour));
+                            document.getElementById('dpn-zvc-timer-minutes').innerText = Math.floor((distance % (hour)) / (minute));
+                            document.getElementById('dpn-zvc-timer-seconds').innerText = Math.floor((distance % (minute)) / second);
+
+                            if (distance < 0) {
+                                clearInterval(x);
+                                $(clock).html("<div class='dpn-zvc-meeting-ended'><h3>" + zvc_strings.meeting_starting + "</h3></div>");
+                            }
+                        }, second);
+                    } else {
+                        $(clock).html("<div class='dpn-zvc-meeting-ended'><h3>" + zvc_strings.meeting_started + "</h3></div>");
+                    }
                 }
             }
         },
@@ -127,6 +135,45 @@ jQuery(function ($) {
             } catch (e) {
                 console.log(e);
             }
+        },
+
+        /**
+         * Change Meeting State
+         * @param e
+         */
+        meetingStateChange: function (e) {
+            e.preventDefault();
+            var state = $(e.currentTarget).data('state');
+            var post_id = $(e.currentTarget).data('postid');
+            var postData = {
+                id: $(e.currentTarget).data('id'),
+                state: state,
+                type: $(e.currentTarget).data('type'),
+                post_id: post_id ? post_id : false,
+                action: 'state_change',
+                accss: vczapi_state.zvc_security
+            };
+
+            if (state === "resume") {
+                this.changeState(postData);
+            } else if (state === "end") {
+                var c = confirm(vczapi_state.lang.confirm_end);
+                if (c) {
+                    this.changeState(postData);
+                } else {
+                    return;
+                }
+            }
+        },
+
+        /**
+         * Change the state triggere now
+         * @param postData
+         */
+        changeState: function (postData) {
+            $.post(vczapi_state.ajaxurl, postData).done(function (response) {
+                location.reload();
+            });
         }
     };
 

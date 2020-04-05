@@ -1,14 +1,16 @@
 .dpn-zvc-single-content-wrapper{margin-top:40px}.dpn-zvc-single-content-wrapper .deepn-zvc-single-featured-img{margin-bottom:1rem}
 .dpn-zvc-single-content-wrapper .deepn-zvc-single-featured-img img{width:100%;height:auto}
 .dpn-zvc-single-content-wrapper .dpn-zvc-col-8,.dpn-zvc-single-content-wrapper .dpn-zvc-col-4{position:relative;min-height:1px;padding-left:15px;padding-right:15px;margin-bottom:58px}
-.dpn-zvc-single-content-wrapper .dpn-zvc-sidebar-wrapper{width:100%;clear:both}.dpn-zvc-single-content-wrapper .dpn-zvc-sidebar-wrapper .dpn-zvc-sidebar-box{margin-top:2rem}
+.dpn-zvc-single-content-wrapper .dpn-zvc-sidebar-wrapper{width:100%;clear:both}.dpn-zvc-single-content-wrapper .dpn-zvc-sidebar-wrapper .dpn-zvc-sidebar-box{margin-top:1.5rem}
 .dpn-zvc-single-content-wrapper .dpn-zvc-sidebar-wrapper .dpn-zvc-sidebar-box:first-child{margin-top:0}
 .dpn-zvc-single-content-wrapper .dpn-zvc-sidebar-wrapper .dpn-zvc-sidebar-box .join-links .btn{padding:10px 20px;color:#fff;border-radius:0;display:block;margin-top:10px}
 .dpn-zvc-single-content-wrapper .dpn-zvc-sidebar-wrapper .dpn-zvc-sidebar-box .join-links .btn-join-link{background:#a5452d}
 .dpn-zvc-single-content-wrapper .dpn-zvc-sidebar-wrapper .dpn-zvc-sidebar-box .join-links .btn-start-link{background:#1c3b82}
+.dpn-zvc-single-content-wrapper .dpn-zvc-sidebar-wrapper .dpn-zvc-sidebar-state{border:1px solid #ccc;padding:20px;margin-top:20px}
+.dpn-zvc-single-content-wrapper .dpn-zvc-sidebar-wrapper .dpn-zvc-sidebar-state p{padding:0;margin:0}
 .dpn-zvc-single-content-wrapper .dpn-zvc-sidebar-wrapper .dpn-zvc-timer{display:table;width:100%;table-layout:fixed;border-spacing:2px;border-collapse:separate}
 .dpn-zvc-single-content-wrapper .dpn-zvc-sidebar-wrapper .dpn-zvc-timer .dpn-zvc-meeting-ended{background:#3a3a3a;padding:10px 16px;border-radius:2px}
-.dpn-zvc-single-content-wrapper .dpn-zvc-sidebar-wrapper .dpn-zvc-timer .dpn-zvc-meeting-ended h3{margin:0;padding:0;color:#fff}
+.dpn-zvc-single-content-wrapper .dpn-zvc-sidebar-wrapper .dpn-zvc-timer .dpn-zvc-meeting-ended h3{margin:0;padding:0;color:#fff;line-height:1.8}
 .dpn-zvc-single-content-wrapper .dpn-zvc-sidebar-wrapper .dpn-zvc-timer .dpn-zvc-timer-cell{display:table-cell;vertical-align:top;text-align:center;font-size:32px;background:#3a3a3a;color:#fff;line-height:normal;padding:10px 3px;border-radius:2px}
 .dpn-zvc-single-content-wrapper .dpn-zvc-sidebar-wrapper .dpn-zvc-timer .dpn-zvc-timer-cell-number{font-size:1em;width:100%}
 .dpn-zvc-single-content-wrapper .dpn-zvc-sidebar-wrapper .dpn-zvc-timer .dpn-zvc-timer-cell-string{font-size:.45em;width:100%;text-transform:uppercase}
@@ -27,8 +29,16 @@
 #dpen-zoom-browser-meeting .dpen-zoom-browser-meeting--meeting-form input[type=text],#dpen-zoom-browser-meeting .dpen-zoom-browser-meeting--meeting-form button[type=submit]{width:400px;height:40px;border-radius:0}
 #dpen-zoom-browser-meeting .dpen-zoom-browser-meeting--meeting-form button[type=submit]{background-color:#2d8cff;color:#fff}
 #dpen-zoom-browser-meeting .dpen-zoom-browser-meeting--meeting-form .form-group{margin-bottom:10px}
-#dpen-zoom-browser-meeting .dpen-zoom-browser-meeting--info{background:#fff;padding:20px 30px;margin-bottom:10px}
+#dpen-zoom-browser-meeting .dpen-zoom-browser-meeting--info{background:#fff;padding:20px 30px;margin-bottom:10px;width:400px}
 #dpen-zoom-browser-meeting .dpen-zoom-browser-meeting--info ul{list-style:none;padding:0;margin:0}
+@media only screen and (max-width:767px){#dpen-zoom-browser-meeting .dpen-zoom-browser-meeting--info{width:300px}
+#dpen-zoom-browser-meeting #dpen-zoom-browser-meeting--container,#dpen-zoom-browser-meeting .dpen-zoom-browser-meeting--meeting-form input[type=text],#dpen-zoom-browser-meeting .dpen-zoom-browser-meeting--meeting-form button[type=submit]{width:300px}
+}.dpn-zvc-timer.zoom-join-via-browser-countdown{display:table;width:100%;table-layout:fixed;border-spacing:2px;border-collapse:separate}
+.dpn-zvc-timer.zoom-join-via-browser-countdown .dpn-zvc-meeting-ended{background:#3a3a3a;padding:10px 16px;border-radius:2px}
+.dpn-zvc-timer.zoom-join-via-browser-countdown .dpn-zvc-meeting-ended h3{margin:0;padding:0;color:#fff}
+.dpn-zvc-timer.zoom-join-via-browser-countdown .dpn-zvc-timer-cell{display:table-cell;vertical-align:top;text-align:center;font-size:32px;background:#3a3a3a;color:#fff;line-height:normal;padding:10px 3px;border-radius:2px}
+.dpn-zvc-timer.zoom-join-via-browser-countdown .dpn-zvc-timer-cell-number{font-size:1em;width:100%}
+.dpn-zvc-timer.zoom-join-via-browser-countdown .dpn-zvc-timer-cell-string{font-size:.45em;width:100%;text-transform:uppercase}
 .vczapi-list-zoom-meetings--items{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}
 .vczapi-list-zoom-meetings--item{width:100%;margin-bottom:20px}.vczapi-list-zoom-meetings--item__image{margin-bottom:20px}
 @media screen and (min-width:767px){.vczapi-list-zoom-meetings--item{width:45%}.vczapi-list-zoom-meetings--item{margin-right:5%}
