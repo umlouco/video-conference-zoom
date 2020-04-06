@@ -42,14 +42,14 @@ if ( ! defined( 'ABSPATH' ) ) {
                     </ul>
                 </div>
             </div>
-            <div class="zoom-api-basic-usage" style="margin-top: 20px;border-top:1px solid #ccc;">
-                <h3><?php _e( 'Embed Zoom Meeting into Browser', 'video-conferencing-with-zoom-api' ); ?>:</h3>
+            <!--<div class="zoom-api-basic-usage" style="margin-top: 20px;border-top:1px solid #ccc;">
+                <h3><?php /*_e( 'Embed Zoom Meeting into Browser', 'video-conferencing-with-zoom-api' ); */?>:</h3>
                 <code>[zoom_join_via_browser meeting_id="1234556789" title="Meeting Title" id="div-class-id" login_required="no" help="yes" height="500px"]</code>
                 <div class="zoom-api-basic-usage-description">
-                    <label><?php _e( 'Description', 'video-conferencing-with-zoom-api' ); ?>:</label>
-                    <p><?php _e( 'Embed a Zoom Meeting into your page or post. This allows you to directly join meeting or start it from the page where you added
-                        this shortcode. Remember this is an IFRAME window !', 'video-conferencing-with-zoom-api' ); ?></p>
-                    <label><?php _e( 'Parameters', 'video-conferencing-with-zoom-api' ); ?>:</label>
+                    <label><?php /*_e( 'Description', 'video-conferencing-with-zoom-api' ); */?>:</label>
+                    <p><?php /*_e( 'Embed a Zoom Meeting into your page or post. This allows you to directly join meeting or start it from the page where you added
+                        this shortcode. Remember this is an IFRAME window !', 'video-conferencing-with-zoom-api' ); */?></p>
+                    <label><?php /*_e( 'Parameters', 'video-conferencing-with-zoom-api' ); */?>:</label>
                     <ul>
                         <li><strong>meeting_id</strong> : Meeting ID for the meeting to be joined or started (required).</li>
                         <li><strong>title</strong> : Title of the meeting to be shown in the head. (optional)</li>
@@ -59,7 +59,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                         <li><strong>height</strong> : in "px" (optional).</li>
                     </ul>
                 </div>
-            </div>
+            </div>-->
         </section>
     </div>
 </div>
