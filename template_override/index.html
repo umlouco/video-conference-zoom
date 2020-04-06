@@ -81,6 +81,9 @@
     <li class="toctree-l2"><a href="#overriding-the-parent">Overriding the Parent</a></li>
     
 
+    <li class="toctree-l2"><a href="#content-not-showing">Content not showing?</a></li>
+    
+
     </ul>
 	    </li>
           
@@ -148,6 +151,22 @@
 <li>All frontend templates are stored inside <code>wp-admin/plugins/video-conferencing-with-zoom-api/templates/</code> folder.</li>
 </ul>
 <p>To override, copy files from <code>wp-admin/plugins/video-conferencing-with-zoom-api/templates/</code> folder to <code>wp-content/yourtheme/video-conferencing-zoom/</code> folder.</p>
+<h3 id="content-not-showing">Content not showing?</h3>
+<p>If you are facing an issue with content not being shown on your single meetings page i.e <strong>yourwesite/zoom-meetings/your-meetings</strong> page then follow below steps:</p>
+<ol>
+<li>Find out what your theme div structure looks like first.</li>
+<li>Goto <strong>wp-content/plugins/video-conferencing-with-zoom-api/templates/</strong></li>
+<li>Copy <strong>content-single-meeting.php</strong></li>
+<li>Make folder <strong>"video-conferencing-zoom"</strong> in your theme if you dont have that folder.</li>
+<li>Paste it into <strong>yourchildtheme/video-conferencing-zoom/content-single-meeting.php</strong></li>
+<li>Now edit the file <strong>content-single-meeting.php</strong></li>
+</ol>
+<p>Like said above, you'll need to find out the div structure from your theme. You can do so by going to your yoursite.com/zoom-meetings/yourmeetings-page &gt; Right Click &gt; Click on inspect. <strong>Check what your theme is outputting in other pages of your site</strong></p>
+<p>You Should see below image on your screen now.</p>
+<p><img src="https://www.codemanas.com/wp-content/uploads/2020/04/plugin-template-override-guideline.png" alt="Plugin Override"></p>
+<p>Match the classes accordingly in the file <strong>content-single-meeting.php</strong> now. Replacing the <code>"dpn-zvc-single-content-wrapper dpn-zvc-single-content-wrapper-&lt;?php echo get_the_id(); ?&gt;"</code> usually does the trick !!</p>
+<p><img src="https://www.codemanas.com/wp-content/uploads/2020/04/plugin-overrride-guide.png" alt="Plugin Override"></p>
+<p>Hope this helps !</p>
 <p>You're Done !</p>
 <p>You can change the layout of the pages anyway you want.</p>
               
