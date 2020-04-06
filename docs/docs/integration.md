@@ -1,5 +1,7 @@
 Here below are the steps to integrate zoom plugin into WordPress. There are no complicated processes. Just the basic steps.
 
+<p style="color:red;"><strong>NOTE: if you recently getting an error called "API_CREDENTIALS_NOT_FOUDN" this is an error from zoom side. Please contact zoom support in this case.</strong></p>
+
 ## Generating API keys and Secret Keys
 
 For this plugin you’ll be using JWT token method to make the API connection. Please note, this method is only account level connection.

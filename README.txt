@@ -41,6 +41,8 @@ Now, from 3.2.0 allows you to Join meetings directly from Browser without Zoom A
 
 **DOCUMENTATION LINKS:**
 
+**NOTE: If you getting an error called "API_CREDENTIALS_NOT_FOUDN" at the time of generation API keys then this is an error from zoom side. Please contact zoom support in this case.**
+
 * [Full Documentation](https://zoom.codemanas.com/ "Usage Documentation")
 * [Key Generation Only Documentation](https://deepenbajracharya.com.np/zoom-conference-wp-plugin-documentation/ "Key Generation Only Documentation")
 * [Usage Documentation /w WP](https://deepenbajracharya.com.np/zoom-api-integration-with-wordpress/ "Usage Documentation")
