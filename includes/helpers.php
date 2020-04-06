@@ -256,16 +256,23 @@ function video_conferencing_zoom_api_pagination_prev( $type, $page_type = 'zoom-
 }
 
 function video_conferencing_zoom_api_status() {
-	?>
-    <div class="zoom-status-notice notice notice-warning is-dismissible">
-        <h3><?php _e( 'ZOOM SERVICES STATUS', 'video-conferencing-with-zoom-api' ); ?></h3>
-        <p>
-			<?php
-			printf( esc_html__( 'Experiencing issues with the Zoom meeting window? Please check the status of Zoom services under Zoom Website %1$s', 'video-conferencing-with-zoom-api' ), '<a target="_blank" href="https://status.zoom.us/">here</a>' );
-			?>
-        </p>
-    </div>
-	<?php
+	if ( isset( $_GET['vczapi_dismiss_again'] ) && $_GET['vczapi_dismiss_again'] == 1 ) {
+		set_transient( '_vczapi_dismiss_notice_api_error', 1, 60 * 60 * 24 * 30 );
+	}
+
+	if ( ! get_transient( '_vczapi_dismiss_notice_api_error' ) ) {
+		?>
+        <div class="zoom-status-notice notice notice-warning is-dismissible">
+            <h3><?php _e( 'ZOOM SERVICES STATUS', 'video-conferencing-with-zoom-api' ); ?></h3>
+            <p>Experiencing issues with the join via Browser ? This is because Zoom webSDK part is under maintenance, due to which 403 error is
+                showing when you try to join the meeting i.e in console of the browser. Check
+                <a href="https://devforum.zoom.us/t/in-progress-web-sdk-web-client-from-browser-403-forbidden/10782/107">in this thread</a> as well as
+                official <a href="https://marketplace.zoom.us/docs/sdk/native-sdks/web">SDK page</a> for more details. This message will be removed in
+                the next update after the webSDK fix. <a href="<?php echo add_query_arg( 'vczapi_dismiss_again', 1 ) ?>" class="is-dismissible">Don't show again !</a></p>
+
+        </div>
+		<?php
+	}
 }
 
 /**

@@ -164,6 +164,7 @@ However, even though meeting is created and you are not seeing countdown timer t
 * Added: Filter added which allows you to modify the post DATA you sent at time of creating meeting as well as updating !
 * Fixed: Responsive issue when join via browser ( link somewhere in the support which i lost it ).
 * Added: Meeting states to be manually changed from users perspective (https://wordpress.org/support/topic/feature-request-more-details-on-meeting-states/)
+* Added: Password field in post type pages.
 * Added: Debug Mode button on posts page for Zoom Meetings
 * Alot of Bug fixes
 

@@ -8,6 +8,8 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
+video_conferencing_zoom_api_status();
 ?>
 
 <table class="form-table">

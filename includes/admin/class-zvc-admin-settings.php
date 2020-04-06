@@ -84,6 +84,8 @@ class Zoom_Video_Conferencing_Admin_Views {
 
 		video_conferencing_zoom_api_show_like_popup();
 
+		video_conferencing_zoom_api_status();
+
 		$tab        = filter_input( INPUT_GET, 'tab', FILTER_SANITIZE_STRING );
 		$active_tab = isset( $tab ) ? $tab : 'api-settings';
 		?>
