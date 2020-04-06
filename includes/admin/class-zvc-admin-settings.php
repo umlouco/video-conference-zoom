@@ -82,8 +82,6 @@ class Zoom_Video_Conferencing_Admin_Views {
 		wp_enqueue_script( 'video-conferencing-with-zoom-api-js' );
 		wp_enqueue_style( 'video-conferencing-with-zoom-api' );
 
-		video_conferencing_zoom_api_status();
-
 		video_conferencing_zoom_api_show_like_popup();
 
 		$tab        = filter_input( INPUT_GET, 'tab', FILTER_SANITIZE_STRING );

@@ -45,9 +45,9 @@ if ( video_conference_zoom_check_login() ) {
             </div>
             <form class="dpen-zoom-browser-meeting--meeting-form" id="dpen-zoom-browser-meeting-join-form" action="">
                 <div class="form-group">
-                    <input type="text" name="display_name" id="display_name" value="" placeholder="Name" class="form-control" required>
+                    <input type="text" name="display_name" id="display_name" value="User" placeholder="Name" class="form-control" required>
                 </div>
-                <button type="submit" class="btn btn-primary" id="dpen-zoom-browser-meeting-join-mtg" data-meeting="<?php echo absint( $zoom['meeting_id'] ); ?>">
+                <button type="submit" class="btn btn-primary" id="dpen-zoom-browser-meeting-join-mtg">
 					<?php _e( 'Join', 'video-conferencing-with-zoom-api' ); ?>
                 </button>
             </form>

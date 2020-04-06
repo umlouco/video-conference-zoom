@@ -22,12 +22,13 @@ jQuery(function ($) {
         loadMeeting: function (e) {
             e.preventDefault();
 
-            var meeting_id = $(e.currentTarget).data('meeting');
+            var meeting_id = zvc_ajx.meeting_id;
             var API_KEY = false;
             var SIGNATURE = false;
             var REDIRECTION = zvc_ajx.redirect_page;
+            var PASSWD = zvc_ajx.meeting_pwd;
             $('body').append('<span id="zvc-cover"></span>');
-            if (meeting_id) {
+            if (meeting_id && PASSWD) {
                 $.post(zvc_ajx.ajaxurl, {
                     action: 'get_auth',
                     noncce: zvc_ajx.zvc_security,
@@ -49,7 +50,7 @@ jQuery(function ($) {
                                 apiKey: API_KEY,
                                 meetingNumber: parseInt(meeting_id, 10),
                                 userName: document.getElementById('display_name').value,
-                                passWord: "",
+                                passWord: PASSWD,
                                 leaveUrl: REDIRECTION,
                                 signaure: SIGNATURE,
                             };

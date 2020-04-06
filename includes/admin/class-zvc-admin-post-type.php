@@ -79,10 +79,6 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	 * @author Deepen
 	 */
 	public function register() {
-		if ( post_type_exists( $this->post_type ) ) {
-			return;
-		}
-
 		$labels = array(
 			'name'               => _x( 'Zoom Meetings', 'Zoom Meetings', 'video-conferencing-with-zoom-api' ),
 			'singular_name'      => _x( 'Zoom Meeting', 'Zoom Meeting', 'video-conferencing-with-zoom-api' ),
@@ -309,6 +305,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 			'start_date'                => sanitize_text_field( filter_input( INPUT_POST, 'start_date' ) ),
 			'timezone'                  => sanitize_text_field( filter_input( INPUT_POST, 'timezone' ) ),
 			'duration'                  => sanitize_text_field( filter_input( INPUT_POST, 'duration' ) ),
+			'password'                  => sanitize_text_field( filter_input( INPUT_POST, 'password' ) ),
 			'join_before_host'          => filter_input( INPUT_POST, 'join_before_host' ),
 			'option_host_video'         => filter_input( INPUT_POST, 'option_host_video' ),
 			'option_participants_video' => filter_input( INPUT_POST, 'option_participants_video' ),
@@ -350,6 +347,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 			'start_date'                => sanitize_text_field( filter_input( INPUT_POST, 'start_date' ) ),
 			'timezone'                  => sanitize_text_field( filter_input( INPUT_POST, 'timezone' ) ),
 			'duration'                  => sanitize_text_field( filter_input( INPUT_POST, 'duration' ) ),
+			'password'                  => sanitize_text_field( filter_input( INPUT_POST, 'password' ) ),
 			'join_before_host'          => filter_input( INPUT_POST, 'join_before_host' ),
 			'option_host_video'         => filter_input( INPUT_POST, 'option_host_video' ),
 			'option_participants_video' => filter_input( INPUT_POST, 'option_participants_video' ),
@@ -384,6 +382,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 			'start_date'                => filter_input( INPUT_POST, 'start_date' ),
 			'timezone'                  => filter_input( INPUT_POST, 'timezone' ),
 			'duration'                  => filter_input( INPUT_POST, 'duration' ),
+			'password'                  => sanitize_text_field( filter_input( INPUT_POST, 'password' ) ),
 			'option_jbh'                => filter_input( INPUT_POST, 'join_before_host' ),
 			'option_host_video'         => filter_input( INPUT_POST, 'option_host_video' ),
 			'option_participants_video' => filter_input( INPUT_POST, 'option_participants_video' ),
@@ -443,7 +442,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 				$GLOBALS['zoom']['terms'] = $set_terms;
 			}
 
-			if ( isset( $_GET['type'] ) && $_GET['type'] === "meeting" && isset( $_GET['join'] ) ) {
+			if ( isset( $_GET['type'] ) && $_GET['type'] === "meeting" && isset( $_GET['join'] ) && isset( $_GET['pak'] ) ) {
 				wp_enqueue_script( 'video-conferencing-with-zoom-api-react', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react.production.min.js', array( 'jquery' ), '16.8.6', true );
 				wp_enqueue_script( 'video-conferencing-with-zoom-api-react-dom', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react-dom.production.min.js', array( 'jquery' ), '16.8.6', true );
 				wp_enqueue_script( 'video-conferencing-with-zoom-api-redux', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/redux.min.js', array( 'jquery' ), '16.8.6', true );
@@ -461,11 +460,12 @@ class Zoom_Video_Conferencing_Admin_PostType {
 				wp_localize_script( 'video-conferencing-with-zoom-api-browser', 'zvc_ajx', array(
 					'ajaxurl'       => admin_url( 'admin-ajax.php' ),
 					'zvc_security'  => wp_create_nonce( "_nonce_zvc_security" ),
-					'redirect_page' => esc_url( get_permalink( $post->ID ) )
+					'redirect_page' => esc_url( get_permalink( $post->ID ) ),
+					'meeting_id'    => sanitize_text_field( absint( vczapi_encrypt_decrypt( 'decrypt', $_GET['join'] ) ) ),
+					'meeting_pwd'   => sanitize_text_field( vczapi_encrypt_decrypt( 'decrypt', $_GET['pak'] ) )
 				) );
 
-				$GLOBALS['zoom']['meeting_id'] = sanitize_text_field( absint( encrypt_decrypt( 'decrypt', $_GET['join'] ) ) );
-				$template                      = vczapi_get_template( 'join-web-browser.php' );
+				$template = vczapi_get_template( 'join-web-browser.php' );
 			} else {
 				//Render View
 				$template = vczapi_get_template( 'single-meeting.php' );

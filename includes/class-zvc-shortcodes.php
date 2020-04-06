@@ -88,7 +88,7 @@ class Zoom_Video_Conferencing_Shorcodes {
             <p class="dpn-error dpn-mtg-not-found"><?php echo $meeting->message; ?></p>
 			<?php
 		} else {
-			if ( $link_only === "yes" ) {
+			if ( !empty($link_only) && $link_only === "yes" ) {
 				$this->generate_link_only();
 			} else {
 				if ( $meeting ) {
@@ -219,7 +219,7 @@ class Zoom_Video_Conferencing_Shorcodes {
 		}
 
 		if ( empty( $zoom_vanity_url ) ) {
-			$browser_url     = 'https://zoom.us/wc/join/' . $meeting_id;
+			$browser_url     = 'https://zoom.us/wc/' . $meeting_id;
 			$mobile_zoom_url = 'https://zoom.us/j/' . $meeting_id;
 		} else {
 			$browser_url     = trailingslashit( $zoom_vanity_url . '/wc/join/' ) . $meeting_id;
@@ -338,7 +338,7 @@ class Zoom_Video_Conferencing_Shorcodes {
 
 							$styling = ! empty( $height ) ? "height: " . $height : "height: 500px;";
 							?>
-                            <div id="<?php echo esc_html( $id ); ?>" class="zoom-iframe-container">
+                            <div id="<?php echo !empty($id) ? esc_html( $id ) : 'video-conferncing-embed-iframe'; ?>" class="zoom-iframe-container">
                                 <iframe scrolling="no" style="width:100%; <?php echo $styling; ?>" sandbox="allow-forms allow-scripts allow-same-origin" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen" allow="encrypted-media; autoplay; microphone; camera" src="<?php echo esc_url( $browser_url ); ?>" frameborder="0"></iframe>
                             </div>
                         </div>

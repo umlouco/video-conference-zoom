@@ -16,6 +16,10 @@ Only simple plugin which gives you the extensive functionality to manage zoom me
 
 Now, from 3.2.0 allows you to Join meetings directly from Browser without Zoom App using Zoom WebSDK. For audio/video issues check FAQ section.
 
+**NOTE: April Update, Zoom web client( Join via browser ) will not work at the moment due to maintenance from Zoom side. Refer to [Zoom In Progress Thread](https://devforum.zoom.us/t/in-progress-web-sdk-web-client-from-browser-403-forbidden/10782/107  "Zoom In Progress Thread"). webSDK is down at the moment giving 403 errors for everyone.**
+
+**Please refer to [this thread](https://wordpress.org/support/topic/embed-zoom-meeting "Zoom Status Page") for status update on Zoom join via browser functionality. Please disable join via browser option in your meetings for now ! Sorry for any inconvenience caused !**
+
 **FEATURES:**
 
 * Manage WordPress posts and link them to Live Zoom meetings ( NEW from 3.0.0+ )
@@ -96,8 +100,6 @@ As an extension of the Zoom browser client, this SDK is intended for implementat
 
 * [zoom_list_meetings per_page="5" category="test,test2,test3" order="DESC"] - Show list of meetings in frontend via category, Edit shortcode template for table view.
 
-* [zoom_join_via_browser meeting_id="1234556789" title="Meeting Title" id="div-class-id" login_required="no" help="yes"] - Embed a Zoom Meeting into your page or post. This allows you to directly join meeting or start it from the page where you added this shortcode.
-
 **QUICK DEMO:**
 
 [youtube https://www.youtube.com/watch?v=KNuasepxwfE]
@@ -115,9 +117,15 @@ This issue is because of HTTPS protocol. You need to use HTTPS to be able to all
 
 = Blank page for Single Meetings page =
 
-If you face blank page in this situation you should refer to [Full Documentation](https://zoom.codemanas.com/ "Usage Documentation") and see Template override section. A bit of techinical knowledge is needed.
+If you face blank page in this situation you should refer to [Template Overriding](https://zoom/codemanas.com/template_override/#content-not-showing "Template Overriding") and see Template override section.
 
 This happens because of the single meeting page template from the plugin not being supported by your theme and i cannot make my plugin support for every theme page template because of which you'll need to override the plugin template from my plugin to your theme's standard. ( Basically, like how WooCommerce does!! )
+
+= Countdown not showing/ guess is undefined error in my console log =
+
+If countdown is not working for you then the first thing you'll need to verify is whether your meeting got created successfully or not. You can do so by going to wp-admin > Zoom Meetings > Select your created meeting and on top right check if there are "Start Meeting", "join Meeting links". If there are those links then, you are good on meeting.
+
+However, even though meeting is created and you are not seeing countdown timer then, you might want to check your browser console and see if there is any "guess is undefined" error. If so, there might be a plugin conflict using the same moment.js library. **Report to me in this case**
 
 = How to show Zoom Meetings on Front =
 
@@ -144,7 +152,7 @@ This happens because of the single meeting page template from the plugin not bei
 == Changelog ==
 
 = 3.3.0 =
-* German Translation Added: Thanks to Peter Ginser
+* German Translation Added: Thanks to Peter Ginser @ginspet
 * Slovak Translation Added: Thanks to Branislav Ďorď
 * Fixed: New shortcode to embed that allows you to directly or start join via page or post. See shortcode section in details page for details.
 * Added: Start or End meeting manually which allows users to end meeting ahead of time and disallowing anyone to join it.
@@ -156,6 +164,7 @@ This happens because of the single meeting page template from the plugin not bei
 * Added: Filter added which allows you to modify the post DATA you sent at time of creating meeting as well as updating !
 * Fixed: Responsive issue when join via browser ( link somewhere in the support which i lost it ).
 * Added: Meeting states to be manually changed from users perspective (https://wordpress.org/support/topic/feature-request-more-details-on-meeting-states/)
+* Added: Debug Mode button on posts page for Zoom Meetings
 * Alot of Bug fixes
 
 = 3.2.31 - March 29th, 2020 =

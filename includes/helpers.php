@@ -16,6 +16,25 @@ if ( ! function_exists( 'dump' ) ) {
 	}
 }
 
+if ( ! function_exists( 'zvc_get_timezone_offset_wp' ) ) {
+	function zvc_get_timezone_offset_wp() {
+		$offset  = get_option( 'gmt_offset' );
+		$hours   = (int) $offset;
+		$minutes = abs( ( $offset - (int) $offset ) * 60 );
+		$offset  = sprintf( '%+03d:%02d', $hours, $minutes );
+
+		// Calculate seconds from offset
+		list( $hours, $minutes ) = explode( ':', $offset );
+		$seconds = $hours * 60 * 60 + $minutes * 60;
+		$tz      = timezone_name_from_abbr( '', $seconds, 1 );
+		if ( $tz === false ) {
+			$tz = timezone_name_from_abbr( '', $seconds, 0 );
+		}
+
+		return $tz;
+	}
+}
+
 if ( ! function_exists( 'zvc_get_timezone_options' ) ) {
 	/**
 	 * @author Deepen
@@ -242,7 +261,7 @@ function video_conferencing_zoom_api_status() {
         <h3><?php _e( 'ZOOM SERVICES STATUS', 'video-conferencing-with-zoom-api' ); ?></h3>
         <p>
 			<?php
-			printf( esc_html__( 'Experiencing issues with the Zoom meeting window? Please check the status of Zoom services under Zoom Website -> Web Client %1$s', 'video-conferencing-with-zoom-api' ), '<a target="_blank" href="https://status.zoom.us/">here</a>' );
+			printf( esc_html__( 'Experiencing issues with the Zoom meeting window? Please check the status of Zoom services under Zoom Website %1$s', 'video-conferencing-with-zoom-api' ), '<a target="_blank" href="https://status.zoom.us/">here</a>' );
 			?>
         </p>
     </div>
@@ -268,6 +287,26 @@ function video_conferencing_zoom_api_show_like_popup() {
 				printf( esc_html__( 'check %s for shortcode references.', 'video-conferencing-with-zoom-api' ), '<a href="' . admin_url( 'edit.php?post_type=zoom-meetings&page=zoom-video-conferencing-settings' ) . '">settings</a>.' );
 				?>
                 <a href="<?php echo add_query_arg( 'vczapi_dismiss', 1 ) ?>" class="is-dismissible">I already rated you ! Don't show again !</a>
+            </p>
+        </div>
+		<?php
+	}
+}
+
+function video_conferencing_zoom_api_new_api_notice() {
+	if ( isset( $_GET['vczapi_dismiss_api'] ) && $_GET['vczapi_dismiss_api'] == 1 ) {
+		set_transient( '_vczapi_dismiss_notice_api', 1, 60 * 60 * 24 * 30 );
+	}
+
+	if ( ! get_transient( '_vczapi_dismiss_notice_api' ) ) {
+		?>
+        <div id="message" class="notice notice-warning is-dismissible">
+            <h3><?php esc_html_e( 'New Zoom Changes Notice !!', 'video-conferencing-with-zoom-api' ); ?></h3>
+            <p>With new Zoom update, join links require for password. To fix on old meetings please update the meetings to allow direct join. Please
+                update your old meetings and that should do the trick in making compatible with new password change. Please report to me if you have
+                any issues !!!!</p>
+            <p>
+                <a href="javascript:void(0);" class="zvc-dismiss-message"><?php _e( "I understand ! Don't show this again !", "video-conferencing-with-zoom-api" ); ?></a>
             </p>
         </div>
 		<?php
@@ -397,7 +436,7 @@ function vczapi_dateConverter( $start_time, $tz, $format = 'F j, Y, g:i a ( T )'
  *
  * @return bool|string
  */
-function encrypt_decrypt( $action, $string ) {
+function vczapi_encrypt_decrypt( $action, $string ) {
 	$output = false;
 
 	$encrypt_method = "AES-256-CBC";
