@@ -216,7 +216,7 @@ function video_conferencing_zoom_api_get_user_transients() {
 		}
 	}
 
-	return $users;
+	return apply_filters( 'vczapi_users_list', $users );
 }
 
 /**

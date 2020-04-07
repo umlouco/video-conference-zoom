@@ -149,8 +149,11 @@ However, even though meeting is created and you are not seeing countdown timer t
 
 == Changelog ==
 
-= 3.3.1 April 6th, 2020 =
-* Updated: WebSDK updated !
+= 3.3.2 April 7th, 2020 =
+* Updated: WEBSDK to version 1.7.4
+
+= 3.3.1 April 7th, 2020 =
+* Updated: WebSDK updated 1.7.3
 * Fixed: Shortcode bug not outputting multiple shortcodes when called.
 
 = 3.3.0 April 6th, 2020 =

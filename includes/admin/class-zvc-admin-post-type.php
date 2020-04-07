@@ -55,19 +55,23 @@ class Zoom_Video_Conferencing_Admin_PostType {
 				wp_enqueue_script( 'video-conferencing-with-zoom-api-js' );
 
 				$meeting = get_post_meta( $post_id, '_meeting_zoom_details', true );
-				if ( empty( $meeting->state ) ) { ?>
-                    <a href="javascript:void(0);" class="vczapi-meeting-state-change" data-type="post_type" data-state="end" data-postid="<?php echo $post_id; ?>" data-id="<?php echo $meeting->id ?>"><?php _e( 'Disable Join', 'video-conferencing-with-zoom-api' ); ?></a>
-                    <div class="vczapi-admin-info-tooltip">
-                        <span class="dashicons dashicons-info"></span>
-                        <span class="vczapi-admin-info-tooltip--text"><?php _e( 'Restrict users to join this meeting before the start time or after the meeting is completed.', 'video-conferencing-with-zoom-api' ); ?></span>
-                    </div>
-				<?php } else { ?>
-                    <a href="javascript:void(0);" class="vczapi-meeting-state-change" data-type="post_type" data-state="resume" data-postid="<?php echo $post_id; ?>" data-id="<?php echo $meeting->id ?>"><?php _e( 'Enable Join', 'video-conferencing-with-zoom-api' ); ?></a>
-                    <div class="vczapi-admin-info-tooltip">
-                        <span class="dashicons dashicons-info "></span>
-                        <span class="vczapi-admin-info-tooltip--text"><?php _e( 'Resuming this will enable users to join this meeting.', 'video-conferencing-with-zoom-api' ); ?></span>
-                    </div>
-				<?php }
+				if ( ! empty( $meeting ) ) {
+					if ( empty( $meeting->state ) ) { ?>
+                        <a href="javascript:void(0);" class="vczapi-meeting-state-change" data-type="post_type" data-state="end" data-postid="<?php echo $post_id; ?>" data-id="<?php echo $meeting->id ?>"><?php _e( 'Disable Join', 'video-conferencing-with-zoom-api' ); ?></a>
+                        <div class="vczapi-admin-info-tooltip">
+                            <span class="dashicons dashicons-info"></span>
+                            <span class="vczapi-admin-info-tooltip--text"><?php _e( 'Restrict users to join this meeting before the start time or after the meeting is completed.', 'video-conferencing-with-zoom-api' ); ?></span>
+                        </div>
+					<?php } else { ?>
+                        <a href="javascript:void(0);" class="vczapi-meeting-state-change" data-type="post_type" data-state="resume" data-postid="<?php echo $post_id; ?>" data-id="<?php echo $meeting->id ?>"><?php _e( 'Enable Join', 'video-conferencing-with-zoom-api' ); ?></a>
+                        <div class="vczapi-admin-info-tooltip">
+                            <span class="dashicons dashicons-info "></span>
+                            <span class="vczapi-admin-info-tooltip--text"><?php _e( 'Resuming this will enable users to join this meeting.', 'video-conferencing-with-zoom-api' ); ?></span>
+                        </div>
+					<?php }
+				} else {
+					_e( 'Meeting not created yet.', 'video-conferencing-with-zoom-api' );
+				}
 				break;
 		}
 	}
@@ -181,6 +185,8 @@ class Zoom_Video_Conferencing_Admin_PostType {
 		$users = video_conferencing_zoom_api_get_user_transients();
 
 		$meeting_fields = get_post_meta( $post->ID, '_meeting_fields', true );
+
+		do_action( 'vczapi_before_fields_admin', $post );
 
 		//Get Template
 		require_once ZVC_PLUGIN_VIEWS_PATH . '/post-type/tpl-meeting-fields.php';
