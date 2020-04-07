@@ -109,7 +109,10 @@ jQuery(function ($) {
                     });
                 }
 
-                //For Shortcode
+                /**
+                 * For shortcode
+                 * @deprecated 3.3.1
+                 */
                 if (typeof mtg_data !== undefined && mtg_data.type === "shortcode") {
                     var shortcodeData = {
                         action: 'set_timezone',

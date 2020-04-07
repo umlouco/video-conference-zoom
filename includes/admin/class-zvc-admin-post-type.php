@@ -300,12 +300,14 @@ class Zoom_Video_Conferencing_Admin_PostType {
 			return;
 		}
 
+		$pwd                = sanitize_text_field( filter_input( INPUT_POST, 'password' ) );
+		$pwd                = ! empty( $pwd ) ? $pwd : $post_id;
 		$create_meeting_arr = array(
 			'userId'                    => sanitize_text_field( filter_input( INPUT_POST, 'userId' ) ),
 			'start_date'                => sanitize_text_field( filter_input( INPUT_POST, 'start_date' ) ),
 			'timezone'                  => sanitize_text_field( filter_input( INPUT_POST, 'timezone' ) ),
 			'duration'                  => sanitize_text_field( filter_input( INPUT_POST, 'duration' ) ),
-			'password'                  => sanitize_text_field( filter_input( INPUT_POST, 'password' ) ),
+			'password'                  => $pwd,
 			'join_before_host'          => filter_input( INPUT_POST, 'join_before_host' ),
 			'option_host_video'         => filter_input( INPUT_POST, 'option_host_video' ),
 			'option_participants_video' => filter_input( INPUT_POST, 'option_participants_video' ),
@@ -341,13 +343,15 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	 * @author Deepen
 	 */
 	private function create_zoom_meeting( $post ) {
+		$pwd       = sanitize_text_field( filter_input( INPUT_POST, 'password' ) );
+		$pwd       = ! empty( $pwd ) ? $pwd : $post->ID;
 		$mtg_param = array(
 			'userId'                    => sanitize_text_field( filter_input( INPUT_POST, 'userId' ) ),
 			'meetingTopic'              => $post->post_title,
 			'start_date'                => sanitize_text_field( filter_input( INPUT_POST, 'start_date' ) ),
 			'timezone'                  => sanitize_text_field( filter_input( INPUT_POST, 'timezone' ) ),
 			'duration'                  => sanitize_text_field( filter_input( INPUT_POST, 'duration' ) ),
-			'password'                  => sanitize_text_field( filter_input( INPUT_POST, 'password' ) ),
+			'password'                  => $pwd,
 			'join_before_host'          => filter_input( INPUT_POST, 'join_before_host' ),
 			'option_host_video'         => filter_input( INPUT_POST, 'option_host_video' ),
 			'option_participants_video' => filter_input( INPUT_POST, 'option_participants_video' ),
@@ -376,13 +380,15 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	 *
 	 */
 	private function update_zoom_meeting( $post, $meeting_id ) {
+		$pwd       = sanitize_text_field( filter_input( INPUT_POST, 'password' ) );
+		$pwd       = ! empty( $pwd ) ? $pwd : $post->ID;
 		$mtg_param = array(
 			'meeting_id'                => $meeting_id,
 			'topic'                     => $post->post_title,
 			'start_date'                => filter_input( INPUT_POST, 'start_date' ),
 			'timezone'                  => filter_input( INPUT_POST, 'timezone' ),
 			'duration'                  => filter_input( INPUT_POST, 'duration' ),
-			'password'                  => sanitize_text_field( filter_input( INPUT_POST, 'password' ) ),
+			'password'                  => $pwd,
 			'option_jbh'                => filter_input( INPUT_POST, 'join_before_host' ),
 			'option_host_video'         => filter_input( INPUT_POST, 'option_host_video' ),
 			'option_participants_video' => filter_input( INPUT_POST, 'option_participants_video' ),
@@ -442,7 +448,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 				$GLOBALS['zoom']['terms'] = $set_terms;
 			}
 
-			if ( isset( $_GET['type'] ) && $_GET['type'] === "meeting" && isset( $_GET['join'] ) && isset( $_GET['pak'] ) ) {
+			if ( isset( $_GET['type'] ) && $_GET['type'] === "meeting" && isset( $_GET['join'] ) ) {
 				wp_enqueue_script( 'video-conferencing-with-zoom-api-react', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react.production.min.js', array( 'jquery' ), '16.8.6', true );
 				wp_enqueue_script( 'video-conferencing-with-zoom-api-react-dom', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react-dom.production.min.js', array( 'jquery' ), '16.8.6', true );
 				wp_enqueue_script( 'video-conferencing-with-zoom-api-redux', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/redux.min.js', array( 'jquery' ), '16.8.6', true );
@@ -462,7 +468,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 					'zvc_security'  => wp_create_nonce( "_nonce_zvc_security" ),
 					'redirect_page' => esc_url( get_permalink( $post->ID ) ),
 					'meeting_id'    => sanitize_text_field( absint( vczapi_encrypt_decrypt( 'decrypt', $_GET['join'] ) ) ),
-					'meeting_pwd'   => sanitize_text_field( vczapi_encrypt_decrypt( 'decrypt', $_GET['pak'] ) )
+					'meeting_pwd'   => ! empty( $_GET['pak'] ) ? sanitize_text_field( vczapi_encrypt_decrypt( 'decrypt', $_GET['pak'] ) ) : false
 				) );
 
 				$template = vczapi_get_template( 'join-web-browser.php' );

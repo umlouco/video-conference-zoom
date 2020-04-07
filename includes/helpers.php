@@ -268,7 +268,8 @@ function video_conferencing_zoom_api_status() {
                 showing when you try to join the meeting i.e in console of the browser. Check
                 <a href="https://devforum.zoom.us/t/in-progress-web-sdk-web-client-from-browser-403-forbidden/10782/107">in this thread</a> as well as
                 official <a href="https://marketplace.zoom.us/docs/sdk/native-sdks/web">SDK page</a> for more details. This message will be removed in
-                the next update after the webSDK fix. <a href="<?php echo add_query_arg( 'vczapi_dismiss_again', 1 ) ?>" class="is-dismissible">Don't show again !</a></p>
+                the next update after the webSDK fix. <a href="<?php echo add_query_arg( 'vczapi_dismiss_again', 1 ) ?>" class="is-dismissible">Don't
+                    show again !</a></p>
 
         </div>
 		<?php
@@ -484,5 +485,26 @@ if ( ! function_exists( 'vczapi_get_browser_agent_type' ) ) {
 		}
 
 		return $app_store_link;
+	}
+}
+
+/**
+ * Get Browser join links
+ *
+ * @param $post_id
+ * @param $meeting_id
+ * @param bool $password
+ *
+ * @return string
+ */
+function vczapi_get_browser_join_links( $post_id, $meeting_id, $password = false ) {
+	$link               = get_permalink( $post_id );
+	$encrypt_pwd        = vczapi_encrypt_decrypt( 'encrypt', $password );
+	$encrypt_meeting_id = vczapi_encrypt_decrypt( 'encrypt', $meeting_id );
+
+	if ( ! empty( $password ) ) {
+		return '<a target="_blank" rel="nofollow" href="' . esc_url( $link ) . '?pak=' . $encrypt_pwd . '&join=' . $encrypt_meeting_id . '&type=meeting" class="btn btn-join-link btn-join-via-browser">' . apply_filters( 'vczoom_join_meeting_via_app_text', __( 'Join via Web Browser', 'vczapi-woo-addon' ) ) . '</a>';
+	} else {
+		return '<a target="_blank" rel="nofollow" href="' . esc_url( $link ) . '?join=' . $encrypt_meeting_id . '&type=meeting" class="btn btn-join-link btn-join-via-browser">' . apply_filters( 'vczoom_join_meeting_via_app_text', __( 'Join via Web Browser', 'vczapi-woo-addon' ) ) . '</a>';
 	}
 }

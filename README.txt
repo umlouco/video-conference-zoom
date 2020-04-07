@@ -4,7 +4,7 @@ Tags: zoom video conference, video conference, zoom, zoom video conferencing, we
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.4
-Stable tag: 3.3.0
+Stable tag: 3.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,10 +15,6 @@ Gives you the power to manage Zoom Meetings, check reports and create users from
 Only simple plugin which gives you the extensive functionality to manage zoom meetings, users, reports from your WordPress Dashboard. Now, with capability to add your own post as a meeting. Create posts as meetings directly from your WordPress dashboard to show in the frontend as a meeting page. Allow users to directly join via that page with click of a button.
 
 Now, from 3.2.0 allows you to Join meetings directly from Browser without Zoom App using Zoom WebSDK. For audio/video issues check FAQ section.
-
-**NOTE: April Update, Zoom web client( Join via browser ) will not work at the moment due to maintenance from Zoom side. Refer to [Zoom In Progress Thread](https://devforum.zoom.us/t/in-progress-web-sdk-web-client-from-browser-403-forbidden/10782/107  "Zoom In Progress Thread"). webSDK is down at the moment giving 403 errors for everyone.**
-
-**Please refer to [this thread](https://wordpress.org/support/topic/embed-zoom-meeting "Zoom Status Page") for status update on Zoom join via browser functionality. Please disable join via browser option in your meetings for now ! Sorry for any inconvenience caused !**
 
 **FEATURES:**
 
@@ -119,7 +115,7 @@ This issue is because of HTTPS protocol. You need to use HTTPS to be able to all
 
 = Blank page for Single Meetings page =
 
-If you face blank page in this situation you should refer to [Template Overriding](https://zoom/codemanas.com/template_override/#content-not-showing "Template Overriding") and see Template override section.
+If you face blank page in this situation you should refer to [Template Overriding](https://zoom.codemanas.com/template_override/#content-not-showing "Template Overriding") and see Template override section.
 
 This happens because of the single meeting page template from the plugin not being supported by your theme and i cannot make my plugin support for every theme page template because of which you'll need to override the plugin template from my plugin to your theme's standard. ( Basically, like how WooCommerce does!! )
 
@@ -153,7 +149,11 @@ However, even though meeting is created and you are not seeing countdown timer t
 
 == Changelog ==
 
-= 3.3.0 =
+= 3.3.1 April 6th, 2020 =
+* Updated: WebSDK updated !
+* Fixed: Shortcode bug not outputting multiple shortcodes when called.
+
+= 3.3.0 April 6th, 2020 =
 * German Translation Added: Thanks to Peter Ginser @ginspet
 * Slovak Translation Added: Thanks to Branislav Ďorď
 * Fixed: New shortcode to embed that allows you to directly or start join via page or post. See shortcode section in details page for details.

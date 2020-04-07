@@ -64,6 +64,8 @@ class Zoom_Video_Conferencing_Timezone {
 	 *
 	 */
 	private function output_join_links_page( $post_id ) {
+		unset( $GLOBALS['zoom_meeting'] );
+		unset( $GLOBALS['vanity_enabled'] );
 		$GLOBALS['zoom_meeting']   = get_post_meta( $post_id, '_meeting_zoom_details', true );
 		$GLOBALS['vanity_enabled'] = get_option( 'zoom_vanity_url' );
 
@@ -75,6 +77,15 @@ class Zoom_Video_Conferencing_Timezone {
 		return $content;
 	}
 
+	/**
+	 * Output join links for shortcode
+	 *
+	 * @param $join_uri
+	 * @param $browser_url
+	 *
+	 * @return false|string
+	 * @deprecated 3.3.1
+	 */
 	private function output_join_links_shortcodes( $join_uri, $browser_url ) {
 		ob_start(); //Init the output buffering
 		$template = vczapi_get_template( 'shortcode/join-links.php', false );

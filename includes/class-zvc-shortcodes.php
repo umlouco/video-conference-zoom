@@ -93,7 +93,7 @@ class Zoom_Video_Conferencing_Shorcodes {
 			} else {
 				if ( $meeting ) {
 					//Get Template
-					vczapi_get_template( 'shortcode/zoom-shortcode.php', true );
+					vczapi_get_template( 'shortcode/zoom-shortcode.php', true, false );
 				} else {
 					printf( __( 'Please try again ! Some error occured while trying to fetch meeting with id:  %d', 'video-conferencing-with-zoom-api' ), $meeting_id );
 				}

@@ -28,14 +28,13 @@ jQuery(function ($) {
             var REDIRECTION = zvc_ajx.redirect_page;
             var PASSWD = zvc_ajx.meeting_pwd;
             $('body').append('<span id="zvc-cover"></span>');
-            if (meeting_id && PASSWD) {
+            if (meeting_id) {
                 $.post(zvc_ajx.ajaxurl, {
                     action: 'get_auth',
                     noncce: zvc_ajx.zvc_security,
                     meeting_id: meeting_id,
                 }).done(function (response) {
                     if (response.success) {
-                        $("#zvc-cover").remove();
                         API_KEY = response.data.key;
                         SIGNATURE = response.data.sig;
 
@@ -68,10 +67,12 @@ jQuery(function ($) {
                                             // userEmail: 'email@gmail.com',
                                             passWord: meetConfig.passWord,
                                             success: function (res) {
+                                                $("#zvc-cover").remove();
                                                 $('#dpen-zoom-browser-meeting').hide();
                                                 console.log('join meeting success');
                                             },
                                             error: function (res) {
+                                                $("#zvc-cover").remove();
                                                 console.log(res);
                                             }
                                         }
@@ -89,7 +90,7 @@ jQuery(function ($) {
                 });
             } else {
                 $("#zvc-cover").remove();
-                alert("NOT AUTHORIZED");
+                alert("Incorrect Meeting ID");
             }
         }
     };
