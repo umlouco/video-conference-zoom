@@ -15,11 +15,19 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	 */
 	private $post_type = 'zoom-meetings';
 
+	private $api_key;
+	private $api_secret;
+
 	/**
 	 * Zoom_Video_Conferencing_Admin_PostType constructor.
 	 */
 	public function __construct() {
+		$this->api_key    = get_option( 'zoom_api_key' );
+		$this->api_secret = get_option( 'zoom_api_secret' );
+
+		add_action( 'restrict_manage_posts', [ $this, 'filtering' ], 10 );
 		add_action( 'init', array( $this, 'register' ) );
+		add_action( 'admin_menu', [ $this, 'hide_post_type' ] );
 		add_action( 'add_meta_boxes', array( $this, 'add_metabox' ) );
 		add_action( 'save_post_' . $this->post_type, array( $this, 'save_metabox' ), 10, 2 );
 		add_filter( 'single_template', array( $this, 'single' ) );
@@ -28,6 +36,47 @@ class Zoom_Video_Conferencing_Admin_PostType {
 		add_action( 'admin_notices', array( $this, 'admin_notices' ) );
 		add_filter( 'manage_' . $this->post_type . '_posts_columns', array( $this, 'add_columns' ), 20 );
 		add_action( 'manage_' . $this->post_type . '_posts_custom_column', array( $this, 'render_data' ), 20, 2 );
+	}
+
+	/**
+	 * Hide Post Type page
+	 */
+	public function hide_post_type() {
+		if ( isset( $_GET['post_type'] ) && $_GET['post_type'] !== $this->post_type ) {
+			return;
+		}
+
+		if ( ! video_conferencing_zoom_api_get_user_transients() ) {
+			global $submenu;
+			unset( $submenu['edit.php?post_type=zoom-meetings'][5] );
+			unset( $submenu['edit.php?post_type=zoom-meetings'][10] );
+			unset( $submenu['edit.php?post_type=zoom-meetings'][15] );
+		}
+
+	}
+
+	/**
+	 * Filters
+	 *
+	 * @param $post_type
+	 */
+	public function filtering( $post_type ) {
+		if ( $this->post_type !== $post_type ) {
+			return;
+		}
+
+		$taxnomy  = 'zoom-meeting';
+		$taxonomy = get_taxonomy( $taxnomy );
+		$selected = isset( $_REQUEST[ $taxnomy ] ) ? $_REQUEST[ $taxnomy ] : '';
+		wp_dropdown_categories( array(
+			'show_option_all' => $taxonomy->labels->all_items,
+			'taxonomy'        => $taxnomy,
+			'name'            => $taxnomy,
+			'orderby'         => 'name',
+			'value_field'     => 'slug',
+			'selected'        => $selected,
+			'hierarchical'    => true,
+		) );
 	}
 
 	/**
@@ -83,6 +132,35 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	 * @author Deepen
 	 */
 	public function register() {
+		$this->register_post_type();
+		$this->register_taxonomy();
+	}
+
+	/**
+	 * Register Taxonomy
+	 */
+	public function register_taxonomy() {
+		// Add new taxonomy, make it hierarchical (like categories)
+		$labels = array(
+			'name'          => _x( 'Category', 'Category', 'video-conferencing-with-zoom-api' ),
+			'singular_name' => _x( 'Category', 'Category', 'video-conferencing-with-zoom-api' ),
+		);
+
+		$args = array(
+			'hierarchical'      => true,
+			'labels'            => $labels,
+			'show_ui'           => true,
+			'show_admin_column' => true,
+			'query_var'         => true,
+		);
+
+		register_taxonomy( 'zoom-meeting', array( $this->post_type ), $args );
+	}
+
+	/**
+	 * Register Post Type
+	 */
+	public function register_post_type() {
 		$labels = array(
 			'name'               => _x( 'Zoom Meetings', 'Zoom Meetings', 'video-conferencing-with-zoom-api' ),
 			'singular_name'      => _x( 'Zoom Meeting', 'Zoom Meeting', 'video-conferencing-with-zoom-api' ),
@@ -124,22 +202,6 @@ class Zoom_Video_Conferencing_Admin_PostType {
 		);
 
 		register_post_type( $this->post_type, $args );
-
-		// Add new taxonomy, make it hierarchical (like categories)
-		$labels = array(
-			'name'          => _x( 'Category', 'Category', 'video-conferencing-with-zoom-api' ),
-			'singular_name' => _x( 'Category', 'Category', 'video-conferencing-with-zoom-api' ),
-		);
-
-		$args = array(
-			'hierarchical'      => true,
-			'labels'            => $labels,
-			'show_ui'           => true,
-			'show_admin_column' => true,
-			'query_var'         => true,
-		);
-
-		register_taxonomy( 'zoom-meeting', array( $this->post_type ), $args );
 	}
 
 	/**

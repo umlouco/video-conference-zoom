@@ -193,7 +193,7 @@ function video_conferencing_zoom_api_get_user_transients() {
 		$page          = $_GET['pg'];
 		$encoded_users = zoom_conference()->listUsers( $page );
 		$decoded_users = json_decode( $encoded_users );
-		if ( ! empty( $decoded_users->code ) && $decoded_users->code == 300 ) {
+		if ( ! empty( $decoded_users->code ) ) {
 			$users = false;
 		} else {
 			$users = $decoded_users->users;
@@ -206,7 +206,7 @@ function video_conferencing_zoom_api_get_user_transients() {
 		} else {
 			$encoded_users = zoom_conference()->listUsers();
 			$decoded_users = json_decode( $encoded_users );
-			if ( ! empty( $decoded_users->code ) && $decoded_users->code == 300 ) {
+			if ( ! empty( $decoded_users->code ) ) {
 				$users = false;
 			} else {
 				//storing data to transient and getting those data for fast load by setting to fetch every 15 minutes

@@ -142,6 +142,7 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 				'first_name' => $postedData['first_name'],
 				'last_name'  => $postedData['last_name']
 			);
+			$createAUserArray              = apply_filters( 'vczapi_createAUser', $createAUserArray );
 
 			return $this->sendRequest( 'users', $createAUserArray, "POST" );
 		}
@@ -157,6 +158,7 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 			$listUsersArray                = array();
 			$listUsersArray['page_size']   = 300;
 			$listUsersArray['page_number'] = absint( $page );
+			$listUsersArray                = apply_filters( 'vczapi_listUsers', $listUsersArray );
 
 			return $this->sendRequest( 'users', $listUsersArray, "GET" );
 		}
@@ -170,6 +172,7 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 		 */
 		public function getUserInfo( $user_id ) {
 			$getUserInfoArray = array();
+			$getUserInfoArray = apply_filters( 'vczapi_getUserInfo', $getUserInfoArray );
 
 			return $this->sendRequest( 'users/' . $user_id, $getUserInfoArray );
 		}
@@ -198,6 +201,7 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 		public function listMeetings( $host_id ) {
 			$listMeetingsArray              = array();
 			$listMeetingsArray['page_size'] = 300;
+			$listMeetingsArray              = apply_filters( 'vczapi_listMeetings', $listMeetingsArray );
 
 			return $this->sendRequest( 'users/' . $host_id . '/meetings', $listMeetingsArray, "GET" );
 		}
@@ -304,6 +308,7 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 		 */
 		public function getMeetingInfo( $id ) {
 			$getMeetingInfoArray = array();
+			$getMeetingInfoArray = apply_filters( 'vczapi_getMeetingInfo', $getMeetingInfoArray );
 
 			return $this->sendRequest( 'meetings/' . $id, $getMeetingInfoArray, "GET" );
 		}
@@ -334,6 +339,7 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 			$getDailyReportArray          = array();
 			$getDailyReportArray['year']  = $year;
 			$getDailyReportArray['month'] = $month;
+			$getDailyReportArray          = apply_filters( 'vczapi_getDailyReport', $getDailyReportArray );
 
 			return $this->sendRequest( 'report/daily', $getDailyReportArray, "GET" );
 		}
@@ -351,6 +357,7 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 			$getAccountReportArray['from']      = $zoom_account_from;
 			$getAccountReportArray['to']        = $zoom_account_to;
 			$getAccountReportArray['page_size'] = 300;
+			$getAccountReportArray              = apply_filters( 'vczapi_getAccountReport', $getAccountReportArray );
 
 			return $this->sendRequest( 'report/users', $getAccountReportArray, "GET" );
 		}
@@ -404,7 +411,7 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 		}
 
 		/**
-		 * Get all recordings by USER ID
+		 * Get all recordings by USER ID ( REQUIRES PRO USER )
 		 *
 		 * @param $host_id
 		 * @param $data array
@@ -418,6 +425,7 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 
 			$postData['from'] = ! empty( $data['from'] ) ? $data['from'] : $from;
 			$postData['to']   = ! empty( $data['to'] ) ? $data['to'] : $to;
+			$postData         = apply_filters( 'vczapi_listRecording', $postData );
 
 			return $this->sendRequest( 'users/' . $host_id . '/recordings', $postData, "GET" );
 		}

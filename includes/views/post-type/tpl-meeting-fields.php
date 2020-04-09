@@ -82,7 +82,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     <tr>
         <th scope="row"><label for="password"><?php _e( 'Password', 'video-conferencing-with-zoom-api' ); ?></label></th>
         <td class="zvc-meetings-form">
-            <input type="text" name="password" required maxlength="10" data-maxlength="9" class="regular-text" value="<?php echo ! empty( $meeting_details->password ) ? esc_html( $meeting_details->password ) : false; ?>">
+            <input type="text" name="password" required maxlength="10" data-maxlength="10" class="regular-text" value="<?php echo ! empty( $meeting_details->password ) ? esc_attr( $meeting_details->password ) : false; ?>">
             <p class="description" id="email-description"><?php _e( 'Password to join the meeting. Password may only contain the following characters: [a-z A-Z 0-9]. Max of 10 characters.( Leave blank for auto generate )', 'video-conferencing-with-zoom-api' ); ?></p>
         </td>
     </tr>
@@ -145,12 +145,16 @@ if ( ! defined( 'ABSPATH' ) ) {
             <th scope="row"><label for="settings_alternative_hosts"><?php _e( 'Alternative Hosts', 'video-conferencing-with-zoom-api' ); ?></label>
             </th>
             <td>
-                <select name="alternative_host_ids[]" multiple class="zvc-hacking-select">
-                    <option value=""><?php _e( 'Select a Host', 'video-conferencing-with-zoom-api' ); ?></option>
-					<?php foreach ( $users as $user ): ?>
-                        <option value="<?php echo $user->id; ?>" <?php echo ! empty( $meeting_fields['alternative_host_ids'] ) && in_array( $user->id, $meeting_fields['alternative_host_ids'] ) ? 'selected' : false; ?>><?php echo esc_html( $user->first_name ) . ' ( ' . esc_html( $user->email ) . ' )'; ?></option>
-					<?php endforeach; ?>
-                </select>
+				<?php if ( ! empty( $users ) ) { ?>
+                    <select name="alternative_host_ids[]" multiple class="zvc-hacking-select">
+                        <option value=""><?php _e( 'Select a Host', 'video-conferencing-with-zoom-api' ); ?></option>
+						<?php foreach ( $users as $user ): ?>
+                            <option value="<?php echo $user->id; ?>" <?php echo ! empty( $meeting_fields['alternative_host_ids'] ) && in_array( $user->id, $meeting_fields['alternative_host_ids'] ) ? 'selected' : false; ?>><?php echo esc_html( $user->first_name ) . ' ( ' . esc_html( $user->email ) . ' )'; ?></option>
+						<?php endforeach; ?>
+                    </select>
+				<?php } else {
+					printf( __( 'Did not find any hosts here ? Please %scheck here%s to verify your API keys are working correctly.', 'video-conferencing-with-zoom-api' ), '<a href="' . admin_url( 'edit.php?post_type=zoom-meetings&page=zoom-video-conferencing-settings' ) . '">', '</a>' );
+				} ?>
                 <p class="description" id="settings_alternative_hosts"><?php _e( 'Paid Zoom Account is required for this !! Alternative hosts IDs. Multiple value separated by comma.', 'video-conferencing-with-zoom-api' ); ?></p>
             </td>
         </tr>

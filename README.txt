@@ -1,10 +1,10 @@
 === Video Conferencing with Zoom ===
-Contributors: j__3rk, digamberpradhan
+Contributors: j__3rk, digamberpradhan, codemanas
 Tags: zoom video conference, video conference, zoom, zoom video conferencing, web conferencing, online meetings
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.4
-Stable tag: 3.3.1
+Stable tag: 3.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,7 +14,9 @@ Gives you the power to manage Zoom Meetings, check reports and create users from
 
 Only simple plugin which gives you the extensive functionality to manage zoom meetings, users, reports from your WordPress Dashboard. Now, with capability to add your own post as a meeting. Create posts as meetings directly from your WordPress dashboard to show in the frontend as a meeting page. Allow users to directly join via that page with click of a button.
 
-Now, from 3.2.0 allows you to Join meetings directly from Browser without Zoom App using Zoom WebSDK. For audio/video issues check FAQ section.
+Now, from 3.2.0 allows you to Join meetings directly from Browser without Zoom App using Zoom WebSDK. For audio/video issues check FAQ section. Check here on how it <a target="_blank" href="https://deepenbajracharya.com.np/joining-meetings-in-zoom-directly-from-browser">Works</a>
+
+**NOTE: If you getting API errors when click on Check API connection then please refer to [Covid Impacts on Zoom](https://devforum.zoom.us/t/developer-impacting-changes-during-covid-19/8930 "Covid Impacts on Zoom")**
 
 **FEATURES:**
 
@@ -151,6 +153,7 @@ However, even though meeting is created and you are not seeing countdown timer t
 
 = 3.3.2 April 7th, 2020 =
 * Updated: WEBSDK to version 1.7.4
+* Bug Fix: Error Messages Check
 
 = 3.3.1 April 7th, 2020 =
 * Updated: WebSDK updated 1.7.3

@@ -88,7 +88,7 @@ class Zoom_Video_Conferencing_Shorcodes {
             <p class="dpn-error dpn-mtg-not-found"><?php echo $meeting->message; ?></p>
 			<?php
 		} else {
-			if ( !empty($link_only) && $link_only === "yes" ) {
+			if ( ! empty( $link_only ) && $link_only === "yes" ) {
 				$this->generate_link_only();
 			} else {
 				if ( $meeting ) {
@@ -115,7 +115,8 @@ class Zoom_Video_Conferencing_Shorcodes {
 			array(
 				'per_page' => 5,
 				'category' => '',
-				'order'    => 'ASC'
+				'order'    => 'ASC',
+				'type'     => 'upcoming'
 			),
 			$atts, 'zoom_list_meetings'
 		);
@@ -134,6 +135,17 @@ class Zoom_Video_Conferencing_Shorcodes {
 			'order'          => $atts['order']
 		);
 
+		if ( ! empty( $atts['type'] ) ) {
+			$type                     = ( $atts['type'] === "upcoming" ) ? '>=' : '<=';
+			$query_args['meta_query'] = array(
+				array(
+					'key'     => '_meeting_fields',
+					'value'   => sprintf( '"start_date";s:16:"%s";', date( 'Y-m-d H:i' ) ),
+					'compare' => $type
+				),
+			);
+		}
+
 		if ( ! empty( $atts['category'] ) ) {
 			$query_args['tax_query'] = [
 				[
@@ -145,6 +157,7 @@ class Zoom_Video_Conferencing_Shorcodes {
 				]
 			];
 		}
+
 		$query         = apply_filters( 'vczapi_meeting_list_query_args', $query_args );
 		$zoom_meetings = new \WP_Query( $query );
 		$content       = '';
@@ -338,7 +351,7 @@ class Zoom_Video_Conferencing_Shorcodes {
 
 							$styling = ! empty( $height ) ? "height: " . $height : "height: 500px;";
 							?>
-                            <div id="<?php echo !empty($id) ? esc_html( $id ) : 'video-conferncing-embed-iframe'; ?>" class="zoom-iframe-container">
+                            <div id="<?php echo ! empty( $id ) ? esc_html( $id ) : 'video-conferncing-embed-iframe'; ?>" class="zoom-iframe-container">
                                 <iframe scrolling="no" style="width:100%; <?php echo $styling; ?>" sandbox="allow-forms allow-scripts allow-same-origin" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen" allow="encrypted-media; autoplay; microphone; camera" src="<?php echo esc_url( $browser_url ); ?>" frameborder="0"></iframe>
                             </div>
                         </div>
