@@ -5,7 +5,7 @@
  * @package           Video Conferencing with Zoom API
  *
  * Plugin Name:       Video Conferencing with Zoom
- * Plugin URI:        http://www.deepenbajracharya.com.np
+ * Plugin URI:        https://wordpress.org/plugins/video-conferencing-with-zoom-api/
  * Description:       Add, Handle Zoom meetings from WordPress Dashboard using API. Now integrated with Frontend as well.
  * Version:           3.3.2
  * Author:            Deepen Bajracharya
