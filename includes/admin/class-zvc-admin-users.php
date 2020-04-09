@@ -23,12 +23,9 @@ class Zoom_Video_Conferencing_Admin_Users {
 		wp_enqueue_script( 'video-conferencing-with-zoom-api-js' );
 
 		//Check if any transient by name is available
-		$check_transient = get_transient( '_zvc_user_lists' );
 		if ( isset( $_GET['flush'] ) == true ) {
-			if ( $check_transient ) {
-				delete_transient( '_zvc_user_lists' );
-				self::set_message( 'updated', __( "Flushed User Cache!", "video-conferencing-with-zoom-api" ) );
-			}
+			video_conferencing_zoom_api_delete_user_cache();
+			self::set_message( 'updated', __( "Flushed User Cache!", "video-conferencing-with-zoom-api" ) );
 		}
 
 		//Get Template
@@ -63,7 +60,7 @@ class Zoom_Video_Conferencing_Admin_Users {
 				self::set_message( 'updated', __( "Created a User. Please check email for confirmation. Added user will only appear in the list after approval.", "video-conferencing-with-zoom-api" ) );
 
 				//After user has been created delete this transient in order to fetch latest Data.
-				delete_transient( '_zvc_user_lists' );
+				video_conferencing_zoom_api_delete_user_cache();
 			}
 		}
 

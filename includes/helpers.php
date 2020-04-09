@@ -199,8 +199,13 @@ function video_conferencing_zoom_api_get_user_transients() {
 			$users = $decoded_users->users;
 		}
 	} else {
+		$check_user_cache_expiry = get_option( '_zvc_user_lists_expiry_time' );
+		if ( time() > $check_user_cache_expiry ) {
+			update_option( '_zvc_user_lists', '' );
+		}
+
 		//Check if any transient by name is available
-		$check_transient = get_transient( '_zvc_user_lists' );
+		$check_transient = get_option( '_zvc_user_lists' );
 		if ( $check_transient ) {
 			$users = $check_transient->users;
 		} else {
@@ -209,14 +214,22 @@ function video_conferencing_zoom_api_get_user_transients() {
 			if ( ! empty( $decoded_users->code ) ) {
 				$users = false;
 			} else {
-				//storing data to transient and getting those data for fast load by setting to fetch every 15 minutes
-				set_transient( '_zvc_user_lists', $decoded_users, 900 );
 				$users = $decoded_users->users;
+				update_option( '_zvc_user_lists', $decoded_users );
+				update_option( '_zvc_user_lists_expiry_time', time() + 108000 );
 			}
 		}
 	}
 
 	return apply_filters( 'vczapi_users_list', $users );
+}
+
+/**
+ * Flushing the cache
+ */
+function video_conferencing_zoom_api_delete_user_cache() {
+	update_option( '_zvc_user_lists', '' );
+	update_option( '_zvc_user_lists_expiry_time', '' );
 }
 
 /**

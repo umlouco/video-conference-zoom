@@ -111,7 +111,7 @@ class Zoom_Video_Conferencing_Admin_Ajax {
 
 			if ( http_response_code() === 200 ) {
 				//After user has been created delete this transient in order to fetch latest Data.
-				delete_transient( '_zvc_user_lists' );
+				video_conferencing_zoom_api_delete_user_cache();
 
 				wp_send_json( "API Connection is good. Please refresh !" );
 			} else {

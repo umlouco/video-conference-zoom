@@ -24,7 +24,7 @@ class Zoom_Video_Conferencing_Admin_Views {
 	 * @author  Deepen Bajracharya <dpen.connectify@gmail.com>
 	 */
 	public function zoom_video_conference_menus() {
-		if ( get_option( 'zoom_api_key' ) && get_option( 'zoom_api_secret' ) ) {
+		if ( get_option( 'zoom_api_key' ) && get_option( 'zoom_api_secret' ) && video_conferencing_zoom_api_get_user_transients() ) {
 			add_submenu_page( 'edit.php?post_type=zoom-meetings', __( 'Live Meetings', 'video-conferencing-with-zoom-api' ), __( 'Live Meetings', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing', array(
 				'Zoom_Video_Conferencing_Admin_Meetings',
 				'list_meetings'
@@ -124,7 +124,7 @@ class Zoom_Video_Conferencing_Admin_Views {
 					update_option( 'zoom_ended_meeting_text', $ended_mtg );
 
 					//After user has been created delete this transient in order to fetch latest Data.
-					delete_transient( '_zvc_user_lists' );
+					video_conferencing_zoom_api_delete_user_cache();
 					?>
                     <div id="message" class="notice notice-success is-dismissible">
                         <p><?php _e( 'Successfully Updated. Please refresh this page.', 'video-conferencing-with-zoom-api' ); ?></p>
