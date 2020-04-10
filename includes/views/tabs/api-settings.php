@@ -69,7 +69,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                 </tr>
                 </tbody>
             </table>
-            <p class="description"><?php _e( 'After you enter your keys. Do save changes before doing "Check API Connection".', 'video-conferencing-with-zoom-api' ); ?></p>
+            <h3 class="description" style="color:red;"><?php _e( 'After you enter your keys. Do save changes before doing "Check API Connection".', 'video-conferencing-with-zoom-api' ); ?></h3>
             <p class="submit">
                 <input type="submit" name="save_zoom_settings" id="submit" class="button button-primary" value="<?php esc_html_e( 'Save Changes', 'video-conferencing-with-zoom-api' ); ?>">
                 <a href="javascript:void(0);" class="button button-primary check-api-connection"><?php esc_html_e( 'Check API Connection', 'video-conferencing-with-zoom-api' ); ?></a>

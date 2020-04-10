@@ -151,9 +151,10 @@ However, even though meeting is created and you are not seeing countdown timer t
 
 == Changelog ==
 
-= 3.3.2 April 7th, 2020 =
-* Updated: WEBSDK to version 1.7.4
+= 3.3.2 April 10th, 2020 =
+* Updated: WEBSDK to version 1.7.5
 * Bug Fix: Error Messages Check
+* Added: WebSDK (Join via browser) link in Shortcode as well [zoom_list_meetings].
 
 = 3.3.1 April 7th, 2020 =
 * Updated: WebSDK updated 1.7.3

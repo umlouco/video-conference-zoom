@@ -153,7 +153,8 @@ class Zoom_Video_Conferencing_Shorcodes {
 					'field'    => 'slug',
 					'terms'    => [
 						$atts['category']
-					]
+					],
+					'operator' => 'EXISTS'
 				]
 			];
 		}

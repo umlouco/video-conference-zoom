@@ -195,9 +195,16 @@ function video_conference_zoom_shortcode_join_link( $zoom_meetings ) {
 	$start_time->setTimezone( new DateTimeZone( $zoom_meetings->timezone ) );
 	if ( $now <= $start_time ) {
 		unset( $GLOBALS['meetings'] );
+
+		if ( ! empty( $zoom_meetings->password ) ) {
+			$browser_join = vczapi_get_browser_join_shortcode( $zoom_meetings->id, $zoom_meetings->password, true );
+		} else {
+			$browser_join = vczapi_get_browser_join_shortcode( $zoom_meetings->id, false, true );
+		}
+
 		$GLOBALS['meetings'] = array(
 			'join_uri'    => apply_filters( 'vczoom_join_meeting_via_app_shortcode', $join_uri, $zoom_meetings ),
-			'browser_url' => apply_filters( 'vczoom_join_meeting_via_browser_shortcode', $browser_url, $zoom_meetings )
+			'browser_url' => apply_filters( 'vczoom_join_meeting_via_browser_disable', $browser_join )
 		);
 		vczapi_get_template( 'shortcode/join-links.php', true, false );
 	}
