@@ -7,7 +7,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 video_conferencing_zoom_api_show_like_popup();
 
+
+//if( get_option( 'zoom_connection_opt' ) === 'oauth' ) {
+//
+//	$users = get_all_stored_zoom_user_info( 'object' );
+//
+//} else if( get_option( 'zoom_connection_opt' ) === 'jwt' ) {
+//
+//	$users = video_conferencing_zoom_api_get_user_transients();
+//}
+
 $users = video_conferencing_zoom_api_get_user_transients();
+
 ?>
 <div class="wrap">
     <h2><?php _e( "Users", "video-conferencing-with-zoom-api" ); ?></h2>

@@ -224,6 +224,44 @@ function video_conferencing_zoom_api_get_user_transients() {
 	return apply_filters( 'vczapi_users_list', $users );
 }
 
+
+/**
+ * Returns the zoom oauth user info and token either in object|array
+ *
+ * @param string $type
+ *
+ * @return mixed $users_oauth_infos array|object
+ */
+function get_all_stored_zoom_user_info( $type = 'array' ) {
+
+	$users = get_users();
+
+	$users_oauth_infos = array();
+
+	foreach ( $users as $user ) {
+
+		$zoom_user_info       = get_user_meta( $user->ID, 'zoom_user_info', true );
+		$zoom_user_token_info = get_user_meta( $user->ID, 'zoom_user_token_info', true );
+
+		if ( "" != $zoom_user_info ) {
+			$users_oauth_infos[ $user->ID ]['zoom_user_info'] = $zoom_user_info;
+		}
+
+		if ( "" != $zoom_user_token_info ) {
+			$users_oauth_infos[ $user->ID ]['zoom_user_token_info'] = $zoom_user_token_info;
+		}
+
+		if( "" != $zoom_user_info &&  "" != $zoom_user_token_info ) {
+			if ( $type == "object" ) {
+				$users_oauth_infos[ $user->ID ] = (object) array_merge( $users_oauth_infos[ $user->ID ]['zoom_user_info'], $users_oauth_infos[ $user->ID ]['zoom_user_token_info'] );
+			}
+
+		}
+	}
+
+	return $users_oauth_infos;
+}
+
 /**
  * Flushing the cache
  */
@@ -277,11 +315,15 @@ function video_conferencing_zoom_api_status() {
 		?>
         <div class="zoom-status-notice notice notice-warning is-dismissible">
             <h3><?php _e( 'ZOOM SERVICES STATUS', 'video-conferencing-with-zoom-api' ); ?></h3>
-            <p>Experiencing issues with the join via Browser ? This is because Zoom webSDK part is under maintenance, due to which 403 error is
+            <p>Experiencing issues with the join via Browser ? This is because Zoom webSDK part is under maintenance,
+                due to which 403 error is
                 showing when you try to join the meeting i.e in console of the browser. Check
-                <a href="https://devforum.zoom.us/t/in-progress-web-sdk-web-client-from-browser-403-forbidden/10782/107">in this thread</a> as well as
-                official <a href="https://marketplace.zoom.us/docs/sdk/native-sdks/web">SDK page</a> for more details. This message will be removed in
-                the next update after the webSDK fix. <a href="<?php echo add_query_arg( 'vczapi_dismiss_again', 1 ) ?>" class="is-dismissible">Don't
+                <a href="https://devforum.zoom.us/t/in-progress-web-sdk-web-client-from-browser-403-forbidden/10782/107">in
+                    this thread</a> as well as
+                official <a href="https://marketplace.zoom.us/docs/sdk/native-sdks/web">SDK page</a> for more details.
+                This message will be removed in
+                the next update after the webSDK fix. <a href="<?php echo add_query_arg( 'vczapi_dismiss_again', 1 ) ?>"
+                                                         class="is-dismissible">Don't
                     show again !</a></p>
 
         </div>
@@ -307,7 +349,8 @@ function video_conferencing_zoom_api_show_like_popup() {
 				printf( esc_html__( 'Please consider giving a %s if you found this useful at wordpress.org or ', 'video-conferencing-with-zoom-api' ), '<a href="https://wordpress.org/support/plugin/video-conferencing-with-zoom-api/reviews/#new-post">5 star thumbs up</a>' );
 				printf( esc_html__( 'check %s for shortcode references.', 'video-conferencing-with-zoom-api' ), '<a href="' . admin_url( 'edit.php?post_type=zoom-meetings&page=zoom-video-conferencing-settings' ) . '">settings</a>.' );
 				?>
-                <a href="<?php echo add_query_arg( 'vczapi_dismiss', 1 ) ?>" class="is-dismissible">I already rated you ! Don't show again !</a>
+                <a href="<?php echo add_query_arg( 'vczapi_dismiss', 1 ) ?>" class="is-dismissible">I already rated you
+                    ! Don't show again !</a>
             </p>
         </div>
 		<?php
@@ -323,11 +366,14 @@ function video_conferencing_zoom_api_new_api_notice() {
 		?>
         <div id="message" class="notice notice-warning is-dismissible">
             <h3><?php esc_html_e( 'New Zoom Changes Notice !!', 'video-conferencing-with-zoom-api' ); ?></h3>
-            <p>With new Zoom update, join links require for password. To fix on old meetings please update the meetings to allow direct join. Please
-                update your old meetings and that should do the trick in making compatible with new password change. Please report to me if you have
+            <p>With new Zoom update, join links require for password. To fix on old meetings please update the meetings
+                to allow direct join. Please
+                update your old meetings and that should do the trick in making compatible with new password change.
+                Please report to me if you have
                 any issues !!!!</p>
             <p>
-                <a href="javascript:void(0);" class="zvc-dismiss-message"><?php _e( "I understand ! Don't show this again !", "video-conferencing-with-zoom-api" ); ?></a>
+                <a href="javascript:void(0);"
+                   class="zvc-dismiss-message"><?php _e( "I understand ! Don't show this again !", "video-conferencing-with-zoom-api" ); ?></a>
             </p>
         </div>
 		<?php
@@ -346,7 +392,8 @@ function video_conferencing_zoom_api_show_api_notice() {
                 <strong><?php _e( "Do not get confused here !!", "video-conferencing-with-zoom-api" ); ?></strong>
             <p>
                 <strong><?php _e( "Please read !!! These below meetings are directly from your zoom.us account via API connection. Meetings added from here won't show up on your Post Type list. This will only create meeting in your zoom.us account !", "video-conferencing-with-zoom-api" ); ?></strong>
-                <a href="javascript:void(0);" class="zvc-dismiss-message"><?php _e( "I understand ! Don't show this again !", "video-conferencing-with-zoom-api" ); ?></a>
+                <a href="javascript:void(0);"
+                   class="zvc-dismiss-message"><?php _e( "I understand ! Don't show this again !", "video-conferencing-with-zoom-api" ); ?></a>
             </p></div>
 		<?php
 	}

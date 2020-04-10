@@ -14,8 +14,12 @@ class ZoomAuth {
 	// private $secret_id = 'S9VFJNBfyppi9TR792hnJi9acvzkjyxt';
 
 	// codemanas development credentials
-	private $client_id = '25DwXhzSQim7RjKBHIz1Dg';
-	private $secret_id = 'YH7hPH2zco9Gzrbc7V4o0AZidJlKOHJm';
+//	private $client_id = '25DwXhzSQim7RjKBHIz1Dg';
+//	private $secret_id = 'YH7hPH2zco9Gzrbc7V4o0AZidJlKOHJm';
+
+	//	CodeManas Test Oauth
+	private $client_id = 'LhF1UQO0SKuuBFUH69iyrw';
+	private $secret_id = 'fwlJ987YTaY5MICPNIXSCaAexPGrq1DW';
 
 	private $zoom_request_user_authorization_url = '';
 	private $zoom_make_post_request_url = '';
