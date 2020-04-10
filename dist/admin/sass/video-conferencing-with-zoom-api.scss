@@ -8,6 +8,18 @@
   display: flex;
 }
 
+tr.tr-jwt, tr.tr-oauth {
+  display: none;
+}
+
+tr.tr-oauth.tr-oauth--show {
+  display: table-row;
+}
+
+tr.tr-jwt.tr-jwt--show {
+  display: table-row;
+}
+
 .zvc_listing_table {
   margin-top: 20px;
 }

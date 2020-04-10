@@ -78,12 +78,33 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 		 */
 		protected function sendRequest( $calledFunction, $data, $request = "GET" ) {
 			$request_url = $this->api_url . $calledFunction;
-			$args        = array(
+
+			var_dump( $request_url );
+
+
+//			$args        = array(
+//				'headers' => array(
+//					'Authorization' => 'Bearer ' . $this->generateJWTKey(),
+//					'Content-Type'  => 'application/json'
+//				)
+//			);
+
+
+			$stored = get_user_meta(3, 'zoom_user_token_info', true );
+
+
+
+			$args      = array(
 				'headers' => array(
-					'Authorization' => 'Bearer ' . $this->generateJWTKey(),
-					'Content-Type'  => 'application/json'
-				)
+					'Authorization' => $stored['token_type'] . ' ' . $stored['access_token'],
+				),
 			);
+
+//			var_dump( $args );
+
+
+
+
 
 			if ( $request == "GET" ) {
 				$args['body'] = ! empty( $data ) ? $data : array();
@@ -103,8 +124,8 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 			}
 
 			$response = wp_remote_retrieve_body( $response );
-			/*dump($response);
-			die;*/
+//			dump($response);
+//			die;
 
 			if ( ! $response ) {
 				return false;
