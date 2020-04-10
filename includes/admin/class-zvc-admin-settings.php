@@ -156,6 +156,7 @@ class Zoom_Video_Conferencing_Admin_Views {
 				//Defining Varaibles
 				$zoom_oauth_url       = $this->oauth_ins->get_zoom_request_user_authorization_url();
 				$zoom_oauth_user_info = $this->oauth_user_ins->get_stored_zoom_user_info();
+				$live_id = $this->oauth_user_ins->live_id;
 
 				$zoom_connection_opt = get_option( 'zoom_connection_opt' );
 

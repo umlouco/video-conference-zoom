@@ -224,44 +224,6 @@ function video_conferencing_zoom_api_get_user_transients() {
 	return apply_filters( 'vczapi_users_list', $users );
 }
 
-
-/**
- * Returns the zoom oauth user info and token either in object|array
- *
- * @param string $type
- *
- * @return mixed $users_oauth_infos array|object
- */
-function get_all_stored_zoom_user_info( $type = 'array' ) {
-
-	$users = get_users();
-
-	$users_oauth_infos = array();
-
-	foreach ( $users as $user ) {
-
-		$zoom_user_info       = get_user_meta( $user->ID, 'zoom_user_info', true );
-		$zoom_user_token_info = get_user_meta( $user->ID, 'zoom_user_token_info', true );
-
-		if ( "" != $zoom_user_info ) {
-			$users_oauth_infos[ $user->ID ]['zoom_user_info'] = $zoom_user_info;
-		}
-
-		if ( "" != $zoom_user_token_info ) {
-			$users_oauth_infos[ $user->ID ]['zoom_user_token_info'] = $zoom_user_token_info;
-		}
-
-		if( "" != $zoom_user_info &&  "" != $zoom_user_token_info ) {
-			if ( $type == "object" ) {
-				$users_oauth_infos[ $user->ID ] = (object) array_merge( $users_oauth_infos[ $user->ID ]['zoom_user_info'], $users_oauth_infos[ $user->ID ]['zoom_user_token_info'] );
-			}
-
-		}
-	}
-
-	return $users_oauth_infos;
-}
-
 /**
  * Flushing the cache
  */

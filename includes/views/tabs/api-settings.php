@@ -31,48 +31,50 @@ if ( ! defined( 'ABSPATH' ) ) {
 				}
 				?>
 
-                <tr>
+                <tr class="tr-connection-opt">
                     <th><label><?php _e( 'Connection Options', 'video-conferencing-with-zoom-api' ); ?></label></th>
                     <td>
-                        <input type="radio" id="zoom_connection_opt_oauth" name="zoom_connection_opt"
-                               value="oauth" <?php checked( 'oauth', $zoom_connection_opt, true ); ?>>
-                        <label for="zoom_connection_opt_oauth"> OAuth</label>
+                        <label for="zoom_connection_opt_oauth"><input type="radio" id="zoom_connection_opt_oauth" name="zoom_connection_opt"
+                               value="oauth" <?php checked( 'oauth', $zoom_connection_opt, true ); ?>>OAuth</label>
 
-                        <input type="radio" id="zoom_connection_opt_jwt" name="zoom_connection_opt" value="jwt" <?php checked( 'jwt', $zoom_connection_opt, true ); ?>>
-                        <label for="zoom_connection_opt_jwt">JWT</label>
+
+                        <label for="zoom_connection_opt_jwt"><input type="radio" id="zoom_connection_opt_jwt" name="zoom_connection_opt" value="jwt" <?php checked( 'jwt', $zoom_connection_opt, true ); ?>> JWT</label>
+
                     </td>
                 </tr>
 
                 <!-- Oauth Form -->
 
                 <tr class="tr-oauth <?php echo $tr_oauth_opt_class; ?>">
-                    <td colspan="2">
-
-						<?php // preint( $zoom_oauth_user_info ); ?>
+                    <th colspan="2">
 
 						<?php
 
 						if ( '' == $zoom_oauth_user_info['zoom_user_token_info'] ) { ?>
 
                             <!-- if not connected show Connect with Zoom -->
-                            <a href="<?php echo esc_url( $zoom_oauth_url ); ?>" target="_blank">Connect with Zoom</a>
+                            <a class="connect-button" href="<?php echo esc_url( $zoom_oauth_url ); ?>">
+                                <img width="25" height="25" src="<?php echo ZVC_PLUGIN_IMAGES_PATH . '/connect-zoom-icon.png'; ?>">
+                                <span>Connect Zoom</span>
+                            </a>
 
 							<?php
 
 						} else {
 
 							$revoke_url = admin_url( 'edit.php?post_type=zoom-meetings&page=zoom-video-conferencing-settings' );
-
 							$revoke_url = add_query_arg( array( 'revoke_access' => 'true' ), $revoke_url );
 
 							?>
 
-
                             <!-- if connected show Revoke Access -->
-                            <a href="<?php echo esc_url( $revoke_url ); ?>">Revoke Access</a>
+                            <a class="connect-button" href="<?php echo esc_url( $revoke_url ); ?>" title="<?php echo $live_id; ?>">
+                                <img width="25" height="25" src="<?php echo ZVC_PLUGIN_IMAGES_PATH . '/revoke-zoom-icon.png'; ?>">
+                                <span>Revoke Access</span>
+                            </a>
 						<?php } ?>
 
-                    </td>
+                    </th>
                 </tr>
                 <!-- Oauth Form Ends -->
 

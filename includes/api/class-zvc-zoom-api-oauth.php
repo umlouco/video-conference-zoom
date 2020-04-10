@@ -9,15 +9,7 @@
 class ZoomAuth {
 	private static $instance = null;
 
-	// codemanas production credentials
-	// private $client_id = 'ZZsaG1yeRmKF0quErE_95A';
-	// private $secret_id = 'S9VFJNBfyppi9TR792hnJi9acvzkjyxt';
-
-	// codemanas development credentials
-//	private $client_id = '25DwXhzSQim7RjKBHIz1Dg';
-//	private $secret_id = 'YH7hPH2zco9Gzrbc7V4o0AZidJlKOHJm';
-
-	//	CodeManas Test Oauth
+	//	Codemanas Development Credentials
 	private $client_id = 'LhF1UQO0SKuuBFUH69iyrw';
 	private $secret_id = 'fwlJ987YTaY5MICPNIXSCaAexPGrq1DW';
 
@@ -37,7 +29,6 @@ class ZoomAuth {
 	public $revoke_url = null;
 
 	private $oauth_ret = array();
-
 
 	/**
 	 * Returns the instance of the class
@@ -273,9 +264,4 @@ class ZoomAuth {
 		}
 	}
 }
-// $zoom_auth = ZoomAuth::get_instance();
 
-
-// Notes:
-// 1. I think trailing slash at the end of the URL matters
-// 2. Once the access token is received, do not reuse atthorization code, it becomes invalid

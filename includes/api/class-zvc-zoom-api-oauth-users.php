@@ -9,6 +9,11 @@ class ZoomUser extends ZoomAuth {
 
 	public $live_user = null;
 
+	// this will be always fetched from the oauth request so that we know token is expired or not
+	// if this is set, access token is either good or refreshed automatically
+	// if this is not set, access token should be expired.
+	public $live_id = null;
+
 	/**
 	 * Returns the instance of the class
 	 *
@@ -33,11 +38,11 @@ class ZoomUser extends ZoomAuth {
 
 		$this->init_logic();
 
-		// $this->refresh_access_token();
+		$this->check_access_token_expiry();
 	}
 
 	/**
-	 * Sets wp current useer to live user property
+	 * Sets wp current user to live user property
 	 */
 	public function set_live_user() {
 
@@ -59,12 +64,12 @@ class ZoomUser extends ZoomAuth {
 			// also dont forget to remove the user token and user info from user meta
 			$this->remove_stored_zoom_user_info( $this->live_user->ID );
 
+			// finally redirect without the revoke access param
+			wp_redirect( $this->site_redirect_url );
+			exit;
+
 		}
 
-	}
-
-	public function init_shortcodes() {
-		add_shortcode( 'zoom_content', array( $this, 'display_zoom_content' ) );
 	}
 
 	/**
@@ -156,181 +161,55 @@ class ZoomUser extends ZoomAuth {
 		delete_user_meta( $user_id, 'zoom_user_token_info' );
 	}
 
-	/**
-	 * It is the logic behind the zoom_content shortcode
-	 *
-	 * @return void
-	 */
-	public function display_zoom_content() {
-
-		if ( isset( $_GET['show'] ) && $_GET['show'] != '' ) {
-
-			$case = sanitize_text_field( $_GET['show'] );
-
-			switch ( $case ) {
-				case 'meetings':
-					$zoomUserMeetings = new ZoomUserMeetings();
-					$zoomUserMeetings->display_user_meetings();
-					break;
-
-				default:
-					$this->display_zoom_user_info();
-					break;
-			}
-		} else {
-
-			echo $this->display_zoom_user_info();
-		}
-
-	}
 
 	/**
-	 * Displays the user's Zoom info in a table for now
-	 *
-	 * @return void
+	 * Checks the user's access token expiry state
 	 */
-	public function display_zoom_user_info() {
+	public function check_access_token_expiry() {
 
-		// Check if the user is logged in or not
-		// Got to have a user logged in to get the user info
+		$stored = $this->get_stored_zoom_user_info();
 
-		ob_start();
+		if ( "" != $stored['zoom_user_token_info'] ) {
 
-		if ( is_user_logged_in() ) {
+			$zoom_user_infos = $this->get_zoom_user_info_with_access_token( $stored['zoom_user_token_info']['token_type'], $stored['zoom_user_token_info']['access_token'] );
 
-			$stored = $this->get_stored_zoom_user_info();
+			if ( ! $zoom_user_infos['success'] ) { // some kind of failure happened
 
-			if ( '' == $stored['zoom_user_token_info'] ) { // seems like there is not token info of this user stored in database
+				if ( $zoom_user_infos['error_code'] === 124 ) { // $access_token is expired, so get a new one
 
-				echo $this->render_zoom_button();
+					$refreshed_access_tokens = $this->refresh_access_token( $stored['zoom_user_token_info']['refresh_token'] );
 
-			} else { // token info found for this user
+					if ( $refreshed_access_tokens['success'] ) {
 
-				$zoom_user_infos = $this->get_zoom_user_info_with_access_token( $stored['zoom_user_token_info']['token_type'], $stored['zoom_user_token_info']['access_token'] );
+						// Immediately store the newly refreshed token info in the database else you will miss the window
+						// If you miss one refresh then - old refresh token will be invalid and you will miss to save new refresh token
+						// You will be in limbo
+						// Also, convert to array from object before storing
+						$refreshed_access_tokens_arr = json_decode( json_encode( $refreshed_access_tokens['zoom_user_token_info'] ), true );
 
-				if ( ! $zoom_user_infos['success'] ) { // some kind of failure happened
+						$this->store_zoom_user_token_info( $this->live_user->ID, $refreshed_access_tokens_arr );
 
-					if ( $zoom_user_infos['error_code'] === 124 ) { // $access_token is expired, so get a new one
+						$stored = $this->get_stored_zoom_user_info();
 
-						$refreshed_access_tokens = $this->refresh_access_token( $stored['zoom_user_token_info']['refresh_token'] );
+						// now to verify, again try to get the zoom user infos with this new $refreshed access_token
+						$zoom_user_info = $this->get_zoom_user_info_with_access_token( $stored['zoom_user_token_info']['token_type'], $stored['zoom_user_token_info']['access_token'] );
 
-						if ( $refreshed_access_tokens['success'] ) {
+						if ( $zoom_user_infos['success'] ) {
 
-							// Immediately store the newly refreshed token info in the database else you will miss the window
-							// If you miss one refresh then - old refresh token will be invalid and you will miss to save new refresh token
-							// You will be in limbo
-							// Also, convert to array from object before storing
-							$refreshed_access_tokens_arr = json_decode( json_encode( $refreshed_access_tokens['zoom_user_token_info'] ), true );
+							$zoom_user_info = json_decode( $zoom_user_infos['zoom_user_info'] );
+							$this->store_zoom_user_info( $this->live_user->ID, $zoom_user_info['zoom_user_info'] );
+							$this->live_id = $zoom_user_infos['zoom_user_info']['id'];
 
-							$this->store_zoom_user_token_info( $this->live_user->ID, $refreshed_access_tokens_arr );
-
-							$stored = $this->get_stored_zoom_user_info();
-
-							// now again try to get the zoom user infos with this new $refreshed access_token
-							$zoom_user_info = $this->get_zoom_user_info_with_access_token( $stored['zoom_user_token_info']['token_type'], $stored['zoom_user_token_info']['access_token'] );
-
-							if ( $zoom_user_infos['success'] ) {
-
-								$zoom_user_info = json_decode( $zoom_user_infos['zoom_user_info'] );
-								$this->render_user_info_in_table( $zoom_user_info );
-							}
 						}
 					}
-				} else { // direct success to get the zoom user info with stored access token
-
-					$this->store_zoom_user_info( $this->live_user->ID, $zoom_user_infos['zoom_user_info'] );
-					$this->render_user_info_in_table( $zoom_user_infos['zoom_user_info'] );
-
 				}
+			} else { // direct success to get the zoom user info with stored access token
+
+				$this->store_zoom_user_info( $this->live_user->ID, $zoom_user_infos['zoom_user_info'] );
+				$this->live_id = $zoom_user_infos['zoom_user_info']['id'];
+
 			}
-		} else { // else render Sign In button
 
-			echo $this->render_zoom_button();
 		}
-
-		return ob_get_clean();
-
-	}
-
-	/**
-	 * Renders the zoom user info in a table
-	 *
-	 * @param array $zoom_user_info Zoom user info to be displayed in table format.
-	 */
-	public function render_user_info_in_table( $zoom_user_info ) {
-
-		global $wp;
-		$current_page_url = home_url( $wp->request );
-
-		$meeting_url = add_query_arg( array( 'show' => 'meetings' ), $current_page_url );
-		$webinar_url = add_query_arg( array( 'show' => 'webinar' ), $current_page_url );
-
-		?>
-
-        <style>
-
-            ul {
-                list-style: none;
-            }
-
-            ul li {
-                display: inline-block;
-                margin: 5px 12px;
-            }
-
-            table {
-                width: 95% !important;
-                max-width: 1200px !important;
-            }
-
-            table th.col-key {
-                width: 250px;
-            }
-        </style>
-
-        <ul>
-            <li><a href="<?php echo $this->revoke_uri; ?>">Revoke Access</a></li>
-            <li><a href="<?php echo $meeting_url; ?>">Meetings</a></li>
-            <li><a href="<?php echo $webinar_url; ?>">Webinar</a></li>
-            <li><a href="<?php echo $meeting_url; ?>">Scopes</a></li>
-            <li><a href="<?php echo $meeting_url; ?>">Settings</a></li>
-        </ul>
-
-        <table>
-
-            <thead>
-            <tr>
-                <th class="col-key">Key</th>
-                <th class="col-value">Values</th>
-            </tr>
-            </thead>
-
-			<?php if ( $zoom_user_info ) : ?>
-
-				<?php foreach ( $zoom_user_info as $key => $value ) : ?>
-
-                    <tr>
-                        <td><?php echo $key; ?></td>
-                        <td>
-							<?php
-							if ( is_array( $value ) ) {
-								foreach ( $value as $k => $v ) {
-									echo $k . ' : ' . $v;
-								}
-							} else {
-								echo $value;
-							}
-							?>
-                        </td>
-                    </tr>
-
-				<?php endforeach; ?>
-
-			<?php endif; ?>
-
-        </table>
-
-		<?php
-
 	}
 }

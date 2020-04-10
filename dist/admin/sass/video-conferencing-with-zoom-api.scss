@@ -8,6 +8,12 @@
   display: flex;
 }
 
+tr.tr-connection-opt {
+  label {
+    margin-right: 20px;
+  }
+}
+
 tr.tr-jwt, tr.tr-oauth {
   display: none;
 }
@@ -18,6 +24,24 @@ tr.tr-oauth.tr-oauth--show {
 
 tr.tr-jwt.tr-jwt--show {
   display: table-row;
+}
+
+a.connect-button {
+  background: #007cba;
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 15px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #fff;
+  span {
+    margin-left: 10px;
+  }
+
+  &:hover {
+    background: #0071a1;
+    border-color: #0071a1;
+  }
 }
 
 .zvc_listing_table {
