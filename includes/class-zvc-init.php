@@ -66,15 +66,15 @@ class Video_Conferencing_With_Zoom {
 	 */
 	function enqueue_scripts() {
 		$minified = SCRIPT_DEBUG ? '.js' : '.min.js';
-		wp_register_style( 'video-conferencing-with-zoom-api', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/css/main.min.css', false, '3.0.0' );
+		wp_register_style( 'video-conferencing-with-zoom-api', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/css/main.min.css', false, ZVC_PLUGIN_VERSION );
 		//Enqueue MomentJS
-		wp_register_script( 'video-conferencing-with-zoom-api-moment', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/moment/moment.min.js', array( 'jquery' ), '2.24.0', true );
+		wp_register_script( 'video-conferencing-with-zoom-api-moment', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/moment/moment.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
 		//Enqueue MomentJS Timezone
-		wp_register_script( 'video-conferencing-with-zoom-api-moment-timezone', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/moment-timezone/moment-timezone-with-data-10-year-range.min.js', array( 'jquery' ), '0.5.27', true );
+		wp_register_script( 'video-conferencing-with-zoom-api-moment-timezone', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/moment-timezone/moment-timezone-with-data-10-year-range.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
 		wp_register_script( 'video-conferencing-with-zoom-api', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/js/scripts' . $minified, array(
 			'jquery',
 			'video-conferencing-with-zoom-api-moment'
-		), '3.0.2', true );
+		), ZVC_PLUGIN_VERSION, true );
 
 		if ( is_singular( 'zoom-meetings' ) ) {
 			wp_enqueue_style( 'video-conferencing-with-zoom-api' );

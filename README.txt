@@ -4,7 +4,7 @@ Tags: zoom video conference, video conference, zoom, zoom video conferencing, we
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.4
-Stable tag: 3.3.2
+Stable tag: 3.3.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -123,7 +123,7 @@ This happens because of the single meeting page template from the plugin not bei
 
 = Countdown not showing/ guess is undefined error in my console log =
 
-If countdown is not working for you then the first thing you'll need to verify is whether your meeting got created successfully or not. You can do so by going to wp-admin > Zoom Meetings > Select your created meeting and on top right check if there are "Start Meeting", "join Meeting links". If there are those links then, you are good on meeting.
+If countdown is not working for you then the first thing you'll nweed to verify is whether your meeting got created successfully or not. You can do so by going to wp-admin > Zoom Meetings > Select your created meeting and on top right check if there are "Start Meeting", "join Meeting links". If there are those links then, you are good on meeting.
 
 However, even though meeting is created and you are not seeing countdown timer then, you might want to check your browser console and see if there is any "guess is undefined" error. If so, there might be a plugin conflict using the same moment.js library. **Report to me in this case**
 
@@ -151,6 +151,9 @@ However, even though meeting is created and you are not seeing countdown timer t
 
 == Changelog ==
 
+= 3.3.3 April 10th, 2020 =
+* Fix: Static resources JS and CSS file version number changes according to update. Reported by <a href="https://wordpress.org/support/users/bencoates/">bencoates</a>
+
 = 3.3.2 April 10th, 2020 =
 * Updated: WEBSDK to version 1.7.5
 * Bug Fix: Error Messages Check
@@ -161,7 +164,7 @@ However, even though meeting is created and you are not seeing countdown timer t
 * Fixed: Shortcode bug not outputting multiple shortcodes when called.
 
 = 3.3.0 April 6th, 2020 =
-* German Translation Added: Thanks to Peter Ginser @ginspet
+* German Translation Added: Thanks to Peter Ginser <a href="https://wordpress.org/support/users/ginspet/>@ginspet</a>
 * Slovak Translation Added: Thanks to Branislav Ďorď
 * Fixed: New shortcode to embed that allows you to directly or start join via page or post. See shortcode section in details page for details.
 * Added: Start or End meeting manually which allows users to end meeting ahead of time and disallowing anyone to join it.

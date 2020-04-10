@@ -517,11 +517,11 @@ class Zoom_Video_Conferencing_Admin_PostType {
 			}
 
 			if ( isset( $_GET['type'] ) && $_GET['type'] === "meeting" && isset( $_GET['join'] ) ) {
-				wp_enqueue_script( 'video-conferencing-with-zoom-api-react', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react.production.min.js', array( 'jquery' ), '16.8.6', true );
-				wp_enqueue_script( 'video-conferencing-with-zoom-api-react-dom', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react-dom.production.min.js', array( 'jquery' ), '16.8.6', true );
-				wp_enqueue_script( 'video-conferencing-with-zoom-api-redux', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/redux.min.js', array( 'jquery' ), '16.8.6', true );
-				wp_enqueue_script( 'video-conferencing-with-zoom-api-thunk', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/redux-thunk.min.js', array( 'jquery' ), '16.8.6', true );
-				wp_enqueue_script( 'video-conferencing-with-zoom-api-lodash', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/lodash.min.js', array( 'jquery' ), '16.8.6', true );
+				wp_enqueue_script( 'video-conferencing-with-zoom-api-react', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react.production.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
+				wp_enqueue_script( 'video-conferencing-with-zoom-api-react-dom', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react-dom.production.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
+				wp_enqueue_script( 'video-conferencing-with-zoom-api-redux', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/redux.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
+				wp_enqueue_script( 'video-conferencing-with-zoom-api-thunk', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/redux-thunk.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
+				wp_enqueue_script( 'video-conferencing-with-zoom-api-lodash', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/lodash.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
 				wp_enqueue_script( 'zoom-meeting-source', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/zoomus-websdk.umd.min.js', array(
 					'jquery',
 					'video-conferencing-with-zoom-api-react',
@@ -529,8 +529,8 @@ class Zoom_Video_Conferencing_Admin_PostType {
 					'video-conferencing-with-zoom-api-redux',
 					'video-conferencing-with-zoom-api-thunk',
 					'video-conferencing-with-zoom-api-lodash'
-				), '1.0.0', true );
-				wp_enqueue_script( 'video-conferencing-with-zoom-api-browser', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/js/zoom-meeting.min.js', array( 'jquery' ), '16.8.6', true );
+				), ZVC_PLUGIN_VERSION, true );
+				wp_enqueue_script( 'video-conferencing-with-zoom-api-browser', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/js/zoom-meeting.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
 				wp_localize_script( 'video-conferencing-with-zoom-api-browser', 'zvc_ajx', array(
 					'ajaxurl'       => admin_url( 'admin-ajax.php' ),
 					'zvc_security'  => wp_create_nonce( "_nonce_zvc_security" ),
@@ -564,11 +564,11 @@ class Zoom_Video_Conferencing_Admin_PostType {
 
 		if ( $post->post_type == $this->post_type ) {
 			if ( isset( $_GET['type'] ) && $_GET['type'] === "meeting" && isset( $_GET['join'] ) ) {
-				wp_enqueue_script( 'video-conferencing-with-zoom-api-react', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react.production.min.js', array( 'jquery' ), '16.8.6', true );
-				wp_enqueue_script( 'video-conferencing-with-zoom-api-react-dom', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react-dom.production.min.js', array( 'jquery' ), '16.8.6', true );
-				wp_enqueue_script( 'video-conferencing-with-zoom-api-redux', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/redux.min.js', array( 'jquery' ), '16.8.6', true );
-				wp_enqueue_script( 'video-conferencing-with-zoom-api-thunk', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/redux-thunk.min.js', array( 'jquery' ), '16.8.6', true );
-				wp_enqueue_script( 'video-conferencing-with-zoom-api-lodash', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/lodash.min.js', array( 'jquery' ), '16.8.6', true );
+				wp_enqueue_script( 'video-conferencing-with-zoom-api-react', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react.production.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
+				wp_enqueue_script( 'video-conferencing-with-zoom-api-react-dom', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react-dom.production.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
+				wp_enqueue_script( 'video-conferencing-with-zoom-api-redux', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/redux.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
+				wp_enqueue_script( 'video-conferencing-with-zoom-api-thunk', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/redux-thunk.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
+				wp_enqueue_script( 'video-conferencing-with-zoom-api-lodash', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/lodash.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
 				wp_enqueue_script( 'zoom-meeting-source', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/zoomus-websdk.umd.min.js', array(
 					'jquery',
 					'video-conferencing-with-zoom-api-react',
@@ -576,8 +576,8 @@ class Zoom_Video_Conferencing_Admin_PostType {
 					'video-conferencing-with-zoom-api-redux',
 					'video-conferencing-with-zoom-api-thunk',
 					'video-conferencing-with-zoom-api-lodash'
-				), '1.0.0', true );
-				wp_enqueue_script( 'video-conferencing-with-zoom-api-browser', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/js/zoom-meeting.min.js', array( 'jquery' ), '16.8.6', true );
+				), ZVC_PLUGIN_VERSION, true );
+				wp_enqueue_script( 'video-conferencing-with-zoom-api-browser', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/js/zoom-meeting.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
 				wp_localize_script( 'video-conferencing-with-zoom-api-browser', 'zvc_ajx', array(
 					'ajaxurl'       => admin_url( 'admin-ajax.php' ),
 					'zvc_security'  => wp_create_nonce( "_nonce_zvc_security" ),
