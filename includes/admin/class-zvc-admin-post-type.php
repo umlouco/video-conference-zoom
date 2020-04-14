@@ -498,7 +498,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	public function single( $template ) {
 		global $post;
 
-		if ( $post->post_type == $this->post_type ) {
+		if ( !empty($post) && $post->post_type == $this->post_type ) {
 			unset( $GLOBALS['zoom'] );
 
 			$show_zoom_author_name = get_option( 'zoom_show_author' );
@@ -570,7 +570,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	public function archive( $template ) {
 		global $post;
 
-		if ( $post->post_type == $this->post_type ) {
+		if ( !empty($post) && $post->post_type == $this->post_type ) {
 			if ( isset( $_GET['type'] ) && $_GET['type'] === "meeting" && isset( $_GET['join'] ) ) {
 				wp_enqueue_script( 'video-conferencing-with-zoom-api-react', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react.production.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
 				wp_enqueue_script( 'video-conferencing-with-zoom-api-react-dom', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react-dom.production.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );

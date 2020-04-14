@@ -4,7 +4,7 @@ Tags: zoom video conference, video conference, zoom, zoom video conferencing, we
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.4
-Stable tag: 3.3.3
+Stable tag: 3.3.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -153,7 +153,7 @@ However, even though meeting is created and you are not seeing countdown timer t
 
 = 3.3.4 April 14th, 2020 =
 * Fixed: Category for Shortcode
-* Slovak Translation Updated: Thanks to Branislav Ďorď
+* Slovak Translation Updated: Thanks to <a href="https://profiles.wordpress.org/branike/">Branislav Ďorď</a>
 * Added: Meeting Type for [zoom_list_meetings] shortcode.
 
 = 3.3.3 April 10th, 2020 =

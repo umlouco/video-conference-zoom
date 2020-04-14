@@ -82,7 +82,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     <tr>
         <th scope="row"><label for="password"><?php _e( 'Password', 'video-conferencing-with-zoom-api' ); ?></label></th>
         <td class="zvc-meetings-form">
-            <input type="text" name="password" required maxlength="10" data-maxlength="10" class="regular-text" value="<?php echo ! empty( $meeting_details->password ) ? esc_attr( $meeting_details->password ) : false; ?>">
+            <input type="text" name="password" maxlength="10" data-maxlength="10" class="regular-text" value="<?php echo ! empty( $meeting_details->password ) ? esc_attr( $meeting_details->password ) : false; ?>">
             <p class="description" id="email-description"><?php _e( 'Password to join the meeting. Password may only contain the following characters: [a-z A-Z 0-9]. Max of 10 characters.( Leave blank for auto generate )', 'video-conferencing-with-zoom-api' ); ?></p>
         </td>
     </tr>
