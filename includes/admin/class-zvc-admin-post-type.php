@@ -87,6 +87,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	 * @return mixed
 	 */
 	public function add_columns( $columns ) {
+		$columns['zoom_meeting_id']  = __( 'Meeting ID', 'video-conferencing-with-zoom-api' );
 		$columns['zoom_end_meeting'] = __( 'Meeting State', 'video-conferencing-with-zoom-api' );
 
 		return $columns;
@@ -99,11 +100,17 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	 * @param $post_id
 	 */
 	public function render_data( $column, $post_id ) {
+		$meeting = get_post_meta( $post_id, '_meeting_zoom_details', true );
 		switch ( $column ) {
+			case 'zoom_meeting_id' :
+				if ( ! empty( $meeting ) && ! empty( $meeting->id ) ) {
+					echo $meeting->id;
+				} else {
+					_e( 'Meeting not created yet.', 'video-conferencing-with-zoom-api' );
+				}
+				break;
 			case 'zoom_end_meeting' :
 				wp_enqueue_script( 'video-conferencing-with-zoom-api-js' );
-
-				$meeting = get_post_meta( $post_id, '_meeting_zoom_details', true );
 				if ( ! empty( $meeting ) ) {
 					if ( empty( $meeting->state ) ) { ?>
                         <a href="javascript:void(0);" class="vczapi-meeting-state-change" data-type="post_type" data-state="end" data-postid="<?php echo $post_id; ?>" data-id="<?php echo $meeting->id ?>"><?php _e( 'Disable Join', 'video-conferencing-with-zoom-api' ); ?></a>
@@ -389,6 +396,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 		$create_meeting_arr['site_option_enable_debug_log'] = filter_input( INPUT_POST, 'option_enable_debug_logs' );
 		//Update Post Meta Values
 		update_post_meta( $post_id, '_meeting_fields', $create_meeting_arr );
+		update_post_meta( $post_id, '_meeting_field_start_date', $create_meeting_arr['start_date'] );
 
 		//Create Zoom Meeting Now
 		$meeting_id = get_post_meta( $post_id, '_meeting_zoom_meeting_id', true );

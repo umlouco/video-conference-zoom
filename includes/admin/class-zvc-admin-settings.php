@@ -91,13 +91,13 @@ class Zoom_Video_Conferencing_Admin_Views {
             <h1><?php _e( 'Zoom Integration Settings', 'video-conferencing-with-zoom-api' ); ?></h1>
             <h2 class="nav-tab-wrapper">
                 <a href="<?php echo add_query_arg( array( 'tab' => 'api-settings' ) ); ?>" class="nav-tab <?php echo ( 'api-settings' === $active_tab ) ? esc_attr( 'nav-tab-active' ) : ''; ?>">
-					<?php esc_html_e( 'API Settings', 'vczapi-woo-addon' ); ?>
+					<?php esc_html_e( 'API Settings', 'video-conferencing-with-zoom-api' ); ?>
                 </a>
                 <a style="background: #bf5252;color: #fff;" href="<?php echo add_query_arg( array( 'tab' => 'shortcode' ) ); ?>" class="nav-tab <?php echo ( 'shortcode' === $active_tab ) ? esc_attr( 'nav-tab-active' ) : ''; ?>">
-					<?php esc_html_e( 'Shortcode', 'vczapi-woo-addon' ); ?>
+					<?php esc_html_e( 'Shortcode', 'video-conferencing-with-zoom-api' ); ?>
                 </a>
                 <a href="<?php echo add_query_arg( array( 'tab' => 'support' ) ); ?>" class="nav-tab <?php echo ( 'support' === $active_tab ) ? esc_attr( 'nav-tab-active' ) : ''; ?>">
-					<?php esc_html_e( 'Support', 'vczapi-woo-addon' ); ?>
+					<?php esc_html_e( 'Support', 'video-conferencing-with-zoom-api' ); ?>
                 </a>
             </h2>
 			<?php
