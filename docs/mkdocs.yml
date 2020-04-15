@@ -12,4 +12,5 @@ nav:
   - Assign Host Page: assign_host.md
   - WooCommerce (Addon): woocommerce.md
   - WooCommerce Bookings (Addon): woocommerce-booking.md
-theme: readthedocs
+theme:
+  name: material

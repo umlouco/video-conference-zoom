@@ -151,10 +151,10 @@ However, even though meeting is created and you are not seeing countdown timer t
 
 == Changelog ==
 
-= 3.3.4 April 14th, 2020 =
+= 3.3.4 April 15th, 2020 =
 * Fixed: Category for Shortcode
 * Slovak Translation Updated: Thanks to <a href="https://profiles.wordpress.org/branike/">Branislav Ďorď</a>
-* Added: Meeting Type for [zoom_list_meetings] shortcode.
+* Added: Meeting Type for [zoom_list_meetings type="upcoming"] shortcode.
 
 = 3.3.3 April 10th, 2020 =
 * Fix: Static resources JS and CSS file version number changes according to update. Reported by <a href="https://wordpress.org/support/users/bencoates/">bencoates</a>

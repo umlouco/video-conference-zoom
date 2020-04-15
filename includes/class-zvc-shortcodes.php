@@ -116,7 +116,7 @@ class Zoom_Video_Conferencing_Shorcodes {
 				'per_page' => 5,
 				'category' => '',
 				'order'    => 'ASC',
-				'type'     => 'upcoming'
+				'type'     => ''
 			),
 			$atts, 'zoom_list_meetings'
 		);
