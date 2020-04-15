@@ -15,7 +15,7 @@
     
     
       
-        <title>Shortcode Implementation - Video Conferencing with Zoom API Plugin Documentation</title>
+        <title>Shortcode - Video Conferencing with Zoom API Plugin Documentation</title>
       
     
     
@@ -76,7 +76,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Shortcode Implementation
+              Shortcode
             
           </span>
         </div>
@@ -193,14 +193,14 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Shortcode Implementation
+        Shortcode
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,9H17V7H3V9M3,13H17V11H3V13M3,17H17V15H3V17M19,17H21V15H19V17M19,7V9H21V7H19M19,13H21V11H19V13Z" /></svg>
         </span>
       </label>
     
-    <a href="./" title="Shortcode Implementation" class="md-nav__link md-nav__link--active">
-      Shortcode Implementation
+    <a href="./" title="Shortcode" class="md-nav__link md-nav__link--active">
+      Shortcode
     </a>
     
       
@@ -264,30 +264,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../vanity_url/" title="Vanity URL" class="md-nav__link">
-      Vanity URL
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../template_override/" title="Template Override" class="md-nav__link">
-      Template Override
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
     <a href="../meeting_types/" title="Meeting Types" class="md-nav__link">
       Meeting Types
     </a>
@@ -302,6 +278,30 @@
   <li class="md-nav__item">
     <a href="../join_links/" title="Join Links" class="md-nav__link">
       Join Links
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../vanity_url/" title="Vanity URL" class="md-nav__link">
+      Vanity URL
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../template_override/" title="Template Override" class="md-nav__link">
+      Template Override
     </a>
   </li>
 
@@ -338,6 +338,18 @@
   <li class="md-nav__item">
     <a href="../woocommerce/" title="WooCommerce (Addon)" class="md-nav__link">
       WooCommerce (Addon)
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../woocommerce-product-vendors/" title="WooCommerce Product Vendors (Addon)" class="md-nav__link">
+      WooCommerce Product Vendors (Addon)
     </a>
   </li>
 
@@ -428,7 +440,7 @@
                   
                 
                 
-                  <h1>Shortcode Implementation</h1>
+                  <h1>Shortcode</h1>
                 
                 <p>Previously, shortcode had to be written in complex way that some people would not feel reliable for this specific plugin. With new update its pretty easy to remember.</p>
 <p><strong>Check out the <a href="https://youtu.be/5Z2Ii0PnHRQ?t=453" target="_blank">video documentation</a> if you want to see live demo.</strong></p>
@@ -448,12 +460,15 @@
 <p>Your frontend page should look like:</p>
 <p><img src="https://deepenbajracharya.com.np/wp-content/uploads/2019/11/Meetings-%E2%80%93-Plugin-Tester-1024x520.png"></p>
 <h3 id="list-meeting-shortcode">List Meeting Shortcode</h3>
-<p>Use: <code>[zoom_list_meetings per_page="5" category="test,test2,test3"]</code></p>
+<p>Use: <code>[zoom_list_meetings per_page="5" category="test,test2,test3" order="ASC" type="upcoming"]</code></p>
 <p>Where,</p>
 <ul>
-<li><code>per_page</code> = Number of posts to show per page</li>
-<li><code>category</code> = Which categories to show in the list</li>
+<li><strong>per_page</strong> = Number of posts to show per page</li>
+<li><strong>category</strong> = Which categories to show in the list</li>
+<li><strong>order</strong> = ASC or DESC based on post created time.</li>
+<li><strong>type</strong> = "upcoming" or "past" - To show only upcoming meeting based on start time (Update to meeting is required for old post type meetings). Do not add to show all meetings.</li>
 </ul>
+<p><strong>NOTE: This was added in version 3.3.4 so, old meetings which were created might need to be updated in order for this shortcode to work properly.</strong></p>
 <h3 id="how-to-get-meeting-id">How to get Meeting ID</h3>
 <ol>
 <li>Goto your wp-admin</li>
@@ -502,13 +517,13 @@
           </a>
         
         
-          <a href="../vanity_url/" title="Vanity URL" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../meeting_types/" title="Meeting Types" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Vanity URL
+                Meeting Types
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

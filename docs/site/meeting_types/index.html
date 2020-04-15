@@ -186,32 +186,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../shortcode/" title="Shortcode Implementation" class="md-nav__link">
-      Shortcode Implementation
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../vanity_url/" title="Vanity URL" class="md-nav__link">
-      Vanity URL
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../template_override/" title="Template Override" class="md-nav__link">
-      Template Override
+    <a href="../shortcode/" title="Shortcode" class="md-nav__link">
+      Shortcode
     </a>
   </li>
 
@@ -298,6 +274,30 @@
 
 
   <li class="md-nav__item">
+    <a href="../vanity_url/" title="Vanity URL" class="md-nav__link">
+      Vanity URL
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../template_override/" title="Template Override" class="md-nav__link">
+      Template Override
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
     <a href="../filters_hooks/" title="Filter Hooks" class="md-nav__link">
       Filter Hooks
     </a>
@@ -324,6 +324,18 @@
   <li class="md-nav__item">
     <a href="../woocommerce/" title="WooCommerce (Addon)" class="md-nav__link">
       WooCommerce (Addon)
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../woocommerce-product-vendors/" title="WooCommerce Product Vendors (Addon)" class="md-nav__link">
+      WooCommerce Product Vendors (Addon)
     </a>
   </li>
 
@@ -404,15 +416,19 @@
                 
                 <p><strong>Check out the <a href="https://youtu.be/5Z2Ii0PnHRQ?t=126" target="_blank">video documentation</a> if you want to see live demo.</strong></p>
 <h3 id="basic-information">Basic Information</h3>
-<p>Technically, every meeting created from the Video conferencing with zoom api plugin is live meetings but, i have divided the term into two different categories:</p>
+<p>Technically, every meeting created from the Video conferencing with zoom api plugin is live meetings meaning that it will be created on Zoom but, i have divided the term into two different categories:</p>
 <h2 id="post-type-meetings">Post Type Meetings</h2>
-<p>This is created when you create a new posts from <code>Zoom Meetings &gt; Add New</code> page. These posts are related to your site and meetings created from here are binded to your site. </p>
+<p>This is created when you create a new post from <strong><code>Zoom Meetings &gt; Add New</code></strong> page. These posts are related to your site and meetings created from here are binded to your site. </p>
 <p><strong><em>So, deleting any linked meeting without deleting the POST FIRST WOULD RESULT IN FAILURE TO JOIN MEETING FOR END USER !</em></strong> </p>
 <p>This allows you to view your meeting by styling your frontend pages by overriding templates. See more on <code>template override</code> section. </p>
-<p>However, it does create real meetings on zoom side as well.</p>
+<p>Basically, this will create a Meeting on your Zoom Account and a Post in your WordPress site which is linked. So, if you create a Meeting from here you'll be able to show a countdown timer in the frontend.</p>
+<p><img src="https://www.codemanas.com/wp-content/uploads/2020/04/post-type-meetings.png" alt="Post Type Meeting"></p>
 <h2 id="actual-live-meetings">Actual Live Meetings</h2>
 <p>This is created from page <code>Zoom Meetings &gt; Live meetings</code> section.</p>
-<p>Meetings created from here are not binded to your site and have no relation to your site. If you want to show these meetings from your site then you'll have to rely on using shortcode using the meeting ID value here.</p>
+<p>Meetings created from here are not binded to your site. This will create a meeting in your Zoom Account and will not create or add any additional data on your WordPress website. <strong>Everything will be fetched directly using the Zoom API.</strong></p>
+<p>If you want to show these meetings from your site then you'll have to rely on using shortcode using the meeting ID value here.</p>
+<p>See shortcode section on how to use Shortcode.</p>
+<p><img src="https://www.codemanas.com/wp-content/uploads/2020/04/live-meetings.png" alt="Post Type Meeting"></p>
                 
               
               
@@ -431,7 +447,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../template_override/" title="Template Override" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../shortcode/" title="Shortcode" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
             </div>
@@ -440,7 +456,7 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Template Override
+                Shortcode
               </div>
             </div>
           </a>
