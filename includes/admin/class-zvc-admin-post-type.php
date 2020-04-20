@@ -113,8 +113,10 @@ class Zoom_Video_Conferencing_Admin_PostType {
 				}
 				break;
 			case 'zoom_meeting_startdate' :
-				if ( ! empty( $meeting ) && ! empty( $meeting->start_time ) ) {
+				if ( ! empty( $meeting ) && $meeting->type === 2 && ! empty( $meeting->start_time ) ) {
 					echo vczapi_dateConverter( $meeting->start_time, $meeting->timezone, 'F j, Y, g:i a' );
+				} else if ( ! empty( $meeting ) && ( $meeting->type === 3 || $meeting->type === 8 ) ) {
+					_e( 'Recurring Meeting', 'video-conferencing-with-zoom-api' );
 				} else {
 					_e( 'Meeting not created yet.', 'video-conferencing-with-zoom-api' );
 				}
@@ -575,42 +577,43 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	 * @param $template
 	 *
 	 * @return bool|string
-	 * @author Deepen
+	 * @return bool|string|void
 	 * @since 3.0.0
 	 *
+	 * @author Deepen
 	 */
 	public function archive( $template ) {
-		global $post;
+		if ( ! is_post_type_archive( $this->post_type ) ) {
+			return $template;
+		}
 
-		if ( ! empty( $post ) && $post->post_type == $this->post_type ) {
-			if ( isset( $_GET['type'] ) && $_GET['type'] === "meeting" && isset( $_GET['join'] ) ) {
-				wp_enqueue_script( 'video-conferencing-with-zoom-api-react', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react.production.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
-				wp_enqueue_script( 'video-conferencing-with-zoom-api-react-dom', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react-dom.production.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
-				wp_enqueue_script( 'video-conferencing-with-zoom-api-redux', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/redux.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
-				wp_enqueue_script( 'video-conferencing-with-zoom-api-thunk', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/redux-thunk.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
-				wp_enqueue_script( 'video-conferencing-with-zoom-api-lodash', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/lodash.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
-				wp_enqueue_script( 'zoom-meeting-source', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/zoomus-websdk.umd.min.js', array(
-					'jquery',
-					'video-conferencing-with-zoom-api-react',
-					'video-conferencing-with-zoom-api-react-dom',
-					'video-conferencing-with-zoom-api-redux',
-					'video-conferencing-with-zoom-api-thunk',
-					'video-conferencing-with-zoom-api-lodash'
-				), ZVC_PLUGIN_VERSION, true );
-				wp_enqueue_script( 'video-conferencing-with-zoom-api-browser', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/js/zoom-meeting.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
-				wp_localize_script( 'video-conferencing-with-zoom-api-browser', 'zvc_ajx', array(
-					'ajaxurl'       => admin_url( 'admin-ajax.php' ),
-					'zvc_security'  => wp_create_nonce( "_nonce_zvc_security" ),
-					'redirect_page' => esc_url( get_permalink( $post->ID ) ),
-					'meeting_id'    => absint( vczapi_encrypt_decrypt( 'decrypt', $_GET['join'] ) ),
-					'meeting_pwd'   => ! empty( $_GET['pak'] ) ? sanitize_text_field( vczapi_encrypt_decrypt( 'decrypt', $_GET['pak'] ) ) : false
-				) );
+		if ( isset( $_GET['type'] ) && $_GET['type'] === "meeting" && isset( $_GET['join'] ) ) {
+			wp_enqueue_script( 'video-conferencing-with-zoom-api-react', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react.production.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
+			wp_enqueue_script( 'video-conferencing-with-zoom-api-react-dom', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react-dom.production.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
+			wp_enqueue_script( 'video-conferencing-with-zoom-api-redux', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/redux.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
+			wp_enqueue_script( 'video-conferencing-with-zoom-api-thunk', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/redux-thunk.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
+			wp_enqueue_script( 'video-conferencing-with-zoom-api-lodash', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/lodash.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
+			wp_enqueue_script( 'zoom-meeting-source', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/zoomus-websdk.umd.min.js', array(
+				'jquery',
+				'video-conferencing-with-zoom-api-react',
+				'video-conferencing-with-zoom-api-react-dom',
+				'video-conferencing-with-zoom-api-redux',
+				'video-conferencing-with-zoom-api-thunk',
+				'video-conferencing-with-zoom-api-lodash'
+			), ZVC_PLUGIN_VERSION, true );
+			wp_enqueue_script( 'video-conferencing-with-zoom-api-browser', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/js/zoom-meeting.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
+			wp_localize_script( 'video-conferencing-with-zoom-api-browser', 'zvc_ajx', array(
+				'ajaxurl'       => admin_url( 'admin-ajax.php' ),
+				'zvc_security'  => wp_create_nonce( "_nonce_zvc_security" ),
+				'redirect_page' => esc_url( home_url( '/' ) ),
+				'meeting_id'    => absint( vczapi_encrypt_decrypt( 'decrypt', $_GET['join'] ) ),
+				'meeting_pwd'   => ! empty( $_GET['pak'] ) ? sanitize_text_field( vczapi_encrypt_decrypt( 'decrypt', $_GET['pak'] ) ) : false
+			) );
 
-				$template = vczapi_get_template( 'join-web-browser.php' );
-			} else {
-				//Render View
-				$template = vczapi_get_template( 'archive-meetings.php' );
-			}
+			$template = vczapi_get_template( 'join-web-browser.php' );
+		} else {
+			//Render View
+			$template = vczapi_get_template( 'archive-meetings.php' );
 		}
 
 		return $template;

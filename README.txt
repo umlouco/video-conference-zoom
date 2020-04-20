@@ -4,7 +4,7 @@ Tags: zoom video conference, video conference, zoom, zoom video conferencing, we
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.4
-Stable tag: 3.3.5
+Stable tag: 3.3.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -150,6 +150,9 @@ However, even though meeting is created and you are not seeing countdown timer t
 9. Shortcode Output
 
 == Changelog ==
+
+= 3.3.6 April 20th, 2020 =
+* Fixed: Archive page not loading when no meetings existed.
 
 = 3.3.5 April 20th, 2020 =
 * Fixed: add_query_args when joining via browser occured a blank page or 404 page in some cases.

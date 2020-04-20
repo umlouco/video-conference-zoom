@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Video Conferencing with Zoom API\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/video-"
 "conferencing-with-zoom-api\n"
-"POT-Creation-Date: 2020-04-14 09:29+0000\n"
+"POT-Creation-Date: 2020-04-20 15:33+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -43,53 +43,73 @@ msgstr ""
 msgid "Meeting is not defined. Try updating this meeting"
 msgstr ""
 
-#: includes/zvc-template-functions.php:227
-#: includes/admin/class-zvc-admin-post-type.php:90
+#: includes/zvc-template-functions.php:231
+#: includes/admin/class-zvc-admin-post-type.php:92
 #: includes/views/tpl-list-meetings.php:60
 msgid "Meeting ID"
 msgstr ""
 
-#: includes/zvc-template-functions.php:231
+#: includes/zvc-template-functions.php:235
 #: includes/views/tpl-list-meetings.php:62
 msgid "Topic"
 msgstr ""
 
-#: includes/zvc-template-functions.php:235
+#: includes/zvc-template-functions.php:239
 msgid "Meeting Status"
 msgstr ""
 
-#: includes/zvc-template-functions.php:238
+#: includes/zvc-template-functions.php:242
 msgid "Refresh is needed to change status."
 msgstr ""
 
-#: includes/zvc-template-functions.php:245
+#: includes/zvc-template-functions.php:249
 msgid "Type"
 msgstr ""
 
-#: includes/zvc-template-functions.php:246
+#: includes/zvc-template-functions.php:250
+#: includes/admin/class-zvc-admin-post-type.php:119
+#: includes/views/tpl-list-meetings.php:122
 msgid "Recurring Meeting"
 msgstr ""
 
-#: includes/zvc-template-functions.php:249
-#: includes/zvc-template-functions.php:268
+#: includes/zvc-template-functions.php:253
+msgid "Ocurrences"
+msgstr ""
+
+#: includes/zvc-template-functions.php:257
+msgid "Next Start Time"
+msgstr ""
+
+#: includes/zvc-template-functions.php:277
+#: includes/zvc-template-functions.php:294
+msgid "Meeting has ended !"
+msgstr ""
+
+#: includes/zvc-template-functions.php:286
+#: includes/zvc-template-functions.php:293
+#: includes/zvc-template-functions.php:300
 #: includes/views/tpl-list-meetings.php:64
 msgid "Start Time"
 msgstr ""
 
-#: includes/zvc-template-functions.php:273
-#: includes/views/tpl-edit-meeting.php:79
+#: includes/zvc-template-functions.php:287
+msgid "This is a meeting with no Fixed Time."
+msgstr ""
+
+#: includes/zvc-template-functions.php:305
+#: includes/views/tpl-edit-meeting.php:80
 #: includes/views/tpl-add-meetings.php:62
 #: templates/fragments/meeting-details.php:42
 #: templates/shortcode/zoom-listing.php:30
-#: includes/views/post-type/tpl-meeting-fields.php:61
+#: includes/views/post-type/tpl-meeting-fields.php:87
 msgid "Timezone"
 msgstr ""
 
-#: includes/zvc-template-functions.php:278
-#: includes/views/tpl-edit-meeting.php:91
+#: includes/zvc-template-functions.php:310
+#: includes/views/tpl-edit-meeting.php:92
 #: includes/views/tpl-add-meetings.php:74
 #: templates/fragments/meeting-details.php:37
-#: includes/views/post-type/tpl-meeting-fields.php:76
+#: includes/views/post-type/tpl-meeting-fields.php:102
 msgid "Duration"
 msgstr ""
 
@@ -143,8 +163,8 @@ msgid ""
 "list. This will only create meeting in your zoom.us account !"
 msgstr ""
 
-#: includes/helpers.php:519 includes/helpers.php:521 includes/helpers.php:539
-#: includes/helpers.php:542 templates/shortcode/join-links.php:27
+#: includes/helpers.php:521 includes/helpers.php:525 includes/helpers.php:544
+#: includes/helpers.php:548 templates/shortcode/join-links.php:27
 msgid "Join via Web Browser"
 msgstr ""
 
@@ -271,6 +291,10 @@ msgid ""
 "continue or contact administrator."
 msgstr ""
 
+#: templates/archive-meetings.php:26
+msgid "No Meetings found."
+msgstr ""
+
 #: includes/admin/class-zvc-admin-users.php:28
 msgid "Flushed User Cache!"
 msgstr ""
@@ -358,127 +382,138 @@ msgstr ""
 msgid "Dismiss this notice."
 msgstr ""
 
+#: includes/admin/class-zvc-admin-post-type.php:90
+#: templates/fragments/join-links.php:27
+msgid "Start Meeting"
+msgstr ""
+
 #: includes/admin/class-zvc-admin-post-type.php:91
+msgid "Start Date"
+msgstr ""
+
+#: includes/admin/class-zvc-admin-post-type.php:93
 #: includes/views/tpl-list-meetings.php:65
 msgid "Meeting State"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:109
-#: includes/admin/class-zvc-admin-post-type.php:129
+#: includes/admin/class-zvc-admin-post-type.php:112
+#: includes/admin/class-zvc-admin-post-type.php:121
+#: includes/admin/class-zvc-admin-post-type.php:128
+#: includes/admin/class-zvc-admin-post-type.php:142
 msgid "Meeting not created yet."
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:116
-#: includes/views/tpl-list-meetings.php:120
+#: includes/admin/class-zvc-admin-post-type.php:135
+#: includes/views/tpl-list-meetings.php:130
 msgid "Disable Join"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:119
+#: includes/admin/class-zvc-admin-post-type.php:136
 msgid ""
 "Restrict users to join this meeting before the start time or after the "
 "meeting is completed."
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:122
-#: includes/views/tpl-list-meetings.php:126
+#: includes/admin/class-zvc-admin-post-type.php:138
+#: includes/views/tpl-list-meetings.php:136
 msgid "Enable Join"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:125
+#: includes/admin/class-zvc-admin-post-type.php:139
 msgid "Resuming this will enable users to join this meeting."
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:152
-#: includes/admin/class-zvc-admin-post-type.php:153
+#: includes/admin/class-zvc-admin-post-type.php:165
+#: includes/admin/class-zvc-admin-post-type.php:166
 msgctxt "Category"
 msgid "Category"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:172
+#: includes/admin/class-zvc-admin-post-type.php:185
 msgctxt "Zoom Meetings"
 msgid "Zoom Meetings"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:173
-#: includes/admin/class-zvc-admin-post-type.php:174
-#: includes/admin/class-zvc-admin-post-type.php:175
+#: includes/admin/class-zvc-admin-post-type.php:186
+#: includes/admin/class-zvc-admin-post-type.php:187
+#: includes/admin/class-zvc-admin-post-type.php:188
 msgctxt "Zoom Meeting"
 msgid "Zoom Meeting"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:176
+#: includes/admin/class-zvc-admin-post-type.php:189
 msgid "Add New"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:177
+#: includes/admin/class-zvc-admin-post-type.php:190
 msgid "Add New meeting"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:178
+#: includes/admin/class-zvc-admin-post-type.php:191
 msgid "New meeting"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:179
+#: includes/admin/class-zvc-admin-post-type.php:192
 msgid "Edit meeting"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:180
+#: includes/admin/class-zvc-admin-post-type.php:193
 msgid "View meetings"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:181
+#: includes/admin/class-zvc-admin-post-type.php:194
 msgid "All meetings"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:182
+#: includes/admin/class-zvc-admin-post-type.php:195
 msgid "Search meetings"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:183
+#: includes/admin/class-zvc-admin-post-type.php:196
 msgid "Parent meetings:"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:184
+#: includes/admin/class-zvc-admin-post-type.php:197
 msgid "No meetings found."
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:185
+#: includes/admin/class-zvc-admin-post-type.php:198
 msgid "No meetings found in Trash."
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:218
+#: includes/admin/class-zvc-admin-post-type.php:231
 msgid "Zoom Details"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:222
+#: includes/admin/class-zvc-admin-post-type.php:235
 msgid "Meeting Details"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:226
+#: includes/admin/class-zvc-admin-post-type.php:239
 msgid "Debug Log"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:231
+#: includes/admin/class-zvc-admin-post-type.php:244
 msgid "WooCommerce Integration?"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:297
+#: includes/admin/class-zvc-admin-post-type.php:311
 msgid "Requires Login?"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:300
+#: includes/admin/class-zvc-admin-post-type.php:314
 msgid "Only logged in users of this site will be able to join this meeting."
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:301
+#: includes/admin/class-zvc-admin-post-type.php:315
 msgid "Hide Join via browser link ?"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:304
+#: includes/admin/class-zvc-admin-post-type.php:318
 msgid "This will disable join via browser link in frontend page."
 msgstr ""
 
-#: includes/admin/class-zvc-admin-post-type.php:316
+#: includes/admin/class-zvc-admin-post-type.php:330
 msgid "Enable Debug?"
 msgstr ""
 
@@ -531,13 +566,17 @@ msgstr ""
 msgid "Start via App"
 msgstr ""
 
-#: includes/views/tpl-list-meetings.php:123
+#: includes/views/tpl-list-meetings.php:120
+msgid "This is a recurring meeting with no fixed time."
+msgstr ""
+
+#: includes/views/tpl-list-meetings.php:133
 msgid ""
 "Ending this will disable users to join this meeting. Applies to any "
 "shortcode output only."
 msgstr ""
 
-#: includes/views/tpl-list-meetings.php:129
+#: includes/views/tpl-list-meetings.php:139
 msgid ""
 "Resuming this will enable users to join this meeting. Applies to any "
 "shortcode output only."
@@ -683,159 +722,163 @@ msgstr ""
 #: includes/views/tpl-edit-meeting.php:54
 #: includes/views/tpl-add-meetings.php:43
 #: includes/views/post-type/tpl-meeting-fields.php:37
+#: includes/views/post-type/tpl-meeting-fields.php:58
 msgid "Meeting Host *"
 msgstr ""
 
 #: includes/views/tpl-edit-meeting.php:57
-#: includes/views/tpl-edit-meeting.php:169
+#: includes/views/tpl-edit-meeting.php:170
 #: includes/views/tpl-add-meetings.php:46
-#: includes/views/tpl-add-meetings.php:132
-#: includes/views/post-type/tpl-meeting-fields.php:41
-#: includes/views/post-type/tpl-meeting-fields.php:150
+#: includes/views/tpl-add-meetings.php:146
+#: includes/views/post-type/tpl-meeting-fields.php:62
+#: includes/views/post-type/tpl-meeting-fields.php:176
 msgid "Select a Host"
 msgstr ""
 
 #: includes/views/tpl-edit-meeting.php:62
 #: includes/views/tpl-add-meetings.php:51
-#: includes/views/post-type/tpl-meeting-fields.php:49
+#: includes/views/post-type/tpl-meeting-fields.php:51
+#: includes/views/post-type/tpl-meeting-fields.php:70
 msgid "This is host ID for the meeting (Required)."
 msgstr ""
 
 #: includes/views/tpl-edit-meeting.php:66
 #: includes/views/tpl-add-meetings.php:55
-#: includes/views/post-type/tpl-meeting-fields.php:54
+#: includes/views/post-type/tpl-meeting-fields.php:77
 msgid "Start Date/Time *"
 msgstr ""
 
-#: includes/views/tpl-edit-meeting.php:75
+#: includes/views/tpl-edit-meeting.php:76
 #: includes/views/tpl-add-meetings.php:58
-#: includes/views/post-type/tpl-meeting-fields.php:57
+#: includes/views/post-type/tpl-meeting-fields.php:80
 msgid "Starting Date and Time of the Meeting (Required)."
 msgstr ""
 
-#: includes/views/tpl-edit-meeting.php:87
+#: includes/views/tpl-edit-meeting.php:88
 #: includes/views/tpl-add-meetings.php:70
-#: includes/views/post-type/tpl-meeting-fields.php:72
+#: includes/views/post-type/tpl-meeting-fields.php:98
 msgid "Meeting Timezone"
 msgstr ""
 
-#: includes/views/tpl-edit-meeting.php:94
+#: includes/views/tpl-edit-meeting.php:95
 #: includes/views/tpl-add-meetings.php:77
-#: includes/views/post-type/tpl-meeting-fields.php:79
+#: includes/views/post-type/tpl-meeting-fields.php:105
 msgid "Meeting duration (minutes). (optional)"
 msgstr ""
 
-#: includes/views/tpl-edit-meeting.php:98
+#: includes/views/tpl-edit-meeting.php:99
 #: includes/views/tpl-add-meetings.php:81
 msgid "Meeting Password"
 msgstr ""
 
-#: includes/views/tpl-edit-meeting.php:101
+#: includes/views/tpl-edit-meeting.php:102
 #: includes/views/tpl-add-meetings.php:84
-#: includes/views/post-type/tpl-meeting-fields.php:86
+#: includes/views/post-type/tpl-meeting-fields.php:112
 msgid ""
 "Password to join the meeting. Password may only contain the following "
 "characters: [a-z A-Z 0-9]. Max of 10 characters.( Leave blank for auto "
 "generate )"
 msgstr ""
 
-#: includes/views/tpl-edit-meeting.php:105
+#: includes/views/tpl-edit-meeting.php:106
 #: includes/views/tpl-add-meetings.php:88
-#: includes/views/post-type/tpl-meeting-fields.php:90
+#: includes/views/post-type/tpl-meeting-fields.php:116
 msgid "Join Before Host"
 msgstr ""
 
-#: includes/views/tpl-edit-meeting.php:108
-#: includes/views/tpl-add-meetings.php:90
-#: includes/views/post-type/tpl-meeting-fields.php:93
+#: includes/views/tpl-edit-meeting.php:109
+#: includes/views/tpl-add-meetings.php:91
+#: includes/views/post-type/tpl-meeting-fields.php:119
 msgid ""
 "Join meeting before host start the meeting. Only for scheduled or recurring "
 "meetings."
 msgstr ""
 
-#: includes/views/tpl-edit-meeting.php:113
-#: includes/views/tpl-add-meetings.php:94
-#: includes/views/post-type/tpl-meeting-fields.php:98
+#: includes/views/tpl-edit-meeting.php:114
+#: includes/views/tpl-add-meetings.php:96
+#: includes/views/post-type/tpl-meeting-fields.php:124
 msgid "Host join start"
 msgstr ""
 
-#: includes/views/tpl-edit-meeting.php:116
-#: includes/views/tpl-add-meetings.php:96
-#: includes/views/post-type/tpl-meeting-fields.php:101
+#: includes/views/tpl-edit-meeting.php:117
+#: includes/views/tpl-add-meetings.php:99
+#: includes/views/post-type/tpl-meeting-fields.php:127
 msgid "Start video when host join meeting."
 msgstr ""
 
-#: includes/views/tpl-edit-meeting.php:122
-#: includes/views/tpl-add-meetings.php:100
-#: includes/views/post-type/tpl-meeting-fields.php:106
+#: includes/views/tpl-edit-meeting.php:123
+#: includes/views/tpl-add-meetings.php:105
+#: includes/views/post-type/tpl-meeting-fields.php:132
 msgid "Participants Video"
 msgstr ""
 
-#: includes/views/tpl-edit-meeting.php:125
-#: includes/views/tpl-add-meetings.php:102
-#: includes/views/post-type/tpl-meeting-fields.php:109
+#: includes/views/tpl-edit-meeting.php:126
+#: includes/views/tpl-add-meetings.php:108
+#: includes/views/post-type/tpl-meeting-fields.php:135
 msgid "Start video when participants join meeting."
 msgstr ""
 
-#: includes/views/tpl-edit-meeting.php:131
-#: includes/views/tpl-add-meetings.php:106
-#: includes/views/post-type/tpl-meeting-fields.php:115
+#: includes/views/tpl-edit-meeting.php:132
+#: includes/views/tpl-add-meetings.php:114
+#: includes/views/post-type/tpl-meeting-fields.php:141
 msgid "Mute Participants upon entry"
 msgstr ""
 
-#: includes/views/tpl-edit-meeting.php:135
-#: includes/views/tpl-add-meetings.php:108
-#: includes/views/post-type/tpl-meeting-fields.php:119
+#: includes/views/tpl-edit-meeting.php:136
+#: includes/views/tpl-add-meetings.php:118
+#: includes/views/post-type/tpl-meeting-fields.php:145
 msgid "Mutes Participants when entering the meeting."
 msgstr ""
 
-#: includes/views/tpl-edit-meeting.php:140
-#: includes/views/tpl-add-meetings.php:112
+#: includes/views/tpl-edit-meeting.php:141
+#: includes/views/tpl-add-meetings.php:123
 msgid "Enforce Login"
 msgstr ""
 
-#: includes/views/tpl-edit-meeting.php:143
-#: includes/views/tpl-add-meetings.php:114
+#: includes/views/tpl-edit-meeting.php:144
+#: includes/views/tpl-add-meetings.php:126
 msgid "Only signed-in users can join this meeting."
 msgstr ""
 
-#: includes/views/tpl-edit-meeting.php:148
-#: includes/views/tpl-add-meetings.php:118
-#: includes/views/post-type/tpl-meeting-fields.php:124
+#: includes/views/tpl-edit-meeting.php:149
+#: includes/views/tpl-add-meetings.php:131
+#: includes/views/post-type/tpl-meeting-fields.php:150
 msgid "Auto Recording"
 msgstr ""
 
-#: includes/views/tpl-edit-meeting.php:152
-#: includes/views/post-type/tpl-meeting-fields.php:128
+#: includes/views/tpl-edit-meeting.php:153
+#: includes/views/post-type/tpl-meeting-fields.php:154
 msgid "No Recordings"
 msgstr ""
 
-#: includes/views/tpl-edit-meeting.php:155
-#: includes/views/post-type/tpl-meeting-fields.php:131
+#: includes/views/tpl-edit-meeting.php:156
+#: includes/views/post-type/tpl-meeting-fields.php:157
 msgid "Local"
 msgstr ""
 
-#: includes/views/tpl-edit-meeting.php:158
-#: includes/views/post-type/tpl-meeting-fields.php:134
+#: includes/views/tpl-edit-meeting.php:159
+#: includes/views/post-type/tpl-meeting-fields.php:160
 msgid "Cloud"
 msgstr ""
 
-#: includes/views/tpl-edit-meeting.php:161
-#: includes/views/tpl-add-meetings.php:125
-#: includes/views/post-type/tpl-meeting-fields.php:137
+#: includes/views/tpl-edit-meeting.php:162
+#: includes/views/tpl-add-meetings.php:138
+#: includes/views/post-type/tpl-meeting-fields.php:163
 msgid ""
 "Set what type of auto recording feature you want to add. Default is none."
 msgstr ""
 
-#: includes/views/tpl-edit-meeting.php:166
-#: includes/views/tpl-add-meetings.php:129
-#: includes/views/post-type/tpl-meeting-fields.php:145
+#: includes/views/tpl-edit-meeting.php:167
+#: includes/views/tpl-add-meetings.php:143
+#: includes/views/post-type/tpl-meeting-fields.php:171
 msgid "Alternative Hosts"
 msgstr ""
 
-#: includes/views/tpl-edit-meeting.php:180
-#: includes/views/tpl-add-meetings.php:137
-msgid "Alternative hosts IDs. Multiple value separated by comma."
+#: includes/views/tpl-edit-meeting.php:181
+#: includes/views/post-type/tpl-meeting-fields.php:184
+msgid ""
+"Paid Zoom Account is required for this !! Alternative hosts IDs. Multiple "
+"value separated by comma."
 msgstr ""
 
 #: includes/views/tpl-add-user.php:2
@@ -1020,8 +1063,8 @@ msgstr ""
 msgid "Back to selected host Meetings list"
 msgstr ""
 
-#: templates/fragments/join-links.php:27
-msgid "Start Meeting"
+#: includes/views/tpl-add-meetings.php:151
+msgid "Alternative hosts IDs. Multiple value separated by comma."
 msgstr ""
 
 #: templates/fragments/meeting-details.php:16
@@ -1196,20 +1239,15 @@ msgid ""
 "shortcode"
 msgstr ""
 
-#: includes/views/post-type/tpl-meeting-fields.php:47
-#: includes/views/post-type/tpl-meeting-fields.php:156
+#: includes/views/post-type/tpl-meeting-fields.php:49
+#: includes/views/post-type/tpl-meeting-fields.php:68
+#: includes/views/post-type/tpl-meeting-fields.php:182
 #, php-format
 msgid ""
 "Did not find any hosts here ? Please %scheck here%s to verify your API keys "
 "are working correctly."
 msgstr ""
 
-#: includes/views/post-type/tpl-meeting-fields.php:83
+#: includes/views/post-type/tpl-meeting-fields.php:109
 msgid "Password"
-msgstr ""
-
-#: includes/views/post-type/tpl-meeting-fields.php:158
-msgid ""
-"Paid Zoom Account is required for this !! Alternative hosts IDs. Multiple "
-"value separated by comma."
 msgstr ""
