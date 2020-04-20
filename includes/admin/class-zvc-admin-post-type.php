@@ -87,8 +87,11 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	 * @return mixed
 	 */
 	public function add_columns( $columns ) {
-		$columns['zoom_meeting_id']  = __( 'Meeting ID', 'video-conferencing-with-zoom-api' );
-		$columns['zoom_end_meeting'] = __( 'Meeting State', 'video-conferencing-with-zoom-api' );
+		$columns['zoom_meeting_start']     = __( 'Start Meeting', 'video-conferencing-with-zoom-api' );
+		$columns['zoom_meeting_startdate'] = __( 'Start Date', 'video-conferencing-with-zoom-api' );
+		$columns['zoom_meeting_id']        = __( 'Meeting ID', 'video-conferencing-with-zoom-api' );
+		$columns['zoom_end_meeting']       = __( 'Meeting State', 'video-conferencing-with-zoom-api' );
+		unset( $columns['author'] );
 
 		return $columns;
 	}
@@ -102,6 +105,20 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	public function render_data( $column, $post_id ) {
 		$meeting = get_post_meta( $post_id, '_meeting_zoom_details', true );
 		switch ( $column ) {
+			case 'zoom_meeting_start' :
+				if ( ! empty( $meeting ) && ! empty( $meeting->start_url ) ) {
+					echo '<a href="' . esc_url( $meeting->start_url ) . '" target="_blank">Start</a>';
+				} else {
+					_e( 'Meeting not created yet.', 'video-conferencing-with-zoom-api' );
+				}
+				break;
+			case 'zoom_meeting_startdate' :
+				if ( ! empty( $meeting ) && ! empty( $meeting->start_time ) ) {
+					echo vczapi_dateConverter( $meeting->start_time, $meeting->timezone, 'F j, Y, g:i a' );
+				} else {
+					_e( 'Meeting not created yet.', 'video-conferencing-with-zoom-api' );
+				}
+				break;
 			case 'zoom_meeting_id' :
 				if ( ! empty( $meeting ) && ! empty( $meeting->id ) ) {
 					echo $meeting->id;
@@ -114,16 +131,10 @@ class Zoom_Video_Conferencing_Admin_PostType {
 				if ( ! empty( $meeting ) ) {
 					if ( empty( $meeting->state ) ) { ?>
                         <a href="javascript:void(0);" class="vczapi-meeting-state-change" data-type="post_type" data-state="end" data-postid="<?php echo $post_id; ?>" data-id="<?php echo $meeting->id ?>"><?php _e( 'Disable Join', 'video-conferencing-with-zoom-api' ); ?></a>
-                        <div class="vczapi-admin-info-tooltip">
-                            <span class="dashicons dashicons-info"></span>
-                            <span class="vczapi-admin-info-tooltip--text"><?php _e( 'Restrict users to join this meeting before the start time or after the meeting is completed.', 'video-conferencing-with-zoom-api' ); ?></span>
-                        </div>
+                        <p class="description"><?php _e( 'Restrict users to join this meeting before the start time or after the meeting is completed.', 'video-conferencing-with-zoom-api' ); ?></p>
 					<?php } else { ?>
                         <a href="javascript:void(0);" class="vczapi-meeting-state-change" data-type="post_type" data-state="resume" data-postid="<?php echo $post_id; ?>" data-id="<?php echo $meeting->id ?>"><?php _e( 'Enable Join', 'video-conferencing-with-zoom-api' ); ?></a>
-                        <div class="vczapi-admin-info-tooltip">
-                            <span class="dashicons dashicons-info "></span>
-                            <span class="vczapi-admin-info-tooltip--text"><?php _e( 'Resuming this will enable users to join this meeting.', 'video-conferencing-with-zoom-api' ); ?></span>
-                        </div>
+                        <p class="description"><?php _e( 'Resuming this will enable users to join this meeting.', 'video-conferencing-with-zoom-api' ); ?></p>
 					<?php }
 				} else {
 					_e( 'Meeting not created yet.', 'video-conferencing-with-zoom-api' );
@@ -285,6 +296,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
                         <p><a target="_blank" href="<?php echo esc_url( $meeting_details->join_url ); ?>" title="Start URL">Join Meeting</a></p>
                         <p><a target="_blank" href="<?php echo esc_url( $zoom_host_url ); ?>" title="Start URL">Start via Browser</a></p>
                         <p><strong>Meeting ID:</strong> <?php echo $meeting_details->id; ?></p>
+						<?php do_action( 'vczapi_meeting_details_admin', $meeting_details ); ?>
                     </div>
                     <hr>
 					<?php
@@ -498,7 +510,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	public function single( $template ) {
 		global $post;
 
-		if ( !empty($post) && $post->post_type == $this->post_type ) {
+		if ( ! empty( $post ) && $post->post_type == $this->post_type ) {
 			unset( $GLOBALS['zoom'] );
 
 			$show_zoom_author_name = get_option( 'zoom_show_author' );
@@ -570,7 +582,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	public function archive( $template ) {
 		global $post;
 
-		if ( !empty($post) && $post->post_type == $this->post_type ) {
+		if ( ! empty( $post ) && $post->post_type == $this->post_type ) {
 			if ( isset( $_GET['type'] ) && $_GET['type'] === "meeting" && isset( $_GET['join'] ) ) {
 				wp_enqueue_script( 'video-conferencing-with-zoom-api-react', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react.production.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
 				wp_enqueue_script( 'video-conferencing-with-zoom-api-react-dom', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react-dom.production.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );

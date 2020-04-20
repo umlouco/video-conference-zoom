@@ -188,6 +188,10 @@ function video_conference_zoom_shortcode_join_link( $zoom_meetings ) {
 				}
 			}
 		}
+	} else if ( empty( $zoom_meetings->occurrences ) ) {
+		$zoom_meetings->start_time = false;
+	} else if ( ! empty( $zoom_meetings->type ) && $zoom_meetings->type === 3 ) {
+		$zoom_meetings->start_time = false;
 	}
 
 	$start_time = ! empty( $closest_occurence ) ? $closest_occurence : $zoom_meetings->start_time;
@@ -210,16 +214,16 @@ function video_conference_zoom_shortcode_join_link( $zoom_meetings ) {
 	}
 }
 
-/**
- * Render Zoom Meeting ShortCode table in frontend
- *
- * @param $zoom_meetings
- *
- * @author Deepen
- *
- * @since 3.0.0
- */
 if ( ! function_exists( 'video_conference_zoom_shortcode_table' ) ) {
+	/**
+     *  * Render Zoom Meeting ShortCode table in frontend
+	 *
+	 * @param $zoom_meetings
+	 * @author Deepen
+	 * @since 3.0.0
+	 *
+	 * @throws Exception
+	 */
 	function video_conference_zoom_shortcode_table( $zoom_meetings ) {
 		?>
         <table class="vczapi-shortcode-meeting-table">
@@ -245,21 +249,49 @@ if ( ! function_exists( 'video_conference_zoom_shortcode_table' ) ) {
                     <td><?php _e( 'Type', 'video-conferencing-with-zoom-api' ); ?></td>
                     <td><?php _e( 'Recurring Meeting', 'video-conferencing-with-zoom-api' ); ?></td>
                 </tr>
+                <tr class="vczapi-shortcode-meeting-table--row4">
+                    <td><?php _e( 'Ocurrences', 'video-conferencing-with-zoom-api' ); ?></td>
+                    <td><?php echo count( $zoom_meetings->occurrences ); ?></td>
+                </tr>
                 <tr class="vczapi-shortcode-meeting-table--row5">
-                    <td><?php _e( 'Start Time', 'video-conferencing-with-zoom-api' ); ?></td>
+                    <td><?php _e( 'Next Start Time', 'video-conferencing-with-zoom-api' ); ?></td>
                     <td>
-                        <ul class="vczapi-occurrence-ul-listings">
-							<?php
-							foreach ( $zoom_meetings->occurrences as $occurence ) {
-								if ( $occurence->status === "available" ) {
-									?>
-                                    <li><?php echo vczapi_dateConverter( $occurence->start_time, $zoom_meetings->timezone, 'F j, Y @ g:i a' ); ?></li>
-									<?php
+						<?php
+						$now               = new DateTime( 'now -1 hour', new DateTimeZone( $zoom_meetings->timezone ) );
+						$closest_occurence = false;
+						if ( ! empty( $zoom_meetings->type ) && $zoom_meetings->type === 8 && ! empty( $zoom_meetings->occurrences ) ) {
+							foreach ( $zoom_meetings->occurrences as $occurrence ) {
+								if ( $occurrence->status === "available" ) {
+									$start_date = new DateTime( $occurrence->start_time, new DateTimeZone( $zoom_meetings->timezone ) );
+									if ( $start_date >= $now ) {
+										$closest_occurence = $occurrence->start_time;
+										break;
+									}
 								}
 							}
-							?>
-                        </ul>
+						}
+
+						if ( $closest_occurence ) {
+							echo vczapi_dateConverter( $closest_occurence, $zoom_meetings->timezone, 'F j, Y @ g:i a' );
+						} else {
+							_e( 'Meeting has ended !', 'video-conferencing-with-zoom-api' );
+						}
+						?>
                     </td>
+                </tr>
+				<?php
+			} else if ( ! empty( $zoom_meetings->type ) && $zoom_meetings->type === 3 ) {
+				?>
+                <tr class="vczapi-shortcode-meeting-table--row6">
+                    <td><?php _e( 'Start Time', 'video-conferencing-with-zoom-api' ); ?></td>
+                    <td><?php _e( 'This is a meeting with no Fixed Time.', 'video-conferencing-with-zoom-api' ); ?></td>
+                </tr>
+				<?php
+			} else if ( empty( $zoom_meetings->occurrences ) ) {
+				?>
+                <tr class="vczapi-shortcode-meeting-table--row6">
+                    <td><?php _e( 'Start Time', 'video-conferencing-with-zoom-api' ); ?></td>
+                    <td><?php _e( 'Meeting has ended !', 'video-conferencing-with-zoom-api' ); ?></td>
                 </tr>
 				<?php
 			} else {
