@@ -99,8 +99,11 @@ class Zoom_Video_Conferencing_Admin_Views {
                 <a href="<?php echo add_query_arg( array( 'tab' => 'support' ) ); ?>" class="nav-tab <?php echo ( 'support' === $active_tab ) ? esc_attr( 'nav-tab-active' ) : ''; ?>">
 					<?php esc_html_e( 'Support', 'video-conferencing-with-zoom-api' ); ?>
                 </a>
+				<?php do_action( 'vczapi_admin_tabs_heading', $active_tab ); ?>
             </h2>
 			<?php
+			do_action( 'vczapi_admin_tabs_content', $active_tab );
+
 			if ( 'api-settings' === $active_tab ) {
 				if ( isset( $_POST['save_zoom_settings'] ) ) {
 					//Nonce

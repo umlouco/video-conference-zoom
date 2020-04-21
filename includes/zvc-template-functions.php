@@ -156,24 +156,10 @@ function video_conference_zoom_meeting_join_link( $zoom_meeting ) {
  * @author Deepen
  */
 function video_conference_zoom_shortcode_join_link( $zoom_meetings ) {
-	global $vanity_uri;
-
 	if ( empty( $zoom_meetings ) ) {
 		echo "<p>" . __( 'Meeting is not defined. Try updating this meeting', 'video-conferencing-with-zoom-api' ) . "</p>";
 
 		return;
-	}
-
-	/**
-	 * @TO-DO
-	 * 1. Sometimes zoom does not produce https://zoom.us/j uri by default
-	 */
-	if ( ! empty( $vanity_uri ) ) {
-		$browser_url = trailingslashit( $vanity_uri . 'wc/join/' . $zoom_meetings->id );
-		$join_uri    = trailingslashit( $vanity_uri . '/j/' . $zoom_meetings->id );
-	} else {
-		$browser_url = 'https://zoom.us/wc/join/' . $zoom_meetings->id;
-		$join_uri    = 'https://zoom.us/j/' . $zoom_meetings->id;
 	}
 
 	$now               = new DateTime( 'now -1 hour', new DateTimeZone( $zoom_meetings->timezone ) );
@@ -207,7 +193,7 @@ function video_conference_zoom_shortcode_join_link( $zoom_meetings ) {
 		}
 
 		$GLOBALS['meetings'] = array(
-			'join_uri'    => apply_filters( 'vczoom_join_meeting_via_app_shortcode', $join_uri, $zoom_meetings ),
+			'join_uri'    => apply_filters( 'vczoom_join_meeting_via_app_shortcode', $zoom_meetings->join_url, $zoom_meetings ),
 			'browser_url' => apply_filters( 'vczoom_join_meeting_via_browser_disable', $browser_join )
 		);
 		vczapi_get_template( 'shortcode/join-links.php', true, false );
