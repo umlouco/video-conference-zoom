@@ -3,13 +3,15 @@ nav:
   - Getting Started: index.md
   - Zoom Pro Plans: zoom_plans.md
   - API Keys Integration: integration.md
-  - Shortcode Implementation: shortcode.md
-  - Vanity URL: vanity_url.md
-  - Template Override: template_override.md
+  - Shortcode: shortcode.md
   - Meeting Types: meeting_types.md
   - Join Links: join_links.md
+  - Vanity URL: vanity_url.md
+  - Template Override: template_override.md
   - Filter Hooks: filters_hooks.md
   - Assign Host Page: assign_host.md
   - WooCommerce (Addon): woocommerce.md
+  - WooCommerce Product Vendors (Addon): woocommerce-product-vendors.md
   - WooCommerce Bookings (Addon): woocommerce-booking.md
-theme: readthedocs
+theme:
+  name: material

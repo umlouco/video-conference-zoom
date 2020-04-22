@@ -24,12 +24,16 @@ Your frontend page should look like:
 
 ### List Meeting Shortcode
 
-Use: `[zoom_list_meetings per_page="5" category="test,test2,test3"]`
+Use: `[zoom_list_meetings per_page="5" category="test,test2,test3" order="ASC" type="upcoming"]`
 
 Where,
 
-* `per_page` = Number of posts to show per page
-* `category` = Which categories to show in the list
+* **per_page** = Number of posts to show per page
+* **category** = Which categories to show in the list
+* **order** = ASC or DESC based on post created time.
+* **type** = "upcoming" or "past" - To show only upcoming meeting based on start time (Update to meeting is required for old post type meetings). Do not add to show all meetings.
+
+**NOTE: This was added in version 3.3.4 so, old meetings which were created might need to be updated in order for this shortcode to work properly.**
 
 ### How to get Meeting ID
 

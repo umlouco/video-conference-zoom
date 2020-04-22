@@ -7,9 +7,6 @@
  */
 class Zoom_Video_Conferencing_Admin_Addons {
 
-	public function __construct() {
-	}
-
 	public static function render() {
 		?>
         <div class="video-conferencing-addons wrap">
@@ -36,6 +33,28 @@ class Zoom_Video_Conferencing_Admin_Addons {
                         </p>
                         <a href="https://www.codemanas.com/downloads/zoom-integration-for-woocommerce-booking/" class="button button-primary">From
                             $60</a>
+                    </div>
+                </div>
+            </div>
+            <div class="video-conferencing-addons-flex">
+                <div class="video-conferencing-addons-box">
+                    <div class="content">
+                        <h2 style="line-height: 1.6;">Recurring Meeting Integration and PMI</h2>
+                        <p>Enable your existing meetings or new meetings with recurrings capability directly from your WordPress dashboard. Also,
+                            supports WooCommerce integration addon plugin i.e recurring meeting purchasable meetings (Not supported for WooCommerce
+                            bookings yet).</p>
+                        <p>Option to use PMI for individual meetings created.</p><a href="https://www.codemanas.com/" class="button button-primary">Coming
+                            Soon</a>
+                    </div>
+                </div>
+                <div class="video-conferencing-addons-box">
+                    <div class="content">
+                        <h2 style="line-height: 1.6;">Meeting Registration on Zoom</h2>
+                        <p>Allow your meetings to have registration directly from your WordPress site without needing to send your user traffic to
+                            Zoom native registration form. Also, compatible with <strong>WooCommerce Integration</strong> addon which allows direct
+                            registration after checkout page. </p>
+                        <p>Prerequisites: Host user type must be Licensed and the meeting you are enabling registration for cannot use your PMI</p>
+                        <a href="https://www.codemanas.com/" class="button button-primary">Coming Soon</a>
                     </div>
                 </div>
             </div>

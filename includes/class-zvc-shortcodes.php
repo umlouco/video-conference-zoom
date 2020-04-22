@@ -116,7 +116,7 @@ class Zoom_Video_Conferencing_Shorcodes {
 				'per_page' => 5,
 				'category' => '',
 				'order'    => 'ASC',
-				'type'     => 'upcoming'
+				'type'     => ''
 			),
 			$atts, 'zoom_list_meetings'
 		);
@@ -139,8 +139,9 @@ class Zoom_Video_Conferencing_Shorcodes {
 			$type                     = ( $atts['type'] === "upcoming" ) ? '>=' : '<=';
 			$query_args['meta_query'] = array(
 				array(
-					'key'     => '_meeting_fields',
-					'value'   => sprintf( '"start_date";s:16:"%s";', date( 'Y-m-d H:i' ) ),
+					'key'     => '_meeting_field_start_date',
+					'value'   => date( "Y-m-d H:i" ),
+					'type'    => 'DATE',
 					'compare' => $type
 				),
 			);
@@ -154,7 +155,7 @@ class Zoom_Video_Conferencing_Shorcodes {
 					'terms'    => [
 						$atts['category']
 					],
-					'operator' => 'EXISTS'
+					'operator' => 'IN'
 				]
 			];
 		}
@@ -178,10 +179,14 @@ class Zoom_Video_Conferencing_Shorcodes {
 	/**
 	 * Join via browser shortcode
 	 *
+	 * This shows join via browser using an IFRAME. I personally would not recommend this because this is not so convenient and flawless.
+	 *
 	 * @param $atts
 	 * @param $content
 	 *
 	 * @return mixed|string|void
+	 * @deprecated 3.3.1
+	 *
 	 */
 	public function join_via_browser( $atts, $content = null ) {
 		wp_enqueue_script( 'video-conferencing-with-zoom-api-moment' );

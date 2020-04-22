@@ -112,9 +112,19 @@ if ( isset( $_GET['host_id'] ) ) {
 								}
 								?>
                             </td>
-                            <td><?php
-								echo vczapi_dateConverter( $meeting->start_time, $meeting->timezone, 'F j, Y, g:i a ( e )' );
-								?></td>
+                            <td>
+								<?php
+								if ( $meeting->type === 2 ) {
+									echo vczapi_dateConverter( $meeting->start_time, $meeting->timezone, 'F j, Y, g:i a ( e )' );
+								} else if ( $meeting->type === 3 ) {
+									_e( 'This is a recurring meeting with no fixed time.', 'video-conferencing-with-zoom-api' );
+								} else if ( $meeting->type === 8 ) {
+									_e( 'Recurring Meeting', 'video-conferencing-with-zoom-api' );
+								} else {
+									echo "N/A";
+								}
+								?>
+                            </td>
                             <td style="width: 120px;">
 								<?php if ( ! isset( $meeting_states[ $meeting->id ]['state'] ) ) { ?>
                                     <a href="javascript:void(0);" class="vczapi-meeting-state-change" data-type="shortcode" data-state="end" data-id="<?php echo $meeting->id ?>"><?php _e( 'Disable Join', 'video-conferencing-with-zoom-api' ); ?></a>

@@ -4,7 +4,7 @@ Tags: zoom video conference, video conference, zoom, zoom video conferencing, we
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.4
-Stable tag: 3.3.3
+Stable tag: 3.3.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -150,6 +150,23 @@ However, even though meeting is created and you are not seeing countdown timer t
 9. Shortcode Output
 
 == Changelog ==
+
+= 3.3.7 April 22nd, 2020 =
+* Fixed: Shortcode Join Links
+* Updated: Zoom WEBSDK to version 1.7.6
+
+= 3.3.6 April 20th, 2020 =
+* Fixed: Archive page not loading when no meetings existed.
+
+= 3.3.5 April 20th, 2020 =
+* Fixed: add_query_args when joining via browser occured a blank page or 404 page in some cases.
+* Removed: Host selection when editing the meeting after created
+* Fixed: Minor bug Fixes
+
+= 3.3.4 April 15th, 2020 =
+* Fixed: Category for Shortcode
+* Slovak Translation Updated: Thanks to <a href="https://profiles.wordpress.org/branike/">Branislav Ďorď</a>
+* Added: Meeting Type for [zoom_list_meetings type="upcoming"] shortcode.
 
 = 3.3.3 April 10th, 2020 =
 * Fix: Static resources JS and CSS file version number changes according to update. Reported by <a href="https://wordpress.org/support/users/bencoates/">bencoates</a>
