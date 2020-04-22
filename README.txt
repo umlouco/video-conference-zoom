@@ -151,8 +151,9 @@ However, even though meeting is created and you are not seeing countdown timer t
 
 == Changelog ==
 
-= 3.3.7 April 21th, 2020 =
+= 3.3.7 April 22nd, 2020 =
 * Fixed: Shortcode Join Links
+* Updated: Zoom WEBSDK to version 1.7.6
 
 = 3.3.6 April 20th, 2020 =
 * Fixed: Archive page not loading when no meetings existed.
