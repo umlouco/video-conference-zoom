@@ -4,7 +4,7 @@ Tags: zoom video conference, video conference, zoom, zoom video conferencing, we
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.4
-Stable tag: 3.3.7
+Stable tag: 3.3.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -150,6 +150,9 @@ However, even though meeting is created and you are not seeing countdown timer t
 9. Shortcode Output
 
 == Changelog ==
+
+= 3.3.8 April 23rd, 2020 =
+* Fixed: Normal shortcode meeting start time not showing due to recurring check script.
 
 = 3.3.7 April 22nd, 2020 =
 * Fixed: Shortcode Join Links
