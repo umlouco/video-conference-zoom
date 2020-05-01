@@ -255,6 +255,9 @@ if ( ! function_exists( 'video_conference_zoom_shortcode_table' ) ) {
 											$closest_occurence = $occurrence->start_time;
 											break;
 										}
+
+										_e( 'Meeting has ended !', 'video-conferencing-with-zoom-api' );
+										break;
 									}
 								}
 							}
