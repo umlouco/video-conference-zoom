@@ -15,7 +15,7 @@
     
     
       
-        <title>Zoom Pro Plans - Video Conferencing with Zoom API Plugin Documentation</title>
+        <title>oAuth Connection - Video Conferencing with Zoom API Plugin Documentation</title>
       
     
     
@@ -47,11 +47,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#zoom-pro-plans" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -76,7 +71,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Zoom Pro Plans
+              oAuth Connection
             
           </span>
         </div>
@@ -160,6 +155,18 @@
       
       
 
+
+  <li class="md-nav__item">
+    <a href="../zoom_plans/" title="Zoom Pro Plans" class="md-nav__link">
+      Zoom Pro Plans
+    </a>
+  </li>
+
+    
+      
+      
+      
+
   
 
 
@@ -168,53 +175,10 @@
     <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
     
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Zoom Pro Plans
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,9H17V7H3V9M3,13H17V11H3V13M3,17H17V15H3V17M19,17H21V15H19V17M19,7V9H21V7H19M19,13H21V11H19V13Z" /></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="Zoom Pro Plans" class="md-nav__link md-nav__link--active">
-      Zoom Pro Plans
-    </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
-      </span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#zoom-pro-plans" class="md-nav__link">
-    Zoom Pro Plans
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../oauth/" title="oAuth Connection" class="md-nav__link">
+    <a href="./" title="oAuth Connection" class="md-nav__link md-nav__link--active">
       oAuth Connection
     </a>
+    
   </li>
 
     
@@ -357,36 +321,6 @@
               </div>
             
             
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
-      </span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#zoom-pro-plans" class="md-nav__link">
-    Zoom Pro Plans
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-                  </div>
-                </div>
-              </div>
-            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
@@ -396,11 +330,56 @@
                   
                 
                 
-                  <h1>Zoom Pro Plans</h1>
+                  <h1>oAuth Connection</h1>
                 
-                <h3 id="zoom-pro-plans">Zoom Pro Plans</h3>
-<p>If you are subscribed to Zoom PRO plans you have more benefits for your meetings as well as webinars you host. So, its worth checking out Zoom plans here <a href="https://zoom.us/pricing">https://zoom.us/pricing</a></p>
-<p>Subscribing to PRO plans will only benefit your Zoom Account however, this plugin can be used for <strong>FREE ACCOUNT</strong> users as well.</p>
+                <p><strong>Note: This feature is not yet available on WordPress plugin stable version. It's in development. Please use <code>API Keys Integration</code> section for the moment.</strong></p>
+<p>Here below are the steps to integrate Zoom into WordPress using oAuth. There are no complicated processes. Just the basic steps.</p>
+<p><strong>Why use this method ? Use thiss because it's the easiet way to connect your Zoom account with your WordPress site.</strong></p>
+<p><strong>Check out the <a href="https://www.youtube.com/watch?v=S_uS5Q3nZEE" target="_blank">video documentation</a> if you want to see live demo.</strong></p>
+<p>Follow the instructions below to connect using oAuth:</p>
+<ol>
+<li>
+<p>Go to <strong>Dashboard-&gt;Zoom Meeting-&gt;Settings*<em> and check the </em></strong>Oauth<strong><em> radiobox in </em>*Connection Options</strong></p>
+<hr />
+<p><img alt="OAuth setting" src="../img/oauth-setting.png" title="OAuth Setting" /></p>
+<hr />
+</li>
+<li>
+<p>Then click <strong>Connect Zoom</strong> button. You will be redirected to signin page in <strong>Zoom</strong>.</p>
+</li>
+<li>
+<p>After signing in, you are asked to authorize CodeManas's <strong>Integration for WordPress</strong> app to use your information on your account.</p>
+<p><em>Below are the access you will be providing the app:</em></p>
+<ul>
+<li>
+<p>View and manage sub account's user meetings</p>
+</li>
+<li>
+<p>View all user meetings</p>
+</li>
+<li>
+<p>View and manage all user meetings</p>
+</li>
+<li>
+<p>View and manage sub account's user information</p>
+</li>
+<li>
+<p>View all user information</p>
+</li>
+<li>
+<p>View and manage all users</p>
+</li>
+</ul>
+<hr />
+<p><img alt="OAuth Authorize" src="../img/oauth-authorize.png" title="OAuth Authorize" /> <br /></p>
+<hr />
+</li>
+<li>
+<p>After you are authorized, you will be redirected to the setting page on your Dashboard. Then click <strong>"Save Changes"</strong> button to save the authorization code. </p>
+</li>
+</ol>
+<p><strong><em>Note:</em></strong> It's quite important that you click <strong>"Save Changes"</strong> button after redirection.</p>
+<p>Then you are good to go!!! You can create Zoom meetings from your WordPress Dashboard easily.</p>
                 
               
               
@@ -419,7 +398,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href=".." title="Getting Started" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../zoom_plans/" title="Zoom Pro Plans" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
             </div>
@@ -428,19 +407,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Getting Started
+                Zoom Pro Plans
               </div>
             </div>
           </a>
         
         
-          <a href="../oauth/" title="oAuth Connection" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../integration/" title="API Keys Integration" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                oAuth Connection
+                API Keys Integration
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
