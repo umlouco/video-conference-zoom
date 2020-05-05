@@ -244,7 +244,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 			add_meta_box( 'zoom-meeting-woo-integration-info', __( 'WooCommerce Integration?', 'video-conferencing-with-zoom-api' ), array(
 				$this,
 				'render_woo_sidebox'
-			), $this->post_type, 'side', 'high' );
+			), $this->post_type, 'side', 'normal' );
 		}
 	}
 
