@@ -136,7 +136,7 @@ jQuery(function ($) {
                     });
                 }
             } catch (e) {
-                console.log(e);
+                //leave blank
             }
         },
 

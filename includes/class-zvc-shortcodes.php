@@ -38,17 +38,30 @@ class Zoom_Video_Conferencing_Shorcodes {
 		add_shortcode( 'zoom_join_via_browser', array( $this, 'join_via_browser' ) );
 	}
 
+	/**
+	 * Enqueuing Scripts
+	 */
 	public function enqueue_scripts() {
 		wp_enqueue_style( 'video-conferencing-with-zoom-api' );
 		wp_register_script( 'video-conferncing-with-zoom-browser-js', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/js/join-browser.min.js', array( 'jquery' ), '3.2.4', true );
 		wp_register_style( 'video-conferencing-with-zoom-api-datable', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/datatable/jquery.dataTables.min.css', false, '3.0.0' );
 		wp_register_script( 'video-conferencing-with-zoom-api-datable-js', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/datatable/jquery.dataTables.min.js', [ 'jquery' ], '3.0.0', true );
-		wp_register_script('video-conferencing-with-zoom-api-shortcode-js',ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/js/shortcode.js',['jquery','video-conferencing-with-zoom-api-datable-js'],'1.0.0',true);
+		wp_register_script( 'video-conferencing-with-zoom-api-shortcode-js', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/js/shortcode.js', [
+			'jquery',
+			'video-conferencing-with-zoom-api-datable-js'
+		], '1.0.0', true );
 	}
 
+	/**
+	 * Show Host Meetings list
+	 *
+	 * @param $atts
+	 *
+	 * @return false|mixed|string|void
+	 */
 	public function show_host_meetings( $atts ) {
-	    wp_enqueue_style('video-conferencing-with-zoom-api-datable');
-	    wp_enqueue_script('video-conferencing-with-zoom-api-shortcode-js');
+		wp_enqueue_style( 'video-conferencing-with-zoom-api-datable' );
+		wp_enqueue_script( 'video-conferencing-with-zoom-api-shortcode-js' );
 
 		$atts = shortcode_atts(
 			[ 'host' => '' ],
@@ -56,7 +69,7 @@ class Zoom_Video_Conferencing_Shorcodes {
 		);
 
 		if ( empty( $atts['host'] ) ) {
-			return _( 'Please enter a host id', 'video-conferencing-with-zoom-api' );
+			return __( 'Host ID should be given when defining this shortcode.', 'video-conferencing-with-zoom-api' );
 		}
 
 		$meetings = get_transient( 'vczapi_user_meetings_for_' . $atts['host'] );
@@ -83,8 +96,8 @@ class Zoom_Video_Conferencing_Shorcodes {
                 <th><?php _e( 'Actions', 'video-conferencing-with-zoom-api' ); ?></th>
             </tr>
             </thead>
+            <tbody>
 			<?php
-			echo '<tbody>';
 			foreach ( $meetings as $meeting ) {
 				$zoom_host_url             = 'https://zoom.us' . '/wc/' . $meeting->id . '/start';
 				$zoom_host_url             = apply_filters( 'video_conferencing_zoom_join_url_host', $zoom_host_url );
@@ -110,8 +123,6 @@ class Zoom_Video_Conferencing_Shorcodes {
 				}
 
 				$start_url = ! empty( $meeting->start_url ) ? $meeting->start_url : $meeting->join_url;
-				//  var_dump($start_url);
-
 				echo '<td>' . $meeting->topic . '</td>';
 				echo '<td>' . $meeting_status . '</td>';
 				echo '<td>' . vczapi_dateConverter( $meeting->start_time, $meeting->timezone, 'F j, Y, g:i a' ) . '</td>';
@@ -121,8 +132,8 @@ class Zoom_Video_Conferencing_Shorcodes {
                                     <div class="view">' . $start_meeting_via_browser . '</div></td>';
 				echo '</tr>';
 			}
-			echo '</tbody>';
 			?>
+            </tbody>
         </table>
 		<?php
 		return ob_get_clean();

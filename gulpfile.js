@@ -36,7 +36,7 @@ var adminStyleDestination = './assets/admin/css/';
 
 var jsSrc = './dist/public/js/public.js';
 var jsSrcBrowser = './dist/public/js/join-via-browser.js';
-var shortcodeJSSrc = './dist/public/js/shortcode.js'
+var shortcodeJSSrc = './dist/public/js/shortcode.js';
 var jsDestination = './assets/public/js/';
 var jsSrcVendor = './dist/public/vendor/**/*.js';
 

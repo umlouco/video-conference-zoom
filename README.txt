@@ -4,7 +4,7 @@ Tags: zoom video conference, video conference, zoom, zoom video conferencing, we
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.4
-Stable tag: 3.3.9
+Stable tag: 3.3.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -100,6 +100,8 @@ As an extension of the Zoom browser client, this SDK is intended for implementat
 
 * [zoom_list_meetings per_page="5" category="test,test2,test3" order="DESC"] - Show list of meetings in frontend via category, Edit shortcode template for table view.
 
+* [zoom_list_host_meetings host="your_host_id"] - Show list of meetings in frontend for specific HOST ID.
+
 **QUICK DEMO:**
 
 [youtube https://www.youtube.com/watch?v=5Z2Ii0PnHRQ]
@@ -150,6 +152,9 @@ However, even though meeting is created and you are not seeing countdown timer t
 9. Shortcode Output
 
 == Changelog ==
+
+= 3.3.10 May 6th, 2020 =
+* Added: Shortcode [zoom_list_host_meetings host="your_host_id"] for showing list of meetings based on HOST ID.
 
 = 3.3.9 May 1st, 2020 =
 * Added: Spanish Translation. Thanks to <a href="https://wordpress.org/support/users/clickening/">@clickening</a>
