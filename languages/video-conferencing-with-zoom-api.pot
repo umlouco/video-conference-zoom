@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Video Conferencing with Zoom API\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/video-"
 "conferencing-with-zoom-api\n"
-"POT-Creation-Date: 2020-04-20 15:33+0000\n"
+"POT-Creation-Date: 2020-05-06 07:20+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -39,64 +39,65 @@ msgstr ""
 msgid "Join Meeting via Zoom App"
 msgstr ""
 
-#: includes/zvc-template-functions.php:162
+#: includes/zvc-template-functions.php:160
 msgid "Meeting is not defined. Try updating this meeting"
 msgstr ""
 
-#: includes/zvc-template-functions.php:231
+#: includes/zvc-template-functions.php:218
 #: includes/admin/class-zvc-admin-post-type.php:92
 #: includes/views/tpl-list-meetings.php:60
 msgid "Meeting ID"
 msgstr ""
 
-#: includes/zvc-template-functions.php:235
+#: includes/zvc-template-functions.php:222 includes/class-zvc-shortcodes.php:92
 #: includes/views/tpl-list-meetings.php:62
 msgid "Topic"
 msgstr ""
 
-#: includes/zvc-template-functions.php:239
+#: includes/zvc-template-functions.php:226 includes/class-zvc-shortcodes.php:93
 msgid "Meeting Status"
 msgstr ""
 
-#: includes/zvc-template-functions.php:242
+#: includes/zvc-template-functions.php:229
 msgid "Refresh is needed to change status."
 msgstr ""
 
-#: includes/zvc-template-functions.php:249
+#: includes/zvc-template-functions.php:237
 msgid "Type"
 msgstr ""
 
-#: includes/zvc-template-functions.php:250
+#: includes/zvc-template-functions.php:238
 #: includes/admin/class-zvc-admin-post-type.php:119
 #: includes/views/tpl-list-meetings.php:122
 msgid "Recurring Meeting"
 msgstr ""
 
-#: includes/zvc-template-functions.php:253
+#: includes/zvc-template-functions.php:241
 msgid "Ocurrences"
 msgstr ""
 
-#: includes/zvc-template-functions.php:257
+#: includes/zvc-template-functions.php:245
 msgid "Next Start Time"
 msgstr ""
 
-#: includes/zvc-template-functions.php:277
-#: includes/zvc-template-functions.php:294
+#: includes/zvc-template-functions.php:259
+#: includes/zvc-template-functions.php:268
+#: includes/zvc-template-functions.php:278
 msgid "Meeting has ended !"
 msgstr ""
 
-#: includes/zvc-template-functions.php:286
-#: includes/zvc-template-functions.php:293
-#: includes/zvc-template-functions.php:300
+#: includes/zvc-template-functions.php:277
+#: includes/zvc-template-functions.php:285
+#: includes/zvc-template-functions.php:292 includes/class-zvc-shortcodes.php:94
 #: includes/views/tpl-list-meetings.php:64
 msgid "Start Time"
 msgstr ""
 
-#: includes/zvc-template-functions.php:287
+#: includes/zvc-template-functions.php:286
 msgid "This is a meeting with no Fixed Time."
 msgstr ""
 
-#: includes/zvc-template-functions.php:305
+#: includes/zvc-template-functions.php:297 includes/class-zvc-shortcodes.php:95
 #: includes/views/tpl-edit-meeting.php:80
 #: includes/views/tpl-add-meetings.php:62
 #: templates/fragments/meeting-details.php:42
@@ -105,7 +106,7 @@ msgstr ""
 msgid "Timezone"
 msgstr ""
 
-#: includes/zvc-template-functions.php:310
+#: includes/zvc-template-functions.php:302
 #: includes/views/tpl-edit-meeting.php:92
 #: includes/views/tpl-add-meetings.php:74
 #: templates/fragments/meeting-details.php:37
@@ -168,93 +169,115 @@ msgstr ""
 msgid "Join via Web Browser"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:70 includes/class-zvc-shortcodes.php:210
+#: includes/class-zvc-shortcodes.php:72
+msgid "Host ID should be given when defining this shortcode."
+msgstr ""
+
+#: includes/class-zvc-shortcodes.php:83
+msgid "Could not retrieve meetings, check Host ID"
+msgstr ""
+
+#: includes/class-zvc-shortcodes.php:96
+msgid "Actions"
+msgstr ""
+
+#: includes/class-zvc-shortcodes.php:104
+#: includes/views/tpl-list-meetings.php:87
+msgid "Start via Browser"
+msgstr ""
+
+#: includes/class-zvc-shortcodes.php:131
+#: includes/views/tpl-list-meetings.php:91
+msgid "Start via App"
+msgstr ""
+
+#: includes/class-zvc-shortcodes.php:168 includes/class-zvc-shortcodes.php:308
 msgid "ERROR: "
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:70 includes/class-zvc-shortcodes.php:210
+#: includes/class-zvc-shortcodes.php:168 includes/class-zvc-shortcodes.php:308
 msgid "No meeting id set in the shortcode"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:98
+#: includes/class-zvc-shortcodes.php:196
 #, php-format
 msgid ""
 "Please try again ! Some error occured while trying to fetch meeting with id: "
 " %d"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:216
+#: includes/class-zvc-shortcodes.php:314
 msgid "Restricted access, please login to continue."
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:277
+#: includes/class-zvc-shortcodes.php:375
 msgid ""
 "Note: If you are having trouble joining the meeting below, enter Meeting ID: "
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:277
+#: includes/class-zvc-shortcodes.php:375
 msgid "and join via Zoom App."
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:280 templates/shortcode/join-links.php:18
+#: includes/class-zvc-shortcodes.php:378 templates/shortcode/join-links.php:18
 msgid "Join via Zoom App"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:281
+#: includes/class-zvc-shortcodes.php:379
 msgid "Download App from Store"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:282
+#: includes/class-zvc-shortcodes.php:380
 msgid "Download from Zoom"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:298
+#: includes/class-zvc-shortcodes.php:396
 #: templates/fragments/countdown-timer.php:22
 msgid "days"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:304
+#: includes/class-zvc-shortcodes.php:402
 #: templates/fragments/countdown-timer.php:28
 msgid "hours"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:310
+#: includes/class-zvc-shortcodes.php:408
 #: templates/fragments/countdown-timer.php:34
 msgid "minutes"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:316
+#: includes/class-zvc-shortcodes.php:414
 #: templates/fragments/countdown-timer.php:40
 msgid "seconds"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:325
+#: includes/class-zvc-shortcodes.php:423
 msgid "Your name"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:327
+#: includes/class-zvc-shortcodes.php:425
 msgid "Join Meeting"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:334
+#: includes/class-zvc-shortcodes.php:432
 msgid "JOIN MEETING VIA ALTERNATIVE WAY"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:342
+#: includes/class-zvc-shortcodes.php:440
 msgid ""
 "If the meeting is not started yet you have to click the below button as a "
 "HOST to start the meeting, once started you can join from the window below."
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:343
+#: includes/class-zvc-shortcodes.php:441
 msgid "START MEETING AS HOST"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:352
+#: includes/class-zvc-shortcodes.php:450
 msgid "ALERT: "
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:352
+#: includes/class-zvc-shortcodes.php:450
 msgid ""
 "Audio and Video for Zoom meeting will not work on a non HTTPS site, please "
 "install a valid SSL certificate on your site to allow participants use audio "
@@ -374,11 +397,11 @@ msgstr ""
 msgid "Support"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-settings.php:130
+#: includes/admin/class-zvc-admin-settings.php:133
 msgid "Successfully Updated. Please refresh this page."
 msgstr ""
 
-#: includes/admin/class-zvc-admin-settings.php:132
+#: includes/admin/class-zvc-admin-settings.php:135
 msgid "Dismiss this notice."
 msgstr ""
 
@@ -554,16 +577,8 @@ msgstr ""
 msgid "Click to Copy Shortcode !"
 msgstr ""
 
-#: includes/views/tpl-list-meetings.php:87
-msgid "Start via Browser"
-msgstr ""
-
 #: includes/views/tpl-list-meetings.php:90
 msgid "Trash"
-msgstr ""
-
-#: includes/views/tpl-list-meetings.php:91
-msgid "Start via App"
 msgstr ""
 
 #: includes/views/tpl-list-meetings.php:120
@@ -1112,6 +1127,7 @@ msgid "Basic Usage"
 msgstr ""
 
 #: includes/views/tabs/shortcode.php:19 includes/views/tabs/shortcode.php:34
+#: includes/views/tabs/shortcode.php:52
 msgid "Description"
 msgstr ""
 
@@ -1121,6 +1137,7 @@ msgid ""
 msgstr ""
 
 #: includes/views/tabs/shortcode.php:21 includes/views/tabs/shortcode.php:37
+#: includes/views/tabs/shortcode.php:54
 msgid "Parameters"
 msgstr ""
 
@@ -1133,6 +1150,14 @@ msgid ""
 "Shows a list of meetings with start time, date and link to the meetings page."
 " This is customizable by overriding from your\n"
 "                        theme folder."
+msgstr ""
+
+#: includes/views/tabs/shortcode.php:49
+msgid "List Host ID"
+msgstr ""
+
+#: includes/views/tabs/shortcode.php:53
+msgid "Show a list with meeting table based on HOST ID in frontend."
 msgstr ""
 
 #: includes/views/tabs/api-settings.php:11
