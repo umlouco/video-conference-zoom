@@ -156,6 +156,7 @@ However, even though meeting is created and you are not seeing countdown timer t
 = 3.3.10 May 6th, 2020 =
 * Added: Shortcode [zoom_list_host_meetings host="your_host_id"] for showing list of meetings based on HOST ID.
 * Added: Date Localization based on WordPress Locale.
+* Updated: Zoom WebSDK to version 1.7.7
 
 = 3.3.9 May 1st, 2020 =
 * Added: Spanish Translation. Thanks to <a href="https://wordpress.org/support/users/clickening/">@clickening</a>
