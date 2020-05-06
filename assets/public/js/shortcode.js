@@ -20,6 +20,6 @@
 
     $(function () {
         vczAPIListUserMeetings.init();
-    })
+    });
 
 })(jQuery);

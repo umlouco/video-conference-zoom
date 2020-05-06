@@ -446,7 +446,32 @@ function vczapi_dateConverter( $start_time, $tz, $format = 'F j, Y, g:i a ( T )'
 	$date     = new DateTime( $start_time );
 	$date->setTimezone( $tz );
 
-	return $date->format( $format );
+	$locale      = get_locale();
+	$date_format = get_option( 'zoom_api_date_time_format' );
+	if ( ! empty( $locale ) && ! empty( $date_format ) ) {
+		setlocale( LC_TIME, $locale );
+		$start_timestamp = $date->getTimestamp() + $date->getOffset();
+		switch ( $date_format ) {
+			case 'L LT':
+			case 'l LT':
+				return strftime( '%D, %R', $start_timestamp );
+				break;
+			case 'llll':
+				return strftime( '%a, %b %e, %G %R', $start_timestamp );
+				break;
+			case 'lll':
+				return strftime( '%b %e, %G %R', $start_timestamp );
+				break;
+			case 'LLLL':
+				return strftime( '%A %b %e, %G %R', $start_timestamp );
+				break;
+			default:
+				return $date->format( $format );
+				break;
+		}
+	} else {
+		return $date->format( $format );
+	}
 }
 
 /**

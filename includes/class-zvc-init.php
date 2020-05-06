@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( "Not Allowed Here !" );
 }
 
-class Video_Conferencing_With_Zoom {
+final class Video_Conferencing_With_Zoom {
 
 	private static $_instance = null;
 
@@ -69,6 +69,10 @@ class Video_Conferencing_With_Zoom {
 		wp_register_style( 'video-conferencing-with-zoom-api', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/css/main.min.css', false, ZVC_PLUGIN_VERSION );
 		//Enqueue MomentJS
 		wp_register_script( 'video-conferencing-with-zoom-api-moment', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/moment/moment.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
+		wp_register_script( 'video-conferencing-with-zoom-api-moment-locales', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/moment/moment-with-locales.min.js', array(
+			'jquery',
+			'video-conferencing-with-zoom-api-moment'
+		), ZVC_PLUGIN_VERSION, true );
 		//Enqueue MomentJS Timezone
 		wp_register_script( 'video-conferencing-with-zoom-api-moment-timezone', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/moment-timezone/moment-timezone-with-data-10-year-range.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
 		wp_register_script( 'video-conferencing-with-zoom-api', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/js/scripts' . $minified, array(
@@ -79,6 +83,7 @@ class Video_Conferencing_With_Zoom {
 		if ( is_singular( 'zoom-meetings' ) ) {
 			wp_enqueue_style( 'video-conferencing-with-zoom-api' );
 			wp_enqueue_script( 'video-conferencing-with-zoom-api-moment' );
+			wp_enqueue_script( 'video-conferencing-with-zoom-api-moment-locales' );
 			wp_enqueue_script( 'video-conferencing-with-zoom-api-moment-timezone' );
 			wp_enqueue_script( 'video-conferencing-with-zoom-api' );
 			// Localize the script with new data
@@ -90,6 +95,7 @@ class Video_Conferencing_With_Zoom {
 				'meeting_started'  => ! empty( $zoom_started ) ? $zoom_started : __( 'Meeting Has Started ! Click below join button to join meeting now !', 'video-conferencing-with-zoom-api' ),
 				'meeting_starting' => ! empty( $zoom_going_to_start ) ? $zoom_going_to_start : __( 'Click join button below to join the meeting now !', 'video-conferencing-with-zoom-api' ),
 				'meeting_ended'    => ! empty( $zoom_ended ) ? $zoom_ended : __( 'This meeting has been ended by the host.', 'video-conferencing-with-zoom-api' ),
+				'date_format'      => get_option( 'zoom_api_date_time_format' )
 			) );
 			wp_localize_script( 'video-conferencing-with-zoom-api', 'zvc_strings', $translation_array );
 		}

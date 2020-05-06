@@ -151,6 +151,7 @@ class Zoom_Video_Conferencing_Shorcodes {
 	 */
 	function render_main( $atts, $content = null ) {
 		wp_enqueue_script( 'video-conferencing-with-zoom-api-moment' );
+		wp_enqueue_script( 'video-conferencing-with-zoom-api-moment-locales' );
 		wp_enqueue_script( 'video-conferencing-with-zoom-api-moment-timezone' );
 		wp_enqueue_script( 'video-conferencing-with-zoom-api' );
 

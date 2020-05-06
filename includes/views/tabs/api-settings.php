@@ -56,16 +56,45 @@ if ( ! defined( 'ABSPATH' ) ) {
                     <th><label><?php _e( 'Meeting Started Text', 'video-conferencing-with-zoom-api' ); ?></label></th>
                     <td>
                         <input type="text" style="width: 400px;" name="zoom_api_meeting_started_text" id="zoom_api_meeting_started_text" value="<?php echo ! empty( $zoom_started ) ? esc_html( $zoom_started ) : ''; ?>" placeholder="Leave empty for default text">
+                    </td>
                 </tr>
                 <tr>
                     <th><label><?php _e( 'Meeting going to start Text', 'video-conferencing-with-zoom-api' ); ?></label></th>
                     <td>
                         <input type="text" style="width: 400px;" name="zoom_api_meeting_goingtostart_text" id="zoom_api_meeting_goingtostart_text" value="<?php echo ! empty( $zoom_going_to_start ) ? esc_html( $zoom_going_to_start ) : ''; ?>" placeholder="Leave empty for default text">
+                    </td>
                 </tr>
                 <tr>
                     <th><label><?php _e( 'Meeting Ended Text', 'video-conferencing-with-zoom-api' ); ?></label></th>
                     <td>
                         <input type="text" style="width: 400px;" name="zoom_api_meeting_ended_text" id="zoom_api_meeting_ended_text" value="<?php echo ! empty( $zoom_ended ) ? esc_html( $zoom_ended ) : ''; ?>" placeholder="Leave empty for default text">
+                    </td>
+                </tr>
+                <tr>
+                    <th><label><?php _e( 'DateTime Format', 'video-conferencing-with-zoom-api' ); ?></label></th>
+                    <td>
+                        <div>
+                            <input type="radio" value="LLLL" name="zoom_api_date_time_format" <?php echo ! empty( $locale_format ) ? checked( $locale_format, 'LLLL', false ) : 'checked'; ?> class="zoom_api_date_time_format">
+                            Wednesday, May 6, 2020 05:00 PM
+                        </div>
+                        <div style="padding-top:10px;">
+                            <input type="radio" value="lll" <?php echo ! empty( $locale_format ) ? checked( $locale_format, 'lll', false ) : ''; ?> name="zoom_api_date_time_format" class="zoom_api_date_time_format">
+                            May 6, 2020 05:00 AM
+                        </div>
+                        <div style="padding-top:10px;">
+                            <input type="radio" value="llll" <?php echo ! empty( $locale_format ) ? checked( $locale_format, 'llll', false ) : ''; ?> name="zoom_api_date_time_format" class="zoom_api_date_time_format">
+                            Wed, May 6, 2020 05:00 AM
+                        </div>
+                        <div style="padding-top:10px;">
+                            <input type="radio" value="L LT" <?php echo ! empty( $locale_format ) ? checked( $locale_format, 'L LT', false ) : ''; ?> name="zoom_api_date_time_format" class="zoom_api_date_time_format">
+                            05/06/2020 03:00 PM
+                        </div>
+                        <div style="padding-top:10px;">
+                            <input type="radio" value="l LT" <?php echo ! empty( $locale_format ) ? checked( $locale_format, 'l LT', false ) : ''; ?> name="zoom_api_date_time_format" class="zoom_api_date_time_format">
+                            5/6/2020 03:00 PM
+                        </div>
+                        <p class="description"><?php _e( 'Change date time formats according to your choice. Please edit this properly. Failure to correctly put value will result in failure to show date in frontend.', 'video-conferencing-with-zoom-api' ); ?></p>
+                    </td>
                 </tr>
                 </tbody>
             </table>
