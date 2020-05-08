@@ -2,6 +2,7 @@ site_name: Video Conferencing with Zoom API Plugin Documentation
 nav:
   - Getting Started: index.md
   - Zoom Pro Plans: zoom_plans.md
+  - OAuth Connection: oauth.md
   - API Keys Integration: integration.md
   - Shortcode: shortcode.md
   - Meeting Types: meeting_types.md

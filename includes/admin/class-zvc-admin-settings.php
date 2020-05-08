@@ -116,6 +116,7 @@ class Zoom_Video_Conferencing_Admin_Views {
 					$started_mtg      = sanitize_text_field( filter_input( INPUT_POST, 'zoom_api_meeting_started_text' ) );
 					$going_to_start   = sanitize_text_field( filter_input( INPUT_POST, 'zoom_api_meeting_goingtostart_text' ) );
 					$ended_mtg        = sanitize_text_field( filter_input( INPUT_POST, 'zoom_api_meeting_ended_text' ) );
+					$locale_format    = sanitize_text_field( filter_input( INPUT_POST, 'zoom_api_date_time_format' ) );
 
 					update_option( 'zoom_api_key', $zoom_api_key );
 					update_option( 'zoom_api_secret', $zoom_api_secret );
@@ -125,6 +126,7 @@ class Zoom_Video_Conferencing_Admin_Views {
 					update_option( 'zoom_started_meeting_text', $started_mtg );
 					update_option( 'zoom_going_tostart_meeting_text', $going_to_start );
 					update_option( 'zoom_ended_meeting_text', $ended_mtg );
+					update_option( 'zoom_api_date_time_format', $locale_format );
 
 					//After user has been created delete this transient in order to fetch latest Data.
 					video_conferencing_zoom_api_delete_user_cache();
@@ -147,6 +149,7 @@ class Zoom_Video_Conferencing_Admin_Views {
 				$zoom_started        = get_option( 'zoom_started_meeting_text' );
 				$zoom_going_to_start = get_option( 'zoom_going_tostart_meeting_text' );
 				$zoom_ended          = get_option( 'zoom_ended_meeting_text' );
+				$locale_format       = get_option( 'zoom_api_date_time_format' );
 
 				//Get Template
 				require_once ZVC_PLUGIN_VIEWS_PATH . '/tabs/api-settings.php';

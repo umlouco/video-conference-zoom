@@ -174,6 +174,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../oauth/" title="OAuth Connection" class="md-nav__link">
+      OAuth Connection
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
     <a href="../integration/" title="API Keys Integration" class="md-nav__link">
       API Keys Integration
     </a>
@@ -233,6 +245,13 @@
         <li class="md-nav__item">
   <a href="#list-meeting-shortcode" class="md-nav__link">
     List Meeting Shortcode
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#list-meetings-based-on-host-id" class="md-nav__link">
+    List Meetings based on HOST ID
   </a>
   
 </li>
@@ -411,6 +430,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#list-meetings-based-on-host-id" class="md-nav__link">
+    List Meetings based on HOST ID
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#how-to-get-meeting-id" class="md-nav__link">
     How to get Meeting ID
   </a>
@@ -449,6 +475,7 @@
 <ol>
 <li><code>[zoom_api_link meeting_id="" link_only="no"]</code></li>
 <li><code>[zoom_list_meetings per_page="5" category="test,test2,test3"]</code> </li>
+<li><code>[zoom_list_host_meetings host="YOUR_HOST_ID"]</code></li>
 </ol>
 <h3 id="basic-table-shortcode">Basic Table Shortcode</h3>
 <p>Use: <code>[zoom_api_link meeting_id="" link_only="no"]</code></p>
@@ -469,6 +496,13 @@
 <li><strong>type</strong> = "upcoming" or "past" - To show only upcoming meeting based on start time (Update to meeting is required for old post type meetings). Do not add to show all meetings.</li>
 </ul>
 <p><strong>NOTE: This was added in version 3.3.4 so, old meetings which were created might need to be updated in order for this shortcode to work properly.</strong></p>
+<h3 id="list-meetings-based-on-host-id">List Meetings based on HOST ID</h3>
+<p>Use: <code>[zoom_list_host_meetings host="YOUR_HOST_ID"]</code></p>
+<p>Where,</p>
+<ul>
+<li><code>host</code> = Your HOST ID where you can get from <strong>wp-admin &gt; Zoom Meeting &gt; Users = User ID</strong></li>
+</ul>
+<p><strong>NOTE: Added from version 3.3.10. This will list all past and upcoming 300 meetings related to the defined HOST ID.</strong></p>
 <h3 id="how-to-get-meeting-id">How to get Meeting ID</h3>
 <ol>
 <li>Goto your wp-admin</li>

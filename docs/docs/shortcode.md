@@ -8,6 +8,7 @@ With new version you can grab your shortcode with just a click.
 
 1. `[zoom_api_link meeting_id="" link_only="no"]`
 2. `[zoom_list_meetings per_page="5" category="test,test2,test3"]` 
+3. `[zoom_list_host_meetings host="YOUR_HOST_ID"]`
 
 ### Basic Table Shortcode
 
@@ -34,6 +35,16 @@ Where,
 * **type** = "upcoming" or "past" - To show only upcoming meeting based on start time (Update to meeting is required for old post type meetings). Do not add to show all meetings.
 
 **NOTE: This was added in version 3.3.4 so, old meetings which were created might need to be updated in order for this shortcode to work properly.**
+
+### List Meetings based on HOST ID
+
+Use: `[zoom_list_host_meetings host="YOUR_HOST_ID"]`
+
+Where,
+
+* `host` = Your HOST ID where you can get from **wp-admin > Zoom Meeting > Users = User ID**
+
+**NOTE: Added from version 3.3.10. This will list all past and upcoming 300 meetings related to the defined HOST ID.**
 
 ### How to get Meeting ID
 

@@ -39,28 +39,24 @@ if ( ! defined( 'ABSPATH' ) ) {
                         <li><strong>per_page</strong> : Posts per page.</li>
                         <li><strong>category</strong> : Show linked categories.</li>
                         <li><strong>order</strong> : ASC or DESC based on post created time.</li>
-                        <li><strong>type</strong> : "upcoming" or "past" - To show only upcoming meeting based on start time (Update to meeting is required for old post type meetings).</li>
+                        <li><strong>type</strong> : "upcoming" or "past" - To show only upcoming meeting based on start time (Update to meeting is
+                            required for old post type meetings).
+                        </li>
                     </ul>
                 </div>
             </div>
-            <!--<div class="zoom-api-basic-usage" style="margin-top: 20px;border-top:1px solid #ccc;">
-                <h3><?php /*_e( 'Embed Zoom Meeting into Browser', 'video-conferencing-with-zoom-api' ); */ ?>:</h3>
-                <code>[zoom_join_via_browser meeting_id="1234556789" title="Meeting Title" id="div-class-id" login_required="no" help="yes" height="500px"]</code>
+            <div class="zoom-api-basic-usage" style="margin-top: 20px;border-top:1px solid #ccc;">
+                <h3><?php _e( 'List Host ID', 'video-conferencing-with-zoom-api' ); ?>:</h3>
+                <code>[zoom_list_host_meetings host="YOUR_HOST_ID"]</code>
                 <div class="zoom-api-basic-usage-description">
-                    <label><?php /*_e( 'Description', 'video-conferencing-with-zoom-api' ); */ ?>:</label>
-                    <p><?php /*_e( 'Embed a Zoom Meeting into your page or post. This allows you to directly join meeting or start it from the page where you added
-                        this shortcode. Remember this is an IFRAME window !', 'video-conferencing-with-zoom-api' ); */ ?></p>
-                    <label><?php /*_e( 'Parameters', 'video-conferencing-with-zoom-api' ); */ ?>:</label>
+                    <label><?php _e( 'Description', 'video-conferencing-with-zoom-api' ); ?>:</label>
+                    <p><?php _e( 'Show a list with meeting table based on HOST ID in frontend.', 'video-conferencing-with-zoom-api' ); ?></p>
+                    <label><?php _e( 'Parameters', 'video-conferencing-with-zoom-api' ); ?>:</label>
                     <ul>
-                        <li><strong>meeting_id</strong> : Meeting ID for the meeting to be joined or started (required).</li>
-                        <li><strong>title</strong> : Title of the meeting to be shown in the head. (optional)</li>
-                        <li><strong>id</strong> : For styling (optional).</li>
-                        <li><strong>login_required</strong> : "yes" or "no" - User required to be logged in to join or view (optional).</li>
-                        <li><strong>help</strong> : "yes" or "no" - Additional help text in the header. (optional).</li>
-                        <li><strong>height</strong> : in "px" (optional).</li>
+                        <li><strong>host</strong> : Your HOST ID.</li>
                     </ul>
                 </div>
-            </div>-->
+            </div>
         </section>
     </div>
 </div>
