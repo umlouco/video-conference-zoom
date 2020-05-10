@@ -6,6 +6,8 @@ Here below are the steps to integrate Zoom into WordPress using OAuth. There are
 
 **Check out the <a href="https://www.youtube.com/watch?v=S_uS5Q3nZEE" target="_blank">video documentation</a> if you want to see live demo.**
 
+### How to Connect ?
+
 Follow the instructions below to connect using OAuth:
 
 1. Go to **Dashboard->Zoom Meeting->Settings** and check the ***Oauth*** radiobox in **Connection Options**
@@ -21,16 +23,9 @@ Follow the instructions below to connect using OAuth:
 	
 	*Below are the access you will be providing the app:*
 
-	* View and manage sub account's user meetings
-    
     * View all user meetings
-    
     * View and manage all user meetings
-    
-    * View and manage sub account's user information
-    
     * View all user information
-    
     * View and manage all users
 
 	---
@@ -44,4 +39,11 @@ Follow the instructions below to connect using OAuth:
 ***Note:*** It's quite important that you click **"Save Changes"** button after redirection.
 
 Then you are good to go!!! You can create Zoom meetings from your WordPress Dashboard easily.
+
+### Uninstalling App
+
+1. Login to your Zoom Account and navigate to the Zoom App Marketplace.
+2. Click **Manage > Installed App** or serach for the Integration for WordPress.
+3. Click the **Integration for WordPress** app.
+4. CLick on **Uninstall**
 
