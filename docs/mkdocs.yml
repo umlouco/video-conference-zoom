@@ -14,5 +14,6 @@ nav:
   - WooCommerce (Addon): woocommerce.md
   - WooCommerce Product Vendors (Addon): woocommerce-product-vendors.md
   - WooCommerce Bookings (Addon): woocommerce-booking.md
+  - WCFM (Addon): wcfm.md
 theme:
   name: material
