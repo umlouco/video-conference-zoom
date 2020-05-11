@@ -580,3 +580,28 @@ function vczapi_get_browser_join_shortcode( $meeting_id, $password = false, $lin
 		return $result;
 	}
 }
+
+/**
+ * Get Join link with Password Embedded
+ *
+ * @param $join_url
+ * @param $encrpyted_pwd
+ *
+ * @return string
+ */
+function vczapi_get_pwd_embedded_join_link( $join_url, $encrpyted_pwd ) {
+	if ( ! empty( $encrpyted_pwd ) ) {
+		$explode_pwd              = array_map( 'trim', explode( '?pwd', $join_url ) );
+		$embed_password_join_link = get_option( 'zoom_api_embed_pwd_join_link' );
+		$password_exists          = count( $explode_pwd ) > 1 ? true : false;
+		if ( $password_exists ) {
+			if ( ! empty( $embed_password_join_link ) ) {
+				$join_url = $explode_pwd[0];
+			}
+		} else {
+			$join_url = add_query_arg( array( 'pwd' => $encrpyted_pwd ), $join_url );
+		}
+	}
+
+	return $join_url;
+}

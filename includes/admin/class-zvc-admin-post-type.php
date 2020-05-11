@@ -292,10 +292,12 @@ class Zoom_Video_Conferencing_Admin_PostType {
 				} else {
 					$zoom_host_url = 'https://zoom.us' . '/wc/' . $meeting_details->id . '/start';
 					$zoom_host_url = apply_filters( 'video_conferencing_zoom_join_url_host', $zoom_host_url );
+
+					$join_url = ! empty( $meeting_details->encrypted_password ) ? vczapi_get_pwd_embedded_join_link( $meeting_details->join_url, $meeting_details->encrypted_password ) : $meeting_details->join_url;
 					?>
                     <div class="zoom-metabox-content">
                         <p><a target="_blank" href="<?php echo esc_url( $meeting_details->start_url ); ?>" title="Start URL">Start Meeting</a></p>
-                        <p><a target="_blank" href="<?php echo esc_url( $meeting_details->join_url ); ?>" title="Start URL">Join Meeting</a></p>
+                        <p><a target="_blank" href="<?php echo esc_url( $join_url ); ?>" title="Start URL">Join Meeting</a></p>
                         <p><a target="_blank" href="<?php echo esc_url( $zoom_host_url ); ?>" title="Start URL">Start via Browser</a></p>
                         <p><strong>Meeting ID:</strong> <?php echo $meeting_details->id; ?></p>
 						<?php do_action( 'vczapi_meeting_details_admin', $meeting_details ); ?>

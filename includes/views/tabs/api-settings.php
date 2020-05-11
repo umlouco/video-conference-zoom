@@ -37,17 +37,24 @@ if ( ! defined( 'ABSPATH' ) ) {
                                 URLs', 'video-conferencing-with-zoom-api' ); ?></a>
                     </td>
                 </tr>
+                <tr>
+                    <th><label><?php _e( 'Disable Embed password in Link ?', 'video-conferencing-with-zoom-api' ); ?></label></th>
+                    <td>
+                        <input type="checkbox" name="embed_password_join_link" <?php ! empty( $embed_password_join_link ) ? checked( $embed_password_join_link, 'on' ) : false; ?>>
+                        <span class="description"><?php _e( 'Meeting password will not be included in the invite link to allow participants to join with just one click without having to enter the password.', 'video-conferencing-with-zoom-api' ); ?></span>
+                    </td>
+                </tr>
                 <tr class="enabled-join-links-after-mtg-end">
                     <th><label><?php _e( 'Show Past Join Link ?', 'video-conferencing-with-zoom-api' ); ?></label></th>
                     <td>
-                        <input type="checkbox" name="meeting_end_join_link" <?php checked( $past_join_links, 'on' ); ?>>
+                        <input type="checkbox" name="meeting_end_join_link" <?php ! empty( $past_join_links ) ? checked( $past_join_links, 'on' ) : false; ?>>
                         <span class="description"><?php _e( 'This will show join meeting links on frontend even after meeting time is already past.', 'video-conferencing-with-zoom-api' ); ?></span>
                     </td>
                 </tr>
                 <tr class="show-zoom-authors">
                     <th><label><?php _e( 'Show Zoom Author ?', 'video-conferencing-with-zoom-api' ); ?></label></th>
                     <td>
-                        <input type="checkbox" name="meeting_show_zoom_author_original" <?php checked( $zoom_author_show, 'on' ); ?>>
+                        <input type="checkbox" name="meeting_show_zoom_author_original" <?php ! empty( $zoom_author_show ) ? checked( $zoom_author_show, 'on' ) : false; ?>>
                         <span class="description"><?php _e( 'Checking this show Zoom original Author in single meetings page which are created from', 'video-conferencing-with-zoom-api' ); ?>
                                 <a href="<?php echo esc_url( admin_url( '/edit.php?post_type=zoom-meetings' ) ); ?>">Zoom Meetings</a></span>
                     </td>
@@ -111,7 +118,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                 <a target="_blank" href="https://zoom.codemanas.com"><?php _e( 'Documentation', 'video-conferencing-with-zoom-api' ); ?></a>
             </li>
             <li>
-                <a target="_blank" href="<?php echo ZVC_PLUGIN_AUTHOR; ?>/say-hello/"><?php _e( 'Contact for additional Support', 'video-conferencing-with-zoom-api' ); ?></a>
+                <a target="_blank" href="https://www.codemanas.com"><?php _e( 'Contact for additional Support', 'video-conferencing-with-zoom-api' ); ?></a>
             </li>
             <li><a target="_blank" href="https://deepenbajracharya.com.np"><?php _e( 'Developer', 'video-conferencing-with-zoom-api' ); ?></a>
             </li>

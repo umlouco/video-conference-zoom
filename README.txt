@@ -155,6 +155,7 @@ However, even though meeting is created and you are not seeing countdown timer t
 
 = 3.3.11 May 11th, 2020 =
 * Fixed: Shortcode category listing
+* Updated: Meeting Password Links fixed according to new Zoom Meeting password change policy.
 
 = 3.3.10 May 6th, 2020 =
 * Added: Shortcode [zoom_list_host_meetings host="your_host_id"] for showing list of meetings based on HOST ID.

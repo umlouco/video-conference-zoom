@@ -108,15 +108,16 @@ class Zoom_Video_Conferencing_Admin_Views {
 				if ( isset( $_POST['save_zoom_settings'] ) ) {
 					//Nonce
 					check_admin_referer( '_zoom_settings_update_nonce_action', '_zoom_settings_nonce' );
-					$zoom_api_key     = sanitize_text_field( filter_input( INPUT_POST, 'zoom_api_key' ) );
-					$zoom_api_secret  = sanitize_text_field( filter_input( INPUT_POST, 'zoom_api_secret' ) );
-					$vanity_url       = esc_url_raw( filter_input( INPUT_POST, 'vanity_url' ) );
-					$join_links       = filter_input( INPUT_POST, 'meeting_end_join_link' );
-					$zoom_author_show = filter_input( INPUT_POST, 'meeting_show_zoom_author_original' );
-					$started_mtg      = sanitize_text_field( filter_input( INPUT_POST, 'zoom_api_meeting_started_text' ) );
-					$going_to_start   = sanitize_text_field( filter_input( INPUT_POST, 'zoom_api_meeting_goingtostart_text' ) );
-					$ended_mtg        = sanitize_text_field( filter_input( INPUT_POST, 'zoom_api_meeting_ended_text' ) );
-					$locale_format    = sanitize_text_field( filter_input( INPUT_POST, 'zoom_api_date_time_format' ) );
+					$zoom_api_key           = sanitize_text_field( filter_input( INPUT_POST, 'zoom_api_key' ) );
+					$zoom_api_secret        = sanitize_text_field( filter_input( INPUT_POST, 'zoom_api_secret' ) );
+					$vanity_url             = esc_url_raw( filter_input( INPUT_POST, 'vanity_url' ) );
+					$join_links             = filter_input( INPUT_POST, 'meeting_end_join_link' );
+					$zoom_author_show       = filter_input( INPUT_POST, 'meeting_show_zoom_author_original' );
+					$started_mtg            = sanitize_text_field( filter_input( INPUT_POST, 'zoom_api_meeting_started_text' ) );
+					$going_to_start         = sanitize_text_field( filter_input( INPUT_POST, 'zoom_api_meeting_goingtostart_text' ) );
+					$ended_mtg              = sanitize_text_field( filter_input( INPUT_POST, 'zoom_api_meeting_ended_text' ) );
+					$locale_format          = sanitize_text_field( filter_input( INPUT_POST, 'zoom_api_date_time_format' ) );
+					$embed_pwd_in_join_link = sanitize_text_field( filter_input( INPUT_POST, 'embed_password_join_link' ) );
 
 					update_option( 'zoom_api_key', $zoom_api_key );
 					update_option( 'zoom_api_secret', $zoom_api_secret );
@@ -127,6 +128,7 @@ class Zoom_Video_Conferencing_Admin_Views {
 					update_option( 'zoom_going_tostart_meeting_text', $going_to_start );
 					update_option( 'zoom_ended_meeting_text', $ended_mtg );
 					update_option( 'zoom_api_date_time_format', $locale_format );
+					update_option( 'zoom_api_embed_pwd_join_link', $embed_pwd_in_join_link );
 
 					//After user has been created delete this transient in order to fetch latest Data.
 					video_conferencing_zoom_api_delete_user_cache();
@@ -141,15 +143,17 @@ class Zoom_Video_Conferencing_Admin_Views {
 				}
 
 				//Defining Varaibles
-				$zoom_api_key        = get_option( 'zoom_api_key' );
-				$zoom_api_secret     = get_option( 'zoom_api_secret' );
-				$zoom_vanity_url     = get_option( 'zoom_vanity_url' );
-				$past_join_links     = get_option( 'zoom_past_join_links' );
-				$zoom_author_show    = get_option( 'zoom_show_author' );
-				$zoom_started        = get_option( 'zoom_started_meeting_text' );
-				$zoom_going_to_start = get_option( 'zoom_going_tostart_meeting_text' );
-				$zoom_ended          = get_option( 'zoom_ended_meeting_text' );
-				$locale_format       = get_option( 'zoom_api_date_time_format' );
+				$zoom_api_key             = get_option( 'zoom_api_key' );
+				$zoom_api_secret          = get_option( 'zoom_api_secret' );
+				$zoom_vanity_url          = get_option( 'zoom_vanity_url' );
+				$past_join_links          = get_option( 'zoom_past_join_links' );
+				$zoom_author_show         = get_option( 'zoom_show_author' );
+				$zoom_started             = get_option( 'zoom_started_meeting_text' );
+				$zoom_going_to_start      = get_option( 'zoom_going_tostart_meeting_text' );
+				$zoom_ended               = get_option( 'zoom_ended_meeting_text' );
+				$locale_format            = get_option( 'zoom_api_date_time_format' );
+				$embed_password_join_link = get_option( 'zoom_api_embed_pwd_join_link' );
+
 
 				//Get Template
 				require_once ZVC_PLUGIN_VIEWS_PATH . '/tabs/api-settings.php';

@@ -20,19 +20,12 @@ if ( video_conference_zoom_check_login() ) {
 		echo "<h3>" . __( 'This meeting has been ended by host.', 'video-conferencing-with-zoom-api' ) . "</h3>";
 		die;
 	}
+
+	/**
+	 * Trigger before the content
+	 */
+	do_action( 'vczoom_jbh_before_content', $zoom );
 	?>
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="format-detection" content="telephone=no">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <title><?php echo ! empty( $zoom['api']->topic ) ? $zoom['api']->topic : 'Join Meeting'; ?></title>
-        <link rel='stylesheet' type="text/css" href="<?php echo ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/bootstrap.css?ver=' . ZVC_PLUGIN_VERSION; ?>" media='all'>
-        <link rel='stylesheet' type="text/css" href="<?php echo ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react-select.css?ver=' . ZVC_PLUGIN_VERSION; ?>" media='all'>
-        <link rel='stylesheet' type="text/css" href="<?php echo ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/css/main.min.css?ver=' . ZVC_PLUGIN_VERSION; ?>" media='all'>
-    </head>
-    <body class="join-via-browser-body">
     <div id="dpen-zoom-browser-meeting" class="dpen-zoom-browser-meeting-wrapper">
         <div id="dpen-zoom-browser-meeting--container">
             <div class="dpen-zoom-browser-meeting--info">
@@ -55,11 +48,10 @@ if ( video_conference_zoom_check_login() ) {
         </div>
     </div>
 	<?php
-	wp_footer();
-	?>
-    </body>
-    </html>
-	<?php
+	/**
+	 * Trigger before the content
+	 */
+	do_action( 'vczoom_jbh_after_content' );
 } else {
 	echo "<h3>" . __( 'You do not have enough priviledge to access this page. Please login to continue or contact administrator.', 'video-conferencing-with-zoom-api' ) . "</h3>";
 	die;
