@@ -247,13 +247,12 @@ class Zoom_Video_Conferencing_Shorcodes {
 		}
 
 		if ( ! empty( $atts['category'] ) ) {
+			$category                = array_map( 'trim', explode( ',', $atts['category'] ) );
 			$query_args['tax_query'] = [
 				[
 					'taxonomy' => 'zoom-meeting',
 					'field'    => 'slug',
-					'terms'    => [
-						$atts['category']
-					],
+					'terms'    => $category,
 					'operator' => 'IN'
 				]
 			];
@@ -270,6 +269,8 @@ class Zoom_Video_Conferencing_Shorcodes {
 			ob_start();
 			vczapi_get_template( 'shortcode-listing.php', true );
 			$content .= ob_get_clean();
+		else:
+			_e( "No meetings found.", "video-conferencing-with-zoom-api" );
 		endif;
 
 		return $content;
