@@ -3,6 +3,7 @@ nav:
   - Getting Started: index.md
   - Zoom Pro Plans: zoom_plans.md
   - OAuth Connection: oauth.md
+  - Uninstalling App: uninstalling.md
   - API Keys Integration: integration.md
   - Shortcode: shortcode.md
   - Meeting Types: meeting_types.md
@@ -15,5 +16,6 @@ nav:
   - WooCommerce Product Vendors (Addon): woocommerce-product-vendors.md
   - WooCommerce Bookings (Addon): woocommerce-booking.md
   - WCFM (Addon): wcfm.md
+  - Support: support.md
 theme:
   name: material
