@@ -103,7 +103,7 @@ function video_conference_zoom_meeting_end_author() {
 function video_conference_zoom_meeting_join() {
 	global $zoom;
 
-	if ( empty( $zoom['api']->state ) ) {
+	if ( empty( $zoom['api']->state ) && video_conference_zoom_check_login() ) {
 		$data = array(
 			'ajaxurl'    => admin_url( 'admin-ajax.php' ),
 			'start_date' => $zoom['start_date'],
@@ -112,6 +112,8 @@ function video_conference_zoom_meeting_join() {
 			'page'       => 'single-meeting'
 		);
 		wp_localize_script( 'video-conferencing-with-zoom-api', 'mtg_data', $data );
+	} else {
+		echo "<p>" . __( 'Please login to join this meeting.', 'video-conferencing-with-zoom-api' ) . "</p>";
 	}
 }
 
@@ -214,6 +216,7 @@ if ( ! function_exists( 'video_conference_zoom_shortcode_table' ) ) {
 	 * @author Deepen
 	 */
 	function video_conference_zoom_shortcode_table( $zoom_meetings ) {
+		$hide_join_link_nloggedusers = get_option( 'zoom_api_hide_shortcode_join_links' );
 		?>
         <table class="vczapi-shortcode-meeting-table">
             <tr class="vczapi-shortcode-meeting-table--row1">
@@ -307,13 +310,15 @@ if ( ! function_exists( 'video_conference_zoom_shortcode_table' ) ) {
 				<?php
 			}
 
-			/**
-			 * Hook: vczoom_meeting_shortcode_join_links
-			 *
-			 * @video_conference_zoom_shortcode_join_link - 10
-			 *
-			 */
-			do_action( 'vczoom_meeting_shortcode_join_links', $zoom_meetings );
+			if ( ! empty( $hide_join_link_nloggedusers ) && is_user_logged_in() ) {
+				/**
+				 * Hook: vczoom_meeting_shortcode_join_links
+				 *
+				 * @video_conference_zoom_shortcode_join_link - 10
+				 *
+				 */
+				do_action( 'vczoom_meeting_shortcode_join_links', $zoom_meetings );
+			}
 			?>
         </table>
 		<?php

@@ -27,7 +27,8 @@ $meeting_details = get_post_meta( get_the_id(), '_meeting_fields', true );
                 <span><?php echo date( 'F j, Y @ g:i a', strtotime( $meeting_details['start_date'] ) ); ?></span>
             </div>
             <div class="timezone meta">
-                <strong><?php _e( 'Timezone', 'video-conferencing-with-zoom-api' ); ?>:</strong> <span><?php echo $meeting_details['timezone']; ?></span>
+                <strong><?php _e( 'Timezone', 'video-conferencing-with-zoom-api' ); ?>:</strong>
+                <span><?php echo $meeting_details['timezone']; ?></span>
             </div>
         </div>
         <a href="<?php echo esc_url( get_the_permalink() ) ?>" class="btn"><?php _e( 'See More', 'video-conferencing-with-zoom-api' ); ?></a>

@@ -57,6 +57,22 @@ if ( ! defined( 'ABSPATH' ) ) {
                     </ul>
                 </div>
             </div>
+            <div class="zoom-api-basic-usage" style="margin-top: 20px;border-top:1px solid #ccc;">
+                <h3><?php _e( 'Embed Zoom Meeting in your Browser', 'video-conferencing-with-zoom-api' ); ?>:</h3>
+                <code>[zoom_join_via_browser meeting_id="YOUR_MEETING_ID" login_required="no" help="yes" title="Test" height="500px"]</code>
+                <div class="zoom-api-basic-usage-description">
+                    <label><?php _e( 'Description', 'video-conferencing-with-zoom-api' ); ?>:</label>
+                    <p><?php _e( 'Embeds your meeting in an IFRAME for any page or post you insert this shortcode into.', 'video-conferencing-with-zoom-api' ); ?></p>
+                    <label><?php _e( 'Parameters', 'video-conferencing-with-zoom-api' ); ?>:</label>
+                    <ul>
+                        <li><strong>meeting_id</strong> : Your MEETING ID.</li>
+                        <li><strong>login_required</strong> : "yes or no", Requires login to view or join.</li>
+                        <li><strong>help</strong> : "yes or no", Help text.</li>
+                        <li><strong>title</strong> : Title of your Embed Session</li>
+                        <li><strong>height</strong> : Height of embedded video IFRAME.</li>
+                    </ul>
+                </div>
+            </div>
         </section>
     </div>
 </div>

@@ -445,6 +445,9 @@ function vczapi_dateConverter( $start_time, $tz, $format = 'F j, Y, g:i a ( T )'
 	$tz       = new DateTimeZone( $timezone );
 	$date     = new DateTime( $start_time );
 	$date->setTimezone( $tz );
+	if ( ! $format ) {
+		return $date;
+	}
 
 	$locale      = get_locale();
 	$date_format = get_option( 'zoom_api_date_time_format' );
@@ -536,11 +539,11 @@ if ( ! function_exists( 'vczapi_get_browser_agent_type' ) ) {
  * @return string
  */
 function vczapi_get_browser_join_links( $post_id, $meeting_id, $password = false ) {
-	$link               = get_permalink( $post_id );
-	$encrypt_pwd        = vczapi_encrypt_decrypt( 'encrypt', $password );
-	$encrypt_meeting_id = vczapi_encrypt_decrypt( 'encrypt', $meeting_id );
-
-	if ( ! empty( $password ) ) {
+	$link                     = get_permalink( $post_id );
+	$encrypt_pwd              = vczapi_encrypt_decrypt( 'encrypt', $password );
+	$encrypt_meeting_id       = vczapi_encrypt_decrypt( 'encrypt', $meeting_id );
+	$embed_password_join_link = get_option( 'zoom_api_embed_pwd_join_link' );
+	if ( ! empty( $password ) && empty( $embed_password_join_link ) ) {
 		$query = add_query_arg( array( 'pak' => $encrypt_pwd, 'join' => $encrypt_meeting_id, 'type' => 'meeting' ), $link );
 
 		return '<a target="_blank" rel="nofollow" href="' . esc_url( $query ) . '" class="btn btn-join-link btn-join-via-browser">' . apply_filters( 'vczoom_join_meeting_via_app_text', __( 'Join via Web Browser', 'video-conferencing-with-zoom-api' ) ) . '</a>';
@@ -561,9 +564,10 @@ function vczapi_get_browser_join_links( $post_id, $meeting_id, $password = false
  * @return string
  */
 function vczapi_get_browser_join_shortcode( $meeting_id, $password = false, $link_only = false ) {
-	$link               = get_post_type_archive_link( 'zoom-meetings' );
-	$encrypt_meeting_id = vczapi_encrypt_decrypt( 'encrypt', $meeting_id );
-	if ( ! empty( $password ) ) {
+	$link                     = get_post_type_archive_link( 'zoom-meetings' );
+	$encrypt_meeting_id       = vczapi_encrypt_decrypt( 'encrypt', $meeting_id );
+	$embed_password_join_link = get_option( 'zoom_api_embed_pwd_join_link' );
+	if ( ! empty( $password ) && empty( $embed_password_join_link ) ) {
 		$encrypt_pwd = vczapi_encrypt_decrypt( 'encrypt', $password );
 		$query       = add_query_arg( array( 'pak' => $encrypt_pwd, 'join' => $encrypt_meeting_id, 'type' => 'meeting' ), $link );
 		$result      = '<a target="_blank" rel="nofollow" href="' . esc_url( $query ) . '" class="btn btn-join-link btn-join-via-browser">' . apply_filters( 'vczoom_join_meeting_via_app_text', __( 'Join via Web Browser', 'video-conferencing-with-zoom-api' ) ) . '</a>';

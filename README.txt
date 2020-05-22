@@ -1,10 +1,10 @@
 === Video Conferencing with Zoom ===
-Contributors: j__3rk, digamberpradhan, codemanas
+Contributors: j__3rk, codemanas, digamberpradhan
 Tags: zoom video conference, video conference, zoom, zoom video conferencing, web conferencing, online meetings
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.4
-Stable tag: 3.3.11
+Stable tag: 3.3.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -54,6 +54,7 @@ REFER FAQ to override page templates!
 **EXTEND OTHER FEATURES:**
 
 Addon: **[WooCommerce Integration](https://www.codemanas.com/downloads/zoom-meetings-for-woocommerce/ "WooCommerce Integration")** for:
+Addon: **[WCFM Integration](https://www.codemanas.com/downloads/wcfm-integration-for-zoom/ "WCFM Integration")** for:
 Addon: **[WooCommerce Booking Integration](https://www.codemanas.com/downloads/zoom-integration-for-woocommerce-booking/ "WooCommerce Booking Integration")** for:
 
 * Integration with WooCommerce and Zoom Meetings Countdown page.
@@ -65,8 +66,8 @@ Addon: **[WooCommerce Booking Integration](https://www.codemanas.com/downloads/z
 * Individual Booking Product Meetings
 * Individual Booking Product Hosts
 * Individual Booking product meeting links for each bookings.
-
-> NOTE: This integrates to both WooCommerce as well as WooCommerce Booking plugin as well.
+* Integration with WCFM
+* Integration with WooCommerce Product Vendors
 
 & more functionalities and integrations are on its way!
 
@@ -77,7 +78,6 @@ You can find more information on the Pro version on website: **[codemanas.com](h
 * Enables direct integration of Zoom into WordPress.
 * Compatible with LearnPress, LearnDash 3.
 * Enables most of the settings from zoom via admin panel.
-* Fully Compatible with Zoom API.
 * Provides Shortcode to conduct the meeting via any WordPress page/post or custom post type pages
 * Separate Admin area to manage all meetings.
 * Can add meeting links via shortcode to your WooCommerce product pages as well.
@@ -152,6 +152,12 @@ However, even though meeting is created and you are not seeing countdown timer t
 9. Shortcode Output
 
 == Changelog ==
+
+= 3.3.12 May 22nd, 2020 =
+* Updated: [zoom_list_meetings] - Upcoming meetings are shown based on WordPress timezone settings.
+* Added: Hide join links for non-loggedin users for shortcode.
+* Updated: Checking "Requires Login?" from Zoom Meetings > Add New page will not hide join links to non-logged in users.
+* Added: Meeting Password field for Join via Browser
 
 = 3.3.11 May 11th, 2020 =
 * Fixed: Shortcode category listing

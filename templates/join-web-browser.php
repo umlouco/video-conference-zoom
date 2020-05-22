@@ -41,6 +41,11 @@ if ( video_conference_zoom_check_login() ) {
                 <div class="form-group">
                     <input type="text" name="display_name" id="display_name" value="" placeholder="Your Name Here" class="form-control" required>
                 </div>
+				<?php if ( ! isset( $_GET['pak'] ) ) { ?>
+                    <div class="form-group">
+                        <input type="password" name="meeting_password" id="meeting_password" value="" placeholder="Meeting Password" class="form-control" required>
+                    </div>
+				<?php } ?>
                 <button type="submit" class="btn btn-primary" id="dpen-zoom-browser-meeting-join-mtg">
 					<?php _e( 'Join', 'video-conferencing-with-zoom-api' ); ?>
                 </button>

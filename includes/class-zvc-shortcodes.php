@@ -203,7 +203,9 @@ class Zoom_Video_Conferencing_Shorcodes {
 	}
 
 	/**
-	 * @param $args
+     * Show All Meetings
+     *
+	 * @param $atts
 	 *
 	 * @return string
 	 * @since  3.0.0
@@ -214,7 +216,7 @@ class Zoom_Video_Conferencing_Shorcodes {
 			array(
 				'per_page' => 5,
 				'category' => '',
-				'order'    => 'ASC',
+				'order'    => 'DESC',
 				'type'     => ''
 			),
 			$atts, 'zoom_list_meetings'
@@ -230,17 +232,23 @@ class Zoom_Video_Conferencing_Shorcodes {
 			'posts_per_page' => $atts['per_page'],
 			'post_status'    => 'publish',
 			'paged'          => $paged,
-			'orderby'        => 'ID',
+			'orderby'        => 'meta_value',
+			'meta_key'       => '_meeting_field_start_date',
 			'order'          => $atts['order']
 		);
 
 		if ( ! empty( $atts['type'] ) ) {
+			$timezone = zvc_get_timezone_offset_wp();
+			if ( ! empty( $timezone ) ) {
+				date_default_timezone_set( $timezone );
+			} else {
+				date_default_timezone_set( 'UTC' );
+			}
 			$type                     = ( $atts['type'] === "upcoming" ) ? '>=' : '<=';
 			$query_args['meta_query'] = array(
 				array(
 					'key'     => '_meeting_field_start_date',
 					'value'   => date( "Y-m-d H:i" ),
-					'type'    => 'DATE',
 					'compare' => $type
 				),
 			);
@@ -264,7 +272,6 @@ class Zoom_Video_Conferencing_Shorcodes {
 
 		unset( $GLOBALS['zoom_meetings'] );
 		$GLOBALS['zoom_meetings'] = $zoom_meetings;
-
 		if ( $zoom_meetings->have_posts() ):
 			ob_start();
 			vczapi_get_template( 'shortcode-listing.php', true );

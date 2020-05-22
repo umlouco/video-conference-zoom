@@ -558,7 +558,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 				wp_localize_script( 'video-conferencing-with-zoom-api-browser', 'zvc_ajx', array(
 					'ajaxurl'       => admin_url( 'admin-ajax.php' ),
 					'zvc_security'  => wp_create_nonce( "_nonce_zvc_security" ),
-					'redirect_page' => esc_url( get_permalink( $post->ID ) ),
+					'redirect_page' => apply_filters( 'vczapi_api_redirect_join_browser', esc_url( get_permalink( $post->ID ) ) ),
 					'meeting_id'    => sanitize_text_field( absint( vczapi_encrypt_decrypt( 'decrypt', $_GET['join'] ) ) ),
 					'meeting_pwd'   => ! empty( $_GET['pak'] ) ? sanitize_text_field( vczapi_encrypt_decrypt( 'decrypt', $_GET['pak'] ) ) : false
 				) );
@@ -607,7 +607,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 			wp_localize_script( 'video-conferencing-with-zoom-api-browser', 'zvc_ajx', array(
 				'ajaxurl'       => admin_url( 'admin-ajax.php' ),
 				'zvc_security'  => wp_create_nonce( "_nonce_zvc_security" ),
-				'redirect_page' => esc_url( home_url( '/' ) ),
+				'redirect_page' => apply_filters( 'vczapi_api_redirect_join_browser', esc_url( home_url( '/' ) ) ),
 				'meeting_id'    => absint( vczapi_encrypt_decrypt( 'decrypt', $_GET['join'] ) ),
 				'meeting_pwd'   => ! empty( $_GET['pak'] ) ? sanitize_text_field( vczapi_encrypt_decrypt( 'decrypt', $_GET['pak'] ) ) : false
 			) );
