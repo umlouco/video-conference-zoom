@@ -310,7 +310,17 @@ if ( ! function_exists( 'video_conference_zoom_shortcode_table' ) ) {
 				<?php
 			}
 
-			if ( ! empty( $hide_join_link_nloggedusers ) && is_user_logged_in() ) {
+			if ( ! empty( $hide_join_link_nloggedusers ) ) {
+				if ( is_user_logged_in() ) {
+					$show_join_links = true;
+				} else {
+					$show_join_links = false;
+				}
+			} else {
+				$show_join_links = true;
+			}
+
+			if ( $show_join_links ) {
 				/**
 				 * Hook: vczoom_meeting_shortcode_join_links
 				 *
