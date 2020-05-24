@@ -4,15 +4,15 @@ Tags: zoom video conference, video conference, zoom, zoom video conferencing, we
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.4
-Stable tag: 3.3.13
+Stable tag: 3.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Gives you the power to manage Zoom Meetings, check reports and create users from your WordPress dashboard.
+Gives you the power to manage Zoom Meetings, Webinars, check reports and create users from your WordPress dashboard.
 
 == Description ==
 
-Only simple plugin which gives you the extensive functionality to manage zoom meetings, users, reports from your WordPress Dashboard. Now, with capability to add your own post as a meeting. Create posts as meetings directly from your WordPress dashboard to show in the frontend as a meeting page. Allow users to directly join via that page with click of a button.
+Simple plugin which gives you the extensive functionality to manage zoom meetings, webinars, users, reports from your WordPress Dashboard. Now, with capability to add your own post as a meeting. Create posts as meetings directly from your WordPress dashboard to show in the frontend as a meeting page. Allow users to directly join via that page with click of a button.
 
 Now, from 3.2.0 allows you to Join meetings directly from Browser without Zoom App using Zoom WebSDK. For audio/video issues check FAQ section. Check here on how it <a target="_blank" href="https://deepenbajracharya.com.np/joining-meetings-in-zoom-directly-from-browser">Works</a>
 
@@ -29,6 +29,7 @@ Now, from 3.2.0 allows you to Join meetings directly from Browser without Zoom A
 * Allow posts to be only shown to logged in users. ( NEW from 3.0.0+ )
 * Start time and join links are shown according to local time compared with zoom timezone.
 * Manage Live Zoom Meetings.
+* Display Webinars via Shortcode
 * Listing Users.
 * Developer Friendly
 * Daily and Account Reports
@@ -88,15 +89,13 @@ The Web SDK enables the development of video applications powered by Zoom’s co
 
 As an extension of the Zoom browser client, this SDK is intended for implementations where the end user has a low-bandwidth environment, is behind a network firewall, or has restrictions on their machine which would prevent them from installing the Zoom Desktop or Mobile Clients.
 
-**LIMITATIONS:**
-
-* Webinar module not integrated
-
 **SHORTCODE:**
 
 **You can get your shorcodes from individual meetings after creating certain meeting. (From version 3.1.8+)**
 
 * [zoom_api_link meeting_id="123456789" link_only="no"] - Just enter your meeting ID and you are good to show your meeting in any page. Adding link_only="yes" would show join link only. See [Usage Documentation](https://techies23.github.io/video-conference-zoom/ "Usage Documentation") for more detail on usage.
+
+* [zoom_api_webinar webinar_id="YOUR_WEBINAR_ID" link_only="no"] - Show webinar details based on webinar ID.
 
 * [zoom_list_meetings per_page="5" category="test,test2,test3" order="DESC"] - Show list of meetings in frontend via category, Edit shortcode template for table view.
 
@@ -152,6 +151,9 @@ However, even though meeting is created and you are not seeing countdown timer t
 9. Shortcode Output
 
 == Changelog ==
+
+= 3.4.0 May 24th, 2020 =
+* Added: Webinar Support Added with Shortcode for showing webinars.
 
 = 3.3.13 May 23rd, 2020 =
 * Bug Fixed: All join links were being hidden when setting was not checked in Zoom Meeting > Seetings page "Hide Join Links for Non-Loggedin ?".

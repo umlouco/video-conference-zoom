@@ -437,10 +437,19 @@ function vczapi_check_author( $post_id ) {
 }
 
 /**
+ * Calculate Time based on Timezone
+ *
+ * @param $start_time
+ * @param $tz
+ * @param string $format
+ * @param bool $defaults
+ *
+ * @return DateTime|string
+ * @throws Exception
  * @author Deepen
  * @since  1.0.0
  */
-function vczapi_dateConverter( $start_time, $tz, $format = 'F j, Y, g:i a ( T )' ) {
+function vczapi_dateConverter( $start_time, $tz, $format = 'F j, Y, g:i a ( T )', $defaults = true ) {
 	$timezone = ! empty( $tz ) ? $tz : "America/Los_Angeles";
 	$tz       = new DateTimeZone( $timezone );
 	$date     = new DateTime( $start_time );
@@ -449,9 +458,13 @@ function vczapi_dateConverter( $start_time, $tz, $format = 'F j, Y, g:i a ( T )'
 		return $date;
 	}
 
+	if ( !$defaults ) {
+		return $date->format( $format );
+	}
+
 	$locale      = get_locale();
 	$date_format = get_option( 'zoom_api_date_time_format' );
-	if ( ! empty( $locale ) && ! empty( $date_format ) ) {
+	if ( $defaults && ! empty( $locale ) && ! empty( $date_format ) ) {
 		setlocale( LC_TIME, $locale );
 		$start_timestamp = $date->getTimestamp() + $date->getOffset();
 		switch ( $date_format ) {

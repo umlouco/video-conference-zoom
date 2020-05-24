@@ -33,7 +33,9 @@ class Zoom_Video_Conferencing_Shorcodes {
 	public function __construct() {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 100 );
 		add_shortcode( 'zoom_api_link', array( $this, 'render_main' ) );
+		add_shortcode( 'zoom_api_webinar', array( $this, 'show_webinar' ) );
 		add_shortcode( 'zoom_list_meetings', array( $this, 'show_meetings' ) );
+		add_shortcode( 'zoom_list_host_webinars', array( $this, 'show_host_webinars' ) );
 		add_shortcode( 'zoom_list_host_meetings', array( $this, 'show_host_meetings' ) );
 		add_shortcode( 'zoom_join_via_browser', array( $this, 'join_via_browser' ) );
 	}
@@ -53,11 +55,82 @@ class Zoom_Video_Conferencing_Shorcodes {
 	}
 
 	/**
+	 * Shows a list of Host Webinars
+	 *
+	 * @param $atts
+	 *
+	 * @return false|string|void
+	 * @throws Exception
+	 */
+	public function show_host_webinars( $atts ) {
+		wp_enqueue_style( 'video-conferencing-with-zoom-api-datable' );
+		wp_enqueue_script( 'video-conferencing-with-zoom-api-shortcode-js' );
+
+		$atts = shortcode_atts(
+			[ 'host' => '' ],
+			$atts
+		);
+
+		if ( empty( $atts['host'] ) ) {
+			return __( 'Host ID should be given when defining this shortcode.', 'video-conferencing-with-zoom-api' );
+		}
+
+		$webinars         = get_option( '_vczapi_user_webinars_for_' . $atts['host'] );
+		$cache_expiration = get_option( '_vczapi_user_webinars_for_' . $atts['host'] . '_expiration' );
+		if ( empty( $webinars ) || $cache_expiration < time() ) {
+			$encoded_meetings = zoom_conference()->listWebinar( $atts['host'] );
+			$decoded_meetings = json_decode( $encoded_meetings );
+			if ( isset( $decoded_meetings->webinars ) ) {
+				$webinars = $decoded_meetings->webinars;
+				update_option( '_vczapi_user_webinars_for_' . $atts['host'], $webinars );
+				update_option( '_vczapi_user_webinars_for_' . $atts['host'] . '_expiration', time() + 60 * 30 );
+			} else {
+				return __( 'Could not retrieve meetings, check Host ID', 'video-conferencing-with-zoom-api' );
+			}
+		}
+
+		ob_start();
+		?>
+        <table class="vczapi-user-meeting-list">
+            <thead>
+            <tr>
+                <th><?php _e( 'Topic', 'video-conferencing-with-zoom-api' ); ?></th>
+                <th><?php _e( 'Start Time', 'video-conferencing-with-zoom-api' ); ?></th>
+                <th><?php _e( 'Timezone', 'video-conferencing-with-zoom-api' ); ?></th>
+                <th><?php _e( 'Actions', 'video-conferencing-with-zoom-api' ); ?></th>
+            </tr>
+            </thead>
+            <tbody>
+			<?php
+			if ( ! empty( $webinars ) ) {
+				foreach ( $webinars as $webinar ) {
+					$pass = ! empty( $webinar->password ) ? $webinar->password : false;
+					?>
+                    <tr>
+                        <td><?php echo $webinar->topic; ?></td>
+                        <td><?php echo vczapi_dateConverter( $webinar->start_time, $webinar->timezone ); ?></td>
+                        <td><?php echo $webinar->timezone; ?></td>
+                        <td><a href="<?php echo $webinar->join_url; ?>"><?php _e( 'Join via App', 'video-conferencing-with-zoom-api' ); ?></a> /
+                            <a href="<?php echo vczapi_get_browser_join_shortcode( $webinar->id, $pass, true ); ?>"><?php _e( 'Join via Browser', 'video-conferencing-with-zoom-api' ); ?></a>
+                        </td>
+                    </tr>
+					<?php
+				}
+			}
+			?>
+            </tbody>
+        </table>
+		<?php
+		return ob_get_clean();
+	}
+
+	/**
 	 * Show Host Meetings list
 	 *
 	 * @param $atts
 	 *
-	 * @return false|mixed|string|void
+	 * @return false|string|void
+	 * @throws Exception
 	 */
 	public function show_host_meetings( $atts ) {
 		wp_enqueue_style( 'video-conferencing-with-zoom-api-datable' );
@@ -203,8 +276,64 @@ class Zoom_Video_Conferencing_Shorcodes {
 	}
 
 	/**
-     * Show All Meetings
-     *
+	 * Show webinar details
+	 *
+	 * @param $atts
+	 * @param null $content
+	 *
+	 * @return bool|false|string|void
+	 * @author Deepen Bajracharya
+	 *
+	 * @since 3.4.0
+	 */
+	public function show_webinar( $atts, $content = null ) {
+		wp_enqueue_script( 'video-conferencing-with-zoom-api-moment' );
+		wp_enqueue_script( 'video-conferencing-with-zoom-api-moment-locales' );
+		wp_enqueue_script( 'video-conferencing-with-zoom-api-moment-timezone' );
+		wp_enqueue_script( 'video-conferencing-with-zoom-api' );
+
+		extract( shortcode_atts( array(
+			'webinar_id' => 'javascript:void(0);',
+			'link_only'  => 'no',
+		), $atts ) );
+
+		unset( $GLOBALS['vanity_uri'] );
+		unset( $GLOBALS['zoom_webinars'] );
+
+		ob_start();
+		if ( empty( $webinar_id ) ) {
+			echo '<h4 class="no-meeting-id"><strong style="color:red;">' . __( 'ERROR: ', 'video-conferencing-with-zoom-api' ) . '</strong>' . __( 'No webinar id set in the shortcode', 'video-conferencing-with-zoom-api' ) . '</h4>';
+
+			return false;
+		}
+
+		$vanity_uri               = get_option( 'zoom_vanity_url' );
+		$webinar                  = $this->fetch_webinar( $webinar_id );
+		$GLOBALS['vanity_uri']    = $vanity_uri;
+		$GLOBALS['zoom_webinars'] = $webinar;
+		if ( ! empty( $webinar ) && ! empty( $webinar->code ) ) {
+			?>
+            <p class="dpn-error dpn-mtg-not-found"><?php echo $webinar->message; ?></p>
+			<?php
+		} else {
+			if ( ! empty( $link_only ) && $link_only === "yes" ) {
+				$this->generate_link_only();
+			} else {
+				if ( $webinar ) {
+					//Get Template
+					vczapi_get_template( 'shortcode/zoom-webinar.php', true, false );
+				} else {
+					printf( __( 'Please try again ! Some error occured while trying to fetch webinar with id:  %d', 'video-conferencing-with-zoom-api' ), $webinar_id );
+				}
+			}
+		}
+
+		return ob_get_clean();
+	}
+
+	/**
+	 * Show All Meetings
+	 *
 	 * @param $atts
 	 *
 	 * @return string
@@ -529,6 +658,19 @@ class Zoom_Video_Conferencing_Shorcodes {
 		}
 
 		return $meeting;
+	}
+
+	/**
+	 * Get a webinar detail
+	 *
+	 * @param $webinar_id
+	 *
+	 * @return bool|mixed|null
+	 */
+	private function fetch_webinar( $webinar_id ) {
+		$webinar = json_decode( zoom_conference()->getWebinarInfo( $webinar_id ) );
+
+		return $webinar;
 	}
 }
 

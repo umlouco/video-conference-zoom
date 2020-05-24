@@ -73,6 +73,18 @@ if ( ! defined( 'ABSPATH' ) ) {
                     </ul>
                 </div>
             </div>
+            <div class="zoom-api-basic-usage" style="margin-top: 20px;border-top:1px solid #ccc;">
+                <h3><?php _e( 'Show webinars based on HOST ID in frontend.', 'video-conferencing-with-zoom-api' ); ?>:</h3>
+                <code>[zoom_list_host_webinars host="YOUR_HOST_ID"]</code>
+                <div class="zoom-api-basic-usage-description">
+                    <label><?php _e( 'Description', 'video-conferencing-with-zoom-api' ); ?>:</label>
+                    <p><?php _e( 'Embeds your meeting in an IFRAME for any page or post you insert this shortcode into.', 'video-conferencing-with-zoom-api' ); ?></p>
+                    <label><?php _e( 'Parameters', 'video-conferencing-with-zoom-api' ); ?>:</label>
+                    <ul>
+                        <li><strong>host</strong> : Your HOST ID. Grab it from wp-admin > Zoom Meetings > Users ( USER ID ).</li>
+                    </ul>
+                </div>
+            </div>
         </section>
     </div>
 </div>

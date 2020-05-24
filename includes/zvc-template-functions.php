@@ -149,6 +149,62 @@ function video_conference_zoom_meeting_join_link( $zoom_meeting ) {
 }
 
 /**
+ * Generate join links for webinar
+ *
+ * @param $zoom_webinars
+ *
+ * @throws Exception
+ * @since 3.4.0
+ *
+ * @author Deepen
+ */
+function video_conference_zoom_shortcode_join_link_webinar( $zoom_webinars ) {
+	if ( empty( $zoom_webinars ) ) {
+		echo "<p>" . __( 'Webinar is not defined. Try updating this Webinar', 'video-conferencing-with-zoom-api' ) . "</p>";
+
+		return;
+	}
+
+	$now               = new DateTime( 'now -1 hour', new DateTimeZone( $zoom_webinars->timezone ) );
+	$closest_occurence = false;
+	if ( ! empty( $zoom_webinars->type ) && $zoom_webinars->type === 9 && ! empty( $zoom_webinars->occurrences ) ) {
+		foreach ( $zoom_webinars->occurrences as $occurrence ) {
+			if ( $occurrence->status === "available" ) {
+				$start_date = new DateTime( $occurrence->start_time, new DateTimeZone( $zoom_webinars->timezone ) );
+				if ( $start_date >= $now ) {
+					$closest_occurence = $occurrence->start_time;
+					break;
+				}
+			}
+		}
+	} else if ( empty( $zoom_webinars->occurrences ) ) {
+		$zoom_webinars->start_time = false;
+	} else if ( ! empty( $zoom_webinars->type ) && $zoom_webinars->type === 6 ) {
+		$zoom_webinars->start_time = false;
+	}
+
+	$start_time = ! empty( $closest_occurence ) ? $closest_occurence : $zoom_webinars->start_time;
+	$start_time = new DateTime( $start_time, new DateTimeZone( $zoom_webinars->timezone ) );
+	$start_time->setTimezone( new DateTimeZone( $zoom_webinars->timezone ) );
+	if ( $now <= $start_time ) {
+		unset( $GLOBALS['webinars'] );
+
+		if ( ! empty( $zoom_webinars->password ) ) {
+			$browser_join = vczapi_get_browser_join_shortcode( $zoom_webinars->id, $zoom_webinars->password, true );
+		} else {
+			$browser_join = vczapi_get_browser_join_shortcode( $zoom_webinars->id, false, true );
+		}
+
+		$join_url            = ! empty( $zoom_webinars->encrypted_password ) ? vczapi_get_pwd_embedded_join_link( $zoom_webinars->join_url, $zoom_webinars->encrypted_password ) : $zoom_webinars->join_url;
+		$GLOBALS['webinars'] = array(
+			'join_uri'    => apply_filters( 'vczoom_join_webinar_via_app_shortcode', $join_url, $zoom_webinars ),
+			'browser_url' => apply_filters( 'vczoom_join_webinar_via_browser_disable', $browser_join )
+		);
+		vczapi_get_template( 'shortcode/webinar-join-links.php', true, false );
+	}
+}
+
+/**
  * Generate join links
  *
  * @param $zoom_meetings
