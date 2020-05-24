@@ -23,12 +23,13 @@ $users = video_conferencing_zoom_api_get_user_transients();
 
     <form action="" method="POST" class="zvc-meetings-form">
 		<?php wp_nonce_field( '_zoom_add_meeting_nonce_action', '_zoom_add_meeting_nonce' ); ?>
+        <input type="hidden" name="webinar_id" value="<?php echo $meeting_info->id; ?>">
         <table class="form-table">
             <tbody>
             <tr>
                 <th scope="row"><label for="meetingTopic"><?php _e( 'Webinar Topic *', 'video-conferencing-with-zoom-api' ); ?></label></th>
                 <td>
-                    <input type="text" name="meetingTopic" size="100" value="<?php echo ! empty( $meeting_info->id ) ? esc_html( $meeting_info->id ) : false; ?>" required class="regular-text">
+                    <input type="text" name="meetingTopic" size="100" value="<?php echo ! empty( $meeting_info->topic ) ? esc_html( $meeting_info->topic ) : false; ?>" required class="regular-text">
                     <p class="description" id="meetingTopic-description"><?php _e( 'Webinar topic. (Required).', 'video-conferencing-with-zoom-api' ); ?></p>
                 </td>
             </tr>
@@ -37,18 +38,6 @@ $users = video_conferencing_zoom_api_get_user_transients();
                 <td>
                     <input type="text" name="agenda" value="<?php echo ! empty( $meeting_info->agenda ) ? esc_html( $meeting_info->agenda ) : false; ?>" class="regular-text">
                     <p class="description" id="meetingTopic-description"><?php _e( 'Webinar Description.', 'video-conferencing-with-zoom-api' ); ?></p>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row"><label for="userId"><?php _e( 'Webinar Host *', 'video-conferencing-with-zoom-api' ); ?></label></th>
-                <td>
-                    <select name="userId" required class="zvc-hacking-select">
-                        <option value=""><?php _e( 'Select a Host', 'video-conferencing-with-zoom-api' ); ?></option>
-						<?php foreach ( $users as $user ): ?>
-                            <option value="<?php echo $user->id; ?>" <?php echo isset( $_GET['host_id'] ) && $_GET['host_id'] == $user->id ? 'selected' : null; ?>><?php echo $user->first_name . ' ( ' . $user->email . ' )'; ?></option>
-						<?php endforeach; ?>
-                    </select>
-                    <p class="description" id="userId-description"><?php _e( 'This is host ID for the meeting (Required).', 'video-conferencing-with-zoom-api' ); ?></p>
                 </td>
             </tr>
             <tr <?php echo $meeting_info->type === 6 || $meeting_info->type === 9 ? 'style="display:none;"' : 'style="display:table-row;"'; ?>>

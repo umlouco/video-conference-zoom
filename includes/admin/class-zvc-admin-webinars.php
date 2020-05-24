@@ -88,7 +88,7 @@ class Zoom_Video_Conferencing_Admin_Webinars {
 	private static function update_webinar() {
 		check_admin_referer( '_zoom_add_meeting_nonce_action', '_zoom_add_meeting_nonce' );
 
-		$user_id      = sanitize_text_field( filter_input( INPUT_POST, 'userId' ) );
+		$webinar_id   = sanitize_text_field( filter_input( INPUT_POST, 'webinar_id' ) );
 		$start_time   = filter_input( INPUT_POST, 'start_date' );
 		$start_time   = gmdate( "Y-m-d\TH:i:s", strtotime( $start_time ) );
 		$webinar_arrr = array(
@@ -107,11 +107,11 @@ class Zoom_Video_Conferencing_Admin_Webinars {
 			)
 		);
 
-		$meeting_updated = json_decode( zoom_conference()->updateMeetingInfo( $update_meeting_arr ) );
+		$meeting_updated = json_decode( zoom_conference()->updateWebinar( $webinar_id, $webinar_arrr ) );
 		if ( ! empty( $meeting_updated->code ) ) {
 			self::set_message( 'error', $meeting_updated->message );
 		} else {
-			self::set_message( 'updated', __( "Updated meeting.", "video-conferencing-with-zoom-api" ) );
+			self::set_message( 'updated', __( "Updated Webinar.", "video-conferencing-with-zoom-api" ) );
 		}
 
 		/**
@@ -119,7 +119,7 @@ class Zoom_Video_Conferencing_Admin_Webinars {
 		 *
 		 * @since  2.0.1
 		 */
-		do_action( 'zvc_after_updated_meeting' );
+		do_action( 'zvc_after_updated_webinar' );
 	}
 
 	/**
