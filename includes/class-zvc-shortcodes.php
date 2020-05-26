@@ -85,7 +85,11 @@ class Zoom_Video_Conferencing_Shorcodes {
 				update_option( '_vczapi_user_webinars_for_' . $atts['host'], $webinars );
 				update_option( '_vczapi_user_webinars_for_' . $atts['host'] . '_expiration', time() + 60 * 30 );
 			} else {
-				return __( 'Could not retrieve meetings, check Host ID', 'video-conferencing-with-zoom-api' );
+				if ( ! empty( $decoded_meetings ) && ! empty( $decoded_meetings->code ) ) {
+					return '<strong>Zoom API Error:</strong>' . $decoded_meetings->message;
+				} else {
+					return __( 'Could not retrieve meetings, check Host ID', 'video-conferencing-with-zoom-api' );
+				}
 			}
 		}
 
@@ -433,12 +437,13 @@ class Zoom_Video_Conferencing_Shorcodes {
 		do_action( 'vczapi_before_shortcode_content' );
 
 		extract( shortcode_atts( array(
-			'meeting_id'     => 'javascript:void(0);',
-			'title'          => '',
-			'id'             => 'zoom_video_uri',
-			'login_required' => "no",
-			'help'           => "yes",
-			'height'         => "500px"
+			'meeting_id'        => 'javascript:void(0);',
+			'title'             => '',
+			'id'                => 'zoom_video_uri',
+			'login_required'    => "no",
+			'help'              => "yes",
+			'height'            => "500px",
+			'disable_countdown' => 'yes'
 		), $atts ) );
 
 		ob_start();
@@ -493,6 +498,12 @@ class Zoom_Video_Conferencing_Shorcodes {
 
 		$browser_url = apply_filters( 'video_conferencing_zoom_join_url', $browser_url );
 
+		if ( ! empty( $meeting ) && ! empty( $meeting->code ) ) {
+			echo $meeting->message;
+
+			return;
+		}
+
 		if ( ! empty( $meeting ) ) {
 			$meeting_time = date( 'Y-m-d h:i a', strtotime( $meeting->start_time ) );
 			try {
@@ -524,7 +535,7 @@ class Zoom_Video_Conferencing_Shorcodes {
 
 				if ( isset( $zoom_states[ $meeting_id ]['state'] ) && $zoom_states[ $meeting_id ]['state'] === "ended" ) {
 					echo '<h3>' . esc_html__( 'This meeting has been ended by host.', 'video-conferencing-with-zoom-api ' ) . '</h3>';
-				} elseif ( $meeting_time_check > $meeting_timezone_time ) {
+				} elseif ( $meeting_time_check > $meeting_timezone_time && ! empty( $disable_countdown ) && $disable_countdown === "yes" ) {
 					?>
                     <div class="dpn-zvc-timer zoom-join-via-browser-countdown" id="dpn-zvc-timer" data-date="<?php echo $meeting_time; ?>" data-tz="<?php echo $meeting->timezone; ?>">
                         <div class="dpn-zvc-timer-cell">

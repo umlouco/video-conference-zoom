@@ -8,7 +8,7 @@ Stable tag: 3.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Gives you the power to manage Zoom Meetings, Webinars, check reports and create users from your WordPress dashboard.
+Gives you the power to manage Zoom Meetings, Webinars, check reports and create users directly from your WordPress dashboard.
 
 == Description ==
 
@@ -154,6 +154,7 @@ However, even though meeting is created and you are not seeing countdown timer t
 
 = 3.4.0 May 24th, 2020 =
 * Added: Webinar Support Added with Shortcode for showing webinars.
+* Added: Elementor Widgets for Listing Meetings and Meeting Display Output.
 
 = 3.3.13 May 23rd, 2020 =
 * Bug Fixed: All join links were being hidden when setting was not checked in Zoom Meeting > Seetings page "Hide Join Links for Non-Loggedin ?".
