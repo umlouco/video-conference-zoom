@@ -248,22 +248,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#basic-table-shortcode" class="md-nav__link">
-    Basic Table Shortcode
+  <a href="#1-show-single-zoom-meeting-detail" class="md-nav__link">
+    1. Show Single Zoom Meeting Detail
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#list-meeting-shortcode" class="md-nav__link">
-    List Meeting Shortcode
+  <a href="#2-list-meeting-shortcode" class="md-nav__link">
+    2. List Meeting Shortcode
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#list-meetings-based-on-host-id" class="md-nav__link">
-    List Meetings based on HOST ID
+  <a href="#3-list-meetings-based-on-host-id" class="md-nav__link">
+    3. List Meetings based on HOST ID
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-show-specific-webinar-detail" class="md-nav__link">
+    4. Show Specific Webinar Detail
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-show-specific-webinar-detail" class="md-nav__link">
+    5. Show Specific Webinar Detail
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-embed-zoom-meeting-in-your-browser" class="md-nav__link">
+    6. Embed Zoom Meeting in your Browser
   </a>
   
 </li>
@@ -278,6 +299,13 @@
         <li class="md-nav__item">
   <a href="#shortcode-template-override" class="md-nav__link">
     Shortcode Template Override
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elementor-support" class="md-nav__link">
+    Elementor Support
   </a>
   
 </li>
@@ -403,6 +431,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../booked-appointments/" title="Booked Appointments (Addon)" class="md-nav__link">
+      Booked Appointments (Addon)
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
     <a href="../wcfm/" title="WCFM (Addon)" class="md-nav__link">
       WCFM (Addon)
     </a>
@@ -452,22 +492,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#basic-table-shortcode" class="md-nav__link">
-    Basic Table Shortcode
+  <a href="#1-show-single-zoom-meeting-detail" class="md-nav__link">
+    1. Show Single Zoom Meeting Detail
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#list-meeting-shortcode" class="md-nav__link">
-    List Meeting Shortcode
+  <a href="#2-list-meeting-shortcode" class="md-nav__link">
+    2. List Meeting Shortcode
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#list-meetings-based-on-host-id" class="md-nav__link">
-    List Meetings based on HOST ID
+  <a href="#3-list-meetings-based-on-host-id" class="md-nav__link">
+    3. List Meetings based on HOST ID
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-show-specific-webinar-detail" class="md-nav__link">
+    4. Show Specific Webinar Detail
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-show-specific-webinar-detail" class="md-nav__link">
+    5. Show Specific Webinar Detail
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-embed-zoom-meeting-in-your-browser" class="md-nav__link">
+    6. Embed Zoom Meeting in your Browser
   </a>
   
 </li>
@@ -482,6 +543,13 @@
         <li class="md-nav__item">
   <a href="#shortcode-template-override" class="md-nav__link">
     Shortcode Template Override
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elementor-support" class="md-nav__link">
+    Elementor Support
   </a>
   
 </li>
@@ -512,8 +580,11 @@
 <li><code>[zoom_api_link meeting_id="" link_only="no"]</code></li>
 <li><code>[zoom_list_meetings per_page="5" category="test,test2,test3"]</code> </li>
 <li><code>[zoom_list_host_meetings host="YOUR_HOST_ID"]</code></li>
+<li><code>[zoom_api_webinar meeting_id="YOUR_WEBINAR_ID" link_only="no"]</code></li>
+<li><code>[zoom_list_host_webinars host="YOUR_HOST_ID"]</code></li>
+<li><code>[zoom_join_via_browser meeting_id="YOUR_MEETING_ID" login_required="no" help="yes" title="Test" height="500px" disable_countdown="yes"]</code></li>
 </ol>
-<h3 id="basic-table-shortcode">Basic Table Shortcode</h3>
+<h3 id="1-show-single-zoom-meeting-detail">1. Show Single Zoom Meeting Detail</h3>
 <p>Use: <code>[zoom_api_link meeting_id="" link_only="no"]</code></p>
 <p>Where,</p>
 <ul>
@@ -522,7 +593,7 @@
 </ul>
 <p>Your frontend page should look like:</p>
 <p><img src="https://deepenbajracharya.com.np/wp-content/uploads/2019/11/Meetings-%E2%80%93-Plugin-Tester-1024x520.png"></p>
-<h3 id="list-meeting-shortcode">List Meeting Shortcode</h3>
+<h3 id="2-list-meeting-shortcode">2. List Meeting Shortcode</h3>
 <p>Use: <code>[zoom_list_meetings per_page="5" category="test,test2,test3" order="ASC" type="upcoming"]</code></p>
 <p>Where,</p>
 <ul>
@@ -532,13 +603,40 @@
 <li><strong>type</strong> = "upcoming" or "past" - To show only upcoming meeting based on start time (Update to meeting is required for old post type meetings). Do not add to show all meetings.</li>
 </ul>
 <p><strong>NOTE: This was added in version 3.3.4 so, old meetings which were created might need to be updated in order for this shortcode to work properly.</strong></p>
-<h3 id="list-meetings-based-on-host-id">List Meetings based on HOST ID</h3>
+<h3 id="3-list-meetings-based-on-host-id">3. List Meetings based on HOST ID</h3>
 <p>Use: <code>[zoom_list_host_meetings host="YOUR_HOST_ID"]</code></p>
 <p>Where,</p>
 <ul>
 <li><code>host</code> = Your HOST ID where you can get from <strong>wp-admin &gt; Zoom Meeting &gt; Users = User ID</strong></li>
 </ul>
 <p><strong>NOTE: Added from version 3.3.10. This will list all past and upcoming 300 meetings related to the defined HOST ID.</strong></p>
+<h3 id="4-show-specific-webinar-detail">4. Show Specific Webinar Detail</h3>
+<p>Use: <code>[zoom_api_webinar webinar_id="YOUR_WEBINAR_ID" link_only="no"]</code></p>
+<p>Where,</p>
+<ul>
+<li><code>meeting_id</code> = Your Webinar ID which you want to show </li>
+</ul>
+<p><strong>NOTE: Added in version 3.4.0</strong></p>
+<h3 id="5-show-specific-webinar-detail">5. Show Specific Webinar Detail</h3>
+<p>Use: <code>[zoom_list_host_webinars host="YOUR_HOST_ID"]</code></p>
+<p>Where,</p>
+<ul>
+<li><code>host</code> = Your HOST ID where you can get from <strong>wp-admin &gt; Zoom Meeting &gt; Users = User ID</strong> </li>
+</ul>
+<p><strong>NOTE: Added from version 3.4.0</strong></p>
+<h3 id="6-embed-zoom-meeting-in-your-browser">6. Embed Zoom Meeting in your Browser</h3>
+<p>Embeds your meeting in an IFRAME for any page or post you insert this shortcode into.</p>
+<p><strong style="color:red;">Although this embed feature is here. I do no garauntee this would work properly as this is not natively supported by Zoom itself. This is here only because of user requests. USE THIS AT OWN RISK !!</strong></p>
+<p>Use: <code>[zoom_join_via_browser meeting_id="YOUR_MEETING_ID" login_required="no" help="yes" title="Test" height="500px" disable_countdown="yes"]</code></p>
+<p>Where,</p>
+<ul>
+<li><code>meeting_id</code> : Your MEETING ID.</li>
+<li><code>login_required</code> : "yes or no", Requires login to view or join.</li>
+<li><code>help</code> : "yes or no", Help text.</li>
+<li><code>title</code> : Title of your Embed Session</li>
+<li><code>height</code> : Height of embedded video IFRAME.</li>
+<li><code>disable_countdown</code> : "yes or no", enable or disable countdown.</li>
+</ul>
 <h3 id="how-to-get-meeting-id">How to get Meeting ID</h3>
 <ol>
 <li>Goto your wp-admin</li>
@@ -554,6 +652,8 @@
 <li>Copy this "Shortcode" folder to <strong><code>yourtheme/video-conferencing-zoom/shortcode/zoom-shortcode.php</code></strong></li>
 <li>Your done ! Change the styling and divs according to your needs.</li>
 </ol>
+<h3 id="elementor-support">Elementor Support</h3>
+<p>From version 3.4.0 - Plugin now has some inbuilt modules for Elementor as well. We'll keep adding in the future as well.</p>
                 
               
               
