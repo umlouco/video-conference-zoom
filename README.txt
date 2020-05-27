@@ -152,9 +152,11 @@ However, even though meeting is created and you are not seeing countdown timer t
 
 == Changelog ==
 
-= 3.4.0 May 24th, 2020 =
+= 3.4.0 May 27th, 2020 =
 * Added: Webinar Support Added with Shortcode for showing webinars.
 * Added: Elementor Widgets for Listing Meetings and Meeting Display Output.
+* Added: Webinar Shortcodes
+* Minor Bug Fixes
 
 = 3.3.13 May 23rd, 2020 =
 * Bug Fixed: All join links were being hidden when setting was not checked in Zoom Meeting > Seetings page "Hide Join Links for Non-Loggedin ?".

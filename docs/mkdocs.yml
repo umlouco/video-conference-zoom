@@ -15,6 +15,7 @@ nav:
   - WooCommerce (Addon): woocommerce.md
   - WooCommerce Product Vendors (Addon): woocommerce-product-vendors.md
   - WooCommerce Bookings (Addon): woocommerce-booking.md
+  - Booked Appointments (Addon): booked-appointments.md
   - WCFM (Addon): wcfm.md
   - Support: support.md
 theme:

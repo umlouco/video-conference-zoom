@@ -59,10 +59,12 @@ if ( ! defined( 'ABSPATH' ) ) {
             </div>
             <div class="zoom-api-basic-usage" style="margin-top: 20px;border-top:1px solid #ccc;">
                 <h3><?php _e( 'Embed Zoom Meeting in your Browser', 'video-conferencing-with-zoom-api' ); ?>:</h3>
-                <code>[zoom_join_via_browser meeting_id="YOUR_MEETING_ID" login_required="no" help="yes" title="Test" height="500px"]</code>
+                <code>[zoom_join_via_browser meeting_id="YOUR_MEETING_ID" login_required="no" help="yes" title="Test" height="500px"
+                    disable_countdown="yes"]</code>
                 <div class="zoom-api-basic-usage-description">
                     <label><?php _e( 'Description', 'video-conferencing-with-zoom-api' ); ?>:</label>
                     <p><?php _e( 'Embeds your meeting in an IFRAME for any page or post you insert this shortcode into.', 'video-conferencing-with-zoom-api' ); ?></p>
+                    <p style="color: red;">Although this embed feature is here. I do no garauntee this would work properly as this is not natively supported by Zoom itself. This is here only because of user requests. USE THIS AT OWN RISK !!</p>
                     <label><?php _e( 'Parameters', 'video-conferencing-with-zoom-api' ); ?>:</label>
                     <ul>
                         <li><strong>meeting_id</strong> : Your MEETING ID.</li>
@@ -70,6 +72,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                         <li><strong>help</strong> : "yes or no", Help text.</li>
                         <li><strong>title</strong> : Title of your Embed Session</li>
                         <li><strong>height</strong> : Height of embedded video IFRAME.</li>
+                        <li><strong>disable_countdown</strong> : "yes or no", enable or disable countdown.</li>
                     </ul>
                 </div>
             </div>
@@ -82,6 +85,19 @@ if ( ! defined( 'ABSPATH' ) ) {
                     <label><?php _e( 'Parameters', 'video-conferencing-with-zoom-api' ); ?>:</label>
                     <ul>
                         <li><strong>host</strong> : Your HOST ID. Grab it from wp-admin > Zoom Meetings > Users ( USER ID ).</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="zoom-api-basic-usage" style="margin-top: 20px;border-top:1px solid #ccc;">
+                <h3><?php _e( 'Show webinar based meeting ID.', 'video-conferencing-with-zoom-api' ); ?>:</h3>
+                <code>[zoom_api_webinar webinar_id="YOUR_WEBINAR_ID" link_only="no"]</code>
+                <div class="zoom-api-basic-usage-description">
+                    <label><?php _e( 'Description', 'video-conferencing-with-zoom-api' ); ?>:</label>
+                    <p><?php _e( 'Shows a Webinar detail based on a specific Webinar ID.', 'video-conferencing-with-zoom-api' ); ?></p>
+                    <label><?php _e( 'Parameters', 'video-conferencing-with-zoom-api' ); ?>:</label>
+                    <ul>
+                        <li><strong>webinar_id</strong> : WEBINAR ID.</li>
+                        <li><strong>link_only</strong> : yes or no.</li>
                     </ul>
                 </div>
             </div>

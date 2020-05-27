@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Video Conferencing with Zoom API\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/video-"
 "conferencing-with-zoom-api\n"
-"POT-Creation-Date: 2020-05-24 13:16+0000\n"
+"POT-Creation-Date: 2020-05-26 10:47+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Generator: Loco https://localise.biz/\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;"
 
-#: includes/zvc-template-functions.php:81 includes/class-zvc-init.php:184
+#: includes/zvc-template-functions.php:81 includes/class-zvc-init.php:190
 msgid ""
 "Are you sure you want to end this meeting ? Users won't be able to join this "
 "meeting shown from the shortcode."
@@ -58,8 +58,8 @@ msgstr ""
 msgid "Meeting ID"
 msgstr ""
 
-#: includes/zvc-template-functions.php:283 includes/class-zvc-shortcodes.php:97
-#: includes/class-zvc-shortcodes.php:165
+#: includes/zvc-template-functions.php:283
+#: includes/class-zvc-shortcodes.php:101 includes/class-zvc-shortcodes.php:169
 #: includes/views/tpl-list-meetings.php:62
 #: templates/shortcode/zoom-webinar.php:25
 #: includes/views/webinars/tpl-list-webinars.php:59
@@ -67,7 +67,7 @@ msgid "Topic"
 msgstr ""
 
 #: includes/zvc-template-functions.php:287
-#: includes/class-zvc-shortcodes.php:166
+#: includes/class-zvc-shortcodes.php:170
 msgid "Meeting Status"
 msgstr ""
 
@@ -77,6 +77,7 @@ msgstr ""
 
 #: includes/zvc-template-functions.php:298
 #: templates/shortcode/zoom-webinar.php:33
+#: includes/elementor/widgets/class-zvc-elementor-meeting-host.php:110
 msgid "Type"
 msgstr ""
 
@@ -108,8 +109,8 @@ msgstr ""
 
 #: includes/zvc-template-functions.php:338
 #: includes/zvc-template-functions.php:346
-#: includes/zvc-template-functions.php:353 includes/class-zvc-shortcodes.php:98
-#: includes/class-zvc-shortcodes.php:167
+#: includes/zvc-template-functions.php:353
+#: includes/class-zvc-shortcodes.php:102 includes/class-zvc-shortcodes.php:171
 #: includes/views/tpl-list-meetings.php:64
 #: templates/shortcode/zoom-webinar.php:73
 #: templates/shortcode/zoom-webinar.php:81
@@ -123,13 +124,14 @@ msgstr ""
 msgid "This is a meeting with no Fixed Time."
 msgstr ""
 
-#: includes/zvc-template-functions.php:358 includes/class-zvc-shortcodes.php:99
-#: includes/class-zvc-shortcodes.php:168 includes/views/tpl-edit-meeting.php:80
+#: includes/zvc-template-functions.php:358
+#: includes/class-zvc-shortcodes.php:103 includes/class-zvc-shortcodes.php:172
+#: includes/views/tpl-edit-meeting.php:80
 #: includes/views/tpl-add-meetings.php:62
 #: templates/fragments/meeting-details.php:42
 #: templates/shortcode/zoom-webinar.php:93
 #: templates/shortcode/zoom-listing.php:30
-#: includes/views/webinars/tpl-edit-webinar.php:69
+#: includes/views/webinars/tpl-edit-webinar.php:58
 #: includes/views/webinars/tpl-add-webinar.php:62
 #: includes/views/post-type/tpl-meeting-fields.php:87
 msgid "Timezone"
@@ -140,7 +142,7 @@ msgstr ""
 #: includes/views/tpl-add-meetings.php:74
 #: templates/fragments/meeting-details.php:37
 #: templates/shortcode/zoom-webinar.php:98
-#: includes/views/webinars/tpl-edit-webinar.php:81
+#: includes/views/webinars/tpl-edit-webinar.php:70
 #: includes/views/webinars/tpl-add-webinar.php:74
 #: includes/views/post-type/tpl-meeting-fields.php:102
 msgid "Duration"
@@ -202,143 +204,143 @@ msgstr ""
 msgid "Join via Web Browser"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:75 includes/class-zvc-shortcodes.php:145
+#: includes/class-zvc-shortcodes.php:75 includes/class-zvc-shortcodes.php:149
 msgid "Host ID should be given when defining this shortcode."
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:88 includes/class-zvc-shortcodes.php:156
+#: includes/class-zvc-shortcodes.php:91 includes/class-zvc-shortcodes.php:160
 msgid "Could not retrieve meetings, check Host ID"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:100 includes/class-zvc-shortcodes.php:169
+#: includes/class-zvc-shortcodes.php:104 includes/class-zvc-shortcodes.php:173
 msgid "Actions"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:113
+#: includes/class-zvc-shortcodes.php:117
 msgid "Join via App"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:114
+#: includes/class-zvc-shortcodes.php:118
 msgid "Join via Browser"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:177
+#: includes/class-zvc-shortcodes.php:181
 #: includes/views/tpl-list-meetings.php:87
 #: includes/views/webinars/tpl-list-webinars.php:83
 msgid "Start via Browser"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:204
+#: includes/class-zvc-shortcodes.php:208
 #: includes/views/tpl-list-meetings.php:91
 #: includes/views/webinars/tpl-list-webinars.php:87
 msgid "Start via App"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:242 includes/class-zvc-shortcodes.php:305
-#: includes/class-zvc-shortcodes.php:446
+#: includes/class-zvc-shortcodes.php:246 includes/class-zvc-shortcodes.php:309
+#: includes/class-zvc-shortcodes.php:451
 msgid "ERROR: "
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:242 includes/class-zvc-shortcodes.php:446
+#: includes/class-zvc-shortcodes.php:246 includes/class-zvc-shortcodes.php:451
 msgid "No meeting id set in the shortcode"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:270
+#: includes/class-zvc-shortcodes.php:274
 #, php-format
 msgid ""
 "Please try again ! Some error occured while trying to fetch meeting with id: "
 " %d"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:305
+#: includes/class-zvc-shortcodes.php:309
 msgid "No webinar id set in the shortcode"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:326
+#: includes/class-zvc-shortcodes.php:330
 #, php-format
 msgid ""
 "Please try again ! Some error occured while trying to fetch webinar with id: "
 " %d"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:409
+#: includes/class-zvc-shortcodes.php:413
 #: includes/admin/class-zvc-admin-post-type.php:197
 msgid "No meetings found."
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:452
+#: includes/class-zvc-shortcodes.php:457
 msgid "Restricted access, please login to continue."
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:513
+#: includes/class-zvc-shortcodes.php:524
 msgid ""
 "Note: If you are having trouble joining the meeting below, enter Meeting ID: "
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:513
+#: includes/class-zvc-shortcodes.php:524
 msgid "and join via Zoom App."
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:516 templates/shortcode/join-links.php:18
+#: includes/class-zvc-shortcodes.php:527 templates/shortcode/join-links.php:18
 #: templates/shortcode/webinar-join-links.php:18
 msgid "Join via Zoom App"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:517
+#: includes/class-zvc-shortcodes.php:528
 msgid "Download App from Store"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:518
+#: includes/class-zvc-shortcodes.php:529
 msgid "Download from Zoom"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:534
+#: includes/class-zvc-shortcodes.php:545
 #: templates/fragments/countdown-timer.php:22
 msgid "days"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:540
+#: includes/class-zvc-shortcodes.php:551
 #: templates/fragments/countdown-timer.php:28
 msgid "hours"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:546
+#: includes/class-zvc-shortcodes.php:557
 #: templates/fragments/countdown-timer.php:34
 msgid "minutes"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:552
+#: includes/class-zvc-shortcodes.php:563
 #: templates/fragments/countdown-timer.php:40
 msgid "seconds"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:561
+#: includes/class-zvc-shortcodes.php:572
 msgid "Your name"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:563
+#: includes/class-zvc-shortcodes.php:574
 msgid "Join Meeting"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:570
+#: includes/class-zvc-shortcodes.php:581
 msgid "JOIN MEETING VIA ALTERNATIVE WAY"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:578
+#: includes/class-zvc-shortcodes.php:589
 msgid ""
 "If the meeting is not started yet you have to click the below button as a "
 "HOST to start the meeting, once started you can join from the window below."
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:579
+#: includes/class-zvc-shortcodes.php:590
 msgid "START MEETING AS HOST"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:588
+#: includes/class-zvc-shortcodes.php:599
 msgid "ALERT: "
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:588
+#: includes/class-zvc-shortcodes.php:599
 msgid ""
 "Audio and Video for Zoom meeting will not work on a non HTTPS site, please "
 "install a valid SSL certificate on your site to allow participants use audio "
@@ -605,13 +607,16 @@ msgid "Enable Debug?"
 msgstr ""
 
 #: includes/admin/class-zvc-admin-webinars.php:114
-#: includes/admin/class-zvc-admin-meetings.php:93
-msgid "Updated meeting."
+msgid "Updated Webinar."
 msgstr ""
 
 #: includes/admin/class-zvc-admin-webinars.php:157
 #, php-format
 msgid "Created webinar %s at %s. Join %s"
+msgstr ""
+
+#: includes/admin/class-zvc-admin-meetings.php:93
+msgid "Updated meeting."
 msgstr ""
 
 #: includes/admin/class-zvc-admin-meetings.php:133
@@ -823,8 +828,7 @@ msgstr ""
 #: includes/views/tpl-edit-meeting.php:170
 #: includes/views/tpl-add-meetings.php:46
 #: includes/views/tpl-add-meetings.php:146
-#: includes/views/webinars/tpl-edit-webinar.php:46
-#: includes/views/webinars/tpl-edit-webinar.php:135
+#: includes/views/webinars/tpl-edit-webinar.php:124
 #: includes/views/webinars/tpl-add-webinar.php:46
 #: includes/views/webinars/tpl-add-webinar.php:127
 #: includes/views/post-type/tpl-meeting-fields.php:62
@@ -834,7 +838,6 @@ msgstr ""
 
 #: includes/views/tpl-edit-meeting.php:62
 #: includes/views/tpl-add-meetings.php:51
-#: includes/views/webinars/tpl-edit-webinar.php:51
 #: includes/views/webinars/tpl-add-webinar.php:51
 #: includes/views/post-type/tpl-meeting-fields.php:51
 #: includes/views/post-type/tpl-meeting-fields.php:70
@@ -843,7 +846,7 @@ msgstr ""
 
 #: includes/views/tpl-edit-meeting.php:66
 #: includes/views/tpl-add-meetings.php:55
-#: includes/views/webinars/tpl-edit-webinar.php:55
+#: includes/views/webinars/tpl-edit-webinar.php:44
 #: includes/views/webinars/tpl-add-webinar.php:55
 #: includes/views/post-type/tpl-meeting-fields.php:77
 msgid "Start Date/Time *"
@@ -874,7 +877,7 @@ msgstr ""
 
 #: includes/views/tpl-edit-meeting.php:102
 #: includes/views/tpl-add-meetings.php:84
-#: includes/views/webinars/tpl-edit-webinar.php:91
+#: includes/views/webinars/tpl-edit-webinar.php:80
 #: includes/views/webinars/tpl-add-webinar.php:84
 #: includes/views/post-type/tpl-meeting-fields.php:112
 msgid ""
@@ -905,7 +908,7 @@ msgstr ""
 
 #: includes/views/tpl-edit-meeting.php:117
 #: includes/views/tpl-add-meetings.php:99
-#: includes/views/webinars/tpl-edit-webinar.php:98
+#: includes/views/webinars/tpl-edit-webinar.php:87
 #: includes/views/webinars/tpl-add-webinar.php:91
 #: includes/views/post-type/tpl-meeting-fields.php:127
 msgid "Start video when host join meeting."
@@ -947,7 +950,7 @@ msgstr ""
 
 #: includes/views/tpl-edit-meeting.php:149
 #: includes/views/tpl-add-meetings.php:131
-#: includes/views/webinars/tpl-edit-webinar.php:119
+#: includes/views/webinars/tpl-edit-webinar.php:108
 #: includes/views/webinars/tpl-add-webinar.php:112
 #: includes/views/post-type/tpl-meeting-fields.php:150
 msgid "Auto Recording"
@@ -970,7 +973,7 @@ msgstr ""
 
 #: includes/views/tpl-edit-meeting.php:162
 #: includes/views/tpl-add-meetings.php:138
-#: includes/views/webinars/tpl-edit-webinar.php:127
+#: includes/views/webinars/tpl-edit-webinar.php:116
 #: includes/views/webinars/tpl-add-webinar.php:119
 #: includes/views/post-type/tpl-meeting-fields.php:163
 msgid ""
@@ -979,14 +982,14 @@ msgstr ""
 
 #: includes/views/tpl-edit-meeting.php:167
 #: includes/views/tpl-add-meetings.php:143
-#: includes/views/webinars/tpl-edit-webinar.php:132
+#: includes/views/webinars/tpl-edit-webinar.php:121
 #: includes/views/webinars/tpl-add-webinar.php:124
 #: includes/views/post-type/tpl-meeting-fields.php:171
 msgid "Alternative Hosts"
 msgstr ""
 
 #: includes/views/tpl-edit-meeting.php:181
-#: includes/views/webinars/tpl-edit-webinar.php:150
+#: includes/views/webinars/tpl-edit-webinar.php:139
 #: includes/views/post-type/tpl-meeting-fields.php:184
 msgid ""
 "Paid Zoom Account is required for this !! Alternative hosts IDs. Multiple "
@@ -1210,6 +1213,62 @@ msgstr ""
 msgid "See More"
 msgstr ""
 
+#: includes/elementor/widgets/class-zvc-elementor-meetings.php:45
+msgid "Zoom Meeting"
+msgstr ""
+
+#: includes/elementor/widgets/class-zvc-elementor-meetings.php:84
+msgid "Select a Zoom Meeting"
+msgstr ""
+
+#: includes/elementor/widgets/class-zvc-elementor-meetings.php:92
+msgid "Meeting"
+msgstr ""
+
+#: includes/elementor/widgets/class-zvc-elementor-meetings.php:115
+msgid "Select a Meeting"
+msgstr ""
+
+#: includes/elementor/widgets/class-zvc-elementor-meeting-host.php:48
+msgid "Zoom Meetings via Host"
+msgstr ""
+
+#: includes/elementor/widgets/class-zvc-elementor-meeting-host.php:89
+msgid "Show Meeting by Zoom User"
+msgstr ""
+
+#: includes/elementor/widgets/class-zvc-elementor-meeting-host.php:97
+msgid "Select User"
+msgstr ""
+
+#: includes/elementor/widgets/class-zvc-elementor-meeting-host.php:165
+msgid "No user selected."
+msgstr ""
+
+#: includes/elementor/widgets/class-zvc-elementor-meeting-list.php:48
+msgid "Zoom Meetings List"
+msgstr ""
+
+#: includes/elementor/widgets/class-zvc-elementor-meeting-list.php:89
+msgid "Content"
+msgstr ""
+
+#: includes/elementor/widgets/class-zvc-elementor-meeting-list.php:97
+msgid "Meetings Category"
+msgstr ""
+
+#: includes/elementor/widgets/class-zvc-elementor-meeting-list.php:110
+msgid "Meetings Order By"
+msgstr ""
+
+#: includes/elementor/widgets/class-zvc-elementor-meeting-list.php:125
+msgid "Meetings Type"
+msgstr ""
+
+#: includes/elementor/widgets/class-zvc-elementor-meeting-list.php:141
+msgid "Count of meetings"
+msgstr ""
+
 #: includes/views/tabs/shortcode.php:12
 msgid "Using Shortcode Example"
 msgstr ""
@@ -1413,72 +1472,67 @@ msgstr ""
 msgid "Back to selected host Webinars list"
 msgstr ""
 
-#: includes/views/webinars/tpl-edit-webinar.php:29
+#: includes/views/webinars/tpl-edit-webinar.php:30
 #: includes/views/webinars/tpl-add-webinar.php:29
 msgid "Webinar Topic *"
 msgstr ""
 
-#: includes/views/webinars/tpl-edit-webinar.php:32
+#: includes/views/webinars/tpl-edit-webinar.php:33
 #: includes/views/webinars/tpl-add-webinar.php:32
 msgid "Webinar topic. (Required)."
 msgstr ""
 
-#: includes/views/webinars/tpl-edit-webinar.php:36
+#: includes/views/webinars/tpl-edit-webinar.php:37
 #: includes/views/webinars/tpl-add-webinar.php:36
 msgid "Webinar Agenda"
 msgstr ""
 
-#: includes/views/webinars/tpl-edit-webinar.php:39
+#: includes/views/webinars/tpl-edit-webinar.php:40
 #: includes/views/webinars/tpl-add-webinar.php:39
 msgid "Webinar Description."
 msgstr ""
 
-#: includes/views/webinars/tpl-edit-webinar.php:43
-#: includes/views/webinars/tpl-add-webinar.php:43
-msgid "Webinar Host *"
-msgstr ""
-
-#: includes/views/webinars/tpl-edit-webinar.php:65
+#: includes/views/webinars/tpl-edit-webinar.php:54
 #: includes/views/webinars/tpl-add-webinar.php:58
 msgid "Starting Date and Time of the Webinar (Required)."
 msgstr ""
 
-#: includes/views/webinars/tpl-edit-webinar.php:77
+#: includes/views/webinars/tpl-edit-webinar.php:66
 #: includes/views/webinars/tpl-add-webinar.php:70
 msgid "Webinar Timezone"
 msgstr ""
 
-#: includes/views/webinars/tpl-edit-webinar.php:84
+#: includes/views/webinars/tpl-edit-webinar.php:73
 #: includes/views/webinars/tpl-add-webinar.php:77
 msgid "Webinar duration (minutes). (optional)"
 msgstr ""
 
-#: includes/views/webinars/tpl-edit-webinar.php:88
+#: includes/views/webinars/tpl-edit-webinar.php:77
 #: includes/views/webinars/tpl-add-webinar.php:81
 msgid "Webinar Password"
 msgstr ""
 
-#: includes/views/webinars/tpl-edit-webinar.php:95
+#: includes/views/webinars/tpl-edit-webinar.php:84
 #: includes/views/webinars/tpl-add-webinar.php:88
 msgid "Host Video"
 msgstr ""
 
-#: includes/views/webinars/tpl-edit-webinar.php:103
+#: includes/views/webinars/tpl-edit-webinar.php:92
 #: includes/views/webinars/tpl-add-webinar.php:96
 msgid "Panelists Video"
 msgstr ""
 
-#: includes/views/webinars/tpl-edit-webinar.php:106
+#: includes/views/webinars/tpl-edit-webinar.php:95
 #: includes/views/webinars/tpl-add-webinar.php:99
 msgid "Start video when panelists join meeting."
 msgstr ""
 
-#: includes/views/webinars/tpl-edit-webinar.php:111
+#: includes/views/webinars/tpl-edit-webinar.php:100
 #: includes/views/webinars/tpl-add-webinar.php:104
 msgid "HD Video"
 msgstr ""
 
-#: includes/views/webinars/tpl-edit-webinar.php:114
+#: includes/views/webinars/tpl-edit-webinar.php:103
 #: includes/views/webinars/tpl-add-webinar.php:107
 msgid "Defaults to HD video."
 msgstr ""
@@ -1501,6 +1555,10 @@ msgstr ""
 
 #: includes/views/webinars/tpl-add-webinar.php:11
 msgid "Add a Webinar"
+msgstr ""
+
+#: includes/views/webinars/tpl-add-webinar.php:43
+msgid "Webinar Host *"
 msgstr ""
 
 #: includes/views/post-type/tpl-meeting-fields.php:25

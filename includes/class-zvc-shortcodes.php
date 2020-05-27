@@ -500,121 +500,120 @@ class Zoom_Video_Conferencing_Shorcodes {
 
 		if ( ! empty( $meeting ) && ! empty( $meeting->code ) ) {
 			echo $meeting->message;
+		} else {
+			if ( ! empty( $meeting ) ) {
+				$meeting_time = date( 'Y-m-d h:i a', strtotime( $meeting->start_time ) );
+				try {
+					$meeting_timezone_time = vczapi_dateConverter( 'now', $meeting->timezone );
+					$meeting_time_check    = vczapi_dateConverter( $meeting_time, $meeting->timezone );
 
-			return;
-		}
-
-		if ( ! empty( $meeting ) ) {
-			$meeting_time = date( 'Y-m-d h:i a', strtotime( $meeting->start_time ) );
-			try {
-				$meeting_timezone_time = vczapi_dateConverter( 'now', $meeting->timezone );
-				$meeting_time_check    = vczapi_dateConverter( $meeting_time, $meeting->timezone );
-
-				if ( ! empty( $title ) ) {
-					?>
-                    <h1><?php esc_html_e( $title ); ?></h1>
-					<?php
-				}
-
-				if ( ! empty( $help ) && $help === "yes" ) {
-					$app_store_link = vczapi_get_browser_agent_type();
-					if ( ! isset( $zoom_states[ $meeting_id ]['state'] ) ) {
+					if ( ! empty( $title ) ) {
 						?>
-                        <div class="zoom-app-notice">
-                            <p><?php echo esc_html__( 'Note: If you are having trouble joining the meeting below, enter Meeting ID: ', 'video-conferencing-with-zoom-api' ) . '<strong>' . esc_html( $meeting_id ) . '</strong> ' . esc_html__( 'and join via Zoom App.', 'video-conferencing-with-zoom-api' ); ?></p>
-                            <span class="zoom-links">
+                        <h1><?php esc_html_e( $title ); ?></h1>
+						<?php
+					}
+
+					if ( ! empty( $help ) && $help === "yes" ) {
+						$app_store_link = vczapi_get_browser_agent_type();
+						if ( ! isset( $zoom_states[ $meeting_id ]['state'] ) ) {
+							?>
+                            <div class="zoom-app-notice">
+                                <p><?php echo esc_html__( 'Note: If you are having trouble joining the meeting below, enter Meeting ID: ', 'video-conferencing-with-zoom-api' ) . '<strong>' . esc_html( $meeting_id ) . '</strong> ' . esc_html__( 'and join via Zoom App.', 'video-conferencing-with-zoom-api' ); ?></p>
+                                <span class="zoom-links">
                             <ul>
                                 <li><a href="<?php echo esc_url( $mobile_zoom_url ); ?>" class="join-link retry-url"><?php _e( 'Join via Zoom App', 'video-conferencing-with-zoom-api' ); ?></a></li>
                                 <li><a href="<?php echo esc_url( $app_store_link ); ?>" class="download-link"><?php _e( 'Download App from Store', 'video-conferencing-with-zoom-api' ); ?></a></li>
                                 <li><a href="https://zoom.us/client/latest/zoom.apk" class="download-link"><?php _e( 'Download from Zoom', 'video-conferencing-with-zoom-api' ); ?></a></li>
                             </ul>
                         </span>
-                        </div>
-					<?php }
-				}
+                            </div>
+						<?php }
+					}
 
-				if ( isset( $zoom_states[ $meeting_id ]['state'] ) && $zoom_states[ $meeting_id ]['state'] === "ended" ) {
-					echo '<h3>' . esc_html__( 'This meeting has been ended by host.', 'video-conferencing-with-zoom-api ' ) . '</h3>';
-				} elseif ( $meeting_time_check > $meeting_timezone_time && ! empty( $disable_countdown ) && $disable_countdown === "yes" ) {
-					?>
-                    <div class="dpn-zvc-timer zoom-join-via-browser-countdown" id="dpn-zvc-timer" data-date="<?php echo $meeting_time; ?>" data-tz="<?php echo $meeting->timezone; ?>">
-                        <div class="dpn-zvc-timer-cell">
-                            <div class="dpn-zvc-timer-cell-number">
-                                <div id="dpn-zvc-timer-days"></div>
-                            </div>
-                            <div class="dpn-zvc-timer-cell-string"><?php _e( 'days', 'video-conferencing-with-zoom-api' ); ?></div>
-                        </div>
-                        <div class="dpn-zvc-timer-cell">
-                            <div class="dpn-zvc-timer-cell-number">
-                                <div id="dpn-zvc-timer-hours"></div>
-                            </div>
-                            <div class="dpn-zvc-timer-cell-string"><?php _e( 'hours', 'video-conferencing-with-zoom-api' ); ?></div>
-                        </div>
-                        <div class="dpn-zvc-timer-cell">
-                            <div class="dpn-zvc-timer-cell-number">
-                                <div id="dpn-zvc-timer-minutes"></div>
-                            </div>
-                            <div class="dpn-zvc-timer-cell-string"><?php _e( 'minutes', 'video-conferencing-with-zoom-api' ); ?></div>
-                        </div>
-                        <div class="dpn-zvc-timer-cell">
-                            <div class="dpn-zvc-timer-cell-number">
-                                <div id="dpn-zvc-timer-seconds"></div>
-                            </div>
-                            <div class="dpn-zvc-timer-cell-string"><?php _e( 'seconds', 'video-conferencing-with-zoom-api' ); ?></div>
-                        </div>
-                    </div>
-					<?php
-				} else {
-					if ( ! $visitor_name ):
+					if ( isset( $zoom_states[ $meeting_id ]['state'] ) && $zoom_states[ $meeting_id ]['state'] === "ended" ) {
+						echo '<h3>' . esc_html__( 'This meeting has been ended by host.', 'video-conferencing-with-zoom-api ' ) . '</h3>';
+					} elseif ( $meeting_time_check > $meeting_timezone_time && ! empty( $disable_countdown ) && $disable_countdown === "no" ) {
 						?>
-                        <form method="post" class="zoom-meeting-step1">
-                            <h4><?php _e( 'Enter your name to join the meeting' ) ?></h4>
-                            <input class="join-meeting-field" type="text" value="<?php esc_attr_e( $visitor_name ) ?>" name="user_meeting_name_val" placeholder="<?php _e( 'Your name', 'video-conferencing-with-zoom-api' ) ?>"/><br/>
-							<?php wp_nonce_field( 'user_meeting_name' ); ?>
-                            <input class="join-meeting-btn" type="submit" name="join_meeting" value="<?php _e( 'Join Meeting', 'video-conferencing-with-zoom-api' ) ?>"/>
-                        </form>
-					<?php else: ?>
-                        <div class="zoom-window-wrap">
-							<?php
-							if ( ! current_user_can( 'administrator' ) ) {
-								?>
-                                <a class="button incompatiblity-notice-btn" target="_blank" href="<?php echo esc_html( 'https://zoom.us/wc/' . $meeting_id . '/join' ); ?>" class="join-link"><?php esc_html_e( 'JOIN MEETING VIA ALTERNATIVE WAY', 'video-conferencing-with-zoom-api' ); ?></a>
-								<?php
-							}
-
-							$host_users = video_conferencing_zoom_api_get_user_transients();
-							foreach ( $host_users as $host ) {
-								if ( isset( $user_data->user_email ) && $user_data->user_email == $host->email ) {
-									?>
-                                    <h3><?php _e( 'If the meeting is not started yet you have to click the below button as a HOST to start the meeting, once started you can join from the window below.', 'video-conferencing-with-zoom-api' ); ?></h3>
-                                    <a class="button start-meeting-btn" target="_blank" href="<?php echo esc_url( $zoom_host_url ); ?>" class="join-link"><?php _e( 'START MEETING AS HOST', 'video-conferencing-with-zoom-api' ); ?></a>
-									<?php
-								}
-							}
-
-							if ( current_user_can( 'administrator' ) ) {
-								if ( ! is_ssl() ) {
-									?>
-                                    <h4 class="ssl-alert">
-                                        <strong style="color:red;"><?php _e( 'ALERT: ', 'video-conferencing-with-zoom-api' ); ?></strong><?php _e( 'Audio and Video for Zoom meeting will not work on a non HTTPS site, please install a valid SSL certificate on your site to allow participants use audio and video during Zoom meeting: ', 'video-conferencing-with-zoom-api' ); ?>
-                                    </h4>
-									<?php
-								}
-							}
-
-							$styling = ! empty( $height ) ? "height: " . $height : "height: 500px;";
-							?>
-                            <div id="<?php echo ! empty( $id ) ? esc_html( $id ) : 'video-conferncing-embed-iframe'; ?>" class="zoom-iframe-container">
-                                <iframe scrolling="no" style="width:100%; <?php echo $styling; ?>" sandbox="allow-forms allow-scripts allow-same-origin" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen" allow="encrypted-media; autoplay; microphone; camera" src="<?php echo esc_url( $browser_url ); ?>" frameborder="0"></iframe>
+                        <div class="dpn-zvc-timer zoom-join-via-browser-countdown" id="dpn-zvc-timer" data-date="<?php echo $meeting_time; ?>" data-tz="<?php echo $meeting->timezone; ?>">
+                            <div class="dpn-zvc-timer-cell">
+                                <div class="dpn-zvc-timer-cell-number">
+                                    <div id="dpn-zvc-timer-days"></div>
+                                </div>
+                                <div class="dpn-zvc-timer-cell-string"><?php _e( 'days', 'video-conferencing-with-zoom-api' ); ?></div>
+                            </div>
+                            <div class="dpn-zvc-timer-cell">
+                                <div class="dpn-zvc-timer-cell-number">
+                                    <div id="dpn-zvc-timer-hours"></div>
+                                </div>
+                                <div class="dpn-zvc-timer-cell-string"><?php _e( 'hours', 'video-conferencing-with-zoom-api' ); ?></div>
+                            </div>
+                            <div class="dpn-zvc-timer-cell">
+                                <div class="dpn-zvc-timer-cell-number">
+                                    <div id="dpn-zvc-timer-minutes"></div>
+                                </div>
+                                <div class="dpn-zvc-timer-cell-string"><?php _e( 'minutes', 'video-conferencing-with-zoom-api' ); ?></div>
+                            </div>
+                            <div class="dpn-zvc-timer-cell">
+                                <div class="dpn-zvc-timer-cell-number">
+                                    <div id="dpn-zvc-timer-seconds"></div>
+                                </div>
+                                <div class="dpn-zvc-timer-cell-string"><?php _e( 'seconds', 'video-conferencing-with-zoom-api' ); ?></div>
                             </div>
                         </div>
-					<?php
-					endif;
+						<?php
+					} else {
+						if ( ! $visitor_name ):
+							?>
+                            <form method="post" class="zoom-meeting-step1">
+                                <h4><?php _e( 'Enter your name to join the meeting' ) ?></h4>
+                                <input class="join-meeting-field" type="text" value="<?php esc_attr_e( $visitor_name ) ?>" name="user_meeting_name_val" placeholder="<?php _e( 'Your name', 'video-conferencing-with-zoom-api' ) ?>"/><br/>
+								<?php wp_nonce_field( 'user_meeting_name' ); ?>
+                                <input class="join-meeting-btn" type="submit" name="join_meeting" value="<?php _e( 'Join Meeting', 'video-conferencing-with-zoom-api' ) ?>"/>
+                            </form>
+						<?php else: ?>
+                            <div class="zoom-window-wrap">
+								<?php
+								if ( ! current_user_can( 'administrator' ) ) {
+									?>
+                                    <a class="button incompatiblity-notice-btn" target="_blank" href="<?php echo esc_html( 'https://zoom.us/wc/' . $meeting_id . '/join' ); ?>" class="join-link"><?php esc_html_e( 'JOIN MEETING VIA ALTERNATIVE WAY', 'video-conferencing-with-zoom-api' ); ?></a>
+									<?php
+								}
+
+								$host_users = video_conferencing_zoom_api_get_user_transients();
+								foreach ( $host_users as $host ) {
+									if ( isset( $user_data->user_email ) && $user_data->user_email == $host->email ) {
+										?>
+                                        <h3><?php _e( 'If the meeting is not started yet you have to click the below button as a HOST to start the meeting, once started you can join from the window below.', 'video-conferencing-with-zoom-api' ); ?></h3>
+                                        <a class="button start-meeting-btn" target="_blank" href="<?php echo esc_url( $zoom_host_url ); ?>" class="join-link"><?php _e( 'START MEETING AS HOST', 'video-conferencing-with-zoom-api' ); ?></a>
+										<?php
+									}
+								}
+
+								if ( current_user_can( 'administrator' ) ) {
+									if ( ! is_ssl() ) {
+										?>
+                                        <h4 class="ssl-alert">
+                                            <strong style="color:red;"><?php _e( 'ALERT: ', 'video-conferencing-with-zoom-api' ); ?></strong><?php _e( 'Audio and Video for Zoom meeting will not work on a non HTTPS site, please install a valid SSL certificate on your site to allow participants use audio and video during Zoom meeting: ', 'video-conferencing-with-zoom-api' ); ?>
+                                        </h4>
+										<?php
+									}
+								}
+
+								$styling = ! empty( $height ) ? "height: " . $height : "height: 500px;";
+								?>
+                                <div id="<?php echo ! empty( $id ) ? esc_html( $id ) : 'video-conferncing-embed-iframe'; ?>" class="zoom-iframe-container">
+                                    <iframe scrolling="no" style="width:100%; <?php echo $styling; ?>" sandbox="allow-forms allow-scripts allow-same-origin" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen" allow="encrypted-media; autoplay; microphone; camera" src="<?php echo esc_url( $browser_url ); ?>" frameborder="0"></iframe>
+                                </div>
+                            </div>
+						<?php
+						endif;
+					}
+				} catch ( Exception $e ) {
+					error_log( $e->getMessage() );
 				}
-			} catch ( Exception $e ) {
-				error_log( $e->getMessage() );
 			}
 		}
+
 
 		$content .= ob_get_clean();
 
