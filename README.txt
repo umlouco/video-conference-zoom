@@ -152,7 +152,7 @@ However, even though meeting is created and you are not seeing countdown timer t
 
 == Changelog ==
 
-= 3.4.0 May 27th, 2020 =
+= 3.4.0 June 4th, 2020 =
 * Added: Webinar Support Added with Shortcode for showing webinars.
 * Added: Elementor Widgets for Listing Meetings and Meeting Display Output.
 * Added: Webinar Shortcodes
