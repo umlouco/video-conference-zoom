@@ -159,6 +159,8 @@ However, even though meeting is created and you are not seeing countdown timer t
 * Added : Join Via Browser supported by WebSDK
 * Updated: WebSDK to version 1.7.8
 * Minor Bug Fixes
+* Updated Translations
+* Added: Chinese(Taiwan) Translation. Thanks to the WordPress translation community !
 
 = 3.3.13 May 23rd, 2020 =
 * Bug Fixed: All join links were being hidden when setting was not checked in Zoom Meeting > Seetings page "Hide Join Links for Non-Loggedin ?".

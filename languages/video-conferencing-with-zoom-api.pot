@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Video Conferencing with Zoom API\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/video-"
 "conferencing-with-zoom-api\n"
-"POT-Creation-Date: 2020-05-26 10:47+0000\n"
+"POT-Creation-Date: 2020-06-04 07:59+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -272,75 +272,53 @@ msgstr ""
 msgid "Restricted access, please login to continue."
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:524
+#: includes/class-zvc-shortcodes.php:492
 msgid ""
 "Note: If you are having trouble joining the meeting below, enter Meeting ID: "
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:524
+#: includes/class-zvc-shortcodes.php:492
 msgid "and join via Zoom App."
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:527 templates/shortcode/join-links.php:18
+#: includes/class-zvc-shortcodes.php:496 templates/shortcode/join-links.php:18
 #: templates/shortcode/webinar-join-links.php:18
 msgid "Join via Zoom App"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:528
+#: includes/class-zvc-shortcodes.php:499
 msgid "Download App from Store"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:529
+#: includes/class-zvc-shortcodes.php:502
 msgid "Download from Zoom"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:545
+#: includes/class-zvc-shortcodes.php:519
 #: templates/fragments/countdown-timer.php:22
 msgid "days"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:551
+#: includes/class-zvc-shortcodes.php:525
 #: templates/fragments/countdown-timer.php:28
 msgid "hours"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:557
+#: includes/class-zvc-shortcodes.php:531
 #: templates/fragments/countdown-timer.php:34
 msgid "minutes"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:563
+#: includes/class-zvc-shortcodes.php:537
 #: templates/fragments/countdown-timer.php:40
 msgid "seconds"
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:572
-msgid "Your name"
-msgstr ""
-
-#: includes/class-zvc-shortcodes.php:574
-msgid "Join Meeting"
-msgstr ""
-
-#: includes/class-zvc-shortcodes.php:581
-msgid "JOIN MEETING VIA ALTERNATIVE WAY"
-msgstr ""
-
-#: includes/class-zvc-shortcodes.php:589
-msgid ""
-"If the meeting is not started yet you have to click the below button as a "
-"HOST to start the meeting, once started you can join from the window below."
-msgstr ""
-
-#: includes/class-zvc-shortcodes.php:590
-msgid "START MEETING AS HOST"
-msgstr ""
-
-#: includes/class-zvc-shortcodes.php:599
+#: includes/class-zvc-shortcodes.php:544
 msgid "ALERT: "
 msgstr ""
 
-#: includes/class-zvc-shortcodes.php:599
+#: includes/class-zvc-shortcodes.php:544
 msgid ""
 "Audio and Video for Zoom meeting will not work on a non HTTPS site, please "
 "install a valid SSL certificate on your site to allow participants use audio "
@@ -1284,8 +1262,8 @@ msgid "Basic Usage"
 msgstr ""
 
 #: includes/views/tabs/shortcode.php:19 includes/views/tabs/shortcode.php:34
-#: includes/views/tabs/shortcode.php:52 includes/views/tabs/shortcode.php:64
-#: includes/views/tabs/shortcode.php:80
+#: includes/views/tabs/shortcode.php:52 includes/views/tabs/shortcode.php:65
+#: includes/views/tabs/shortcode.php:83 includes/views/tabs/shortcode.php:95
 msgid "Description"
 msgstr ""
 
@@ -1295,8 +1273,8 @@ msgid ""
 msgstr ""
 
 #: includes/views/tabs/shortcode.php:21 includes/views/tabs/shortcode.php:37
-#: includes/views/tabs/shortcode.php:54 includes/views/tabs/shortcode.php:66
-#: includes/views/tabs/shortcode.php:82
+#: includes/views/tabs/shortcode.php:54 includes/views/tabs/shortcode.php:68
+#: includes/views/tabs/shortcode.php:85 includes/views/tabs/shortcode.php:97
 msgid "Parameters"
 msgstr ""
 
@@ -1323,14 +1301,22 @@ msgstr ""
 msgid "Embed Zoom Meeting in your Browser"
 msgstr ""
 
-#: includes/views/tabs/shortcode.php:65 includes/views/tabs/shortcode.php:81
+#: includes/views/tabs/shortcode.php:66 includes/views/tabs/shortcode.php:84
 msgid ""
 "Embeds your meeting in an IFRAME for any page or post you insert this "
 "shortcode into."
 msgstr ""
 
-#: includes/views/tabs/shortcode.php:77
+#: includes/views/tabs/shortcode.php:80
 msgid "Show webinars based on HOST ID in frontend."
+msgstr ""
+
+#: includes/views/tabs/shortcode.php:92
+msgid "Show webinar based meeting ID."
+msgstr ""
+
+#: includes/views/tabs/shortcode.php:96
+msgid "Shows a Webinar detail based on a specific Webinar ID."
 msgstr ""
 
 #: includes/views/tabs/api-settings.php:11
