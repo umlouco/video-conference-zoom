@@ -86,6 +86,12 @@ Where,
 * `height` : Height of embedded video IFRAME.
 * `disable_countdown` : "yes or no", enable or disable countdown.
 
+To redirect user after a meeting fails, after completed or if meeting is not yet started; Add below code to your functions.php file in your theme and replace it with url you want to redirect:
+
+**`add_filter('vczapi_api_redirect_join_browser', function() { 
+    return 'https://yoursiteurl.com/page';
+});`**
+
 ### How to get Meeting ID
 
 1. Goto your wp-admin

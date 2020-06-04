@@ -4,7 +4,7 @@ Tags: zoom video conference, video conference, zoom, zoom video conferencing, we
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.4
-Stable tag: 3.4.0
+Stable tag: 3.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -152,10 +152,12 @@ However, even though meeting is created and you are not seeing countdown timer t
 
 == Changelog ==
 
-= 3.4.0 June 4th, 2020 =
+= 3.4.0/3.4.1 June 4th, 2020 =
 * Added: Webinar Support Added with Shortcode for showing webinars.
 * Added: Elementor Widgets for Listing Meetings and Meeting Display Output.
 * Added: Webinar Shortcodes
+* Added : Join Via Browser supported by WebSDK
+* Updated: WebSDK to version 1.7.8
 * Minor Bug Fixes
 
 = 3.3.13 May 23rd, 2020 =
