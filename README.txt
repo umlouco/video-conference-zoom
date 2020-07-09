@@ -4,7 +4,7 @@ Tags: zoom video conference, video conference, zoom, zoom video conferencing, we
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.4
-Stable tag: 3.4.1
+Stable tag: 3.4.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -158,7 +158,7 @@ Yes, you should be registered in Zoom. Also, on the plan you are using there dep
 
 == Changelog ==
 
-= 3.4.2 July 1st, 2020 =
+= 3.4.2 July 9th, 2020 =
 * Updated: WebSDK to version 1.7.10 ( webSDK changes https://timeline.noticeable.io/8XMdMkIr8cTlKfj8DTtx/posts/web-sdk-version-1-7-9-updates?cache=false & https://timeline.noticeable.io/8XMdMkIr8cTlKfj8DTtx/posts/web-sdk-updates-version-1-7-10 )
 * Added: Filter Hook to remove language field at the time of joining meeting via web "vczapi_api_bypass_lang"
 * Added: Filter Hook to remove browser info field at the time of joining meeting via web "vczapi_api_bypass_lang"
