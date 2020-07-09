@@ -73,6 +73,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php }
 	}
 	?>
+    <!--<tr class="zoom-meeting-type-selection-admin">
+        <th scope="row"><label for="meeting_type"><?php /*_e( 'Meeting Type', 'video-conferencing-with-zoom-api' ); */?></label></th>
+        <td>
+            <select id="meeting_type" name="meeting_type" class="meeting-type-selection">
+                <option value="1">Meeting</option>
+                <option value="2">Webinar</option>
+            </select>
+            <p class="description" id="userId-description"><?php /*_e( 'Which type of meeting do you want to create', 'video-conferencing-with-zoom-api' ); */?>
+                ?</p>
+        </td>
+    </tr>-->
     <tr>
         <th scope="row"><label for="start_date"><?php _e( 'Start Date/Time *', 'video-conferencing-with-zoom-api' ); ?></label></th>
         <td>

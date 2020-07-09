@@ -2,7 +2,6 @@
 
 namespace CodeManas\ZoomVideoConferencing\Elementor;
 
-use CodeManas\ZoomVideoConferencing\Elementor\Widgets\Zoom_Video_Conferencing_Elementor_Webinar;
 use CodeManas\ZoomVideoConferencing\Elementor\Widgets\Zoom_Video_Conferencing_ElementorMeetingsList;
 use CodeManas\ZoomVideoConferencing\Elementor\Widgets\Zoom_Video_Conferencing_Elementor_Meetings;
 use CodeManas\ZoomVideoConferencing\Elementor\Widgets\Zoom_Video_Conferencing_ElementorMeetingsHost;

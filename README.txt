@@ -16,8 +16,6 @@ Simple plugin which gives you the extensive functionality to manage zoom meeting
 
 Now, from 3.2.0 allows you to Join meetings directly from Browser without Zoom App using Zoom WebSDK. For audio/video issues check FAQ section. Check here on how it <a target="_blank" href="https://deepenbajracharya.com.np/joining-meetings-in-zoom-directly-from-browser">Works</a>
 
-**NOTE: If you getting API errors when click on Check API connection then please refer to [Covid Impacts on Zoom](https://devforum.zoom.us/t/developer-impacting-changes-during-covid-19/8930 "Covid Impacts on Zoom")**
-
 **FEATURES:**
 
 * Manage WordPress posts and link them to Live Zoom meetings ( NEW from 3.0.0+ )
@@ -112,6 +110,10 @@ Search for the plugin -> add new dialog and click install, or download and extra
 
 == Frequently Asked Questions ==
 
+= Add users not working for me =
+
+The plugin settings allow you to add and manage users. But, you should remember that you can add users in accordance with the Zoom Plans, so they will be active for the chosen plan. More information about Zoom pricing plans you can find here: https://zoom.us/pricing
+
 = Join via Browser not working, Camera and Audio not detected =
 
 This issue is because of HTTPS protocol. You need to use HTTPS to be able to allow browser to send audio and video.
@@ -139,6 +141,10 @@ However, even though meeting is created and you are not seeing countdown timer t
 3. Replace **template-file.php** with the file you need to override.
 4. Overriding shortcode template is also the same process inside folder **templates/shortcode**
 
+= Do i need a Zoom Account ? =
+
+Yes, you should be registered in Zoom. Also, on the plan you are using there depends the number of hosts and users you can add.
+
 == Screenshots ==
 1. Join via browser
 2. Meetings Listings. Select a User in order to list meetings for that user.
@@ -151,6 +157,14 @@ However, even though meeting is created and you are not seeing countdown timer t
 9. Shortcode Output
 
 == Changelog ==
+
+= 3.4.2 July 1st, 2020 =
+* Updated: WebSDK to version 1.7.10 ( webSDK changes https://timeline.noticeable.io/8XMdMkIr8cTlKfj8DTtx/posts/web-sdk-version-1-7-9-updates?cache=false & https://timeline.noticeable.io/8XMdMkIr8cTlKfj8DTtx/posts/web-sdk-updates-version-1-7-10 )
+* Added: Filter Hook to remove language field at the time of joining meeting via web "vczapi_api_bypass_lang"
+* Added: Filter Hook to remove browser info field at the time of joining meeting via web "vczapi_api_bypass_lang"
+* Changed: Template file "join-web-browser.php" minor changes i.e added filter hooks.
+* Updated: Zoom WebSDK css libraries.
+* Changed: Shortcode "zoom_list_host_webinars" and "zoom_list_host_meetings" meeting cache value to 5 minutes.
 
 = 3.4.0/3.4.1 June 4th, 2020 =
 * Added: Webinar Support Added with Shortcode for showing webinars.

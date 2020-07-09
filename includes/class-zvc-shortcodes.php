@@ -83,7 +83,7 @@ class Zoom_Video_Conferencing_Shorcodes {
 			if ( isset( $decoded_meetings->webinars ) ) {
 				$webinars = $decoded_meetings->webinars;
 				update_option( '_vczapi_user_webinars_for_' . $atts['host'], $webinars );
-				update_option( '_vczapi_user_webinars_for_' . $atts['host'] . '_expiration', time() + 60 * 30 );
+				update_option( '_vczapi_user_webinars_for_' . $atts['host'] . '_expiration', time() + 60 * 5 );
 			} else {
 				if ( ! empty( $decoded_meetings ) && ! empty( $decoded_meetings->code ) ) {
 					return '<strong>Zoom API Error:</strong>' . $decoded_meetings->message;
@@ -149,13 +149,15 @@ class Zoom_Video_Conferencing_Shorcodes {
 			return __( 'Host ID should be given when defining this shortcode.', 'video-conferencing-with-zoom-api' );
 		}
 
-		$meetings = get_transient( 'vczapi_user_meetings_for_' . $atts['host'] );
-		if ( empty( $meetings ) ) {
+		$meetings         = get_option( 'vczapi_user_meetings_for_' . $atts['host'] );
+		$cache_expiration = get_option( 'vczapi_user_meetings_for_' . $atts['host'] . '_expiration' );
+		if ( empty( $meetings ) || $cache_expiration < time() ) {
 			$encoded_meetings = zoom_conference()->listMeetings( $atts['host'] );
 			$decoded_meetings = json_decode( $encoded_meetings );
 			if ( isset( $decoded_meetings->meetings ) ) {
 				$meetings = $decoded_meetings->meetings;
-				set_transient( 'vczapi_user_meetings_for_' . $atts['host'], $meetings, 1800 );
+				update_option( 'vczapi_user_meetings_for_' . $atts['host'], $meetings );
+				update_option( 'vczapi_user_meetings_for_' . $atts['host'] . '_expiration', time() + 60 * 5 );
 			} else {
 				return __( 'Could not retrieve meetings, check Host ID', 'video-conferencing-with-zoom-api' );
 			}

@@ -29,6 +29,7 @@
             $dom.cover = $('#zvc-cover');
             $dom.togglePwd = $('.toggle-api');
             $dom.toggleSecret = $('.toggle-secret');
+            this.meetingType = $('.meeting-type-selection');
 
             $dom.changeMeetingState = $('.vczapi-meeting-state-change');
 
@@ -57,13 +58,15 @@
             $dom.togglePwd.on('click', this.toggleAPISettings.bind(this));
             $dom.toggleSecret.on('click', this.toggleSecretSettings.bind(this));
 
-            $('.vanity-url-enable').on('click', this.vanityURLShow);
             $('.zvc-dismiss-message').on('click', this.dismissNotice.bind(this));
 
             $('.check-api-connection').on('click', this.checkConnection.bind(this));
 
             //End and Resume Meetings
             $($dom.changeMeetingState).on('click', this.meetingStateChange.bind(this));
+
+            //Change Meeting Type
+            $(this.meetingType).on('change', this.meetingTypeCB.bind(this));
         },
 
         initializeDependencies: function () {
@@ -285,8 +288,17 @@
          */
         changeState: function (postData) {
             $.post(zvc_ajax.ajaxurl, postData).done(function (response) {
-               location.reload();
+                location.reload();
             });
+        },
+
+        /**
+         * Meeting Type Change
+         * @param e
+         */
+        meetingTypeCB: function (e) {
+            e.preventDefault();
+            console.log($(e.currentTarget).val());
         }
     };
 

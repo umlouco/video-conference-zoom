@@ -17,14 +17,15 @@
   .dpen-zoom-browser-meeting--meeting-form {
     input[type=text],
     input[type=password],
-    button[type=submit] {
-      width: 400px;
+    button[type=submit],
+    select {
       height: 40px;
       border-radius: 0;
     }
 
     button[type=submit] {
       background-color: #2d8cff;
+      width: 100%;
       color: #fff;
     }
 

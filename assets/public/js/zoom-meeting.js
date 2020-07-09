@@ -35,6 +35,9 @@ jQuery(function ($) {
                     meeting_id: meeting_id,
                 }).done(function (response) {
                     if (response.success) {
+                        $("#zvc-cover").remove();
+                        $('#dpen-zoom-browser-meeting').hide();
+
                         API_KEY = response.data.key;
                         SIGNATURE = response.data.sig;
 
@@ -50,11 +53,13 @@ jQuery(function ($) {
                                 PASSWD = $('#meeting_password').val();
                             }
 
+                            var lang = $('#meeting_lang');
                             var meetConfig = {
                                 apiKey: API_KEY,
                                 meetingNumber: parseInt(meeting_id, 10),
                                 userName: document.getElementById('display_name').value,
                                 passWord: PASSWD,
+                                lang: lang.length > 0 ? lang.val() : 'en-US',
                                 leaveUrl: REDIRECTION,
                                 signaure: SIGNATURE,
                             };
@@ -63,25 +68,21 @@ jQuery(function ($) {
                                 leaveUrl: REDIRECTION,
                                 isSupportAV: true,
                                 success: function () {
-                                    ZoomMtg.join(
-                                        {
-                                            meetingNumber: meetConfig.meetingNumber,
-                                            userName: meetConfig.userName,
-                                            signature: meetConfig.signaure,
-                                            apiKey: meetConfig.apiKey,
-                                            // userEmail: 'email@gmail.com',
-                                            passWord: meetConfig.passWord,
-                                            success: function (res) {
-                                                $("#zvc-cover").remove();
-                                                $('#dpen-zoom-browser-meeting').hide();
-                                                console.log('join meeting success');
-                                            },
-                                            error: function (res) {
-                                                $("#zvc-cover").remove();
-                                                console.log(res);
-                                            }
+                                    $.i18n.reload(meetConfig.lang);
+                                    ZoomMtg.join({
+                                        meetingNumber: meetConfig.meetingNumber,
+                                        userName: meetConfig.userName,
+                                        signature: meetConfig.signaure,
+                                        apiKey: meetConfig.apiKey,
+                                        // userEmail: 'email@gmail.com',
+                                        passWord: meetConfig.passWord,
+                                        success: function (res) {
+                                            console.log('Join Meeting Success');
+                                        },
+                                        error: function (res) {
+                                            console.log(res);
                                         }
-                                    );
+                                    });
                                 },
                                 error: function (res) {
                                     console.log(res);

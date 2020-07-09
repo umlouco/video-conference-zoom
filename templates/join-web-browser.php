@@ -28,15 +28,20 @@ if ( video_conference_zoom_check_login() ) {
 	?>
     <div id="dpen-zoom-browser-meeting" class="dpen-zoom-browser-meeting-wrapper">
         <div id="dpen-zoom-browser-meeting--container">
-            <div class="dpen-zoom-browser-meeting--info">
-				<?php if ( ! is_ssl() ) { ?>
-                    <p style="line-height: 1.5;">
-                        <strong style="color:red;"><?php _e( '!!!ALERT!!!: ', 'video-conferencing-with-zoom-api' ); ?></strong><?php _e(
-							'Browser did not detect a valid SSL certificate. Audio and Video for Zoom meeting will not work on a non HTTPS site, please install a valid SSL certificate to allow audio and video in your Meetings via browser.', 'video-conferencing-with-zoom-api' ); ?>
-                    </p>
-				<?php } ?>
-                <div class="dpen-zoom-browser-meeting--info__browser"></div>
-            </div>
+			<?php
+			$bypass_notice = apply_filters( 'vczapi_api_bypass_notice', false );
+			if ( ! $bypass_notice ) {
+				?>
+                <div class="dpen-zoom-browser-meeting--info">
+					<?php if ( ! is_ssl() ) { ?>
+                        <p style="line-height: 1.5;">
+                            <strong style="color:red;"><?php _e( '!!!ALERT!!!: ', 'video-conferencing-with-zoom-api' ); ?></strong><?php _e(
+								'Browser did not detect a valid SSL certificate. Audio and Video for Zoom meeting will not work on a non HTTPS site, please install a valid SSL certificate to allow audio and video in your Meetings via browser.', 'video-conferencing-with-zoom-api' ); ?>
+                        </p>
+					<?php } ?>
+                    <div class="dpen-zoom-browser-meeting--info__browser"></div>
+                </div>
+			<?php } ?>
             <form class="dpen-zoom-browser-meeting--meeting-form" id="dpen-zoom-browser-meeting-join-form" action="">
                 <div class="form-group">
                     <input type="text" name="display_name" id="display_name" value="" placeholder="Your Name Here" class="form-control" required>
@@ -45,7 +50,32 @@ if ( video_conference_zoom_check_login() ) {
                     <div class="form-group">
                         <input type="password" name="meeting_password" id="meeting_password" value="" placeholder="Meeting Password" class="form-control" required>
                     </div>
-				<?php } ?>
+					<?php
+				}
+
+				$bypass_lang = apply_filters( 'vczapi_api_bypass_lang', false );
+				if ( ! $bypass_lang ) {
+					?>
+                    <div class="form-group">
+                        <select id="meeting_lang" name="meeting-lang" class="form-control">
+                            <option value="en-US">English</option>
+                            <option value="de-DE">German Deutsch</option>
+                            <option value="es-ES">Spanish Español</option>
+                            <option value="fr-FR">French Français</option>
+                            <option value="jp-JP">Japanese 日本語</option>
+                            <option value="pt-PT">Portuguese Portuguese</option>
+                            <option value="ru-RU">Russian Русский</option>
+                            <option value="zh-CN">Chinese 简体中文</option>
+                            <option value="zh-TW">Chinese 繁体中文</option>
+                            <option value="ko-KO">Korean 한국어</option>
+                            <option value="vi-VN">Vietnamese Tiếng Việt</option>
+                            <option value="it-IT">Italian italiano</option>
+                        </select>
+                    </div>
+					<?php
+				}
+				?>
+
                 <button type="submit" class="btn btn-primary" id="dpen-zoom-browser-meeting-join-mtg">
 					<?php _e( 'Join', 'video-conferencing-with-zoom-api' ); ?>
                 </button>
