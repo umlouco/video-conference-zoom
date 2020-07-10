@@ -1,22 +1,25 @@
 site_name: Video Conferencing with Zoom API Plugin Documentation
 nav:
   - Getting Started: index.md
-  - Zoom Pro Plans: zoom_plans.md
-  - OAuth Connection: oauth.md
-  - Uninstalling App: uninstalling.md
-  - API Keys Integration: integration.md
-  - Shortcode: shortcode.md
-  - Meeting Types: meeting_types.md
-  - Join Links: join_links.md
-  - Vanity URL: vanity_url.md
-  - Template Override: template_override.md
-  - Filter Hooks: filters_hooks.md
-  - Assign Host Page: assign_host.md
-  - WooCommerce (Addon): woocommerce.md
-  - WooCommerce Product Vendors (Addon): woocommerce-product-vendors.md
-  - WooCommerce Bookings (Addon): woocommerce-booking.md
-  - Booked Appointments (Addon): booked-appointments.md
-  - WCFM (Addon): wcfm.md
+  - Installation:
+      - API Keys Integration: integration.md
+      - OAuth Connection: oauth.md
+      - Uninstalling App: uninstalling.md
+  - Usage:
+      - Meeting Types: meeting_types.md
+      - Shortcode: shortcode.md
+      - Join Links: join_links.md
+      - Vanity URL: vanity_url.md
+      - Template Override: template_override.md
+      - Filter Hooks: filters_hooks.md
+      - Assign Host Page: assign_host.md
+  - Pro Plugins:
+    - WooCommerce (Addon): woocommerce.md
+    - WooCommerce Product Vendors (Addon): woocommerce-product-vendors.md
+    - WooCommerce Bookings (Addon): woocommerce-booking.md
+    - Booked Appointments (Addon): booked-appointments.md
+    - WCFM (Addon): wcfm.md
+  - FAQ: faq.md
   - Support: support.md
 theme:
   name: material

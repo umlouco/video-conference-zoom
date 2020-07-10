@@ -1,9 +1,5 @@
 <img src="https://ps.w.org/video-conferencing-with-zoom-api/assets/banner-772x250.png?rev=2198028">
 
-<h2>This documentation is only for Video Conferencing with Zoom WordPress integration plugin which you can get from <a href="https://wordpress.org/plugins/video-conferencing-with-zoom-api/">WordPress.org</a>.</h2>
-
-<h3>Verify your plugin download before following through this documentation!!!!</h3>
-
 ## Installation
 
 1. Search for "`Video conferencing with zoom api`"
@@ -20,7 +16,9 @@ Download Plugin from <a href="https://wordpress.org/plugins/video-conferencing-w
 
 ## About Plugin
 
-A simple plugin which gives you the extensive functionality to manage zoom meetings, users, reports from your WordPress Dashboard. Now, with capabitly to add your own post as a meeting. Create posts as meetings directly from your WordPress dashboard to show in the frontend as a meeting page. Allow users to directly join via that page with click of a button.
+Simple plugin which gives you the extensive functionality to manage zoom meetings, webinars, recordings, users, reports from your WordPress Dashboard. Now, with capability to add your own post as a meeting. Create posts as meetings directly from your WordPress dashboard to show in the frontend as a meeting page. Allow users to directly join via that page with click of a button.
+
+
 
 ### Video Documentation
 
@@ -31,6 +29,8 @@ Sorry for the fan noise in the video !
 ### Compatibility 
 
 * Enables direct integration of Zoom into WordPress.
+* Webinar and Zoom Meetings
+* Zoom Recordings
 * Compatible with LearnPress, LearnDash 3.
 * Enables most of the settings from zoom via admin panel.
 * Fully Compatible with Zoom API.

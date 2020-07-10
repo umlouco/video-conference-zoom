@@ -12,6 +12,7 @@ With new version you can grab your shortcode with just a click.
 4. `[zoom_api_webinar meeting_id="YOUR_WEBINAR_ID" link_only="no"]`
 5. `[zoom_list_host_webinars host="YOUR_HOST_ID"]`
 6. `[zoom_join_via_browser meeting_id="YOUR_MEETING_ID" login_required="no" help="yes" title="Test" height="500px" disable_countdown="yes"]`
+7. `[zoom_recordings host_id="YOUR_HOST_ID"]`
 
 ### 1. Show Single Zoom Meeting Detail
 
@@ -91,6 +92,16 @@ To redirect user after a meeting fails, after completed or if meeting is not yet
 **`add_filter('vczapi_api_redirect_join_browser', function() { 
     return 'https://yoursiteurl.com/page';
 });`**
+
+### 7. Show recordings based on HOST ID.
+
+Show recordings list in frontend based on host ID.
+
+Usage: `[zoom_recordings host_id="YOUR_HOST_ID"]`
+
+Where,
+
+* `host_id` : YOUR HOST ID.
 
 ### How to get Meeting ID
 

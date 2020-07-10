@@ -6,6 +6,12 @@ This page shows you the few filters you can use in this plugin. I won't go in fu
     return $data;
 });`
 
+#### Redirect to custom page url after Join via Web Browser completed or Unfinished.
+
+`add_filter('vczapi_api_redirect_join_browser', function() { 
+    return 'https://yoursiteurl.com/page';
+});`
+
 #### Rename "zoom-meetings" Slug
 
 Add below to your functions.php file in your theme. Change "your-slug-name" to the slug you want. Then flush your permalink from **wp-adming > settings > permalink** and save.
