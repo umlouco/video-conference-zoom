@@ -460,15 +460,14 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 		 * @return bool|mixed
 		 */
 		public function listRecording( $host_id, $data = array() ) {
-			$postData = array();
 			$from     = date( 'Y-m-d', strtotime( '-1 year', time() ) );
 			$to       = date( 'Y-m-d' );
 
-			$postData['from'] = ! empty( $data['from'] ) ? $data['from'] : $from;
-			$postData['to']   = ! empty( $data['to'] ) ? $data['to'] : $to;
-			$postData         = apply_filters( 'vczapi_listRecording', $postData );
+			$data['from'] = ! empty( $data['from'] ) ? $data['from'] : $from;
+			$data['to']   = ! empty( $data['to'] ) ? $data['to'] : $to;
+			$data         = apply_filters( 'vczapi_listRecording', $data );
 
-			return $this->sendRequest( 'users/' . $host_id . '/recordings', $postData, "GET" );
+			return $this->sendRequest( 'users/' . $host_id . '/recordings', $data, "GET" );
 		}
 	}
 

@@ -4,21 +4,21 @@ Tags: zoom video conference, video conference, zoom, zoom video conferencing, we
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.4
-Stable tag: 3.4.2
+Stable tag: 3.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Gives you the power to manage Zoom Meetings, Webinars, check reports and create users directly from your WordPress dashboard.
+Gives you the power to manage Zoom Meetings, Webinars, Recordings, Reports and create users directly from your WordPress dashboard.
 
 == Description ==
 
-Simple plugin which gives you the extensive functionality to manage zoom meetings, webinars, users, reports from your WordPress Dashboard. Now, with capability to add your own post as a meeting. Create posts as meetings directly from your WordPress dashboard to show in the frontend as a meeting page. Allow users to directly join via that page with click of a button.
+Simple plugin which gives you the extensive functionality to manage zoom meetings, webinars, recordings, users, reports from your WordPress Dashboard. Now, with capability to add your own post as a meeting. Create posts as meetings directly from your WordPress dashboard to show in the frontend as a meeting page. Allow users to directly join via that page with click of a button.
 
 Now, from 3.2.0 allows you to Join meetings directly from Browser without Zoom App using Zoom WebSDK. For audio/video issues check FAQ section. Check here on how it <a target="_blank" href="https://deepenbajracharya.com.np/joining-meetings-in-zoom-directly-from-browser">Works</a>
 
 **FEATURES:**
 
-* Manage WordPress posts and link them to Live Zoom meetings ( NEW from 3.0.0+ )
+* Manage WordPress posts and link them to Live Zoom meetings and Zoom Webinars ( NEW from 3.0.0+ )
 * Override single and archive page templates via your theme. ( NEW from 3.0.0+ )
 * Join links directly from frontend. ( NEW from 3.0.0+ )
 * JOIN DIRECTLY VIA WEB BROWSER FROM FRONTEND ( From v3.2.0+ ) !
@@ -27,6 +27,8 @@ Now, from 3.2.0 allows you to Join meetings directly from Browser without Zoom A
 * Allow posts to be only shown to logged in users. ( NEW from 3.0.0+ )
 * Start time and join links are shown according to local time compared with zoom timezone.
 * Manage Live Zoom Meetings.
+* Manage Zoom Webinars
+* Show user recordings based on Zoom Account.
 * Display Webinars via Shortcode
 * Listing Users.
 * Developer Friendly
@@ -99,6 +101,8 @@ As an extension of the Zoom browser client, this SDK is intended for implementat
 
 * [zoom_list_host_meetings host="your_host_id"] - Show list of meetings in frontend for specific HOST ID.
 
+* [zoom_recordings host_id="YOUR_HOST_ID"] - Show list of recordings based on HOST ID.
+
 **QUICK DEMO:**
 
 [youtube https://www.youtube.com/watch?v=5Z2Ii0PnHRQ]
@@ -157,6 +161,11 @@ Yes, you should be registered in Zoom. Also, on the plan you are using there dep
 9. Shortcode Output
 
 == Changelog ==
+
+= 3.5.0 July 10th, 2020 =
+* Added: Recordings API
+* Added: Recordings shortcode to show recordings by host.
+* Fixed: Embed Join via Web Browser re-captcha popup fail issue.
 
 = 3.4.2 July 9th, 2020 =
 * Updated: WebSDK to version 1.7.10 ( webSDK changes https://timeline.noticeable.io/8XMdMkIr8cTlKfj8DTtx/posts/web-sdk-version-1-7-9-updates?cache=false & https://timeline.noticeable.io/8XMdMkIr8cTlKfj8DTtx/posts/web-sdk-updates-version-1-7-10 )

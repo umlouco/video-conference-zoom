@@ -55,6 +55,11 @@ class Zoom_Video_Conferencing_Admin_Views {
 				'zoom_reports'
 			) );
 
+			add_submenu_page( 'edit.php?post_type=zoom-meetings', __( 'Recordings', 'video-conferencing-with-zoom-api' ), __( 'Recordings', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing-recordings', array(
+				'Zoom_Video_Conferencing_Recordings',
+				'zoom_recordings'
+			) );
+
 			add_submenu_page( 'edit.php?post_type=zoom-meetings', __( 'Addons', 'video-conferencing-with-zoom-api' ), __( 'Addons', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing-addons', array(
 				'Zoom_Video_Conferencing_Admin_Addons',
 				'render'

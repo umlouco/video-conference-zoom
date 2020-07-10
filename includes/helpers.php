@@ -458,7 +458,7 @@ function vczapi_dateConverter( $start_time, $tz, $format = 'F j, Y, g:i a ( T )'
 		return $date;
 	}
 
-	if ( !$defaults ) {
+	if ( ! $defaults ) {
 		return $date->format( $format );
 	}
 
@@ -621,4 +621,51 @@ function vczapi_get_pwd_embedded_join_link( $join_url, $encrpyted_pwd ) {
 	}
 
 	return $join_url;
+}
+
+/**
+ *
+ * Filesize Converter
+ *
+ * @param $bytes
+ *
+ * @return string
+ * @since 3.5.0
+ * @author Deepen
+ */
+function vczapi_filesize_converter( $bytes ) {
+	if ( $bytes >= 1073741824 ) {
+		$bytes = number_format( $bytes / 1073741824, 2 ) . ' GB';
+	} elseif ( $bytes >= 1048576 ) {
+		$bytes = number_format( $bytes / 1048576, 2 ) . ' MB';
+	} elseif ( $bytes >= 1024 ) {
+		$bytes = number_format( $bytes / 1024, 2 ) . ' kB';
+	} elseif ( $bytes > 1 ) {
+		$bytes = $bytes . ' bytes';
+	} elseif ( $bytes == 1 ) {
+		$bytes = $bytes . ' byte';
+	} else {
+		$bytes = '0 bytes';
+	}
+
+	return $bytes;
+}
+
+/**
+ * Zoom API Paginator Script Helper
+ *
+ * @param $response
+ * @param string $type
+ *
+ * @since 3.5.0
+ * @author Deepen
+ */
+function vczapi_zoom_api_paginator( $response, $type = '' ) {
+	$actual_link = ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] === 'on' ? "https" : "http" ) . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+	if ( ! empty( $response ) && $response->next_page_token ) {
+		$next_page = add_query_arg( array( 'pg' => $response->next_page_token, 'type' => $type ), $actual_link );
+		?>
+        <a href="<?php echo $next_page; ?>"><?php _e( 'Next Results', 'video-conferencing-with-zoom-api' ); ?></a>
+		<?php
+	}
 }

@@ -19,3 +19,5 @@
 .vczapi-admin-info-tooltip .vczapi-admin-info-tooltip--text{visibility:hidden;width:200px;background-color:black;color:#fff;text-align:center;border-radius:6px;bottom:100%;left:6%;margin-left:-60px;margin-bottom:10px;position:absolute;z-index:1;font-size:12px;padding:14px}
 .vczapi-admin-info-tooltip .vczapi-admin-info-tooltip--text::after{content:" ";position:absolute;top:100%;margin-left:-5px;border-width:5px;border-style:solid;border-color:black transparent transparent transparent;left:30%}
 .vczapi-admin-info-tooltip:hover .vczapi-admin-info-tooltip--text{visibility:visible}
+#adminmenu .menu-icon-zoom-meetings a[href="edit.php?post_type=zoom-meetings&page=zoom-video-conferencing-add-meeting"]:link{display:none}
+.zvc-inside-table-wrapper{border-bottom:1px solid #e4e4e4;padding:10px}.zvc-inside-table-wrapper:last-child{border-bottom:0}

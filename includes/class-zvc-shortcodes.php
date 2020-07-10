@@ -38,6 +38,7 @@ class Zoom_Video_Conferencing_Shorcodes {
 		add_shortcode( 'zoom_list_host_webinars', array( $this, 'show_host_webinars' ) );
 		add_shortcode( 'zoom_list_host_meetings', array( $this, 'show_host_meetings' ) );
 		add_shortcode( 'zoom_join_via_browser', array( $this, 'join_via_browser' ) );
+		add_shortcode( 'zoom_recordings', array( $this, 'recordings' ) );
 	}
 
 	/**
@@ -47,6 +48,7 @@ class Zoom_Video_Conferencing_Shorcodes {
 		wp_enqueue_style( 'video-conferencing-with-zoom-api' );
 		wp_register_script( 'video-conferncing-with-zoom-browser-js', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/js/join-browser.min.js', array( 'jquery' ), '3.2.4', true );
 		wp_register_style( 'video-conferencing-with-zoom-api-datable', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/datatable/jquery.dataTables.min.css', false, '3.0.0' );
+		wp_enqueue_style( 'video-conferencing-with-zoom-api-datable' );
 		wp_register_script( 'video-conferencing-with-zoom-api-datable-js', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/datatable/jquery.dataTables.min.js', [ 'jquery' ], '3.0.0', true );
 		wp_register_script( 'video-conferencing-with-zoom-api-shortcode-js', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/js/shortcode.js', [
 			'jquery',
@@ -63,7 +65,6 @@ class Zoom_Video_Conferencing_Shorcodes {
 	 * @throws Exception
 	 */
 	public function show_host_webinars( $atts ) {
-		wp_enqueue_style( 'video-conferencing-with-zoom-api-datable' );
 		wp_enqueue_script( 'video-conferencing-with-zoom-api-shortcode-js' );
 
 		$atts = shortcode_atts(
@@ -137,7 +138,6 @@ class Zoom_Video_Conferencing_Shorcodes {
 	 * @throws Exception
 	 */
 	public function show_host_meetings( $atts ) {
-		wp_enqueue_style( 'video-conferencing-with-zoom-api-datable' );
 		wp_enqueue_script( 'video-conferencing-with-zoom-api-shortcode-js' );
 
 		$atts = shortcode_atts(
@@ -421,8 +421,6 @@ class Zoom_Video_Conferencing_Shorcodes {
 	/**
 	 * Join via browser shortcode
 	 *
-	 * This shows join via browser using an IFRAME. I personally would not recommend this because this is not so convenient and flawless.
-	 *
 	 * @param $atts
 	 * @param $content
 	 *
@@ -556,7 +554,7 @@ class Zoom_Video_Conferencing_Shorcodes {
 							), $iframe_link );
 							?>
                             <div id="<?php echo ! empty( $id ) ? esc_html( $id ) : 'video-conferncing-embed-iframe'; ?>" class="zoom-iframe-container">
-                                <iframe scrolling="no" style="width:100%; <?php echo $styling; ?>" sandbox="allow-forms allow-scripts allow-same-origin" allowfullscreen="allowfullscreen" allow="encrypted-media; autoplay; microphone; camera" src="<?php echo esc_url( $iframe_query_args ); ?>" frameborder="0"></iframe>
+                                <iframe scrolling="no" style="width:100%; <?php echo $styling; ?>" sandbox="allow-forms allow-scripts allow-same-origin allow-popups" allowfullscreen="allowfullscreen" allow="encrypted-media; autoplay; microphone; camera" src="<?php echo esc_url( $iframe_query_args ); ?>" frameborder="0"></iframe>
                             </div>
                         </div>
 						<?php
@@ -634,6 +632,56 @@ class Zoom_Video_Conferencing_Shorcodes {
 		$webinar = json_decode( zoom_conference()->getWebinarInfo( $webinar_id ) );
 
 		return $webinar;
+	}
+
+	/**
+	 * Recordings API Shortcode
+	 *
+	 * @param $atts
+	 *
+	 * @return bool|false|string
+	 */
+	public function recordings( $atts ) {
+		wp_enqueue_script( 'video-conferencing-with-zoom-api-datable-js' );
+		wp_enqueue_script( 'video-conferencing-with-zoom-api-shortcode-js' );
+
+		$atts = shortcode_atts(
+			array(
+				'host_id'  => '',
+				'per_page' => 300
+			),
+			$atts, 'zoom_recordings'
+		);
+
+		ob_start();
+		if ( empty( $atts['host_id'] ) ) {
+			echo '<h4 class="no-host-id-defined"><strong style="color:red;">' . __( 'Invalid HOST ID. Please define a host ID to show recordings based on host.', 'video-conferencing-with-zoom-api' ) . '</h4>';
+
+			return false;
+		}
+
+		$postParams = array(
+			'page_size' => 300 //$atts['per_page'] disbled for now
+		);
+
+		//Pagination
+		if ( isset( $_GET['pg'] ) && isset( $_GET['type'] ) && $_GET['type'] === "recordings" ) {
+			$postParams['next_page_token'] = $_GET['pg'];
+			$recordings                    = json_decode( zoom_conference()->listRecording( $atts['host_id'], $postParams ) );
+		} else {
+			$recordings = json_decode( zoom_conference()->listRecording( $atts['host_id'], $postParams ) );
+		}
+
+		unset( $GLOBALS['zoom_recordings'] );
+		ob_start();
+		if ( ! empty( $recordings ) && $recordings->meetings ) {
+			$GLOBALS['zoom_recordings'] = $recordings;
+			vczapi_get_template( 'shortcode/zoom-recordings.php', true );
+		} else {
+			_e( "No meetings found.", "video-conferencing-with-zoom-api" );
+		}
+
+		return ob_get_clean();
 	}
 }
 
