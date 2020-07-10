@@ -674,9 +674,17 @@ class Zoom_Video_Conferencing_Shorcodes {
 
 		unset( $GLOBALS['zoom_recordings'] );
 		ob_start();
-		if ( ! empty( $recordings ) && $recordings->meetings ) {
-			$GLOBALS['zoom_recordings'] = $recordings;
-			vczapi_get_template( 'shortcode/zoom-recordings.php', true );
+		if ( ! empty( $recordings ) ) {
+			if ( ! empty( $recordings->code ) && ! empty( $recordings->message ) ) {
+				echo $recordings->message;
+			} else {
+				if ( ! empty( $recordings->meetings ) ) {
+					$GLOBALS['zoom_recordings'] = $recordings;
+					vczapi_get_template( 'shortcode/zoom-recordings.php', true );
+				} else {
+					_e( "No meetings found.", "video-conferencing-with-zoom-api" );
+				}
+			}
 		} else {
 			_e( "No meetings found.", "video-conferencing-with-zoom-api" );
 		}

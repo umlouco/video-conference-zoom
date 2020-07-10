@@ -37,7 +37,6 @@ class Zoom_Video_Conferencing_Recordings {
 		wp_enqueue_style( 'thickbox' );
 
 		//Check if any transient by name is available
-
 		if ( isset( $_GET['host_id'] ) ) {
 			$recordings = json_decode( zoom_conference()->listRecording( $_GET['host_id'] ) );
 		}
