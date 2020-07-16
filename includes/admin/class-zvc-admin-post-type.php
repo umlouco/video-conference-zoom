@@ -113,7 +113,9 @@ class Zoom_Video_Conferencing_Admin_PostType {
 				}
 				break;
 			case 'zoom_meeting_startdate' :
-				if ( ! empty( $meeting ) && $meeting->type === 2 && ! empty( $meeting->start_time ) ) {
+				if ( ! empty( $meeting ) && ! empty( $meeting->code ) && ! empty( $meeting->message ) ) {
+					echo $meeting->message;
+				} else if ( ! empty( $meeting ) && ! empty( $meeting->type ) && $meeting->type === 2 && ! empty( $meeting->start_time ) ) {
 					echo vczapi_dateConverter( $meeting->start_time, $meeting->timezone, 'F j, Y, g:i a' );
 				} else if ( ! empty( $meeting ) && ( $meeting->type === 3 || $meeting->type === 8 ) ) {
 					_e( 'Recurring Meeting', 'video-conferencing-with-zoom-api' );
@@ -122,7 +124,9 @@ class Zoom_Video_Conferencing_Admin_PostType {
 				}
 				break;
 			case 'zoom_meeting_id' :
-				if ( ! empty( $meeting ) && ! empty( $meeting->id ) ) {
+				if ( ! empty( $meeting ) && ! empty( $meeting->code ) && ! empty( $meeting->message ) ) {
+					echo $meeting->message;
+				} else if ( ! empty( $meeting ) && ! empty( $meeting->id ) ) {
 					echo $meeting->id;
 				} else {
 					_e( 'Meeting not created yet.', 'video-conferencing-with-zoom-api' );
@@ -131,7 +135,9 @@ class Zoom_Video_Conferencing_Admin_PostType {
 			case 'zoom_end_meeting' :
 				wp_enqueue_script( 'video-conferencing-with-zoom-api-js' );
 				if ( ! empty( $meeting ) ) {
-					if ( empty( $meeting->state ) ) { ?>
+					if ( ! empty( $meeting->code ) && ! empty( $meeting->message ) ) {
+						echo $meeting->message;
+					} else if ( empty( $meeting->state ) ) { ?>
                         <a href="javascript:void(0);" class="vczapi-meeting-state-change" data-type="post_type" data-state="end" data-postid="<?php echo $post_id; ?>" data-id="<?php echo $meeting->id ?>"><?php _e( 'Disable Join', 'video-conferencing-with-zoom-api' ); ?></a>
                         <p class="description"><?php _e( 'Restrict users to join this meeting before the start time or after the meeting is completed.', 'video-conferencing-with-zoom-api' ); ?></p>
 					<?php } else { ?>
