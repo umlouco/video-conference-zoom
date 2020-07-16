@@ -467,19 +467,21 @@ function vczapi_dateConverter( $start_time, $tz, $format = 'F j, Y, g:i a ( T )'
 	if ( $defaults && ! empty( $locale ) && ! empty( $date_format ) ) {
 		setlocale( LC_TIME, $locale );
 		$start_timestamp = $date->getTimestamp() + $date->getOffset();
+		$time_indicator = ($locale == 'fr_FR') ? '%R':'%I:%M %p';
 		switch ( $date_format ) {
 			case 'L LT':
 			case 'l LT':
-				return strftime( '%D, %R', $start_timestamp );
+				return strftime( '%D, '.$time_indicator, $start_timestamp );
 				break;
 			case 'llll':
-				return strftime( '%a, %b %e, %G %R', $start_timestamp );
+				//return strftime( '%a, %b %e, %G %R', $start_timestamp );
+				return strftime( '%a, %b %e, %G '.$time_indicator, $start_timestamp );
 				break;
 			case 'lll':
-				return strftime( '%b %e, %G %R', $start_timestamp );
+				return strftime( '%b %e, %G '.$time_indicator, $start_timestamp );
 				break;
 			case 'LLLL':
-				return strftime( '%A %b %e, %G %R', $start_timestamp );
+				return strftime( '%A %b %e, %G '.$time_indicator, $start_timestamp );
 				break;
 			default:
 				return $date->format( $format );
