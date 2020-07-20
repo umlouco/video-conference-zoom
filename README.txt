@@ -165,6 +165,7 @@ Yes, you should be registered in Zoom. Also, on the plan you are using there dep
 = 3.5.1 July 16th, 2020 =
 * Fixed: Time Locale Fixed.
 * Added: Support for Recurring meetings via Pro Version.
+* Fixed: Shortcode [zoom_list_meetings] for upcoming meetings. Added new meta field for showing exact meetings based on local timezones. Users will need to re-update the old meetings.
 * Fixed: Minor bug fixes.
 
 = 3.5.0 July 10th, 2020 =

@@ -338,12 +338,12 @@ class Zoom_Video_Conferencing_Shorcodes {
 	}
 
 	/**
-	 * Show All Meetings
+	 * Show All Meetings or Upcomings or Past
 	 *
 	 * @param $atts
 	 *
 	 * @return string
-	 * @since  3.0.0
+	 * @throws Exception
 	 */
 	public function show_meetings( $atts ) {
 		self::$meetings_list_number ++;
@@ -373,19 +373,13 @@ class Zoom_Video_Conferencing_Shorcodes {
 		);
 
 		if ( ! empty( $atts['type'] ) ) {
-			$timezone = zvc_get_timezone_offset_wp();
-			if ( ! empty( $timezone ) ) {
-				date_default_timezone_set( $timezone );
-			} else {
-				date_default_timezone_set( 'UTC' );
-			}
 			$type                     = ( $atts['type'] === "upcoming" ) ? '>=' : '<=';
 			$query_args['meta_query'] = array(
 				array(
 					'key'     => '_meeting_field_start_date_utc',
-					'value'   => vczapi_dateConverter('now','UTC','Y-m-d H:i:s',false),
+					'value'   => vczapi_dateConverter( 'now', 'UTC', 'Y-m-d H:i:s', false ),
 					'compare' => $type,
-                    'type' => 'DATETIME'
+					'type'    => 'DATETIME'
 				),
 			);
 		}
