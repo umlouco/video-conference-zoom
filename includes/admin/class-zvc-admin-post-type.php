@@ -2,8 +2,8 @@
 /**
  * Meeting Post Type Controller
  *
- * @since 3.0.0
- * @author Deepen.
+ * @since      3.0.0
+ * @author     Deepen.
  * @created_on 11/18/19
  */
 
@@ -11,6 +11,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 
 	/**
 	 * Post Type Flag
+	 *
 	 * @var string
 	 */
 	private $post_type = 'zoom-meetings';
@@ -154,7 +155,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	/**
 	 * Register Post Type
 	 *
-	 * @since 3.0.0
+	 * @since  3.0.0
 	 * @author Deepen
 	 */
 	public function register() {
@@ -367,8 +368,8 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	/**
 	 * Handles saving the meta box.
 	 *
-	 * @param int $post_id Post ID.
-	 * @param WP_Post $post Post object.
+	 * @param int     $post_id Post ID.
+	 * @param WP_Post $post    Post object.
 	 *
 	 * @return null
 	 */
@@ -420,6 +421,15 @@ class Zoom_Video_Conferencing_Admin_PostType {
 		update_post_meta( $post_id, '_meeting_fields', $create_meeting_arr );
 		update_post_meta( $post_id, '_meeting_field_start_date', $create_meeting_arr['start_date'] );
 
+		try {
+			//converted saved time from the timezone provided for meeting to UTC timezone so meetings can be better queried
+			$savedDateTime     = new DateTime( $create_meeting_arr['start_date'], new DateTimeZone( $create_meeting_arr['timezone'] ) );
+			$startDateTimezone = $savedDateTime->setTimezone( new DateTimeZone( 'UTC' ) );
+			update_post_meta( $post_id, '_meeting_field_start_date_utc', $startDateTimezone->format( 'Y-m-d H:i:s' ) );
+		} catch ( Exception $e ) {
+
+		}
+
 		//Create Zoom Meeting Now
 		$meeting_id = get_post_meta( $post_id, '_meeting_zoom_meeting_id', true );
 		if ( empty( $meeting_id ) ) {
@@ -436,7 +446,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	 *
 	 * @param $post
 	 *
-	 * @since 3.0.0
+	 * @since  3.0.0
 	 *
 	 * @author Deepen
 	 */
@@ -474,7 +484,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	 * @param $meeting_id
 	 *
 	 * @author Deepen
-	 * @since 3.0.0
+	 * @since  3.0.0
 	 *
 	 */
 	private function update_zoom_meeting( $post, $meeting_id ) {
@@ -513,7 +523,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	 * @param $template
 	 *
 	 * @return bool|string
-	 * @since 3.0.0
+	 * @since  3.0.0
 	 *
 	 * @author Deepen
 	 */
@@ -586,7 +596,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	 *
 	 * @return bool|string
 	 * @return bool|string|void
-	 * @since 3.0.0
+	 * @since  3.0.0
 	 *
 	 * @author Deepen
 	 */
@@ -632,7 +642,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	 *
 	 * @param $post_id
 	 *
-	 * @since 3.0.0
+	 * @since  3.0.0
 	 *
 	 * @author Deepen
 	 */
