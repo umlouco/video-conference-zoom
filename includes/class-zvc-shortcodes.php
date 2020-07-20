@@ -408,8 +408,8 @@ class Zoom_Video_Conferencing_Shorcodes {
 
 		unset( $GLOBALS['zoom_meetings'] );
 		$GLOBALS['zoom_meetings'] = $zoom_meetings;
+		ob_start();
 		if ( $zoom_meetings->have_posts() ):
-			ob_start();
 			vczapi_get_template( 'shortcode-listing.php', true );
 		else:
 			_e( "No meetings found.", "video-conferencing-with-zoom-api" );
