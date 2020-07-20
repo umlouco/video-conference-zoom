@@ -368,7 +368,7 @@ class Zoom_Video_Conferencing_Shorcodes {
 			'post_status'    => 'publish',
 			'paged'          => $paged,
 			'orderby'        => 'meta_value',
-			'meta_key'       => '_meeting_field_start_date',
+			'meta_key'       => '_meeting_field_start_date_utc',
 			'order'          => $atts['order']
 		);
 
@@ -382,9 +382,10 @@ class Zoom_Video_Conferencing_Shorcodes {
 			$type                     = ( $atts['type'] === "upcoming" ) ? '>=' : '<=';
 			$query_args['meta_query'] = array(
 				array(
-					'key'     => '_meeting_field_start_date',
-					'value'   => date( "Y-m-d H:i" ),
-					'compare' => $type
+					'key'     => '_meeting_field_start_date_utc',
+					'value'   => vczapi_dateConverter('now','UTC','Y-m-d H:i:s',false),
+					'compare' => $type,
+                    'type' => 'DATETIME'
 				),
 			);
 		}
@@ -410,10 +411,10 @@ class Zoom_Video_Conferencing_Shorcodes {
 		if ( $zoom_meetings->have_posts() ):
 			ob_start();
 			vczapi_get_template( 'shortcode-listing.php', true );
-			$content .= ob_get_clean();
 		else:
 			_e( "No meetings found.", "video-conferencing-with-zoom-api" );
 		endif;
+		$content .= ob_get_clean();
 
 		return $content;
 	}
