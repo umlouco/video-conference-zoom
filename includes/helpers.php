@@ -445,49 +445,52 @@ function vczapi_check_author( $post_id ) {
  * @param bool $defaults
  *
  * @return DateTime|string
- * @throws Exception
  * @author Deepen
  * @since  1.0.0
  */
 function vczapi_dateConverter( $start_time, $tz, $format = 'F j, Y, g:i a ( T )', $defaults = true ) {
-	$timezone = ! empty( $tz ) ? $tz : "America/Los_Angeles";
-	$tz       = new DateTimeZone( $timezone );
-	$date     = new DateTime( $start_time );
-	$date->setTimezone( $tz );
-	if ( ! $format ) {
-		return $date;
-	}
-
-	if ( ! $defaults ) {
-		return $date->format( $format );
-	}
-
-	$locale      = get_locale();
-	$date_format = get_option( 'zoom_api_date_time_format' );
-	if ( $defaults && ! empty( $locale ) && ! empty( $date_format ) ) {
-		setlocale( LC_TIME, $locale );
-		$start_timestamp = $date->getTimestamp() + $date->getOffset();
-		$time_indicator  = ( $locale === 'fr_FR' ) ? '%R' : '%I:%M %p';
-		switch ( $date_format ) {
-			case 'L LT':
-			case 'l LT':
-				return strftime( '%D, ' . $time_indicator, $start_timestamp );
-				break;
-			case 'llll':
-				return strftime( '%a, %b %e, %G ' . $time_indicator, $start_timestamp );
-				break;
-			case 'lll':
-				return strftime( '%b %e, %G ' . $time_indicator, $start_timestamp );
-				break;
-			case 'LLLL':
-				return strftime( '%A %b %e, %G ' . $time_indicator, $start_timestamp );
-				break;
-			default:
-				return $date->format( $format );
-				break;
+	try {
+		$timezone = ! empty( $tz ) ? $tz : "America/Los_Angeles";
+		$tz       = new DateTimeZone( $timezone );
+		$date     = new DateTime( $start_time );
+		$date->setTimezone( $tz );
+		if ( ! $format ) {
+			return $date;
 		}
-	} else {
-		return $date->format( $format );
+
+		if ( ! $defaults ) {
+			return $date->format( $format );
+		}
+
+		$locale      = get_locale();
+		$date_format = get_option( 'zoom_api_date_time_format' );
+		if ( $defaults && ! empty( $locale ) && ! empty( $date_format ) ) {
+			setlocale( LC_TIME, $locale );
+			$start_timestamp = $date->getTimestamp() + $date->getOffset();
+			$time_indicator  = ( $locale === 'fr_FR' ) ? '%R' : '%I:%M %p';
+			switch ( $date_format ) {
+				case 'L LT':
+				case 'l LT':
+					return strftime( '%D, ' . $time_indicator, $start_timestamp );
+					break;
+				case 'llll':
+					return strftime( '%a, %b %e, %G ' . $time_indicator, $start_timestamp );
+					break;
+				case 'lll':
+					return strftime( '%b %e, %G ' . $time_indicator, $start_timestamp );
+					break;
+				case 'LLLL':
+					return strftime( '%A %b %e, %G ' . $time_indicator, $start_timestamp );
+					break;
+				default:
+					return $date->format( $format );
+					break;
+			}
+		} else {
+			return $date->format( $format );
+		}
+	} catch ( Exception $e ) {
+		return $e->getMessage();
 	}
 }
 
