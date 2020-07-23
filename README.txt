@@ -101,7 +101,7 @@ As an extension of the Zoom browser client, this SDK is intended for implementat
 
 * [zoom_list_host_meetings host="your_host_id"] - Show list of meetings in frontend for specific HOST ID.
 
-* [zoom_recordings host_id="YOUR_HOST_ID"] - Show list of recordings based on HOST ID.
+* [zoom_recordings host_id="YOUR_HOST_ID" downloadable="yes"] - Show list of recordings based on HOST ID. By default downloadable is set to false.
 
 **QUICK DEMO:**
 

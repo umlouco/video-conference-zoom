@@ -46,14 +46,22 @@ class Zoom_Video_Conferencing_Shorcodes {
 	 */
 	public function enqueue_scripts() {
 		wp_enqueue_style( 'video-conferencing-with-zoom-api' );
-		wp_register_script( 'video-conferncing-with-zoom-browser-js', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/js/join-browser.min.js', array( 'jquery' ), '3.2.4', true );
-		wp_register_style( 'video-conferencing-with-zoom-api-datable', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/datatable/jquery.dataTables.min.css', false, '3.0.0' );
-		wp_enqueue_style( 'video-conferencing-with-zoom-api-datable' );
-		wp_register_script( 'video-conferencing-with-zoom-api-datable-js', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/datatable/jquery.dataTables.min.js', [ 'jquery' ], '3.0.0', true );
+		wp_register_script( 'video-conferncing-with-zoom-browser-js', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/js/join-browser.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
+		wp_register_style( 'video-conferencing-with-zoom-api-datable', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/datatable/jquery.dataTables.min.css', false, ZVC_PLUGIN_VERSION );
+		wp_register_style( 'video-conferencing-with-zoom-api-datable-responsive', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/datatable-responsive/responsive.dataTables.min.css', false, ZVC_PLUGIN_VERSION );
+		wp_register_script( 'video-conferencing-with-zoom-api-datable-js', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/datatable/jquery.dataTables.min.js', [ 'jquery' ], ZVC_PLUGIN_VERSION, true );
+		wp_register_script( 'video-conferencing-with-zoom-api-datable-dt-responsive-js', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/datatable-responsive/dataTables.responsive.min.js', [
+			'jquery',
+			'video-conferencing-with-zoom-api-datable-js'
+		], ZVC_PLUGIN_VERSION, true );
+		wp_register_script( 'video-conferencing-with-zoom-api-datable-responsive-js', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/datatable-responsive/responsive.dataTables.min.js', [
+			'jquery',
+			'video-conferencing-with-zoom-api-datable-js'
+		], ZVC_PLUGIN_VERSION, true );
 		wp_register_script( 'video-conferencing-with-zoom-api-shortcode-js', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/js/shortcode.js', [
 			'jquery',
 			'video-conferencing-with-zoom-api-datable-js'
-		], '1.0.0', true );
+		], ZVC_PLUGIN_VERSION, true );
 	}
 
 	/**
@@ -65,16 +73,22 @@ class Zoom_Video_Conferencing_Shorcodes {
 	 * @throws Exception
 	 */
 	public function show_host_webinars( $atts ) {
-		wp_enqueue_script( 'video-conferencing-with-zoom-api-shortcode-js' );
-
 		$atts = shortcode_atts(
-			[ 'host' => '' ],
+			[
+				'host'       => ''
+			],
 			$atts
 		);
 
 		if ( empty( $atts['host'] ) ) {
 			return __( 'Host ID should be given when defining this shortcode.', 'video-conferencing-with-zoom-api' );
 		}
+
+		wp_enqueue_style( 'video-conferencing-with-zoom-api-datable' );
+		wp_enqueue_style( 'video-conferencing-with-zoom-api-datable-responsive' );
+		wp_enqueue_script( 'video-conferencing-with-zoom-api-datable-responsive-js' );
+		wp_enqueue_script( 'video-conferencing-with-zoom-api-datable-dt-responsive-js' );
+		wp_enqueue_script( 'video-conferencing-with-zoom-api-shortcode-js' );
 
 		$webinars         = get_option( '_vczapi_user_webinars_for_' . $atts['host'] );
 		$cache_expiration = get_option( '_vczapi_user_webinars_for_' . $atts['host'] . '_expiration' );
@@ -96,7 +110,7 @@ class Zoom_Video_Conferencing_Shorcodes {
 
 		ob_start();
 		?>
-        <table class="vczapi-user-meeting-list">
+        <table id="vczapi-show-webinars-list-table" class="vczapi-user-meeting-list">
             <thead>
             <tr>
                 <th><?php _e( 'Topic', 'video-conferencing-with-zoom-api' ); ?></th>
@@ -138,16 +152,22 @@ class Zoom_Video_Conferencing_Shorcodes {
 	 * @throws Exception
 	 */
 	public function show_host_meetings( $atts ) {
-		wp_enqueue_script( 'video-conferencing-with-zoom-api-shortcode-js' );
-
 		$atts = shortcode_atts(
-			[ 'host' => '' ],
+			[
+				'host'       => ''
+			],
 			$atts
 		);
 
 		if ( empty( $atts['host'] ) ) {
 			return __( 'Host ID should be given when defining this shortcode.', 'video-conferencing-with-zoom-api' );
 		}
+
+		wp_enqueue_style( 'video-conferencing-with-zoom-api-datable' );
+		wp_enqueue_style( 'video-conferencing-with-zoom-api-datable-responsive' );
+		wp_enqueue_script( 'video-conferencing-with-zoom-api-datable-responsive-js' );
+		wp_enqueue_script( 'video-conferencing-with-zoom-api-datable-dt-responsive-js' );
+		wp_enqueue_script( 'video-conferencing-with-zoom-api-shortcode-js' );
 
 		$meetings         = get_option( 'vczapi_user_meetings_for_' . $atts['host'] );
 		$cache_expiration = get_option( 'vczapi_user_meetings_for_' . $atts['host'] . '_expiration' );
@@ -165,7 +185,7 @@ class Zoom_Video_Conferencing_Shorcodes {
 
 		ob_start();
 		?>
-        <table class="vczapi-user-meeting-list">
+        <table id="vczapi-show-meetings-list-table" class="vczapi-user-meeting-list">
             <thead>
             <tr>
                 <th><?php _e( 'Topic', 'video-conferencing-with-zoom-api' ); ?></th>
@@ -637,13 +657,11 @@ class Zoom_Video_Conferencing_Shorcodes {
 	 * @return bool|false|string
 	 */
 	public function recordings( $atts ) {
-		wp_enqueue_script( 'video-conferencing-with-zoom-api-datable-js' );
-		wp_enqueue_script( 'video-conferencing-with-zoom-api-shortcode-js' );
-
 		$atts = shortcode_atts(
 			array(
-				'host_id'  => '',
-				'per_page' => 300
+				'host_id'      => '',
+				'per_page'     => 300,
+				'downloadable' => 'no'
 			),
 			$atts, 'zoom_recordings'
 		);
@@ -654,6 +672,12 @@ class Zoom_Video_Conferencing_Shorcodes {
 
 			return false;
 		}
+
+		wp_enqueue_style( 'video-conferencing-with-zoom-api-datable' );
+		wp_enqueue_style( 'video-conferencing-with-zoom-api-datable-responsive' );
+		wp_enqueue_script( 'video-conferencing-with-zoom-api-datable-responsive-js' );
+		wp_enqueue_script( 'video-conferencing-with-zoom-api-datable-dt-responsive-js' );
+		wp_enqueue_script( 'video-conferencing-with-zoom-api-shortcode-js' );
 
 		$postParams = array(
 			'page_size' => 300 //$atts['per_page'] disbled for now
@@ -674,7 +698,8 @@ class Zoom_Video_Conferencing_Shorcodes {
 				echo $recordings->message;
 			} else {
 				if ( ! empty( $recordings->meetings ) ) {
-					$GLOBALS['zoom_recordings'] = $recordings;
+					$GLOBALS['zoom_recordings']               = $recordings;
+					$GLOBALS['zoom_recordings']->downloadable = ( ! empty( $atts['downloadable'] ) && $atts['downloadable'] === "yes" ) ? true : false;
 					vczapi_get_template( 'shortcode/zoom-recordings.php', true );
 				} else {
 					_e( "No meetings found.", "video-conferencing-with-zoom-api" );
