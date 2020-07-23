@@ -39,6 +39,7 @@ class Zoom_Video_Conferencing_Shorcodes {
 		add_shortcode( 'zoom_list_host_meetings', array( $this, 'show_host_meetings' ) );
 		add_shortcode( 'zoom_join_via_browser', array( $this, 'join_via_browser' ) );
 		add_shortcode( 'zoom_recordings', array( $this, 'recordings' ) );
+		add_shortcode( 'zoom_recordings_by_meeting', array( $this, 'recordings_meeting_id' ) );
 	}
 
 	/**
@@ -75,7 +76,7 @@ class Zoom_Video_Conferencing_Shorcodes {
 	public function show_host_webinars( $atts ) {
 		$atts = shortcode_atts(
 			[
-				'host'       => ''
+				'host' => ''
 			],
 			$atts
 		);
@@ -154,7 +155,7 @@ class Zoom_Video_Conferencing_Shorcodes {
 	public function show_host_meetings( $atts ) {
 		$atts = shortcode_atts(
 			[
-				'host'       => ''
+				'host' => ''
 			],
 			$atts
 		);
@@ -666,9 +667,8 @@ class Zoom_Video_Conferencing_Shorcodes {
 			$atts, 'zoom_recordings'
 		);
 
-		ob_start();
 		if ( empty( $atts['host_id'] ) ) {
-			echo '<h4 class="no-host-id-defined"><strong style="color:red;">' . __( 'Invalid HOST ID. Please define a host ID to show recordings based on host.', 'video-conferencing-with-zoom-api' ) . '</h4>';
+			echo '<h3 class="no-host-id-defined"><strong style="color:red;">' . __( 'Invalid HOST ID. Please define a host ID to show recordings based on host.', 'video-conferencing-with-zoom-api' ) . '</h3>';
 
 			return false;
 		}
@@ -702,11 +702,61 @@ class Zoom_Video_Conferencing_Shorcodes {
 					$GLOBALS['zoom_recordings']->downloadable = ( ! empty( $atts['downloadable'] ) && $atts['downloadable'] === "yes" ) ? true : false;
 					vczapi_get_template( 'shortcode/zoom-recordings.php', true );
 				} else {
-					_e( "No meetings found.", "video-conferencing-with-zoom-api" );
+					_e( "No recordings found.", "video-conferencing-with-zoom-api" );
 				}
 			}
 		} else {
-			_e( "No meetings found.", "video-conferencing-with-zoom-api" );
+			_e( "No recordings found.", "video-conferencing-with-zoom-api" );
+		}
+
+		return ob_get_clean();
+	}
+
+	/**
+     * Show recordings based on Meeting ID
+     *
+	 * @param $atts
+	 *
+	 * @return bool|false|string
+	 */
+	public function recordings_meeting_id( $atts ) {
+		$atts = shortcode_atts(
+			array(
+				'meeting_id'   => '',
+				'downloadable' => 'no'
+			),
+			$atts, 'zoom_recordings'
+		);
+
+		if ( empty( $atts['meeting_id'] ) ) {
+			echo '<h3 class="no-meeting-id-defined"><strong style="color:red;">' . __( 'Invalid Meeting ID.', 'video-conferencing-with-zoom-api' ) . '</h3>';
+
+			return false;
+		}
+
+		wp_enqueue_style( 'video-conferencing-with-zoom-api-datable' );
+		wp_enqueue_style( 'video-conferencing-with-zoom-api-datable-responsive' );
+		wp_enqueue_script( 'video-conferencing-with-zoom-api-datable-responsive-js' );
+		wp_enqueue_script( 'video-conferencing-with-zoom-api-datable-dt-responsive-js' );
+		wp_enqueue_script( 'video-conferencing-with-zoom-api-shortcode-js' );
+
+		$recordings = json_decode( zoom_conference()->recordingsByMeeting( $atts['meeting_id'] ) );
+		unset( $GLOBALS['zoom_recordings'] );
+		ob_start();
+		if ( ! empty( $recordings ) ) {
+			if ( ! empty( $recordings->code ) && ! empty( $recordings->message ) ) {
+				echo $recordings->message;
+			} else {
+				if ( ! empty( $recordings->recording_files ) ) {
+					$GLOBALS['zoom_recordings']               = $recordings;
+					$GLOBALS['zoom_recordings']->downloadable = ( ! empty( $atts['downloadable'] ) && $atts['downloadable'] === "yes" ) ? true : false;
+					vczapi_get_template( 'shortcode/zoom-recordings-by-meeting.php', true );
+				} else {
+					_e( "No recordings found.", "video-conferencing-with-zoom-api" );
+				}
+			}
+		} else {
+			_e( "No recordings found.", "video-conferencing-with-zoom-api" );
 		}
 
 		return ob_get_clean();

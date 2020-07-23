@@ -78,7 +78,7 @@ class Zoom_Video_Conferencing_ElementorMeetingsList extends Widget_Base {
 	 *
 	 */
 	public function get_categories() {
-		return [ 'theme-elements' ];
+		return [ 'vczapi-elements' ];
 	}
 
 	protected function _register_controls() {

@@ -5,10 +5,14 @@ namespace CodeManas\ZoomVideoConferencing\Elementor;
 use CodeManas\ZoomVideoConferencing\Elementor\Widgets\Zoom_Video_Conferencing_ElementorMeetingsList;
 use CodeManas\ZoomVideoConferencing\Elementor\Widgets\Zoom_Video_Conferencing_Elementor_Meetings;
 use CodeManas\ZoomVideoConferencing\Elementor\Widgets\Zoom_Video_Conferencing_ElementorMeetingsHost;
+use CodeManas\ZoomVideoConferencing\Elementor\Widgets\Zoom_Video_Conferencing_Elementor_Embed;
+use CodeManas\ZoomVideoConferencing\Elementor\Widgets\Zoom_Video_Conferencing_Elementor_RecordingsByHost;
+use CodeManas\ZoomVideoConferencing\Elementor\Widgets\Zoom_Video_Conferencing_Elementor_RecordingsByMeetingID;
 
+// Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
-} // Exit if accessed directly
+}
 
 /**
  * Invoke Elementor Dependency Class
@@ -45,6 +49,8 @@ class Zoom_Video_Conferencing_Elementor {
 		add_action( 'elementor/editor/before_enqueue_scripts', [ $this, 'widget_scripts' ] );
 
 		add_action( 'elementor/widgets/widgets_registered', [ $this, 'on_widgets_registered' ] );
+
+		add_action( 'elementor/elements/categories_registered', [ $this, 'widget_categories' ] );
 	}
 
 	/**
@@ -73,6 +79,22 @@ class Zoom_Video_Conferencing_Elementor {
 	}
 
 	/**
+	 * Register Widget Category
+	 *
+	 * @param $elements_manager
+	 */
+	public function widget_categories( $elements_manager ) {
+		$elements_manager->add_category(
+			'vczapi-elements',
+			[
+				'title'  => 'Zoom',
+				'icon'   => 'fa fa-plug',
+				'active' => true
+			]
+		);
+	}
+
+	/**
 	 * Includes
 	 *
 	 * @since 3.4.0
@@ -84,6 +106,9 @@ class Zoom_Video_Conferencing_Elementor {
 		require ZVC_PLUGIN_INCLUDES_PATH . '/elementor/widgets/class-zvc-elementor-meetings.php';
 		require ZVC_PLUGIN_INCLUDES_PATH . '/elementor/widgets/class-zvc-elementor-meeting-list.php';
 		require ZVC_PLUGIN_INCLUDES_PATH . '/elementor/widgets/class-zvc-elementor-meeting-host.php';
+		require ZVC_PLUGIN_INCLUDES_PATH . '/elementor/widgets/class-zvc-elementor-meeting-embed.php';
+		require ZVC_PLUGIN_INCLUDES_PATH . '/elementor/widgets/class-zvc-elementor-meeting-recordingsbyhost.php';
+		require ZVC_PLUGIN_INCLUDES_PATH . '/elementor/widgets/class-zvc-elementor-meeting-recordings-meeting.php';
 	}
 
 	/**
@@ -98,6 +123,9 @@ class Zoom_Video_Conferencing_Elementor {
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Zoom_Video_Conferencing_Elementor_Meetings() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Zoom_Video_Conferencing_ElementorMeetingsList() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Zoom_Video_Conferencing_ElementorMeetingsHost() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Zoom_Video_Conferencing_Elementor_Embed() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Zoom_Video_Conferencing_Elementor_RecordingsByHost() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Zoom_Video_Conferencing_Elementor_RecordingsByMeetingID() );
 	}
 }
 

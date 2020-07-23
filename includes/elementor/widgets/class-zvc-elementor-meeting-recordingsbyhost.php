@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 3.4.0
  * @author CodeManas
  */
-class Zoom_Video_Conferencing_ElementorMeetingsHost extends Widget_Base {
+class Zoom_Video_Conferencing_Elementor_RecordingsByHost extends Widget_Base {
 
 	/**
 	 * Retrieve the widget name.
@@ -29,7 +29,7 @@ class Zoom_Video_Conferencing_ElementorMeetingsHost extends Widget_Base {
 	 *
 	 */
 	public function get_name() {
-		return 'vczapi_meetings_by_host';
+		return 'vczapi_recordings_by_host';
 	}
 
 	/**
@@ -43,7 +43,7 @@ class Zoom_Video_Conferencing_ElementorMeetingsHost extends Widget_Base {
 	 *
 	 */
 	public function get_title() {
-		return __( 'Zoom Meetings via Host', 'video-conferencing-with-zoom-api' );
+		return __( 'Zoom Recordings by Host', 'video-conferencing-with-zoom-api' );
 	}
 
 	/**
@@ -84,7 +84,7 @@ class Zoom_Video_Conferencing_ElementorMeetingsHost extends Widget_Base {
 		$this->start_controls_section(
 			'section_content',
 			[
-				'label' => __( 'Show Meeting by Zoom User', 'video-conferencing-with-zoom-api' ),
+				'label' => __( 'Show Recordings via Host ID', 'video-conferencing-with-zoom-api' ),
 			]
 		);
 
@@ -102,18 +102,18 @@ class Zoom_Video_Conferencing_ElementorMeetingsHost extends Widget_Base {
 		);
 
 		$this->add_control(
-			'type',
+			'downloadable',
 			[
-				'name'        => 'type',
-				'label'       => __( 'Type', 'video-conferencing-with-zoom-api' ),
+				'name'        => 'downloadable',
+				'label'       => __( 'Show Downloadable Link', 'video-conferencing-with-zoom-api' ),
 				'type'        => \Elementor\Controls_Manager::SELECT,
 				'label_block' => true,
 				'multiple'    => false,
 				'options'     => [
-					1 => 'Meeting',
-					2 => 'Webinar'
+					'yes' => 'Yes',
+					'no'  => 'No'
 				],
-				'default'     => 1
+				'default'     => 'no'
 			]
 		);
 
@@ -151,14 +151,10 @@ class Zoom_Video_Conferencing_ElementorMeetingsHost extends Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 
-		$host_id = ! empty( $settings['host_id'] ) ? $settings['host_id'] : false;
-		$type    = ! empty( $settings['type'] ) ? $settings['type'] : 1;
+		$host_id      = ! empty( $settings['host_id'] ) ? $settings['host_id'] : false;
+		$downloadable = ! empty( $settings['downloadable'] ) ? $settings['downloadable'] : 'no';
 		if ( ! empty( $host_id ) ) {
-			if ( $type === 1 ) {
-				echo do_shortcode( '[zoom_list_host_meetings host=' . esc_attr( $host_id ) . ']' );
-			} else {
-				echo do_shortcode( '[zoom_list_host_webinars host=' . esc_attr( $host_id ) . ']' );
-			}
+			echo do_shortcode( '[zoom_recordings host_id=' . esc_attr( $host_id ) . ' downloadable=' . esc_attr( $downloadable ) . ']' );
 		} else {
 			_e( 'No user selected.', 'video-conferencing-with-zoom-api' );
 		}

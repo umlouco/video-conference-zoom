@@ -286,7 +286,15 @@ if ( ! function_exists( 'video_conference_zoom_shortcode_table' ) ) {
             <tr class="vczapi-shortcode-meeting-table--row3">
                 <td><?php _e( 'Meeting Status', 'video-conferencing-with-zoom-api' ); ?></td>
                 <td>
-					<?php echo $zoom_meetings->status; ?>
+					<?php
+					if ( $zoom_meetings->status === "waiting" ) {
+						_e( 'Waiting - Not started', 'video-conferencing-with-zoom-api' );
+					} else if ( $zoom_meetings->status === "started" ) {
+						_e( 'Meeting is in Progress', 'video-conferencing-with-zoom-api' );
+					} else {
+						echo $zoom_meetings->status;
+					}
+					?>
                     <p class="small-description"><?php _e( 'Refresh is needed to change status.', 'video-conferencing-with-zoom-api' ); ?></p>
                 </td>
             </tr>

@@ -71,6 +71,8 @@
 
 #vczapi-recordings-list-table_wrapper .dataTable tbody .even, #vczapi-show-meetings-list-table_wrapper .dataTable tbody .even, #vczapi-show-webinars-list-table_wrapper .dataTable tbody .even { background-color: rgba(0, 0, 0, 0.05); }
 
+.vczapi-recordings-meeting-id-description ul { list-style: none; padding: 0; margin: 0; }
+
 #zvc-cover { background: url(../../images/ajax-loader.gif) no-repeat scroll center center #adadad; position: absolute; height: 100%; width: 100%; z-index: 5; opacity: .9; }
 
 #dpen-zoom-browser-meeting { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 1; }

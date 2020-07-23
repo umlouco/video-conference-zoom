@@ -32,7 +32,7 @@
 #vczapi-recordings-list-table_wrapper .dataTable.no-footer,#vczapi-show-meetings-list-table_wrapper .dataTable.no-footer,#vczapi-show-webinars-list-table_wrapper .dataTable.no-footer{border-bottom:0}
 #vczapi-recordings-list-table_wrapper .dataTable tbody .odd,#vczapi-show-meetings-list-table_wrapper .dataTable tbody .odd,#vczapi-show-webinars-list-table_wrapper .dataTable tbody .odd{background-color:#fff}
 #vczapi-recordings-list-table_wrapper .dataTable tbody .even,#vczapi-show-meetings-list-table_wrapper .dataTable tbody .even,#vczapi-show-webinars-list-table_wrapper .dataTable tbody .even{background-color:rgba(0,0,0,0.05)}
-#zvc-cover{background:url(../../images/ajax-loader.gif) no-repeat scroll center center #adadad;position:absolute;height:100%;width:100%;z-index:5;opacity:.9}
+.vczapi-recordings-meeting-id-description ul{list-style:none;padding:0;margin:0}#zvc-cover{background:url(../../images/ajax-loader.gif) no-repeat scroll center center #adadad;position:absolute;height:100%;width:100%;z-index:5;opacity:.9}
 #dpen-zoom-browser-meeting{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:1}
 #dpen-zoom-browser-meeting .dpen-zoom-browser-meeting--meeting-form input[type=text],#dpen-zoom-browser-meeting .dpen-zoom-browser-meeting--meeting-form input[type=password],#dpen-zoom-browser-meeting .dpen-zoom-browser-meeting--meeting-form button[type=submit],#dpen-zoom-browser-meeting .dpen-zoom-browser-meeting--meeting-form select{height:40px;border-radius:0}
 #dpen-zoom-browser-meeting .dpen-zoom-browser-meeting--meeting-form button[type=submit]{background-color:#2d8cff;width:100%;color:#fff}

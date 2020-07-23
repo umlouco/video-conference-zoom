@@ -4,7 +4,7 @@ Tags: zoom video conference, video conference, zoom, zoom video conferencing, we
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.4
-Stable tag: 3.5.1
+Stable tag: 3.5.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -103,6 +103,8 @@ As an extension of the Zoom browser client, this SDK is intended for implementat
 
 * [zoom_recordings host_id="YOUR_HOST_ID" downloadable="yes"] - Show list of recordings based on HOST ID. By default downloadable is set to false.
 
+* [zoom_recordings_by_meeting meeting_id="MEETING_ID" downloadable="yes"] - which shows recordings based on meeting ID.
+
 **QUICK DEMO:**
 
 [youtube https://www.youtube.com/watch?v=5Z2Ii0PnHRQ]
@@ -161,6 +163,10 @@ Yes, you should be registered in Zoom. Also, on the plan you are using there dep
 9. Shortcode Output
 
 == Changelog ==
+
+= 3.5.2 July 23rd, 2020 =
+* Added: [zoom_recordings_by_meeting meeting_id="MEETING_ID" downloadable="yes"] which shows recordings based on meeting ID.
+* Added: Elementor Widgets for new shortcodes.
 
 = 3.5.1 July 23rd, 2020 =
 * Fixed: Time Locale Fixed.

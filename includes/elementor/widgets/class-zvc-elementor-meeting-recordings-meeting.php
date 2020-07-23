@@ -4,9 +4,10 @@ namespace CodeManas\ZoomVideoConferencing\Elementor\Widgets;
 
 use Elementor\Widget_Base;
 
+// Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
-} // Exit if accessed directly
+}
 
 /**
  * Elementor Hello World
@@ -16,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 3.4.0
  * @author CodeManas
  */
-class Zoom_Video_Conferencing_ElementorMeetingsHost extends Widget_Base {
+class Zoom_Video_Conferencing_Elementor_RecordingsByMeetingID extends Widget_Base {
 
 	/**
 	 * Retrieve the widget name.
@@ -29,7 +30,7 @@ class Zoom_Video_Conferencing_ElementorMeetingsHost extends Widget_Base {
 	 *
 	 */
 	public function get_name() {
-		return 'vczapi_meetings_by_host';
+		return 'vczapi_meetings_recordings_by_meetingid';
 	}
 
 	/**
@@ -43,7 +44,7 @@ class Zoom_Video_Conferencing_ElementorMeetingsHost extends Widget_Base {
 	 *
 	 */
 	public function get_title() {
-		return __( 'Zoom Meetings via Host', 'video-conferencing-with-zoom-api' );
+		return __( 'Recordings by Meeting', 'video-conferencing-with-zoom-api' );
 	}
 
 	/**
@@ -84,58 +85,38 @@ class Zoom_Video_Conferencing_ElementorMeetingsHost extends Widget_Base {
 		$this->start_controls_section(
 			'section_content',
 			[
-				'label' => __( 'Show Meeting by Zoom User', 'video-conferencing-with-zoom-api' ),
+				'label' => __( 'Recording by Meeting', 'video-conferencing-with-zoom-api' ),
 			]
 		);
 
 		$this->add_control(
-			'host_id',
+			'meeting_id',
 			[
-				'name'        => 'host_id',
-				'label'       => __( 'Select User', 'video-conferencing-with-zoom-api' ),
-				'type'        => \Elementor\Controls_Manager::SELECT2,
-				'label_block' => true,
-				'multiple'    => false,
-				'options'     => $this->get_hosts(),
-				'default'     => ''
+				'label'       => __( 'Meeting ID', 'video-conferencing-with-zoom-api' ),
+				'type'        => \Elementor\Controls_Manager::TEXT,
+				'placeholder' => '1234567890',
+				'title'       => 'Your meeting ID'
 			]
 		);
 
 		$this->add_control(
-			'type',
+			'downloadable',
 			[
-				'name'        => 'type',
-				'label'       => __( 'Type', 'video-conferencing-with-zoom-api' ),
+				'name'        => 'downloadable',
+				'label'       => __( 'Show Downloadable Link', 'video-conferencing-with-zoom-api' ),
 				'type'        => \Elementor\Controls_Manager::SELECT,
 				'label_block' => true,
 				'multiple'    => false,
 				'options'     => [
-					1 => 'Meeting',
-					2 => 'Webinar'
+					'yes' => 'Yes',
+					'no'  => 'No'
 				],
-				'default'     => 1
+				'default'     => 'no'
 			]
 		);
 
 		$this->end_controls_section();
 
-	}
-
-	/**
-	 * Get Taxonomies for Zoom meeting
-	 *
-	 * @return array
-	 */
-	private function get_hosts() {
-		$users  = video_conferencing_zoom_api_get_user_transients();
-		$result = array();
-		if ( ! empty( $users ) ) {
-			foreach ( $users as $user ) {
-				$result[ $user->id ] = $user->first_name . ' ' . $user->last_name . '(' . $user->email . ')';
-			}
-		}
-
-		return $result;
 	}
 
 	/**
@@ -151,16 +132,12 @@ class Zoom_Video_Conferencing_ElementorMeetingsHost extends Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 
-		$host_id = ! empty( $settings['host_id'] ) ? $settings['host_id'] : false;
-		$type    = ! empty( $settings['type'] ) ? $settings['type'] : 1;
-		if ( ! empty( $host_id ) ) {
-			if ( $type === 1 ) {
-				echo do_shortcode( '[zoom_list_host_meetings host=' . esc_attr( $host_id ) . ']' );
-			} else {
-				echo do_shortcode( '[zoom_list_host_webinars host=' . esc_attr( $host_id ) . ']' );
-			}
+		$meeting_id   = ! empty( $settings['meeting_id'] ) ? $settings['meeting_id'] : false;
+		$downloadable = ! empty( $settings['downloadable'] ) ? $settings['downloadable'] : 'no';
+		if ( ! empty( $meeting_id ) ) {
+			echo do_shortcode( '[zoom_recordings_by_meeting meeting_id=' . esc_attr( $meeting_id ) . ' downloadable=' . esc_attr( $downloadable ) . ']' );
 		} else {
-			_e( 'No user selected.', 'video-conferencing-with-zoom-api' );
+			_e( 'No meeting ID is defined.', 'video-conferencing-with-zoom-api' );
 		}
 	}
 
