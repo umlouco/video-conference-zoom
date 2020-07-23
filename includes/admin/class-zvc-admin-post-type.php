@@ -448,7 +448,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 		}
 
 		//Call this action after the Zoom Meeting completion created.
-		do_action( 'vczapi_admin_after_zoom_meeting_is_created' );
+		do_action( 'vczapi_admin_after_zoom_meeting_is_created', $post_id, $post );
 	}
 
 	/**

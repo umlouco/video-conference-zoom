@@ -166,6 +166,7 @@ Yes, you should be registered in Zoom. Also, on the plan you are using there dep
 * Fixed: Time Locale Fixed.
 * Added: Support for Recurring meetings via Pro Version.
 * Fixed: Shortcode [zoom_list_meetings] for upcoming meetings. Added new meta field for showing exact meetings based on local timezones. Users will need to re-update the old meetings.
+* Added: Hook vczapi_join_via_browser_footer in join via browser page to enable users to enqueue personal scripts or code in the join via browser footer page.
 * Fixed: Minor bug fixes.
 
 = 3.5.0 July 10th, 2020 =
