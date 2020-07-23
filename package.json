@@ -9,6 +9,8 @@
     "@zoomus/websdk": "^1.7.10",
     "datatables.net": "^1.10.21",
     "datatables.net-dt": "^1.10.21",
+    "datatables.net-responsive": "^2.2.5",
+    "datatables.net-responsive-dt": "^2.2.5",
     "jquery-datetimepicker": "^2.5.21",
     "lodash": "^4.17.14",
     "moment": "^2.25.3",

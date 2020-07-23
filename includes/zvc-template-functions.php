@@ -438,6 +438,7 @@ function video_conference_zoom_before_jbh_html( $zoom ) {
  * AFter join before host
  */
 function video_conference_zoom_after_jbh_html() {
+	do_action( 'vczapi_join_via_browser_footer' );
 	wp_footer();
 	?>
     </body></html>

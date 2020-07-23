@@ -14,7 +14,9 @@
             }
         },
         defaultActions: function () {
-            this.$wrapper.DataTable();
+            this.$wrapper.DataTable({
+                responsive: true
+            });
         }
     };
 

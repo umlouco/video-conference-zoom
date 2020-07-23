@@ -24,6 +24,14 @@
 .dpn-zvc-shortcode-op-wrapper table tr:nth-of-type(odd){background-color:#e2e2e2 !important}
 .dpn-zvc-shortcode-op-wrapper table tr:nth-of-type(odd) td{background-color:#e2e2e2}
 .dpn-zvc-shortcode-op-wrapper table tr:nth-of-type(odd) td .small-description{font-size:12px;font-style:italic}
+#vczapi-recordings-list-table_wrapper .dataTables_length,#vczapi-recordings-list-table_wrapper .dataTables_filter,#vczapi-show-meetings-list-table_wrapper .dataTables_length,#vczapi-show-meetings-list-table_wrapper .dataTables_filter,#vczapi-show-webinars-list-table_wrapper .dataTables_length,#vczapi-show-webinars-list-table_wrapper .dataTables_filter{margin:15px 0}
+#vczapi-recordings-list-table_wrapper .dataTable,#vczapi-show-meetings-list-table_wrapper .dataTable,#vczapi-show-webinars-list-table_wrapper .dataTable{position:relative;margin:15px 0}
+#vczapi-recordings-list-table_wrapper .dataTable thead,#vczapi-show-meetings-list-table_wrapper .dataTable thead,#vczapi-show-webinars-list-table_wrapper .dataTable thead{text-align:left}
+#vczapi-recordings-list-table_wrapper .dataTable thead tr,#vczapi-show-meetings-list-table_wrapper .dataTable thead tr,#vczapi-show-webinars-list-table_wrapper .dataTable thead tr{background:#f5f5f5}
+#vczapi-recordings-list-table_wrapper .dataTable thead th,#vczapi-recordings-list-table_wrapper .dataTable thead td,#vczapi-show-meetings-list-table_wrapper .dataTable thead th,#vczapi-show-meetings-list-table_wrapper .dataTable thead td,#vczapi-show-webinars-list-table_wrapper .dataTable thead th,#vczapi-show-webinars-list-table_wrapper .dataTable thead td{border-bottom:0;padding:8px 15px}
+#vczapi-recordings-list-table_wrapper .dataTable.no-footer,#vczapi-show-meetings-list-table_wrapper .dataTable.no-footer,#vczapi-show-webinars-list-table_wrapper .dataTable.no-footer{border-bottom:0}
+#vczapi-recordings-list-table_wrapper .dataTable tbody .odd,#vczapi-show-meetings-list-table_wrapper .dataTable tbody .odd,#vczapi-show-webinars-list-table_wrapper .dataTable tbody .odd{background-color:#fff}
+#vczapi-recordings-list-table_wrapper .dataTable tbody .even,#vczapi-show-meetings-list-table_wrapper .dataTable tbody .even,#vczapi-show-webinars-list-table_wrapper .dataTable tbody .even{background-color:rgba(0,0,0,0.05)}
 #zvc-cover{background:url(../../images/ajax-loader.gif) no-repeat scroll center center #adadad;position:absolute;height:100%;width:100%;z-index:5;opacity:.9}
 #dpen-zoom-browser-meeting{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:1}
 #dpen-zoom-browser-meeting .dpen-zoom-browser-meeting--meeting-form input[type=text],#dpen-zoom-browser-meeting .dpen-zoom-browser-meeting--meeting-form input[type=password],#dpen-zoom-browser-meeting .dpen-zoom-browser-meeting--meeting-form button[type=submit],#dpen-zoom-browser-meeting .dpen-zoom-browser-meeting--meeting-form select{height:40px;border-radius:0}

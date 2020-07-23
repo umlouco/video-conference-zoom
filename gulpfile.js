@@ -59,6 +59,14 @@ gulp.task('vendor', function () {
     ])
         .pipe(gulp.dest('./assets/vendor/datatable'));
 
+    //dataTable Responsive
+    gulp.src([
+        './node_modules/datatables.net-responsive-dt/js/**/*',
+        './node_modules/datatables.net-responsive-dt/css/**/*',
+        './node_modules/datatables.net-responsive/js/**/*'
+    ])
+        .pipe(gulp.dest('./assets/vendor/datatable-responsive'));
+
     //DataTimePicker
     gulp.src([
         './node_modules/jquery-datetimepicker/build/**/*',
@@ -189,7 +197,6 @@ gulp.task('browserJS', function () {
 });
 
 
-
 gulp.task('shortcodeJS', function () {
     gulp.src(shortcodeJSSrc)
         .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
@@ -244,7 +251,7 @@ gulp.task('adminJS', function () {
 gulp.task('default', ['styles', 'stylesAdmin', 'publicJS', 'browserJS', 'shortcodeJS', 'vendorJS', 'adminJS', 'vendor'], function () {
     gulp.watch('./dist/public/sass/*.scss', ['styles']);
     gulp.watch('./dist/admin/sass/*.scss', ['stylesAdmin']);
-    gulp.watch('./dist/public/js/*.js', ['publicJS','shortcodeJS']);
+    gulp.watch('./dist/public/js/*.js', ['publicJS', 'shortcodeJS']);
     gulp.watch('./dist/public/vendor/*.js', ['vendorJS']);
     gulp.watch('./dist/admin/js/*.js', ['adminJS']);
 });

@@ -330,6 +330,11 @@ class Zoom_Video_Conferencing_Admin_PostType {
 		<?php
 	}
 
+	/**
+	 * Debug FUNCTION
+	 *
+	 * @param $post
+	 */
 	public function debug_metabox( $post ) {
 		$meeting_fields  = get_post_meta( $post->ID, '_meeting_fields', true );
 		$meeting_details = get_post_meta( $post->ID, '_meeting_zoom_details', true );
@@ -368,10 +373,8 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	/**
 	 * Handles saving the meta box.
 	 *
-	 * @param int     $post_id Post ID.
-	 * @param WP_Post $post    Post object.
-	 *
-	 * @return null
+	 * @param int $post_id Post ID.
+	 * @param WP_Post $post Post object.
 	 */
 	public function save_metabox( $post_id, $post ) {
 		// Add nonce for security and authentication.
@@ -417,6 +420,10 @@ class Zoom_Video_Conferencing_Admin_PostType {
 		$create_meeting_arr['site_option_logged_in']        = filter_input( INPUT_POST, 'option_logged_in' );
 		$create_meeting_arr['site_option_browser_join']     = filter_input( INPUT_POST, 'option_browser_join' );
 		$create_meeting_arr['site_option_enable_debug_log'] = filter_input( INPUT_POST, 'option_enable_debug_logs' );
+
+		//Call before meeting is created.
+		do_action( 'vczapi_admin_before_zoom_meeting_is_created', $create_meeting_arr );
+
 		//Update Post Meta Values
 		update_post_meta( $post_id, '_meeting_fields', $create_meeting_arr );
 		update_post_meta( $post_id, '_meeting_field_start_date', $create_meeting_arr['start_date'] );
@@ -427,7 +434,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 			$startDateTimezone = $savedDateTime->setTimezone( new DateTimeZone( 'UTC' ) );
 			update_post_meta( $post_id, '_meeting_field_start_date_utc', $startDateTimezone->format( 'Y-m-d H:i:s' ) );
 		} catch ( Exception $e ) {
-
+			update_post_meta( $post_id, '_meeting_field_start_date_utc', $e->getMessage() );
 		}
 
 		//Create Zoom Meeting Now
@@ -439,6 +446,9 @@ class Zoom_Video_Conferencing_Admin_PostType {
 			//Update Zoom Meeting
 			$this->update_zoom_meeting( $post, $meeting_id );
 		}
+
+		//Call this action after the Zoom Meeting completion created.
+		do_action( 'vczapi_admin_after_zoom_meeting_is_created', $post_id, $post );
 	}
 
 	/**

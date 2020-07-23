@@ -101,7 +101,7 @@ As an extension of the Zoom browser client, this SDK is intended for implementat
 
 * [zoom_list_host_meetings host="your_host_id"] - Show list of meetings in frontend for specific HOST ID.
 
-* [zoom_recordings host_id="YOUR_HOST_ID"] - Show list of recordings based on HOST ID.
+* [zoom_recordings host_id="YOUR_HOST_ID" downloadable="yes"] - Show list of recordings based on HOST ID. By default downloadable is set to false.
 
 **QUICK DEMO:**
 
@@ -162,9 +162,14 @@ Yes, you should be registered in Zoom. Also, on the plan you are using there dep
 
 == Changelog ==
 
-= 3.5.1 July 16th, 2020 =
+= 3.5.1 July 23rd, 2020 =
 * Fixed: Time Locale Fixed.
 * Added: Support for Recurring meetings via Pro Version.
+* Fixed: Shortcode [zoom_list_meetings] for upcoming meetings. Added new meta field for showing exact meetings based on local timezones. Users will need to re-update the old meetings.
+* Added: Hook vczapi_join_via_browser_footer in join via browser page to enable users to enqueue personal scripts or code in the join via browser footer page.
+* Added: Shortcode parameter "downloadable" which disables users from downloading the recordings. Set to "false" by default (https://wordpress.org/support/topic/recordings-api-ignores-download-settings/).
+* Added: Datatable Responsive added (https://wordpress.org/support/topic/responsive-datatables-js/)
+* Changed: Table design fixes
 * Fixed: Minor bug fixes.
 
 = 3.5.0 July 10th, 2020 =
