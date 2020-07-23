@@ -23,7 +23,8 @@ Below are few features listed.
 ### Create Automated zoom meetings without configurations
 
 With this plugin, your zoom meeting creation is automated. A zoom meeting is created once an Appointment is made from the customer side. It happens automatically with minimal configurations.
-<img src="https://www.codemanas.com/wp-content/uploads/edd/2020/02/zoom-wordpress.jpg" alt="Zoom and WooCommerce">
+
+![Zoom WooCommerce Appointments](img/woocommerce-appointments/zoom-appointments.jpg)
 
 ### Configure you Appointable Product
 

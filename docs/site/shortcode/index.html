@@ -531,6 +531,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../woocommerce-appointments/" title="WooCommerce Appointments (addon)" class="md-nav__link">
+      WooCommerce Appointments (addon)
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -689,7 +701,7 @@
 <li><code>[zoom_api_webinar meeting_id="YOUR_WEBINAR_ID" link_only="no"]</code></li>
 <li><code>[zoom_list_host_webinars host="YOUR_HOST_ID"]</code></li>
 <li><code>[zoom_join_via_browser meeting_id="YOUR_MEETING_ID" login_required="no" help="yes" title="Test" height="500px" disable_countdown="yes"]</code></li>
-<li><code>[zoom_recordings host_id="YOUR_HOST_ID"]</code></li>
+<li><code>[zoom_recordings host_id="YOUR_HOST_ID" downloadable="yes"]</code></li>
 </ol>
 <h3 id="1-show-single-zoom-meeting-detail">1. Show Single Zoom Meeting Detail</h3>
 <p>Use: <code>[zoom_api_link meeting_id="" link_only="no"]</code></p>
@@ -750,10 +762,11 @@
 });</code></strong></p>
 <h3 id="7-show-recordings-based-on-host-id">7. Show recordings based on HOST ID.</h3>
 <p>Show recordings list in frontend based on host ID.</p>
-<p>Usage: <code>[zoom_recordings host_id="YOUR_HOST_ID"]</code></p>
+<p>Usage: <code>[zoom_recordings host_id="YOUR_HOST_ID" downloadable="yes"]</code></p>
 <p>Where,</p>
 <ul>
 <li><code>host_id</code> : YOUR HOST ID.</li>
+<li><code>downloadable</code> : Default is set to false. If you want your users to be able to download your recordings.</li>
 </ul>
 <h3 id="how-to-get-meeting-id">How to get Meeting ID</h3>
 <ol>
