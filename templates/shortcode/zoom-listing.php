@@ -8,7 +8,7 @@
  * @version     3.2.2
  */
 
-$meeting_details = get_post_meta( get_the_id(), '_meeting_fields', true );
+$meeting_details = get_post_meta( get_the_id(), '_meeting_zoom_details', true );
 ?>
 <div class="vczapi-list-zoom-meetings--item">
 	<?php if ( has_post_thumbnail() ) { ?>
@@ -24,11 +24,11 @@ $meeting_details = get_post_meta( get_the_id(), '_meeting_fields', true );
             </div>
             <div class="start-date meta">
                 <strong><?php _e( 'Start', 'video-conferencing-with-zoom-api' ); ?>:</strong>
-                <span><?php echo date( 'F j, Y @ g:i a', strtotime( $meeting_details['start_date'] ) ); ?></span>
+                <span><?php echo vczapi_dateConverter( $meeting_details->start_time, $meeting_details->timezone, 'F j, Y @ g:i a' ); ?></span>
             </div>
             <div class="timezone meta">
                 <strong><?php _e( 'Timezone', 'video-conferencing-with-zoom-api' ); ?>:</strong>
-                <span><?php echo $meeting_details['timezone']; ?></span>
+                <span><?php echo $meeting_details->timezone; ?></span>
             </div>
         </div>
         <a href="<?php echo esc_url( get_the_permalink() ) ?>" class="btn"><?php _e( 'See More', 'video-conferencing-with-zoom-api' ); ?></a>

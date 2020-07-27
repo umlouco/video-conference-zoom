@@ -12,51 +12,45 @@ Gives you the power to manage Zoom Meetings, Webinars, Recordings, Reports and c
 
 == Description ==
 
-Simple plugin which gives you the extensive functionality to manage zoom meetings, webinars, recordings, users, reports from your WordPress Dashboard. Now, with capability to add your own post as a meeting. Create posts as meetings directly from your WordPress dashboard to show in the frontend as a meeting page. Allow users to directly join via that page with click of a button.
-
-Now, from 3.2.0 allows you to Join meetings directly from Browser without Zoom App using Zoom WebSDK. For audio/video issues check FAQ section. Check here on how it <a target="_blank" href="https://deepenbajracharya.com.np/joining-meetings-in-zoom-directly-from-browser">Works</a>
+Simple plugin which gives you the extensive functionality to manage Zoom Meetings, Webinars, Recordings, Users, Reports from your WordPress Dashboard. Now, with capability to add your own post as a meeting. Create posts as meetings directly from your WordPress dashboard to show in the frontend as a meeting page. Allow users to directly join via that page with click of a button.
 
 **FEATURES:**
 
-* Manage WordPress posts and link them to Live Zoom meetings and Zoom Webinars ( NEW from 3.0.0+ )
-* Override single and archive page templates via your theme. ( NEW from 3.0.0+ )
-* Join links directly from frontend. ( NEW from 3.0.0+ )
-* JOIN DIRECTLY VIA WEB BROWSER FROM FRONTEND ( From v3.2.0+ ) !
-* Start Links for post authors. ( NEW from 3.0.0+ )
-* CountDown timer to Meeting start shows in individual meeting page. ( NEW from 3.0.0+ )
-* Allow posts to be only shown to logged in users. ( NEW from 3.0.0+ )
+* Manage WordPress posts and link them to Live Zoom meetings and Zoom Webinars.
+* Override single and archive page templates via your theme.
+* JOIN DIRECTLY VIA WEB BROWSER FROM FRONTEND !
+* Start Links for post authors.
+* CountDown timer to Meeting start shows in individual meeting page.
 * Start time and join links are shown according to local time compared with zoom timezone.
-* Manage Live Zoom Meetings.
-* Manage Zoom Webinars
 * Show user recordings based on Zoom Account.
 * Display Webinars via Shortcode
-* Listing Users.
+* WCFM Integration( See EXTENDING AND MAKING MEETINGS PURCHASABLE section )
+* WooCommerce Integration( See EXTENDING AND MAKING MEETINGS PURCHASABLE section )
+* WooCommerce Appointments Integration( See EXTENDING AND MAKING MEETINGS PURCHASABLE section )
+* WooCommerce Bookings Integration( See EXTENDING AND MAKING MEETINGS PURCHASABLE section )
 * Developer Friendly
 * Daily and Account Reports
 * Shortcode
 * Shortcode Template Customize
 
-**Please flush your permalink from wp-admin > settings > permalink, if your links to single zoom meetings does not work.**
-
 **DOCUMENTATION LINKS:**
 
-**NOTE: If you getting an error called "API_CREDENTIALS_NOT_FOUDN" at the time of generation API keys then this is an error from zoom side. Please contact zoom support in this case.**
-
 * [Full Documentation](https://zoom.codemanas.com/ "Usage Documentation")
-* [Key Generation Only Documentation](https://deepenbajracharya.com.np/zoom-conference-wp-plugin-documentation/ "Key Generation Only Documentation")
 * [Usage Documentation /w WP](https://deepenbajracharya.com.np/zoom-api-integration-with-wordpress/ "Usage Documentation")
+
+**EXTENDING AND MAKING MEETINGS PURCHASABLE:**
+
+Addon: **[WooCommerce Integration](https://www.codemanas.com/downloads/zoom-meetings-for-woocommerce/ "WooCommerce Integration")**:
+Addon: **[WCFM Integration](https://www.codemanas.com/downloads/wcfm-integration-for-zoom/ "WCFM Integration")**:
+Addon: **[WooCommerce Booking Integration](https://www.codemanas.com/downloads/zoom-integration-for-woocommerce-booking/ "WooCommerce Booking Integration")**:
+Addon: **[Booked Appointments Integration](https://www.codemanas.com/downloads/zoom-meetings-for-booked-appointments/ "Booked Appointments Integration")**:
+Addon: **[WooCommerce Appointments Integration](https://www.codemanas.com/downloads/zoom-for-woocommerce-appointments/ "WooCommerce Appointments Integration")**:
 
 **OVERRIDDING TEMPLATES:**
 
 If you use Zoom Meetings > Add new section i.e Post Type meetings then you might need to override the template. Currently this plugin supports default templates.
 
 REFER FAQ to override page templates!
-
-**EXTEND OTHER FEATURES:**
-
-Addon: **[WooCommerce Integration](https://www.codemanas.com/downloads/zoom-meetings-for-woocommerce/ "WooCommerce Integration")** for:
-Addon: **[WCFM Integration](https://www.codemanas.com/downloads/wcfm-integration-for-zoom/ "WCFM Integration")** for:
-Addon: **[WooCommerce Booking Integration](https://www.codemanas.com/downloads/zoom-integration-for-woocommerce-booking/ "WooCommerce Booking Integration")** for:
 
 * Integration with WooCommerce and Zoom Meetings Countdown page.
 * Purchasable Single Meetings !
@@ -69,6 +63,8 @@ Addon: **[WooCommerce Booking Integration](https://www.codemanas.com/downloads/z
 * Individual Booking product meeting links for each bookings.
 * Integration with WCFM
 * Integration with WooCommerce Product Vendors
+* Integration with Booked Appointments.
+* Integration with WooCommerce Appointments.
 
 & more functionalities and integrations are on its way!
 
@@ -164,9 +160,11 @@ Yes, you should be registered in Zoom. Also, on the plan you are using there dep
 
 == Changelog ==
 
-= 3.5.2 July 23rd, 2020 =
+= 3.5.2 July 27th, 2020 =
 * Added: [zoom_recordings_by_meeting meeting_id="MEETING_ID" downloadable="yes"] which shows recordings based on meeting ID.
 * Added: Elementor Widgets for new shortcodes.
+* Fixed: Time shown in fronted with shortcode and singe meetings pages changed.
+* Updated: Old global variable pull removed. New variable assigned for more performance loading and accurate meeting details and timings.
 
 = 3.5.1 July 23rd, 2020 =
 * Fixed: Time Locale Fixed.

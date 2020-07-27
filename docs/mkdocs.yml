@@ -8,7 +8,8 @@ nav:
   - Usage:
       - Meeting Types: meeting_types.md
       - Shortcode: shortcode.md
-      - Join Links: join_links.md
+      - Change DateTime: date_types.md
+      - Join via Browser: join_links.md
       - Vanity URL: vanity_url.md
       - Template Override: template_override.md
       - Filter Hooks: filters_hooks.md

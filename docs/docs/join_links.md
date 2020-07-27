@@ -1,7 +1,5 @@
 This plugin allows you to easily join your meetings using join links from frontend page.
 
-**From version 3.2.0, i have integrated capability to directly join meetings via Web Browser.**
-
 <img src="https://deepenbajracharya.com.np/wp-content/uploads/2020/03/Screen-Shot-2020-03-17-at-2.52.54-PM.png"  alt="Browser join image">
 
 Check this post as well to know more on direct browser join feature <a href="https://deepenbajracharya.com.np/joining-meetings-in-zoom-directly-from-browser/">https://deepenbajracharya.com.np/joining-meetings-in-zoom-directly-from-browser/</a>
@@ -94,3 +92,8 @@ Table is copied from Zoom official directly !
 </tr>
 </tbody>
 </table>
+
+### Not working ?
+
+1. You'll need to have SSL enabled for this feature to work.
+2. New version of Zoom WebSDK adds re-captcha. Please check if your browser is not blocking any popups when joining meeting via browser.

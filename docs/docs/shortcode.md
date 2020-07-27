@@ -13,6 +13,7 @@ With new version you can grab your shortcode with just a click.
 5. `[zoom_list_host_webinars host="YOUR_HOST_ID"]`
 6. `[zoom_join_via_browser meeting_id="YOUR_MEETING_ID" login_required="no" help="yes" title="Test" height="500px" disable_countdown="yes"]`
 7. `[zoom_recordings host_id="YOUR_HOST_ID" downloadable="yes"]`
+8. `[zoom_recordings_by_meeting meeting_id="YOUR_MEETING_ID" downloadable="no"]`
 
 ### 1. Show Single Zoom Meeting Detail
 
@@ -102,6 +103,17 @@ Usage: `[zoom_recordings host_id="YOUR_HOST_ID" downloadable="yes"]`
 Where,
 
 * `host_id` : YOUR HOST ID.
+* `downloadable` : Default is set to false. If you want your users to be able to download your recordings.
+
+### 8. Show Recordings based on Meeting ID
+
+Show recordings list based on your meeting ID
+
+Usage: `[zoom_recordings_by_meeting meeting_id="YOUR_MEETING_ID" downloadable="no"]`
+
+Where,
+
+* `meeting_id` : YOUR MEETING ID to pull.
 * `downloadable` : Default is set to false. If you want your users to be able to download your recordings.
 
 ### How to get Meeting ID

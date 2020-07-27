@@ -127,6 +127,8 @@ class Zoom_Video_Conferencing_Admin_Views {
 					$going_to_start                     = sanitize_text_field( filter_input( INPUT_POST, 'zoom_api_meeting_goingtostart_text' ) );
 					$ended_mtg                          = sanitize_text_field( filter_input( INPUT_POST, 'zoom_api_meeting_ended_text' ) );
 					$locale_format                      = sanitize_text_field( filter_input( INPUT_POST, 'zoom_api_date_time_format' ) );
+					$twentyfour_format                  = sanitize_text_field( filter_input( INPUT_POST, 'zoom_api_twenty_fourhour_format' ) );
+					$full_month_format                  = sanitize_text_field( filter_input( INPUT_POST, 'zoom_api_full_month_format' ) );
 					$embed_pwd_in_join_link             = sanitize_text_field( filter_input( INPUT_POST, 'embed_password_join_link' ) );
 					$hide_join_links_non_loggedin_users = sanitize_text_field( filter_input( INPUT_POST, 'hide_join_links_non_loggedin_users' ) );
 
@@ -139,6 +141,8 @@ class Zoom_Video_Conferencing_Admin_Views {
 					update_option( 'zoom_going_tostart_meeting_text', $going_to_start );
 					update_option( 'zoom_ended_meeting_text', $ended_mtg );
 					update_option( 'zoom_api_date_time_format', $locale_format );
+					update_option( 'zoom_api_full_month_format', $full_month_format );
+					update_option( 'zoom_api_twenty_fourhour_format', $twentyfour_format );
 					update_option( 'zoom_api_embed_pwd_join_link', $embed_pwd_in_join_link );
 					update_option( 'zoom_api_hide_shortcode_join_links', $hide_join_links_non_loggedin_users );
 
@@ -164,6 +168,8 @@ class Zoom_Video_Conferencing_Admin_Views {
 				$zoom_going_to_start         = get_option( 'zoom_going_tostart_meeting_text' );
 				$zoom_ended                  = get_option( 'zoom_ended_meeting_text' );
 				$locale_format               = get_option( 'zoom_api_date_time_format' );
+				$twentyfour_format           = get_option( 'zoom_api_twenty_fourhour_format' );
+				$full_month_format           = get_option( 'zoom_api_full_month_format' );
 				$embed_password_join_link    = get_option( 'zoom_api_embed_pwd_join_link' );
 				$embed_password_join_link    = get_option( 'zoom_api_embed_pwd_join_link' );
 				$hide_join_link_nloggedusers = get_option( 'zoom_api_hide_shortcode_join_links' );

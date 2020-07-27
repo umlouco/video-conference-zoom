@@ -458,25 +458,28 @@ function vczapi_dateConverter( $start_time, $tz, $format = 'F j, Y, g:i a ( T )'
 			return $date->format( $format );
 		}
 
-		$locale      = get_locale();
-		$date_format = get_option( 'zoom_api_date_time_format' );
+		$locale                = get_locale();
+		$date_format           = get_option( 'zoom_api_date_time_format' );
+		$twentyfourhour_format = get_option( 'zoom_api_twenty_fourhour_format' );
+		$full_month_format     = get_option( 'zoom_api_full_month_format' );
 		if ( $defaults && ! empty( $locale ) && ! empty( $date_format ) ) {
 			setlocale( LC_TIME, $locale );
-			$start_timestamp = $date->getTimestamp() + $date->getOffset();
-			$time_indicator  = ( $locale === 'fr_FR' ) ? '%R' : '%I:%M %p';
+			$start_timestamp      = $date->getTimestamp() + $date->getOffset();
+			$time_indicator       = ! empty( $twentyfourhour_format ) ? '%R' : '%I:%M %p';
+			$full_month_indicator = ! empty( $full_month_format ) ? '%B' : '%b';
 			switch ( $date_format ) {
 				case 'L LT':
 				case 'l LT':
 					return strftime( '%D, ' . $time_indicator, $start_timestamp );
 					break;
 				case 'llll':
-					return strftime( '%a, %b %e, %G ' . $time_indicator, $start_timestamp );
+					return strftime( '%a, ' . $full_month_indicator . ' %e, %G ' . $time_indicator, $start_timestamp );
 					break;
 				case 'lll':
-					return strftime( '%b %e, %G ' . $time_indicator, $start_timestamp );
+					return strftime( $full_month_indicator . ' %e, %G ' . $time_indicator, $start_timestamp );
 					break;
 				case 'LLLL':
-					return strftime( '%A %b %e, %G ' . $time_indicator, $start_timestamp );
+					return strftime( '%A ' . $full_month_indicator . ' %e, %G ' . $time_indicator, $start_timestamp );
 					break;
 				default:
 					return $date->format( $format );

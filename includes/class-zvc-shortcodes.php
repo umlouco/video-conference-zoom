@@ -713,8 +713,8 @@ class Zoom_Video_Conferencing_Shorcodes {
 	}
 
 	/**
-     * Show recordings based on Meeting ID
-     *
+	 * Show recordings based on Meeting ID
+	 *
 	 * @param $atts
 	 *
 	 * @return bool|false|string
