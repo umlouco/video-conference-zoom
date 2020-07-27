@@ -101,11 +101,15 @@ As an extension of the Zoom browser client, this SDK is intended for implementat
 
 * [zoom_recordings_by_meeting meeting_id="MEETING_ID" downloadable="yes"] - which shows recordings based on meeting ID.
 
+**CONTRIBUTING**
+
+There’s a [GIT repository](https://github.com/techies23/video-conference-zoom "GIT repository") if you want to contribute a patch. Please check issues. Pull requests are welcomed and your contributions will be appreciated.
+
+Please consider giving a 5 star thumbs up if you found this useful.
+
 **QUICK DEMO:**
 
 [youtube https://www.youtube.com/watch?v=5Z2Ii0PnHRQ]
-
-Any additional features, suggestions related to translations, contact me via [email](https://deepenbajracharya.com.np/say-hello/ "Deepen Bajracharya"). Send me your wordpress.org username handle as well if you are willing to contribute in translations.
 
 == Installation ==
 Search for the plugin -> add new dialog and click install, or download and extract the plugin, and copy the the Zoom plugin folder into your wp-content/plugins directory and activate.

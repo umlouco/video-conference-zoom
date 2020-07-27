@@ -53,6 +53,22 @@ For this demo i have added **New Product Test Appointment** as product name but 
 
 Thats it ! After you linked these fields. Your Zoom Meetings is linked with your Product.
 
+### Preparing Zoom Meeting link for Emails
+
+Follow below steps to include join links in default Booked Appointments emails.
+
+1. Goto wp-admin
+2. Under Appointments > Settings
+3. Select Emails tab
+4. Scroll to “Appointment Confirmation” section.
+
+You should see below two points added in the description section.
+
+**%zoom_meeting_link%** — Display the appointment’s Zoom App Link.
+**%zoom_meeting_browser_link%** — Display the appointment’s Zoom Join via Browser Link.
+
+Add these above texts accordingly to show the zoom join link as well join via browser link and they should show up in your confirmation emails.
+
 ### How will users receive join links ?
 
 At the moment - If you have kept your bookings to be **Auto Approved** they will receive join links in email. Othewise, you'll have to use [booked-appointments] shortcode to show.

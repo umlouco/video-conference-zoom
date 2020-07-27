@@ -277,8 +277,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../join_links/" title="Join Links" class="md-nav__link">
-      Join Links
+    <a href="../date_types/" title="Change DateTime" class="md-nav__link">
+      Change DateTime
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../join_links/" title="Join via Browser" class="md-nav__link">
+      Join via Browser
     </a>
   </li>
 
@@ -464,6 +476,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#preparing-zoom-meeting-link-for-emails" class="md-nav__link">
+    Preparing Zoom Meeting link for Emails
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#how-will-users-receive-join-links" class="md-nav__link">
     How will users receive join links ?
   </a>
@@ -589,6 +608,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#preparing-zoom-meeting-link-for-emails" class="md-nav__link">
+    Preparing Zoom Meeting link for Emails
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#how-will-users-receive-join-links" class="md-nav__link">
     How will users receive join links ?
   </a>
@@ -665,6 +691,18 @@
 </ul>
 <p>For this demo i have added <strong>New Product Test Appointment</strong> as product name but for yours will be different probably. Something like <strong>Appointment for 1:00pm to 2:00pm /w Dr. Josh</strong> etc. For each timeslots you'll need to create different product and meetings.</p>
 <p>Thats it ! After you linked these fields. Your Zoom Meetings is linked with your Product.</p>
+<h3 id="preparing-zoom-meeting-link-for-emails">Preparing Zoom Meeting link for Emails</h3>
+<p>Follow below steps to include join links in default Booked Appointments emails.</p>
+<ol>
+<li>Goto wp-admin</li>
+<li>Under Appointments &gt; Settings</li>
+<li>Select Emails tab</li>
+<li>Scroll to “Appointment Confirmation” section.</li>
+</ol>
+<p>You should see below two points added in the description section.</p>
+<p><strong>%zoom_meeting_link%</strong> — Display the appointment’s Zoom App Link.
+<strong>%zoom_meeting_browser_link%</strong> — Display the appointment’s Zoom Join via Browser Link.</p>
+<p>Add these above texts accordingly to show the zoom join link as well join via browser link and they should show up in your confirmation emails.</p>
 <h3 id="how-will-users-receive-join-links">How will users receive join links ?</h3>
 <p>At the moment - If you have kept your bookings to be <strong>Auto Approved</strong> they will receive join links in email. Othewise, you'll have to use [booked-appointments] shortcode to show.</p>
 <p>It would be like like so:</p>
