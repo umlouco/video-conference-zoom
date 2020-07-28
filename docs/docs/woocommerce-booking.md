@@ -38,4 +38,18 @@ After a booking is done. Users will be able to join their bookings from email li
 
 <img src="https://www.codemanas.com/wp-content/uploads/edd/2020/02/My-account-WooCommerce.jpg" alt="Zoom and WooCommerce">
 
+### Product Vendors Support 
+Zoom for WooCommerce Bookings supports [Product Vendors](https://woocommerce.com/products/product-vendors/)  since version 2.1.7 .
+Each vendor can be assigned a Zoom User / Host ID. When the vendor creates a Booking Product the host is automatically selected based on which host they have been assigned.
+
+<b>Note: The host(s) need to be under the Zoom account that has been configured - this is a paid Zoom feature.</b> 
+<b> Assign Zoom Host </b>
+To assign Zoom Host to a Vendor. Goto Products > Zoom Vendors here you will be shown a screen of available vendors and ability to assign a host to them.
+---
+ 
+![Assign Vendor Zoom Host](img/product-vendors-bookings.png)
+
+---
+Once Zoom host is assigned to vendor. When the vendor in question when creates a Bookable Product - the selected Host will be used to create the Zoom Meeting. 
+    
 
