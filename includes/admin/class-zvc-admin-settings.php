@@ -136,6 +136,7 @@ class Zoom_Video_Conferencing_Admin_Views {
 					$full_month_format                  = sanitize_text_field( filter_input( INPUT_POST, 'zoom_api_full_month_format' ) );
 					$embed_pwd_in_join_link             = sanitize_text_field( filter_input( INPUT_POST, 'embed_password_join_link' ) );
 					$hide_join_links_non_loggedin_users = sanitize_text_field( filter_input( INPUT_POST, 'hide_join_links_non_loggedin_users' ) );
+					$hide_email_jvb                     = sanitize_text_field( filter_input( INPUT_POST, 'meeting_show_email_field' ) );
 
 					update_option( 'zoom_api_key', $zoom_api_key );
 					update_option( 'zoom_api_secret', $zoom_api_secret );
@@ -150,6 +151,7 @@ class Zoom_Video_Conferencing_Admin_Views {
 					update_option( 'zoom_api_twenty_fourhour_format', $twentyfour_format );
 					update_option( 'zoom_api_embed_pwd_join_link', $embed_pwd_in_join_link );
 					update_option( 'zoom_api_hide_shortcode_join_links', $hide_join_links_non_loggedin_users );
+					update_option( 'zoom_api_hide_in_jvb', $hide_email_jvb );
 
 					//After user has been created delete this transient in order to fetch latest Data.
 					video_conferencing_zoom_api_delete_user_cache();
@@ -178,6 +180,7 @@ class Zoom_Video_Conferencing_Admin_Views {
 				$embed_password_join_link    = get_option( 'zoom_api_embed_pwd_join_link' );
 				$embed_password_join_link    = get_option( 'zoom_api_embed_pwd_join_link' );
 				$hide_join_link_nloggedusers = get_option( 'zoom_api_hide_shortcode_join_links' );
+				$hide_email_jvb              = get_option( 'zoom_api_hide_in_jvb' );
 
 				//Get Template
 				require_once ZVC_PLUGIN_VIEWS_PATH . '/tabs/api-settings.php';

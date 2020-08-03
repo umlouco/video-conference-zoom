@@ -44,9 +44,18 @@ if ( video_conference_zoom_check_login() ) {
 			<?php } ?>
             <form class="dpen-zoom-browser-meeting--meeting-form" id="dpen-zoom-browser-meeting-join-form" action="">
                 <div class="form-group">
-                    <input type="text" name="display_name" id="display_name" value="" placeholder="Your Name Here" class="form-control" required>
+                    <input type="text" name="display_name" id="vczapi-jvb-display-name" value="" placeholder="Your Name Here" class="form-control" required>
                 </div>
-				<?php if ( ! isset( $_GET['pak'] ) ) { ?>
+				<?php
+				$hide_email = get_option( 'zoom_api_hide_in_jvb' );
+				if ( empty( $hide_email ) ) {
+					?>
+                    <div class="form-group">
+                        <input type="email" name="display_email" id="vczapi-jvb-email" value="" placeholder="Your Email Here" class="form-control">
+                    </div>
+				<?php }
+
+				if ( ! isset( $_GET['pak'] ) ) { ?>
                     <div class="form-group">
                         <input type="password" name="meeting_password" id="meeting_password" value="" placeholder="Meeting Password" class="form-control" required>
                     </div>

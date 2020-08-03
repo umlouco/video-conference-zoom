@@ -27,6 +27,7 @@ jQuery(function ($) {
             var SIGNATURE = false;
             var REDIRECTION = zvc_ajx.redirect_page;
             var PASSWD = zvc_ajx.meeting_pwd;
+            var EMAIL_USER = '';
             $('body').append('<span id="zvc-cover"></span>');
             if (meeting_id) {
                 $.post(zvc_ajx.ajaxurl, {
@@ -42,26 +43,35 @@ jQuery(function ($) {
                         SIGNATURE = response.data.sig;
 
                         if (API_KEY && SIGNATURE) {
-                            var display_name = $('#display_name');
+                            var display_name = $('#vczapi-jvb-display-name');
+                            var email = $('#vczapi-jvb-email');
+                            var pwd = $('#meeting_password');
                             if (!display_name.val()) {
                                 alert("Name is required to enter the meeting !");
                                 $("#zvc-cover").remove();
                                 return false;
                             }
 
-                            if (!PASSWD && $('#meeting_password').length > 0) {
-                                PASSWD = $('#meeting_password').val();
+                            //Email Validation
+                            if (email.val().length > 0) {
+                                EMAIL_USER = email.val();
+                            }
+
+                            //Password Validation
+                            if (!PASSWD && pwd.val().length > 0) {
+                                PASSWD = pwd.val();
                             }
 
                             var lang = $('#meeting_lang');
                             var meetConfig = {
                                 apiKey: API_KEY,
                                 meetingNumber: parseInt(meeting_id, 10),
-                                userName: document.getElementById('display_name').value,
+                                userName: display_name.val(),
                                 passWord: PASSWD,
                                 lang: lang.length > 0 ? lang.val() : 'en-US',
                                 leaveUrl: REDIRECTION,
                                 signaure: SIGNATURE,
+                                email: EMAIL_USER
                             };
 
                             ZoomMtg.init({
@@ -74,7 +84,7 @@ jQuery(function ($) {
                                         userName: meetConfig.userName,
                                         signature: meetConfig.signaure,
                                         apiKey: meetConfig.apiKey,
-                                        // userEmail: 'email@gmail.com',
+                                        userEmail: meetConfig.email,
                                         passWord: meetConfig.passWord,
                                         success: function (res) {
                                             console.log('Join Meeting Success');

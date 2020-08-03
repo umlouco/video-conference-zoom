@@ -173,6 +173,7 @@ Join our facebook group which we have created in order to stay up to date with u
 * Added: Webinar post type module.
 * Added: Meetings importer.
 * Updated: Translations
+* Added: Email field when joining via browser.
 * Fix: Major bug fixes and code refactor.
 
 = 3.5.2 July 27th, 2020 =
