@@ -1,4 +1,7 @@
-site_name: Video Conferencing with Zoom Plugin Documentation
+site_name: Video Conferencing with Zoom Documentation
+repo_url: https://github.com/techies23/video-conference-zoom
+site_author: Deepen Bajracharya
+copyright: Deepen Bajracharya (CodeManas)
 nav:
   - Getting Started: index.md
   - Installation:
@@ -7,12 +10,14 @@ nav:
       - Uninstalling App: uninstalling.md
   - Usage:
       - Meeting Types: meeting_types.md
+      - Webinars: webinars.md
       - Shortcode: shortcode.md
       - Change DateTime: date_types.md
       - Join via Browser: join_links.md
       - Vanity URL: vanity_url.md
       - Template Override: template_override.md
       - Filter Hooks: filters_hooks.md
+      - Import Meeting: import-meetings.md
       - Assign Host Page: assign_host.md
   - Pro Plugins:
     - WooCommerce (Addon): woocommerce.md

@@ -36,7 +36,8 @@ class Zoom_Video_Conferencing_Admin_PostType {
 		add_action( 'before_delete_post', array( $this, 'delete' ) );
 		add_action( 'admin_notices', array( $this, 'admin_notices' ) );
 		add_filter( 'manage_' . $this->post_type . '_posts_columns', array( $this, 'add_columns' ), 20 );
-		add_action( 'manage_' . $this->post_type . '_posts_custom_column', array( $this, 'render_data' ), 20, 2 );
+		add_action( 'manage_' . $this->post_type . '_posts_custom_column', array( $this, 'column_data' ), 20, 2 );
+		add_action( 'manage_edit-' . $this->post_type . '_sortable_columns', array( $this, 'sortable_data' ), 30 );
 	}
 
 	/**
@@ -77,6 +78,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 			'value_field'     => 'slug',
 			'selected'        => $selected,
 			'hierarchical'    => true,
+			'hide_if_empty'   => true
 		) );
 	}
 
@@ -88,11 +90,26 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	 * @return mixed
 	 */
 	public function add_columns( $columns ) {
-		$columns['zoom_meeting_start']     = __( 'Start Meeting', 'video-conferencing-with-zoom-api' );
-		$columns['zoom_meeting_startdate'] = __( 'Start Date', 'video-conferencing-with-zoom-api' );
-		$columns['zoom_meeting_id']        = __( 'Meeting ID', 'video-conferencing-with-zoom-api' );
-		$columns['zoom_end_meeting']       = __( 'Meeting State', 'video-conferencing-with-zoom-api' );
+		$columns['type']          = __( 'Type', 'video-conferencing-with-zoom-api' );
+		$columns['start_meeting'] = __( 'Start Meeting', 'video-conferencing-with-zoom-api' );
+		$columns['start_date']    = __( 'Start Date', 'video-conferencing-with-zoom-api' );
+		$columns['meeting_id']    = __( 'Meeting ID', 'video-conferencing-with-zoom-api' );
+		$columns['meeting_state'] = __( 'Meeting State', 'video-conferencing-with-zoom-api' );
 		unset( $columns['author'] );
+
+		return $columns;
+	}
+
+	/**
+	 * Sortable Data Column
+	 *
+	 * @param $columns
+	 *
+	 * @return mixed
+	 */
+	public function sortable_data( $columns ) {
+		$columns['start_date'] = 'zoom_meeting_startdate';
+		$columns['meeting_id'] = 'zoom_meeting_id';
 
 		return $columns;
 	}
@@ -103,17 +120,24 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	 * @param $column
 	 * @param $post_id
 	 */
-	public function render_data( $column, $post_id ) {
+	public function column_data( $column, $post_id ) {
 		$meeting = get_post_meta( $post_id, '_meeting_zoom_details', true );
 		switch ( $column ) {
-			case 'zoom_meeting_start' :
+			case 'type':
+				if ( ! empty( $meeting ) && ! empty( $meeting->type ) && ( $meeting->type === 5 || $meeting->type === 6 || $meeting->type === 9 ) ) {
+					_e( 'Webinar', 'video-conferencing-with-zoom-api' );
+				} else {
+					_e( 'Meeting', 'video-conferencing-with-zoom-api' );
+				}
+				break;
+			case 'start_meeting' :
 				if ( ! empty( $meeting ) && ! empty( $meeting->start_url ) ) {
 					echo '<a href="' . esc_url( $meeting->start_url ) . '" target="_blank">Start</a>';
 				} else {
 					_e( 'Meeting not created yet.', 'video-conferencing-with-zoom-api' );
 				}
 				break;
-			case 'zoom_meeting_startdate' :
+			case 'start_date' :
 				if ( ! empty( $meeting ) && ! empty( $meeting->code ) && ! empty( $meeting->message ) ) {
 					echo $meeting->message;
 				} else if ( ! empty( $meeting ) && ! empty( $meeting->type ) && $meeting->type === 2 && ! empty( $meeting->start_time ) ) {
@@ -124,7 +148,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 					_e( 'Meeting not created yet.', 'video-conferencing-with-zoom-api' );
 				}
 				break;
-			case 'zoom_meeting_id' :
+			case 'meeting_id' :
 				if ( ! empty( $meeting ) && ! empty( $meeting->code ) && ! empty( $meeting->message ) ) {
 					echo $meeting->message;
 				} else if ( ! empty( $meeting ) && ! empty( $meeting->id ) ) {
@@ -133,7 +157,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 					_e( 'Meeting not created yet.', 'video-conferencing-with-zoom-api' );
 				}
 				break;
-			case 'zoom_end_meeting' :
+			case 'meeting_state' :
 				wp_enqueue_script( 'video-conferencing-with-zoom-api-js' );
 				if ( ! empty( $meeting ) ) {
 					if ( ! empty( $meeting->code ) && ! empty( $meeting->message ) ) {
@@ -198,7 +222,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 			'new_item'           => __( 'New meeting', 'video-conferencing-with-zoom-api' ),
 			'edit_item'          => __( 'Edit meeting', 'video-conferencing-with-zoom-api' ),
 			'view_item'          => __( 'View meetings', 'video-conferencing-with-zoom-api' ),
-			'all_items'          => __( 'All meetings', 'video-conferencing-with-zoom-api' ),
+			'all_items'          => __( 'All Meetings', 'video-conferencing-with-zoom-api' ),
 			'search_items'       => __( 'Search meetings', 'video-conferencing-with-zoom-api' ),
 			'parent_item_colon'  => __( 'Parent meetings:', 'video-conferencing-with-zoom-api' ),
 			'not_found'          => __( 'No meetings found.', 'video-conferencing-with-zoom-api' ),
@@ -281,6 +305,11 @@ class Zoom_Video_Conferencing_Admin_PostType {
 		require_once ZVC_PLUGIN_VIEWS_PATH . '/post-type/tpl-meeting-fields.php';
 	}
 
+	/**
+	 * Rendor SideBox field
+	 *
+	 * @param $post
+	 */
 	function rendor_sidebox( $post ) {
 		$meeting_fields = get_post_meta( $post->ID, '_meeting_fields', true );
 		// Add nonce for security and authentication.
@@ -292,10 +321,11 @@ class Zoom_Video_Conferencing_Admin_PostType {
 			if ( ! empty( $meeting_details ) ) {
 				if ( ! empty( $meeting_details->code ) && ! empty( $meeting_details->message ) ) {
 					?>
-                    <p><strong>Meeting has not been created for this post yet. Publish your meeting or hit update to create a new one for this post
-                            !</strong></p>
+                    <p>
+                        <strong>Meeting has not been created for this post yet. Publish your meeting or hit update to create a new one for this post !</strong>
+                    </p>
 					<?php
-					echo '<p style="color:red;">Zoom Error:' . $meeting_details->message . '</p>';
+					echo '<p style="color:red;font-size:18px;"><strong>Zoom Error:</strong> ' . $meeting_details->message . '</p>';
 				} else {
 					$zoom_host_url = 'https://zoom.us' . '/wc/' . $meeting_details->id . '/start';
 					$zoom_host_url = apply_filters( 'video_conferencing_zoom_join_url_host', $zoom_host_url );
@@ -313,8 +343,9 @@ class Zoom_Video_Conferencing_Admin_PostType {
 					<?php
 				}
 			} else { ?>
-                <p><strong>Meeting has not been created for this post yet. Publish your meeting or hit update to create a new one for this post
-                        !</strong></p>
+                <p>
+                    <strong><?php _e( 'Meeting has not been created for this post yet. Publish your meeting or hit update to create a new one for this post !', 'video-conferencing-with-zoom-api' ); ?></strong>
+                </p>
 			<?php } ?>
             <div class="zoom-metabox-content">
                 <p><?php _e( 'Requires Login?', 'video-conferencing-with-zoom-api' ); ?>
@@ -404,18 +435,29 @@ class Zoom_Video_Conferencing_Admin_PostType {
 		$pwd                = sanitize_text_field( filter_input( INPUT_POST, 'password' ) );
 		$pwd                = ! empty( $pwd ) ? $pwd : $post_id;
 		$create_meeting_arr = array(
-			'userId'                    => sanitize_text_field( filter_input( INPUT_POST, 'userId' ) ),
-			'start_date'                => sanitize_text_field( filter_input( INPUT_POST, 'start_date' ) ),
-			'timezone'                  => sanitize_text_field( filter_input( INPUT_POST, 'timezone' ) ),
-			'duration'                  => sanitize_text_field( filter_input( INPUT_POST, 'duration' ) ),
-			'password'                  => $pwd,
-			'join_before_host'          => filter_input( INPUT_POST, 'join_before_host' ),
-			'option_host_video'         => filter_input( INPUT_POST, 'option_host_video' ),
-			'option_participants_video' => filter_input( INPUT_POST, 'option_participants_video' ),
-			'option_mute_participants'  => filter_input( INPUT_POST, 'option_mute_participants' ),
-			'option_auto_recording'     => filter_input( INPUT_POST, 'option_auto_recording' ),
-			'alternative_host_ids'      => filter_input( INPUT_POST, 'alternative_host_ids', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY )
+			'userId'                 => sanitize_text_field( filter_input( INPUT_POST, 'userId' ) ),
+			'meeting_type'           => absint( sanitize_text_field( filter_input( INPUT_POST, 'meeting_type' ) ) ),
+			'start_date'             => sanitize_text_field( filter_input( INPUT_POST, 'start_date' ) ),
+			'timezone'               => sanitize_text_field( filter_input( INPUT_POST, 'timezone' ) ),
+			'duration'               => sanitize_text_field( filter_input( INPUT_POST, 'duration' ) ),
+			'password'               => $pwd,
+			'meeting_authentication' => filter_input( INPUT_POST, 'meeting_authentication' ),
+			'option_host_video'      => filter_input( INPUT_POST, 'option_host_video' ),
+			'option_auto_recording'  => filter_input( INPUT_POST, 'option_auto_recording' ),
+			'alternative_host_ids'   => filter_input( INPUT_POST, 'alternative_host_ids', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY ),
 		);
+
+		//If Webinar
+		if ( ! empty( $create_meeting_arr['meeting_type'] ) && $create_meeting_arr['meeting_type'] === 2 ) {
+			$create_meeting_arr['panelists_video']        = filter_input( INPUT_POST, 'panelists_video' );
+			$create_meeting_arr['practice_session']       = filter_input( INPUT_POST, 'practice_session' );
+			$create_meeting_arr['hd_video']               = filter_input( INPUT_POST, 'hd_video' );
+			$create_meeting_arr['allow_multiple_devices'] = filter_input( INPUT_POST, 'allow_multiple_devices' );
+		} else {
+			$create_meeting_arr['join_before_host']          = filter_input( INPUT_POST, 'join_before_host' );
+			$create_meeting_arr['option_participants_video'] = filter_input( INPUT_POST, 'option_participants_video' );
+			$create_meeting_arr['option_mute_participants']  = filter_input( INPUT_POST, 'option_mute_participants' );
+		}
 
 		$create_meeting_arr['site_option_logged_in']        = filter_input( INPUT_POST, 'option_logged_in' );
 		$create_meeting_arr['site_option_browser_join']     = filter_input( INPUT_POST, 'option_browser_join' );
@@ -441,10 +483,10 @@ class Zoom_Video_Conferencing_Admin_PostType {
 		$meeting_id = get_post_meta( $post_id, '_meeting_zoom_meeting_id', true );
 		if ( empty( $meeting_id ) ) {
 			//Create new Zoom Meeting
-			$this->create_zoom_meeting( $post );
+			$this->create_zoom_meeting( $post, $create_meeting_arr );
 		} else {
 			//Update Zoom Meeting
-			$this->update_zoom_meeting( $post, $meeting_id );
+			$this->update_zoom_meeting( $post, $create_meeting_arr, $meeting_id );
 		}
 
 		//Call this action after the Zoom Meeting completion created.
@@ -455,76 +497,158 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	 * Create real time zoom meetings
 	 *
 	 * @param $post
+	 * @param $create_meeting_arr
 	 *
 	 * @since  3.0.0
+	 * @modified 3.5.3
 	 *
 	 * @author Deepen
 	 */
-	private function create_zoom_meeting( $post ) {
-		$pwd       = sanitize_text_field( filter_input( INPUT_POST, 'password' ) );
-		$pwd       = ! empty( $pwd ) ? $pwd : $post->ID;
-		$mtg_param = array(
-			'userId'                    => sanitize_text_field( filter_input( INPUT_POST, 'userId' ) ),
-			'meetingTopic'              => $post->post_title,
-			'start_date'                => sanitize_text_field( filter_input( INPUT_POST, 'start_date' ) ),
-			'timezone'                  => sanitize_text_field( filter_input( INPUT_POST, 'timezone' ) ),
-			'duration'                  => sanitize_text_field( filter_input( INPUT_POST, 'duration' ) ),
-			'password'                  => $pwd,
-			'join_before_host'          => filter_input( INPUT_POST, 'join_before_host' ),
-			'option_host_video'         => filter_input( INPUT_POST, 'option_host_video' ),
-			'option_participants_video' => filter_input( INPUT_POST, 'option_participants_video' ),
-			'option_mute_participants'  => filter_input( INPUT_POST, 'option_mute_participants' ),
-			'option_auto_recording'     => filter_input( INPUT_POST, 'option_auto_recording' ),
-			'alternative_host_ids'      => filter_input( INPUT_POST, 'alternative_host_ids', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY )
-		);
+	private function create_zoom_meeting( $post, $create_meeting_arr ) {
+		//Prepare Webinar Insert Data
+		if ( ! empty( $create_meeting_arr['meeting_type'] ) && $create_meeting_arr['meeting_type'] === 2 ) {
+			$webinar_arrr    = $this->prepare_webinardata( $create_meeting_arr, $post );
+			$webinar_created = json_decode( zoom_conference()->createAWebinar( $create_meeting_arr['userId'], $webinar_arrr ) );
+			if ( empty( $webinar_created->code ) ) {
+				update_post_meta( $post->ID, '_meeting_zoom_details', $webinar_created );
+				update_post_meta( $post->ID, '_meeting_zoom_join_url', $webinar_created->join_url );
+				update_post_meta( $post->ID, '_meeting_zoom_start_url', $webinar_created->start_url );
+				update_post_meta( $post->ID, '_meeting_zoom_meeting_id', $webinar_created->id );
+			} else {
+				//Store Error Message
+				update_post_meta( $post->ID, '_meeting_zoom_details', $webinar_created );
+			}
+		} else {
+			//Prepare Meeting Insert Data
+			$mtg_param = array(
+				'userId'                    => $create_meeting_arr['userId'],
+				'meetingTopic'              => esc_html( $post->post_title ),
+				'start_date'                => $create_meeting_arr['start_date'],
+				'timezone'                  => $create_meeting_arr['timezone'],
+				'duration'                  => $create_meeting_arr['duration'],
+				'password'                  => $create_meeting_arr['password'],
+				'meeting_authentication'    => $create_meeting_arr['meeting_authentication'],
+				'join_before_host'          => $create_meeting_arr['join_before_host'],
+				'option_host_video'         => $create_meeting_arr['option_host_video'],
+				'option_participants_video' => $create_meeting_arr['option_participants_video'],
+				'option_mute_participants'  => $create_meeting_arr['option_mute_participants'],
+				'option_auto_recording'     => $create_meeting_arr['option_auto_recording'],
+				'alternative_host_ids'      => $create_meeting_arr['alternative_host_ids']
+			);
 
-		$meeting_created = json_decode( zoom_conference()->createAMeeting( $mtg_param ) );
-		if ( empty( $meeting_created->error ) ) {
-			update_post_meta( $post->ID, '_meeting_zoom_details', $meeting_created );
-			update_post_meta( $post->ID, '_meeting_zoom_join_url', $meeting_created->join_url );
-			update_post_meta( $post->ID, '_meeting_zoom_start_url', $meeting_created->start_url );
-			update_post_meta( $post->ID, '_meeting_zoom_meeting_id', $meeting_created->id );
+			$meeting_created = json_decode( zoom_conference()->createAMeeting( $mtg_param ) );
+			if ( empty( $meeting_created->code ) ) {
+				update_post_meta( $post->ID, '_meeting_zoom_details', $meeting_created );
+				update_post_meta( $post->ID, '_meeting_zoom_join_url', $meeting_created->join_url );
+				update_post_meta( $post->ID, '_meeting_zoom_start_url', $meeting_created->start_url );
+				update_post_meta( $post->ID, '_meeting_zoom_meeting_id', $meeting_created->id );
+			} else {
+				//Store Error Message
+				update_post_meta( $post->ID, '_meeting_zoom_details', $meeting_created );
+			}
 		}
+
 	}
 
 	/**
 	 * Update real time zoom meetings
 	 *
 	 * @param $post
+	 * @param $updated_meeting_arr
 	 * @param $meeting_id
 	 *
 	 * @author Deepen
 	 * @since  3.0.0
-	 *
+	 * @modified 3.5.3
 	 */
-	private function update_zoom_meeting( $post, $meeting_id ) {
-		$pwd       = sanitize_text_field( filter_input( INPUT_POST, 'password' ) );
-		$pwd       = ! empty( $pwd ) ? $pwd : $post->ID;
-		$mtg_param = array(
-			'meeting_id'                => $meeting_id,
-			'topic'                     => $post->post_title,
-			'start_date'                => filter_input( INPUT_POST, 'start_date' ),
-			'timezone'                  => filter_input( INPUT_POST, 'timezone' ),
-			'duration'                  => filter_input( INPUT_POST, 'duration' ),
-			'password'                  => $pwd,
-			'option_jbh'                => filter_input( INPUT_POST, 'join_before_host' ),
-			'option_host_video'         => filter_input( INPUT_POST, 'option_host_video' ),
-			'option_participants_video' => filter_input( INPUT_POST, 'option_participants_video' ),
-			'option_mute_participants'  => filter_input( INPUT_POST, 'option_mute_participants' ),
-			'option_auto_recording'     => filter_input( INPUT_POST, 'option_auto_recording' ),
-			'alternative_host_ids'      => filter_input( INPUT_POST, 'alternative_host_ids', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY )
-		);
+	private function update_zoom_meeting( $post, $updated_meeting_arr, $meeting_id ) {
+		if ( ! empty( $updated_meeting_arr['meeting_type'] ) && $updated_meeting_arr['meeting_type'] === 2 ) {
+			//Prepare Webinar update data
+			$webinar_arrr    = $this->prepare_webinardata( $updated_meeting_arr, $post );
+			$webinar_updated = json_decode( zoom_conference()->updateWebinar( $meeting_id, $webinar_arrr ) );
+			if ( empty( $webinar_updated->code ) ) {
+				$webinar_info = json_decode( zoom_conference()->getWebinarInfo( $meeting_id ) );
+				if ( ! empty( $webinar_info ) ) {
+					update_post_meta( $post->ID, '_meeting_zoom_details', $webinar_info );
+					update_post_meta( $post->ID, '_meeting_zoom_join_url', $webinar_info->join_url );
+					update_post_meta( $post->ID, '_meeting_zoom_start_url', $webinar_info->start_url );
+					update_post_meta( $post->ID, '_meeting_zoom_meeting_id', $webinar_info->id );
+				}
+			} else {
+				update_post_meta( $post->ID, '_meeting_zoom_details', $webinar_updated );
+			}
+		} else {
+			//Update Meeting
+			$mtg_param = array(
+				'meeting_id'                => $meeting_id,
+				'topic'                     => esc_html( $post->post_title ),
+				'start_date'                => $updated_meeting_arr['start_date'],
+				'timezone'                  => $updated_meeting_arr['timezone'],
+				'duration'                  => $updated_meeting_arr['duration'],
+				'password'                  => $updated_meeting_arr['password'],
+				'meeting_authentication'    => $updated_meeting_arr['meeting_authentication'],
+				'join_before_host'          => $updated_meeting_arr['join_before_host'],
+				'option_host_video'         => $updated_meeting_arr['option_host_video'],
+				'option_participants_video' => $updated_meeting_arr['option_participants_video'],
+				'option_mute_participants'  => $updated_meeting_arr['option_mute_participants'],
+				'option_auto_recording'     => $updated_meeting_arr['option_auto_recording'],
+				'alternative_host_ids'      => $updated_meeting_arr['alternative_host_ids']
+			);
 
-		$meeting_updated = json_decode( zoom_conference()->updateMeetingInfo( $mtg_param ) );
-		if ( empty( $meeting_updated->error ) ) {
-			$meeting_info = json_decode( zoom_conference()->getMeetingInfo( $meeting_id ) );
-			if ( ! empty( $meeting_info ) ) {
-				update_post_meta( $post->ID, '_meeting_zoom_details', $meeting_info );
-				update_post_meta( $post->ID, '_meeting_zoom_join_url', $meeting_info->join_url );
-				update_post_meta( $post->ID, '_meeting_zoom_start_url', $meeting_info->start_url );
-				update_post_meta( $post->ID, '_meeting_zoom_meeting_id', $meeting_info->id );
+			$meeting_updated = json_decode( zoom_conference()->updateMeetingInfo( $mtg_param ) );
+			if ( empty( $meeting_updated->code ) ) {
+				$meeting_info = json_decode( zoom_conference()->getMeetingInfo( $meeting_id ) );
+				if ( ! empty( $meeting_info ) ) {
+					update_post_meta( $post->ID, '_meeting_zoom_details', $meeting_info );
+					update_post_meta( $post->ID, '_meeting_zoom_join_url', $meeting_info->join_url );
+					update_post_meta( $post->ID, '_meeting_zoom_start_url', $meeting_info->start_url );
+					update_post_meta( $post->ID, '_meeting_zoom_meeting_id', $meeting_info->id );
+				}
+			} else {
+				//Store Error Message
+				update_post_meta( $post->ID, '_meeting_zoom_details', $meeting_updated );
 			}
 		}
+	}
+
+	/**
+	 * Prepare Webinar Data and return accordingly.
+	 *
+	 * @param $postData
+	 * @param $post
+	 *
+	 * @return array
+	 */
+	private function prepare_webinardata( $postData, $post ) {
+		$start_time        = gmdate( "Y-m-d\TH:i:s", strtotime( $postData['start_date'] ) );
+		$alternative_hosts = $postData['alternative_host_ids'];
+		if ( ! empty( $alternative_hosts ) ) {
+			if ( count( $alternative_hosts ) > 1 ) {
+				$alternative_host_ids = implode( ",", $alternative_hosts );
+			} else {
+				$alternative_host_ids = $alternative_hosts[0];
+			}
+		}
+
+		$webinar_arrr = array(
+			'topic'      => esc_html( $post->post_title ),
+			'agenda'     => esc_html( $post->post_content ),
+			'start_time' => $start_time,
+			'timezone'   => $postData['timezone'],
+			'password'   => $postData['password'],
+			'duration'   => $postData['duration'],
+			'settings'   => array(
+				'host_video'             => ! empty( $postData['option_host_video'] ) ? true : false,
+				'panelists_video'        => ! empty( $postData['panelists_video'] ) ? true : false,
+				'practice_session'       => ! empty( $postData['practice_session'] ) ? true : false,
+				'hd_video'               => ! empty( $postData['hd_video'] ) ? true : false,
+				'allow_multiple_devices' => ! empty( $postData['allow_multiple_devices'] ) ? true : false,
+				'auto_recording'         => ! empty( $postData['auto_recording'] ) ? true : "none",
+				'alternative_hosts'      => ! empty( $alternative_host_ids ) ? $alternative_host_ids : false
+			)
+		);
+
+		return $webinar_arrr;
 	}
 
 	/**

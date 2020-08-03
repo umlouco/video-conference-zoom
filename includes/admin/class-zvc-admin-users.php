@@ -29,7 +29,7 @@ class Zoom_Video_Conferencing_Admin_Users {
 		}
 
 		//Get Template
-		require_once ZVC_PLUGIN_VIEWS_PATH . '/tpl-list-users.php';
+		require_once ZVC_PLUGIN_VIEWS_PATH . '/live/tpl-list-users.php';
 	}
 
 	/**
@@ -64,7 +64,7 @@ class Zoom_Video_Conferencing_Admin_Users {
 			}
 		}
 
-		require_once ZVC_PLUGIN_VIEWS_PATH . '/tpl-add-user.php';
+		require_once ZVC_PLUGIN_VIEWS_PATH . '/live/tpl-add-user.php';
 	}
 
 	static function assign_host_id() {
@@ -82,7 +82,7 @@ class Zoom_Video_Conferencing_Admin_Users {
 			self::set_message( 'updated', __( "Saved !", "video-conferencing-with-zoom-api" ) );
 		}
 
-		require_once ZVC_PLUGIN_VIEWS_PATH . '/tpl-assign-host-id.php';
+		require_once ZVC_PLUGIN_VIEWS_PATH . '/live/tpl-assign-host-id.php';
 	}
 
 	static function get_message() {

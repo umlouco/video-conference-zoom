@@ -60,7 +60,7 @@ class Zoom_Video_Conferencing_Admin_Views {
 				'zoom_recordings'
 			) );
 
-			add_submenu_page( 'edit.php?post_type=zoom-meetings', __( 'Addons', 'video-conferencing-with-zoom-api' ), __( 'Addons', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing-addons', array(
+			add_submenu_page( 'edit.php?post_type=zoom-meetings', __( 'Extensions', 'video-conferencing-with-zoom-api' ), __( 'Extensions', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing-addons', array(
 				'Zoom_Video_Conferencing_Admin_Addons',
 				'render'
 			) );
@@ -72,6 +72,11 @@ class Zoom_Video_Conferencing_Admin_Views {
 					'assign_host_id'
 				) );
 			}
+
+			add_submenu_page( 'edit.php?post_type=zoom-meetings', __( 'Sync', 'video-conferencing-with-zoom-api' ), __( 'Sync', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing-sync', array(
+				'Zoom_Video_Conferencing_Admin_Sync',
+				'render'
+			) );
 		}
 
 		add_submenu_page( 'edit.php?post_type=zoom-meetings', __( 'Settings', 'video-conferencing-with-zoom-api' ), __( 'Settings', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing-settings', array(

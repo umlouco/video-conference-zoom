@@ -29,8 +29,6 @@
             $dom.cover = $('#zvc-cover');
             $dom.togglePwd = $('.toggle-api');
             $dom.toggleSecret = $('.toggle-secret');
-            this.meetingType = $('.meeting-type-selection');
-
             $dom.changeMeetingState = $('.vczapi-meeting-state-change');
 
             $dom.show_on_meeting_delete_error = $('.show_on_meeting_delete_error');
@@ -64,9 +62,6 @@
 
             //End and Resume Meetings
             $($dom.changeMeetingState).on('click', this.meetingStateChange.bind(this));
-
-            //Change Meeting Type
-            $(this.meetingType).on('change', this.meetingTypeCB.bind(this));
         },
 
         initializeDependencies: function () {
@@ -148,6 +143,10 @@
             }
         },
 
+        /**
+         * Bulk Meeting DELETE Function
+         * @returns {boolean}
+         */
         bulkDeleteMeetings: function () {
             var r = confirm("Confirm bulk delete these Meeting?");
             if (r == true) {
@@ -178,6 +177,11 @@
             }
         },
 
+        /**
+         * Meeting Password Selector
+         * @param e
+         * @returns {boolean}
+         */
         meetingPassword: function (e) {
             if (!/([a-zA-Z0-9])+/.test(String.fromCharCode(e.which))) {
                 return false;
@@ -190,6 +194,10 @@
             }
         },
 
+        /**
+         * Delete meeting funciton
+         * @returns {boolean}
+         */
         deleteMetting: function () {
             var meeting_id = $(this).data('meetingid');
             var host_id = $(this).data('hostid');
@@ -212,6 +220,9 @@
             }
         },
 
+        /**
+         * Toggle API keys hide unhide
+         */
         toggleAPISettings: function () {
             var inputID = $('#zoom_api_key');
             if ($dom.togglePwd.html() === "Show") {
@@ -223,6 +234,9 @@
             }
         },
 
+        /**
+         * Toggle secret hide unhide
+         */
         toggleSecretSettings: function () {
             var secretID = $('#zoom_api_secret');
             if ($dom.toggleSecret.html() === "Show") {
@@ -291,19 +305,139 @@
                 location.reload();
             });
         },
+    };
+
+    /**
+     * Sync Meeting Functions
+     * @type {{init: init, fetchMeetingsByUser: fetchMeetingsByUser, cacheDOM: cacheDOM, evntHandlers: evntHandlers, syncMeeting: syncMeeting}}
+     */
+    var vczapi_sync_meetings = {
+        init: function () {
+            this.cacheDOM();
+            this.evntHandlers();
+        },
+        cacheDOM: function () {
+            //Sync DOMS
+            this.notificationWrapper = $('.vczapi-status-notification');
+            this.syncUserId = $('.vczapi-sync-user-id');
+        },
+        evntHandlers: function () {
+            this.syncUserId.on('change', this.fetchMeetingsByUser.bind(this));
+        },
+        fetchMeetingsByUser: function (e) {
+            e.preventDefault();
+            var that = this;
+            var user_id = $(this.syncUserId).val();
+            var postData = {
+                user_id: user_id,
+                action: 'vczapi_sync_user',
+                type: 'check'
+            };
+            var results = $('.results');
+            results.html('<p>' + vczapi_sync_i10n.before_sync + '</p>');
+            $.post(ajaxurl, postData).done(function (response) {
+                //Success
+                if (response.success) {
+                    var page_html = '<div class="vczapi-sync-details">';
+                    page_html += '<p><strong>' + vczapi_sync_i10n.total_records_found + ':</strong> ' + response.data.total_records + '</p>';
+                    page_html += '<p><strong>' + vczapi_sync_i10n.total_not_synced_records + ':</strong> ' + _.size(response.data.meetings) + ' (Only listing Scheduled Meetings)</p>';
+                    page_html += '<select class="vczapi-choose-meetings-to-sync-select2" name="sync-meeting-ids[]" multiple="multiple">';
+                    $(response.data.meetings).each(function (i, r) {
+                        page_html += '<option value="' + r.id + '">' + r.topic + '</option>';
+                    });
+                    page_html += '</select>';
+                    setTimeout(function () {
+                        $(".vczapi-choose-meetings-to-sync-select2").select2({
+                            maximumSelectionLength: 10,
+                            placeholder: vczapi_sync_i10n.select2_placeholder,
+                        });
+                    }, 100);
+
+                    page_html += '<p><a href="javascript:void(0);" class="vczapi-sync-meeting button button-primary" data-userid="' + user_id + '">' + vczapi_sync_i10n.sync_btn + '</a></p>';
+                    page_html += '</div>';
+                    results.html(page_html);
+                    $('.vczapi-sync-meeting').on('click', that.syncMeeting.bind(that));
+                } else {
+                    results.html('<p>' + response.data + '</p>');
+                }
+            });
+        },
+        syncMeeting: function (e) {
+            e.preventDefault();
+            $(e.currentTarget).attr('disabled', 'disabled');
+            var sync_meeting_ids = $('.vczapi-choose-meetings-to-sync-select2').val();
+            if (_.size(sync_meeting_ids) > 0) {
+                this.notificationWrapper.show().html('<p>' + vczapi_sync_i10n.sync_start + '</p>').removeClass('vczapi-error');
+                this.doSync(0, sync_meeting_ids);
+            } else {
+                this.notificationWrapper.show().html('<p>' + vczapi_sync_i10n.sync_error + '</p>').addClass('vczapi-error');
+                $(e.currentTarget).removeAttr('disabled');
+            }
+        },
 
         /**
-         * Meeting Type Change
-         * @param e
+         * Run AJAX call based on per meeting selected
+         * @param arrCount
+         * @param sync_meeting_ids
          */
-        meetingTypeCB: function (e) {
-            e.preventDefault();
-            console.log($(e.currentTarget).val());
+        doSync: function (arrCount, sync_meeting_ids) {
+            var that = this;
+            var postData = {
+                action: 'vczapi_sync_user',
+                type: 'sync',
+                meeting_id: sync_meeting_ids[arrCount]
+            };
+            $.post(ajaxurl, postData).done(function (response) {
+                arrCount++;
+                that.notificationWrapper.show().append('<p> ' + response.data.msg + '</p>');
+                if (arrCount < _.size(sync_meeting_ids)) {
+                    vczapi_sync_meetings.doSync(arrCount, sync_meeting_ids);
+                } else {
+                    if (response.success) {
+                        that.notificationWrapper.show().append('<p>' + vczapi_sync_i10n.sync_completed + '</p>');
+                        $('.vczapi-sync-meeting').removeAttr('disabled');
+                    } else {
+                        that.notificationWrapper.show().append('<p>' + response.data.msg + '</p>');
+                        $('.vczapi-sync-meeting').removeAttr('disabled');
+                    }
+                }
+            });
+        }
+    };
+
+    /**
+     * Webinar Functions
+     * @type {{init: init, cacheDOM: cacheDOM, evntHandlers: evntHandlers, webinarElementsShow: webinarElementsShow}}
+     */
+    var vczapi_webinars = {
+        init: function () {
+            this.cacheDOM();
+            this.evntHandlers();
+        },
+        cacheDOM: function () {
+            this.meetingSelector = $('#vczapi-admin-meeting-ype');
+            this.hideOnWebinarSelector = $('.vczapi-admin-hide-on-webinar');
+            this.showOnWebinarSelector = $('.vczapi-admin-show-on-webinar');
+        },
+        evntHandlers: function () {
+            this.meetingSelector.on('change', this.webinarElementsShow.bind(this));
+        },
+        webinarElementsShow: function (e) {
+            var meeting_type = $(e.currentTarget).val();
+            if (meeting_type === '2') {
+                this.hideOnWebinarSelector.hide();
+                this.showOnWebinarSelector.show();
+            } else {
+                this.hideOnWebinarSelector.show();
+                this.showOnWebinarSelector.hide();
+            }
         }
     };
 
     $(function () {
         ZoomAPIJS.onReady();
+        vczapi_sync_meetings.init();
+        vczapi_webinars.init();
     });
 
 })(jQuery);

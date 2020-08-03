@@ -10,7 +10,7 @@ class Zoom_Video_Conferencing_Admin_Addons {
 	public static function render() {
 		?>
         <div class="video-conferencing-addons wrap">
-            <h1 class="border-padd">Get more features to your Meetings !</h1>
+            <h1 class="border-padd">Get more features to your Meetings and Webinars !</h1>
             <div class="video-conferencing-addons-flex">
                 <div class="video-conferencing-addons-box">
                     <div class="content">

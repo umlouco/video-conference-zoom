@@ -4,7 +4,7 @@ Tags: zoom video conference, video conference, zoom, zoom video conferencing, we
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.4
-Stable tag: 3.5.2
+Stable tag: 3.6.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,6 +32,7 @@ Simple plugin which gives you the extensive functionality to manage Zoom Meeting
 * Daily and Account Reports
 * Shortcode
 * Shortcode Template Customize
+* Import your Zoom Meetings into your WordPress Dashboard in one click.
 
 **DOCUMENTATION LINKS:**
 
@@ -151,6 +152,10 @@ However, even though meeting is created and you are not seeing countdown timer t
 
 Yes, you should be registered in Zoom. Also, on the plan you are using there depends the number of hosts and users you can add.
 
+= Questions/ Follow ups ? =
+
+Join our facebook group which we have created in order to stay up to date with updates and common issues faced. [Join here](https://www.facebook.com/groups/zoomwp/ "Join here")
+
 == Screenshots ==
 1. Join via browser
 2. Meetings Listings. Select a User in order to list meetings for that user.
@@ -163,6 +168,12 @@ Yes, you should be registered in Zoom. Also, on the plan you are using there dep
 9. Shortcode Output
 
 == Changelog ==
+
+= 3.6.0 August 3rd, 2020 =w
+* Added: Webinar post type module.
+* Added: Meetings importer.
+* Updated: Translations
+* Fix: Major bug fixes and code refactor.
 
 = 3.5.2 July 27th, 2020 =
 * Added: [zoom_recordings_by_meeting meeting_id="MEETING_ID" downloadable="yes"] which shows recordings based on meeting ID.

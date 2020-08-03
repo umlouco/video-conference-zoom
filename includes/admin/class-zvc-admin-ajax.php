@@ -101,12 +101,8 @@ class Zoom_Video_Conferencing_Admin_Ajax {
 
 		$test = json_decode( zoom_conference()->listUsers() );
 		if ( ! empty( $test ) ) {
-			if ( $test->code === 124 ) {
+			if ( ! empty( $test->code ) ) {
 				wp_send_json( $test->message );
-			}
-
-			if ( ! empty( $test->error ) ) {
-				wp_send_json( "Please check your API keys !" );
 			}
 
 			if ( http_response_code() === 200 ) {
