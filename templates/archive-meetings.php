@@ -26,7 +26,7 @@ do_action( 'vczapi_before_main_archive_content' );
 					while ( have_posts() ) {
 						the_post();
 
-						do_action( 'vczapi_main_archive_loop' );
+						do_action( 'vczapi_main_content_post_loop' );
 
 						vczapi_get_template_part( 'content', 'meeting' );
 					}

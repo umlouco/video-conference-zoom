@@ -138,13 +138,15 @@ if ( ! defined( 'ABSPATH' ) ) {
     <div class="zvc-position-floater-right">
         <ul class="zvc-information-sec">
             <li>
+                <a target="_blank" href="https://www.facebook.com/groups/zoomwp/"><?php _e( 'Facebook Group', 'video-conferencing-with-zoom-api' ); ?></a>
+            </li>
+            <li>
                 <a target="_blank" href="https://zoom.codemanas.com"><?php _e( 'Documentation', 'video-conferencing-with-zoom-api' ); ?></a>
             </li>
             <li>
                 <a target="_blank" href="https://www.codemanas.com"><?php _e( 'Contact for additional Support', 'video-conferencing-with-zoom-api' ); ?></a>
             </li>
-            <li><a target="_blank" href="https://deepenbajracharya.com.np"><?php _e( 'Developer', 'video-conferencing-with-zoom-api' ); ?></a>
-            </li>
+            <li><a target="_blank" href="https://deepenbajracharya.com.np"><?php _e( 'Developer', 'video-conferencing-with-zoom-api' ); ?></a></li>
             <li>
                 <a target="_blank" href="<?php echo admin_url( 'edit.php?post_type=zoom-meetings&page=zoom-video-conferencing-addons' ); ?>"><?php _e( 'Addons', 'video-conferencing-with-zoom-api' ); ?></a>
             </li>

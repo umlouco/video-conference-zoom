@@ -452,3 +452,28 @@ function video_conference_zoom_after_jbh_html() {
     </body></html>
 	<?php
 }
+
+/**
+ * Before POST LOOP hook
+ */
+function video_conference_zoom_before_post_loop() {
+	unset( $GLOBALS['zoom'] );
+
+	$show_zoom_author_name = get_option( 'zoom_show_author' );
+	$GLOBALS['zoom']       = get_post_meta( get_the_id(), '_meeting_fields', true ); //For Backwards Compatibility ( Will be removed someday )
+	$meeting_details       = get_post_meta( get_the_id(), '_meeting_zoom_details', true );
+	if ( ! empty( $show_zoom_author_name ) ) {
+		$zoom_user               = json_decode( zoom_conference()->getUserInfo( $meeting_details->host_id ) );
+		$GLOBALS['zoom']['user'] = ! empty( $zoom_user ) ? $zoom_user : false;
+	}
+
+	$GLOBALS['zoom']['api'] = $meeting_details;
+	$terms                  = get_the_terms( get_the_id(), 'zoom-meeting' );
+	if ( ! empty( $terms ) ) {
+		$set_terms = array();
+		foreach ( $terms as $term ) {
+			$set_terms[] = $term->name;
+		}
+		$GLOBALS['zoom']['terms'] = $set_terms;
+	}
+}

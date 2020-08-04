@@ -19,7 +19,7 @@ if ( ! function_exists( 'dump' ) ) {
 if ( ! function_exists( 'zvc_get_timezone_offset_wp' ) ) {
 	function zvc_get_timezone_offset_wp() {
 		$tz = get_option( 'timezone_string' );
-		if ( ! empty( $tz ) ){
+		if ( ! empty( $tz ) ) {
 			return $tz;
 		}
 		$offset  = get_option( 'gmt_offset' );
@@ -36,6 +36,7 @@ if ( ! function_exists( 'zvc_get_timezone_offset_wp' ) ) {
 		if ( $tz == 'Asia/Katmandu' ) {
 			$tz = 'Asia/Kathmandu';
 		}
+
 		return $tz;
 	}
 }
@@ -659,5 +660,17 @@ function vczapi_zoom_api_paginator( $response, $type = '' ) {
 		?>
         <a href="<?php echo $next_page; ?>"><?php _e( 'Next Results', 'video-conferencing-with-zoom-api' ); ?></a>
 		<?php
+	}
+}
+
+if ( ! function_exists( 'vczapi_pro_version_active' ) ) {
+	/**
+	 * @author Deepen
+	 * @since  3.6.0
+	 */
+	function vczapi_pro_version_active() {
+		$active_plugins = (array) get_option( 'active_plugins', array() );
+
+		return in_array( 'vczapi-pro/vczapi-pro.php', $active_plugins ) || array_key_exists( 'vczapi-pro/vczapi-pro.php', $active_plugins );
 	}
 }

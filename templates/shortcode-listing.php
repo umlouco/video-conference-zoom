@@ -24,6 +24,8 @@ if ( ! is_object( $zoom_meetings ) && ! ( $zoom_meetings instanceof \WP_Query ) 
 		while ( $zoom_meetings->have_posts() ) {
 			$zoom_meetings->the_post();
 
+			do_action( 'vczapi_main_content_post_loop' );
+
 			vczapi_get_template_part( 'shortcode/zoom', 'listing' );
 		}
 

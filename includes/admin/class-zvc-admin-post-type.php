@@ -38,7 +38,6 @@ class Zoom_Video_Conferencing_Admin_PostType {
 		add_filter( 'manage_' . $this->post_type . '_posts_columns', array( $this, 'add_columns' ), 20 );
 		add_action( 'manage_' . $this->post_type . '_posts_custom_column', array( $this, 'column_data' ), 20, 2 );
 		add_action( 'manage_edit-' . $this->post_type . '_sortable_columns', array( $this, 'sortable_data' ), 30 );
-		add_action( 'vczapi_main_archive_loop', [ $this, 'archive_loop' ] );
 	}
 
 	/**
@@ -769,34 +768,6 @@ class Zoom_Video_Conferencing_Admin_PostType {
 		}
 
 		return $template;
-	}
-
-	/**
-	 * Archive Store Loop
-	 */
-	public function archive_loop() {
-		unset( $GLOBALS['zoom'] );
-
-		$show_zoom_author_name = get_option( 'zoom_show_author' );
-		$GLOBALS['zoom']       = get_post_meta( get_the_id(), '_meeting_fields', true ); //For Backwards Compatibility ( Will be removed someday )
-		$meeting_details       = get_post_meta( get_the_id(), '_meeting_zoom_details', true );
-		if ( ! empty( $show_zoom_author_name ) ) {
-			$zoom_user               = json_decode( zoom_conference()->getUserInfo( $meeting_details->host_id ) );
-			$GLOBALS['zoom']['user'] = ! empty( $zoom_user ) ? $zoom_user : false;
-		}
-
-		if ( ! empty( $meeting_details ) ) {
-			$GLOBALS['zoom']['api'] = get_post_meta( get_the_id(), '_meeting_zoom_details', true );
-		}
-
-		$terms = get_the_terms( get_the_id(), 'zoom-meeting' );
-		if ( ! empty( $terms ) ) {
-			$set_terms = array();
-			foreach ( $terms as $term ) {
-				$set_terms[] = $term->name;
-			}
-			$GLOBALS['zoom']['terms'] = $set_terms;
-		}
 	}
 
 	/**
