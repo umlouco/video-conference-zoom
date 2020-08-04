@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Video Conferencing with Zoom - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-08-03 10:36+0000\n"
+"PO-Revision-Date: 2020-08-04 11:16+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Plugins - Video Conferencing with Zoom - Stable (latest "
 "release)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-03 10:01+0000\n"
+"POT-Creation-Date: 2020-08-04 11:15+0000\n"
 "Last-Translator: Deepen Bajracharya <dpen.connectify@gmail.com>\n"
 "Language-Team: Russian\n"
 "X-Loco-Version: 2.3.1; wp-5.4.2"
@@ -52,23 +52,23 @@ msgstr "Разрешить подключение к конференции?"
 msgid "You are seeing this because you are the author of this post."
 msgstr "Вы видите это, потому что вы являетесь автором этого поста."
 
-#: includes/vczapi-template-functions.php:116
+#: includes/vczapi-template-functions.php:120
 msgid "Please login to join this meeting."
 msgstr "Авторизуйтесь для подключения к конференции"
 
-#: includes/vczapi-template-functions.php:134
+#: includes/vczapi-template-functions.php:138
 msgid "Join Meeting via Zoom App"
 msgstr "Подключиться к конференции через приложение Zoom"
 
-#: includes/vczapi-template-functions.php:163
+#: includes/vczapi-template-functions.php:167
 msgid "Webinar is not defined. Try updating this Webinar"
 msgstr "Вебинар не определен. Попробуйте обновить этот вебинар"
 
-#: includes/vczapi-template-functions.php:219
+#: includes/vczapi-template-functions.php:223
 msgid "Meeting is not defined. Try updating this meeting"
 msgstr "Конференция не найдена. Попробуйте обновить конференцию"
 
-#: includes/vczapi-template-functions.php:279
+#: includes/vczapi-template-functions.php:283
 #: includes/admin/class-zvc-admin-post-type.php:96
 #: templates/shortcode/zoom-webinar.php:21
 #: templates/shortcode/zoom-recordings.php:16
@@ -80,7 +80,7 @@ msgstr "Конференция не найдена. Попробуйте обн�
 msgid "Meeting ID"
 msgstr "ID конференции"
 
-#: includes/vczapi-template-functions.php:283
+#: includes/vczapi-template-functions.php:287
 #: includes/class-zvc-shortcodes.php:117 includes/class-zvc-shortcodes.php:192
 #: templates/shortcode/zoom-webinar.php:25
 #: templates/shortcode/zoom-recordings.php:17
@@ -91,78 +91,80 @@ msgstr "ID конференции"
 msgid "Topic"
 msgstr "Тема"
 
-#: includes/vczapi-template-functions.php:287
+#: includes/vczapi-template-functions.php:291
 #: includes/class-zvc-shortcodes.php:193
 msgid "Meeting Status"
 msgstr "Статус конференции"
 
-#: includes/vczapi-template-functions.php:291
+#: includes/vczapi-template-functions.php:295
 msgid "Waiting - Not started"
 msgstr ""
 
-#: includes/vczapi-template-functions.php:293
+#: includes/vczapi-template-functions.php:297
 msgid "Meeting is in Progress"
 msgstr ""
 
-#: includes/vczapi-template-functions.php:298
+#: includes/vczapi-template-functions.php:302
 msgid "Refresh is needed to change status."
 msgstr "Обновите для изменения статуса."
 
-#: includes/vczapi-template-functions.php:306
+#: includes/vczapi-template-functions.php:310 templates/content-meeting.php:56
 #: includes/admin/class-zvc-admin-post-type.php:93
 #: templates/shortcode/zoom-webinar.php:33
+#: templates/shortcode/zoom-listing.php:54
 #: includes/elementor/widgets/class-zvc-elementor-meeting-host.php:108
 msgid "Type"
 msgstr "Тип"
 
-#: includes/vczapi-template-functions.php:307
+#: includes/vczapi-template-functions.php:311
 #: includes/admin/class-zvc-admin-post-type.php:146
 #: templates/shortcode/zoom-webinar.php:34
 #: includes/views/live/tpl-list-meetings.php:122
 msgid "Recurring Meeting"
 msgstr "Повторяющаяся конференция"
 
-#: includes/vczapi-template-functions.php:310
+#: includes/vczapi-template-functions.php:314
 #: templates/shortcode/zoom-webinar.php:37
 msgid "Ocurrences"
 msgstr "Происшествия"
 
-#: includes/vczapi-template-functions.php:314
+#: includes/vczapi-template-functions.php:318
 #: templates/shortcode/zoom-webinar.php:41
 msgid "Next Start Time"
 msgstr "Время следующей конференции"
 
-#: includes/vczapi-template-functions.php:328
-#: includes/vczapi-template-functions.php:337
-#: includes/vczapi-template-functions.php:347
+#: includes/vczapi-template-functions.php:332
+#: includes/vczapi-template-functions.php:341
+#: includes/vczapi-template-functions.php:351
 #: templates/shortcode/zoom-webinar.php:55
 #: templates/shortcode/zoom-webinar.php:64
 #: templates/shortcode/zoom-webinar.php:74
 msgid "Meeting has ended !"
 msgstr "Конференция закончилась!"
 
-#: includes/vczapi-template-functions.php:346
-#: includes/vczapi-template-functions.php:354
-#: includes/vczapi-template-functions.php:361
+#: includes/vczapi-template-functions.php:350
+#: includes/vczapi-template-functions.php:358
+#: includes/vczapi-template-functions.php:365
 #: includes/class-zvc-shortcodes.php:118 includes/class-zvc-shortcodes.php:194
-#: templates/shortcode/zoom-webinar.php:73
+#: templates/content-meeting.php:49 templates/shortcode/zoom-webinar.php:73
 #: templates/shortcode/zoom-webinar.php:81
 #: templates/shortcode/zoom-webinar.php:88
+#: templates/shortcode/zoom-listing.php:47
 #: includes/views/webinars/tpl-list-webinars.php:61
 #: includes/views/live/tpl-list-meetings.php:64
 msgid "Start Time"
 msgstr "Время начала"
 
-#: includes/vczapi-template-functions.php:355
+#: includes/vczapi-template-functions.php:359
 #: templates/shortcode/zoom-webinar.php:82
 msgid "This is a meeting with no Fixed Time."
 msgstr "Это конференция без фиксированного времени."
 
-#: includes/vczapi-template-functions.php:366
+#: includes/vczapi-template-functions.php:370
 #: includes/class-zvc-shortcodes.php:119 includes/class-zvc-shortcodes.php:195
-#: templates/fragments/meeting-details.php:42
+#: templates/content-meeting.php:68 templates/fragments/meeting-details.php:46
 #: templates/shortcode/zoom-webinar.php:93
-#: templates/shortcode/zoom-listing.php:30
+#: templates/shortcode/zoom-listing.php:66
 #: includes/views/webinars/tpl-edit-webinar.php:58
 #: includes/views/webinars/tpl-add-webinar.php:62
 #: includes/views/live/tpl-edit-meeting.php:80
@@ -171,8 +173,8 @@ msgstr "Это конференция без фиксированного вре
 msgid "Timezone"
 msgstr "Часовой пояс"
 
-#: includes/vczapi-template-functions.php:371
-#: templates/fragments/meeting-details.php:37
+#: includes/vczapi-template-functions.php:375
+#: templates/fragments/meeting-details.php:41
 #: templates/shortcode/zoom-webinar.php:98
 #: templates/shortcode/zoom-recordings.php:18
 #: includes/views/webinars/tpl-edit-webinar.php:70
@@ -184,15 +186,15 @@ msgstr "Часовой пояс"
 msgid "Duration"
 msgstr "Длительность "
 
-#: includes/helpers.php:286
+#: includes/helpers.php:287
 msgid "ZOOM SERVICES STATUS"
 msgstr "Статус сервиса Zoom"
 
-#: includes/helpers.php:309
+#: includes/helpers.php:310
 msgid "Like this plugin ?"
 msgstr "Понравился плагин?"
 
-#: includes/helpers.php:312
+#: includes/helpers.php:313
 #, php-format
 msgid ""
 "Please consider giving a %s if you found this useful at wordpress.org or "
@@ -200,16 +202,16 @@ msgstr ""
 "Пожалуйста, проголосуйте за %s, если вы нашли это полезным на wordpress.org "
 "или"
 
-#: includes/helpers.php:313
+#: includes/helpers.php:314
 #, php-format
 msgid "check %s for shortcode references."
 msgstr "проверить %s для ссылок шорткода."
 
-#: includes/helpers.php:331
+#: includes/helpers.php:332
 msgid "Do not get confused here !!"
 msgstr "Не путать здесь !!"
 
-#: includes/helpers.php:333
+#: includes/helpers.php:334
 msgid ""
 "Please read !!! These below meetings are directly from your zoom.us account "
 "via API connection. Meetings added from here won't show up on your Post Type "
@@ -220,17 +222,17 @@ msgstr ""
 "будут отображаться в вашем списке конференций. Это только создаст "
 "конференцию в вашем аккаунте zoom.us!"
 
-#: includes/helpers.php:334
+#: includes/helpers.php:335
 msgid "I understand ! Don't show this again !"
 msgstr "Я понимаю ! Больше не показывать это !"
 
-#: includes/helpers.php:554 includes/helpers.php:558 includes/helpers.php:578
-#: includes/helpers.php:582 templates/shortcode/join-links.php:27
+#: includes/helpers.php:555 includes/helpers.php:559 includes/helpers.php:579
+#: includes/helpers.php:583 templates/shortcode/join-links.php:27
 #: templates/shortcode/webinar-join-links.php:27
 msgid "Join via Web Browser"
 msgstr "Подключиться через веб-браузер"
 
-#: includes/helpers.php:660
+#: includes/helpers.php:661
 msgid "Next Results"
 msgstr ""
 
@@ -330,22 +332,22 @@ msgid "Download from Zoom"
 msgstr "Скачать с Zoom"
 
 #: includes/class-zvc-shortcodes.php:535
-#: templates/fragments/countdown-timer.php:21
+#: templates/fragments/countdown-timer.php:30
 msgid "days"
 msgstr "дней"
 
 #: includes/class-zvc-shortcodes.php:541
-#: templates/fragments/countdown-timer.php:27
+#: templates/fragments/countdown-timer.php:36
 msgid "hours"
 msgstr "Часа(ов)"
 
 #: includes/class-zvc-shortcodes.php:547
-#: templates/fragments/countdown-timer.php:33
+#: templates/fragments/countdown-timer.php:42
 msgid "minutes"
 msgstr "минут"
 
 #: includes/class-zvc-shortcodes.php:553
-#: templates/fragments/countdown-timer.php:39
+#: templates/fragments/countdown-timer.php:48
 msgid "seconds"
 msgstr "секунд"
 
@@ -382,6 +384,27 @@ msgstr ""
 msgid "This meeting is no longer valid and cannot be joined !"
 msgstr "Эта конференция закончена и к ней нельзя подключиться!"
 
+#: templates/content-meeting.php:31 templates/shortcode/zoom-listing.php:29
+msgid "Hosted By:"
+msgstr "Ведущий"
+
+#: templates/content-meeting.php:42 templates/shortcode/zoom-listing.php:40
+msgid "Next Occurrence"
+msgstr ""
+
+#: templates/content-meeting.php:57 templates/shortcode/zoom-listing.php:55
+msgid "Recurring"
+msgstr ""
+
+#: templates/content-meeting.php:63 templates/fragments/meeting-details.php:29
+#: templates/shortcode/zoom-listing.php:61
+msgid "Start"
+msgstr "Начать"
+
+#: templates/content-meeting.php:71 templates/shortcode/zoom-listing.php:69
+msgid "See More"
+msgstr "Узнать больше"
+
 #: templates/join-web-browser.php:20
 msgid "This meeting has been ended by host."
 msgstr "Эта конференция была завершена ведущим."
@@ -401,14 +424,14 @@ msgstr ""
 "пожалуйста, установите действительный сертификат SSL, чтобы разрешить аудио "
 "и видео на ваших конференциях через браузер."
 
-#: templates/join-web-browser.php:80 templates/shortcode/join-links.php:20
+#: templates/join-web-browser.php:89 templates/shortcode/join-links.php:20
 #: templates/shortcode/join-links.php:29
 #: templates/shortcode/webinar-join-links.php:20
 #: templates/shortcode/webinar-join-links.php:29
 msgid "Join"
 msgstr "Подключиться"
 
-#: templates/join-web-browser.php:91
+#: templates/join-web-browser.php:100
 msgid ""
 "You do not have enough priviledge to access this page. Please login to "
 "continue or contact administrator."
@@ -416,7 +439,7 @@ msgstr ""
 "У вас недостаточно прав для доступа к этой странице. Пожалуйста, войдите, "
 "чтобы продолжить, или обратитесь к администратору."
 
-#: templates/archive-meetings.php:26
+#: templates/archive-meetings.php:34
 msgid "No Meetings found."
 msgstr "Конференции не найдены"
 
@@ -489,7 +512,7 @@ msgid "Assign Host ID"
 msgstr "Назначить ID хоста "
 
 #: includes/admin/class-zvc-admin-settings.php:76
-msgid "Sync"
+msgid "Import"
 msgstr ""
 
 #: includes/admin/class-zvc-admin-settings.php:82
@@ -514,11 +537,11 @@ msgstr "Шорткод"
 msgid "Support"
 msgstr "Поддержка"
 
-#: includes/admin/class-zvc-admin-settings.php:158
+#: includes/admin/class-zvc-admin-settings.php:160
 msgid "Successfully Updated. Please refresh this page."
 msgstr "Успешно обновлено. Пожалуйста, обновите страницу."
 
-#: includes/admin/class-zvc-admin-settings.php:160
+#: includes/admin/class-zvc-admin-settings.php:162
 msgid "Dismiss this notice."
 msgstr "Скрыть это уведомление."
 
@@ -691,63 +714,63 @@ msgid "Created webinar %s at %s. Join %s"
 msgstr "Создан вебинар %s в %s. Присоединиться к %s"
 
 #: includes/admin/class-zvc-admin-sync.php:34
-#: includes/admin/class-zvc-admin-sync.php:62
+#: includes/admin/class-zvc-admin-sync.php:63
 msgid ""
 "API keys are not configured properly ! Please configure them before syncing."
 msgstr ""
 
-#: includes/admin/class-zvc-admin-sync.php:40
+#: includes/admin/class-zvc-admin-sync.php:41
 msgid ""
 "Fetching data.. Please wait this might take some time depending on how many "
 "Zoom Meetings you have."
 msgstr ""
 
-#: includes/admin/class-zvc-admin-sync.php:41
+#: includes/admin/class-zvc-admin-sync.php:42
 msgid "Total Records Found"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-sync.php:42
+#: includes/admin/class-zvc-admin-sync.php:43
 msgid "Total Not Synced Records"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-sync.php:43
+#: includes/admin/class-zvc-admin-sync.php:44
 msgid "Choose meeting from here to sync."
 msgstr ""
 
-#: includes/admin/class-zvc-admin-sync.php:44
+#: includes/admin/class-zvc-admin-sync.php:45
 msgid "Sync Now"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-sync.php:45
+#: includes/admin/class-zvc-admin-sync.php:46
 msgid ""
 "Starting sync process.. Please wait for some time. Do not close this window "
 "until completed."
 msgstr ""
 
-#: includes/admin/class-zvc-admin-sync.php:46
+#: includes/admin/class-zvc-admin-sync.php:47
 msgid ""
 "Opps ! You have not selected any meeting to sync yet. Select one or two and "
 "this section will be filled by happiness for you !!"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-sync.php:47
+#: includes/admin/class-zvc-admin-sync.php:48
 msgid "Meeting sync has been completed !"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-sync.php:92
-#: includes/admin/class-zvc-admin-sync.php:95
+#: includes/admin/class-zvc-admin-sync.php:93
+#: includes/admin/class-zvc-admin-sync.php:96
 msgid "No Meetings Found !"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-sync.php:123
+#: includes/admin/class-zvc-admin-sync.php:124
 msgid "No meeting is selected or selected meeting already exists"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-sync.php:184
+#: includes/admin/class-zvc-admin-sync.php:185
 msgid "Successfully imported meeting with ID"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-sync.php:190
+#: includes/admin/class-zvc-admin-sync.php:191
 msgid "Failed to import meeting with ID"
 msgstr ""
 
@@ -761,7 +784,7 @@ msgid "Created meeting %s at %s. Join %s"
 msgstr "Создана конфереция %s на %s. Подключиться к %s"
 
 #: includes/views/sync.php:10
-msgid "Sync your Live Zoom Meetings and Webinars to your site"
+msgid "Sync your Live Zoom Meetings to your site"
 msgstr ""
 
 #: includes/views/sync.php:12
@@ -782,37 +805,28 @@ msgstr ""
 msgid "Choose a Zoom User"
 msgstr ""
 
-#: templates/fragments/meeting-details.php:16
+#: templates/fragments/countdown-timer.php:17
+msgid "PRO version is required for this meeting to be displayed."
+msgstr ""
+
+#: templates/fragments/meeting-details.php:20
 msgid "Details"
 msgstr "Подробности"
 
-#: templates/fragments/meeting-details.php:20
+#: templates/fragments/meeting-details.php:24
 msgid "Hosted By"
 msgstr "Ведущий:"
 
-#: templates/fragments/meeting-details.php:25
-#: templates/shortcode/zoom-listing.php:26
-msgid "Start"
-msgstr "Начать"
-
-#: templates/fragments/meeting-details.php:31
+#: templates/fragments/meeting-details.php:35
 msgid "Category"
 msgstr "Категория"
 
-#: templates/fragments/meeting-details.php:46
+#: templates/fragments/meeting-details.php:50
 #, php-format
 msgid "%sNote%s: Countdown time is shown based on your local timezone."
 msgstr ""
 "%sNote%s: Время обратного отсчета отображается в зависимости от вашего "
 "местного часового пояса."
-
-#: templates/shortcode/zoom-listing.php:23
-msgid "Hosted By:"
-msgstr "Ведущий"
-
-#: templates/shortcode/zoom-listing.php:34
-msgid "See More"
-msgstr "Узнать больше"
 
 #: templates/shortcode/zoom-recordings.php:19
 #: includes/views/live/tpl-list-recordings.php:23
@@ -973,11 +987,11 @@ msgstr "Тип конференций"
 msgid "Count of meetings"
 msgstr "Количество конференции"
 
-#: includes/views/tabs/shortcode.php:12
+#: includes/views/tabs/shortcode.php:13
 msgid "Using Shortcode Example"
 msgstr "Пример использования шорткода"
 
-#: includes/views/tabs/shortcode.php:13
+#: includes/views/tabs/shortcode.php:14
 msgid ""
 "Below are few examples of how you can add shortcodes manually into your "
 "posts."
@@ -985,74 +999,37 @@ msgstr ""
 "Ниже приведено несколько примеров того, как вы можете добавлять шорткоды "
 "вручную в свои сообщения."
 
-#: includes/views/tabs/shortcode.php:16
+#: includes/views/tabs/shortcode.php:17
 msgid "Basic Usage"
 msgstr "Базовое использование "
 
-#: includes/views/tabs/shortcode.php:19 includes/views/tabs/shortcode.php:34
-#: includes/views/tabs/shortcode.php:52 includes/views/tabs/shortcode.php:65
-#: includes/views/tabs/shortcode.php:83 includes/views/tabs/shortcode.php:95
-msgid "Description"
-msgstr "Описание"
-
-#: includes/views/tabs/shortcode.php:20
-msgid ""
-"Show a list with meeting details for a specific meeting ID with join links."
-msgstr ""
-"Показать список с подробностями конференции для определенного ID со ссылками "
-"на присоединение."
-
-#: includes/views/tabs/shortcode.php:21 includes/views/tabs/shortcode.php:37
-#: includes/views/tabs/shortcode.php:54 includes/views/tabs/shortcode.php:68
-#: includes/views/tabs/shortcode.php:85 includes/views/tabs/shortcode.php:97
-msgid "Parameters"
-msgstr "Параметры"
-
-#: includes/views/tabs/shortcode.php:31
+#: includes/views/tabs/shortcode.php:21
 msgid "Listing Zoom Meetings"
 msgstr "Список конференций Zoom"
 
-#: includes/views/tabs/shortcode.php:35
-msgid ""
-"Shows a list of meetings with start time, date and link to the meetings page."
-" This is customizable by overriding from your\n"
-"                        theme folder."
-msgstr ""
-"Показывает список встреч с указанием времени начала, даты и ссылки на "
-"страницу конференции. Это настраивается путем переопределения из вашей\n"
-"темы."
-
-#: includes/views/tabs/shortcode.php:49
+#: includes/views/tabs/shortcode.php:25
 msgid "List Host ID"
 msgstr "Список ID ведущих"
 
-#: includes/views/tabs/shortcode.php:53
-msgid "Show a list with meeting table based on HOST ID in frontend."
-msgstr "Показать список конференций на основе ID ведущего в веб-интерфейсе."
-
-#: includes/views/tabs/shortcode.php:61
+#: includes/views/tabs/shortcode.php:29
 msgid "Embed Zoom Meeting in your Browser"
 msgstr "Вставить конференцию Zoom в ваш браузер"
 
-#: includes/views/tabs/shortcode.php:66 includes/views/tabs/shortcode.php:84
-msgid ""
-"Embeds your meeting in an IFRAME for any page or post you insert this "
-"shortcode into."
-msgstr ""
-"Встраивает вашу конференцию в IFRAME для любой страницы или поста, в который "
-"вы вставляете этот шорткод."
-
-#: includes/views/tabs/shortcode.php:80
+#: includes/views/tabs/shortcode.php:33
 msgid "Show webinars based on HOST ID in frontend."
 msgstr "Показывать вебинары по HOST ID во внешнем интерфейсе."
 
-#: includes/views/tabs/shortcode.php:92
-msgid "Show webinar based meeting ID."
-msgstr "Показать вебинар на основе ID конференции."
+#: includes/views/tabs/shortcode.php:37
+msgid "Show Webinar based meeting ID."
+msgstr ""
 
-#: includes/views/tabs/shortcode.php:96
-msgid "Shows a Webinar detail based on a specific Webinar ID."
-msgstr "Показывает подробности вебинара на основе определенного ID вебинара."
+#: includes/views/tabs/shortcode.php:41
+msgid "Show recordings based on HOST ID."
+msgstr ""
+
+#: includes/views/tabs/shortcode.php:45
+msgid "Show Recordings based on Meeting ID"
+msgstr ""
 
 #: includes/views/tabs/api-settings.php:11
 msgid "Please follow"
@@ -1144,22 +1121,30 @@ msgstr ""
 "из созданных"
 
 #: includes/views/tabs/api-settings.php:70
+msgid "Disable Email field when join via browser ?"
+msgstr ""
+
+#: includes/views/tabs/api-settings.php:73
+msgid "Checking this show will hide email field in Join via Browser window."
+msgstr ""
+
+#: includes/views/tabs/api-settings.php:77
 msgid "Meeting Started Text"
 msgstr "Сообщение текущей конференции."
 
-#: includes/views/tabs/api-settings.php:76
+#: includes/views/tabs/api-settings.php:83
 msgid "Meeting going to start Text"
 msgstr "Сообщение о начале конференции."
 
-#: includes/views/tabs/api-settings.php:82
+#: includes/views/tabs/api-settings.php:89
 msgid "Meeting Ended Text"
 msgstr "Сообщение о окончании конференции."
 
-#: includes/views/tabs/api-settings.php:88
+#: includes/views/tabs/api-settings.php:95
 msgid "DateTime Format"
 msgstr "Формат времени и даты"
 
-#: includes/views/tabs/api-settings.php:105
+#: includes/views/tabs/api-settings.php:112
 msgid ""
 "Change date time formats according to your choice. Please edit this properly."
 " Failure to correctly put value will result in failure to show date in "
@@ -1169,25 +1154,25 @@ msgstr ""
 "это правильно. Неправильная установка значения приведет к невозможности "
 "отображения даты во внешнем интерфейсе."
 
-#: includes/views/tabs/api-settings.php:109
+#: includes/views/tabs/api-settings.php:116
 msgid "Use 24-hour format"
 msgstr ""
 
-#: includes/views/tabs/api-settings.php:112
+#: includes/views/tabs/api-settings.php:119
 msgid "Checking this option will show 24 hour time format in all event dates."
 msgstr ""
 
-#: includes/views/tabs/api-settings.php:116
+#: includes/views/tabs/api-settings.php:123
 msgid "Use full month label format ?"
 msgstr ""
 
-#: includes/views/tabs/api-settings.php:119
+#: includes/views/tabs/api-settings.php:126
 msgid ""
 "Checking this option will show full month label for example: June, July, "
 "August etc."
 msgstr ""
 
-#: includes/views/tabs/api-settings.php:124
+#: includes/views/tabs/api-settings.php:131
 msgid ""
 "After you enter your keys. Do save changes before doing \"Check API "
 "Connection\"."
@@ -1195,31 +1180,35 @@ msgstr ""
 "После того, как вы введете свои ключи. Сохраните изменения перед выполнением "
 "«Проверка соединения API»."
 
-#: includes/views/tabs/api-settings.php:126
+#: includes/views/tabs/api-settings.php:133
 msgid "Save Changes"
 msgstr "Сохранить"
 
-#: includes/views/tabs/api-settings.php:127
+#: includes/views/tabs/api-settings.php:134
 msgid "Check API Connection"
 msgstr "Проверьте соединение через API"
 
-#: includes/views/tabs/api-settings.php:134
+#: includes/views/tabs/api-settings.php:141
+msgid "Facebook Group"
+msgstr ""
+
+#: includes/views/tabs/api-settings.php:144
 msgid "Documentation"
 msgstr "Документация"
 
-#: includes/views/tabs/api-settings.php:137
+#: includes/views/tabs/api-settings.php:147
 msgid "Contact for additional Support"
 msgstr "Обратитесь за дополнительной поддержкой"
 
-#: includes/views/tabs/api-settings.php:139
+#: includes/views/tabs/api-settings.php:149
 msgid "Developer"
 msgstr "Разработчик"
 
-#: includes/views/tabs/api-settings.php:142
+#: includes/views/tabs/api-settings.php:151
 msgid "Addons"
 msgstr "Дополнения"
 
-#: includes/views/tabs/api-settings.php:156
+#: includes/views/tabs/api-settings.php:165
 msgid "Try inactive logout"
 msgstr "Попробуйте неактивный выход"
 
@@ -2018,4 +2007,11 @@ msgstr ""
 
 #: includes/views/post-type/tpl-meeting-fields.php:216
 msgid "Allow attendess to join from multiple devices."
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"Video Conferencing with Zoom Meetings and Webinar plugin provides you with "
+"great functionality of managing Zoom meetings, Webinar scheduling options, "
+"and users directly from your WordPress dashboard."
 msgstr ""
