@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $users = video_conferencing_zoom_api_get_user_transients();
 ?>
 <div class="wrap">
-    <h3><?php _e( "Sync your Live Zoom Meetings and Webinars to your site", "video-conferencing-with-zoom-api" ); ?></h3>
+    <h3><?php _e( "Sync your Live Zoom Meetings to your site", "video-conferencing-with-zoom-api" ); ?></h3>
     <div class="vczapi-notification">
         <p><?php _e( "This allows you to sync your live meetings from your Zoom Account to this site directly. Synced meetings will be inside Zoom Meeting > All Meetings page.", "video-conferencing-with-zoom-api" ); ?></p>
         <p><?php _e( "Currently, you can only sync scheduled meetings. No recurring meetings can be synced yet or webinars. For now, you can only sync meetings from your Zoom Account.", "video-conferencing-with-zoom-api" ); ?></p>

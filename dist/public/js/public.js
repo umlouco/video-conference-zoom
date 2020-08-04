@@ -75,7 +75,7 @@ jQuery(function ($) {
                             }
                         }, second);
                     } else {
-                        $(clock).html("<div class='dpn-zvc-meeting-ended'><h3>" + zvc_strings.meeting_started + "</h3></div>");
+                        $(clock).remove();
                     }
                 }
             }
@@ -106,7 +106,7 @@ jQuery(function ($) {
                         if (response.success) {
                             $('.dpn-zvc-sidebar-content').after(response.data);
                         } else {
-                            $('.dpn-zvc-sidebar-content').after('<div class="dpn-zvc-sidebar-box">' + response.data + '</div>');
+                            $('.dpn-zvc-sidebar-content').after('<div class="dpn-zvc-sidebar-box vczapi-no-longer-valid">' + response.data + '</div>');
                         }
 
                         $('.remove-sidebar-loder-text').remove();

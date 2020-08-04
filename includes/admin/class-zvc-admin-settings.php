@@ -73,7 +73,7 @@ class Zoom_Video_Conferencing_Admin_Views {
 				) );
 			}
 
-			add_submenu_page( 'edit.php?post_type=zoom-meetings', __( 'Sync', 'video-conferencing-with-zoom-api' ), __( 'Sync', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing-sync', array(
+			add_submenu_page( 'edit.php?post_type=zoom-meetings', __( 'Import', 'video-conferencing-with-zoom-api' ), __( 'Import', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing-sync', array(
 				'Zoom_Video_Conferencing_Admin_Sync',
 				'render'
 			) );
