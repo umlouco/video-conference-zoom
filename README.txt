@@ -173,6 +173,7 @@ Join our facebook group which we have created in order to stay up to date with u
 * Added: Webinar post type module.
 * Added: Meetings importer.
 * Updated: Translations
+* Added: Support for recurring meetings based on PRO version.
 * Added: Email field when joining via browser.
 * Fix: Major bug fixes and code refactor.
 

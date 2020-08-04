@@ -10,6 +10,10 @@
  */
 
 global $zoom;
+
+if ( ! vczapi_pro_version_active() && ( $zoom['api']->type === 8 || $zoom['api']->type === 3 ) || empty( $zoom ) ) {
+	return;
+}
 ?>
 <div class="dpn-zvc-sidebar-box">
     <div class="dpn-zvc-sidebar-tile">

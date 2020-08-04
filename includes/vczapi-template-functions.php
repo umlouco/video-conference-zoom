@@ -103,6 +103,10 @@ function video_conference_zoom_meeting_end_author() {
 function video_conference_zoom_meeting_join() {
 	global $zoom;
 
+	if ( ! vczapi_pro_version_active() && ( $zoom['api']->type === 8 || $zoom['api']->type === 3 ) || empty( $zoom ) ) {
+		return;
+	}
+
 	if ( empty( $zoom['api']->state ) && video_conference_zoom_check_login() ) {
 		$data = array(
 			'ajaxurl'    => admin_url( 'admin-ajax.php' ),
