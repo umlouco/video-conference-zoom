@@ -47,9 +47,7 @@ function clean() {
     return del(['assets/admin/js', 'assets/admin/css', 'assets/public/js', 'assets/public/css']);
 }
 
-// Copy third party libraries from /node_modules into /vendor
-gulp.task('vendor', function () {
-
+function compileVendorScripts() {
     //Select2
     gulp.src([
         './node_modules/select2/dist/**/*',
@@ -100,7 +98,7 @@ gulp.task('vendor', function () {
         './node_modules/@zoomus/websdk/dist/css/react-select.css',
     ])
         .pipe(gulp.dest('./assets/vendor/zoom'));
-});
+}
 
 /*
  * Define our tasks using plain functions
@@ -256,6 +254,7 @@ const watch = gulp.series(build, gulp.parallel(watchFiles));
 exports.clean = clean;
 exports.admin_styles = admin_styles;
 exports.admin_scripts = admin_scripts;
+exports.vendors = compileVendorScripts;
 exports.watch = watch;
 exports.build = build;
 /*

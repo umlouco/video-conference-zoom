@@ -155,15 +155,15 @@ class Zoom_Video_Conferencing_ElementorMeetingsList extends Widget_Base {
 	 * @return array
 	 */
 	private function get_taxnomies() {
-		$args       = array(
+		$args   = array(
 			'taxonomy'   => 'zoom-meeting',
 			'hide_empty' => false
 		);
-		$terms      = get_terms( $args );
-		$result     = [];
+		$terms  = get_terms( $args );
+		$result = [];
 		if ( ! empty( $terms ) ) {
 			foreach ( $terms as $term ) {
-				$result[ $term->term_id ] = $term->name;
+				$result[ $term->slug ] = $term->name;
 			}
 		}
 
@@ -184,7 +184,7 @@ class Zoom_Video_Conferencing_ElementorMeetingsList extends Widget_Base {
 		$settings = $this->get_settings_for_display();
 
 		$count    = ! empty( $settings['count'] ) ? $settings['count'] : 5;
-		$category = ! empty( $settings['category'] ) ? $settings['category'] : '';
+		$category = ! empty( $settings['category'] ) ? implode( ',', $settings['category'] ) : '';
 		$type     = ! empty( $settings['type'] ) ? $settings['type'] : '';
 		$order    = ! empty( $settings['order'] ) ? $settings['order'] : 'DESC';
 

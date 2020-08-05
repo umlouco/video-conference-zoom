@@ -394,7 +394,11 @@ class Zoom_Video_Conferencing_Admin_PostType {
 		<?php
 		if ( ! empty( $meeting_fields['site_option_enable_debug_log'] ) ) {
 			if ( ! empty( $meeting_details->id ) ) {
-				dump( json_decode( zoom_conference()->getMeetingInfo( $meeting_details->id ) ) );
+				if ( ! empty( $meeting_fields['meeting_type'] ) && $meeting_fields['meeting_type'] === 2 ) {
+					dump( json_decode( zoom_conference()->getWebinarInfo( $meeting_details->id ) ) );
+				} else {
+					dump( json_decode( zoom_conference()->getMeetingInfo( $meeting_details->id ) ) );
+				}
 			} else {
 				dump( $meeting_details );
 			}

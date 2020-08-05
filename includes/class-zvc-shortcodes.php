@@ -464,6 +464,7 @@ class Zoom_Video_Conferencing_Shorcodes {
 		), $atts ) );
 
 		ob_start();
+		echo '<div class="vczapi-join-via-browser-main-wrapper">';
 		if ( empty( $meeting_id ) ) {
 			echo '<h4 class="no-meeting-id"><strong style="color:red;">' . __( 'ERROR: ', 'video-conferencing-with-zoom-api' ) . '</strong>' . __( 'No meeting id set in the shortcode', 'video-conferencing-with-zoom-api' ) . '</h4>';
 
@@ -490,9 +491,8 @@ class Zoom_Video_Conferencing_Shorcodes {
 			if ( ! empty( $meeting ) ) {
 				$meeting_time = date( 'Y-m-d h:i a', strtotime( $meeting->start_time ) );
 				try {
-					$meeting_timezone_time = vczapi_dateConverter( 'now', $meeting->timezone );
-					$meeting_time_check    = vczapi_dateConverter( $meeting_time, $meeting->timezone );
-
+					$meeting_timezone_time = vczapi_dateConverter( 'now', $meeting->timezone, false );
+					$meeting_time_check    = vczapi_dateConverter( $meeting_time, $meeting->timezone, false );
 					if ( ! empty( $title ) ) {
 						?>
                         <h1><?php esc_html_e( $title ); ?></h1>
@@ -503,7 +503,7 @@ class Zoom_Video_Conferencing_Shorcodes {
 						$app_store_link = vczapi_get_browser_agent_type();
 						if ( ! isset( $zoom_states[ $meeting_id ]['state'] ) ) {
 							?>
-                            <div class="zoom-app-notice">
+                            <div class="vczapi-zoom-app-notice-wrap zoom-app-notice">
                                 <p><?php echo esc_html__( 'Note: If you are having trouble joining the meeting below, enter Meeting ID: ', 'video-conferencing-with-zoom-api' ) . '<strong>' . esc_html( $meeting_id ) . '</strong> ' . esc_html__( 'and join via Zoom App.', 'video-conferencing-with-zoom-api' ); ?></p>
                                 <div class="zoom-links">
                                     <ul>
@@ -553,7 +553,7 @@ class Zoom_Video_Conferencing_Shorcodes {
                             </div>
                         </div>
 					<?php } else { ?>
-                        <div class="zoom-window-wrap">
+                        <div class="vczapi-jvb-wrapper zoom-window-wrap">
 							<?php if ( ! is_ssl() ) { ?>
                                 <h4 class="ssl-alert">
                                     <strong style="color:red;"><?php _e( 'ALERT: ', 'video-conferencing-with-zoom-api' ); ?></strong><?php _e( 'Audio and Video for Zoom meeting will not work on a non HTTPS site, please install a valid SSL certificate on your site to allow participants use audio and video during Zoom meeting: ', 'video-conferencing-with-zoom-api' ); ?>
@@ -580,6 +580,7 @@ class Zoom_Video_Conferencing_Shorcodes {
 			}
 		}
 
+		echo "</div>";
 
 		$content .= ob_get_clean();
 

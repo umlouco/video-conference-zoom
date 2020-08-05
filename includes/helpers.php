@@ -663,14 +663,32 @@ function vczapi_zoom_api_paginator( $response, $type = '' ) {
 	}
 }
 
-if ( ! function_exists( 'vczapi_pro_version_active' ) ) {
-	/**
-	 * @author Deepen
-	 * @since  3.6.0
-	 */
-	function vczapi_pro_version_active() {
-		$active_plugins = (array) get_option( 'active_plugins', array() );
+/**
+ * Check if PRO version is active
+ *
+ * @author Deepen
+ * @since  3.6.0
+ */
+function vczapi_pro_version_active() {
+	$active_plugins = (array) get_option( 'active_plugins', array() );
 
-		return in_array( 'vczapi-pro/vczapi-pro.php', $active_plugins ) || array_key_exists( 'vczapi-pro/vczapi-pro.php', $active_plugins );
+	return in_array( 'vczapi-pro/vczapi-pro.php', $active_plugins ) || array_key_exists( 'vczapi-pro/vczapi-pro.php', $active_plugins );
+}
+
+/**
+ * Check if a meeting is Recurring or a Recurring Webinar
+ *
+ * @param $type
+ *
+ * @author Deepen
+ * @since  3.6.0
+ *
+ * @return bool
+ */
+function vczapi_pro_check_type( $type ) {
+	if ( ! empty( $type ) && ( $type === 8 || $type === 3 || $type === 6 || $type === 9 ) ) {
+		return true;
 	}
+
+	return false;
 }
