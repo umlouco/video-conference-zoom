@@ -37,7 +37,7 @@ if ( isset( $_GET['host_id'] ) ) {
                 <select name="action" id="bulk-action-selector-top">
                     <option value="trash"><?php _e( "Move to Trash", "video-conferencing-with-zoom-api" ); ?></option>
                 </select>
-                <input type="submit" id="bulk_delete_meeting_listings" data-hostid="<?php echo $get_host_id; ?>" class="button action" value="Apply">
+                <input type="submit" id="bulk_delete_meeting_listings" data-type="meeting" class="button action" value="Apply">
                 <a href="?post_type=zoom-meetings&page=zoom-video-conferencing-add-meeting&host_id=<?php echo $get_host_id; ?>" class="button action" title="Add new meeting">Add
                     New Meeting</a>
             </div>
@@ -87,7 +87,7 @@ if ( isset( $_GET['host_id'] ) ) {
 								$start_meeting_via_browser = '<a class="start-meeting-btn reload-meeting-started-button" target="_blank" href="' . esc_url( $zoom_host_url ) . '" class="join-link">' . __( 'Start via Browser', 'video-conferencing-with-zoom-api' ) . '</a>';
 								?>
                                 <div class="row-actionss">
-                                    <span class="trash"><a style="color:red;" href="javascript:void(0);" data-meetingid="<?php echo $meeting->id; ?>" data-hostid="<?php echo $meeting->host_id; ?>" class="submitdelete delete-meeting"><?php _e( 'Trash', 'video-conferencing-with-zoom-api' ); ?></a> | </span>
+                                    <span class="trash"><a style="color:red;" href="javascript:void(0);" data-meetingid="<?php echo $meeting->id; ?>" data-type="meeting" class="submitdelete delete-meeting"><?php _e( 'Trash', 'video-conferencing-with-zoom-api' ); ?></a> | </span>
                                     <span class="view"><a href="<?php echo ! empty( $meeting->start_url ) ? $meeting->start_url : $meeting->join_url; ?>" rel="permalink" target="_blank"><?php _e( 'Start via App', 'video-conferencing-with-zoom-api' ); ?></a></span>
                                     <span class="view"> | <?php echo $start_meeting_via_browser; ?></span>
                                 </div>

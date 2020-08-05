@@ -441,7 +441,7 @@ function video_conference_zoom_before_jbh_html( $zoom ) {
         <title><?php echo ! empty( $zoom['api']->topic ) ? $zoom['api']->topic : 'Join Meeting'; ?></title>
         <link rel='stylesheet' type="text/css" href="<?php echo ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/bootstrap.css?ver=' . ZVC_PLUGIN_VERSION; ?>" media='all'>
         <link rel='stylesheet' type="text/css" href="<?php echo ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react-select.css?ver=' . ZVC_PLUGIN_VERSION; ?>" media='all'>
-        <link rel='stylesheet' type="text/css" href="<?php echo ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/css/main.min.css?ver=' . ZVC_PLUGIN_VERSION; ?>" media='all'>
+        <link rel='stylesheet' type="text/css" href="<?php echo ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/css/style.min.css?ver=' . ZVC_PLUGIN_VERSION; ?>" media='all'>
     </head><body class="join-via-browser-body">
 	<?php
 }
@@ -480,4 +480,13 @@ function video_conference_zoom_before_post_loop() {
 		}
 		$GLOBALS['zoom']['terms'] = $set_terms;
 	}
+}
+
+/**
+ * Filters
+ */
+function video_conference_zoom_filters() {
+	wp_enqueue_script( 'video-conferencing-with-zoom-api-shortcode-js' );
+
+	vczapi_get_template( 'fragments/filters.php', true );
 }

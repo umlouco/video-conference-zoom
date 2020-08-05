@@ -316,14 +316,23 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 		/**
 		 * Delete A Meeting
 		 *
-		 * @param $meeting_id [int]
+		 * @param $meeting_id
 		 *
-		 * @return array
+		 * @return array|bool|string|WP_Error
 		 */
 		public function deleteAMeeting( $meeting_id ) {
-			$deleteAMeetingArray = array();
+			return $this->sendRequest( 'meetings/' . $meeting_id, false, "DELETE" );
+		}
 
-			return $this->sendRequest( 'meetings/' . $meeting_id, $deleteAMeetingArray, "DELETE" );
+		/**
+		 * Delete a Webinar
+		 *
+		 * @param $webinar_id
+		 *
+		 * @return array|bool|string|WP_Error
+		 */
+		public function deleteAWebinar( $webinar_id ) {
+			return $this->sendRequest( 'webinars/' . $webinar_id, false, "DELETE" );
 		}
 
 		/*Functions for management of reports*/

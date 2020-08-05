@@ -34,11 +34,16 @@ class Zoom_Video_Conferencing_Admin_Ajax {
 	public function delete_meeting() {
 		check_ajax_referer( '_nonce_zvc_security', 'security' );
 
-		$meeting_id = $_POST['meeting_id'];
-		$host_id    = $_POST['host_id'];
-		if ( $meeting_id && $host_id ) {
-			zoom_conference()->deleteAMeeting( $meeting_id, $host_id );
-			wp_send_json( array( 'error' => 0, 'msg' => __( "Deleted meeting.", "video-conferencing-with-zoom-api" ) ) );
+		$meeting_id   = absint( filter_input( INPUT_POST, 'meeting_id' ) );
+		$meeting_type = filter_input( INPUT_POST, 'type' );
+		if ( $meeting_id ) {
+			if ( ! empty( $meeting_type ) && $meeting_type === "webinar" ) {
+				zoom_conference()->deleteAWebinar( $meeting_id );
+			} else {
+				zoom_conference()->deleteAMeeting( $meeting_id );
+			}
+
+			wp_send_json( array( 'error' => 0, 'msg' => __( "Deleted Meeting with ID", "video-conferencing-with-zoom-api" ) . ': ' . $meeting_id ) );
 		} else {
 			wp_send_json( array(
 				'error' => 1,
@@ -58,13 +63,17 @@ class Zoom_Video_Conferencing_Admin_Ajax {
 	public function delete_bulk_meeting() {
 		check_ajax_referer( '_nonce_zvc_security', 'security' );
 
-		$deleted     = false;
-		$meeting_ids = $_POST['meetings_id'];
-		$host_id     = $_POST['host_id'];
-		if ( $meeting_ids && $host_id ) {
+		$deleted      = false;
+		$meeting_ids  = filter_input( INPUT_POST, 'meetings_id', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
+		$meeting_type = filter_input( INPUT_POST, 'type' );
+		if ( ! empty( $meeting_ids ) ) {
 			$meeting_count = count( $meeting_ids );
 			foreach ( $meeting_ids as $meeting_id ) {
-				json_decode( zoom_conference()->deleteAMeeting( $meeting_id, $host_id ) );
+				if ( ! empty( $meeting_type ) && $meeting_type === "webinar" ) {
+					zoom_conference()->deleteAWebinar( $meeting_id );
+				} else {
+					zoom_conference()->deleteAMeeting( $meeting_id );
+				}
 				$deleted = true;
 			}
 

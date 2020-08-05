@@ -33,8 +33,6 @@ jQuery(function ($) {
                     user_timezone = 'Asia/Kathmandu';
                 }
 
-                console.log(user_timezone);
-
                 //Converting Timezones to locals
                 var source_timezone = moment.tz(valueDate, mtgTimezone).format();
                 var converted_timezone = moment.tz(source_timezone, user_timezone).format('MMM D, YYYY HH:mm:ss');

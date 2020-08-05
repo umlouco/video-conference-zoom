@@ -61,6 +61,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                 <td>
                     <p><?php echo ! empty( $meeting_fields['meeting_type'] ) && $meeting_fields['meeting_type'] === 2 ? __( 'Zoom Webinar', 'video-conferencing-with-zoom-api' ) : __( 'Zoom Meeting', 'video-conferencing-with-zoom-api' ); ?></p>
                     <p class="description"><?php _e( 'You cannot update meeting type. This is not allowed to avoid any conflict issues.', 'video-conferencing-with-zoom-api' ); ?></p>
+                    <input type="hidden" name="meeting_type" value="<?php esc_attr_e( $meeting_fields['meeting_type'] ); ?>">
                 </td>
             </tr>
 			<?php

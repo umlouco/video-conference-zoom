@@ -3,45 +3,49 @@
  *
  * Load gulp plugins and assing them semantic names.
  */
-var gulp = require('gulp');
+const gulp = require('gulp');
+const babel = require('gulp-babel');
+const concat = require('gulp-concat');
+const uglify = require('gulp-uglify');
+const rename = require('gulp-rename');
+const cleanCSS = require('gulp-clean-css');
+const sourcemaps = require('gulp-sourcemaps');
+const sass = require('gulp-sass');
+const autoprefixer = require('autoprefixer');
+const postcss = require('gulp-postcss');
+const del = require('del');
 
-// CSS related plugins.
-var sass = require('gulp-sass'); // Gulp pluign for Sass compilation
-var autoprefixer = require('gulp-autoprefixer'); // Autoprefixing magic
-var minifycss = require('gulp-uglifycss'); // Minifies CSS files
+const paths = {
+    styles: {
+        src: 'dist/public/sass/**/*.scss',
+        dest: 'assets/public/css/'
+    },
+    admin_styles: {
+        src: 'dist/admin/sass/**/*.scss',
+        dest: 'assets/admin/css/'
+    },
+    admin_scripts: {
+        src: 'dist/admin/js/**/*.js',
+        dest: 'assets/admin/js/'
+    },
+    publicScripts: {
+        mainScript: 'dist/public/js/public.js',
+        browserJoinScript: 'dist/public/js/join-via-browser.js',
+        shortcodeScript: 'dist/public/js/shortcode.js',
+        vendorScripts: 'dist/public/vendor/**/*.js',
+        dest: 'assets/public/js/'
+    }
+};
 
-// JS related plugins.
-var concat = require('gulp-concat'); // Concatenates JS files
-var plumber = require('gulp-plumber');
-var jshint = require('gulp-jshint');
-var uglify = require('gulp-uglify'); // Minifies CSS files
-
-// Utility related plugins.
-var rename = require('gulp-rename');
-var sourcemaps = require('gulp-sourcemaps');
-var notify = require('gulp-notify');
-
-/**
- * Configuration.
- *
- * Project Configuration for gulp tasks.
- *
- * Edit the variables as per your project requirements.
+/* Not all tasks need to use streams, a gulpfile is just another node program
+ * and you can use all packages available on npm, but it must return either a
+ * Promise, a Stream or take a callback and call it
  */
-var styleSRC = './dist/public/sass/**/*.scss';
-var styleDestination = './assets/public/css/';
-
-var adminStyleSRC = './dist/admin/sass/**/*.scss';
-var adminStyleDestination = './assets/admin/css/';
-
-var jsSrc = './dist/public/js/public.js';
-var jsSrcBrowser = './dist/public/js/join-via-browser.js';
-var shortcodeJSSrc = './dist/public/js/shortcode.js';
-var jsDestination = './assets/public/js/';
-var jsSrcVendor = './dist/public/vendor/**/*.js';
-
-var adminJsSrc = './dist/admin/js/**/*.js';
-var adminJsDestination = './assets/admin/js/';
+function clean() {
+    // You can use multiple globbing patterns as you would with `gulp.src`,
+    // for example if you are using del 2.0 or above, return its promise
+    return del(['assets/admin/js', 'assets/admin/css', 'assets/public/js', 'assets/public/css']);
+}
 
 // Copy third party libraries from /node_modules into /vendor
 gulp.task('vendor', function () {
@@ -98,160 +102,163 @@ gulp.task('vendor', function () {
         .pipe(gulp.dest('./assets/vendor/zoom'));
 });
 
-// Public Styles
-gulp.task('styles', function () {
-    return gulp.src(styleSRC)
-        .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
-        // .pipe(sourcemaps.init())
+/*
+ * Define our tasks using plain functions
+ */
+function styles() {
+    return gulp.src(paths.styles.src)
+    // .pipe(sourcemaps.init())
         .pipe(sass({
             errLogToConsole: true,
             outputStyle: 'compact',
             precision: 10
         }))
-        // .pipe(sourcemaps.write({includeContent: false}))
-        // .pipe(sourcemaps.init({loadMaps: true}))
-        .pipe(autoprefixer(
-            'last 2 version',
-            '> 1%',
-            'safari 5',
-            'ie 8',
-            'ie 9',
-            'opera 12.1',
-            'ios 6',
-            'android 4'))
-        // .pipe(sourcemaps.write('./maps'))
-        .pipe(gulp.dest(styleDestination))
-        .pipe(minifycss({
-            "maxLineLen": 80,
-            "uglyComments": true
+        .pipe(postcss([autoprefixer]))
+        .pipe(gulp.dest(paths.styles.dest))
+        .pipe(cleanCSS({
+            level: {
+                1: {
+                    cleanupCharsets: true,
+                    removeEmpty: true,
+                    removeWhitespace: true,
+                    specialComments: 0
+                }
+            }
         }))
-        .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest(styleDestination))
-    // .pipe( notify( { message: 'TASK: "styles" Completed! 💯', onLast: true } ) );
-});
+        // pass in options to the stream
+        .pipe(rename({
+            basename: 'style',
+            suffix: '.min'
+        }))
+        // .pipe(sourcemaps.write('./maps'))
+        .pipe(gulp.dest(paths.styles.dest));
+}
 
-//Admin Styles
-gulp.task('stylesAdmin', function () {
-    return gulp.src(adminStyleSRC)
-        .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
-        // .pipe(sourcemaps.init())
+/*
+ * Define our tasks using plain functions
+ */
+function admin_styles() {
+    return gulp.src(paths.admin_styles.src)
+    // .pipe(sourcemaps.init())
         .pipe(sass({
             errLogToConsole: true,
             outputStyle: 'compact',
             precision: 10
         }))
-        /*.pipe(sourcemaps.write({includeContent: false}))
-        .pipe(sourcemaps.init({loadMaps: true}))*/
-        .pipe(autoprefixer(
-            'last 2 version',
-            '> 1%',
-            'safari 5',
-            'ie 8',
-            'ie 9',
-            'opera 12.1',
-            'ios 6',
-            'android 4'))
+        .pipe(postcss([autoprefixer]))
+        .pipe(gulp.dest(paths.admin_styles.dest))
+        .pipe(cleanCSS({
+            level: {
+                1: {
+                    cleanupCharsets: true,
+                    removeEmpty: true,
+                    removeWhitespace: true,
+                    specialComments: 0
+                }
+            }
+        }))
+        // pass in options to the stream
+        .pipe(rename({
+            basename: 'style',
+            suffix: '.min'
+        }))
         // .pipe(sourcemaps.write('./maps'))
-        .pipe(gulp.dest(adminStyleDestination))
-        .pipe(minifycss({
-            "maxLineLen": 80,
-            "uglyComments": true
-        }))
-        .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest(adminStyleDestination))
-    // .pipe( notify( { message: 'TASK: "styles" Completed! 💯', onLast: true } ) );
-});
+        .pipe(gulp.dest(paths.admin_styles.dest));
+}
 
-// Public JS
-gulp.task('publicJS', function () {
-    gulp.src(jsSrc)
-        .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
-        .pipe(jshint())
-        .pipe(jshint.reporter('jshint-stylish'))
-        .pipe(concat('scripts.js'))
-        .pipe(gulp.dest(jsDestination))
-        .pipe(rename({
-            basename: 'scripts',
-            suffix: '.min'
+/**
+ * Admin SCRIPT function
+ *
+ * @returns
+ */
+function admin_scripts() {
+    return gulp.src(paths.admin_scripts.src, {sourcemaps: false})
+        .pipe(babel({
+            presets: ['@babel/env']
         }))
+        .pipe(gulp.dest(paths.admin_scripts.dest))
         .pipe(uglify())
-        .pipe(gulp.dest(jsDestination))
-    // .pipe( notify( { message: 'TASK: "customJs" Completed!', onLast: true } ) );
-});
+        .pipe(concat('script.min.js'))
+        .pipe(gulp.dest(paths.admin_scripts.dest));
+}
 
-// Public JS
-gulp.task('browserJS', function () {
-    gulp.src(jsSrcBrowser)
-        .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
-        .pipe(jshint())
-        .pipe(jshint.reporter('jshint-stylish'))
-        .pipe(concat('join-browser.js'))
-        .pipe(gulp.dest(jsDestination))
-        .pipe(rename({
-            basename: 'join-browser',
-            suffix: '.min'
+//MAIN SCRIPT FILE
+function mainScript() {
+    return gulp.src(paths.publicScripts.mainScript, {sourcemaps: false})
+        .pipe(babel({
+            presets: ['@babel/env']
         }))
+        .pipe(gulp.dest(paths.publicScripts.dest))
         .pipe(uglify())
-        .pipe(gulp.dest(jsDestination))
-    // .pipe( notify( { message: 'TASK: "customJs" Completed!', onLast: true } ) );
-});
+        .pipe(concat('public.min.js'))
+        .pipe(gulp.dest(paths.publicScripts.dest));
+}
 
-
-gulp.task('shortcodeJS', function () {
-    gulp.src(shortcodeJSSrc)
-        .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
-        .pipe(jshint())
-        .pipe(jshint.reporter('jshint-stylish'))
-        .pipe(concat('shortcode.js'))
-        .pipe(gulp.dest(jsDestination))
-        .pipe(rename({
-            basename: 'shortcode',
-            suffix: '.min'
+//JOIN VIA BROWSER SCRIPT FILE
+function browserJoinScript() {
+    return gulp.src(paths.publicScripts.browserJoinScript, {sourcemaps: false})
+        .pipe(babel({
+            presets: ['@babel/env']
         }))
+        .pipe(gulp.dest(paths.publicScripts.dest))
         .pipe(uglify())
-        .pipe(gulp.dest(jsDestination))
-    // .pipe( notify( { message: 'TASK: "customJs" Completed!', onLast: true } ) );
-});
+        .pipe(concat('join-via-browser.min.js'))
+        .pipe(gulp.dest(paths.publicScripts.dest));
+}
 
-// Public JS
-gulp.task('vendorJS', function () {
-    gulp.src(jsSrcVendor)
-        .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
-        .pipe(jshint())
-        .pipe(jshint.reporter('jshint-stylish'))
-        .pipe(concat('zoom-meeting.js'))
-        .pipe(gulp.dest(jsDestination))
-        .pipe(rename({
-            basename: 'zoom-meeting',
-            suffix: '.min'
+//SHORTCODE SCRIPT FILE
+function shortcodeScript() {
+    return gulp.src(paths.publicScripts.shortcodeScript, {sourcemaps: false})
+        .pipe(babel({
+            presets: ['@babel/env']
         }))
+        .pipe(gulp.dest(paths.publicScripts.dest))
         .pipe(uglify())
-        .pipe(gulp.dest(jsDestination))
-    // .pipe( notify( { message: 'TASK: "customJs" Completed!', onLast: true } ) );
-});
+        .pipe(concat('shortcode.min.js'))
+        .pipe(gulp.dest(paths.publicScripts.dest));
+}
 
-// Admin JS
-gulp.task('adminJS', function () {
-    gulp.src(adminJsSrc)
-        .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
-        .pipe(jshint())
-        .pipe(jshint.reporter('jshint-stylish'))
-        .pipe(concat('scripts.js'))
-        .pipe(gulp.dest(adminJsDestination))
-        .pipe(rename({
-            basename: 'scripts',
-            suffix: '.min'
+//VENDOR SCRIPT FILE
+function vendorScripts() {
+    return gulp.src(paths.publicScripts.vendorScripts, {sourcemaps: false})
+        .pipe(babel({
+            presets: ['@babel/env']
         }))
+        .pipe(gulp.dest(paths.publicScripts.dest))
         .pipe(uglify())
-        .pipe(gulp.dest(adminJsDestination))
-    // .pipe( notify( { message: 'TASK: "customJs" Completed!', onLast: true } ) );
-});
+        .pipe(concat('zoom-meeting.min.js'))
+        .pipe(gulp.dest(paths.publicScripts.dest));
+}
 
-// Default task
-gulp.task('default', ['styles', 'stylesAdmin', 'publicJS', 'browserJS', 'shortcodeJS', 'vendorJS', 'adminJS', 'vendor'], function () {
-    gulp.watch('./dist/public/sass/*.scss', ['styles']);
-    gulp.watch('./dist/admin/sass/*.scss', ['stylesAdmin']);
-    gulp.watch('./dist/public/js/*.js', ['publicJS', 'shortcodeJS']);
-    gulp.watch('./dist/public/vendor/*.js', ['vendorJS']);
-    gulp.watch('./dist/admin/js/*.js', ['adminJS']);
-});
+/**
+ * Watch files include here below
+ */
+function watchFiles() {
+    gulp.watch(paths.admin_scripts.src, admin_scripts);
+    gulp.watch(paths.admin_styles.src, admin_styles);
+    gulp.watch(paths.styles.src, styles);
+    gulp.watch(paths.publicScripts.mainScript, mainScript);
+    gulp.watch(paths.publicScripts.browserJoinScript, browserJoinScript);
+    gulp.watch(paths.publicScripts.shortcodeScript, shortcodeScript);
+    gulp.watch(paths.publicScripts.vendorScripts, vendorScripts);
+}
+
+/*
+ * Specify if tasks run in series or parallel using `gulp.series` and `gulp.parallel`
+ */
+const build = gulp.series(clean, gulp.parallel(admin_styles, admin_scripts, styles, mainScript, browserJoinScript, shortcodeScript, vendorScripts));
+// const build = gulp.series(modules, gulp.parallel(styles, scripts));
+const watch = gulp.series(build, gulp.parallel(watchFiles));
+
+/*
+ * You can use CommonJS `exports` module notation to declare tasks
+ */
+exports.clean = clean;
+exports.admin_styles = admin_styles;
+exports.admin_scripts = admin_scripts;
+exports.watch = watch;
+exports.build = build;
+/*
+ * Define default task that can be called by just running `gulp` from cli
+ */
+exports.default = build;

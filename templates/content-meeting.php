@@ -6,6 +6,7 @@
  *
  * @author Deepen
  * @since 3.0.0
+ * @updated 3.6.0
  */
 
 use Codemanas\ZoomPro\Helpers;
@@ -14,7 +15,7 @@ defined( 'ABSPATH' ) || exit;
 
 global $zoom;
 
-if ( ! vczapi_pro_version_active() && ( $zoom['api']->type === 8 || $zoom['api']->type === 3 ) || empty( $zoom ) ) {
+if ( ! vczapi_pro_version_active() && ( $zoom['api']->type === 8 || $zoom['api']->type === 3 ) || empty( $zoom ) || ! empty( $zoom['api']->code ) ) {
 	return;
 }
 ?>

@@ -6,6 +6,7 @@
  *
  * @package    Video Conferencing with Zoom API/Templates
  * @version     3.2.2
+ * @updated     3.6.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -19,8 +20,16 @@ if ( ! is_object( $zoom_meetings ) && ! ( $zoom_meetings instanceof \WP_Query ) 
 }
 ?>
 <div class="vczapi-list-zoom-meetings">
+
+	<?php
+	/**
+	 * BEFORE LOOP HOOK
+	 */
+	do_action( 'vczapi_before_main_content_post_loop' );
+	?>
+
     <div class="vczapi-list-zoom-meetings--items">
-        <?php
+		<?php
 		while ( $zoom_meetings->have_posts() ) {
 			$zoom_meetings->the_post();
 
@@ -32,7 +41,17 @@ if ( ! is_object( $zoom_meetings ) && ! ( $zoom_meetings instanceof \WP_Query ) 
 		wp_reset_postdata();
 		?>
     </div>
+
+	<?php
+	/**
+	 * AFTER LOOP HOOK
+	 */
+	do_action( 'vczapi_after_main_content_post_loop' );
+	?>
+
     <div class="vczapi-list-zoom-meetings--pagination">
 		<?php Zoom_Video_Conferencing_Shorcodes::pagination( $zoom_meetings ); ?>
     </div>
+
+	<?php do_action( 'vczapi_after_main_content_post_loop_pagination' ); ?>
 </div>

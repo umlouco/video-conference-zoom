@@ -4,8 +4,8 @@
  *
  * This template can be overridden by copying it to yourtheme/video-conferencing-zoom/fragments/join-links.php.
  *
- * @author Deepen.
- * @created_on 11/19/19
+ * @author      Deepen Bajracharya (CodeManas)
+ * @created     3.0.0
  */
 
 global $zoom;

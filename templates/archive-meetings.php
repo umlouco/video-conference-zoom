@@ -6,6 +6,7 @@
  *
  * @author Deepen
  * @since 3.0.0
+ * @updated 3.6.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -17,8 +18,13 @@ get_header();
  */
 do_action( 'vczapi_before_main_archive_content' );
 ?>
-
     <div id="vczapi-primary" class="vczapi-primary container">
+		<?php
+		/**
+		 * BEFORE LOOP HOOK
+		 */
+        do_action( 'vczapi_before_main_content_post_loop' );
+        ?>
         <div class="vczapi-list-zoom-meetings">
             <div class="vczapi-list-zoom-meetings--items">
 				<?php if ( have_posts() ) {
@@ -36,8 +42,13 @@ do_action( 'vczapi_before_main_archive_content' );
 				?>
             </div>
         </div>
+		<?php
+		/**
+		 * AFTER LOOP HOOK
+		 */
+        do_action( 'vczapi_after_main_content_post_loop' );
+        ?>
     </div>
-
 <?php
 /**
  * After loop call

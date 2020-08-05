@@ -65,8 +65,8 @@ final class Video_Conferencing_With_Zoom {
 	 * @author  Deepen Bajracharya
 	 */
 	function enqueue_scripts() {
-		$minified = SCRIPT_DEBUG ? '.js' : '.min.js';
-		wp_register_style( 'video-conferencing-with-zoom-api', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/css/main.min.css', false, ZVC_PLUGIN_VERSION );
+		$minified = SCRIPT_DEBUG ? '' : '.min';
+		wp_register_style( 'video-conferencing-with-zoom-api', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/css/style' . $minified . '.css', false, ZVC_PLUGIN_VERSION );
 		//Enqueue MomentJS
 		wp_register_script( 'video-conferencing-with-zoom-api-moment', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/moment/moment.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
 		wp_register_script( 'video-conferencing-with-zoom-api-moment-locales', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/moment/moment-with-locales.min.js', array(
@@ -75,7 +75,7 @@ final class Video_Conferencing_With_Zoom {
 		), ZVC_PLUGIN_VERSION, true );
 		//Enqueue MomentJS Timezone
 		wp_register_script( 'video-conferencing-with-zoom-api-moment-timezone', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/moment-timezone/moment-timezone-with-data-10-year-range.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
-		wp_register_script( 'video-conferencing-with-zoom-api', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/js/scripts' . $minified, array(
+		wp_register_script( 'video-conferencing-with-zoom-api', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/js/public' . $minified . '.js', array(
 			'jquery',
 			'video-conferencing-with-zoom-api-moment'
 		), ZVC_PLUGIN_VERSION, true );
@@ -174,8 +174,8 @@ final class Video_Conferencing_With_Zoom {
 		}
 
 		//Plugin Scripts
-		wp_enqueue_style( 'video-conferencing-with-zoom-api', ZVC_PLUGIN_ADMIN_ASSETS_URL . '/css/video-conferencing-with-zoom-api.min.css', false, ZVC_PLUGIN_VERSION );
-		wp_register_script( 'video-conferencing-with-zoom-api-js', ZVC_PLUGIN_ADMIN_ASSETS_URL . '/js/scripts.min.js', array(
+		wp_enqueue_style( 'video-conferencing-with-zoom-api', ZVC_PLUGIN_ADMIN_ASSETS_URL . '/css/style.min.css', false, ZVC_PLUGIN_VERSION );
+		wp_register_script( 'video-conferencing-with-zoom-api-js', ZVC_PLUGIN_ADMIN_ASSETS_URL . '/js/script.min.js', array(
 			'jquery',
 			'video-conferencing-with-zoom-api-select2-js',
 			'video-conferencing-with-zoom-api-timepicker-js',

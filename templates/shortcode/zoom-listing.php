@@ -6,13 +6,14 @@
  *
  * @package    Video Conferencing with Zoom API/Templates
  * @version     3.2.2
+ * @updated     3.6.0
  */
 
 use Codemanas\ZoomPro\Helpers;
 
 global $zoom;
 
-if ( ! vczapi_pro_version_active() && ( $zoom['api']->type === 8 || $zoom['api']->type === 3 ) || empty( $zoom ) ) {
+if ( ! vczapi_pro_version_active() && ( $zoom['api']->type === 8 || $zoom['api']->type === 3 ) || empty( $zoom ) || ! empty( $zoom['api']->code ) ) {
 	return;
 }
 ?>

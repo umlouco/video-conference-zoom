@@ -63,8 +63,9 @@ class Zoom_Video_Conferencing_Admin_Addons {
                     <div class="content">
                         <h2 style="line-height: 1.6;">Zoom Integration PRO</h2>
                         <p>Integration with PMI, Recurring Meetings, Registrations.</p>
-                        <p>User account might require to be a minimum PRO version Zoom User to use this integration !</p>
-                        <a target="_blank" href="https://www.codemanas.com/" class="button button-primary">Coming Soon</a>
+                        <p>To use certain features this requires Zoom Pro Account enabled.</p>
+                        <a target="_blank" href="https://www.codemanas.com/downloads/video-conferencing-with-zoom-pro/" class="button button-primary">From
+                            $34</a>
                     </div>
                 </div>
             </div>

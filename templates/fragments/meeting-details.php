@@ -4,9 +4,9 @@
  *
  * This template can be overridden by copying it to yourtheme/video-conferencing-zoom/fragments/meeting-details.php.
  *
- * @author Deepen.
- * @created_on 11/19/19
- * @modified 3.3.0
+ * @author      Deepen Bajracharya (CodeManas)
+ * @created     3.0.0
+ * @updated     3.6.0
  */
 
 global $zoom;

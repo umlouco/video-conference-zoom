@@ -141,6 +141,63 @@ class Zoom_Video_Conferencing_Admin_Meetings {
 		}
 	}
 
+	/**
+	 * Prepare POST DATA for API
+	 *
+	 * @param $postdata
+	 * @param bool $post WP_POST
+	 *
+	 * @return array
+	 */
+	public static function prepare_create( $postdata, $post = false ) {
+		$mtg_param = array(
+			'userId'                    => $postdata['userId'],
+			'meetingTopic'              => ! empty( $post ) ? esc_html( $post->post_title ) : esc_html( $postdata['topic'] ),
+			'start_date'                => $postdata['start_date'],
+			'timezone'                  => $postdata['timezone'],
+			'duration'                  => $postdata['duration'],
+			'password'                  => $postdata['password'],
+			'meeting_authentication'    => $postdata['meeting_authentication'],
+			'join_before_host'          => $postdata['join_before_host'],
+			'option_host_video'         => $postdata['option_host_video'],
+			'option_participants_video' => $postdata['option_participants_video'],
+			'option_mute_participants'  => $postdata['option_mute_participants'],
+			'option_auto_recording'     => $postdata['option_auto_recording'],
+			'alternative_host_ids'      => $postdata['alternative_host_ids']
+		);
+
+		return $mtg_param;
+	}
+
+	/**
+	 * Prepare POST DATA for API
+	 *
+	 * @param $meeting_id
+	 * @param $postdata
+	 * @param bool $post WP_POST
+	 *
+	 * @return array
+	 */
+	public static function prepare_update( $meeting_id, $postdata, $post = false ) {
+		$mtg_param = array(
+			'meeting_id'                => $meeting_id,
+			'topic'                     => ! empty( $post ) ? esc_html( $post->post_title ) : esc_html( $postdata['topic'] ),
+			'start_date'                => $postdata['start_date'],
+			'timezone'                  => $postdata['timezone'],
+			'duration'                  => $postdata['duration'],
+			'password'                  => $postdata['password'],
+			'meeting_authentication'    => $postdata['meeting_authentication'],
+			'join_before_host'          => $postdata['join_before_host'],
+			'option_host_video'         => $postdata['option_host_video'],
+			'option_participants_video' => $postdata['option_participants_video'],
+			'option_mute_participants'  => $postdata['option_mute_participants'],
+			'option_auto_recording'     => $postdata['option_auto_recording'],
+			'alternative_host_ids'      => $postdata['alternative_host_ids']
+		);
+
+		return $mtg_param;
+	}
+
 	static function get_message() {
 		return self::$message;
 	}

@@ -157,10 +157,10 @@
                     }
                 });
 
-                var hostid = $(this).data('hostid');
+                var type = $(this).data('type');
                 //Process bulk delete
                 if (arr_checkbox) {
-                    var data = {meetings_id: arr_checkbox, host_id: hostid, action: 'zvc_bulk_meetings_delete', security: zvc_ajax.zvc_security};
+                    var data = {meetings_id: arr_checkbox, type: type, action: 'zvc_bulk_meetings_delete', security: zvc_ajax.zvc_security};
                     $dom.cover.show();
                     $.post(zvc_ajax.ajaxurl, data).done(function (response) {
                         $dom.cover.fadeOut('slow');
@@ -200,11 +200,10 @@
          */
         deleteMetting: function () {
             var meeting_id = $(this).data('meetingid');
-            var host_id = $(this).data('hostid');
-
+            var type = $(this).data('type');
             var r = confirm("Confirm Delete this Meeting?");
             if (r == true) {
-                var data = {meeting_id: meeting_id, host_id: host_id, action: 'zvc_delete_meeting', security: zvc_ajax.zvc_security};
+                var data = {meeting_id: meeting_id, type: type, action: 'zvc_delete_meeting', security: zvc_ajax.zvc_security};
                 $dom.cover.show();
                 $.post(zvc_ajax.ajaxurl, data).done(function (result) {
                     $dom.cover.fadeOut('slow');
