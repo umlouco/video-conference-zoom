@@ -86,7 +86,6 @@ final class Video_Conferencing_With_Zoom {
 			wp_enqueue_script( 'video-conferencing-with-zoom-api-moment-timezone' );
 			wp_enqueue_script( 'video-conferencing-with-zoom-api' );
 			// Localize the script with new data
-
 			$zoom_started        = get_option( 'zoom_started_meeting_text' );
 			$zoom_going_to_start = get_option( 'zoom_going_tostart_meeting_text' );
 			$zoom_ended          = get_option( 'zoom_ended_meeting_text' );
@@ -148,6 +147,8 @@ final class Video_Conferencing_With_Zoom {
 
 	/**
 	 * Enqueuing Scripts and Styles for Admin
+	 *
+	 * @param  $hook
 	 *
 	 * @since    2.0.0
 	 * @modified 2.1.0

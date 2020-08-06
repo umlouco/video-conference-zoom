@@ -34,7 +34,8 @@ jQuery(function ($) {
                 var eventTime = moment(convertedTimezonewithoutFormat).unix();
                 var diffTime = eventTime - currentTime;
 
-                $('.sidebar-start-time').html(moment.parseZone(convertedTimezonewithoutFormat).local().format('LLLL'));
+                var lang = document.documentElement.lang;
+                $('.sidebar-start-time').html(moment.parseZone(convertedTimezonewithoutFormat).locale(lang).format('LLLL'));
 
                 var second = 1000,
                     minute = second * 60,
@@ -59,7 +60,8 @@ jQuery(function ($) {
                         }
                     }, second);
                 } else {
-                    location.reload();
+                    // location.reload();
+                    $(clock).remove();
                 }
             }
         },

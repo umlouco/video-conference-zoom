@@ -447,6 +447,7 @@ class Zoom_Video_Conferencing_Shorcodes {
 	 */
 	public function join_via_browser( $atts, $content = null ) {
 		wp_enqueue_script( 'video-conferencing-with-zoom-api-moment' );
+		wp_enqueue_script( 'video-conferencing-with-zoom-api-moment-locales' );
 		wp_enqueue_script( 'video-conferencing-with-zoom-api-moment-timezone' );
 		wp_enqueue_script( 'video-conferncing-with-zoom-browser-js' );
 
@@ -526,7 +527,7 @@ class Zoom_Video_Conferencing_Shorcodes {
 						echo '<h3>' . esc_html__( 'This meeting has been ended by host.', 'video-conferencing-with-zoom-api ' ) . '</h3>';
 					} elseif ( $meeting_time_check > $meeting_timezone_time && ! empty( $disable_countdown ) && $disable_countdown === "no" ) {
 						?>
-                        <div class="dpn-zvc-timer zoom-join-via-browser-countdown" id="dpn-zvc-timer" data-date="<?php echo $meeting_time; ?>" data-tz="<?php echo $meeting->timezone; ?>">
+                        <div class="dpn-zvc-timer zoom-join-via-browser-countdown" id="dpn-zvc-timer" data-date="<?php echo $meeting->start_time; ?>" data-tz="<?php echo $meeting->timezone; ?>">
                             <div class="dpn-zvc-timer-cell">
                                 <div class="dpn-zvc-timer-cell-number">
                                     <div id="dpn-zvc-timer-days"></div>
