@@ -134,6 +134,7 @@ final class Video_Conferencing_With_Zoom {
 		//Templates
 		require_once ZVC_PLUGIN_INCLUDES_PATH . '/vczapi-template-hooks.php';
 		require_once ZVC_PLUGIN_INCLUDES_PATH . '/vczapi-template-functions.php';
+		require_once ZVC_PLUGIN_INCLUDES_PATH . '/class-zvc-filters.php';
 
 		//Shortcodes
 		require_once ZVC_PLUGIN_INCLUDES_PATH . '/class-zvc-shortcodes.php';

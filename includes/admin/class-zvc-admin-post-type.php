@@ -212,8 +212,8 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	 * Register Post Type
 	 */
 	public function register_post_type() {
-		$labels = array(
-			'name'               => _x( 'Zoom Meetings', 'Zoom Meetings', 'video-conferencing-with-zoom-api' ),
+		$labels = apply_filters( 'vczapi_admin_cpt_labels', array(
+			'name'               => _x( 'Zoom Meetings and Webinars', 'Zoom Meetings and Webinars', 'video-conferencing-with-zoom-api' ),
 			'singular_name'      => _x( 'Zoom Meeting', 'Zoom Meeting', 'video-conferencing-with-zoom-api' ),
 			'menu_name'          => _x( 'Zoom Meeting', 'Zoom Meeting', 'video-conferencing-with-zoom-api' ),
 			'name_admin_bar'     => _x( 'Zoom Meeting', 'Zoom Meeting', 'video-conferencing-with-zoom-api' ),
@@ -227,7 +227,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 			'parent_item_colon'  => __( 'Parent meetings:', 'video-conferencing-with-zoom-api' ),
 			'not_found'          => __( 'No meetings found.', 'video-conferencing-with-zoom-api' ),
 			'not_found_in_trash' => __( 'No meetings found in Trash.', 'video-conferencing-with-zoom-api' ),
-		);
+		) );
 
 		$args = array(
 			'labels'             => $labels,

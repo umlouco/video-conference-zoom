@@ -23,11 +23,13 @@ do_action( 'vczapi_before_main_archive_content' );
 		/**
 		 * BEFORE LOOP HOOK
 		 */
-        do_action( 'vczapi_before_main_content_post_loop' );
-        ?>
-        <div class="vczapi-list-zoom-meetings">
-            <div class="vczapi-list-zoom-meetings--items">
-				<?php if ( have_posts() ) {
+		do_action( 'vczapi_before_main_content_post_loop' );
+
+		if ( have_posts() ) {
+			?>
+            <div class="vczapi-list-zoom-meetings">
+                <div class="vczapi-list-zoom-meetings--items">
+					<?php
 					// Start the Loop.
 					while ( have_posts() ) {
 						the_post();
@@ -36,18 +38,22 @@ do_action( 'vczapi_before_main_archive_content' );
 
 						vczapi_get_template_part( 'content', 'meeting' );
 					}
-				} else {
-					echo "<p>" . __( 'No Meetings found.', 'video-conferencing-with-zoom-api' ) . "</p>";
-				}
-				?>
+					?>
+                </div>
             </div>
-        </div>
-		<?php
+            <div class="vczapi-pagination">
+				<?php echo paginate_links(); ?>
+            </div>
+			<?php
+		} else {
+			echo "<p>" . __( 'No Meetings found.', 'video-conferencing-with-zoom-api' ) . "</p>";
+		}
+
 		/**
 		 * AFTER LOOP HOOK
 		 */
-        do_action( 'vczapi_after_main_content_post_loop' );
-        ?>
+		do_action( 'vczapi_after_main_content_post_loop' );
+		?>
     </div>
 <?php
 /**

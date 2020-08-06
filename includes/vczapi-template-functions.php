@@ -481,12 +481,3 @@ function video_conference_zoom_before_post_loop() {
 		$GLOBALS['zoom']['terms'] = $set_terms;
 	}
 }
-
-/**
- * Filters
- */
-function video_conference_zoom_filters() {
-	wp_enqueue_script( 'video-conferencing-with-zoom-api-shortcode-js' );
-
-	vczapi_get_template( 'fragments/filters.php', true );
-}

@@ -140,4 +140,7 @@
 
 .vczapi-col-2, .vczapi-col-3, .vczapi-col-4, .vczapi-col-5, .vczapi-col-6, .vczapi-col-8, .vczapi-col-9, .vczapi-col-10, .vczapi-col-11, .vczapi-col-12 { position: relative; width: 100%; padding-right: 5px; padding-left: 5px; }
 
-@media (min-width: 768px) { .vczapi-col-4 { flex: 0 0 33.333333%; max-width: 33.333333%; } }
+.vczapi-form-control { padding: .75em; height: auto; border-width: 1px; border-style: solid; border-color: #eaeaea; border-radius: 2px; background: #fafafa; box-shadow: none; box-sizing: border-box; transition: all .2s linear; }
+
+@media (min-width: 768px) { .vczapi-col-4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
+  .vczapi-col-3 { flex: 0 0 25%; max-width: 25%; } }

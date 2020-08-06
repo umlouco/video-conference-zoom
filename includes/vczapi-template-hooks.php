@@ -25,7 +25,6 @@ add_action( 'vczoom_single_content_right', 'video_conference_zoom_meeting_end_au
 
 //Archive Content
 add_action( 'vczapi_main_content_post_loop', 'video_conference_zoom_before_post_loop', 10 );
-add_action( 'vczapi_before_main_content_post_loop', 'video_conference_zoom_filters', 10 );
 
 //single content
 add_action( 'vczoom_meeting_join_links', 'video_conference_zoom_meeting_join_link', 10 );

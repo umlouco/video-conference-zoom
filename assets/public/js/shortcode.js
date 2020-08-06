@@ -2,13 +2,8 @@
 
 (function ($) {
   var vczAPIListUserMeetings = {
-    init: function init($) {
+    init: function init() {
       this.cacheDOM();
-
-      if (this.$wrapper === undefined || this.$wrapper.length < 1) {
-        return false;
-      }
-
       this.defaultActions();
     },
     cacheDOM: function cacheDOM() {
@@ -24,7 +19,28 @@
       });
     }
   };
+  var vczAPIMeetingFilter = {
+    init: function init() {
+      this.cacheDOM();
+      this.evntHandlers();
+    },
+    cacheDOM: function cacheDOM() {
+      this.$taxonomyOrder = $('.vczapi-taxonomy-ordering');
+      this.$orderType = $('.vczapi-ordering');
+    },
+    evntHandlers: function evntHandlers() {
+      this.$taxonomyOrder.on('change', this.taxOrdering.bind(this));
+      this.$orderType.on('change', this.upcomingLatest.bind(this));
+    },
+    taxOrdering: function taxOrdering(e) {
+      $(e.currentTarget).closest('form').submit();
+    },
+    upcomingLatest: function upcomingLatest(e) {
+      $(e.currentTarget).closest('form').submit();
+    }
+  };
   $(function () {
+    vczAPIMeetingFilter.init();
     vczAPIListUserMeetings.init();
   });
 })(jQuery);
