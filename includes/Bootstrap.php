@@ -187,7 +187,8 @@ final class Bootstrap {
 			'jquery',
 			'video-conferencing-with-zoom-api-select2-js',
 			'video-conferencing-with-zoom-api-timepicker-js',
-			'video-conferencing-with-zoom-api-datable-js'
+			'video-conferencing-with-zoom-api-datable-js',
+			'underscore'
 		), ZVC_PLUGIN_VERSION, true );
 
 		wp_localize_script( 'video-conferencing-with-zoom-api-js', 'zvc_ajax', array(
