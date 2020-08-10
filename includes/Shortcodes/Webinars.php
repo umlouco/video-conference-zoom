@@ -245,11 +245,7 @@ class Webinars {
 		unset( $GLOBALS['zoom_meetings'] );
 		$GLOBALS['zoom_meetings'] = $zoom_meetings;
 		ob_start();
-		if ( $zoom_meetings->have_posts() ):
-			vczapi_get_template( 'shortcode-listing.php', true );
-		else:
-			_e( "No Webinars found.", "video-conferencing-with-zoom-api" );
-		endif;
+		vczapi_get_template( 'shortcode-listing.php', true );
 		$content .= ob_get_clean();
 
 		return $content;

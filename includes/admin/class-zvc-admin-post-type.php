@@ -168,9 +168,9 @@ class Zoom_Video_Conferencing_Admin_PostType {
 			case 'start_date' :
 				if ( ! empty( $meeting ) && ! empty( $meeting->code ) && ! empty( $meeting->message ) ) {
 					echo $meeting->message;
-				} else if ( ! empty( $meeting ) && ! empty( $meeting->type ) && $meeting->type === 2 && ! empty( $meeting->start_time ) ) {
+				} else if ( ! empty( $meeting ) && ! empty( $meeting->type ) && ( $meeting->type === 2 || $meeting->type === 5 ) && ! empty( $meeting->start_time ) ) {
 					echo vczapi_dateConverter( $meeting->start_time, $meeting->timezone, 'F j, Y, g:i a' );
-				} else if ( ! empty( $meeting ) && ( $meeting->type === 3 || $meeting->type === 8 ) ) {
+				} else if ( ! empty( $meeting ) && vczapi_pro_check_type( $meeting->type ) ) {
 					_e( 'Recurring Meeting', 'video-conferencing-with-zoom-api' );
 				} else {
 					_e( 'Meeting not created yet.', 'video-conferencing-with-zoom-api' );

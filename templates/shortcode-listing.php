@@ -30,12 +30,16 @@ if ( ! is_object( $zoom_meetings ) && ! ( $zoom_meetings instanceof \WP_Query ) 
 
     <div class="vczapi-list-zoom-meetings--items">
 		<?php
-		while ( $zoom_meetings->have_posts() ) {
-			$zoom_meetings->the_post();
+		if ( $zoom_meetings->have_posts() ) {
+			while ( $zoom_meetings->have_posts() ) {
+				$zoom_meetings->the_post();
 
-			do_action( 'vczapi_main_content_post_loop' );
+				do_action( 'vczapi_main_content_post_loop' );
 
-			vczapi_get_template_part( 'shortcode/zoom', 'listing' );
+				vczapi_get_template_part( 'shortcode/zoom', 'listing' );
+			}
+		} else {
+			_e( "No Meetings found.", "video-conferencing-with-zoom-api" );
 		}
 
 		wp_reset_postdata();

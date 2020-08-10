@@ -164,6 +164,9 @@ class Zoom_Video_Conferencing_Admin_Sync {
 			);
 
 			update_post_meta( $post_id, '_meeting_fields', $mtg_param );
+			$meeting_type = ! empty( $mtg_param['meeting_type'] ) && $mtg_param['meeting_type'] === 2 ? 'webinar' : 'meeting';
+			update_post_meta( $post_id, '_vczapi_meeting_type', $meeting_type );
+
 			try {
 				//converted saved time from the timezone provided for meeting to UTC timezone so meetings can be better queried
 				$savedDateTime     = new DateTime( $mtg_param['start_date'], new DateTimeZone( $mtg_param['timezone'] ) );
