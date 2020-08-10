@@ -35,7 +35,7 @@
         },
         upcomingLatest: function (e) {
             $(e.currentTarget).closest('form').submit();
-        }
+        },
     };
 
     $(function () {

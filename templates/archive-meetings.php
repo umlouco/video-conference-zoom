@@ -19,6 +19,10 @@ get_header();
 do_action( 'vczapi_before_main_archive_content' );
 ?>
     <div id="vczapi-primary" class="vczapi-primary container">
+
+        <header class="page-header">
+            <h1 class="page-title vczapi-archive-page-title"><?php _e( 'Meetings', 'video-conferencing-with-zoom-api' ); ?></h1>
+        </header><!-- .page-header -->
 		<?php
 		/**
 		 * BEFORE LOOP HOOK

@@ -108,11 +108,13 @@ function video_conference_zoom_meeting_join() {
 	}
 
 	if ( empty( $zoom['api']->state ) && video_conference_zoom_check_login() ) {
-		$data = array(
+		$post_id            = get_the_id();
+		$meeting_start_date = get_post_meta( $post_id, '_meeting_field_start_date_utc', true );
+		$data               = array(
 			'ajaxurl'    => admin_url( 'admin-ajax.php' ),
-			'start_date' => $zoom['start_date'],
+			'start_date' => $meeting_start_date,
 			'timezone'   => $zoom['timezone'],
-			'post_id'    => get_the_ID(),
+			'post_id'    => $post_id,
 			'page'       => 'single-meeting'
 		);
 		wp_localize_script( 'video-conferencing-with-zoom-api', 'mtg_data', $data );

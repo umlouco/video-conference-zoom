@@ -37,10 +37,8 @@ define( 'ZVC_PLUGIN_IMAGES_PATH', ZVC_PLUGIN_DIR_URL . 'assets/images' );
 define( 'ZVC_PLUGIN_LANGUAGE_PATH', trailingslashit( basename( ZVC_PLUGIN_DIR_PATH ) ) . 'languages/' );
 
 // the main plugin class
-if ( ! class_exists( 'Video_Conferencing_With_Zoom' ) ) {
-	require_once ZVC_PLUGIN_INCLUDES_PATH . '/class-zvc-init.php';
-}
+require_once ZVC_PLUGIN_INCLUDES_PATH . '/Bootstrap.php';
 
-add_action( 'plugins_loaded', array( 'Video_Conferencing_With_Zoom', 'instance' ), 99 );
-register_activation_hook( __FILE__, array( 'Video_Conferencing_With_Zoom', 'activate' ) );
-register_deactivation_hook( __FILE__, array( 'Video_Conferencing_With_Zoom', 'deactivate' ) );
+add_action( 'plugins_loaded', 'Codemanas\VczApi\Bootstrap::instance', 99 );
+register_activation_hook( __FILE__, 'Codemanas\VczApi\Bootstrap::activate' );
+register_deactivation_hook( __FILE__, 'Codemanas\VczApi\Bootstrap::deactivate' );

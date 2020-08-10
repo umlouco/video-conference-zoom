@@ -9,11 +9,14 @@
 global $vczapi;
 ?>
 <form class="vczapi-filters" method="GET">
-    <div class="vczapi-wrap vczapi-ptb">
+    <div class="vczapi-wrap vczapi-filters-wrapper">
+        <div class="vczapi-col-3">
+            <span>Showing all <?php echo $vczapi['found_posts']; ?> results</span>
+        </div>
 		<?php
 		if ( ! empty( $vczapi['terms'] ) ) {
 			?>
-            <div class="vczapi-col-4">
+            <div class="vczapi-col-3">
                 <select name="taxonomy" class="vczapi-taxonomy-ordering vczapi-form-control">
                     <option value="category_order"><?php _e( 'All Category', 'video-conferencing-with-zoom-api' ); ?></option>
 					<?php foreach ( $vczapi['terms'] as $term ) { ?>
@@ -24,14 +27,14 @@ global $vczapi;
 			<?php
 		}
 		?>
-        <div class="vczapi-col-4">
+        <div class="vczapi-col-3">
             <select name="orderby" class="vczapi-ordering vczapi-form-control">
                 <option value="show_all" <?php echo ! empty( $vczapi['query']['order'] ) ? selected( 'show_all', esc_attr( $vczapi['query']['order'] ), false ) : false; ?>><?php _e( 'Default Sorting', 'video-conferencing-with-zoom-api' ); ?></option>
-                <option value="latest" <?php echo ! empty( $vczapi['query']['order'] ) ? selected( 'latest', esc_attr( $vczapi['query']['order'] ), false ) : false; ?>><?php _e( 'Sort by Latest', 'video-conferencing-with-zoom-api' ); ?></option>
-                <option value="past" <?php echo ! empty( $vczapi['query']['order'] ) ? selected( 'past', esc_attr( $vczapi['query']['order'] ), false ) : false; ?>><?php _e( 'Sorty by Past', 'video-conferencing-with-zoom-api' ); ?></option>
+                <option value="latest" <?php echo ! empty( $vczapi['query']['order'] ) ? selected( 'latest', esc_attr( $vczapi['query']['order'] ), false ) : false; ?>><?php _e( 'Sort Descending', 'video-conferencing-with-zoom-api' ); ?></option>
+                <option value="past" <?php echo ! empty( $vczapi['query']['order'] ) ? selected( 'past', esc_attr( $vczapi['query']['order'] ), false ) : false; ?>><?php _e( 'Sort Ascending', 'video-conferencing-with-zoom-api' ); ?></option>
             </select>
         </div>
-        <div class="vczapi-col-4">
+        <div class="vczapi-col-3">
             <input type="text" placeholder="<?php _e( 'Search..', 'video-conferencing-with-zoom-api' ); ?>" class="vczapi-searching vczapi-form-control" value="<?php echo ! empty( $vczapi['query']['s'] ) ? esc_html( $vczapi['query']['s'] ) : ''; ?>" name="search">
         </div>
     </div>

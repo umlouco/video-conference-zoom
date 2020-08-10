@@ -1,6 +1,6 @@
 <?php
 
-namespace CodeManas\ZoomVideoConferencing\Elementor\Widgets;
+namespace CodeManas\VczApi\Elementor\Widgets;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 3.4.0
  */
-class Zoom_Video_Conferencing_Elementor_Meetings extends Widget_Base {
+class MeetingByID extends Widget_Base {
 
 	/**
 	 * Retrieve the widget name.

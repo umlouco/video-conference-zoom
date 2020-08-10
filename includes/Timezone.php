@@ -1,17 +1,19 @@
 <?php
-/**
- * Timezones AJAX handler
- *
- * @since   3.1.2
- * @author  Deepen
- */
+
+namespace Codemanas\VczApi;
 
 // If this file is called directly, abort.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class Zoom_Video_Conferencing_Timezone {
+/**
+ * Timezones AJAX handler
+ *
+ * @since   3.1.2
+ * @author  Deepen
+ */
+class Timezone {
 
 	public function __construct() {
 		add_action( 'wp_ajax_set_timezone', array( $this, 'set_timezone' ) );
@@ -21,23 +23,17 @@ class Zoom_Video_Conferencing_Timezone {
 	/**
 	 * See timezone and show links accordingly
 	 *
-	 * @throws Exception
+	 * @throws \Exception
 	 * @author Deepen Bajracharya
 	 * @since 3.1.2
 	 */
 	public function set_timezone() {
 		$user_timezone = filter_input( INPUT_POST, 'user_timezone' );
-		$mtg_timezone  = filter_input( INPUT_POST, 'mtg_timezone' );
 		$start_date    = filter_input( INPUT_POST, 'start_date' );
 		$type          = filter_input( INPUT_POST, 'type' );
 
-		$meeting_timezone_time = new DateTime( $start_date, new DateTimeZone( $mtg_timezone ) );
-		$meeting_timezone_time->setTimezone( new DateTimeZone( $user_timezone ) );
-		$user_meeting_time = strtotime( $meeting_timezone_time->format( 'Y-m-d H:i:s' ) );
-
-		$current_user_time = new DateTime( 'now', new DateTimeZone( $user_timezone ) );
-		$current_user_time = strtotime( $current_user_time->format( 'Y-m-d H:i:s' ) ) - 60 * 60; //1 hour
-
+		$user_meeting_time = vczapi_dateConverter( $start_date, $user_timezone, false );
+		$current_user_time = vczapi_dateConverter( 'now -1 hour', $user_timezone, false );
 		$show_defined_post = apply_filters( 'vczapi_show_join_links_specific_postID', array() );
 		$past_join_links   = get_option( 'zoom_past_join_links' );
 		$post_id           = absint( filter_input( INPUT_POST, 'post_id' ) );
@@ -100,4 +96,4 @@ class Zoom_Video_Conferencing_Timezone {
 
 }
 
-new Zoom_Video_Conferencing_Timezone();
+new Timezone();

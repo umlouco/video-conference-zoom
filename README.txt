@@ -177,6 +177,7 @@ Join our facebook group which we have created in order to stay up to date with u
 * Added: Email field when joining via browser.
 * Fixed: Webinar bulk delete.
 * Fix: Major bug fixes and code refactor.
+* Updated: Transitioning to PSR-4 Standard
 
 = 3.5.2 July 27th, 2020 =
 * Added: [zoom_recordings_by_meeting meeting_id="MEETING_ID" downloadable="yes"] which shows recordings based on meeting ID.

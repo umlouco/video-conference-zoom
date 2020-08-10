@@ -1,18 +1,19 @@
 <?php
+
+namespace Codemanas\VczApi;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	die( "Not Allowed Here !" ); // If this file is called directly, abort.
+}
+
 /**
  * Ready Main Class
  *
  * @since 2.1.0
- * @updated 3.0.0
+ * @updated 3.6.0
  * @author Deepen
  */
-
-// If this file is called directly, abort.
-if ( ! defined( 'ABSPATH' ) ) {
-	die( "Not Allowed Here !" );
-}
-
-final class Video_Conferencing_With_Zoom {
+final class Bootstrap {
 
 	private static $_instance = null;
 
@@ -36,6 +37,7 @@ final class Video_Conferencing_With_Zoom {
 	 * @author Deepen
 	 */
 	public function __construct() {
+		$this->autoloader();
 		$this->load_dependencies();
 		$this->init_api();
 
@@ -43,6 +45,10 @@ final class Video_Conferencing_With_Zoom {
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+	}
+
+	public function autoloader() {
+		require_once ZVC_PLUGIN_DIR_PATH . 'vendor/autoload.php';
 	}
 
 	/**
@@ -129,18 +135,18 @@ final class Video_Conferencing_With_Zoom {
 		require_once ZVC_PLUGIN_INCLUDES_PATH . '/admin/class-zvc-admin-sync.php';
 
 		//Timezone
-		require_once ZVC_PLUGIN_INCLUDES_PATH . '/class-zvc-timezone.php';
+		require_once ZVC_PLUGIN_INCLUDES_PATH . '/Timezone.php';
 
 		//Templates
-		require_once ZVC_PLUGIN_INCLUDES_PATH . '/vczapi-template-hooks.php';
-		require_once ZVC_PLUGIN_INCLUDES_PATH . '/vczapi-template-functions.php';
-		require_once ZVC_PLUGIN_INCLUDES_PATH . '/class-zvc-filters.php';
+		require_once ZVC_PLUGIN_INCLUDES_PATH . '/template-hooks.php';
+		require_once ZVC_PLUGIN_INCLUDES_PATH . '/template-functions.php';
+		require_once ZVC_PLUGIN_INCLUDES_PATH . '/Filters.php';
 
-		//Shortcodes
-		require_once ZVC_PLUGIN_INCLUDES_PATH . '/class-zvc-shortcodes.php';
+		//Shortcode
+		require_once ZVC_PLUGIN_INCLUDES_PATH . '/Shortcodes.php';
 
 		if ( did_action( 'elementor/loaded' ) ) {
-			require ZVC_PLUGIN_INCLUDES_PATH . '/elementor/class-zvc-elementor.php';
+			require ZVC_PLUGIN_INCLUDES_PATH . '/Elementor/Elementor.php';
 		}
 
 		//Idea was to implement gutenberg also but in its current state ! ughh !
@@ -213,7 +219,7 @@ final class Video_Conferencing_With_Zoom {
 	 */
 	public static function activate() {
 		require_once ZVC_PLUGIN_INCLUDES_PATH . '/admin/class-zvc-admin-post-type.php';
-		$post_type = new Zoom_Video_Conferencing_Admin_PostType();
+		$post_type = \Zoom_Video_Conferencing_Admin_PostType::get_instance();
 		$post_type->register();
 
 		self::install();

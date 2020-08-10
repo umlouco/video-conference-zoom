@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Meeting Post Type Controller
  *
@@ -6,8 +7,26 @@
  * @author     Deepen.
  * @created_on 11/18/19
  */
-
 class Zoom_Video_Conferencing_Admin_PostType {
+
+	/**
+	 * Instance
+	 * @var null
+	 */
+	private static $_instance = null;
+
+	/**
+	 * Create only one instance so that it may not Repeat
+	 *
+	 * @since 2.0.0
+	 */
+	public static function get_instance() {
+		if ( is_null( self::$_instance ) ) {
+			self::$_instance = new self();
+		}
+
+		return self::$_instance;
+	}
 
 	/**
 	 * Post Type Flag
@@ -16,7 +35,16 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	 */
 	private $post_type = 'zoom-meetings';
 
+	/**
+	 * Hold API KEY
+	 * @var mixed|void
+	 */
 	private $api_key;
+
+	/**
+	 * HOLD API SECRET KEY
+	 * @var mixed|void
+	 */
 	private $api_secret;
 
 	/**
@@ -409,7 +437,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	 * Handles saving the meta box.
 	 *
 	 * @param int $post_id Post ID.
-	 * @param WP_Post $post Post object.
+	 * @param \WP_Post $post Post object.
 	 */
 	public function save_metabox( $post_id, $post ) {
 		// Add nonce for security and authentication.
@@ -473,6 +501,8 @@ class Zoom_Video_Conferencing_Admin_PostType {
 		//Update Post Meta Values
 		update_post_meta( $post_id, '_meeting_fields', $create_meeting_arr );
 		update_post_meta( $post_id, '_meeting_field_start_date', $create_meeting_arr['start_date'] );
+		$meeting_type = ! empty( $create_meeting_arr['meeting_type'] ) && $create_meeting_arr['meeting_type'] === 2 ? 'webinar' : 'meeting';
+		update_post_meta( $post_id, '_vczapi_meeting_type', $meeting_type );
 
 		try {
 			//converted saved time from the timezone provided for meeting to UTC timezone so meetings can be better queried
@@ -737,4 +767,4 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	}
 }
 
-new Zoom_Video_Conferencing_Admin_PostType();
+Zoom_Video_Conferencing_Admin_PostType::get_instance();

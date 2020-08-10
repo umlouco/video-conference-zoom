@@ -1,20 +1,22 @@
 <?php
-/**
- * Filters Controller
- *
- * @since   3.6.0
- * @author  Deepen Bajracharya
- */
+
+namespace Codemanas\VczApi;
 
 // If this file is called directly, abort.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class Zoom_Video_Conferencing_Filters {
+/**
+ * Filters Controller
+ *
+ * @since   3.6.0
+ * @author  Deepen Bajracharya
+ */
+class Filters {
 
 	/**
-	 * Instance property
+	 * Instance
 	 * @var null
 	 */
 	private static $_instance = null;
@@ -24,7 +26,7 @@ class Zoom_Video_Conferencing_Filters {
 	 *
 	 * @since 2.0.0
 	 */
-	public static function instance() {
+	public static function get_instance() {
 		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self();
 		}
@@ -44,13 +46,35 @@ class Zoom_Video_Conferencing_Filters {
 	 */
 	public function __construct() {
 		add_action( 'vczapi_before_main_content_post_loop', [ $this, 'filters' ], 10 );
+		add_action( 'vczapi_before_shortcode_content_post_loop', [ $this, 'shortcode_filter' ] );
 		add_action( 'pre_get_posts', [ $this, 'filter_meetings' ] );
+	}
+
+	/**
+	 * Shorcode Filter hook
+	 *
+	 * @param $query
+	 */
+	public function shortcode_filter( $query ) {
+		if ( ! empty( $query->query ) && ! empty( $query->query['caller'] ) && $query->query['caller'] === "vczapi" ) {
+			$this->show_filters_html( $query );
+		}
 	}
 
 	/**
 	 * Filters
 	 */
 	public function filters() {
+		global $wp_query;
+		$this->show_filters_html( $wp_query );
+	}
+
+	/**
+	 * Render HTML filter VIEW CONTENTS
+	 *
+	 * @param $query
+	 */
+	public function show_filters_html( $query ) {
 		wp_enqueue_script( 'video-conferencing-with-zoom-api-shortcode-js' );
 
 		unset( $GLOBALS['vczapi'] );
@@ -70,13 +94,15 @@ class Zoom_Video_Conferencing_Filters {
 			$GLOBALS['vczapi']['query'] = $query_strings;
 		}
 
+		$GLOBALS['vczapi']['found_posts'] = $query->found_posts;
+
 		vczapi_get_template( 'fragments/filters.php', true );
 	}
 
 	/**
 	 * Filter meetings based on search pattern
 	 *
-	 * @param $query WP_Query
+	 * @param $query \WP_Query
 	 *
 	 * @return mixed
 	 */
@@ -160,4 +186,4 @@ class Zoom_Video_Conferencing_Filters {
 	}
 }
 
-Zoom_Video_Conferencing_Filters::instance();
+new Filters();

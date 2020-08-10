@@ -1,10 +1,8 @@
 <?php
 
-namespace CodeManas\ZoomVideoConferencing\Elementor\Widgets;
+namespace CodeManas\VczApi\Elementor\Widgets;
 
 use Elementor\Widget_Base;
-use Elementor\Controls_Manager;
-use Elementor\Base_Control;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -18,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 3.4.0
  * @author CodeManas
  */
-class Zoom_Video_Conferencing_ElementorMeetingsList extends Widget_Base {
+class WebinarList extends Widget_Base {
 
 	/**
 	 * Retrieve the widget name.
@@ -31,7 +29,7 @@ class Zoom_Video_Conferencing_ElementorMeetingsList extends Widget_Base {
 	 *
 	 */
 	public function get_name() {
-		return 'vczapi_meetings_list';
+		return 'vczapi_webinars_list';
 	}
 
 	/**
@@ -45,7 +43,7 @@ class Zoom_Video_Conferencing_ElementorMeetingsList extends Widget_Base {
 	 *
 	 */
 	public function get_title() {
-		return __( 'Zoom Meetings List', 'video-conferencing-with-zoom-api' );
+		return __( 'Zoom Webinars List', 'video-conferencing-with-zoom-api' );
 	}
 
 	/**
@@ -94,7 +92,7 @@ class Zoom_Video_Conferencing_ElementorMeetingsList extends Widget_Base {
 			'category',
 			[
 				'name'        => 'category',
-				'label'       => __( 'Meetings Category', 'video-conferencing-with-zoom-api' ),
+				'label'       => __( 'Webinars Category', 'video-conferencing-with-zoom-api' ),
 				'type'        => \Elementor\Controls_Manager::SELECT2,
 				'label_block' => true,
 				'multiple'    => true,
@@ -107,7 +105,7 @@ class Zoom_Video_Conferencing_ElementorMeetingsList extends Widget_Base {
 			'order',
 			[
 				'name'        => 'order',
-				'label'       => __( 'Meetings Order By', 'video-conferencing-with-zoom-api' ),
+				'label'       => __( 'Webinars Order By', 'video-conferencing-with-zoom-api' ),
 				'type'        => \Elementor\Controls_Manager::SELECT,
 				'label_block' => true,
 				'options'     => [
@@ -122,7 +120,7 @@ class Zoom_Video_Conferencing_ElementorMeetingsList extends Widget_Base {
 			'type',
 			[
 				'name'        => 'type',
-				'label'       => __( 'Meetings Type', 'video-conferencing-with-zoom-api' ),
+				'label'       => __( 'Webinars Type', 'video-conferencing-with-zoom-api' ),
 				'type'        => \Elementor\Controls_Manager::SELECT,
 				'label_block' => true,
 				'options'     => [
@@ -135,10 +133,25 @@ class Zoom_Video_Conferencing_ElementorMeetingsList extends Widget_Base {
 		);
 
 		$this->add_control(
+			'filter',
+			[
+				'name'        => 'filter',
+				'label'       => __( 'Show Filter', 'video-conferencing-with-zoom-api' ),
+				'type'        => \Elementor\Controls_Manager::SELECT,
+				'label_block' => true,
+				'options'     => [
+					'yes' => 'Yes',
+					'no'  => 'No'
+				],
+				'default'     => 'no'
+			]
+		);
+
+		$this->add_control(
 			'count',
 			[
 				'name'        => 'count',
-				'label'       => __( 'Count of meetings', 'video-conferencing-with-zoom-api' ),
+				'label'       => __( 'Count of Webinars', 'video-conferencing-with-zoom-api' ),
 				'type'        => \Elementor\Controls_Manager::NUMBER,
 				'label_block' => true,
 				'default'     => 3
@@ -187,8 +200,9 @@ class Zoom_Video_Conferencing_ElementorMeetingsList extends Widget_Base {
 		$category = ! empty( $settings['category'] ) ? implode( ',', $settings['category'] ) : '';
 		$type     = ! empty( $settings['type'] ) ? $settings['type'] : '';
 		$order    = ! empty( $settings['order'] ) ? $settings['order'] : 'DESC';
+		$filter   = ! empty( $settings['filter'] ) ? $settings['filter'] : 'no';
 
-		echo do_shortcode( '[zoom_list_meetings per_page="' . esc_attr( $count ) . '" category="' . esc_attr( $category ) . '" order="' . esc_attr( $order ) . '" type="' . esc_attr( $type ) . '"]' );
+		echo do_shortcode( '[zoom_list_webinars filter="' . esc_attr( $filter ) . '" per_page="' . esc_attr( $count ) . '" category="' . esc_attr( $category ) . '" order="' . esc_attr( $order ) . '" type="' . esc_attr( $type ) . '"]' );
 	}
 
 	/**

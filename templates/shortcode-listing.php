@@ -25,7 +25,7 @@ if ( ! is_object( $zoom_meetings ) && ! ( $zoom_meetings instanceof \WP_Query ) 
 	/**
 	 * BEFORE LOOP HOOK
 	 */
-	do_action( 'vczapi_before_main_content_post_loop' );
+	do_action( 'vczapi_before_shortcode_content_post_loop', $zoom_meetings );
 	?>
 
     <div class="vczapi-list-zoom-meetings--items">
@@ -46,11 +46,11 @@ if ( ! is_object( $zoom_meetings ) && ! ( $zoom_meetings instanceof \WP_Query ) 
 	/**
 	 * AFTER LOOP HOOK
 	 */
-	do_action( 'vczapi_after_main_content_post_loop' );
+	do_action( 'vczapi_after_shortcode_content_post_loop' );
 	?>
 
     <div class="vczapi-list-zoom-meetings--pagination">
-		<?php Zoom_Video_Conferencing_Shorcodes::pagination( $zoom_meetings ); ?>
+		<?php \Codemanas\VczApi\Shortcodes\Helpers::pagination( $zoom_meetings ); ?>
     </div>
 
 	<?php do_action( 'vczapi_after_main_content_post_loop_pagination' ); ?>
