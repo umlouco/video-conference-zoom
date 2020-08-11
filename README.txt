@@ -171,7 +171,7 @@ Join our facebook group which we have created in order to stay up to date with u
 
 == Changelog ==
 
-= 3.6.0 August 3rd, 2020 =
+= 3.6.0 August 11th, 2020 =
 * Added: Webinar post type module.
 * Added: Meetings importer.
 * Updated: Translations
