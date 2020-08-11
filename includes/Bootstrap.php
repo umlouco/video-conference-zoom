@@ -30,6 +30,8 @@ final class Bootstrap {
 		return self::$_instance;
 	}
 
+	private $plugin_version = ZVC_PLUGIN_VERSION;
+
 	/**
 	 * Constructor method for loading the components
 	 *
@@ -72,19 +74,19 @@ final class Bootstrap {
 	 */
 	function enqueue_scripts() {
 		$minified = SCRIPT_DEBUG ? '' : '.min';
-		wp_register_style( 'video-conferencing-with-zoom-api', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/css/style' . $minified . '.css', false, ZVC_PLUGIN_VERSION );
+		wp_register_style( 'video-conferencing-with-zoom-api', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/css/style' . $minified . '.css', false, $this->plugin_version );
 		//Enqueue MomentJS
-		wp_register_script( 'video-conferencing-with-zoom-api-moment', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/moment/moment.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
+		wp_register_script( 'video-conferencing-with-zoom-api-moment', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/moment/moment.min.js', array( 'jquery' ), $this->plugin_version, true );
 		wp_register_script( 'video-conferencing-with-zoom-api-moment-locales', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/moment/moment-with-locales.min.js', array(
 			'jquery',
 			'video-conferencing-with-zoom-api-moment'
-		), ZVC_PLUGIN_VERSION, true );
+		), $this->plugin_version, true );
 		//Enqueue MomentJS Timezone
-		wp_register_script( 'video-conferencing-with-zoom-api-moment-timezone', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/moment-timezone/moment-timezone-with-data-10-year-range.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
+		wp_register_script( 'video-conferencing-with-zoom-api-moment-timezone', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/moment-timezone/moment-timezone-with-data-10-year-range.min.js', array( 'jquery' ), $this->plugin_version, true );
 		wp_register_script( 'video-conferencing-with-zoom-api', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/js/public' . $minified . '.js', array(
 			'jquery',
 			'video-conferencing-with-zoom-api-moment'
-		), ZVC_PLUGIN_VERSION, true );
+		), $this->plugin_version, true );
 		if ( is_singular( 'zoom-meetings' ) ) {
 			wp_enqueue_style( 'video-conferencing-with-zoom-api' );
 			wp_enqueue_script( 'video-conferencing-with-zoom-api-moment' );
@@ -168,28 +170,28 @@ final class Bootstrap {
 
 		//Vendors
 		if ( $hook === $pg . "video-conferencing-addons" || $hook === $pg . "video-conferencing-reports" || $hook === $pg . "video-conferencing-recordings" || $hook === $pg . "video-conferencing-list-users" || $hook === $pg . "video-conferencing" || $hook === $pg . "video-conferencing-add-meeting" || $hook === $pg . "video-conferencing-webinars" || $hook === $pg . "video-conferencing-webinars-add" || $screen->id === "zoom-meetings" || $hook === $pg . "video-conferencing-host-id-assign" || $hook === $pg . "video-conferencing-sync" ) {
-			wp_enqueue_style( 'video-conferencing-with-zoom-api-timepicker', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/dtimepicker/jquery.datetimepicker.min.css', false, ZVC_PLUGIN_VERSION );
-			wp_enqueue_style( 'video-conferencing-with-zoom-api-select2', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/select2/css/select2.min.css', false, ZVC_PLUGIN_VERSION );
-			wp_enqueue_style( 'video-conferencing-with-zoom-api-datable', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/datatable/jquery.dataTables.min.css', false, ZVC_PLUGIN_VERSION );
+			wp_enqueue_style( 'video-conferencing-with-zoom-api-timepicker', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/dtimepicker/jquery.datetimepicker.min.css', false, $this->plugin_version );
+			wp_enqueue_style( 'video-conferencing-with-zoom-api-select2', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/select2/css/select2.min.css', false, $this->plugin_version );
+			wp_enqueue_style( 'video-conferencing-with-zoom-api-datable', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/datatable/jquery.dataTables.min.css', false, $this->plugin_version );
 		}
 
-		wp_register_script( 'video-conferencing-with-zoom-api-select2-js', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/select2/js/select2.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
-		wp_register_script( 'video-conferencing-with-zoom-api-timepicker-js', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/dtimepicker/jquery.datetimepicker.full.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
-		wp_register_script( 'video-conferencing-with-zoom-api-datable-js', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/datatable/jquery.dataTables.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
+		wp_register_script( 'video-conferencing-with-zoom-api-select2-js', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/select2/js/select2.min.js', array( 'jquery' ), $this->plugin_version, true );
+		wp_register_script( 'video-conferencing-with-zoom-api-timepicker-js', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/dtimepicker/jquery.datetimepicker.full.js', array( 'jquery' ), $this->plugin_version, true );
+		wp_register_script( 'video-conferencing-with-zoom-api-datable-js', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/datatable/jquery.dataTables.min.js', array( 'jquery' ), $this->plugin_version, true );
 
 		if ( $hook === $pg . "video-conferencing-reports" ) {
 			wp_enqueue_style( 'jquery-ui-datepicker-zvc', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css' );
 		}
 
 		//Plugin Scripts
-		wp_enqueue_style( 'video-conferencing-with-zoom-api', ZVC_PLUGIN_ADMIN_ASSETS_URL . '/css/style.min.css', false, ZVC_PLUGIN_VERSION );
+		wp_enqueue_style( 'video-conferencing-with-zoom-api', ZVC_PLUGIN_ADMIN_ASSETS_URL . '/css/style.min.css', false, $this->plugin_version );
 		wp_register_script( 'video-conferencing-with-zoom-api-js', ZVC_PLUGIN_ADMIN_ASSETS_URL . '/js/script.min.js', array(
 			'jquery',
 			'video-conferencing-with-zoom-api-select2-js',
 			'video-conferencing-with-zoom-api-timepicker-js',
 			'video-conferencing-with-zoom-api-datable-js',
 			'underscore'
-		), ZVC_PLUGIN_VERSION, true );
+		), $this->plugin_version, true );
 
 		wp_localize_script( 'video-conferencing-with-zoom-api-js', 'zvc_ajax', array(
 			'ajaxurl'      => admin_url( 'admin-ajax.php' ),
@@ -223,25 +225,13 @@ final class Bootstrap {
 		$post_type = \Zoom_Video_Conferencing_Admin_PostType::get_instance();
 		$post_type->register();
 
-		self::install();
+		//Flush Permalinks
 		flush_rewrite_rules();
 	}
 
-	public static function install() {
-		global $wp_version;
-		$min_wp_version = 4.8;
-		$exit_msg       = sprintf( __( '%s requires %s or newer.' ), "Video Conferencing with Zoom API", $min_wp_version );
-		if ( version_compare( $wp_version, $min_wp_version, '<' ) ) {
-			exit( $exit_msg );
-		}
-
-		//Comparing Version
-		if ( version_compare( PHP_VERSION, 5.6, "<" ) ) {
-			$exit_msg = '<div class="error"><h3>' . __( 'Warning! It is not possible to activate this plugin as it requires above PHP 5.4 and on this server the PHP version installed is: ' ) . '<b>' . PHP_VERSION . '</b></h3><p>' . __( 'For security reasons we <b>suggest</b> that you contact your hosting provider and ask to update your PHP to latest stable version.' ) . '</p><p>' . __( 'If they refuse for whatever reason we suggest you to <b>change provider as soon as possible</b>.' ) . '</p></div>';
-			exit( $exit_msg );
-		}
-	}
-
+	/**
+	 * Deactivating the plugin
+	 */
 	public static function deactivate() {
 		flush_rewrite_rules();
 	}

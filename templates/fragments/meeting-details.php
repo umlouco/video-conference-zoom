@@ -22,7 +22,7 @@ if ( ! vczapi_pro_version_active() && vczapi_pro_check_type( $zoom['api']->type 
     <div class="dpn-zvc-sidebar-content">
         <div class="dpn-zvc-sidebar-content-list">
             <span><strong><?php _e( 'Hosted By', 'video-conferencing-with-zoom-api' ); ?>:</strong></span>
-            <span><?php echo ! empty( $zoom['user'] ) && ! empty( $zoom['user']->first_name ) ? $zoom['user']->first_name . ' ' . $zoom['user']->last_name : get_the_author(); ?></span>
+            <span><?php echo esc_html( $zoom['host_name'] ); ?></span>
         </div>
 		<?php if ( ! empty( $zoom['api']->start_time ) ) { ?>
             <div class="dpn-zvc-sidebar-content-list">

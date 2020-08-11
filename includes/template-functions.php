@@ -1,6 +1,6 @@
 <?php
 /**
- * @author Deepen.
+ * @author     Deepen.
  * @created_on 11/20/19
  */
 
@@ -11,8 +11,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Function to check if a user is logged in or not
+ *
  * @author Deepen
- * @since 3.0.0
+ * @since  3.0.0
  */
 function video_conference_zoom_check_login() {
 	global $zoom;
@@ -29,8 +30,9 @@ function video_conference_zoom_check_login() {
 
 /**
  * Function to view featured image on the post
+ *
  * @author Deepen
- * @since 3.0.0
+ * @since  3.0.0
  */
 function video_conference_zoom_featured_image() {
 	vczapi_get_template( 'fragments/image.php', true );
@@ -38,8 +40,9 @@ function video_conference_zoom_featured_image() {
 
 /**
  * Function to view main content i.e title and main content
+ *
  * @author Deepen
- * @since 3.0.0
+ * @since  3.0.0
  */
 function video_conference_zoom_main_content() {
 	vczapi_get_template( 'fragments/content.php', true );
@@ -47,8 +50,9 @@ function video_conference_zoom_main_content() {
 
 /**
  * Function to add in the counter
+ *
  * @author Deepen
- * @since 3.0.0
+ * @since  3.0.0
  */
 function video_conference_zoom_countdown_timer() {
 	vczapi_get_template( 'fragments/countdown-timer.php', true );
@@ -56,8 +60,9 @@ function video_conference_zoom_countdown_timer() {
 
 /**
  * Function to show meeting details
+ *
  * @author Deepen
- * @since 3.0.0
+ * @since  3.0.0
  */
 function video_conference_zoom_meeting_details() {
 	vczapi_get_template( 'fragments/meeting-details.php', true );
@@ -98,7 +103,7 @@ function video_conference_zoom_meeting_end_author() {
  * Function to show meeting join links
  *
  * @author Deepen
- * @since 3.0.0
+ * @since  3.0.0
  */
 function video_conference_zoom_meeting_join() {
 	global $zoom;
@@ -128,7 +133,7 @@ function video_conference_zoom_meeting_join() {
  *
  * @param $zoom_meeting
  *
- * @since 3.0.0
+ * @since  3.0.0
  *
  * @author Deepen
  */
@@ -160,7 +165,7 @@ function video_conference_zoom_meeting_join_link( $zoom_meeting ) {
  * @param $zoom_webinars
  *
  * @throws Exception
- * @since 3.4.0
+ * @since  3.4.0
  *
  * @author Deepen
  */
@@ -216,7 +221,7 @@ function video_conference_zoom_shortcode_join_link_webinar( $zoom_webinars ) {
  * @param $zoom_meetings
  *
  * @throws Exception
- * @since 3.0.0
+ * @since  3.0.0
  *
  * @author Deepen
  */
@@ -273,7 +278,7 @@ if ( ! function_exists( 'video_conference_zoom_shortcode_table' ) ) {
 	 * @param $zoom_meetings
 	 *
 	 * @throws Exception
-	 * @since 3.0.0
+	 * @since  3.0.0
 	 *
 	 * @author Deepen
 	 */
@@ -464,14 +469,15 @@ function video_conference_zoom_after_jbh_html() {
  */
 function video_conference_zoom_before_post_loop() {
 	unset( $GLOBALS['zoom'] );
-
+	$post_id               = get_the_id();
 	$show_zoom_author_name = get_option( 'zoom_show_author' );
-	$GLOBALS['zoom']       = get_post_meta( get_the_id(), '_meeting_fields', true ); //For Backwards Compatibility ( Will be removed someday )
-	$meeting_details       = get_post_meta( get_the_id(), '_meeting_zoom_details', true );
+	$GLOBALS['zoom']       = get_post_meta( $post_id, '_meeting_fields', true ); //For Backwards Compatibility ( Will be removed someday )
+	$meeting_details       = get_post_meta( $post_id, '_meeting_zoom_details', true );
+	$meeting_author        = get_the_author();
 	if ( ! empty( $show_zoom_author_name ) ) {
-		$zoom_user               = json_decode( zoom_conference()->getUserInfo( $meeting_details->host_id ) );
-		$GLOBALS['zoom']['user'] = ! empty( $zoom_user ) ? $zoom_user : false;
+		$meeting_author = vczapi_get_meeting_author( $post_id, $meeting_details, $meeting_author );
 	}
+	$GLOBALS['zoom']['host_name'] = $meeting_author;
 
 	$GLOBALS['zoom']['api'] = $meeting_details;
 	$terms                  = get_the_terms( get_the_id(), 'zoom-meeting' );
