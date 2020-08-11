@@ -469,13 +469,13 @@ function video_conference_zoom_after_jbh_html() {
  */
 function video_conference_zoom_before_post_loop() {
 	unset( $GLOBALS['zoom'] );
-    $post_id = get_the_id();
+	$post_id               = get_the_id();
 	$show_zoom_author_name = get_option( 'zoom_show_author' );
 	$GLOBALS['zoom']       = get_post_meta( $post_id, '_meeting_fields', true ); //For Backwards Compatibility ( Will be removed someday )
 	$meeting_details       = get_post_meta( $post_id, '_meeting_zoom_details', true );
-	$meeting_author = get_the_author();
+	$meeting_author        = get_the_author();
 	if ( ! empty( $show_zoom_author_name ) ) {
-		$meeting_author = vczapi_get_meeting_author($post_id,$meeting_details,$meeting_author);
+		$meeting_author = vczapi_get_meeting_author( $post_id, $meeting_details, $meeting_author );
 	}
 	$GLOBALS['zoom']['host_name'] = $meeting_author;
 

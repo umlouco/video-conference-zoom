@@ -693,6 +693,15 @@ function vczapi_pro_check_type( $type ) {
 	return false;
 }
 
+/**
+ * Get Author details for the meeting
+ *
+ * @param $post_id
+ * @param bool $meeting_details
+ * @param bool $wp_author
+ *
+ * @return bool|string
+ */
 function vczapi_get_meeting_author( $post_id, $meeting_details = false, $wp_author = false ) {
 	$users = video_conferencing_zoom_api_get_user_transients();
 
@@ -713,7 +722,6 @@ function vczapi_get_meeting_author( $post_id, $meeting_details = false, $wp_auth
 	}
 
 	$meeting_author = $wp_author;
-
 	foreach ( $users as $user ) {
 		if ( $user->id == $meeting_details->host_id ) {
 			$name           = $user->first_name . ' ' . $user->last_name;
