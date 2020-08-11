@@ -19,7 +19,11 @@ if ( ! defined( 'ABSPATH' ) ) {
             </div>
             <div class="zoom-api-basic-usage" style="margin-top: 20px;border-top:1px solid #ccc;">
                 <h4>2. <?php _e( 'Listing Zoom Meetings', 'video-conferencing-with-zoom-api' ); ?>:</h4>
-                <code>[zoom_list_meetings per_page="5" category="test,test2,test3" order="ASC" type="upcoming"]</code>
+                <code>[zoom_list_meetings per_page="5" category="test,test2,test3" order="ASC" type="upcoming" filter="no"]</code>
+            </div>
+            <div class="zoom-api-basic-usage" style="margin-top: 20px;border-top:1px solid #ccc;">
+                <h4>2. <?php _e( 'Listing Zoom Webinars', 'video-conferencing-with-zoom-api' ); ?>:</h4>
+                <code>[zoom_list_webinars per_page="5" category="test,test2,test3" order="ASC" type="upcoming" filter="no"]</code>
             </div>
             <div class="zoom-api-basic-usage" style="margin-top: 20px;border-top:1px solid #ccc;">
                 <h4>3. <?php _e( 'List Host ID', 'video-conferencing-with-zoom-api' ); ?>:</h4>

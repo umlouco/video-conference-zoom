@@ -94,7 +94,9 @@ As an extension of the Zoom browser client, this SDK is intended for implementat
 
 * [zoom_api_webinar webinar_id="YOUR_WEBINAR_ID" link_only="no"] - Show webinar details based on webinar ID.
 
-* [zoom_list_meetings per_page="5" category="test,test2,test3" order="DESC"] - Show list of meetings in frontend via category, Edit shortcode template for table view.
+* [zoom_list_meetings per_page="5" category="test,test2,test3" order="DESC" filter="no"] - Show list of meetings in frontend via category, Edit shortcode template for table view.
+
+* [zoom_list_webinars per_page="5" category="test,test2,test3" order="DESC" filter="no"] - Show list of webinars in frontend via category, Edit shortcode template for table view.
 
 * [zoom_list_host_meetings host="your_host_id"] - Show list of meetings in frontend for specific HOST ID.
 
