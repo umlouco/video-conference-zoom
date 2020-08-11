@@ -20,8 +20,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Shortcodes {
 
 	/**
-     * Shortcodes container
-     *
+	 * Shortcodes container
+	 *
 	 * @var array
 	 */
 	private $shortcodes;
@@ -71,7 +71,6 @@ class Shortcodes {
 	public function enqueue_scripts() {
 		$minified = SCRIPT_DEBUG ? '' : '.min';
 		wp_enqueue_style( 'video-conferencing-with-zoom-api' );
-		wp_register_script( 'video-conferncing-with-zoom-browser-js', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/js/join-via-browser' . $minified . '.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
 		wp_register_style( 'video-conferencing-with-zoom-api-datable', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/datatable/jquery.dataTables.min.css', false, ZVC_PLUGIN_VERSION );
 		wp_register_style( 'video-conferencing-with-zoom-api-datable-responsive', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/datatable-responsive/responsive.dataTables.min.css', false, ZVC_PLUGIN_VERSION );
 		wp_register_script( 'video-conferencing-with-zoom-api-datable-js', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/datatable/jquery.dataTables.min.js', [ 'jquery' ], ZVC_PLUGIN_VERSION, true );
@@ -83,6 +82,7 @@ class Shortcodes {
 			'jquery',
 			'video-conferencing-with-zoom-api-datable-js'
 		], ZVC_PLUGIN_VERSION, true );
+		wp_register_script( 'video-conferncing-with-zoom-browser-js', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/js/join-via-browser' . $minified . '.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
 		wp_register_script( 'video-conferencing-with-zoom-api-shortcode-js', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/js/shortcode' . $minified . '.js', [
 			'jquery',
 			'video-conferencing-with-zoom-api-datable-js'
