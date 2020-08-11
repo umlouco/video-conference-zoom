@@ -27,7 +27,7 @@ if ( ! vczapi_pro_version_active() && ( $zoom['api']->type === 8 || $zoom['api']
         <h3><?php the_title(); ?></h3>
         <div class="vczapi-list-zoom-meetings--item__details__meta">
             <div class="hosted-by meta">
-                <strong><?php _e( 'Hosted By:', 'video-conferencing-with-zoom-api' ); ?></strong> <span><?php echo get_the_author(); ?></span>
+                <strong><?php _e( 'Hosted By:', 'video-conferencing-with-zoom-api' ); ?></strong> <span><?php echo apply_filters('vczapi_host_name',$zoom['host_name']); ?></span>
             </div>
 			<?php
 			if ( vczapi_pro_version_active() && ( $zoom['api']->type === 8 || $zoom['api']->type === 3 ) ) {
