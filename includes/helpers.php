@@ -341,7 +341,7 @@ function video_conferencing_zoom_api_show_api_notice() {
 /**
  * Get the template
  *
- * @param $template_name
+ * @param      $template_name
  * @param bool $load
  * @param bool $require_once
  *
@@ -373,7 +373,7 @@ function vczapi_get_template( $template_name, $load = false, $require_once = tru
 /**
  * Get Template Parts
  *
- * @param $slug
+ * @param        $slug
  * @param string $name
  *
  * @since  3.0.0
@@ -425,10 +425,10 @@ function vczapi_check_author( $post_id ) {
 /**
  * Calculate Time based on Timezone
  *
- * @param $start_time
- * @param $tz
+ * @param        $start_time
+ * @param        $tz
  * @param string $format
- * @param bool $defaults
+ * @param bool   $defaults
  *
  * @return DateTime|string
  * @author Deepen
@@ -538,8 +538,8 @@ if ( ! function_exists( 'vczapi_get_browser_agent_type' ) ) {
 /**
  * Get Browser join links
  *
- * @param $post_id
- * @param $meeting_id
+ * @param      $post_id
+ * @param      $meeting_id
  * @param bool $password
  *
  * @return string
@@ -563,9 +563,9 @@ function vczapi_get_browser_join_links( $post_id, $meeting_id, $password = false
 /**
  * Join via Shortcode
  *
- * @param $meeting_id
+ * @param      $meeting_id
  * @param bool $password
- * @param $link_only
+ * @param      $link_only
  *
  * @return string
  */
@@ -623,7 +623,7 @@ function vczapi_get_pwd_embedded_join_link( $join_url, $encrpyted_pwd ) {
  * @param $bytes
  *
  * @return string
- * @since 3.5.0
+ * @since  3.5.0
  * @author Deepen
  */
 function vczapi_filesize_converter( $bytes ) {
@@ -647,10 +647,10 @@ function vczapi_filesize_converter( $bytes ) {
 /**
  * Zoom API Paginator Script Helper
  *
- * @param $response
+ * @param        $response
  * @param string $type
  *
- * @since 3.5.0
+ * @since  3.5.0
  * @author Deepen
  */
 function vczapi_zoom_api_paginator( $response, $type = '' ) {
@@ -680,10 +680,10 @@ function vczapi_pro_version_active() {
  *
  * @param $type
  *
- * @author Deepen
+ * @return bool
  * @since  3.6.0
  *
- * @return bool
+ * @author Deepen
  */
 function vczapi_pro_check_type( $type ) {
 	if ( ! empty( $type ) && ( $type === 8 || $type === 3 || $type === 6 || $type === 9 ) ) {
@@ -691,4 +691,36 @@ function vczapi_pro_check_type( $type ) {
 	}
 
 	return false;
+}
+
+function vczapi_get_meeting_author( $post_id, $meeting_details = false, $wp_author = false ) {
+	$users = video_conferencing_zoom_api_get_user_transients();
+
+	if ( empty( $post_id ) ) {
+		return $wp_author;
+	}
+
+	if ( empty( $users ) ) {
+		return $wp_author;
+	}
+
+	if ( empty( $meeting_details ) ) {
+		$meeting_details = get_post_meta( $post_id, '_meeting_zoom_details', true );
+	}
+
+	if ( ! is_object( $meeting_details ) ) {
+		return $wp_author;
+	}
+
+	$meeting_author = $wp_author;
+
+	foreach ( $users as $user ) {
+		if ( $user->id == $meeting_details->host_id ) {
+			$name           = $user->first_name . ' ' . $user->last_name;
+			$meeting_author = ! empty( $name ) ? $name : $wp_author;
+			break;
+		}
+	}
+
+	return $meeting_author;
 }
