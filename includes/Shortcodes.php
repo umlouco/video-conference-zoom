@@ -209,13 +209,7 @@ class Shortcodes {
                         </div>
 					<?php } else { ?>
                         <div class="vczapi-jvb-wrapper zoom-window-wrap">
-							<?php if ( ! is_ssl() ) { ?>
-                                <h4 class="ssl-alert">
-                                    <strong style="color:red;"><?php _e( 'ALERT: ', 'video-conferencing-with-zoom-api' ); ?></strong><?php _e( 'Audio and Video for Zoom meeting will not work on a non HTTPS site, please install a valid SSL certificate on your site to allow participants use audio and video during Zoom meeting: ', 'video-conferencing-with-zoom-api' ); ?>
-                                </h4>
-								<?php
-							}
-
+							<?php
 							$styling           = ! empty( $height ) ? "height: " . $height : "height: 500px;";
 							$iframe_link       = get_post_type_archive_link( 'zoom-meetings' );
 							$iframe_query_args = add_query_arg( array(

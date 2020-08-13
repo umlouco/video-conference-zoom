@@ -66,28 +66,28 @@ class Zoom_Video_Conferencing_Admin_Sync {
 		//Sync Meetings here
 		if ( $type === "check" ) {
 			$user_id  = filter_input( INPUT_POST, 'user_id' );
-			$meetings = json_decode( zoom_conference()->listMeetings( $user_id ) );
+			$meetings = json_decode( zoom_conference()->listMeetings( $user_id ), true );
 			if ( ! empty( $meetings ) ) {
 				//Capture Error
-				if ( ! empty( $meetings->code ) ) {
-					wp_send_json_error( $meetings->message );
+				if ( ! empty( $meetings['code'] ) ) {
+					wp_send_json_error( $meetings['message'] );
 				}
 
-				if ( ! empty( $meetings->meetings ) ) {
+				if ( ! empty( $meetings['meetings'] ) ) {
 					$db_meetings = $this->get_existing_meetings();
-					foreach ( $meetings->meetings as $k => $meeting ) {
-						if ( $meeting->type !== 2 ) {
-							unset( $meetings->meetings{$k} );
+					foreach ( $meetings['meetings'] as $k => $meeting ) {
+						if ( $meeting['type'] !== 2 ) {
+							unset( $meetings['meetings'][ $k ] );
 						}
 
 						//Only Keep Meetings which are not currently synced
-						if ( ! empty( $db_meetings ) && in_array( $meeting->id, $db_meetings ) ) {
-							unset( $meetings->meetings{$k} );
+						if ( ! empty( $db_meetings ) && in_array( $meeting['id'], $db_meetings ) ) {
+							unset( $meetings['meetings'][ $k ] );
 						}
 					}
 
-					$meetings->meetings = array_values( $meetings->meetings );
-					update_option( '_vczapi_sync_meetings', $meetings );
+					$meetings['meetings'] = array_values( $meetings['meetings'] );
+					update_option( '_vczapi_sync_meetings', json_encode( $meetings ) );
 					wp_send_json_success( $meetings );
 				} else {
 					wp_send_json_error( __( "No Meetings Found !", 'video-conferencing-with-zoom-api' ) );
@@ -102,7 +102,7 @@ class Zoom_Video_Conferencing_Admin_Sync {
 			$meeting_id  = absint( filter_input( INPUT_POST, 'meeting_id' ) );
 			$db_meetings = $this->get_existing_meetings();
 			if ( ! empty( $meeting_id ) && ! in_array( $meeting_id, $db_meetings ) ) {
-				$cached_meetings = get_option( '_vczapi_sync_meetings' );
+				$cached_meetings = json_decode( get_option( '_vczapi_sync_meetings' ) );
 				if ( ! empty( $cached_meetings ) ) {
 					foreach ( $cached_meetings->meetings as $k => $meeting ) {
 						//Check for the sent meeting ID
@@ -150,7 +150,7 @@ class Zoom_Video_Conferencing_Admin_Sync {
 			$mtg_param = array(
 				'userId'                    => esc_html( $meeting_obj->host_id ),
 				'meeting_type'              => absint( 1 ),
-				'start_date'                => esc_html( vczapi_dateConverter( $meeting_obj->start_time, $meeting_obj->timezone, 'Y-m-d H:i' ) ),
+				'start_date'                => vczapi_dateConverter( $meeting_obj->start_time, $meeting_obj->timezone, 'Y-m-d H:i', false ),
 				'timezone'                  => esc_html( $meeting_obj->timezone ),
 				'duration'                  => esc_html( $meeting_obj->duration ),
 				'password'                  => ! empty( $meeting_obj->password ) ? esc_html( $meeting_obj->password ) : false,
@@ -179,7 +179,7 @@ class Zoom_Video_Conferencing_Admin_Sync {
 			update_post_meta( $post_id, '_meeting_zoom_meeting_id', $meeting_obj->id );
 
 			//Call this action after the Zoom Meeting completion created.
-			do_action( 'vczapi_admin_after_zoom_meeting_is_created', $post_id, false );
+			#do_action( 'vczapi_admin_after_zoom_meeting_is_created', $post_id, false );
 
 			$data = array(
 				'msg'        => __( "Successfully imported meeting with ID", 'video-conferencing-with-zoom-api' ) . ': <strong>' . $meeting_obj->id . '</strong>',

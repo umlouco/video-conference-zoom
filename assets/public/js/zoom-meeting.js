@@ -8,13 +8,13 @@ jQuery(function ($) {
       page_html += '<li><strong>Browser Name:</strong> ' + browseinfo.browserName + '</li>';
       page_html += '<li><strong>Browser Version:</strong> ' + browseinfo.browserVersion + '</li></ul>'; // page_html += '<li><strong>Available:</strong> ' + browseinfo.features + '</li></ul>';
 
-      $('.dpen-zoom-browser-meeting--info__browser').html(page_html);
+      $('.vczapi-zoom-browser-meeting--info__browser').html(page_html);
       ZoomMtg.preLoadWasm();
       ZoomMtg.prepareJssdk();
       this.eventHandlers();
     },
     eventHandlers: function eventHandlers() {
-      $('#dpen-zoom-browser-meeting-join-mtg').on('click', this.loadMeeting.bind(this));
+      $('#vczapi-zoom-browser-meeting-join-mtg').on('click', this.loadMeeting.bind(this));
     },
     loadMeeting: function loadMeeting(e) {
       e.preventDefault();
@@ -34,7 +34,7 @@ jQuery(function ($) {
         }).done(function (response) {
           if (response.success) {
             $("#zvc-cover").remove();
-            $('#dpen-zoom-browser-meeting').hide();
+            $('#vczapi-zoom-browser-meeting').hide();
             API_KEY = response.data.key;
             SIGNATURE = response.data.sig;
 
@@ -50,12 +50,12 @@ jQuery(function ($) {
               } //Email Validation
 
 
-              if (email.val().length > 0) {
+              if (email.length > 0 && email.val().length > 0) {
                 EMAIL_USER = email.val();
               } //Password Validation
 
 
-              if (!PASSWD && pwd.val().length > 0) {
+              if (!PASSWD && pwd.length > 0 && pwd.val().length > 0) {
                 PASSWD = pwd.val();
               }
 
