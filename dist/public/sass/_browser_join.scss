@@ -7,14 +7,14 @@
   opacity: .9;
 }
 
-#dpen-zoom-browser-meeting {
+#vczapi-zoom-browser-meeting {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
 
-  .dpen-zoom-browser-meeting--meeting-form {
+  .vczapi-zoom-browser-meeting--meeting-form {
     input[type=text],
     input[type=password],
     button[type=submit],
@@ -35,7 +35,7 @@
     }
   }
 
-  .dpen-zoom-browser-meeting--info {
+  .vczapi-zoom-browser-meeting--info {
     background: #fff;
     padding: 20px 30px;
     margin-bottom: 10px;
@@ -49,13 +49,13 @@
   }
 
   @media only screen and (max-width: 767px) {
-    .dpen-zoom-browser-meeting--info {
+    .vczapi-zoom-browser-meeting--info {
       width: 300px;
     }
 
-    #dpen-zoom-browser-meeting--container,
-    .dpen-zoom-browser-meeting--meeting-form input[type=text],
-    .dpen-zoom-browser-meeting--meeting-form button[type=submit] {
+    #vczapi-zoom-browser-meeting--container,
+    .vczapi-zoom-browser-meeting--meeting-form input[type=text],
+    .vczapi-zoom-browser-meeting--meeting-form button[type=submit] {
       width: 300px;
     }
   }

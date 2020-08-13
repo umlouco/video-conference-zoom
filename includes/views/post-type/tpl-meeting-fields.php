@@ -115,8 +115,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 			$wp_timezone = zvc_get_timezone_offset_wp();
 			?>
             <select id="timezone" name="timezone" class="zvc-hacking-select">
-				<?php foreach ( $tzlists as $k => $tzlist ) { ?>
-                    <option value="<?php echo $k; ?>" <?php ! empty( $meeting_fields['timezone'] ) ? selected( $k, $meeting_fields['timezone'] ) : ( ! empty( $wp_timezone ) && ! empty( $tzlists[ $wp_timezone ] ) && $tzlists[ $wp_timezone ] !== false ) ? selected( $k, $wp_timezone ) : false; ?>><?php echo esc_html( $tzlist ); ?></option>
+				<?php foreach ( $tzlists as $k => $tzlist ) {
+					$option_tz_selected = false;
+					if ( ! empty( $meeting_fields['timezone'] ) ) {
+						$option_tz_selected = selected( $k, $meeting_fields['timezone'], false );
+					} else if ( ! empty( $wp_timezone ) && ! empty( $tzlists[ $wp_timezone ] ) && $tzlists[ $wp_timezone ] !== false ) {
+						$option_tz_selected = selected( $k, $wp_timezone, false );
+					}
+					?>
+                    <option value="<?php echo $k; ?>" <?php echo $option_tz_selected; ?>><?php echo esc_html( $tzlist ); ?></option>
 				<?php } ?>
             </select>
             <p class="description" id="timezone-description"><?php _e( 'Meeting Timezone', 'video-conferencing-with-zoom-api' ); ?></p>

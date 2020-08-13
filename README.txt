@@ -3,8 +3,8 @@ Contributors: j__3rk, codemanas, digamberpradhan
 Tags: zoom video conference, video conference, zoom, zoom video conferencing, web conferencing, online meetings
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
-Tested up to: 5.4
-Stable tag: 3.6.0
+Tested up to: 5.5
+Stable tag: 3.6.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -47,12 +47,6 @@ Addon: **[WooCommerce Booking Integration](https://www.codemanas.com/downloads/z
 Addon: **[Booked Appointments Integration](https://www.codemanas.com/downloads/zoom-meetings-for-booked-appointments/ "Booked Appointments Integration")**:
 Addon: **[WooCommerce Appointments Integration](https://www.codemanas.com/downloads/zoom-for-woocommerce-appointments/ "WooCommerce Appointments Integration")**:
 
-**OVERRIDDING TEMPLATES:**
-
-If you use Zoom Meetings > Add new section i.e Post Type meetings then you might need to override the template. Currently this plugin supports default templates.
-
-REFER FAQ to override page templates!
-
 * Integration with WooCommerce and Zoom Meetings Countdown page.
 * Purchasable Single Meetings !
 * WP-Cron emails before 24 hours of the meeting.
@@ -70,6 +64,12 @@ REFER FAQ to override page templates!
 & more functionalities and integrations are on its way!
 
 You can find more information on the Pro version on website: **[codemanas.com](https://www.codemanas.com/ "codemanas.com")**
+
+**OVERRIDDING TEMPLATES:**
+
+If you use Zoom Meetings > Add new section i.e Post Type meetings then you might need to override the template. Currently this plugin supports default templates.
+
+REFER FAQ to override page templates!
 
 **COMPATIBILITY:**
 
@@ -170,6 +170,13 @@ Join our facebook group which we have created in order to stay up to date with u
 9. Shortcode Output
 
 == Changelog ==
+
+= 3.6.1 August 13th, 2020 =
+* Fixed: Deprecated warning issue on PHP 7.4 using {} syntax reported by <a href="https://wordpress.org/support/users/antonyjosephsmith/">@antonyjosephsmith</a>
+* Fixed: Sync Date not syncing properly when editing synced meeting.
+* Fixed: Deprecated ternary operator multiple usage in same check function.
+* Fixed: Join via browser - Error joining if email field is disabled.
+* Updated: Join via browser page - CSS identifiers changed.
 
 = 3.6.0 August 11th, 2020 =
 * Added: Webinar post type module.

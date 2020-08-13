@@ -34,11 +34,11 @@
 }
 
 .zvc_getting_user_info_content p {
-  padding: 0px !important;
+  padding: 0 !important;
 }
 
 .zvc_daily_reports_check_form {
-  padding: 20px 0px;
+  padding: 20px 0;
 }
 
 .zvc_accounts_reports_check_form {
@@ -137,6 +137,27 @@
         a {
           padding: 10px 20px;
           font-size: 15px;
+        }
+
+        .vczapi-button-primary {
+          background: #007cba;
+          border-color: #007cba;
+          color: #fff;
+          text-decoration: none;
+          text-shadow: none;
+          display: inline-block;
+          font-size: 15px;
+          line-height: 2.15384615;
+          min-height: 30px;
+          margin: 0;
+          padding: 10px 20px;
+          cursor: pointer;
+          border-width: 1px;
+          border-style: solid;
+          -webkit-appearance: none;
+          border-radius: 3px;
+          white-space: nowrap;
+          box-sizing: border-box;
         }
       }
     }
