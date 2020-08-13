@@ -179,7 +179,7 @@ class Zoom_Video_Conferencing_Admin_Sync {
 			update_post_meta( $post_id, '_meeting_zoom_meeting_id', $meeting_obj->id );
 
 			//Call this action after the Zoom Meeting completion created.
-			do_action( 'vczapi_admin_after_zoom_meeting_is_created', $post_id, false );
+			#do_action( 'vczapi_admin_after_zoom_meeting_is_created', $post_id, false );
 
 			$data = array(
 				'msg'        => __( "Successfully imported meeting with ID", 'video-conferencing-with-zoom-api' ) . ': <strong>' . $meeting_obj->id . '</strong>',
