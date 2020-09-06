@@ -654,19 +654,12 @@ class Zoom_Video_Conferencing_Admin_PostType {
 			}
 
 			if ( isset( $_GET['type'] ) && $_GET['type'] === "meeting" && isset( $_GET['join'] ) ) {
-				wp_enqueue_script( 'video-conferencing-with-zoom-api-react', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react.production.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
-				wp_enqueue_script( 'video-conferencing-with-zoom-api-react-dom', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react-dom.production.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
-				wp_enqueue_script( 'video-conferencing-with-zoom-api-redux', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/redux.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
-				wp_enqueue_script( 'video-conferencing-with-zoom-api-thunk', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/redux-thunk.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
-				wp_enqueue_script( 'video-conferencing-with-zoom-api-lodash', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/lodash.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
-				wp_enqueue_script( 'zoom-meeting-source', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/zoomus-websdk.umd.min.js', array(
-					'jquery',
-					'video-conferencing-with-zoom-api-react',
-					'video-conferencing-with-zoom-api-react-dom',
-					'video-conferencing-with-zoom-api-redux',
-					'video-conferencing-with-zoom-api-thunk',
-					'video-conferencing-with-zoom-api-lodash'
-				), ZVC_PLUGIN_VERSION, true );
+				if ( defined( 'VCZAPI_STATIC_CDN' ) ) {
+					self::enqueue_zoom_static_resources_cdn();
+				} else {
+					self::enqueue_zoom_static_resources_local();
+				}
+
 				wp_enqueue_script( 'video-conferencing-with-zoom-api-browser', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/js/zoom-meeting.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
 				wp_localize_script( 'video-conferencing-with-zoom-api-browser', 'zvc_ajx', array(
 					'ajaxurl'       => admin_url( 'admin-ajax.php' ),
@@ -703,19 +696,12 @@ class Zoom_Video_Conferencing_Admin_PostType {
 		}
 
 		if ( isset( $_GET['type'] ) && $_GET['type'] === "meeting" && isset( $_GET['join'] ) ) {
-			wp_enqueue_script( 'video-conferencing-with-zoom-api-react', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react.production.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
-			wp_enqueue_script( 'video-conferencing-with-zoom-api-react-dom', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react-dom.production.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
-			wp_enqueue_script( 'video-conferencing-with-zoom-api-redux', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/redux.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
-			wp_enqueue_script( 'video-conferencing-with-zoom-api-thunk', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/redux-thunk.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
-			wp_enqueue_script( 'video-conferencing-with-zoom-api-lodash', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/lodash.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
-			wp_enqueue_script( 'zoom-meeting-source', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/zoomus-websdk.umd.min.js', array(
-				'jquery',
-				'video-conferencing-with-zoom-api-react',
-				'video-conferencing-with-zoom-api-react-dom',
-				'video-conferencing-with-zoom-api-redux',
-				'video-conferencing-with-zoom-api-thunk',
-				'video-conferencing-with-zoom-api-lodash'
-			), ZVC_PLUGIN_VERSION, true );
+			if ( defined( 'VCZAPI_STATIC_CDN' ) ) {
+				self::enqueue_zoom_static_resources_cdn();
+			} else {
+				self::enqueue_zoom_static_resources_local();
+			}
+
 			wp_enqueue_script( 'video-conferencing-with-zoom-api-browser', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/js/zoom-meeting.min.js', array( 'jquery' ), ZVC_PLUGIN_VERSION, true );
 			wp_localize_script( 'video-conferencing-with-zoom-api-browser', 'zvc_ajx', array(
 				'ajaxurl'       => admin_url( 'admin-ajax.php' ),
@@ -765,6 +751,48 @@ class Zoom_Video_Conferencing_Admin_PostType {
 		} else {
 			return;
 		}
+	}
+
+	/**
+	 * Pull local jquery resources
+	 */
+	public static function enqueue_zoom_static_resources_local() {
+		wp_enqueue_script( 'video-conferencing-with-zoom-api-jquery', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/jquery.min.js', false, ZVC_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'video-conferencing-with-zoom-api-react', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react.production.min.js', array( 'video-conferencing-with-zoom-api-jquery' ), ZVC_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'video-conferencing-with-zoom-api-react-dom', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react-dom.production.min.js', array( 'video-conferencing-with-zoom-api-jquery' ), ZVC_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'video-conferencing-with-zoom-api-redux', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/redux.min.js', array( 'video-conferencing-with-zoom-api-jquery' ), ZVC_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'video-conferencing-with-zoom-api-thunk', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/redux-thunk.min.js', array( 'video-conferencing-with-zoom-api-jquery' ), ZVC_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'video-conferencing-with-zoom-api-lodash', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/lodash.min.js', array( 'video-conferencing-with-zoom-api-jquery' ), ZVC_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'zoom-meeting-source', ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/zoom-meeting.min.js', array(
+			'jquery',
+			'video-conferencing-with-zoom-api-jquery',
+			'video-conferencing-with-zoom-api-react',
+			'video-conferencing-with-zoom-api-react-dom',
+			'video-conferencing-with-zoom-api-redux',
+			'video-conferencing-with-zoom-api-thunk',
+			'video-conferencing-with-zoom-api-lodash'
+		), ZVC_PLUGIN_VERSION, true );
+	}
+
+	/**
+	 * Load CDN static resources
+	 */
+	public static function enqueue_zoom_static_resources_cdn() {
+		wp_enqueue_script( 'video-conferencing-with-zoom-api-jquery', 'https://source.zoom.us/1.8.0/lib/vendor/jquery.min.js', false, ZVC_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'video-conferencing-with-zoom-api-react', 'https://source.zoom.us/1.8.0/lib/vendor/react.min.js', array( 'video-conferencing-with-zoom-api-jquery' ), ZVC_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'video-conferencing-with-zoom-api-react-dom', 'https://source.zoom.us/1.8.0/lib/vendor/react-dom.min.js', array( 'video-conferencing-with-zoom-api-jquery' ), ZVC_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'video-conferencing-with-zoom-api-redux', 'https://source.zoom.us/1.8.0/lib/vendor/redux.min.js', array( 'video-conferencing-with-zoom-api-jquery' ), ZVC_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'video-conferencing-with-zoom-api-thunk', 'https://source.zoom.us/1.8.0/lib/vendor/redux-thunk.min.js', array( 'video-conferencing-with-zoom-api-jquery' ), ZVC_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'video-conferencing-with-zoom-api-lodash', 'https://source.zoom.us/1.8.0/lib/vendor/lodash.min.js', array( 'video-conferencing-with-zoom-api-jquery' ), ZVC_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'zoom-meeting-source', 'https://source.zoom.us/zoom-meeting-1.8.0.min.js', array(
+			'jquery',
+			'video-conferencing-with-zoom-api-jquery',
+			'video-conferencing-with-zoom-api-react',
+			'video-conferencing-with-zoom-api-react-dom',
+			'video-conferencing-with-zoom-api-redux',
+			'video-conferencing-with-zoom-api-thunk',
+			'video-conferencing-with-zoom-api-lodash'
+		), ZVC_PLUGIN_VERSION, true );
 	}
 }
 

@@ -4,7 +4,7 @@ Tags: zoom video conference, video conference, zoom, zoom video conferencing, we
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.5
-Stable tag: 3.6.1
+Stable tag: 3.6.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -171,7 +171,11 @@ Join our facebook group which we have created in order to stay up to date with u
 
 == Changelog ==
 
-= 3.6.1 August 13th, 2020 =
+= 3.6.2 September 6th, 2020 =
+* Updated: Zoom WebSDK to version 1.8.0
+* Added: CDN loading support for zoom webSDK static resources. Add "VCZAPI_STATIC_CDN" to true in config file for this.
+
+= 3.6.1 August 17th, 2020 =
 * Fixed: Deprecated warning issue on PHP 7.4 using {} syntax reported by <a href="https://wordpress.org/support/users/antonyjosephsmith/">@antonyjosephsmith</a>
 * Fixed: Sync Date not syncing properly when editing synced meeting.
 * Fixed: Deprecated ternary operator multiple usage in same check function.

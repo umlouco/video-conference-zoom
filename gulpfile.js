@@ -89,6 +89,7 @@ function compileVendorScripts() {
 
     //React Production Copy
     gulp.src([
+        './node_modules/jquery/dist/jquery.min.js',
         './node_modules/react/umd/react.production.min.js',
         './node_modules/react-dom/umd/react-dom.production.min.js',
         './node_modules/redux/dist/redux.min.js',

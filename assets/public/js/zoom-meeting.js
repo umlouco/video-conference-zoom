@@ -16,6 +16,13 @@ jQuery(function ($) {
     eventHandlers: function eventHandlers() {
       $('#vczapi-zoom-browser-meeting-join-mtg').on('click', this.loadMeeting.bind(this));
     },
+    setCookie: function setCookie(cname, cvalue) {
+      var exdays = 1;
+      var d = new Date();
+      d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+      var expires = "expires=" + d.toUTCString();
+      document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    },
     loadMeeting: function loadMeeting(e) {
       e.preventDefault();
       var meeting_id = zvc_ajx.meeting_id;

@@ -1,10 +1,11 @@
 #zvc-cover {
-  background: url(../../images/ajax-loader.gif) no-repeat scroll center center #adadad;
+  background: url(../../images/ajax-loader.gif) no-repeat scroll center center #000000;
   position: absolute;
   height: 100%;
   width: 100%;
   z-index: 5;
   opacity: .9;
+  top: 0;
 }
 
 #vczapi-zoom-browser-meeting {

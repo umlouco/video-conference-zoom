@@ -1,4 +1,5 @@
 jQuery(function ($) {
+
     var zoom_browser_integration = {
 
         init: function () {
@@ -17,6 +18,14 @@ jQuery(function ($) {
 
         eventHandlers: function () {
             $('#vczapi-zoom-browser-meeting-join-mtg').on('click', this.loadMeeting.bind(this));
+        },
+
+        setCookie: function (cname, cvalue) {
+            var exdays = 1;
+            var d = new Date();
+            d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+            var expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
         },
 
         loadMeeting: function (e) {
