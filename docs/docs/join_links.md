@@ -97,3 +97,13 @@ Table is copied from Zoom official directly !
 
 1. You'll need to have SSL enabled for this feature to work.
 2. New version of Zoom WebSDK adds re-captcha. Please check if your browser is not blocking any popups when joining meeting via browser.
+
+### Loading CDN Resources
+
+From plugin version 3.6.2 users can now decide to load the webSDK resources directly from Zoom CDN.
+
+To do this add below code to your config.php file.
+
+`define('VCZAPI_STATIC_CDN', true);`
+
+If incase, there is problem loading your join via browser page when using CDN. You can change the "true" value to "false". 
