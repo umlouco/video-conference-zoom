@@ -139,6 +139,10 @@ If countdown is not working for you then the first thing you'll nweed to verify 
 
 However, even though meeting is created and you are not seeing countdown timer then, you might want to check your browser console and see if there is any "guess is undefined" error. If so, there might be a plugin conflict using the same moment.js library. **Report to me in this case**
 
+= Forminator plugin conflict fix =
+
+Please check this thread: https://wordpress.org/support/topic/conflict-with-forminator-2/
+
 = How to show Zoom Meetings on Front =
 
 * By using shortcode like [zoom_api_link meeting_id="123456789"] you can show the link of your meeting in front.
@@ -171,9 +175,10 @@ Join our facebook group which we have created in order to stay up to date with u
 
 == Changelog ==
 
-= 3.6.2 September 6th, 2020 =
+= 3.6.2 September 17th, 2020 =
 * Updated: Zoom WebSDK to version 1.8.0
 * Added: CDN loading support for zoom webSDK static resources. Add "VCZAPI_STATIC_CDN" to true in config file for this.
+* Added: Zoom API notice error if connection is not established with API in wp-admin.
 
 = 3.6.1 August 17th, 2020 =
 * Fixed: Deprecated warning issue on PHP 7.4 using {} syntax reported by <a href="https://wordpress.org/support/users/antonyjosephsmith/">@antonyjosephsmith</a>

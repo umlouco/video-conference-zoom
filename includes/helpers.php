@@ -216,18 +216,38 @@ function video_conferencing_zoom_api_get_user_transients() {
 			$users = $check_transient->users;
 		} else {
 			$encoded_users = zoom_conference()->listUsers();
-			$decoded_users = json_decode( $encoded_users );
-			if ( ! empty( $decoded_users->code ) ) {
-				$users = false;
+			if ( ! empty( $encoded_users ) ) {
+				$decoded_users = json_decode( $encoded_users );
+				if ( ! empty( $decoded_users->code ) ) {
+					$users = false;
+				} else {
+					$users = $decoded_users->users;
+					update_option( '_zvc_user_lists', $decoded_users );
+					update_option( '_zvc_user_lists_expiry_time', time() + 108000 );
+				}
 			} else {
-				$users = $decoded_users->users;
-				update_option( '_zvc_user_lists', $decoded_users );
-				update_option( '_zvc_user_lists_expiry_time', time() + 108000 );
+				if ( is_admin() ) {
+					add_action( 'admin_notices', 'vczapi_check_connection_error' );
+				}
+
+				$users = false;
 			}
 		}
 	}
 
 	return apply_filters( 'vczapi_users_list', $users );
+}
+
+function vczapi_check_connection_error() {
+	?>
+    <div id="message" class="notice notice-warning is-dismissible">
+        <p>
+			<?php
+			esc_html_e( 'Please check your internet connection. Zoom API is not able to connect with Zoom servers at the moment.', 'video-conferencing-with-zoom-api' )
+			?>
+        </p>
+    </div>
+	<?php
 }
 
 /**
@@ -273,25 +293,6 @@ function video_conferencing_zoom_api_pagination_prev( $type, $page_type = 'zoom-
 		$page = absint( $_GET['pg'] ) - 1;
 
 		return '<a href="?post_type=zoom-meetings&page=' . $page_type . '&flush=true&pg=' . $page . '">Previous Page</a>';
-	}
-}
-
-function video_conferencing_zoom_api_status() {
-	if ( isset( $_GET['vczapi_dismiss_again'] ) && $_GET['vczapi_dismiss_again'] == 1 ) {
-		set_transient( '_vczapi_dismiss_notice_api_error', 1, 60 * 60 * 24 * 30 );
-	}
-
-	if ( ! get_transient( '_vczapi_dismiss_notice_api_error' ) ) {
-		?>
-        <div class="zoom-status-notice notice notice-warning is-dismissible">
-            <h3><?php _e( 'ZOOM SERVICES STATUS', 'video-conferencing-with-zoom-api' ); ?></h3>
-            <p>Experiencing issues with the join via Browser ? This is because Zoom webSDK part is under maintenance, due to which 403 error is showing when you try to join the meeting i.e in console of the browser. Check
-                <a href="https://devforum.zoom.us/t/in-progress-web-sdk-web-client-from-browser-403-forbidden/10782/107">in this thread</a> as well as official
-                <a href="https://marketplace.zoom.us/docs/sdk/native-sdks/web">SDK page</a> for more details. This message will be removed in the next update after the webSDK fix.
-                <a href="<?php echo add_query_arg( 'vczapi_dismiss_again', 1 ) ?>" class="is-dismissible">Don't show again !</a></p>
-
-        </div>
-		<?php
 	}
 }
 
@@ -409,8 +410,13 @@ function vczapi_get_template_part( $slug, $name = '' ) {
 }
 
 /**
+ * Check if given post ID is related to the post of current user.
+ *
  * @author Deepen
- * @since  3.0.0
+ * @param $post_id
+ * @since 3.0.0
+ *
+ * @return bool
  */
 function vczapi_check_author( $post_id ) {
 	$post_author_id = get_post_field( 'post_author', $post_id );
@@ -428,7 +434,7 @@ function vczapi_check_author( $post_id ) {
  * @param        $start_time
  * @param        $tz
  * @param string $format
- * @param bool   $defaults
+ * @param bool $defaults
  *
  * @return DateTime|string
  * @author Deepen

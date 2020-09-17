@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Video Conferencing with Zoom API\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/video-"
 "conferencing-with-zoom-api\n"
-"POT-Creation-Date: 2020-08-11 10:06+0000\n"
+"POT-Creation-Date: 2020-09-17 09:23+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -68,17 +68,6 @@ msgstr ""
 msgid "seconds"
 msgstr ""
 
-#: includes/Shortcodes.php:214
-msgid "ALERT: "
-msgstr ""
-
-#: includes/Shortcodes.php:214
-msgid ""
-"Audio and Video for Zoom meeting will not work on a non HTTPS site, please "
-"install a valid SSL certificate on your site to allow participants use audio "
-"and video during Zoom meeting: "
-msgstr ""
-
 #: includes/Bootstrap.php:101
 msgid "Meeting Has Started ! Click below join button to join meeting now !"
 msgstr ""
@@ -101,47 +90,49 @@ msgstr ""
 msgid "This meeting is no longer valid and cannot be joined !"
 msgstr ""
 
-#: includes/helpers.php:287
-msgid "ZOOM SERVICES STATUS"
+#: includes/helpers.php:246
+msgid ""
+"Please check your internet connection. Zoom API is not able to connect with "
+"Zoom servers at the moment."
 msgstr ""
 
-#: includes/helpers.php:310
+#: includes/helpers.php:311
 msgid "Like this plugin ?"
 msgstr ""
 
-#: includes/helpers.php:313
+#: includes/helpers.php:314
 #, php-format
 msgid ""
 "Please consider giving a %s if you found this useful at wordpress.org or "
 msgstr ""
 
-#: includes/helpers.php:314
+#: includes/helpers.php:315
 #, php-format
 msgid "check %s for shortcode references."
 msgstr ""
 
-#: includes/helpers.php:332
+#: includes/helpers.php:333
 msgid "Do not get confused here !!"
 msgstr ""
 
-#: includes/helpers.php:334
+#: includes/helpers.php:335
 msgid ""
 "Please read !!! These below meetings are directly from your zoom.us account "
 "via API connection. Meetings added from here won't show up on your Post Type "
 "list. This will only create meeting in your zoom.us account !"
 msgstr ""
 
-#: includes/helpers.php:335
+#: includes/helpers.php:336
 msgid "I understand ! Don't show this again !"
 msgstr ""
 
-#: includes/helpers.php:555 includes/helpers.php:559 includes/helpers.php:579
-#: includes/helpers.php:583 templates/shortcode/join-links.php:27
+#: includes/helpers.php:561 includes/helpers.php:565 includes/helpers.php:585
+#: includes/helpers.php:589 templates/shortcode/join-links.php:27
 #: templates/shortcode/webinar-join-links.php:27
 msgid "Join via Web Browser"
 msgstr ""
 
-#: includes/helpers.php:661
+#: includes/helpers.php:667
 msgid "Next Results"
 msgstr ""
 
@@ -279,7 +270,7 @@ msgstr ""
 #: includes/views/live/tpl-edit-meeting.php:92
 #: includes/views/live/tpl-list-recordings.php:22
 #: includes/views/live/tpl-add-meetings.php:74
-#: includes/views/post-type/tpl-meeting-fields.php:126
+#: includes/views/post-type/tpl-meeting-fields.php:133
 msgid "Duration"
 msgstr ""
 
@@ -1263,7 +1254,7 @@ msgstr ""
 #: includes/views/webinars/tpl-add-webinar.php:84
 #: includes/views/live/tpl-edit-meeting.php:102
 #: includes/views/live/tpl-add-meetings.php:84
-#: includes/views/post-type/tpl-meeting-fields.php:136
+#: includes/views/post-type/tpl-meeting-fields.php:143
 msgid ""
 "Password to join the meeting. Password may only contain the following "
 "characters: [a-z A-Z 0-9]. Max of 10 characters.( Leave blank for auto "
@@ -1279,7 +1270,7 @@ msgstr ""
 #: includes/views/webinars/tpl-add-webinar.php:91
 #: includes/views/live/tpl-edit-meeting.php:117
 #: includes/views/live/tpl-add-meetings.php:99
-#: includes/views/post-type/tpl-meeting-fields.php:159
+#: includes/views/post-type/tpl-meeting-fields.php:166
 msgid "Start video when host join meeting."
 msgstr ""
 
@@ -1295,13 +1286,13 @@ msgstr ""
 
 #: includes/views/webinars/tpl-edit-webinar.php:100
 #: includes/views/webinars/tpl-add-webinar.php:104
-#: includes/views/post-type/tpl-meeting-fields.php:203
+#: includes/views/post-type/tpl-meeting-fields.php:210
 msgid "HD Video"
 msgstr ""
 
 #: includes/views/webinars/tpl-edit-webinar.php:103
 #: includes/views/webinars/tpl-add-webinar.php:107
-#: includes/views/post-type/tpl-meeting-fields.php:207
+#: includes/views/post-type/tpl-meeting-fields.php:214
 msgid "Defaults to HD video."
 msgstr ""
 
@@ -1309,7 +1300,7 @@ msgstr ""
 #: includes/views/webinars/tpl-add-webinar.php:112
 #: includes/views/live/tpl-edit-meeting.php:149
 #: includes/views/live/tpl-add-meetings.php:131
-#: includes/views/post-type/tpl-meeting-fields.php:222
+#: includes/views/post-type/tpl-meeting-fields.php:229
 msgid "Auto Recording"
 msgstr ""
 
@@ -1317,7 +1308,7 @@ msgstr ""
 #: includes/views/webinars/tpl-add-webinar.php:119
 #: includes/views/live/tpl-edit-meeting.php:162
 #: includes/views/live/tpl-add-meetings.php:138
-#: includes/views/post-type/tpl-meeting-fields.php:235
+#: includes/views/post-type/tpl-meeting-fields.php:242
 msgid ""
 "Set what type of auto recording feature you want to add. Default is none."
 msgstr ""
@@ -1326,7 +1317,7 @@ msgstr ""
 #: includes/views/webinars/tpl-add-webinar.php:124
 #: includes/views/live/tpl-edit-meeting.php:167
 #: includes/views/live/tpl-add-meetings.php:143
-#: includes/views/post-type/tpl-meeting-fields.php:243
+#: includes/views/post-type/tpl-meeting-fields.php:250
 msgid "Alternative Hosts"
 msgstr ""
 
@@ -1338,13 +1329,13 @@ msgstr ""
 #: includes/views/live/tpl-add-meetings.php:46
 #: includes/views/live/tpl-add-meetings.php:146
 #: includes/views/post-type/tpl-meeting-fields.php:75
-#: includes/views/post-type/tpl-meeting-fields.php:248
+#: includes/views/post-type/tpl-meeting-fields.php:255
 msgid "Select a Host"
 msgstr ""
 
 #: includes/views/webinars/tpl-edit-webinar.php:139
 #: includes/views/live/tpl-edit-meeting.php:181
-#: includes/views/post-type/tpl-meeting-fields.php:256
+#: includes/views/post-type/tpl-meeting-fields.php:263
 msgid ""
 "Paid Zoom Account is required for this !! Alternative hosts IDs. Multiple "
 "value separated by comma."
@@ -1587,13 +1578,13 @@ msgstr ""
 
 #: includes/views/live/tpl-edit-meeting.php:88
 #: includes/views/live/tpl-add-meetings.php:70
-#: includes/views/post-type/tpl-meeting-fields.php:122
+#: includes/views/post-type/tpl-meeting-fields.php:129
 msgid "Meeting Timezone"
 msgstr ""
 
 #: includes/views/live/tpl-edit-meeting.php:95
 #: includes/views/live/tpl-add-meetings.php:77
-#: includes/views/post-type/tpl-meeting-fields.php:129
+#: includes/views/post-type/tpl-meeting-fields.php:136
 msgid "Meeting duration (minutes). (optional)"
 msgstr ""
 
@@ -1604,13 +1595,13 @@ msgstr ""
 
 #: includes/views/live/tpl-edit-meeting.php:106
 #: includes/views/live/tpl-add-meetings.php:88
-#: includes/views/post-type/tpl-meeting-fields.php:148
+#: includes/views/post-type/tpl-meeting-fields.php:155
 msgid "Join Before Host"
 msgstr ""
 
 #: includes/views/live/tpl-edit-meeting.php:109
 #: includes/views/live/tpl-add-meetings.php:91
-#: includes/views/post-type/tpl-meeting-fields.php:151
+#: includes/views/post-type/tpl-meeting-fields.php:158
 msgid ""
 "Join meeting before host start the meeting. Only for scheduled or recurring "
 "meetings."
@@ -1623,25 +1614,25 @@ msgstr ""
 
 #: includes/views/live/tpl-edit-meeting.php:123
 #: includes/views/live/tpl-add-meetings.php:105
-#: includes/views/post-type/tpl-meeting-fields.php:164
+#: includes/views/post-type/tpl-meeting-fields.php:171
 msgid "Participants Video"
 msgstr ""
 
 #: includes/views/live/tpl-edit-meeting.php:126
 #: includes/views/live/tpl-add-meetings.php:108
-#: includes/views/post-type/tpl-meeting-fields.php:167
+#: includes/views/post-type/tpl-meeting-fields.php:174
 msgid "Start video when participants join meeting."
 msgstr ""
 
 #: includes/views/live/tpl-edit-meeting.php:132
 #: includes/views/live/tpl-add-meetings.php:114
-#: includes/views/post-type/tpl-meeting-fields.php:173
+#: includes/views/post-type/tpl-meeting-fields.php:180
 msgid "Mute Participants upon entry"
 msgstr ""
 
 #: includes/views/live/tpl-edit-meeting.php:136
 #: includes/views/live/tpl-add-meetings.php:118
-#: includes/views/post-type/tpl-meeting-fields.php:177
+#: includes/views/post-type/tpl-meeting-fields.php:184
 msgid "Mutes Participants when entering the meeting."
 msgstr ""
 
@@ -1656,17 +1647,17 @@ msgid "Only signed-in users can join this meeting."
 msgstr ""
 
 #: includes/views/live/tpl-edit-meeting.php:153
-#: includes/views/post-type/tpl-meeting-fields.php:226
+#: includes/views/post-type/tpl-meeting-fields.php:233
 msgid "No Recordings"
 msgstr ""
 
 #: includes/views/live/tpl-edit-meeting.php:156
-#: includes/views/post-type/tpl-meeting-fields.php:229
+#: includes/views/post-type/tpl-meeting-fields.php:236
 msgid "Local"
 msgstr ""
 
 #: includes/views/live/tpl-edit-meeting.php:159
-#: includes/views/post-type/tpl-meeting-fields.php:232
+#: includes/views/post-type/tpl-meeting-fields.php:239
 msgid "Cloud"
 msgstr ""
 
@@ -1877,7 +1868,7 @@ msgstr ""
 
 #: includes/views/post-type/tpl-meeting-fields.php:54
 #: includes/views/post-type/tpl-meeting-fields.php:81
-#: includes/views/post-type/tpl-meeting-fields.php:254
+#: includes/views/post-type/tpl-meeting-fields.php:261
 #, php-format
 msgid ""
 "Did not find any hosts here ? Please %scheck here%s to verify your API keys "
@@ -1905,49 +1896,46 @@ msgid ""
 "Webinar Plan enabled in your account."
 msgstr ""
 
-#: includes/views/post-type/tpl-meeting-fields.php:133
+#: includes/views/post-type/tpl-meeting-fields.php:140
 msgid "Password"
 msgstr ""
 
-#: includes/views/post-type/tpl-meeting-fields.php:140
+#: includes/views/post-type/tpl-meeting-fields.php:147
 msgid "Meeting Authentication"
 msgstr ""
 
-#: includes/views/post-type/tpl-meeting-fields.php:143
+#: includes/views/post-type/tpl-meeting-fields.php:150
 msgid "Only loggedin users in Zoom App can join this Meeting."
 msgstr ""
 
-#: includes/views/post-type/tpl-meeting-fields.php:156
+#: includes/views/post-type/tpl-meeting-fields.php:163
 msgid "Start When Host Joins"
 msgstr ""
 
-#: includes/views/post-type/tpl-meeting-fields.php:183
+#: includes/views/post-type/tpl-meeting-fields.php:190
 msgid "When Panelists Join"
 msgstr ""
 
-#: includes/views/post-type/tpl-meeting-fields.php:187
+#: includes/views/post-type/tpl-meeting-fields.php:194
 msgid "Start video when panelists join webinar."
 msgstr ""
 
-#: includes/views/post-type/tpl-meeting-fields.php:193
+#: includes/views/post-type/tpl-meeting-fields.php:200
 msgid "Practise Session"
 msgstr ""
 
-#: includes/views/post-type/tpl-meeting-fields.php:197
+#: includes/views/post-type/tpl-meeting-fields.php:204
 msgid "Enable Practise Session."
 msgstr ""
 
-#: includes/views/post-type/tpl-meeting-fields.php:213
+#: includes/views/post-type/tpl-meeting-fields.php:220
 msgid "Allow Multiple Devices"
 msgstr ""
 
-#: includes/views/post-type/tpl-meeting-fields.php:217
+#: includes/views/post-type/tpl-meeting-fields.php:224
 msgid "Allow attendess to join from multiple devices."
 msgstr ""
 
-#. Description of the plugin
-msgid ""
-"Video Conferencing with Zoom Meetings and Webinar plugin provides you with "
-"great functionality of managing Zoom meetings, Webinar scheduling options, "
-"and users directly from your WordPress dashboard."
+#. Name of the plugin
+msgid "Video Conferencing with Zoom"
 msgstr ""
