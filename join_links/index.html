@@ -389,6 +389,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#loading-cdn-resources" class="md-nav__link">
+    Loading CDN Resources
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -650,6 +657,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#loading-cdn-resources" class="md-nav__link">
+    Loading CDN Resources
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -761,6 +775,11 @@
 <li>You'll need to have SSL enabled for this feature to work.</li>
 <li>New version of Zoom WebSDK adds re-captcha. Please check if your browser is not blocking any popups when joining meeting via browser.</li>
 </ol>
+<h3 id="loading-cdn-resources">Loading CDN Resources</h3>
+<p>From plugin version 3.6.2 users can now decide to load the webSDK resources directly from Zoom CDN.</p>
+<p>To do this add below code to your config.php file.</p>
+<p><code>define('VCZAPI_STATIC_CDN', true);</code></p>
+<p>If incase, there is problem loading your join via browser page when using CDN. You can change the "true" value to "false". </p>
                 
               
               
