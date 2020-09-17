@@ -96,7 +96,7 @@ class Filters {
 
 		$GLOBALS['vczapi']['found_posts'] = $query->found_posts;
 
-		vczapi_get_template( 'fragments/filters.php', true );
+		vczapi_get_template( 'fragments/filters.php', true, false );
 	}
 
 	/**

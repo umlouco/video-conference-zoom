@@ -175,7 +175,7 @@ class Meetings {
 		unset( $GLOBALS['zoom_meetings'] );
 		$GLOBALS['zoom_meetings'] = $zoom_meetings;
 		ob_start();
-		vczapi_get_template( 'shortcode-listing.php', true );
+		vczapi_get_template( 'shortcode-listing.php', true, false );
 		$content .= ob_get_clean();
 
 		return $content;

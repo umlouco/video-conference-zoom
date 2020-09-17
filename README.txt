@@ -179,6 +179,7 @@ Join our facebook group which we have created in order to stay up to date with u
 * Updated: Zoom WebSDK to version 1.8.0
 * Added: CDN loading support for zoom webSDK static resources. Add "VCZAPI_STATIC_CDN" to true in config file for this.
 * Added: Zoom API notice error if connection is not established with API in wp-admin.
+* Added: Ability to display same "zoom_list_meetings" shortcode twice in same page.
 
 = 3.6.1 August 17th, 2020 =
 * Fixed: Deprecated warning issue on PHP 7.4 using {} syntax reported by <a href="https://wordpress.org/support/users/antonyjosephsmith/">@antonyjosephsmith</a>
