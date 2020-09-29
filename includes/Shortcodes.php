@@ -109,13 +109,14 @@ class Shortcodes {
 		do_action( 'vczapi_before_shortcode_content' );
 
 		extract( shortcode_atts( array(
-			'meeting_id'        => 'javascript:void(0);',
+			'meeting_id'        => '',
 			'title'             => '',
 			'id'                => 'zoom_video_uri',
 			'login_required'    => "no",
 			'help'              => "yes",
 			'height'            => "500px",
-			'disable_countdown' => 'yes'
+			'disable_countdown' => 'yes',
+			'passcode'          => ''
 		), $atts ) );
 
 		ob_start();
@@ -210,12 +211,16 @@ class Shortcodes {
 					<?php } else { ?>
                         <div class="vczapi-jvb-wrapper zoom-window-wrap">
 							<?php
-							$styling           = ! empty( $height ) ? "height: " . $height : "height: 500px;";
-							$iframe_link       = get_post_type_archive_link( 'zoom-meetings' );
-							$iframe_query_args = add_query_arg( array(
+							$styling     = ! empty( $height ) ? "height: " . $height : "height: 500px;";
+							$iframe_link = get_post_type_archive_link( 'zoom-meetings' );
+							$iframe_arrr = array(
 								'join' => vczapi_encrypt_decrypt( 'encrypt', $meeting_id ),
 								'type' => 'meeting'
-							), $iframe_link );
+							);
+							if ( ! empty( $passcode ) ) {
+								$iframe_arrr['pak'] = vczapi_encrypt_decrypt( 'encrypt', $passcode );
+							}
+							$iframe_query_args = add_query_arg( $iframe_arrr, $iframe_link );
 							?>
                             <div id="<?php echo ! empty( $id ) ? esc_html( $id ) : 'video-conferncing-embed-iframe'; ?>" class="zoom-iframe-container">
                                 <iframe scrolling="no" style="width:100%; <?php echo $styling; ?>" sandbox="allow-forms allow-scripts allow-same-origin allow-popups" allowfullscreen="allowfullscreen" allow="encrypted-media; autoplay; microphone; camera" src="<?php echo esc_url( $iframe_query_args ); ?>" frameborder="0"></iframe>

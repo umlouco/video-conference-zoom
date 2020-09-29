@@ -4,7 +4,7 @@ Tags: zoom video conference, video conference, zoom, zoom video conferencing, we
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.5
-Stable tag: 3.6.2
+Stable tag: 3.6.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -174,6 +174,9 @@ Join our facebook group which we have created in order to stay up to date with u
 9. Shortcode Output
 
 == Changelog ==
+
+= 3.6.3 September 29th, 2020 =
+* Added: Arguement "passcode" to [zoom_join_via_browser] browser shortcode. If passed "passcode" then join via browser will not require password to join the meeting.
 
 = 3.6.2 September 17th, 2020 =
 * Updated: Zoom WebSDK to version 1.8.0

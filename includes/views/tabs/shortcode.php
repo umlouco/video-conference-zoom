@@ -31,7 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
             </div>
             <div class="zoom-api-basic-usage" style="margin-top: 20px;border-top:1px solid #ccc;">
                 <h4>4. <?php _e( 'Embed Zoom Meeting in your Browser', 'video-conferencing-with-zoom-api' ); ?>:</h4>
-                <code>[zoom_join_via_browser meeting_id="YOUR_MEETING_ID" login_required="no" help="yes" title="Test" height="500px" disable_countdown="yes"]</code>
+                <code>[zoom_join_via_browser meeting_id="YOUR_MEETING_ID" login_required="no" help="yes" title="Test" height="500px" disable_countdown="yes" passcode="12345"]</code>
             </div>
             <div class="zoom-api-basic-usage" style="margin-top: 20px;border-top:1px solid #ccc;">
                 <h4>5. <?php _e( 'Show webinars based on HOST ID in frontend.', 'video-conferencing-with-zoom-api' ); ?>:</h4>
