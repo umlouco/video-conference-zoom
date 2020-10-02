@@ -175,8 +175,10 @@ Join our facebook group which we have created in order to stay up to date with u
 
 == Changelog ==
 
-= 3.6.3 September 29th, 2020 =
+= 3.6.3 October 2nd, 2020 =
 * Added: Arguement "passcode" to [zoom_join_via_browser] browser shortcode. If passed "passcode" then join via browser will not require password to join the meeting.
+* Added: Webinar capability for join via browser shortcode.
+* Bug Fixes
 
 = 3.6.2 September 17th, 2020 =
 * Updated: Zoom WebSDK to version 1.8.0

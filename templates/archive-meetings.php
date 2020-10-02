@@ -50,7 +50,7 @@ do_action( 'vczapi_before_main_archive_content' );
             </div>
 			<?php
 		} else {
-			echo "<p>" . __( 'No Meetings found.', 'video-conferencing-with-zoom-api' ) . "</p>";
+			echo "<p class='vczapi-no-meeting-found'>" . __( 'No Meetings found.', 'video-conferencing-with-zoom-api' ) . "</p>";
 		}
 
 		/**

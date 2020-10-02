@@ -116,7 +116,8 @@ class Shortcodes {
 			'help'              => "yes",
 			'height'            => "500px",
 			'disable_countdown' => 'yes',
-			'passcode'          => ''
+			'passcode'          => '',
+			'webinar'           => 'no'
 		), $atts ) );
 
 		ob_start();
@@ -133,7 +134,12 @@ class Shortcodes {
 			return;
 		}
 
-		$meeting     = Helpers::fetch_meeting( $meeting_id );
+		if ( ! empty( $webinar ) && $webinar === "yes" ) {
+			$meeting = json_decode( zoom_conference()->getWebinarInfo( $meeting_id ) );
+		} else {
+			$meeting = json_decode( zoom_conference()->getMeetingInfo( $meeting_id ) );
+		}
+
 		$zoom_states = get_option( 'zoom_api_meeting_options' );
 		if ( empty( $zoom_vanity_url ) ) {
 			$mobile_zoom_url = 'https://zoom.us/j/' . $meeting_id;

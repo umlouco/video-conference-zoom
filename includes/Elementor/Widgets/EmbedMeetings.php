@@ -169,6 +169,30 @@ class EmbedMeetings extends Widget_Base {
 			]
 		);
 
+		$this->add_control(
+			'passcode',
+			[
+				'label'       => __( 'Meeting Password', 'video-conferencing-with-zoom-api' ),
+				'type'        => \Elementor\Controls_Manager::TEXT,
+				'placeholder' => __( 'Meeting Password', 'video-conferencing-with-zoom-api' ),
+			]
+		);
+
+		$this->add_control(
+			'enable_webinar',
+			[
+				'name'        => 'enable_webinar',
+				'label'       => __( 'Webinar ?', 'video-conferencing-with-zoom-api' ),
+				'type'        => \Elementor\Controls_Manager::SELECT,
+				'label_block' => true,
+				'multiple'    => false,
+				'options'     => [
+					'yes' => 'Yes',
+					'no'  => 'No'
+				],
+				'default'     => 'no'
+			]
+		);
 
 		$this->end_controls_section();
 
@@ -193,8 +217,10 @@ class EmbedMeetings extends Widget_Base {
 		$title_text        = ! empty( $settings['title_text'] ) ? $settings['title_text'] : false;
 		$height            = ! empty( $settings['height'] ) ? $settings['height'] : 500;
 		$disable_countdown = ! empty( $settings['disable_countdown'] ) ? $settings['disable_countdown'] : 'yes';
+		$passcode          = ! empty( $settings['passcode'] ) ? $settings['passcode'] : '';
+		$enable_webinar    = ! empty( $settings['enable_webinar'] ) ? $settings['enable_webinar'] : 'yes';
 		if ( ! empty( $meeting_id ) ) {
-			echo do_shortcode( '[zoom_join_via_browser meeting_id="' . esc_attr( $meeting_id ) . '" login_required="' . esc_attr( $login_required ) . '" help="' . esc_attr( $help_text ) . '" title="' . esc_attr( $title_text ) . '" height="' . esc_attr( $height ) . 'px" disable_countdown="' . esc_attr( $disable_countdown ) . '"]' );
+			echo do_shortcode( '[zoom_join_via_browser meeting_id="' . esc_attr( $meeting_id ) . '" login_required="' . esc_attr( $login_required ) . '" help="' . esc_attr( $help_text ) . '" title="' . esc_attr( $title_text ) . '" height="' . esc_attr( $height ) . 'px" disable_countdown="' . esc_attr( $disable_countdown ) . '" ' . esc_attr( 'passcode="' . $passcode . '"' ) . ' webinar="' . esc_attr( $enable_webinar ) . '"]' );
 		} else {
 			_e( 'No Meeting ID is defined.', 'video-conferencing-with-zoom-api' );
 		}

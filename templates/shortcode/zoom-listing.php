@@ -9,8 +9,6 @@
  * @updated     3.6.0
  */
 
-use Codemanas\ZoomPro\Helpers;
-
 global $zoom;
 
 if ( ! vczapi_pro_version_active() && ( $zoom['api']->type === 8 || $zoom['api']->type === 3 ) || empty( $zoom ) || ! empty( $zoom['api']->code ) ) {
@@ -36,7 +34,7 @@ if ( ! vczapi_pro_version_active() && ( $zoom['api']->type === 8 || $zoom['api']
 				$timezone  = ! empty( $zoom['api']->timezone ) ? $zoom['api']->timezone : false;
 				$occurence = ! empty( $zoom['api']->occurrences ) ? $zoom['api']->occurrences : false;
 				if ( ! empty( $occurence ) ) {
-					$start_time = Helpers::get_latest_occurence_by_type( $type, $timezone, $occurence );
+					$start_time = Codemanas\ZoomPro\Helpers::get_latest_occurence_by_type( $type, $timezone, $occurence );
 					?>
                     <div class="start-date meta">
                         <strong><?php _e( 'Next Occurrence', 'video-conferencing-with-zoom-api' ); ?>:</strong>

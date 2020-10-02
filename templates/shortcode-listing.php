@@ -39,7 +39,7 @@ if ( ! is_object( $zoom_meetings ) && ! ( $zoom_meetings instanceof \WP_Query ) 
 				vczapi_get_template_part( 'shortcode/zoom', 'listing' );
 			}
 		} else {
-			_e( "No Meetings found.", "video-conferencing-with-zoom-api" );
+			echo "<p class='vczapi-no-meeting-found'>" . __( 'No Meetings found.', 'video-conferencing-with-zoom-api' ) . "</p>";
 		}
 
 		wp_reset_postdata();
