@@ -867,7 +867,7 @@
 <h3 id="7-embed-zoom-meeting-in-your-browser">7. Embed Zoom Meeting in your Browser</h3>
 <p>Embeds your meeting in an IFRAME for any page or post you insert this shortcode into.</p>
 <p><strong style="color:red;">Although this embed feature is here. I do no garauntee this would work properly as this is not natively supported by Zoom itself. This is here only because of user requests. USE THIS AT OWN RISK !!</strong></p>
-<p>Use: <code>[zoom_join_via_browser meeting_id="YOUR_MEETING_ID" login_required="no" help="yes" title="Test" height="500px" disable_countdown="yes"]</code></p>
+<p>Use: <code>[zoom_join_via_browser meeting_id="YOUR_MEETING_ID" login_required="no" help="yes" title="Test" height="500px" disable_countdown="yes" passcode="1232132121" webinar="no"]</code></p>
 <p>Where,</p>
 <ul>
 <li><code>meeting_id</code> : Your MEETING ID.</li>
@@ -876,7 +876,10 @@
 <li><code>title</code> : Title of your Embed Session</li>
 <li><code>height</code> : Height of embedded video IFRAME.</li>
 <li><code>disable_countdown</code> : "yes or no", enable or disable countdown.</li>
+<li><code>passcode</code> : Set password of your meeting to automatically let users join without needing them to enter password.</li>
+<li><code>webinar</code> : "yes" for embedding webinars.</li>
 </ul>
+<p><strong>Updated in version 3.6.3</strong></p>
 <p>To redirect user after a meeting fails, after completed or if meeting is not yet started; Add below code to your functions.php file in your theme and replace it with url you want to redirect:</p>
 <p><strong><code>add_filter('vczapi_api_redirect_join_browser', function() { 
     return 'https://yoursiteurl.com/page';
