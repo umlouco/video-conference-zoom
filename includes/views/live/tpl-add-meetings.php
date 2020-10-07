@@ -120,14 +120,6 @@ $users = video_conferencing_zoom_api_get_user_transients();
                 </td>
             </tr>
             <tr>
-                <th scope="row"><label for="option_enforce_login"><?php _e( 'Enforce Login', 'video-conferencing-with-zoom-api' ); ?></label></th>
-                <td>
-                    <p class="description" id="option_enforce_login-description">
-                        <input type="checkbox" name="option_enforce_login" value="1" class="regular-text"><?php _e( 'Only signed-in users can join this meeting.', 'video-conferencing-with-zoom-api' ); ?>
-                    </p>
-                </td>
-            </tr>
-            <tr>
                 <th scope="row"><label for="option_auto_recording"><?php _e( 'Auto Recording', 'video-conferencing-with-zoom-api' ); ?></label></th>
                 <td>
                     <select id="option_auto_recording" name="option_auto_recording">

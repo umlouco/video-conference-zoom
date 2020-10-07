@@ -81,7 +81,6 @@ class Zoom_Video_Conferencing_Admin_Meetings {
 			'option_host_video'         => filter_input( INPUT_POST, 'option_host_video' ),
 			'option_participants_video' => filter_input( INPUT_POST, 'option_participants_video' ),
 			'option_mute_participants'  => filter_input( INPUT_POST, 'option_mute_participants' ),
-			'option_enforce_login'      => filter_input( INPUT_POST, 'option_enforce_login' ),
 			'option_auto_recording'     => filter_input( INPUT_POST, 'option_auto_recording' ),
 			'alternative_host_ids'      => filter_input( INPUT_POST, 'alternative_host_ids', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY )
 		);
@@ -121,7 +120,6 @@ class Zoom_Video_Conferencing_Admin_Meetings {
 			'option_host_video'         => filter_input( INPUT_POST, 'option_host_video' ),
 			'option_participants_video' => filter_input( INPUT_POST, 'option_participants_video' ),
 			'option_mute_participants'  => filter_input( INPUT_POST, 'option_mute_participants' ),
-			'option_enforce_login'      => filter_input( INPUT_POST, 'option_enforce_login' ),
 			'option_auto_recording'     => filter_input( INPUT_POST, 'option_auto_recording' ),
 			'alternative_host_ids'      => filter_input( INPUT_POST, 'alternative_host_ids', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY )
 		);

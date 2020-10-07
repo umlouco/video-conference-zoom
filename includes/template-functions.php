@@ -232,6 +232,10 @@ function video_conference_zoom_shortcode_join_link( $zoom_meetings ) {
 		return;
 	}
 
+	if ( empty( $zoom_meetings->timezone ) ) {
+		$zoom_meetings->timezone = zvc_get_timezone_offset_wp();
+	}
+
 	$now               = new DateTime( 'now -1 hour', new DateTimeZone( $zoom_meetings->timezone ) );
 	$closest_occurence = false;
 	if ( ! empty( $zoom_meetings->type ) && $zoom_meetings->type === 8 && ! empty( $zoom_meetings->occurrences ) ) {
@@ -247,6 +251,8 @@ function video_conference_zoom_shortcode_join_link( $zoom_meetings ) {
 	} else if ( empty( $zoom_meetings->occurrences ) ) {
 		$zoom_meetings->start_time = false;
 	} else if ( ! empty( $zoom_meetings->type ) && $zoom_meetings->type === 3 ) {
+		$zoom_meetings->start_time = false;
+	} else if ( ! empty( $zoom_meetings->type ) && $zoom_meetings->type === 4 ) {
 		$zoom_meetings->start_time = false;
 	}
 
@@ -366,17 +372,26 @@ if ( ! function_exists( 'video_conference_zoom_shortcode_table' ) ) {
                     <td><?php _e( 'This is a meeting with no Fixed Time.', 'video-conferencing-with-zoom-api' ); ?></td>
                 </tr>
 				<?php
-			} else {
+			} else if ( ! empty( $zoom_meetings->type ) && $zoom_meetings->type === 4 ) {
+				?>
+                <tr class="vczapi-shortcode-meeting-table--row6">
+                    <td><?php _e( 'Type', 'video-conferencing-with-zoom-api' ); ?></td>
+                    <td><?php _e( 'Personal Meeting Room', 'video-conferencing-with-zoom-api' ); ?></td>
+                </tr>
+				<?php
+			} else if ( ! empty( $zoom_meetings->start_time ) ) {
 				?>
                 <tr class="vczapi-shortcode-meeting-table--row6">
                     <td><?php _e( 'Start Time', 'video-conferencing-with-zoom-api' ); ?></td>
                     <td><?php echo vczapi_dateConverter( $zoom_meetings->start_time, $zoom_meetings->timezone, 'F j, Y @ g:i a' ); ?></td>
                 </tr>
 			<?php } ?>
-            <tr class="vczapi-shortcode-meeting-table--row7">
-                <td><?php _e( 'Timezone', 'video-conferencing-with-zoom-api' ); ?></td>
-                <td><?php echo $zoom_meetings->timezone; ?></td>
-            </tr>
+			<?php if ( ! empty( $zoom_meetings->timezone ) ) { ?>
+                <tr class="vczapi-shortcode-meeting-table--row7">
+                    <td><?php _e( 'Timezone', 'video-conferencing-with-zoom-api' ); ?></td>
+                    <td><?php echo $zoom_meetings->timezone; ?></td>
+                </tr>
+			<?php } ?>
 			<?php if ( ! empty( $zoom_meetings->duration ) ) { ?>
                 <tr class="zvc-table-shortcode-duration">
                     <td><?php _e( 'Duration', 'video-conferencing-with-zoom-api' ); ?></td>
