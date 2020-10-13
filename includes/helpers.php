@@ -189,6 +189,37 @@ if ( ! function_exists( 'zvc_get_timezone_options' ) ) {
 }
 
 /**
+ * Set New Cache Data
+ *
+ * @param $key
+ * @param $value
+ * @param $time_in_seconds
+ */
+function vczapi_set_cache( $key, $value, $time_in_seconds ) {
+	update_option( $key, $value );
+	update_option( $key . '_expiry_time', time() + $time_in_seconds );
+}
+
+/**
+ * Get Set Cache Data
+ *
+ * @param $key
+ *
+ * @return bool|mixed|void
+ */
+function vczapi_get_cache( $key ) {
+	$expiry = get_option( $key . '_expiry_time' );
+	if ( $expiry > time() ) {
+		return get_option( $key );
+	} else {
+		update_option( $key, '' );
+		update_option( $key . '_expiry_time', '' );
+
+		return false;
+	}
+}
+
+/**
  * Get Users using transients
  *
  * @since  2.1.0
@@ -197,40 +228,26 @@ if ( ! function_exists( 'zvc_get_timezone_options' ) ) {
 function video_conferencing_zoom_api_get_user_transients() {
 	if ( isset( $_GET['page'] ) && $_GET['page'] === "zoom-video-conferencing-list-users" && isset( $_GET['pg'] ) ) {
 		$page          = $_GET['pg'];
-		$encoded_users = zoom_conference()->listUsers( $page );
-		$decoded_users = json_decode( $encoded_users );
+		$decoded_users = json_decode( zoom_conference()->listUsers( $page ) );
 		if ( ! empty( $decoded_users->code ) ) {
 			$users = false;
 		} else {
 			$users = $decoded_users->users;
 		}
 	} else {
-		$check_user_cache_expiry = get_option( '_zvc_user_lists_expiry_time' );
-		if ( time() > $check_user_cache_expiry ) {
-			update_option( '_zvc_user_lists', '' );
-		}
-
-		//Check if any transient by name is available
-		$check_transient = get_option( '_zvc_user_lists' );
-		if ( $check_transient ) {
-			$users = $check_transient->users;
+		$check_existing = vczapi_get_cache( '_zvc_user_lists' );
+		if ( ! empty( $check_existing ) ) {
+			$users = $check_existing;
 		} else {
-			$encoded_users = zoom_conference()->listUsers();
-			if ( ! empty( $encoded_users ) ) {
-				$decoded_users = json_decode( $encoded_users );
-				if ( ! empty( $decoded_users->code ) ) {
-					$users = false;
-				} else {
-					$users = $decoded_users->users;
-					update_option( '_zvc_user_lists', $decoded_users );
-					update_option( '_zvc_user_lists_expiry_time', time() + 108000 );
-				}
-			} else {
+			$decoded_users = json_decode( zoom_conference()->listUsers() );
+			if ( ! empty( $decoded_users->code ) ) {
 				if ( is_admin() ) {
 					add_action( 'admin_notices', 'vczapi_check_connection_error' );
 				}
-
 				$users = false;
+			} else {
+				$users = ! empty( $decoded_users->users ) ? $decoded_users->users : false;
+				vczapi_set_cache( '_zvc_user_lists', $users, 108000 );
 			}
 		}
 	}
@@ -412,11 +429,12 @@ function vczapi_get_template_part( $slug, $name = '' ) {
 /**
  * Check if given post ID is related to the post of current user.
  *
- * @author Deepen
  * @param $post_id
- * @since 3.0.0
  *
  * @return bool
+ * @since 3.0.0
+ *
+ * @author Deepen
  */
 function vczapi_check_author( $post_id ) {
 	$post_author_id = get_post_field( 'post_author', $post_id );
@@ -737,4 +755,35 @@ function vczapi_get_meeting_author( $post_id, $meeting_details = false, $wp_auth
 	}
 
 	return $meeting_author;
+}
+
+/**
+ * Get WP roles
+ *
+ * @param $search
+ *
+ * @return mixed|void
+ */
+function vczapi_getWpUsers_basedon_UserRoles( $search = false ) {
+	$roles_in = apply_filters( 'zvc_allow_zoom_host_id_user_role', array(
+		'subscriber',
+		'administrator',
+		'contributor',
+		'author',
+		'meeting_author',
+		'shop_manager'
+	) );
+
+	$query = array(
+		'number'   => - 1,
+		'role__in' => $roles_in
+	);
+
+	if ( ! empty( $search ) ) {
+		$query['search'] = $search;
+	}
+
+	$users = get_users( $query );
+
+	return $users;
 }

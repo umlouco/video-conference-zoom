@@ -77,6 +77,11 @@ jQuery(function ($) {
                 signaure: SIGNATURE,
                 email: EMAIL_USER
               };
+
+              if (window.location !== window.parent.location) {
+                REDIRECTION = window.location.href;
+              }
+
               ZoomMtg.init({
                 leaveUrl: REDIRECTION,
                 isSupportAV: true,

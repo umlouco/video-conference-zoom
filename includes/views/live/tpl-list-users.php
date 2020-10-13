@@ -12,6 +12,7 @@ $users = video_conferencing_zoom_api_get_user_transients();
 <div class="wrap">
     <h2><?php _e( "Users", "video-conferencing-with-zoom-api" ); ?></h2>
     <a href="?post_type=zoom-meetings&page=zoom-video-conferencing-list-users&flush=true"><?php _e( 'Flush User Cache', 'video-conferencing-with-zoom-api' ); ?></a>
+     / <a href="?post_type=zoom-meetings&page=zoom-video-conferencing-list-users&status=pending"><?php _e( 'Check Pending Users', 'video-conferencing-with-zoom-api' ); ?></a>
     <div class="message">
 		<?php
 		$message = self::get_message();

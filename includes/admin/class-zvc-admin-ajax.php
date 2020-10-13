@@ -22,6 +22,10 @@ class Zoom_Video_Conferencing_Admin_Ajax {
 		//Call meeting state
 		add_action( 'wp_ajax_nopriv_state_change', array( $this, 'state_change' ) );
 		add_action( 'wp_ajax_state_change', array( $this, 'state_change' ) );
+
+		//AJAX call for fetching users
+		add_action( 'wp_ajax_get_assign_host_id', [ $this, 'assign_host_id' ] );
+		add_action( 'wp_ajax_vczapi_get_wp_users', [ $this, 'get_wp_usersByRole' ] );
 	}
 
 	/**
@@ -236,6 +240,60 @@ class Zoom_Video_Conferencing_Admin_Ajax {
 		} else {
 			wp_send_json_error( $success );
 		}
+
+		wp_die();
+	}
+
+	/**
+	 * Assign Host ID page
+	 */
+	public function assign_host_id() {
+		$users      = vczapi_getWpUsers_basedon_UserRoles();
+		$result     = array();
+		$zoom_users = video_conferencing_zoom_api_get_user_transients();
+		if ( ! empty( $users ) ) {
+			foreach ( $users as $user ) {
+				$user_zoom_hostid = get_user_meta( $user->ID, 'user_zoom_hostid', true );
+				$host_id_field = '';
+				if ( ! empty( $zoom_users ) ) {
+					$host_id_field .= '<select name="zoom_host_id[' . $user->ID . ']" style="width:100%">';
+					$host_id_field .= '<option value="">' . __( 'Not a Host', 'video-conferencing-with-zoom-api' ) . '</option>';
+					foreach ( $zoom_users as $zoom_usr ) {
+						$selected_host_id = ! empty( $user_zoom_hostid ) && $user_zoom_hostid === $zoom_usr->id ? 'selected="selected"' : false;
+						$full_name        = ! empty( $zoom_usr->first_name ) ? $zoom_usr->first_name . ' ' . $zoom_usr->last_name : $zoom_usr->email;
+						$host_id_field    .= '<option value="' . $zoom_usr->id . '" ' . $selected_host_id . '>' . $full_name . '</option>';
+					}
+					$host_id_field .= '</select>';
+
+					$result[] = array(
+						'id'      => $user->ID,
+						'email'   => $user->user_email,
+						'name'    => empty( $user->first_name ) ? $user->display_name : $user->first_name . ' ' . $user->last_name,
+						'host_id' => $host_id_field
+					);
+				}
+			}
+
+			wp_send_json_success( $result );
+
+			wp_die();
+		}
+	}
+
+	public function get_wp_usersByRole() {
+		$search_string = filter_input( INPUT_GET, 'term' );
+		$users         = vczapi_getWpUsers_basedon_UserRoles( $search_string );
+		$results       = array();
+		if ( ! empty( $users ) ) {
+			foreach ( $users as $user ) {
+				$results[] = array(
+					'id'   => $user->ID,
+					'text' => $user->user_email
+				);
+			}
+		}
+
+		wp_send_json( array( 'results' => $results ) );
 
 		wp_die();
 	}

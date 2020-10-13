@@ -48,10 +48,8 @@ class Elementor {
 	 */
 	private function add_actions() {
 		// Register widget scripts.
-		add_action( 'elementor/editor/before_enqueue_scripts', [ $this, 'widget_scripts' ] );
-
+		#add_action( 'elementor/editor/before_enqueue_scripts', [ $this, 'widget_scripts' ] );
 		add_action( 'elementor/widgets/widgets_registered', [ $this, 'on_widgets_registered' ] );
-
 		add_action( 'elementor/elements/categories_registered', [ $this, 'widget_categories' ] );
 	}
 

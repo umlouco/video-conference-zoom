@@ -4,7 +4,7 @@ Tags: zoom video conference, video conference, zoom, zoom video conferencing, we
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.5
-Stable tag: 3.6.4
+Stable tag: 3.6.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -174,6 +174,14 @@ Join our facebook group which we have created in order to stay up to date with u
 9. Shortcode Output
 
 == Changelog ==
+
+= 3.6.5 October 13th, 2020 =
+* Changed: Assign Zoom Users to WordPress users to be more flexible with PRO version.
+* Fixed: Zoom WebSDK when joining in IFRAME redirection in the same iframe window. Fixed it to redirect back to main screen without users noticing the iframe.
+* Added: Pending Users view page.
+* Changed: Cache Helper functions updated.
+* Fixed: Rank Math SEO tab not working in Elementor because of script loading error from the plugin.
+* Minor bug fixes.
 
 = 3.6.4 October 7th, 2020 =
 * Removed: Enforce login field from "Live Meetings" because Zoom API has removed this field.

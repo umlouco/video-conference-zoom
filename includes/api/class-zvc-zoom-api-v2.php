@@ -149,14 +149,19 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 		 * User Function to List
 		 *
 		 * @param $page
+		 * @param $params
 		 *
 		 * @return array
 		 */
-		public function listUsers( $page = 1 ) {
+		public function listUsers( $page = 1, $params = array() ) {
 			$listUsersArray                = array();
 			$listUsersArray['page_size']   = 300;
 			$listUsersArray['page_number'] = absint( $page );
 			$listUsersArray                = apply_filters( 'vczapi_listUsers', $listUsersArray );
+
+			if ( ! empty( $params ) ) {
+				$listUsersArray = array_merge( $listUsersArray, $params );
+			}
 
 			return $this->sendRequest( 'users', $listUsersArray, "GET" );
 		}

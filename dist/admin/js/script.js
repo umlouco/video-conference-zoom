@@ -19,12 +19,13 @@
             this.initializeDependencies();
         },
         setupDOM: function () {
-            $dom.select2 = $('.zvc-hacking-select');
+            $dom.changeSelectType = $('.zvc-hacking-select');
             $dom.dateTimePicker = $('#datetimepicker');
             $dom.reportsDatePicker = $('#reports_date');
             $dom.zoomAccountDatepicker = $(".zoom_account_datepicker");
-            $dom.dataTable = $('#zvc_users_list_table, #zvc_meetings_list_table');
+            $dom.meetingListDTable = $('#zvc_users_list_table, #zvc_meetings_list_table');
             $dom.meetingListTableCheck = $("#zvc_meetings_list_table");
+            $dom.usersListTable = $('#vczapi-get-host-users-wp');
             $dom.meetingListTbl = $dom.meetingListTableCheck.find('input[type=checkbox]');
             $dom.cover = $('#zvc-cover');
             $dom.togglePwd = $('.toggle-api');
@@ -65,8 +66,8 @@
         },
 
         initializeDependencies: function () {
-            if ($dom.select2.length > 0) {
-                $dom.select2.select2();
+            if ($dom.changeSelectType.length > 0) {
+                $dom.changeSelectType.select2();
             }
 
             //DatePickers
@@ -75,13 +76,44 @@
             /***********************************************************
              * Start For Users and Meeting DATA table Listing Section
              **********************************************************/
-            if ($dom.dataTable.length > 0) {
-                $dom.dataTable.dataTable({
+            if ($dom.meetingListDTable.length > 0) {
+                $dom.meetingListDTable.dataTable({
                     "pageLength": 25,
                     "columnDefs": [{
                         "targets": 0,
                         "orderable": false
                     }]
+                });
+            }
+
+            if ($dom.usersListTable.length > 0) {
+                $dom.usersListTable.dataTable({
+                    "pageLength": 25,
+                    "columnDefs": [{
+                        "targets": 0,
+                        "orderable": true,
+                    }],
+                    ajax: {
+                        url: ajaxurl + '?action=get_assign_host_id'
+                    },
+                    columns: [
+                        {data: 'id'},
+                        {data: 'email'},
+                        {data: 'name'},
+                        {data: 'host_id'},
+                    ]
+                });
+            }
+
+            if ($('#vczapi-select-wp-user-for-host').length > 0) {
+                $('#vczapi-select-wp-user-for-host').select2({
+                    ajax: {
+                        url: ajaxurl + '?action=vczapi_get_wp_users',
+                        type: "GET",
+                        dataType: 'json'
+                    },
+                    placeholder: "Select a WordPress User",
+                    width: '300px'
                 });
             }
         },

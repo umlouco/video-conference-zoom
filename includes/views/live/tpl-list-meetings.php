@@ -11,8 +11,8 @@ $users = video_conferencing_zoom_api_get_user_transients();
 if ( isset( $_GET['host_id'] ) ) {
 	$encoded_meetings = zoom_conference()->listMeetings( $_GET['host_id'] );
 	$decoded_meetings = json_decode( $encoded_meetings );
-	$meetings         = $decoded_meetings->meetings;
-	$meeting_states   = get_option( 'zoom_api_meeting_options' );
+	$meetings         = ! empty( $decoded_meetings->meetings ) ? $decoded_meetings->meetings : array();
+	$meeting_states = get_option( 'zoom_api_meeting_options' );
 }
 ?>
 <div id="zvc-cover" style="display: none;"></div>
@@ -36,10 +36,8 @@ if ( isset( $_GET['host_id'] ) ) {
                 <label for="bulk-action-selector-top" class="screen-reader-text"><?php _e( "Select bulk action", "video-conferencing-with-zoom-api" ); ?></label>
                 <select name="action" id="bulk-action-selector-top">
                     <option value="trash"><?php _e( "Move to Trash", "video-conferencing-with-zoom-api" ); ?></option>
-                </select>
-                <input type="submit" id="bulk_delete_meeting_listings" data-type="meeting" class="button action" value="Apply">
-                <a href="?post_type=zoom-meetings&page=zoom-video-conferencing-add-meeting&host_id=<?php echo $get_host_id; ?>" class="button action" title="Add new meeting">Add
-                    New Meeting</a>
+                </select> <input type="submit" id="bulk_delete_meeting_listings" data-type="meeting" class="button action" value="Apply">
+                <a href="?post_type=zoom-meetings&page=zoom-video-conferencing-add-meeting&host_id=<?php echo $get_host_id; ?>" class="button action" title="Add new meeting">Add New Meeting</a>
             </div>
             <div class="alignright">
                 <select onchange="location = this.value;" class="zvc-hacking-select">

@@ -65,9 +65,9 @@ class Zoom_Video_Conferencing_Admin_Views {
 				'render'
 			) );
 
-			//Only for developers. So this is hidden !
+			//Only for developers or PRO version. So this is hidden !
 			if ( defined( 'VIDEO_CONFERENCING_HOST_ASSIGN_PAGE' ) ) {
-				add_submenu_page( 'edit.php?post_type=zoom-meetings', __( 'Assign Host ID', 'video-conferencing-with-zoom-api' ), __( 'Assign Host ID', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing-host-id-assign', array(
+				add_submenu_page( 'edit.php?post_type=zoom-meetings', __( 'Host to WP Users', 'video-conferencing-with-zoom-api' ), __( 'Host to WP Users', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing-host-id-assign', array(
 					'Zoom_Video_Conferencing_Admin_Users',
 					'assign_host_id'
 				) );
