@@ -149,7 +149,7 @@ function video_conference_zoom_meeting_join_link( $zoom_meeting ) {
 	if ( wp_doing_ajax() ) {
 		$post_id         = absint( filter_input( INPUT_POST, 'post_id' ) );
 		$meeting_details = get_post_meta( $post_id, '_meeting_fields', true );
-		if ( ! empty( $zoom_meeting->id ) && ! empty( $post_id ) && empty( $meeting_details['site_option_browser_join'] ) ) {
+		if ( ! empty( $zoom_meeting->id ) && ! empty( $post_id ) && empty( $meeting_details['site_option_browser_join'] ) && ! vczapi_check_disable_joinViaBrowser() ) {
 			if ( ! empty( $zoom_meeting->password ) ) {
 				echo vczapi_get_browser_join_links( $post_id, $zoom_meeting->id, $zoom_meeting->password );
 			} else {
@@ -209,7 +209,7 @@ function video_conference_zoom_shortcode_join_link_webinar( $zoom_webinars ) {
 		$join_url            = ! empty( $zoom_webinars->encrypted_password ) ? vczapi_get_pwd_embedded_join_link( $zoom_webinars->join_url, $zoom_webinars->encrypted_password ) : $zoom_webinars->join_url;
 		$GLOBALS['webinars'] = array(
 			'join_uri'    => apply_filters( 'vczoom_join_webinar_via_app_shortcode', $join_url, $zoom_webinars ),
-			'browser_url' => apply_filters( 'vczoom_join_webinar_via_browser_disable', $browser_join )
+			'browser_url' => ! vczapi_check_disable_joinViaBrowser() ? apply_filters( 'vczoom_join_webinar_via_browser_disable', $browser_join ) : false
 		);
 		vczapi_get_template( 'shortcode/webinar-join-links.php', true, false );
 	}
@@ -271,7 +271,7 @@ function video_conference_zoom_shortcode_join_link( $zoom_meetings ) {
 		$join_url            = ! empty( $zoom_meetings->encrypted_password ) ? vczapi_get_pwd_embedded_join_link( $zoom_meetings->join_url, $zoom_meetings->encrypted_password ) : $zoom_meetings->join_url;
 		$GLOBALS['meetings'] = array(
 			'join_uri'    => apply_filters( 'vczoom_join_meeting_via_app_shortcode', $join_url, $zoom_meetings ),
-			'browser_url' => apply_filters( 'vczoom_join_meeting_via_browser_disable', $browser_join )
+			'browser_url' => ! vczapi_check_disable_joinViaBrowser() ? apply_filters( 'vczoom_join_meeting_via_browser_disable', $browser_join ) : false
 		);
 		vczapi_get_template( 'shortcode/join-links.php', true, false );
 	}

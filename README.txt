@@ -4,7 +4,7 @@ Tags: zoom video conference, video conference, zoom, zoom video conferencing, we
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.5
-Stable tag: 3.6.5
+Stable tag: 3.6.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -174,6 +174,9 @@ Join our facebook group which we have created in order to stay up to date with u
 9. Shortcode Output
 
 == Changelog ==
+
+= 3.6.6 =
+* Added: Global option to disable join via browser.
 
 = 3.6.5 October 13th, 2020 =
 * Changed: Assign Zoom Users to WordPress users to be more flexible with PRO version.

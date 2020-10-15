@@ -66,7 +66,14 @@ if ( ! defined( 'ABSPATH' ) ) {
                                 <a href="<?php echo esc_url( admin_url( '/edit.php?post_type=zoom-meetings' ) ); ?>">Zoom Meetings</a></span>
                     </td>
                 </tr>
-                <tr class="show-zoom-authors">
+                <tr>
+                    <th><label><?php _e( 'Disable Join via browser ?', 'video-conferencing-with-zoom-api' ); ?></label></th>
+                    <td>
+                        <input type="checkbox" name="meeting_disable_join_via_browser" <?php ! empty( $disable_jvb ) ? checked( $disable_jvb, 'on' ) : false; ?>>
+                        <span class="description"><?php _e( 'Checking this will hide all Join via Browser Buttons.', 'video-conferencing-with-zoom-api' ); ?></span>
+                    </td>
+                </tr>
+                <tr>
                     <th><label><?php _e( 'Disable Email field when join via browser ?', 'video-conferencing-with-zoom-api' ); ?></label></th>
                     <td>
                         <input type="checkbox" name="meeting_show_email_field" <?php ! empty( $hide_email_jvb ) ? checked( $hide_email_jvb, 'on' ) : false; ?>>

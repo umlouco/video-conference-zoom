@@ -152,8 +152,8 @@ class Webinars {
                         <td><?php echo $webinar->topic; ?></td>
                         <td><?php echo vczapi_dateConverter( $webinar->start_time, $webinar->timezone ); ?></td>
                         <td><?php echo $webinar->timezone; ?></td>
-                        <td><a href="<?php echo $webinar->join_url; ?>"><?php _e( 'Join via App', 'video-conferencing-with-zoom-api' ); ?></a> /
-                            <a href="<?php echo vczapi_get_browser_join_shortcode( $webinar->id, $pass, true ); ?>"><?php _e( 'Join via Browser', 'video-conferencing-with-zoom-api' ); ?></a>
+                        <td>
+                            <a href="<?php echo $webinar->join_url; ?>"><?php _e( 'Join via App', 'video-conferencing-with-zoom-api' ); ?></a><?php echo vczapi_get_browser_join_shortcode( $webinar->id, $pass, false, ' / ' ); ?>
                         </td>
                     </tr>
 					<?php

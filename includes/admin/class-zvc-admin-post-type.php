@@ -733,11 +733,15 @@ class Zoom_Video_Conferencing_Admin_PostType {
 			$meeting_details = get_post_meta( $post_id, '_meeting_fields', true );
 			$meeting_id      = get_post_meta( $post_id, '_meeting_zoom_meeting_id', true );
 			if ( ! empty( $meeting_id ) ) {
+				do_action( 'vczapi_before_delete_meeting', $meeting_id );
+
 				if ( ! empty( $meeting_details ) && $meeting_details['meeting_type'] === 2 ) {
 					zoom_conference()->deleteAWebinar( $meeting_id );
 				} else {
 					zoom_conference()->deleteAMeeting( $meeting_id );
 				}
+
+				do_action( 'vczapi_after_delete_meeting' );
 			}
 		}
 	}

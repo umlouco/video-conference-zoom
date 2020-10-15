@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Video Conferencing with Zoom API\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/video-"
 "conferencing-with-zoom-api\n"
-"POT-Creation-Date: 2020-10-07 09:17+0000\n"
+"POT-Creation-Date: 2020-10-13 11:25+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -90,49 +90,49 @@ msgstr ""
 msgid "This meeting is no longer valid and cannot be joined !"
 msgstr ""
 
-#: includes/helpers.php:246
+#: includes/helpers.php:263
 msgid ""
 "Please check your internet connection. Zoom API is not able to connect with "
 "Zoom servers at the moment."
 msgstr ""
 
-#: includes/helpers.php:311
+#: includes/helpers.php:328
 msgid "Like this plugin ?"
 msgstr ""
 
-#: includes/helpers.php:314
+#: includes/helpers.php:331
 #, php-format
 msgid ""
 "Please consider giving a %s if you found this useful at wordpress.org or "
 msgstr ""
 
-#: includes/helpers.php:315
+#: includes/helpers.php:332
 #, php-format
 msgid "check %s for shortcode references."
 msgstr ""
 
-#: includes/helpers.php:333
+#: includes/helpers.php:350
 msgid "Do not get confused here !!"
 msgstr ""
 
-#: includes/helpers.php:335
+#: includes/helpers.php:352
 msgid ""
 "Please read !!! These below meetings are directly from your zoom.us account "
 "via API connection. Meetings added from here won't show up on your Post Type "
 "list. This will only create meeting in your zoom.us account !"
 msgstr ""
 
-#: includes/helpers.php:336
+#: includes/helpers.php:353
 msgid "I understand ! Don't show this again !"
 msgstr ""
 
-#: includes/helpers.php:561 includes/helpers.php:565 includes/helpers.php:585
-#: includes/helpers.php:589 templates/shortcode/join-links.php:27
+#: includes/helpers.php:579 includes/helpers.php:583 includes/helpers.php:603
+#: includes/helpers.php:607 templates/shortcode/join-links.php:27
 #: templates/shortcode/webinar-join-links.php:27
 msgid "Join via Web Browser"
 msgstr ""
 
-#: includes/helpers.php:667
+#: includes/helpers.php:685
 msgid "Next Results"
 msgstr ""
 
@@ -171,7 +171,7 @@ msgstr ""
 #: templates/shortcode/zoom-recordings-by-meeting.php:15
 #: includes/Elementor/Widgets/EmbedMeetings.php:96
 #: includes/Elementor/Widgets/RecordingByMeetingID.php:95
-#: includes/views/live/tpl-list-meetings.php:60
+#: includes/views/live/tpl-list-meetings.php:58
 #: includes/views/live/tpl-list-recordings.php:20
 msgid "Meeting ID"
 msgstr ""
@@ -181,7 +181,7 @@ msgstr ""
 #: templates/shortcode/zoom-recordings.php:17
 #: templates/shortcode/zoom-recordings-by-meeting.php:16
 #: includes/views/webinars/tpl-list-webinars.php:59
-#: includes/views/live/tpl-list-meetings.php:62
+#: includes/views/live/tpl-list-meetings.php:60
 #: includes/views/live/tpl-list-recordings.php:21
 msgid "Topic"
 msgstr ""
@@ -214,7 +214,7 @@ msgstr ""
 #: includes/template-functions.php:324
 #: includes/admin/class-zvc-admin-post-type.php:174
 #: templates/shortcode/zoom-webinar.php:34
-#: includes/views/live/tpl-list-meetings.php:122
+#: includes/views/live/tpl-list-meetings.php:120
 msgid "Recurring Meeting"
 msgstr ""
 
@@ -241,7 +241,7 @@ msgstr ""
 #: templates/shortcode/zoom-webinar.php:88
 #: templates/shortcode/zoom-listing.php:47
 #: includes/views/webinars/tpl-list-webinars.php:61
-#: includes/views/live/tpl-list-meetings.php:64
+#: includes/views/live/tpl-list-meetings.php:62
 msgid "Start Time"
 msgstr ""
 
@@ -342,27 +342,31 @@ msgstr ""
 msgid "Flushed User Cache!"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-users.php:60
+#: includes/admin/class-zvc-admin-users.php:66
 msgid ""
 "Created a User. Please check email for confirmation. Added user will only "
 "appear in the list after approval."
 msgstr ""
 
-#: includes/admin/class-zvc-admin-users.php:82
+#: includes/admin/class-zvc-admin-users.php:90
 msgid "Saved !"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-ajax.php:46
+#: includes/admin/class-zvc-admin-ajax.php:50
 msgid "Deleted Meeting with ID"
 msgstr ""
 
-#: includes/admin/class-zvc-admin-ajax.php:50
+#: includes/admin/class-zvc-admin-ajax.php:54
 msgid "An error occured. Host ID and Meeting ID not defined properly."
 msgstr ""
 
-#: includes/admin/class-zvc-admin-ajax.php:83
+#: includes/admin/class-zvc-admin-ajax.php:87
 #, php-format
 msgid "Deleted %d Meeting(s)."
+msgstr ""
+
+#: includes/admin/class-zvc-admin-ajax.php:260
+msgid "Not a Host"
 msgstr ""
 
 #: includes/admin/class-zvc-admin-settings.php:28
@@ -400,8 +404,7 @@ msgid "Extensions"
 msgstr ""
 
 #: includes/admin/class-zvc-admin-settings.php:70
-#: includes/views/live/tpl-assign-host-id.php:9
-msgid "Assign Host ID"
+msgid "Host to WP Users"
 msgstr ""
 
 #: includes/admin/class-zvc-admin-settings.php:76
@@ -422,7 +425,7 @@ msgstr ""
 
 #: includes/admin/class-zvc-admin-settings.php:112
 #: includes/views/webinars/tpl-list-webinars.php:58
-#: includes/views/live/tpl-list-meetings.php:61
+#: includes/views/live/tpl-list-meetings.php:59
 msgid "Shortcode"
 msgstr ""
 
@@ -440,7 +443,7 @@ msgstr ""
 
 #: includes/admin/class-zvc-admin-recordings.php:63 includes/views/sync.php:18
 #: includes/views/webinars/tpl-list-webinars.php:39
-#: includes/views/live/tpl-list-meetings.php:46
+#: includes/views/live/tpl-list-meetings.php:44
 msgid "Select a User"
 msgstr ""
 
@@ -455,7 +458,7 @@ msgid "Start Date"
 msgstr ""
 
 #: includes/admin/class-zvc-admin-post-type.php:125
-#: includes/views/live/tpl-list-meetings.php:65
+#: includes/views/live/tpl-list-meetings.php:63
 msgid "Meeting State"
 msgstr ""
 
@@ -476,7 +479,7 @@ msgid "Meeting not created yet."
 msgstr ""
 
 #: includes/admin/class-zvc-admin-post-type.php:194
-#: includes/views/live/tpl-list-meetings.php:130
+#: includes/views/live/tpl-list-meetings.php:128
 msgid "Disable Join"
 msgstr ""
 
@@ -487,7 +490,7 @@ msgid ""
 msgstr ""
 
 #: includes/admin/class-zvc-admin-post-type.php:197
-#: includes/views/live/tpl-list-meetings.php:136
+#: includes/views/live/tpl-list-meetings.php:134
 msgid "Enable Join"
 msgstr ""
 
@@ -730,13 +733,13 @@ msgstr ""
 
 #: includes/Shortcodes/Meetings.php:243
 #: includes/views/webinars/tpl-list-webinars.php:84
-#: includes/views/live/tpl-list-meetings.php:87
+#: includes/views/live/tpl-list-meetings.php:85
 msgid "Start via Browser"
 msgstr ""
 
 #: includes/Shortcodes/Meetings.php:270
 #: includes/views/webinars/tpl-list-webinars.php:88
-#: includes/views/live/tpl-list-meetings.php:91
+#: includes/views/live/tpl-list-meetings.php:89
 msgid "Start via App"
 msgstr ""
 
@@ -1380,28 +1383,29 @@ msgid "Webinar ID"
 msgstr ""
 
 #: includes/views/webinars/tpl-list-webinars.php:60
-#: includes/views/live/tpl-list-meetings.php:63
+#: includes/views/live/tpl-list-meetings.php:61
 msgid "Status"
 msgstr ""
 
 #: includes/views/webinars/tpl-list-webinars.php:62
-#: includes/views/live/tpl-list-meetings.php:66
-#: includes/views/live/tpl-list-users.php:33
+#: includes/views/live/tpl-list-meetings.php:64
+#: includes/views/live/tpl-list-pending-users.php:19
+#: includes/views/live/tpl-list-users.php:34
 msgid "Created On"
 msgstr ""
 
 #: includes/views/webinars/tpl-list-webinars.php:77
-#: includes/views/live/tpl-list-meetings.php:80
+#: includes/views/live/tpl-list-meetings.php:78
 msgid "Click to Copy Shortcode !"
 msgstr ""
 
 #: includes/views/webinars/tpl-list-webinars.php:87
-#: includes/views/live/tpl-list-meetings.php:90
+#: includes/views/live/tpl-list-meetings.php:88
 msgid "Trash"
 msgstr ""
 
 #: includes/views/webinars/tpl-list-webinars.php:117
-#: includes/views/live/tpl-list-meetings.php:120
+#: includes/views/live/tpl-list-meetings.php:118
 msgid "This is a recurring meeting with no fixed time."
 msgstr ""
 
@@ -1430,13 +1434,13 @@ msgstr ""
 msgid "Alternative hosts IDs. Multiple value separated by comma."
 msgstr ""
 
-#: includes/views/live/tpl-list-meetings.php:133
+#: includes/views/live/tpl-list-meetings.php:131
 msgid ""
 "Ending this will disable users to join this meeting. Applies to any "
 "shortcode output only."
 msgstr ""
 
-#: includes/views/live/tpl-list-meetings.php:139
+#: includes/views/live/tpl-list-meetings.php:137
 msgid ""
 "Resuming this will enable users to join this meeting. Applies to any "
 "shortcode output only."
@@ -1549,6 +1553,30 @@ msgstr ""
 
 #: includes/views/live/tpl-reports.php:156
 msgid "Enter a value to Check..."
+msgstr ""
+
+#: includes/views/live/tpl-list-pending-users.php:10
+msgid "Pending Approval Users"
+msgstr ""
+
+#: includes/views/live/tpl-list-pending-users.php:11
+msgid "Check Available Users"
+msgstr ""
+
+#: includes/views/live/tpl-list-pending-users.php:16
+#: includes/views/live/tpl-list-users.php:30
+msgid "SN"
+msgstr ""
+
+#: includes/views/live/tpl-list-pending-users.php:17
+#: includes/views/live/tpl-list-users.php:31
+msgid "User ID"
+msgstr ""
+
+#: includes/views/live/tpl-list-pending-users.php:18
+#: includes/views/live/tpl-assign-host-id.php:31
+#: includes/views/live/tpl-list-users.php:32
+msgid "Email"
 msgstr ""
 
 #: includes/views/live/tpl-edit-meeting.php:24
@@ -1675,46 +1703,46 @@ msgid "website"
 msgstr ""
 
 #: includes/views/live/tpl-add-user.php:13
-msgid "Please note this may require a PRO account."
+msgid "Please note this requires a PRO Zoom account or Higher."
 msgstr ""
 
-#: includes/views/live/tpl-add-user.php:22
+#: includes/views/live/tpl-add-user.php:21
 msgid "Action (Required)."
 msgstr ""
 
-#: includes/views/live/tpl-add-user.php:25
+#: includes/views/live/tpl-add-user.php:24
 #: includes/views/live/tpl-add-user.php:32
 msgid "Create"
 msgstr ""
 
-#: includes/views/live/tpl-add-user.php:26
+#: includes/views/live/tpl-add-user.php:25
 #: includes/views/live/tpl-add-user.php:36
 msgid "Auto Create"
 msgstr ""
 
-#: includes/views/live/tpl-add-user.php:27
+#: includes/views/live/tpl-add-user.php:26
 #: includes/views/live/tpl-add-user.php:40
 msgid "Cust Create"
 msgstr ""
 
-#: includes/views/live/tpl-add-user.php:28
+#: includes/views/live/tpl-add-user.php:27
 #: includes/views/live/tpl-add-user.php:44
 msgid "SSO Create"
 msgstr ""
 
-#: includes/views/live/tpl-add-user.php:31
-#: includes/views/live/tpl-add-user.php:75
+#: includes/views/live/tpl-add-user.php:30
+#: includes/views/live/tpl-add-user.php:74
 msgid "Type of User (Required)"
 msgstr ""
 
-#: includes/views/live/tpl-add-user.php:33
+#: includes/views/live/tpl-add-user.php:32
 msgid ""
 "User will get an email sent from Zoom. There is a confirmation link in this "
 "email. User will then need to click this link to activate their account to "
 "the Zoom service. The user can set or change their password in Zoom."
 msgstr ""
 
-#: includes/views/live/tpl-add-user.php:37
+#: includes/views/live/tpl-add-user.php:36
 msgid ""
 "This action is provided for enterprise customer who has a managed domain. "
 "This feature is disabled by default because of the security risk involved in "
@@ -1722,13 +1750,13 @@ msgid ""
 "user."
 msgstr ""
 
-#: includes/views/live/tpl-add-user.php:41
+#: includes/views/live/tpl-add-user.php:40
 msgid ""
 "This action is provided for API partner only. User created in this way has "
 "no password and is not able to log into the Zoom web site or client."
 msgstr ""
 
-#: includes/views/live/tpl-add-user.php:45
+#: includes/views/live/tpl-add-user.php:44
 msgid ""
 "This action is provided for enabled “Pre-provisioning SSO User” option. User "
 "created in this way has no password. If it is not a basic user, will "
@@ -1737,40 +1765,50 @@ msgid ""
 "random number/random personal vanity URL."
 msgstr ""
 
-#: includes/views/live/tpl-add-user.php:50
+#: includes/views/live/tpl-add-user.php:49
 msgid "Email Address"
 msgstr ""
 
-#: includes/views/live/tpl-add-user.php:52
+#: includes/views/live/tpl-add-user.php:51
 msgid "This address is used for zoom (Required)."
 msgstr ""
 
-#: includes/views/live/tpl-add-user.php:56
+#: includes/views/live/tpl-add-user.php:55
 msgid "First Name"
 msgstr ""
 
-#: includes/views/live/tpl-add-user.php:59
+#: includes/views/live/tpl-add-user.php:58
 msgid "First Name of the User (Required)."
 msgstr ""
 
-#: includes/views/live/tpl-add-user.php:63
+#: includes/views/live/tpl-add-user.php:62
 msgid "Last Name"
 msgstr ""
 
-#: includes/views/live/tpl-add-user.php:65
+#: includes/views/live/tpl-add-user.php:64
 msgid "Last Name of the User (Required)."
 msgstr ""
 
-#: includes/views/live/tpl-add-user.php:69
+#: includes/views/live/tpl-add-user.php:68
 msgid "User Type (Required)."
 msgstr ""
 
-#: includes/views/live/tpl-add-user.php:72
+#: includes/views/live/tpl-add-user.php:71
 msgid "Basic User"
 msgstr ""
 
-#: includes/views/live/tpl-add-user.php:73
+#: includes/views/live/tpl-add-user.php:72
 msgid "Pro User"
+msgstr ""
+
+#: includes/views/live/tpl-add-user.php:79
+msgid "Assign Zoom user to WordPress User"
+msgstr ""
+
+#: includes/views/live/tpl-add-user.php:83
+msgid ""
+"Select which WordPress user to assign. This will be only usable when the "
+"user approves your Zoom Invitation."
 msgstr ""
 
 #: includes/views/live/tpl-list-recordings.php:46
@@ -1785,51 +1823,27 @@ msgstr ""
 msgid "Recording Type"
 msgstr ""
 
+#: includes/views/live/tpl-assign-host-id.php:9
+msgid "Assign Zoom Host Users to your WordPress Users"
+msgstr ""
+
 #: includes/views/live/tpl-assign-host-id.php:12
 msgid ""
-"This section allows you to assign \"Zoom\" host ID to your users from "
-"WordPress"
+"This section allows you to assign \"Zoom\" host to your users from WordPress."
+" If you add a WordPress user to a Zoom Host from here then at the meeting "
+"creation that user will not see list of other host on his/her side except "
+"for administrator."
 msgstr ""
 
-#: includes/views/live/tpl-assign-host-id.php:18
-msgid "In order to pull HOST ID from user meta just do"
+#: includes/views/live/tpl-assign-host-id.php:30
+msgid "ID"
 msgstr ""
 
-#: includes/views/live/tpl-assign-host-id.php:20
-msgid "THIS FEATURE IS INTENTED FOR DEVLEOPERS AND DEVELOPMENT PURPOSE ONLY"
+#: includes/views/live/tpl-assign-host-id.php:32
+msgid "Full Name"
 msgstr ""
 
-#: includes/views/live/tpl-assign-host-id.php:25
-msgid "ATTENTION: Zoom Account Prerequisites for User Management"
-msgstr ""
-
-#: includes/views/live/tpl-assign-host-id.php:27
-msgid ""
-"Free with Credit Card, Pro, Business, Education, or Enterprise account. Make "
-"sure you are able to access <a target=\"_blank\" href=\"https://zoom."
-"us/account/user\">this area</a> if you are using a Free Zoom account."
-msgstr ""
-
-#: includes/views/live/tpl-assign-host-id.php:28
-msgid "Owner or admin privileges."
-msgstr ""
-
-#: includes/views/live/tpl-assign-host-id.php:47
-#: includes/views/live/tpl-list-users.php:29
-msgid "SN"
-msgstr ""
-
-#: includes/views/live/tpl-assign-host-id.php:48
-#: includes/views/live/tpl-list-users.php:31
-msgid "Email"
-msgstr ""
-
-#: includes/views/live/tpl-assign-host-id.php:49
-#: includes/views/live/tpl-list-users.php:32
-msgid "Name"
-msgstr ""
-
-#: includes/views/live/tpl-assign-host-id.php:50
+#: includes/views/live/tpl-assign-host-id.php:33
 msgid "Host ID"
 msgstr ""
 
@@ -1841,15 +1855,19 @@ msgstr ""
 msgid "Flush User Cache"
 msgstr ""
 
-#: includes/views/live/tpl-list-users.php:30
-msgid "User ID"
+#: includes/views/live/tpl-list-users.php:15
+msgid "Check Pending Users"
 msgstr ""
 
-#: includes/views/live/tpl-list-users.php:34
-msgid "Last Login"
+#: includes/views/live/tpl-list-users.php:33
+msgid "Name"
 msgstr ""
 
 #: includes/views/live/tpl-list-users.php:35
+msgid "Last Login"
+msgstr ""
+
+#: includes/views/live/tpl-list-users.php:36
 msgid "Last Client"
 msgstr ""
 
@@ -1937,9 +1955,6 @@ msgstr ""
 msgid "Allow attendess to join from multiple devices."
 msgstr ""
 
-#. Description of the plugin
-msgid ""
-"Video Conferencing with Zoom Meetings and Webinars plugin provides you with "
-"great functionality of managing Zoom meetings, Webinar scheduling options, "
-"and users directly from your WordPress dashboard."
+#. Name of the plugin
+msgid "Video Conferencing with Zoom"
 msgstr ""

@@ -238,11 +238,8 @@ class Meetings {
             <tbody>
 			<?php
 			foreach ( $meetings as $meeting ) {
-				$zoom_host_url             = 'https://zoom.us' . '/wc/' . $meeting->id . '/start';
-				$zoom_host_url             = apply_filters( 'video_conferencing_zoom_join_url_host', $zoom_host_url );
-				$start_meeting_via_browser = '<a class="start-meeting-btn reload-meeting-started-button" target="_blank" href="' . esc_url( $zoom_host_url ) . '" class="join-link">' . __( 'Start via Browser', 'video-conferencing-with-zoom-api' ) . '</a>';
-
-				$meeting_status = '';
+				$meeting->password = ! empty( $meeting->password ) ? $meeting->password : false;
+				$meeting_status    = '';
 				if ( ! empty( $meeting->status ) ) {
 					switch ( $meeting->status ) {
 						case 0;
@@ -261,14 +258,12 @@ class Meetings {
 					$meeting_status = "N/A";
 				}
 
-				$start_url = ! empty( $meeting->start_url ) ? $meeting->start_url : $meeting->join_url;
 				echo '<td>' . $meeting->topic . '</td>';
 				echo '<td>' . $meeting_status . '</td>';
 				echo '<td>' . vczapi_dateConverter( $meeting->start_time, $meeting->timezone, 'F j, Y, g:i a' ) . '</td>';
 				echo '<td>' . $meeting->timezone . '</td>';
 				echo '<td><div class="view">
-<a href="' . $start_url . '" rel="permalink" target="_blank">' . __( 'Start via App', 'video-conferencing-with-zoom-api' ) . '</a><span class="sep"> /</span></div>
-                                    <div class="view">' . $start_meeting_via_browser . '</div></td>';
+<a href="' . $meeting->join_url . '" rel="permalink" target="_blank">' . __( 'Join via App', 'video-conferencing-with-zoom-api' ) . '</a></div><div class="view">' . vczapi_get_browser_join_shortcode( $meeting->id, $meeting->password, false, ' / ' ) . '</div></td>';
 				echo '</tr>';
 			}
 			?>
