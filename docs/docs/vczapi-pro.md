@@ -147,6 +147,22 @@ Registration E-mail Sample:
     
 ![Registration E-mail Sample](img/zoom-pro/zoom-registered-emaill-sample.png)   
 
+##Calendar Widget
+###Default Use
+By using the shortcode [vczapi_zoom_calendar] - you can show a calendar that shows all meetings and webinars that are under "Zoom Meetings > All Meetings"
+![Calendar Default View](img/zoom-pro/calendar-default.png)
+If a meeting is clicked - it will show you more of the events details.
+
+Use: `[vczapi_zoom_calendar  author="" show="" calendar_default_view="dayGridMonth" show_calendar_views="yes"]`
+
+Where,
+
+* **class** = Ability to add custom css classes to modify design of calendar
+* **author** = The user id of an Author, will show only the meetings/webinars of that particular author
+* **show** = use "meeting" or "webinar" to either show only meetings or only webinars leave empty or do not use if you want to show all.
+* **calendar_default_view** = options => dayGridMonth,timeGridWeek,timeGridDay,listWeek
+* **show_calendar_views** = give ability to user to see calendar in different views - default value is "no", use "yes" to show other views
+
 ##Integration with WooCommerce (Pro Addon):
 ###Recurring Meetings + WooCommerce :
 Simply create a [Zoom Recurring Meeting](#recurring-meetings) and then enable purchase of the product.
@@ -169,3 +185,5 @@ Recurring Meeting Details :
 
 Once a meeting has been created with registration enabled and linked with a WooCommerce product - the flow of registration slightly differs from basic registration. Users will not be directed to the registration - rather the WooCommerce checkout process will continue as normal.
 The Billing Email Address and Billing First Name and Last Name used during the checkout process will be used to register the user to the meeting.
+
+
