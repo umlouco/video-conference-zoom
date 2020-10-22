@@ -42,14 +42,18 @@ if ( ! defined( 'ABSPATH' ) ) {
                 <th scope="row"><label for="userId"><?php _e( 'Meeting Host *', 'video-conferencing-with-zoom-api' ); ?></label></th>
                 <td>
 					<?php
-					if ( ! empty( $users ) ) {
-						foreach ( $users as $user ) {
-							if ( $meeting_details->host_id === $user->id ) {
+					if ( ! empty( $meeting_details->host_id ) ) {
+						$user = json_decode( zoom_conference()->getUserInfo( $meeting_details->host_id ) );
+						if( !empty($user) ) {
+							if ( ! empty( $user->code ) ) {
+								echo $user->message;
+							} else {
 								echo '<input type="hidden" name="userId" value="' . $user->id . '">';
 								echo esc_html( $user->first_name ) . ' ( ' . esc_html( $user->email ) . ' )';
-								break;
 							}
-						}
+                        } else {
+							_e( 'Please check your internet connection or API connection.', 'video-conferencing-with-zoom-api' );
+                        }
 					} else {
 						printf( __( 'Did not find any hosts here ? Please %scheck here%s to verify your API keys are working correctly.', 'video-conferencing-with-zoom-api' ), '<a href="' . admin_url( 'edit.php?post_type=zoom-meetings&page=zoom-video-conferencing-settings' ) . '">', '</a>' );
 					} ?>
@@ -71,7 +75,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                 <th scope="row"><label for="userId"><?php _e( 'Meeting Host *', 'video-conferencing-with-zoom-api' ); ?></label></th>
                 <td>
 					<?php if ( ! empty( $users ) ) { ?>
-                        <select name="userId" required class="zvc-hacking-select">
+                        <select name="userId" required class="zvc-hacking-select vczapi-admin-post-type-host-selector">
                             <option value=""><?php _e( 'Select a Host', 'video-conferencing-with-zoom-api' ); ?></option>
 							<?php foreach ( $users as $user ) { ?>
                                 <option value="<?php echo $user->id; ?>" <?php ! empty( $meeting_fields['userId'] ) ? selected( esc_attr( $meeting_fields['userId'] ), $user->id ) : false; ?> ><?php echo esc_html( $user->first_name ) . ' ( ' . esc_html( $user->email ) . ' )'; ?></option>

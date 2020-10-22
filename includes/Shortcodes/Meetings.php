@@ -105,6 +105,7 @@ class Meetings {
 	public function list_cpt_meetings( $atts ) {
 		$atts = shortcode_atts(
 			array(
+				'author'   => '',
 				'per_page' => 5,
 				'category' => '',
 				'order'    => 'DESC',
@@ -144,6 +145,10 @@ class Meetings {
 				)
 			)
 		);
+
+		if ( ! empty( $atts['author'] ) ) {
+			$query_args['author'] = absint( $atts['author'] );
+		}
 
 		if ( ! empty( $atts['type'] ) && ! empty( $query_args['meta_query'] ) ) {
 			$type       = ( $atts['type'] === "upcoming" ) ? '>=' : '<=';

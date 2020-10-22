@@ -21,6 +21,9 @@ if ( ! vczapi_pro_version_active() && vczapi_pro_check_type( $zoom['api']->type 
     </div>
     <div class="dpn-zvc-sidebar-content">
         <div class="dpn-zvc-sidebar-content-list">
+            <span><strong><?php _e( 'Topic', 'video-conferencing-with-zoom-api' ); ?>:</strong></span> <span><?php the_title(); ?></span>
+        </div>
+        <div class="dpn-zvc-sidebar-content-list">
             <span><strong><?php _e( 'Hosted By', 'video-conferencing-with-zoom-api' ); ?>:</strong></span>
             <span><?php echo esc_html( $zoom['host_name'] ); ?></span>
         </div>

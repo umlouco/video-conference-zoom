@@ -209,7 +209,7 @@ function vczapi_set_cache( $key, $value, $time_in_seconds ) {
  */
 function vczapi_get_cache( $key ) {
 	$expiry = get_option( $key . '_expiry_time' );
-	if ( $expiry > time() ) {
+	if ( ! empty( $expiry ) && $expiry > time() ) {
 		return get_option( $key );
 	} else {
 		update_option( $key, '' );
@@ -284,7 +284,7 @@ function video_conferencing_zoom_api_delete_user_cache() {
  * @return string
  */
 function video_conferencing_zoom_api_pagination_next( $type, $page_type = 'zoom-video-conferencing-list-users' ) {
-	if ( ! empty( $type ) && count( $type ) >= 100 ) {
+	if ( ! empty( $type ) && count( $type ) >= 300 ) {
 		if ( isset( $_GET['pg'] ) ) {
 			$page = absint( $_GET['pg'] ) + 1;
 

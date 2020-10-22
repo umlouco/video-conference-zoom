@@ -33,6 +33,7 @@
             $dom.changeMeetingState = $('.vczapi-meeting-state-change');
 
             $dom.show_on_meeting_delete_error = $('.show_on_meeting_delete_error');
+            this.adminHostSelectPostType = $('.vczapi-admin-post-type-host-selector');
         },
         eventListeners: function () {
             //Check All Table Elements for Meetings List
