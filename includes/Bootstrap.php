@@ -9,9 +9,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Ready Main Class
  *
- * @since 2.1.0
+ * @since   2.1.0
  * @updated 3.6.0
- * @author Deepen
+ * @author  Deepen
  */
 final class Bootstrap {
 
@@ -94,6 +94,15 @@ final class Bootstrap {
 			wp_enqueue_script( 'video-conferencing-with-zoom-api-moment-timezone' );
 			wp_enqueue_script( 'video-conferencing-with-zoom-api' );
 			// Localize the script with new data
+			$date_format =  get_option( 'zoom_api_date_time_format' );
+			//check if custom time format
+			// that is it is in either of L LT, l LT,llll,lll,LLLL
+
+			if ( $date_format == 'custom' ) {
+				$date_format = get_option('zoom_api_custom_date_time_format');
+				$date_format = vczapi_convertPHPToMomentFormat( $date_format );
+			}
+
 			$zoom_started        = get_option( 'zoom_started_meeting_text' );
 			$zoom_going_to_start = get_option( 'zoom_going_tostart_meeting_text' );
 			$zoom_ended          = get_option( 'zoom_ended_meeting_text' );
@@ -101,7 +110,7 @@ final class Bootstrap {
 				'meeting_started'  => ! empty( $zoom_started ) ? $zoom_started : __( 'Meeting Has Started ! Click below join button to join meeting now !', 'video-conferencing-with-zoom-api' ),
 				'meeting_starting' => ! empty( $zoom_going_to_start ) ? $zoom_going_to_start : __( 'Click join button below to join the meeting now !', 'video-conferencing-with-zoom-api' ),
 				'meeting_ended'    => ! empty( $zoom_ended ) ? $zoom_ended : __( 'This meeting has been ended by the host.', 'video-conferencing-with-zoom-api' ),
-				'date_format'      => get_option( 'zoom_api_date_time_format' )
+				'date_format'      => $date_format
 			) );
 			wp_localize_script( 'video-conferencing-with-zoom-api', 'zvc_strings', $translation_array );
 		}
@@ -205,7 +214,7 @@ final class Bootstrap {
 	/**
 	 * Load Plugin Domain Text here
 	 *
-	 * @since 2.0.0
+	 * @since  2.0.0
 	 * @author Deepen
 	 */
 	public function load_plugin_textdomain() {
@@ -217,7 +226,7 @@ final class Bootstrap {
 	/**
 	 * Fire on Activation
 	 *
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 * @author Deepen
 	 */
 	public static function activate() {
