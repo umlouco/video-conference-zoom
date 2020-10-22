@@ -42,6 +42,8 @@ do_action( 'vczapi_before_main_archive_content' );
 
 						vczapi_get_template_part( 'content', 'meeting' );
 					}
+
+					wp_reset_postdata();
 					?>
                 </div>
             </div>

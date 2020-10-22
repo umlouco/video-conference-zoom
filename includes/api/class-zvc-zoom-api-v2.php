@@ -94,6 +94,10 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 				$args['body']   = ! empty( $data ) ? json_encode( $data ) : array();
 				$args['method'] = "PATCH";
 				$response       = wp_remote_request( $request_url, $args );
+			} else if ( $request == "PUT" ) {
+				$args['body']   = ! empty( $data ) ? json_encode( $data ) : array();
+				$args['method'] = "PUT";
+				$response       = wp_remote_request( $request_url, $args );
 			} else {
 				$args['body']   = ! empty( $data ) ? json_encode( $data ) : array();
 				$args['method'] = "POST";
