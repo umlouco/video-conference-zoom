@@ -4,7 +4,7 @@ Tags: zoom video conference, video conference, zoom, zoom video conferencing, we
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.5
-Stable tag: 3.6.6
+Stable tag: 3.6.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -175,7 +175,10 @@ Join our facebook group which we have created in order to stay up to date with u
 
 == Changelog ==
 
-= 3.6.6 =
+= 3.6.7 October 28th, 2020 =
+* Added: Custom date type added in settings.
+
+= 3.6.6 October 23rd, 2020 =
 * Added: Global option to disable join via browser.
 
 = 3.6.5 October 13th, 2020 =
