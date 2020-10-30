@@ -469,6 +469,7 @@ function vczapi_check_author( $post_id ) {
  * @return DateTime|string
  * @author Deepen
  * @since  1.0.0
+ * @updated 3.6.7
  */
 function vczapi_dateConverter( $start_time, $tz, $format = 'F j, Y, g:i a ( T )', $defaults = true ) {
 	try {

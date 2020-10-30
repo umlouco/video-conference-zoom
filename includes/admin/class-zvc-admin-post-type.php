@@ -61,6 +61,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 		add_action( 'save_post_' . $this->post_type, array( $this, 'save_metabox' ), 10, 2 );
 		add_filter( 'single_template', array( $this, 'single' ) );
 		add_filter( 'archive_template', array( $this, 'archive' ) );
+		add_filter( 'template_include', [ $this, 'template_filter' ], 99 );
 		add_action( 'before_delete_post', array( $this, 'delete' ) );
 		add_action( 'admin_notices', array( $this, 'admin_notices' ) );
 		add_filter( 'manage_' . $this->post_type . '_posts_columns', array( $this, 'add_columns' ), 20 );
@@ -797,6 +798,21 @@ class Zoom_Video_Conferencing_Admin_PostType {
 			'video-conferencing-with-zoom-api-thunk',
 			'video-conferencing-with-zoom-api-lodash'
 		), ZVC_PLUGIN_VERSION, true );
+	}
+
+	/**
+	 * Change Filter Name to Override Page Builders overridng join via browser window.
+	 *
+	 * @param $template_name
+	 *
+	 * @return string
+	 */
+	public function template_filter( $template_name ) {
+		if ( is_post_type_archive( $this->post_type ) && isset( $_GET['type'] ) && $_GET['type'] === "meeting" && isset( $_GET['join'] ) ) {
+			$template_name = ZVC_PLUGIN_DIR_PATH . 'templates/join-web-browser.php';
+		}
+
+		return $template_name;
 	}
 }
 

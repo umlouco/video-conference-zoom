@@ -4,7 +4,7 @@ Tags: zoom video conference, video conference, zoom, zoom video conferencing, we
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.5
-Stable tag: 3.6.7
+Stable tag: 3.6.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -174,6 +174,9 @@ Join our facebook group which we have created in order to stay up to date with u
 9. Shortcode Output
 
 == Changelog ==
+
+= 3.6.8 October 30th, 2020 =
+* Fixed: Join via web browser not working when Elementor Page Builder or most of the page builder is used to override Zoom Meetings archive page.
 
 = 3.6.7 October 28th, 2020 =
 * Added: Custom date type added in settings.
