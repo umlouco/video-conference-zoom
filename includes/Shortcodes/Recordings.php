@@ -130,17 +130,19 @@ class Recordings {
 			$recordings = $cached_recordings[ $atts['meeting_id'] ];
 		} else {
 			$all_past_meetings = json_decode( zoom_conference()->getPastMeetingDetails( $atts['meeting_id'] ) );
-			if ( isset( $all_past_meetings->meetings ) && ! isset( $all_past_meetings->code ) ) {
+			if ( isset( $all_past_meetings->meetings ) && ! empty( $all_past_meetings->meetings ) && ! isset( $all_past_meetings->code ) ) {
 				//loop through all instance of past / completed meetings and get recordings
 				foreach ( $all_past_meetings->meetings as $meeting ) {
 					$recordings[] = json_decode( zoom_conference()->recordingsByMeeting( $meeting->uuid ) );
 				}
 				Helpers::set_post_cache( $post_id, '_vczapi_shortcode_recordings_by_meeting_id', [ $atts['meeting_id'] => $recordings ], 86400 );
+			} else {
+				$recordings[] = json_decode( zoom_conference()->recordingsByMeeting( $atts['meeting_id'] ) );
+				Helpers::set_post_cache( $post_id, '_vczapi_shortcode_recordings_by_meeting_id', [ $atts['meeting_id'] => $recordings ], 86400 );
 			}
 		}
 
 
-		//if recordings are not empty set global
 		if ( ! empty( $recordings ) ) {
 			if ( ! empty( $recordings->code ) && ! empty( $recordings->message ) ) {
 				echo $recordings->message;
@@ -152,14 +154,15 @@ class Recordings {
 					}
 				}
 			}
-		} else {
-			_e( "No recordings found.", "video-conferencing-with-zoom-api" );
 		}
 
 		if ( ! empty( $GLOBALS['zoom_recordings'] ) ) {
 			vczapi_get_template( 'shortcode/zoom-recordings-by-meeting.php', true );
 		} else {
 			_e( "No recordings found.", "video-conferencing-with-zoom-api" );
+			?>
+            <a href="<?php echo add_query_arg( [ 'flush_cache' => 'yes' ], get_the_permalink() ) ?>"><?php _e( 'Check for latest' ); ?></a>
+			<?php
 		}
 
 
