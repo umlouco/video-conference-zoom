@@ -321,6 +321,15 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 		}
 
 		/**
+		 * @param $meetingid
+		 *
+		 * @return array|bool|string|WP_Error
+		 */
+		public function getPastMeetingDetails($meetingid){
+			return $this->sendRequest('past_meetings/'.$meetingid.'/instances',false,'GET');
+		}
+
+		/**
 		 * Delete A Meeting
 		 *
 		 * @param $meeting_id
