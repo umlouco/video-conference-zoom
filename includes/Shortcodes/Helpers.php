@@ -10,9 +10,14 @@ namespace Codemanas\VczApi\Shortcodes;
 class Helpers {
 
 	/**
-	 * @param int $post_id
-	 * @param     $key
-	 * @param     $value
+	 * Set Cache Helper
+	 *
+	 * @param $post_id
+	 * @param $key
+	 * @param $value
+	 * @param bool $time_in_secods
+	 *
+	 * @return bool
 	 */
 	public static function set_post_cache( $post_id, $key, $value, $time_in_secods = false ) {
 		if ( ! $post_id ) {
@@ -24,11 +29,12 @@ class Helpers {
 	}
 
 	/**
-	 * Get Set Cache Data
+	 * Get Cache Data
 	 *
+	 * @param $post_id
 	 * @param $key
 	 *
-	 * @return bool|mixed|void
+	 * @return bool|mixed
 	 */
 	public static function get_post_cache( $post_id, $key ) {
 		$expiry = get_post_meta( $post_id, $key . '_expiry_time', true );

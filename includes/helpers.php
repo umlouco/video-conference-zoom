@@ -228,14 +228,10 @@ function vczapi_get_cache( $key ) {
 function video_conferencing_zoom_api_get_user_transients() {
 	if ( isset( $_GET['page'] ) && $_GET['page'] === "zoom-video-conferencing-list-users" && isset( $_GET['pg'] ) ) {
 		$page                             = $_GET['pg'];
-		$zvc_user_records_additional_data = get_option( '_zvc_user_records_additional_data' );
-		$prev_retrieved_users             = vczapi_get_cache( '_zvc_user_lists' );
 		$decoded_users                    = json_decode( zoom_conference()->listUsers( $page ) );
-
 		if ( ! empty( $decoded_users->code ) ) {
 			$users = false;
 		} else {
-
 			$users = $decoded_users->users;
 		}
 	} else {
@@ -250,14 +246,6 @@ function video_conferencing_zoom_api_get_user_transients() {
 				}
 				$users = false;
 			} else {
-
-				$zvc_user_records_additional_data = [
-					'page_count'            => $decoded_users->page_count,
-					'total_records'         => $decoded_users->total_records,
-					'retrieved_page_number' => [ $decoded_users->page_number ]
-				];
-				update_option( '_zvc_user_records_additional_data', $zvc_user_records_additional_data );
-
 				$users = ! empty( $decoded_users->users ) ? $decoded_users->users : false;
 				vczapi_set_cache( '_zvc_user_lists', $users, 108000 );
 			}
@@ -272,7 +260,7 @@ function vczapi_check_connection_error() {
     <div id="message" class="notice notice-warning is-dismissible">
         <p>
 			<?php
-			esc_html_e( 'Please check your internet connection. Zoom API is not able to connect with Zoom servers at the moment.', 'video-conferencing-with-zoom-api' )
+			esc_html_e( 'Please check your internet connection or API keys. Zoom API is not able to connect with Zoom servers at the moment.', 'video-conferencing-with-zoom-api' );
 			?>
         </p>
     </div>

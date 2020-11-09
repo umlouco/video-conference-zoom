@@ -234,6 +234,10 @@ final class Bootstrap {
 		$post_type = \Zoom_Video_Conferencing_Admin_PostType::get_instance();
 		$post_type->register();
 
+		//Flush User Cache
+		update_option( '_zvc_user_lists', '' );
+		update_option( '_zvc_user_lists_expiry_time', '' );
+
 		//Flush Permalinks
 		flush_rewrite_rules();
 	}
@@ -242,6 +246,10 @@ final class Bootstrap {
 	 * Deactivating the plugin
 	 */
 	public static function deactivate() {
+		//Flush User Cache
+		update_option( '_zvc_user_lists', '' );
+		update_option( '_zvc_user_lists_expiry_time', '' );
+
 		flush_rewrite_rules();
 	}
 }
