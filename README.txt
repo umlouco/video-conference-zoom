@@ -176,7 +176,7 @@ Join our facebook group which we have created in order to stay up to date with u
 == Changelog ==
 
 = 3.6.11 November 10th, 2020 =
-* Dev: Filter for meetings for Join via Shortcode
+* Added: For Devs, Filter for meetings for Join via Shortcode
 
 = 3.6.9/3.6.10 November 9th, 2020 =
 * Added: User cache delete on activation and deactivation
