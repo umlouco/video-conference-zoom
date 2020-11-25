@@ -501,7 +501,6 @@ class Zoom_Video_Conferencing_Admin_PostType {
 
 		//Update Post Meta Values
 		update_post_meta( $post_id, '_meeting_fields', $create_meeting_arr );
-		update_post_meta( $post_id, '_meeting_field_start_date', $create_meeting_arr['start_date'] );
 		$meeting_type = ! empty( $create_meeting_arr['meeting_type'] ) && $create_meeting_arr['meeting_type'] === 2 ? 'webinar' : 'meeting';
 		update_post_meta( $post_id, '_vczapi_meeting_type', $meeting_type );
 
