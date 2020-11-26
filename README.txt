@@ -4,7 +4,7 @@ Tags: zoom video conference, video conference, zoom, zoom video conferencing, we
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.5
-Stable tag: 3.6.12
+Stable tag: 3.6.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -174,6 +174,11 @@ Join our facebook group which we have created in order to stay up to date with u
 9. Shortcode Output
 
 == Changelog ==
+
+= 3.6.13 November 26th, 2020 =
+* Fixed: Elementor Widget passcode escaping resulted in incorrect password output.
+* Added: Hooks, for PRO version to add - ical functionality in PRO version in meeting individual pages.
+* Fixed: FATAL error on include_template function being called when filename was not parsed in for join-links template.
 
 = 3.6.12 November 25th, 2020 =
 * Modified: Changed API calls for custom implementation methods.
