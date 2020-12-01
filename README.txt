@@ -4,7 +4,7 @@ Tags: zoom video conference, video conference, zoom, zoom video conferencing, we
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.5
-Stable tag: 3.6.14
+Stable tag: 3.6.15
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,6 +13,8 @@ Gives you the power to manage Zoom Meetings, Webinars, Recordings, Reports and c
 == Description ==
 
 Simple plugin which gives you the extensive functionality to manage Zoom Meetings, Webinars, Recordings, Users, Reports from your WordPress Dashboard. Now, with capability to add your own post as a meeting. Create posts as meetings directly from your WordPress dashboard to show in the frontend as a meeting page. Allow users to directly join via that page with click of a button.
+
+[View the plugin live demo from here.](https://demo.codemanas.com/code-manas-pro/zoom-meetings/demo-zoom-event/ "Checkout our live demo here.")
 
 **FEATURES:**
 
@@ -174,6 +176,9 @@ Join our facebook group which we have created in order to stay up to date with u
 9. Shortcode Output
 
 == Changelog ==
+
+= 3.6.15 =
+* Addded: Action hook before single page render.
 
 = 3.6.14 December 1st, 2020 =
 * Fixed: Issue with join via browser showing signature invalid.

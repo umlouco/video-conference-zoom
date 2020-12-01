@@ -676,6 +676,9 @@ class Zoom_Video_Conferencing_Admin_PostType {
 			}
 		}
 
+		//Call before single template file is loaded
+		do_action('vczapi_before_single_template_load');
+
 		return $template;
 	}
 
