@@ -25,7 +25,7 @@ do_action( 'vczapi_before_loop_zoom_listing_shortcode' );
             </div><!--Image End-->
 		<?php } ?>
         <div class="vczapi-list-zoom-meetings--item__details">
-            <h3><?php the_title(); ?></h3>
+            <a href="<?php echo esc_url( get_the_permalink() ) ?>" class="vczapi-list-zoom-title-link"><h3><?php the_title(); ?></h3></a>
             <div class="vczapi-list-zoom-meetings--item__details__meta">
                 <div class="hosted-by meta">
                     <strong><?php _e( 'Hosted By:', 'video-conferencing-with-zoom-api' ); ?></strong>
@@ -71,7 +71,7 @@ do_action( 'vczapi_before_loop_zoom_listing_shortcode' );
 
 				<?php do_action( 'vczapi_additional_content_inside_zoom_listing_shortcode' ); ?>
             </div>
-            <a href="<?php echo esc_url( get_the_permalink() ) ?>" class="btn"><?php _e( 'See More', 'video-conferencing-with-zoom-api' ); ?></a>
+            <a href="<?php echo esc_url( get_the_permalink() ) ?>" class="btn vczapi-btn-link"><?php _e( 'See More', 'video-conferencing-with-zoom-api' ); ?></a>
         </div><!--Details end-->
     </div><!--List item end-->
 
