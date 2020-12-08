@@ -2,6 +2,8 @@
 
 namespace Codemanas\VczApi;
 
+use Codemanas\VczApi\Backend\PostType;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	die( "Not Allowed Here !" ); // If this file is called directly, abort.
 }
@@ -94,12 +96,12 @@ final class Bootstrap {
 			wp_enqueue_script( 'video-conferencing-with-zoom-api-moment-timezone' );
 			wp_enqueue_script( 'video-conferencing-with-zoom-api' );
 			// Localize the script with new data
-			$date_format =  get_option( 'zoom_api_date_time_format' );
+			$date_format = get_option( 'zoom_api_date_time_format' );
 			//check if custom time format
 			// that is it is in either of L LT, l LT,llll,lll,LLLL
 
 			if ( $date_format == 'custom' ) {
-				$date_format = get_option('zoom_api_custom_date_time_format');
+				$date_format = get_option( 'zoom_api_custom_date_time_format' );
 				$date_format = vczapi_convertPHPToMomentFormat( $date_format );
 			}
 
@@ -132,18 +134,19 @@ final class Bootstrap {
 		require_once ZVC_PLUGIN_INCLUDES_PATH . '/helpers.php';
 
 		//AJAX CALLS SCRIPTS
-		require_once ZVC_PLUGIN_INCLUDES_PATH . '/admin/class-zvc-admin-ajax.php';
+		require_once ZVC_PLUGIN_INCLUDES_PATH . '/Backend/Ajax.php';
 
 		//Admin Classes
-		require_once ZVC_PLUGIN_INCLUDES_PATH . '/admin/class-zvc-admin-post-type.php';
-		require_once ZVC_PLUGIN_INCLUDES_PATH . '/admin/class-zvc-admin-users.php';
-		require_once ZVC_PLUGIN_INCLUDES_PATH . '/admin/class-zvc-admin-meetings.php';
-		require_once ZVC_PLUGIN_INCLUDES_PATH . '/admin/class-zvc-admin-webinars.php';
-		require_once ZVC_PLUGIN_INCLUDES_PATH . '/admin/class-zvc-admin-reports.php';
-		require_once ZVC_PLUGIN_INCLUDES_PATH . '/admin/class-zvc-admin-recordings.php';
-		require_once ZVC_PLUGIN_INCLUDES_PATH . '/admin/class-zvc-admin-settings.php';
-		require_once ZVC_PLUGIN_INCLUDES_PATH . '/admin/class-zvc-admin-addons.php';
-		require_once ZVC_PLUGIN_INCLUDES_PATH . '/admin/class-zvc-admin-sync.php';
+		require_once ZVC_PLUGIN_INCLUDES_PATH . '/Backend/Settings.php';
+		require_once ZVC_PLUGIN_INCLUDES_PATH . '/Backend/Addon.php';
+
+		require_once ZVC_PLUGIN_INCLUDES_PATH . '/Backend/PostType.php';
+		require_once ZVC_PLUGIN_INCLUDES_PATH . '/Backend/Users.php';
+		require_once ZVC_PLUGIN_INCLUDES_PATH . '/Backend/Meetings.php';
+		require_once ZVC_PLUGIN_INCLUDES_PATH . '/Backend/Webinars.php';
+		require_once ZVC_PLUGIN_INCLUDES_PATH . '/Backend/Reports.php';
+		require_once ZVC_PLUGIN_INCLUDES_PATH . '/Backend/Recordings.php';
+		require_once ZVC_PLUGIN_INCLUDES_PATH . '/Backend/Sync.php';
 
 		//Timezone
 		require_once ZVC_PLUGIN_INCLUDES_PATH . '/Timezone.php';
@@ -230,8 +233,8 @@ final class Bootstrap {
 	 * @author Deepen
 	 */
 	public static function activate() {
-		require_once ZVC_PLUGIN_INCLUDES_PATH . '/admin/class-zvc-admin-post-type.php';
-		$post_type = \Zoom_Video_Conferencing_Admin_PostType::get_instance();
+		require_once ZVC_PLUGIN_INCLUDES_PATH . '/Backend/PostType.php';
+		$post_type = PostType::get_instance();
 		$post_type->register();
 
 		//Flush User Cache

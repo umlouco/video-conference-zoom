@@ -1,12 +1,14 @@
 <?php
 
+namespace Codemanas\VczApi\Backend;
+
 /**
  * Class Reports
  *
  * @author  Deepen
  * @since   2.0.0
  */
-class Zoom_Video_Conferencing_Reports {
+class Reports {
 
 	private static $instance;
 
@@ -103,9 +105,3 @@ class Zoom_Video_Conferencing_Reports {
 		return $return_result;
 	}
 }
-
-function zvc_reports() {
-	return Zoom_Video_Conferencing_Reports::getInstance();
-}
-
-zvc_reports();

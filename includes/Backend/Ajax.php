@@ -1,12 +1,14 @@
 <?php
+namespace Codemanas\VczApi\Backend;
+
 /**
  * Class for all the administration ajax calls
  *
  * @since   2.0.0
+ * @modified 3.7.0
  * @author  Deepen
  */
-
-class Zoom_Video_Conferencing_Admin_Ajax {
+class Ajax {
 
 	public function __construct() {
 		//Delete Meeting
@@ -299,4 +301,4 @@ class Zoom_Video_Conferencing_Admin_Ajax {
 	}
 }
 
-new Zoom_Video_Conferencing_Admin_Ajax();
+new Ajax();

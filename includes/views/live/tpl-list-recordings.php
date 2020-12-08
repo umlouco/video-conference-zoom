@@ -11,7 +11,7 @@ $host_id = isset( $_GET['host_id'] ) ? $_GET['host_id'] : null;
 	<?php
 	video_conferencing_zoom_api_show_like_popup();
 	video_conferencing_zoom_api_show_api_notice();
-	zvc_recordings()->get_hosts( $host_id );
+	\Codemanas\VczApi\Backend\Recordings::get_hosts( $host_id );
 	?>
     <div class="zvc_listing_table">
         <table id="zvc_meetings_list_table" class="display" width="100%">

@@ -1,12 +1,15 @@
 <?php
 
+namespace Codemanas\VczApi\Backend;
+
 /**
  * Registering the Pages Here
  *
  * @since   2.0.0
+ * @modified 3.7.0
  * @author  Deepen
  */
-class Zoom_Video_Conferencing_Admin_Views {
+class Settings {
 
 	public static $message = '';
 	public $settings;
@@ -26,62 +29,62 @@ class Zoom_Video_Conferencing_Admin_Views {
 	public function zoom_video_conference_menus() {
 		if ( get_option( 'zoom_api_key' ) && get_option( 'zoom_api_secret' ) && video_conferencing_zoom_api_get_user_transients() ) {
 			add_submenu_page( 'edit.php?post_type=zoom-meetings', __( 'Live Webinars', 'video-conferencing-with-zoom-api' ), __( 'Live Webinars', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing-webinars', array(
-				'Zoom_Video_Conferencing_Admin_Webinars',
+				Webinars::class,
 				'list_webinars'
 			) );
 
 			add_submenu_page( 'edit.php?post_type=zoom-meetings', __( 'Live Meetings', 'video-conferencing-with-zoom-api' ), __( 'Live Meetings', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing', array(
-				'Zoom_Video_Conferencing_Admin_Meetings',
+				Meetings::class,
 				'list_meetings'
 			) );
 
 			add_submenu_page( 'edit.php?post_type=zoom-meetings', __( 'Add Live Meeting', 'video-conferencing-with-zoom-api' ), __( 'Add Live Meeting', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing-add-meeting', array(
-				'Zoom_Video_Conferencing_Admin_Meetings',
+				Meetings::class,
 				'add_meeting'
 			) );
 
 			add_submenu_page( 'edit.php?post_type=zoom-meetings', __( 'Zoom Users', 'video-conferencing-with-zoom-api' ), __( 'Zoom Users', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing-list-users', array(
-				'Zoom_Video_Conferencing_Admin_Users',
+				Users::class,
 				'list_users'
 			) );
 
 			add_submenu_page( 'edit.php?post_type=zoom-meetings', 'Add Users', __( 'Add Users', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing-add-users', array(
-				'Zoom_Video_Conferencing_Admin_Users',
+				Users::class,
 				'add_zoom_users'
 			) );
 
 			add_submenu_page( 'edit.php?post_type=zoom-meetings', __( 'Reports', 'video-conferencing-with-zoom-api' ), __( 'Reports', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing-reports', array(
-				'Zoom_Video_Conferencing_Reports',
+				Reports::getInstance(),
 				'zoom_reports'
 			) );
 
 			add_submenu_page( 'edit.php?post_type=zoom-meetings', __( 'Recordings', 'video-conferencing-with-zoom-api' ), __( 'Recordings', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing-recordings', array(
-				'Zoom_Video_Conferencing_Recordings',
+				Recordings::class,
 				'zoom_recordings'
 			) );
 
 			add_submenu_page( 'edit.php?post_type=zoom-meetings', __( 'Extensions', 'video-conferencing-with-zoom-api' ), __( 'Extensions', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing-addons', array(
-				'Zoom_Video_Conferencing_Admin_Addons',
+				Addon::class,
 				'render'
 			) );
 
 			//Only for developers or PRO version. So this is hidden !
 			if ( defined( 'VIDEO_CONFERENCING_HOST_ASSIGN_PAGE' ) ) {
 				add_submenu_page( 'edit.php?post_type=zoom-meetings', __( 'Host to WP Users', 'video-conferencing-with-zoom-api' ), __( 'Host to WP Users', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing-host-id-assign', array(
-					'Zoom_Video_Conferencing_Admin_Users',
+					Users::class,
 					'assign_host_id'
 				) );
 			}
 
 			add_submenu_page( 'edit.php?post_type=zoom-meetings', __( 'Import', 'video-conferencing-with-zoom-api' ), __( 'Import', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing-sync', array(
-				'Zoom_Video_Conferencing_Admin_Sync',
+				Sync::class,
 				'render'
 			) );
 		}
 
 		add_submenu_page( 'edit.php?post_type=zoom-meetings', __( 'Settings', 'video-conferencing-with-zoom-api' ), __( 'Settings', 'video-conferencing-with-zoom-api' ), 'manage_options', 'zoom-video-conferencing-settings', array(
 			$this,
-			'zoom_video_conference_api_zoom_settings'
+			'output_settings'
 		) );
 	}
 
@@ -93,7 +96,7 @@ class Zoom_Video_Conferencing_Admin_Views {
 	 * @changes in CodeBase
 	 * @author  Deepen Bajracharya <dpen.connectify@gmail.com>
 	 */
-	public function zoom_video_conference_api_zoom_settings() {
+	public function output_settings() {
 		wp_enqueue_script( 'video-conferencing-with-zoom-api-js' );
 		wp_enqueue_style( 'video-conferencing-with-zoom-api' );
 
@@ -157,6 +160,31 @@ class Zoom_Video_Conferencing_Admin_Views {
 					update_option( 'zoom_api_hide_in_jvb', $hide_email_jvb );
 					update_option( 'zoom_api_disable_jvb', $disable_join_via_browser );
 
+					/**
+					 * Added in 3.7.0
+					 * This is to reduce clutter in DB
+					 */
+					$posted_data = [
+						'zoom_api_key'                       => $zoom_api_key,
+						'zoom_api_secret'                    => $zoom_api_secret,
+						'zoom_vanity_url'                    => $vanity_url,
+						'zoom_past_join_links'               => $join_links,
+						'zoom_show_author'                   => $zoom_author_show,
+						'zoom_started_meeting_text'          => $started_mtg,
+						'zoom_going_tostart_meeting_text'    => $going_to_start,
+						'zoom_ended_meeting_text'            => $ended_mtg,
+						'zoom_api_date_time_format'          => $locale_format,
+						'zoom_api_custom_date_time_format'   => $custom_date_time_format,
+						'zoom_api_full_month_format'         => $full_month_format,
+						'zoom_api_twenty_fourhour_format'    => $twentyfour_format,
+						'zoom_api_embed_pwd_join_link'       => $embed_pwd_in_join_link,
+						'zoom_api_hide_shortcode_join_links' => $hide_join_links_non_loggedin_users,
+						'zoom_api_hide_in_jvb'               => $hide_email_jvb,
+						'zoom_api_disable_jvb'               => $disable_join_via_browser
+					];
+
+					\Codemanas\VczApi\Datastore\Options::set_option( 'settings', $posted_data );
+
 					//After user has been created delete this transient in order to fetch latest Data.
 					video_conferencing_zoom_api_delete_user_cache();
 					?>
@@ -209,4 +237,4 @@ class Zoom_Video_Conferencing_Admin_Views {
 	}
 }
 
-new Zoom_Video_Conferencing_Admin_Views();
+new Settings();

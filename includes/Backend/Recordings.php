@@ -1,24 +1,17 @@
 <?php
 
+namespace Codemanas\VczApi\Backend;
+
 /**
  * Class Recordings
  *
  * @author  Deepen
  * @since   3.5.0
+ * @modified 3.7.0
  */
-class Zoom_Video_Conferencing_Recordings {
-
-	private static $instance;
+class Recordings {
 
 	public function __construct() {
-	}
-
-	static function getInstance() {
-		if ( null === static::$instance ) {
-			static::$instance = new static();
-		}
-
-		return static::$instance;
 	}
 
 	/**
@@ -54,7 +47,7 @@ class Zoom_Video_Conferencing_Recordings {
 	 *
 	 * @param $host_id
 	 */
-	public function get_hosts( $host_id ) {
+	public static function get_hosts( $host_id ) {
 		$users = video_conferencing_zoom_api_get_user_transients();
 		?>
         <div class="select_zvc_user_listings_wrapp">
@@ -80,8 +73,4 @@ class Zoom_Video_Conferencing_Recordings {
 
 }
 
-function zvc_recordings() {
-	return Zoom_Video_Conferencing_Recordings::getInstance();
-}
-
-zvc_recordings();
+new Recordings();

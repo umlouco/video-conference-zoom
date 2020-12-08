@@ -1,12 +1,15 @@
 <?php
+
+namespace Codemanas\VczApi\Backend;
+
 /**
  * Users Controller
  *
  * @since   2.0.0
+ * @modified 3.7.0
  * @author  Deepen
  */
-
-class Zoom_Video_Conferencing_Admin_Users {
+class Users {
 
 	public static $message = '';
 	public $settings;
@@ -102,4 +105,4 @@ class Zoom_Video_Conferencing_Admin_Users {
 	}
 }
 
-new Zoom_Video_Conferencing_Admin_Users();
+new Users();

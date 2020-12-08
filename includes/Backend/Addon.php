@@ -1,11 +1,14 @@
 <?php
 
+namespace Codemanas\VczApi\Backend;
+
 /**
  * Class for displaying addons page
  *
  * @since 3.1.1
+ * @modified 3.7.0
  */
-class Zoom_Video_Conferencing_Admin_Addons {
+class Addon {
 
 	public static function render() {
 		?>

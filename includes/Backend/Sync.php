@@ -1,12 +1,14 @@
 <?php
 
+namespace Codemanas\VczApi\Backend;
+
 /**
  * Class for Syncing Meeting/Webinars from live to WordPress
  *
  * @since 3.5.3
  * @author Deepen Bajracharya
  */
-class Zoom_Video_Conferencing_Admin_Sync {
+class Sync {
 
 	public function __construct() {
 		//Sync Live Zoom Meetings
@@ -219,4 +221,4 @@ class Zoom_Video_Conferencing_Admin_Sync {
 	}
 }
 
-new Zoom_Video_Conferencing_Admin_Sync();
+new Sync();

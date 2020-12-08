@@ -285,7 +285,7 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 				}
 			}
 
-			$updateMeetingInfoArray['topic']      = $data['topic'];
+			$updateMeetingInfoArray['topic']      = ! empty( $data['topic'] ) ? $data['topic'] : $data['meetingTopic'];
 			$updateMeetingInfoArray['agenda']     = ! empty( $data['agenda'] ) ? $data['agenda'] : "";
 			$updateMeetingInfoArray['type']       = ! empty( $data['type'] ) ? $data['type'] : 2; //Scheduled
 			$updateMeetingInfoArray['start_time'] = $start_time;

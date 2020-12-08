@@ -27,7 +27,9 @@ video_conferencing_zoom_api_show_like_popup(); ?>
         </ol>
     </div>
 
-	<?php if ( $active_tab == 'zoom_daily_report' ): ?><?php $result = zvc_reports()->get_daily_report_html();
+	<?php
+   $reports = \Codemanas\VczApi\Backend\Reports::getInstance();
+    if ( $active_tab == 'zoom_daily_report' ): ?><?php $result = $reports->get_daily_report_html();
 		if ( isset( $_POST['zoom_check_month_year'] ) ) {
 			if ( isset( $result->error ) ) {
 				?>
@@ -83,7 +85,7 @@ video_conferencing_zoom_api_show_like_popup(); ?>
             </tbody>
         </table>
 	<?php elseif ( $active_tab == 'zoom_acount_report' ):
-		$result = zvc_reports()->get_account_report_html();
+		$result = $reports->get_account_report_html();
 		if ( isset( $_POST['zoom_check_account_info'] ) ) {
 			if ( empty( $_POST['zoom_account_from'] ) || empty( $_POST['zoom_account_to'] ) ) { ?>
                 <div id="message" class="notice notice-error">

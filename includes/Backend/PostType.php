@@ -1,13 +1,16 @@
 <?php
 
+namespace Codemanas\VczApi\Backend;
+
 /**
  * Meeting Post Type Controller
  *
  * @since      3.0.0
  * @author     Deepen.
+ * @modified 3.7.0
  * @created_on 11/18/19
  */
-class Zoom_Video_Conferencing_Admin_PostType {
+class PostType {
 
 	/**
 	 * Instance
@@ -36,24 +39,9 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	private $post_type = 'zoom-meetings';
 
 	/**
-	 * Hold API KEY
-	 * @var mixed|void
-	 */
-	private $api_key;
-
-	/**
-	 * HOLD API SECRET KEY
-	 * @var mixed|void
-	 */
-	private $api_secret;
-
-	/**
 	 * Zoom_Video_Conferencing_Admin_PostType constructor.
 	 */
 	public function __construct() {
-		$this->api_key    = get_option( 'zoom_api_key' );
-		$this->api_secret = get_option( 'zoom_api_secret' );
-
 		add_action( 'restrict_manage_posts', [ $this, 'filtering' ], 10 );
 		add_action( 'init', array( $this, 'register' ) );
 		add_action( 'admin_menu', [ $this, 'hide_post_type' ] );
@@ -506,111 +494,23 @@ class Zoom_Video_Conferencing_Admin_PostType {
 
 		try {
 			//converted saved time from the timezone provided for meeting to UTC timezone so meetings can be better queried
-			$savedDateTime     = new DateTime( $create_meeting_arr['start_date'], new DateTimeZone( $create_meeting_arr['timezone'] ) );
-			$startDateTimezone = $savedDateTime->setTimezone( new DateTimeZone( 'UTC' ) );
+			$savedDateTime     = new \DateTime( $create_meeting_arr['start_date'], new \DateTimeZone( $create_meeting_arr['timezone'] ) );
+			$startDateTimezone = $savedDateTime->setTimezone( new \DateTimeZone( 'UTC' ) );
 			update_post_meta( $post_id, '_meeting_field_start_date_utc', $startDateTimezone->format( 'Y-m-d H:i:s' ) );
-		} catch ( Exception $e ) {
+		} catch ( \Exception $e ) {
 			update_post_meta( $post_id, '_meeting_field_start_date_utc', $e->getMessage() );
 		}
 
 		//Create Zoom Meeting Now
 		$meeting_id = get_post_meta( $post_id, '_meeting_zoom_meeting_id', true );
 		if ( empty( $meeting_id ) ) {
-			//Create new Zoom Meeting
-			$this->create_zoom_meeting( $post, $create_meeting_arr );
+			\Codemanas\VczApi\Datastore\PostType::create_zoom_meeting( $create_meeting_arr, $post );
 		} else {
-			//Update Zoom Meeting
-			$this->update_zoom_meeting( $post, $create_meeting_arr, $meeting_id );
+		    \Codemanas\VczApi\Datastore\PostType::update_zoom_meeting($create_meeting_arr, $post, $meeting_id);
 		}
 
 		//Call this action after the Zoom Meeting completion created.
 		do_action( 'vczapi_admin_after_zoom_meeting_is_created', $post_id, $post );
-	}
-
-	/**
-	 * Create real time zoom meetings
-	 *
-	 * @param $post
-	 * @param $create_meeting_arr
-	 *
-	 * @since  3.0.0
-	 * @modified 3.5.3
-	 *
-	 * @author Deepen
-	 */
-	private function create_zoom_meeting( $post, $create_meeting_arr ) {
-		//Prepare Webinar Insert Data
-		if ( ! empty( $create_meeting_arr['meeting_type'] ) && $create_meeting_arr['meeting_type'] === 2 ) {
-			$webinar_arrr    = Zoom_Video_Conferencing_Admin_Webinars::prepare_webinar( $create_meeting_arr, $post );
-			$webinar_created = json_decode( zoom_conference()->createAWebinar( $create_meeting_arr['userId'], $webinar_arrr ) );
-			if ( empty( $webinar_created->code ) ) {
-				update_post_meta( $post->ID, '_meeting_zoom_details', $webinar_created );
-				update_post_meta( $post->ID, '_meeting_zoom_join_url', $webinar_created->join_url );
-				update_post_meta( $post->ID, '_meeting_zoom_start_url', $webinar_created->start_url );
-				update_post_meta( $post->ID, '_meeting_zoom_meeting_id', $webinar_created->id );
-			} else {
-				//Store Error Message
-				update_post_meta( $post->ID, '_meeting_zoom_details', $webinar_created );
-			}
-		} else {
-			$mtg_param       = Zoom_Video_Conferencing_Admin_Meetings::prepare_create( $create_meeting_arr, $post );
-			$meeting_created = json_decode( zoom_conference()->createAMeeting( $mtg_param ) );
-			if ( empty( $meeting_created->code ) ) {
-				update_post_meta( $post->ID, '_meeting_zoom_details', $meeting_created );
-				update_post_meta( $post->ID, '_meeting_zoom_join_url', $meeting_created->join_url );
-				update_post_meta( $post->ID, '_meeting_zoom_start_url', $meeting_created->start_url );
-				update_post_meta( $post->ID, '_meeting_zoom_meeting_id', $meeting_created->id );
-			} else {
-				//Store Error Message
-				update_post_meta( $post->ID, '_meeting_zoom_details', $meeting_created );
-			}
-		}
-
-	}
-
-	/**
-	 * Update real time zoom meetings
-	 *
-	 * @param $post
-	 * @param $updated_meeting_arr
-	 * @param $meeting_id
-	 *
-	 * @author Deepen
-	 * @since  3.0.0
-	 * @modified 3.5.3
-	 */
-	private function update_zoom_meeting( $post, $updated_meeting_arr, $meeting_id ) {
-		if ( ! empty( $updated_meeting_arr['meeting_type'] ) && $updated_meeting_arr['meeting_type'] === 2 ) {
-			//Prepare Webinar update data
-			$webinar_arrr    = Zoom_Video_Conferencing_Admin_Webinars::prepare_webinar( $updated_meeting_arr, $post );
-			$webinar_updated = json_decode( zoom_conference()->updateWebinar( $meeting_id, $webinar_arrr ) );
-			if ( empty( $webinar_updated->code ) ) {
-				$webinar_info = json_decode( zoom_conference()->getWebinarInfo( $meeting_id ) );
-				if ( ! empty( $webinar_info ) ) {
-					update_post_meta( $post->ID, '_meeting_zoom_details', $webinar_info );
-					update_post_meta( $post->ID, '_meeting_zoom_join_url', $webinar_info->join_url );
-					update_post_meta( $post->ID, '_meeting_zoom_start_url', $webinar_info->start_url );
-					update_post_meta( $post->ID, '_meeting_zoom_meeting_id', $webinar_info->id );
-				}
-			} else {
-				update_post_meta( $post->ID, '_meeting_zoom_details', $webinar_updated );
-			}
-		} else {
-			$mtg_param       = Zoom_Video_Conferencing_Admin_Meetings::prepare_update( $meeting_id, $updated_meeting_arr, $post );
-			$meeting_updated = json_decode( zoom_conference()->updateMeetingInfo( $mtg_param ) );
-			if ( empty( $meeting_updated->code ) ) {
-				$meeting_info = json_decode( zoom_conference()->getMeetingInfo( $meeting_id ) );
-				if ( ! empty( $meeting_info ) ) {
-					update_post_meta( $post->ID, '_meeting_zoom_details', $meeting_info );
-					update_post_meta( $post->ID, '_meeting_zoom_join_url', $meeting_info->join_url );
-					update_post_meta( $post->ID, '_meeting_zoom_start_url', $meeting_info->start_url );
-					update_post_meta( $post->ID, '_meeting_zoom_meeting_id', $meeting_info->id );
-				}
-			} else {
-				//Store Error Message
-				update_post_meta( $post->ID, '_meeting_zoom_details', $meeting_updated );
-			}
-		}
 	}
 
 	/**
@@ -677,7 +577,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 		}
 
 		//Call before single template file is loaded
-		do_action('vczapi_before_single_template_load');
+		do_action( 'vczapi_before_single_template_load' );
 
 		return $template;
 	}
@@ -818,4 +718,4 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	}
 }
 
-Zoom_Video_Conferencing_Admin_PostType::get_instance();
+PostType::get_instance();
