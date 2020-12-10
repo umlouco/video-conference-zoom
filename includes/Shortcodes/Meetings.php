@@ -2,6 +2,8 @@
 
 namespace Codemanas\VczApi\Shortcodes;
 
+use Codemanas\VczApi\Datastore\PostType;
+
 class Meetings {
 
 	/**
@@ -121,28 +123,17 @@ class Meetings {
 		}
 
 		$query_args = array(
-			'post_type'      => $this->post_type,
-			'posts_per_page' => $atts['per_page'],
-			'post_status'    => 'publish',
-			'paged'          => $paged,
-			'orderby'        => 'meta_value',
-			'meta_key'       => '_meeting_field_start_date_utc',
-			'order'          => $atts['order'],
-			'caller'         => ! empty( $atts['filter'] ) && $atts['filter'] === "yes" ? 'vczapi' : false,
-			'meta_query'     => array(
-				'relation' => 'AND',
-				array(
-					'relation' => 'OR',
-					array(
-						'key'     => '_vczapi_meeting_type',
-						'value'   => 'meeting',
-						'compare' => '='
-					),
-					array(
-						'key'     => '_vczapi_meeting_type',
-						'compare' => 'NOT EXISTS'
-					),
-				)
+			'per_page'   => $atts['per_page'],
+			'status'     => 'publish',
+			'paged'      => $paged,
+			'orderby'    => 'meta_value',
+			'meta_key'   => '_meeting_field_start_date_utc',
+			'order'      => $atts['order'],
+			'custom'     => array(
+				'caller' => ! empty( $atts['filter'] ) && $atts['filter'] === "yes" ? 'vczapi' : false,
+			),
+			'meta_query' => array(
+				'meeting_type' => 'meeting',
 			)
 		);
 
@@ -150,32 +141,20 @@ class Meetings {
 			$query_args['author'] = absint( $atts['author'] );
 		}
 
-		if ( ! empty( $atts['type'] ) && ! empty( $query_args['meta_query'] ) ) {
-			$type       = ( $atts['type'] === "upcoming" ) ? '>=' : '<=';
-			$meta_query = array(
-				'key'     => '_meeting_field_start_date_utc',
-				'value'   => vczapi_dateConverter( 'now', 'UTC', 'Y-m-d H:i:s', false ),
-				'compare' => $type,
-				'type'    => 'DATETIME'
-			);
-			array_push( $query_args['meta_query'], $meta_query );
+		if ( ! empty( $atts['type'] ) ) {
+			$query_args['meta_query']['meeting_sort'] = $atts['type'];
 		}
 
 		if ( ! empty( $atts['category'] ) ) {
-			$category                = array_map( 'trim', explode( ',', $atts['category'] ) );
-			$query_args['tax_query'] = [
-				[
-					'taxonomy' => 'zoom-meeting',
-					'field'    => 'slug',
-					'terms'    => $category,
-					'operator' => 'IN'
-				]
-			];
+			$query_args['taxonomy'] = $atts['category'];
 		}
 
 		$query         = apply_filters( 'vczapi_meeting_list_query_args', $query_args );
-		$zoom_meetings = new \WP_Query( $query );
-		$content       = '';
+		$zoom_meetings = PostType::get_posts( $query );
+
+		#$query         = apply_filters( 'vczapi_meeting_list_query_args', $query_args );
+		#$zoom_meetings = new \WP_Query( $query );
+		$content = '';
 
 		unset( $GLOBALS['zoom_meetings'] );
 		$GLOBALS['zoom_meetings'] = $zoom_meetings;

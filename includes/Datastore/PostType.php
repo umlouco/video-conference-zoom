@@ -18,21 +18,6 @@ class PostType {
 	private static $post_type = 'zoom-meetings';
 
 	/**
-	 * @var int
-	 */
-	protected static $per_page = 10;
-
-	/**
-	 * @var int
-	 */
-	protected static $paged = 1;
-
-	/**
-	 * @var string
-	 */
-	protected static $order = 'DESC';
-
-	/**
 	 * Get Zoom Meeting posts
 	 *
 	 * @param $args
@@ -42,29 +27,56 @@ class PostType {
 	public static function get_posts( $args = false ) {
 		$post_arr = array(
 			'post_type'      => self::$post_type,
-			'posts_per_page' => ! empty( $args['per_page'] ) ? $args['paged'] : self::$per_page,
+			'posts_per_page' => ! empty( $args['per_page'] ) ? $args['per_page'] : 10,
 			'post_status'    => ! empty( $args['status'] ) ? $args['status'] : 'publish',
-			'paged'          => ! empty( $args['paged'] ) ? $args['paged'] : self::$paged,
-			'order'          => self::$order,
+			'paged'          => ! empty( $args['paged'] ) ? $args['paged'] : 1,
+			'order'          => ! empty( $args['order'] ) ? $args['order'] : 'DESC',
 		);
+
+		if ( ! empty( $args['orderby'] ) ) {
+			$post_arr['orderby'] = $args['orderby'];
+		}
+
+		if ( ! empty( $args['meta_key'] ) ) {
+			$post_arr['meta_key'] = $args['meta_key'];
+		}
 
 		if ( ! empty( $args['author'] ) ) {
 			$post_arr['author'] = absint( $args['author'] );
 		}
 
-		//If meeting type is not defined then pull all zoom list regardless of webinar or meeting only.
-		if ( ! empty( $args['meeting_type'] ) ) {
+		if ( ! empty( $args['meta_query'] ) ) {
 			$post_arr['meta_query'] = array(
-				'relation' => 'AND',
-				array(
+				'relation' => ! empty( $args['meta_relation'] ) ? $args['meta_relation'] : 'AND'
+			);
+
+			//If meeting type is not defined then pull all zoom list regardless of webinar or meeting only.
+			if ( ! empty( $args['meta_query']['meeting_type'] ) ) {
+				$meeting_type = array(
 					'relation' => 'OR',
 					array(
 						'key'     => '_vczapi_meeting_type',
-						'value'   => $args['meeting_type'] === "meeting" ? 'meeting' : 'webinar',
+						'value'   => $args['meta_query']['meeting_type'] == "webinar" ? 'webinar' : 'meeting',
 						'compare' => '='
 					)
-				)
-			);
+				);
+				array_push( $post_arr['meta_query'], $meeting_type );
+			}
+
+			if ( ! empty( $args['meta_query']['meeting_sort'] ) ) {
+				$type            = ( $args['meta_query']['meeting_sort'] == "upcoming" ) ? '>=' : '<=';
+				$sort_by_meeting = array(
+					'key'     => '_meeting_field_start_date_utc',
+					'value'   => vczapi_dateConverter( 'now', 'UTC', 'Y-m-d H:i:s', false ),
+					'compare' => $type,
+					'type'    => 'DATETIME'
+				);
+				array_push( $post_arr['meta_query'], $sort_by_meeting );
+			}
+
+			if ( ! empty( $args['meta_query']['custom'] ) ) {
+				array_push( $post_arr['meta_query'], $args['meta_query']['custom'] );
+			}
 		}
 
 		if ( ! empty( $args['taxonomy'] ) ) {
@@ -79,7 +91,15 @@ class PostType {
 			];
 		}
 
-		$query  = apply_filters( 'vczapi_pro_get_posts_query_args', $post_arr );
+		if ( ! empty( $args['custom'] ) ) {
+			if ( is_array( $args['custom'] ) ) {
+				foreach ( $args['custom'] as $k => $extra ) {
+					$post_arr[ $k ] = $extra;
+				}
+			}
+		}
+
+		$query  = apply_filters( 'vczapi_get_posts_query_args', $post_arr );
 		$result = new \WP_Query( $query );
 
 		return $result;
@@ -108,6 +128,49 @@ class PostType {
 		$result = new \WP_Query( $args );
 
 		return $result->have_posts();
+	}
+
+	/**
+	 * Convert given meeting time ot UTC or any user defined value
+	 *
+	 * @param $start_date
+	 * @param $meeting_timezone
+	 * @param string $preferred_timezone
+	 * @param string $format
+	 *
+	 * @return string
+	 */
+	public static function convertToUTC( $start_date, $meeting_timezone, $preferred_timezone = 'UTC', $format = 'Y-m-d H:i:s' ) {
+		try {
+			$meeting   = new \DateTime( $start_date, new \DateTimeZone( $meeting_timezone ) );
+			$converted = $meeting->setTimezone( new \DateTimeZone( $preferred_timezone ) );
+			$result    = $converted->format( $format );
+		} catch ( \Exception $e ) {
+			$result = $e->getMessage();
+		}
+
+		return $result;
+	}
+
+	/**
+	 * Save Meta Field Values
+	 *
+	 * @param $meeting_info
+	 * @param $post_id
+	 */
+	public static function save_meta_fields( $meeting_info, $post_id ) {
+		$meeting_type = ! empty( $meeting_info['meeting_type'] ) && $meeting_info['meeting_type'] === 2 ? 'webinar' : 'meeting';
+
+		//Update Post Meta Values
+		update_post_meta( $post_id, '_meeting_fields', $meeting_info );
+		update_post_meta( $post_id, '_vczapi_meeting_type', $meeting_type );
+
+		//Check if start date exists
+		if ( ! empty( $meeting_info ) && ! empty( $meeting_info['start_date'] ) ) {
+			//converted saved time from the timezone provided for meeting to UTC timezone so meetings can be better queried
+			$converted = self::convertToUTC( $meeting_info['start_date'], $meeting_info['timezone'] );
+			update_post_meta( $post_id, '_meeting_field_start_date_utc', $converted );
+		}
 	}
 
 	/**

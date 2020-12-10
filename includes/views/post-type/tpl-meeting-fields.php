@@ -9,12 +9,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 ?>
-
 <table class="form-table">
     <tbody>
 	<?php
 	global $post;
+	//Check if any transient by name is available
+	$users           = video_conferencing_zoom_api_get_user_transients();
 	$meeting_details = get_post_meta( $post->ID, '_meeting_zoom_details', true );
+	$meeting_fields  = get_post_meta( $post->ID, '_meeting_fields', true );
 	$meeting_fields  = ! empty( $meeting_fields ) ? $meeting_fields : array();
 	if ( empty( $meeting_fields['meeting_type'] ) ) {
 		$meeting_fields['meeting_type'] = 1;
@@ -44,16 +46,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<?php
 					if ( ! empty( $meeting_details->host_id ) ) {
 						$user = json_decode( zoom_conference()->getUserInfo( $meeting_details->host_id ) );
-						if( !empty($user) ) {
+						if ( ! empty( $user ) ) {
 							if ( ! empty( $user->code ) ) {
 								echo $user->message;
 							} else {
 								echo '<input type="hidden" name="userId" value="' . $user->id . '">';
 								echo esc_html( $user->first_name ) . ' ( ' . esc_html( $user->email ) . ' )';
 							}
-                        } else {
+						} else {
 							_e( 'Please check your internet connection or API connection.', 'video-conferencing-with-zoom-api' );
-                        }
+						}
 					} else {
 						printf( __( 'Did not find any hosts here ? Please %scheck here%s to verify your API keys are working correctly.', 'video-conferencing-with-zoom-api' ), '<a href="' . admin_url( 'edit.php?post_type=zoom-meetings&page=zoom-video-conferencing-settings' ) . '">', '</a>' );
 					} ?>
