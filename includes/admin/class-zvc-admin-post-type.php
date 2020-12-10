@@ -270,6 +270,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 			'capabilities'       => apply_filters( 'vczapi_cpt_capabilities', array() ),
 			'has_archive'        => true,
 			'hierarchical'       => false,
+			'show_in_rest'       => apply_filters( 'vczapi_cpt_show_in_rest', false ),
 			'menu_position'      => apply_filters( 'vczapi_cpt_menu_position', 5 ),
 			'map_meta_cap'       => apply_filters( 'vczapi_cpt_meta_cap', null ),
 			'supports'           => array(
@@ -677,7 +678,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 		}
 
 		//Call before single template file is loaded
-		do_action('vczapi_before_single_template_load');
+		do_action( 'vczapi_before_single_template_load' );
 
 		return $template;
 	}
