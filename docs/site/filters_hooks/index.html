@@ -58,7 +58,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#redirect-to-custom-page-url-after-join-via-web-browser-completed-or-unfinished" class="md-skip">
+        <a href="#redirecting-to-custom-page-url-after-join-via-web-browser-completed-or-unfinished" class="md-skip">
           Skip to content
         </a>
       
@@ -396,8 +396,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#redirect-to-custom-page-url-after-join-via-web-browser-completed-or-unfinished" class="md-nav__link">
-    Redirect to custom page url after Join via Web Browser completed or Unfinished.
+  <a href="#redirecting-to-custom-page-url-after-join-via-web-browser-completed-or-unfinished" class="md-nav__link">
+    Redirecting to custom page url after Join via Web Browser completed or Unfinished
   </a>
   
 </li>
@@ -461,6 +461,13 @@
         <li class="md-nav__item">
   <a href="#before-getting-daily-reports-data" class="md-nav__link">
     Before getting daily reports data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enable-gutenberg-support-for-zoom-meeting-edit-page-on-backend" class="md-nav__link">
+    Enable Gutenberg Support for Zoom Meeting edit page on backend.
   </a>
   
 </li>
@@ -657,8 +664,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#redirect-to-custom-page-url-after-join-via-web-browser-completed-or-unfinished" class="md-nav__link">
-    Redirect to custom page url after Join via Web Browser completed or Unfinished.
+  <a href="#redirecting-to-custom-page-url-after-join-via-web-browser-completed-or-unfinished" class="md-nav__link">
+    Redirecting to custom page url after Join via Web Browser completed or Unfinished
   </a>
   
 </li>
@@ -726,6 +733,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#enable-gutenberg-support-for-zoom-meeting-edit-page-on-backend" class="md-nav__link">
+    Enable Gutenberg Support for Zoom Meeting edit page on backend.
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -750,55 +764,58 @@
 <p><code>add_filter('vczapi_hook', function($data) {
     return $data;
 });</code></p>
-<h4 id="redirect-to-custom-page-url-after-join-via-web-browser-completed-or-unfinished">Redirect to custom page url after Join via Web Browser completed or Unfinished.</h4>
+<h3 id="redirecting-to-custom-page-url-after-join-via-web-browser-completed-or-unfinished">Redirecting to custom page url after Join via Web Browser completed or Unfinished</h3>
 <p><code>add_filter('vczapi_api_redirect_join_browser', function() { 
     return 'https://yoursiteurl.com/page';
 });</code></p>
-<h4 id="rename-zoom-meetings-slug">Rename "zoom-meetings" Slug</h4>
+<h3 id="rename-zoom-meetings-slug">Rename "zoom-meetings" Slug</h3>
 <p>Add below to your functions.php file in your theme. Change "your-slug-name" to the slug you want. Then flush your permalink from <strong>wp-adming &gt; settings &gt; permalink</strong> and save.</p>
-<p><code>add_filter('vczapi_cpt_slug', function() {
-    return 'your-slug-name';
-});</code></p>
-<h4 id="before-create-a-zoom-user">Before Create a Zoom User</h4>
+<p><a href="https://gist.github.com/techies23/377f019396c3eaf0903f193a9c0b5251">View Implementation</a></p>
+<h3 id="before-create-a-zoom-user">Before Create a Zoom User</h3>
 <ul>
 <li><code>apply_filters( 'vczapi_createAUser', $data );</code> </li>
 </ul>
 <p><strong>Usage:</strong> Used when doing API call for creating a user on Zoom.</p>
-<h4 id="before-listing-a-zoom-user">Before Listing a Zoom User</h4>
+<h3 id="before-listing-a-zoom-user">Before Listing a Zoom User</h3>
 <ul>
 <li><code>apply_filters( 'vczapi_listUsers', $data );</code> </li>
 </ul>
 <p><strong>Usage:</strong> Used when doing API call for listing users from zoom.</p>
-<h4 id="before-getting-a-zoom-user">Before getting a Zoom User</h4>
+<h3 id="before-getting-a-zoom-user">Before getting a Zoom User</h3>
 <ul>
 <li><code>apply_filters( 'vczapi_getUserInfo', $data );</code> </li>
 </ul>
 <p><strong>Usage:</strong> Used when doing API call for getting a specific HOST ID info.</p>
-<h4 id="before-listing-a-meeting">Before listing a meeting</h4>
+<h3 id="before-listing-a-meeting">Before listing a meeting</h3>
 <ul>
 <li><code>apply_filters( 'vczapi_listMeetings', $data );</code> </li>
 </ul>
 <p><strong>Usage:</strong> Used when doing API call for getting list of meetings for a Zoom User.</p>
-<h4 id="before-creating-a-meeting">Before Creating a meeting</h4>
+<h3 id="before-creating-a-meeting">Before Creating a meeting</h3>
 <ul>
 <li><code>apply_filters( 'vczapi_createAmeeting', $data );</code> </li>
 </ul>
 <p><strong>Usage:</strong> Used when doing API call for posting your own data when creating a Meeting.</p>
-<h4 id="before-updating-a-meeting">Before Updating a meeting</h4>
+<h3 id="before-updating-a-meeting">Before Updating a meeting</h3>
 <ul>
 <li><code>apply_filters( 'vczapi_updateMeetingInfo', $data );</code> </li>
 </ul>
 <p><strong>Usage:</strong> Used when doing API call for posting your own data when updating a Meeting.</p>
-<h4 id="before-getting-a-meeting">Before Getting a meeting</h4>
+<h3 id="before-getting-a-meeting">Before Getting a meeting</h3>
 <ul>
 <li><code>apply_filters( 'vczapi_getMeetingInfo', $data );</code> </li>
 </ul>
 <p><strong>Usage:</strong> Used when doing API call for getting a meeting info.</p>
-<h4 id="before-getting-daily-reports-data">Before getting daily reports data</h4>
+<h3 id="before-getting-daily-reports-data">Before getting daily reports data</h3>
 <ul>
 <li><code>apply_filters( 'vczapi_getDailyReport', $data );</code> </li>
 </ul>
 <p><strong>Usage:</strong> Used when doing API call for when pulling in reports data.</p>
+<h3 id="enable-gutenberg-support-for-zoom-meeting-edit-page-on-backend">Enable Gutenberg Support for Zoom Meeting edit page on backend.</h3>
+<p>Add below code to your functions.php file</p>
+<ul>
+<li><code>add_filter( 'vczapi_cpt_show_in_rest', '__return_true' );</code> </li>
+</ul>
                 
               
               

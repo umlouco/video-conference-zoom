@@ -4,7 +4,7 @@ Tags: zoom video conference, video conference, zoom, zoom video conferencing, we
 Donate link: https://deepenbajracharya.com.np/donate
 Requires at least: 4.9
 Tested up to: 5.6
-Stable tag: 3.6.16
+Stable tag: 3.6.17
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -176,6 +176,9 @@ Join our facebook group which we have created in order to stay up to date with u
 9. Shortcode Output
 
 == Changelog ==
+
+= 3.6.17 =
+* Updated: Translations from WordPress language directly. Thanks to WordPress language community.
 
 = 3.6.16 =
 * Added: Enable/Disable gutenberg support when editing a meeting post type.

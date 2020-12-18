@@ -94,12 +94,12 @@ final class Bootstrap {
 			wp_enqueue_script( 'video-conferencing-with-zoom-api-moment-timezone' );
 			wp_enqueue_script( 'video-conferencing-with-zoom-api' );
 			// Localize the script with new data
-			$date_format =  get_option( 'zoom_api_date_time_format' );
+			$date_format = get_option( 'zoom_api_date_time_format' );
 			//check if custom time format
 			// that is it is in either of L LT, l LT,llll,lll,LLLL
 
 			if ( $date_format == 'custom' ) {
-				$date_format = get_option('zoom_api_custom_date_time_format');
+				$date_format = get_option( 'zoom_api_custom_date_time_format' );
 				$date_format = vczapi_convertPHPToMomentFormat( $date_format );
 			}
 
@@ -218,9 +218,7 @@ final class Bootstrap {
 	 * @author Deepen
 	 */
 	public function load_plugin_textdomain() {
-		$domain = 'video-conferencing-with-zoom-api';
-		apply_filters( 'plugin_locale', get_locale(), $domain );
-		load_plugin_textdomain( $domain, false, ZVC_PLUGIN_LANGUAGE_PATH );
+		load_plugin_textdomain( 'video-conferencing-with-zoom-api', false, ZVC_PLUGIN_LANGUAGE_PATH );
 	}
 
 	/**

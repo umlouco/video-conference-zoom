@@ -222,8 +222,7 @@ class Zoom_Video_Conferencing_Admin_PostType {
 	public function register_taxonomy() {
 		// Add new taxonomy, make it hierarchical (like categories)
 		$labels = array(
-			'name'          => _x( 'Category', 'Category', 'video-conferencing-with-zoom-api' ),
-			'singular_name' => _x( 'Category', 'Category', 'video-conferencing-with-zoom-api' ),
+			'name'          => _x( 'Category', 'Zoom Category Name', 'video-conferencing-with-zoom-api' ),
 		);
 
 		$args = array(
