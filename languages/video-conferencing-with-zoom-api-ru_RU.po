@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Video Conferencing with Zoom - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-12-18 07:45+0000\n"
+"PO-Revision-Date: 2020-12-18 08:51+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,21 +24,21 @@ msgstr ""
 "%sNote%s: Время обратного отсчета отображается в зависимости от вашего "
 "местного часового пояса."
 
-#: includes/views/live/tpl-reports.php:13
+#: includes/views/live/tpl-reports.php:15
 msgid "1. Daily Report"
 msgstr "1. Ежедневный отчет"
 
-#: includes/views/live/tpl-reports.php:14
+#: includes/views/live/tpl-reports.php:16
 msgid "2. Account Report"
 msgstr "Отчет по аккаунту"
 
-#: includes/views/live/tpl-reports.php:25
+#: includes/views/live/tpl-reports.php:27
 msgid "Account Owner or a user is given the User activities reports."
 msgstr ""
 "Владелец учетной записи или пользователь получает отчеты о действиях "
 "пользователя."
 
-#: includes/views/live/tpl-reports.php:24
+#: includes/views/live/tpl-reports.php:26
 msgid ""
 "Account owner or admin permissions to access Usage Reports for all users."
 msgstr ""
@@ -78,6 +78,10 @@ msgstr "Создать Live конференцию."
 #: includes/admin/class-zvc-admin-post-type.php:248
 msgid "Add New"
 msgstr "Добавить новую"
+
+#: includes/views/live/tpl-list-meetings.php:40
+msgid "Add New Meeting"
+msgstr ""
 
 #: includes/admin/class-zvc-admin-post-type.php:249
 msgid "Add New meeting"
@@ -160,6 +164,11 @@ msgstr "API Secret Key"
 msgid "API Settings"
 msgstr "Настройки API"
 
+#: includes/views/webinars/tpl-list-webinars.php:28
+#: includes/views/live/tpl-list-meetings.php:39
+msgid "Apply"
+msgstr ""
+
 #: includes/Bootstrap.php:209 includes/template-functions.php:86
 msgid ""
 "Are you sure you want to end this meeting ? Users won't be able to join this "
@@ -176,7 +185,7 @@ msgstr "Назначьте пользователей хоста Zoom своим
 msgid "Assign Zoom user to WordPress User"
 msgstr "Назначьте пользователя Zoom пользователю WordPress"
 
-#: includes/views/live/tpl-reports.php:18
+#: includes/views/live/tpl-reports.php:20
 msgid "ATTENTION: Zoom Account & Setting Prerequisites for Reports Section"
 msgstr ""
 "ВНИМАНИЕ: аккаунт Zoom  и настройка предварительных условий для раздела "
@@ -235,7 +244,7 @@ msgstr ""
 "пожалуйста, установите действительный сертификат SSL, чтобы разрешить аудио "
 "и видео на ваших конференциях через браузер."
 
-#: includes/views/live/tpl-reports.php:129
+#: includes/views/live/tpl-reports.php:131
 msgid "By"
 msgstr "По"
 
@@ -252,6 +261,10 @@ msgstr ""
 "Измените форматы даты и времени по вашему выбору. Пожалуйста, отредактируйте "
 "это правильно. Неправильная установка значения приведет к невозможности "
 "отображения даты во внешнем интерфейсе."
+
+#: includes/views/live/tpl-reports.php:51
+msgid "Check"
+msgstr ""
 
 #: includes/helpers.php:332
 msgid "check %s for shortcode references."
@@ -326,6 +339,8 @@ msgstr "Нажмите кнопку ниже, чтобы подключитьс�
 msgid "Click to Copy Shortcode !"
 msgstr "Нажмите, чтобы скопировать шорткод!"
 
+#: includes/views/webinars/tpl-edit-webinar.php:114
+#: includes/views/webinars/tpl-add-webinar.php:117
 #: includes/views/live/tpl-edit-meeting.php:151
 #: includes/views/post-type/tpl-meeting-fields.php:243
 msgid "Cloud"
@@ -356,6 +371,18 @@ msgstr "Количество вебинаров"
 #: includes/views/live/tpl-add-user.php:32
 msgid "Create"
 msgstr "Создать"
+
+#: includes/views/live/tpl-add-meetings.php:148
+msgid "Create Meeting"
+msgstr ""
+
+#: includes/views/live/tpl-add-user.php:89
+msgid "Create User"
+msgstr ""
+
+#: includes/views/webinars/tpl-add-webinar.php:137
+msgid "Create Webinar"
+msgstr ""
 
 #: includes/admin/class-zvc-admin-users.php:66
 msgid ""
@@ -390,9 +417,13 @@ msgstr ""
 msgid "Cust Create"
 msgstr "Создать пользователя API"
 
-#: includes/views/live/tpl-reports.php:55
+#: includes/views/live/tpl-reports.php:57
 msgid "Date"
 msgstr "Дата"
+
+#: includes/admin/class-zvc-admin-reports.php:67
+msgid "Date field cannot be Empty !!"
+msgstr ""
 
 #: includes/views/tabs/api-settings.php:102
 msgid "DateTime Format"
@@ -516,6 +547,7 @@ msgid "Edit meeting"
 msgstr "Изменить"
 
 #: includes/views/webinars/tpl-edit-webinar.php:11
+#: includes/views/webinars/tpl-edit-webinar.php:144
 msgid "Edit Webinar"
 msgstr "Редактировать вебинар"
 
@@ -578,11 +610,11 @@ msgstr ""
 "Завершив это, пользователи не смогут присоединиться к этой конференции. "
 "Применяется только к  шорткоду."
 
-#: includes/views/live/tpl-reports.php:156
+#: includes/views/live/tpl-reports.php:158
 msgid "Enter a value to Check..."
 msgstr "Введите значение для проверки ..."
 
-#: includes/views/live/tpl-reports.php:48
+#: includes/views/live/tpl-reports.php:50
 msgid "Enter the date to check:"
 msgstr "Введите дату для проверки:"
 
@@ -635,7 +667,7 @@ msgstr "Очистить кэш пользователя "
 msgid "Flushed User Cache!"
 msgstr "Сброшен кэш пользователей! "
 
-#: includes/views/live/tpl-reports.php:120
+#: includes/views/live/tpl-reports.php:122
 msgid "From"
 msgstr "От"
 
@@ -643,7 +675,7 @@ msgstr "От"
 msgid "Full Name"
 msgstr "ФИО"
 
-#: includes/views/live/tpl-reports.php:117
+#: includes/views/live/tpl-reports.php:119
 msgid "Get account report for a specified period."
 msgstr "Получить отчет за указанный период."
 
@@ -784,7 +816,7 @@ msgstr "Последний клиент"
 msgid "Last Login"
 msgstr "Последний вход"
 
-#: includes/views/live/tpl-reports.php:133
+#: includes/views/live/tpl-reports.php:135
 msgid "Last Login Time"
 msgstr "Время последнего визита"
 
@@ -820,6 +852,8 @@ msgstr "Live конференции"
 msgid "Live Webinars"
 msgstr "Live Вебинары"
 
+#: includes/views/webinars/tpl-edit-webinar.php:113
+#: includes/views/webinars/tpl-add-webinar.php:116
 #: includes/views/live/tpl-edit-meeting.php:148
 #: includes/views/post-type/tpl-meeting-fields.php:240
 msgid "Local"
@@ -910,7 +944,7 @@ msgstr "Конференция уже началась"
 msgid "Meeting is not defined. Try updating this meeting"
 msgstr "Конференция не найдена. Попробуйте обновить конференцию"
 
-#: includes/views/live/tpl-reports.php:59
+#: includes/views/live/tpl-reports.php:61
 msgid "Meeting Minutes"
 msgstr "Минуты конференции"
 
@@ -977,7 +1011,7 @@ msgstr "Тип конференции"
 
 #: templates/archive-meetings.php:24
 #: includes/views/live/tpl-list-meetings.php:20
-#: includes/views/live/tpl-reports.php:56
+#: includes/views/live/tpl-reports.php:58
 msgid "Meetings"
 msgstr "Конференции"
 
@@ -985,7 +1019,7 @@ msgstr "Конференции"
 msgid "Meetings Category"
 msgstr "Категория конференций"
 
-#: includes/views/live/tpl-reports.php:130
+#: includes/views/live/tpl-reports.php:132
 msgid "Meetings Held"
 msgstr "Проведено конференций"
 
@@ -1026,7 +1060,7 @@ msgstr "Имя"
 msgid "New meeting"
 msgstr "Новая конференция"
 
-#: includes/views/live/tpl-reports.php:57
+#: includes/views/live/tpl-reports.php:59
 msgid "New Users"
 msgstr "Новые пользователи"
 
@@ -1075,6 +1109,8 @@ msgstr "Конференции не найдены"
 msgid "No meetings found."
 msgstr "Конференции не найдены"
 
+#: includes/views/webinars/tpl-edit-webinar.php:111
+#: includes/views/webinars/tpl-add-webinar.php:115
 #: includes/views/live/tpl-edit-meeting.php:145
 #: includes/views/post-type/tpl-meeting-fields.php:237
 msgid "No Recordings"
@@ -1085,7 +1121,7 @@ msgstr "Не записывать"
 msgid "No recordings found."
 msgstr "Записи не найдены."
 
-#: includes/views/live/tpl-reports.php:141
+#: includes/views/live/tpl-reports.php:143
 msgid "No Records Found.."
 msgstr "Записей не найдено.."
 
@@ -1152,7 +1188,7 @@ msgstr "Видео панелистов"
 msgid "Parent meetings:"
 msgstr "Родительские конференции:"
 
-#: includes/views/live/tpl-reports.php:58
+#: includes/views/live/tpl-reports.php:60
 msgid "Participants"
 msgstr "Участники "
 
@@ -1261,7 +1297,7 @@ msgstr ""
 msgid "Practise Session"
 msgstr "Пробная сессия"
 
-#: includes/views/live/tpl-reports.php:118
+#: includes/views/live/tpl-reports.php:120
 msgid "Print"
 msgstr "Печать"
 
@@ -1273,7 +1309,7 @@ msgstr "Pro Пользователь "
 msgid "PRO version is required for this meeting to be displayed."
 msgstr "Для отображения этой конференции требуется версия PRO."
 
-#: includes/views/live/tpl-reports.php:21
+#: includes/views/live/tpl-reports.php:23
 msgid "Pro, Business, Enterprise, Education, or API Account. Check more"
 msgstr "Аккаунты Pro, Business, Enterprise, Education или API. Узнайте больше"
 
@@ -1331,7 +1367,7 @@ msgid "Refresh is needed to change status."
 msgstr "Обновите для изменения статуса."
 
 #: includes/admin/class-zvc-admin-settings.php:53
-#: includes/views/live/tpl-reports.php:10
+#: includes/views/live/tpl-reports.php:12
 msgid "Reports"
 msgstr "Отчёты"
 
@@ -1369,6 +1405,10 @@ msgstr ""
 "Возобновление этого позволит пользователям присоединиться к этой конференции."
 " Применяется только к  шорткоду."
 
+#: includes/views/live/tpl-assign-host-id.php:38
+msgid "Save"
+msgstr ""
+
 #: includes/views/tabs/api-settings.php:149
 msgid "Save Changes"
 msgstr "Сохранить"
@@ -1385,7 +1425,7 @@ msgstr "Найти конференцию"
 msgid "Search.."
 msgstr "Поиск.."
 
-#: includes/views/live/tpl-reports.php:105
+#: includes/views/live/tpl-reports.php:107
 msgid "Searching From: "
 msgstr "Искать в:"
 
@@ -1396,6 +1436,10 @@ msgstr "секунд"
 #: templates/content-meeting.php:70 templates/shortcode/zoom-listing.php:74
 msgid "See More"
 msgstr "Узнать больше"
+
+#: includes/views/live/tpl-reports.php:80
+msgid "Select a Date to Check"
+msgstr ""
 
 #: includes/views/webinars/tpl-edit-webinar.php:124
 #: includes/views/webinars/tpl-add-webinar.php:46
@@ -1652,6 +1696,10 @@ msgstr "Синхронизировать сейчас"
 msgid "Sync your Live Zoom Meetings to your site"
 msgstr "Синхронизируйте свои Live конференции Zoom со своим сайтом"
 
+#: includes/admin/class-zvc-admin-reports.php:96
+msgid "The fields cannot be Empty !!"
+msgstr ""
+
 #: includes/views/live/tpl-add-user.php:40
 msgid ""
 "This action is provided for API partner only. User created in this way has "
@@ -1777,7 +1825,7 @@ msgstr "Часовой пояс"
 msgid "Title"
 msgstr "Заголовок"
 
-#: includes/views/live/tpl-reports.php:122
+#: includes/views/live/tpl-reports.php:124
 msgid "To"
 msgstr "Для "
 
@@ -1797,15 +1845,15 @@ msgstr "для создания приведенных ниже значений
 msgid "Topic"
 msgstr "Тема"
 
-#: includes/views/live/tpl-reports.php:132
+#: includes/views/live/tpl-reports.php:134
 msgid "Total Meeting Minutes"
 msgstr "Общая длительность "
 
-#: includes/views/live/tpl-reports.php:109
+#: includes/views/live/tpl-reports.php:111
 msgid "Total Meeting Minutes Combined: "
 msgstr "Всего минут конференций:"
 
-#: includes/views/live/tpl-reports.php:107
+#: includes/views/live/tpl-reports.php:109
 msgid "Total Meetings Held: "
 msgstr "Всего проведенных конференций:"
 
@@ -1813,11 +1861,11 @@ msgstr "Всего проведенных конференций:"
 msgid "Total Not Synced Records"
 msgstr "Всего несинхронизированных записей"
 
-#: includes/views/live/tpl-reports.php:131
+#: includes/views/live/tpl-reports.php:133
 msgid "Total Participants"
 msgstr "Всего участников"
 
-#: includes/views/live/tpl-reports.php:108
+#: includes/views/live/tpl-reports.php:110
 msgid "Total Participants Involved: "
 msgstr "Всего участников:"
 
@@ -1825,7 +1873,7 @@ msgstr "Всего участников:"
 msgid "Total Records Found"
 msgstr "Всего найдено записей"
 
-#: includes/views/live/tpl-reports.php:106
+#: includes/views/live/tpl-reports.php:108
 msgid "Total Records Found: "
 msgstr "Всего найдено записей:"
 
@@ -1859,6 +1907,10 @@ msgstr "Тип пользователя (обязательно) "
 #: includes/Elementor/Widgets/EmbedMeetings.php:141
 msgid "Type your title here"
 msgstr "Введите свой заголовок здесь"
+
+#: includes/views/live/tpl-edit-meeting.php:178
+msgid "Update Meeting"
+msgstr ""
 
 #: includes/admin/class-zvc-admin-meetings.php:92
 msgid "Updated meeting."

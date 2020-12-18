@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2020-12-18 07:45+0000\n"
+"PO-Revision-Date: 2020-12-18 08:51+0000\n"
 "Language-Team: Slovak\n"
 "X-Generator: Loco https://localise.biz/\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
@@ -28,21 +28,21 @@ msgstr ""
 "%sPoznámka%s: Čas odpočítavania sa zobrazuje na základe vášho miestneho "
 "časového pásma."
 
-#: includes/views/live/tpl-reports.php:13
+#: includes/views/live/tpl-reports.php:15
 msgid "1. Daily Report"
 msgstr "1. Denná správa"
 
-#: includes/views/live/tpl-reports.php:14
+#: includes/views/live/tpl-reports.php:16
 msgid "2. Account Report"
 msgstr "2. Prehľad účtu"
 
-#: includes/views/live/tpl-reports.php:25
+#: includes/views/live/tpl-reports.php:27
 msgid "Account Owner or a user is given the User activities reports."
 msgstr ""
 "Majiteľovi účtu alebo používateľovi sa poskytujú správy o činnosti "
 "používateľa."
 
-#: includes/views/live/tpl-reports.php:24
+#: includes/views/live/tpl-reports.php:26
 msgid ""
 "Account owner or admin permissions to access Usage Reports for all users."
 msgstr ""
@@ -82,6 +82,10 @@ msgstr "Pridať živú schôdzu"
 #: includes/admin/class-zvc-admin-post-type.php:248
 msgid "Add New"
 msgstr "Pridať nové"
+
+#: includes/views/live/tpl-list-meetings.php:40
+msgid "Add New Meeting"
+msgstr ""
 
 #: includes/admin/class-zvc-admin-post-type.php:249
 msgid "Add New meeting"
@@ -162,6 +166,11 @@ msgstr "API tajný kľúč"
 msgid "API Settings"
 msgstr ""
 
+#: includes/views/webinars/tpl-list-webinars.php:28
+#: includes/views/live/tpl-list-meetings.php:39
+msgid "Apply"
+msgstr ""
+
 #: includes/Bootstrap.php:209 includes/template-functions.php:86
 msgid ""
 "Are you sure you want to end this meeting ? Users won't be able to join this "
@@ -178,7 +187,7 @@ msgstr ""
 msgid "Assign Zoom user to WordPress User"
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:18
+#: includes/views/live/tpl-reports.php:20
 msgid "ATTENTION: Zoom Account & Setting Prerequisites for Reports Section"
 msgstr "POZOR: Zoom účet a nastavenie predpokladov pre sekciu Prehľady"
 
@@ -235,7 +244,7 @@ msgstr ""
 "certifikát SSL, ktorý umožní zvuk a video na vašich stretnutiach "
 "prostredníctvom prehliadača."
 
-#: includes/views/live/tpl-reports.php:129
+#: includes/views/live/tpl-reports.php:131
 msgid "By"
 msgstr "Od"
 
@@ -248,6 +257,10 @@ msgid ""
 "Change date time formats according to your choice. Please edit this properly."
 " Failure to correctly put value will result in failure to show date in "
 "frontend."
+msgstr ""
+
+#: includes/views/live/tpl-reports.php:51
+msgid "Check"
 msgstr ""
 
 #: includes/helpers.php:332
@@ -316,6 +329,8 @@ msgstr "Kliknutím na tlačidlo dole nižšie sa pripojte k schôdzke teraz!"
 msgid "Click to Copy Shortcode !"
 msgstr "Kliknite pre kopírovanie shortcode!"
 
+#: includes/views/webinars/tpl-edit-webinar.php:114
+#: includes/views/webinars/tpl-add-webinar.php:117
 #: includes/views/live/tpl-edit-meeting.php:151
 #: includes/views/post-type/tpl-meeting-fields.php:243
 msgid "Cloud"
@@ -346,6 +361,18 @@ msgstr ""
 #: includes/views/live/tpl-add-user.php:32
 msgid "Create"
 msgstr "Vytvoriť"
+
+#: includes/views/live/tpl-add-meetings.php:148
+msgid "Create Meeting"
+msgstr ""
+
+#: includes/views/live/tpl-add-user.php:89
+msgid "Create User"
+msgstr ""
+
+#: includes/views/webinars/tpl-add-webinar.php:137
+msgid "Create Webinar"
+msgstr ""
 
 #: includes/admin/class-zvc-admin-users.php:66
 msgid ""
@@ -381,9 +408,13 @@ msgstr ""
 msgid "Cust Create"
 msgstr "Cust vytvoriť"
 
-#: includes/views/live/tpl-reports.php:55
+#: includes/views/live/tpl-reports.php:57
 msgid "Date"
 msgstr "Dátum"
+
+#: includes/admin/class-zvc-admin-reports.php:67
+msgid "Date field cannot be Empty !!"
+msgstr ""
 
 #: includes/views/tabs/api-settings.php:102
 msgid "DateTime Format"
@@ -507,6 +538,7 @@ msgid "Edit meeting"
 msgstr "Upraviť schôdzu"
 
 #: includes/views/webinars/tpl-edit-webinar.php:11
+#: includes/views/webinars/tpl-edit-webinar.php:144
 msgid "Edit Webinar"
 msgstr ""
 
@@ -569,11 +601,11 @@ msgstr ""
 "Ukončenie tejto akcie zakáže používateľom pripojiť sa k tejto schôdzi. "
 "Vzťahuje sa iba na akýkoľvek výstup s krátkym kódom."
 
-#: includes/views/live/tpl-reports.php:156
+#: includes/views/live/tpl-reports.php:158
 msgid "Enter a value to Check..."
 msgstr "Zadajte hodnotu, ktorú chcete skontrolovať..."
 
-#: includes/views/live/tpl-reports.php:48
+#: includes/views/live/tpl-reports.php:50
 msgid "Enter the date to check:"
 msgstr "Zadajte dátum, ktorý chcete skontrolovať:"
 
@@ -624,7 +656,7 @@ msgstr "Vyprázdniť vyrovnávaciu pamäť používateľa"
 msgid "Flushed User Cache!"
 msgstr "Vyrovnávacia pamäť používateľa!"
 
-#: includes/views/live/tpl-reports.php:120
+#: includes/views/live/tpl-reports.php:122
 msgid "From"
 msgstr "Od"
 
@@ -632,7 +664,7 @@ msgstr "Od"
 msgid "Full Name"
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:117
+#: includes/views/live/tpl-reports.php:119
 msgid "Get account report for a specified period."
 msgstr "Získajte výkaz kont pre zadané obdobie."
 
@@ -771,7 +803,7 @@ msgstr "Posledný klient"
 msgid "Last Login"
 msgstr "Posledné prihlásenie"
 
-#: includes/views/live/tpl-reports.php:133
+#: includes/views/live/tpl-reports.php:135
 msgid "Last Login Time"
 msgstr "Čas posledného prihlásenia"
 
@@ -807,6 +839,8 @@ msgstr "Živé stretnutia"
 msgid "Live Webinars"
 msgstr ""
 
+#: includes/views/webinars/tpl-edit-webinar.php:113
+#: includes/views/webinars/tpl-add-webinar.php:116
 #: includes/views/live/tpl-edit-meeting.php:148
 #: includes/views/post-type/tpl-meeting-fields.php:240
 msgid "Local"
@@ -895,7 +929,7 @@ msgstr ""
 msgid "Meeting is not defined. Try updating this meeting"
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:59
+#: includes/views/live/tpl-reports.php:61
 msgid "Meeting Minutes"
 msgstr "Zápisnica zo schôdze"
 
@@ -960,7 +994,7 @@ msgstr ""
 
 #: templates/archive-meetings.php:24
 #: includes/views/live/tpl-list-meetings.php:20
-#: includes/views/live/tpl-reports.php:56
+#: includes/views/live/tpl-reports.php:58
 msgid "Meetings"
 msgstr "Stretnutia"
 
@@ -968,7 +1002,7 @@ msgstr "Stretnutia"
 msgid "Meetings Category"
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:130
+#: includes/views/live/tpl-reports.php:132
 msgid "Meetings Held"
 msgstr "Stretnutia sa konali"
 
@@ -1009,7 +1043,7 @@ msgstr "Meno"
 msgid "New meeting"
 msgstr "Nová schôdza"
 
-#: includes/views/live/tpl-reports.php:57
+#: includes/views/live/tpl-reports.php:59
 msgid "New Users"
 msgstr "Noví používatelia"
 
@@ -1058,6 +1092,8 @@ msgstr ""
 msgid "No meetings found."
 msgstr "Nenašli sa žiadne schôdze."
 
+#: includes/views/webinars/tpl-edit-webinar.php:111
+#: includes/views/webinars/tpl-add-webinar.php:115
 #: includes/views/live/tpl-edit-meeting.php:145
 #: includes/views/post-type/tpl-meeting-fields.php:237
 msgid "No Recordings"
@@ -1068,7 +1104,7 @@ msgstr "Žiadne nahrávky"
 msgid "No recordings found."
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:141
+#: includes/views/live/tpl-reports.php:143
 msgid "No Records Found.."
 msgstr "Nenašli sa žiadne záznamy.."
 
@@ -1131,7 +1167,7 @@ msgstr ""
 msgid "Parent meetings:"
 msgstr "Nadradené schôdze:"
 
-#: includes/views/live/tpl-reports.php:58
+#: includes/views/live/tpl-reports.php:60
 msgid "Participants"
 msgstr "Účastníci"
 
@@ -1235,7 +1271,7 @@ msgstr ""
 msgid "Practise Session"
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:118
+#: includes/views/live/tpl-reports.php:120
 msgid "Print"
 msgstr "Tlačiť"
 
@@ -1247,7 +1283,7 @@ msgstr "Pro užívateľ"
 msgid "PRO version is required for this meeting to be displayed."
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:21
+#: includes/views/live/tpl-reports.php:23
 msgid "Pro, Business, Enterprise, Education, or API Account. Check more"
 msgstr "Účet Pro, Business, Enterprise, Education alebo API. Skontrolujte viac"
 
@@ -1305,7 +1341,7 @@ msgid "Refresh is needed to change status."
 msgstr "Na zmenu stavu je potrebné obnoviť."
 
 #: includes/admin/class-zvc-admin-settings.php:53
-#: includes/views/live/tpl-reports.php:10
+#: includes/views/live/tpl-reports.php:12
 msgid "Reports"
 msgstr "Reporty"
 
@@ -1343,6 +1379,10 @@ msgstr ""
 "Obnovenie tohto postupu umožní používateľom pripojiť sa k tejto schôdzi. "
 "Vzťahuje sa iba na akýkoľvek výstup s krátkym kódom."
 
+#: includes/views/live/tpl-assign-host-id.php:38
+msgid "Save"
+msgstr ""
+
 #: includes/views/tabs/api-settings.php:149
 msgid "Save Changes"
 msgstr "Uložiť zmeny"
@@ -1359,7 +1399,7 @@ msgstr "Vyhľadať stretnutia"
 msgid "Search.."
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:105
+#: includes/views/live/tpl-reports.php:107
 msgid "Searching From: "
 msgstr "Vyhľadávanie z: "
 
@@ -1370,6 +1410,10 @@ msgstr "sekundy"
 #: templates/content-meeting.php:70 templates/shortcode/zoom-listing.php:74
 msgid "See More"
 msgstr "Pozrieť viac"
+
+#: includes/views/live/tpl-reports.php:80
+msgid "Select a Date to Check"
+msgstr ""
 
 #: includes/views/webinars/tpl-edit-webinar.php:124
 #: includes/views/webinars/tpl-add-webinar.php:46
@@ -1622,6 +1666,10 @@ msgstr ""
 msgid "Sync your Live Zoom Meetings to your site"
 msgstr ""
 
+#: includes/admin/class-zvc-admin-reports.php:96
+msgid "The fields cannot be Empty !!"
+msgstr ""
+
 #: includes/views/live/tpl-add-user.php:40
 msgid ""
 "This action is provided for API partner only. User created in this way has "
@@ -1739,7 +1787,7 @@ msgstr "Časové pásmo"
 msgid "Title"
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:122
+#: includes/views/live/tpl-reports.php:124
 msgid "To"
 msgstr "Do"
 
@@ -1759,15 +1807,15 @@ msgstr "generovanie nižšie uvedených hodnôt API zo svojho účtu zoom"
 msgid "Topic"
 msgstr "Téma"
 
-#: includes/views/live/tpl-reports.php:132
+#: includes/views/live/tpl-reports.php:134
 msgid "Total Meeting Minutes"
 msgstr "Celkový počet minút schôdze"
 
-#: includes/views/live/tpl-reports.php:109
+#: includes/views/live/tpl-reports.php:111
 msgid "Total Meeting Minutes Combined: "
 msgstr "Celkový počet minút schôdze v kombinácii: "
 
-#: includes/views/live/tpl-reports.php:107
+#: includes/views/live/tpl-reports.php:109
 msgid "Total Meetings Held: "
 msgstr "Celkové zasadnutia sa uskutočnili: "
 
@@ -1775,11 +1823,11 @@ msgstr "Celkové zasadnutia sa uskutočnili: "
 msgid "Total Not Synced Records"
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:131
+#: includes/views/live/tpl-reports.php:133
 msgid "Total Participants"
 msgstr "Celkový počet účastníkov"
 
-#: includes/views/live/tpl-reports.php:108
+#: includes/views/live/tpl-reports.php:110
 msgid "Total Participants Involved: "
 msgstr "Celkový počet zúčastnených účastníkov: "
 
@@ -1787,7 +1835,7 @@ msgstr "Celkový počet zúčastnených účastníkov: "
 msgid "Total Records Found"
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:106
+#: includes/views/live/tpl-reports.php:108
 msgid "Total Records Found: "
 msgstr "Celkový počet nájdených záznamov: "
 
@@ -1820,6 +1868,10 @@ msgstr "Typ používateľa (vyžadované)"
 
 #: includes/Elementor/Widgets/EmbedMeetings.php:141
 msgid "Type your title here"
+msgstr ""
+
+#: includes/views/live/tpl-edit-meeting.php:178
+msgid "Update Meeting"
 msgstr ""
 
 #: includes/admin/class-zvc-admin-meetings.php:92

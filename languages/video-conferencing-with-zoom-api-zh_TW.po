@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Video Conferencing with Zoom - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-12-18 07:44+0000\n"
+"PO-Revision-Date: 2020-12-18 08:51+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,19 +21,19 @@ msgstr "注意："
 msgid "%sNote%s: Countdown time is shown based on your local timezone."
 msgstr "%s備註%s：倒數計時所顯示的時間是依據你的本地時區顯示。"
 
-#: includes/views/live/tpl-reports.php:13
+#: includes/views/live/tpl-reports.php:15
 msgid "1. Daily Report"
 msgstr "1. 每日報表"
 
-#: includes/views/live/tpl-reports.php:14
+#: includes/views/live/tpl-reports.php:16
 msgid "2. Account Report"
 msgstr "2. 帳戶報表"
 
-#: includes/views/live/tpl-reports.php:25
+#: includes/views/live/tpl-reports.php:27
 msgid "Account Owner or a user is given the User activities reports."
 msgstr "此帳號必須為帳戶持有人或是可以存取使用者行為報告的使用者。"
 
-#: includes/views/live/tpl-reports.php:24
+#: includes/views/live/tpl-reports.php:26
 msgid ""
 "Account owner or admin permissions to access Usage Reports for all users."
 msgstr "此帳號必須為帳戶持有人或是可以存取所有使用者報告的使用者。"
@@ -71,6 +71,10 @@ msgstr "新增線上會議"
 #: includes/admin/class-zvc-admin-post-type.php:248
 msgid "Add New"
 msgstr "新增"
+
+#: includes/views/live/tpl-list-meetings.php:40
+msgid "Add New Meeting"
+msgstr ""
 
 #: includes/admin/class-zvc-admin-post-type.php:249
 msgid "Add New meeting"
@@ -149,6 +153,11 @@ msgstr "API 密鑰"
 msgid "API Settings"
 msgstr "API 設定"
 
+#: includes/views/webinars/tpl-list-webinars.php:28
+#: includes/views/live/tpl-list-meetings.php:39
+msgid "Apply"
+msgstr ""
+
 #: includes/Bootstrap.php:209 includes/template-functions.php:86
 msgid ""
 "Are you sure you want to end this meeting ? Users won't be able to join this "
@@ -163,7 +172,7 @@ msgstr "為 WordPress 使用者指定 Zoom 主持人使用者"
 msgid "Assign Zoom user to WordPress User"
 msgstr "為 WordPress 使用者指定 Zoom 使用者"
 
-#: includes/views/live/tpl-reports.php:18
+#: includes/views/live/tpl-reports.php:20
 msgid "ATTENTION: Zoom Account & Setting Prerequisites for Reports Section"
 msgstr "注意：滿足以下條件的 Zoom 帳戶才可以使用報表功能"
 
@@ -216,7 +225,7 @@ msgstr ""
 "瀏覽器找不到有效的 SSL 憑證，Zoom 會議的音訊及視訊無法在非 HTTPs 網站運作，請在你的網站上安裝有效的 SSL "
 "憑證才能夠在瀏覽器上正常使用會議的音訊及視訊。"
 
-#: includes/views/live/tpl-reports.php:129
+#: includes/views/live/tpl-reports.php:131
 msgid "By"
 msgstr "由"
 
@@ -230,6 +239,10 @@ msgid ""
 " Failure to correctly put value will result in failure to show date in "
 "frontend."
 msgstr "請根據你的選擇更改日期時間格式，請小心更改，不正確的設定將會造成前端日期顯示錯誤。"
+
+#: includes/views/live/tpl-reports.php:51
+msgid "Check"
+msgstr ""
 
 #: includes/helpers.php:332
 msgid "check %s for shortcode references."
@@ -294,6 +307,8 @@ msgstr "點擊底下的按鈕可以立即加入會議！"
 msgid "Click to Copy Shortcode !"
 msgstr "點擊複製短代碼！"
 
+#: includes/views/webinars/tpl-edit-webinar.php:114
+#: includes/views/webinars/tpl-add-webinar.php:117
 #: includes/views/live/tpl-edit-meeting.php:151
 #: includes/views/post-type/tpl-meeting-fields.php:243
 msgid "Cloud"
@@ -325,6 +340,18 @@ msgstr "網路研討會次數"
 msgid "Create"
 msgstr "建立"
 
+#: includes/views/live/tpl-add-meetings.php:148
+msgid "Create Meeting"
+msgstr ""
+
+#: includes/views/live/tpl-add-user.php:89
+msgid "Create User"
+msgstr ""
+
+#: includes/views/webinars/tpl-add-webinar.php:137
+msgid "Create Webinar"
+msgstr ""
+
 #: includes/admin/class-zvc-admin-users.php:66
 msgid ""
 "Created a User. Please check email for confirmation. Added user will only "
@@ -355,9 +382,13 @@ msgstr ""
 msgid "Cust Create"
 msgstr "建立管制使用者"
 
-#: includes/views/live/tpl-reports.php:55
+#: includes/views/live/tpl-reports.php:57
 msgid "Date"
 msgstr "日期"
+
+#: includes/admin/class-zvc-admin-reports.php:67
+msgid "Date field cannot be Empty !!"
+msgstr ""
 
 #: includes/views/tabs/api-settings.php:102
 msgid "DateTime Format"
@@ -479,6 +510,7 @@ msgid "Edit meeting"
 msgstr "編輯會議文章"
 
 #: includes/views/webinars/tpl-edit-webinar.php:11
+#: includes/views/webinars/tpl-edit-webinar.php:144
 msgid "Edit Webinar"
 msgstr "編輯網路研討會文章"
 
@@ -539,11 +571,11 @@ msgid ""
 "shortcode output only."
 msgstr "點擊此按鈕將會使得使用者無法加入會議，僅適用於所有短代碼的頁面。"
 
-#: includes/views/live/tpl-reports.php:156
+#: includes/views/live/tpl-reports.php:158
 msgid "Enter a value to Check..."
 msgstr "輸入欲檢查的值..."
 
-#: includes/views/live/tpl-reports.php:48
+#: includes/views/live/tpl-reports.php:50
 msgid "Enter the date to check:"
 msgstr "請輸入日期:"
 
@@ -594,7 +626,7 @@ msgstr "清理使用者快取"
 msgid "Flushed User Cache!"
 msgstr "已清除使用者快取"
 
-#: includes/views/live/tpl-reports.php:120
+#: includes/views/live/tpl-reports.php:122
 msgid "From"
 msgstr "從"
 
@@ -602,7 +634,7 @@ msgstr "從"
 msgid "Full Name"
 msgstr "全名"
 
-#: includes/views/live/tpl-reports.php:117
+#: includes/views/live/tpl-reports.php:119
 msgid "Get account report for a specified period."
 msgstr "取得指定期間的帳戶報告。"
 
@@ -735,7 +767,7 @@ msgstr "上一次登入的裝置"
 msgid "Last Login"
 msgstr "上一次登入"
 
-#: includes/views/live/tpl-reports.php:133
+#: includes/views/live/tpl-reports.php:135
 msgid "Last Login Time"
 msgstr "上次登錄時間"
 
@@ -771,6 +803,8 @@ msgstr "線上會議"
 msgid "Live Webinars"
 msgstr "線上網路研討會"
 
+#: includes/views/webinars/tpl-edit-webinar.php:113
+#: includes/views/webinars/tpl-add-webinar.php:116
 #: includes/views/live/tpl-edit-meeting.php:148
 #: includes/views/post-type/tpl-meeting-fields.php:240
 msgid "Local"
@@ -857,7 +891,7 @@ msgstr "會議正在進行中"
 msgid "Meeting is not defined. Try updating this meeting"
 msgstr "找不到會議，請修正會議資訊"
 
-#: includes/views/live/tpl-reports.php:59
+#: includes/views/live/tpl-reports.php:61
 msgid "Meeting Minutes"
 msgstr "會議長度"
 
@@ -922,7 +956,7 @@ msgstr "會議類型"
 
 #: templates/archive-meetings.php:24
 #: includes/views/live/tpl-list-meetings.php:20
-#: includes/views/live/tpl-reports.php:56
+#: includes/views/live/tpl-reports.php:58
 msgid "Meetings"
 msgstr "會議"
 
@@ -930,7 +964,7 @@ msgstr "會議"
 msgid "Meetings Category"
 msgstr "會議分類"
 
-#: includes/views/live/tpl-reports.php:130
+#: includes/views/live/tpl-reports.php:132
 msgid "Meetings Held"
 msgstr "召開會議"
 
@@ -971,7 +1005,7 @@ msgstr "名字"
 msgid "New meeting"
 msgstr "新增會議文章"
 
-#: includes/views/live/tpl-reports.php:57
+#: includes/views/live/tpl-reports.php:59
 msgid "New Users"
 msgstr "新加入使用者"
 
@@ -1020,6 +1054,8 @@ msgstr "找不到會議"
 msgid "No meetings found."
 msgstr "找不到會議"
 
+#: includes/views/webinars/tpl-edit-webinar.php:111
+#: includes/views/webinars/tpl-add-webinar.php:115
 #: includes/views/live/tpl-edit-meeting.php:145
 #: includes/views/post-type/tpl-meeting-fields.php:237
 msgid "No Recordings"
@@ -1030,7 +1066,7 @@ msgstr "不錄影"
 msgid "No recordings found."
 msgstr "找不到紀錄"
 
-#: includes/views/live/tpl-reports.php:141
+#: includes/views/live/tpl-reports.php:143
 msgid "No Records Found.."
 msgstr "找不到任何紀錄..."
 
@@ -1087,7 +1123,7 @@ msgstr "與會者視訊"
 msgid "Parent meetings:"
 msgstr "父層會議文章:"
 
-#: includes/views/live/tpl-reports.php:58
+#: includes/views/live/tpl-reports.php:60
 msgid "Participants"
 msgstr "參與者"
 
@@ -1183,7 +1219,7 @@ msgstr "請再試一次！在透過此 ID 取得網路研討會資料時發生�
 msgid "Practise Session"
 msgstr "準備模式"
 
-#: includes/views/live/tpl-reports.php:118
+#: includes/views/live/tpl-reports.php:120
 msgid "Print"
 msgstr "列印"
 
@@ -1195,7 +1231,7 @@ msgstr "Pro 使用者"
 msgid "PRO version is required for this meeting to be displayed."
 msgstr "僅在 PRO 版本可以顯示這場會議。"
 
-#: includes/views/live/tpl-reports.php:21
+#: includes/views/live/tpl-reports.php:23
 msgid "Pro, Business, Enterprise, Education, or API Account. Check more"
 msgstr "必須為 Pro、商務、企業、教育或 API 帳戶。查看更多"
 
@@ -1253,7 +1289,7 @@ msgid "Refresh is needed to change status."
 msgstr "需要重新整理頁面後才能變更狀態。"
 
 #: includes/admin/class-zvc-admin-settings.php:53
-#: includes/views/live/tpl-reports.php:10
+#: includes/views/live/tpl-reports.php:12
 msgid "Reports"
 msgstr "報表"
 
@@ -1286,6 +1322,10 @@ msgid ""
 "shortcode output only."
 msgstr "點擊此按鈕將會開放使用者可以加入這場會議，適用於所有短代碼的頁面"
 
+#: includes/views/live/tpl-assign-host-id.php:38
+msgid "Save"
+msgstr ""
+
 #: includes/views/tabs/api-settings.php:149
 msgid "Save Changes"
 msgstr "儲存設定"
@@ -1302,7 +1342,7 @@ msgstr "搜尋會議文章"
 msgid "Search.."
 msgstr "搜尋.."
 
-#: includes/views/live/tpl-reports.php:105
+#: includes/views/live/tpl-reports.php:107
 msgid "Searching From: "
 msgstr "搜尋："
 
@@ -1313,6 +1353,10 @@ msgstr "秒"
 #: templates/content-meeting.php:70 templates/shortcode/zoom-listing.php:74
 msgid "See More"
 msgstr "了解更多"
+
+#: includes/views/live/tpl-reports.php:80
+msgid "Select a Date to Check"
+msgstr ""
 
 #: includes/views/webinars/tpl-edit-webinar.php:124
 #: includes/views/webinars/tpl-add-webinar.php:46
@@ -1563,6 +1607,10 @@ msgstr "立即同步"
 msgid "Sync your Live Zoom Meetings to your site"
 msgstr "同步你的線上 Zoom 會議到你的網站"
 
+#: includes/admin/class-zvc-admin-reports.php:96
+msgid "The fields cannot be Empty !!"
+msgstr ""
+
 #: includes/views/live/tpl-add-user.php:40
 msgid ""
 "This action is provided for API partner only. User created in this way has "
@@ -1670,7 +1718,7 @@ msgstr "時區"
 msgid "Title"
 msgstr "標題"
 
-#: includes/views/live/tpl-reports.php:122
+#: includes/views/live/tpl-reports.php:124
 msgid "To"
 msgstr "到"
 
@@ -1690,15 +1738,15 @@ msgstr "的指示，在你的 Zoom 帳戶建立以下 API 欄位所需的資訊"
 msgid "Topic"
 msgstr "主題"
 
-#: includes/views/live/tpl-reports.php:132
+#: includes/views/live/tpl-reports.php:134
 msgid "Total Meeting Minutes"
 msgstr "總會議長度"
 
-#: includes/views/live/tpl-reports.php:109
+#: includes/views/live/tpl-reports.php:111
 msgid "Total Meeting Minutes Combined: "
 msgstr "會議長度總和: "
 
-#: includes/views/live/tpl-reports.php:107
+#: includes/views/live/tpl-reports.php:109
 msgid "Total Meetings Held: "
 msgstr "找到的會議總數: "
 
@@ -1706,11 +1754,11 @@ msgstr "找到的會議總數: "
 msgid "Total Not Synced Records"
 msgstr "未同步會議數"
 
-#: includes/views/live/tpl-reports.php:131
+#: includes/views/live/tpl-reports.php:133
 msgid "Total Participants"
 msgstr "參與總數"
 
-#: includes/views/live/tpl-reports.php:108
+#: includes/views/live/tpl-reports.php:110
 msgid "Total Participants Involved: "
 msgstr "總參與者數: "
 
@@ -1718,7 +1766,7 @@ msgstr "總參與者數: "
 msgid "Total Records Found"
 msgstr "會議數"
 
-#: includes/views/live/tpl-reports.php:106
+#: includes/views/live/tpl-reports.php:108
 msgid "Total Records Found: "
 msgstr "找到的記錄總數:"
 
@@ -1752,6 +1800,10 @@ msgstr "使用者類型 (必填)"
 #: includes/Elementor/Widgets/EmbedMeetings.php:141
 msgid "Type your title here"
 msgstr "請在這裡輸入標題"
+
+#: includes/views/live/tpl-edit-meeting.php:178
+msgid "Update Meeting"
+msgstr ""
 
 #: includes/admin/class-zvc-admin-meetings.php:92
 msgid "Updated meeting."

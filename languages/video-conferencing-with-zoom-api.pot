@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Video Conferencing with Zoom API\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/video-"
 "conferencing-with-zoom-api\n"
-"POT-Creation-Date: 2020-12-18 08:03+0000\n"
+"POT-Creation-Date: 2020-12-18 08:50+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -26,19 +26,19 @@ msgstr ""
 msgid "%sNote%s: Countdown time is shown based on your local timezone."
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:13
+#: includes/views/live/tpl-reports.php:15
 msgid "1. Daily Report"
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:14
+#: includes/views/live/tpl-reports.php:16
 msgid "2. Account Report"
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:25
+#: includes/views/live/tpl-reports.php:27
 msgid "Account Owner or a user is given the User activities reports."
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:24
+#: includes/views/live/tpl-reports.php:26
 msgid ""
 "Account owner or admin permissions to access Usage Reports for all users."
 msgstr ""
@@ -75,6 +75,10 @@ msgstr ""
 
 #: includes/admin/class-zvc-admin-post-type.php:248
 msgid "Add New"
+msgstr ""
+
+#: includes/views/live/tpl-list-meetings.php:40
+msgid "Add New Meeting"
 msgstr ""
 
 #: includes/admin/class-zvc-admin-post-type.php:249
@@ -154,6 +158,11 @@ msgstr ""
 msgid "API Settings"
 msgstr ""
 
+#: includes/views/webinars/tpl-list-webinars.php:28
+#: includes/views/live/tpl-list-meetings.php:39
+msgid "Apply"
+msgstr ""
+
 #: includes/Bootstrap.php:209 includes/template-functions.php:86
 msgid ""
 "Are you sure you want to end this meeting ? Users won't be able to join this "
@@ -168,7 +177,7 @@ msgstr ""
 msgid "Assign Zoom user to WordPress User"
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:18
+#: includes/views/live/tpl-reports.php:20
 msgid "ATTENTION: Zoom Account & Setting Prerequisites for Reports Section"
 msgstr ""
 
@@ -219,7 +228,7 @@ msgid ""
 "certificate to allow audio and video in your Meetings via browser."
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:129
+#: includes/views/live/tpl-reports.php:131
 msgid "By"
 msgstr ""
 
@@ -232,6 +241,10 @@ msgid ""
 "Change date time formats according to your choice. Please edit this properly."
 " Failure to correctly put value will result in failure to show date in "
 "frontend."
+msgstr ""
+
+#: includes/views/live/tpl-reports.php:51
+msgid "Check"
 msgstr ""
 
 #: includes/helpers.php:332
@@ -298,6 +311,8 @@ msgstr ""
 msgid "Click to Copy Shortcode !"
 msgstr ""
 
+#: includes/views/webinars/tpl-edit-webinar.php:114
+#: includes/views/webinars/tpl-add-webinar.php:117
 #: includes/views/live/tpl-edit-meeting.php:151
 #: includes/views/post-type/tpl-meeting-fields.php:243
 msgid "Cloud"
@@ -327,6 +342,18 @@ msgstr ""
 #: includes/views/live/tpl-add-user.php:24
 #: includes/views/live/tpl-add-user.php:32
 msgid "Create"
+msgstr ""
+
+#: includes/views/live/tpl-add-meetings.php:148
+msgid "Create Meeting"
+msgstr ""
+
+#: includes/views/live/tpl-add-user.php:89
+msgid "Create User"
+msgstr ""
+
+#: includes/views/webinars/tpl-add-webinar.php:137
+msgid "Create Webinar"
 msgstr ""
 
 #: includes/admin/class-zvc-admin-users.php:66
@@ -361,7 +388,7 @@ msgstr ""
 msgid "Cust Create"
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:55
+#: includes/views/live/tpl-reports.php:57
 msgid "Date"
 msgstr ""
 
@@ -491,6 +518,7 @@ msgid "Edit meeting"
 msgstr ""
 
 #: includes/views/webinars/tpl-edit-webinar.php:11
+#: includes/views/webinars/tpl-edit-webinar.php:144
 msgid "Edit Webinar"
 msgstr ""
 
@@ -551,11 +579,11 @@ msgid ""
 "shortcode output only."
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:156
+#: includes/views/live/tpl-reports.php:158
 msgid "Enter a value to Check..."
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:48
+#: includes/views/live/tpl-reports.php:50
 msgid "Enter the date to check:"
 msgstr ""
 
@@ -606,7 +634,7 @@ msgstr ""
 msgid "Flushed User Cache!"
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:120
+#: includes/views/live/tpl-reports.php:122
 msgid "From"
 msgstr ""
 
@@ -614,7 +642,7 @@ msgstr ""
 msgid "Full Name"
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:117
+#: includes/views/live/tpl-reports.php:119
 msgid "Get account report for a specified period."
 msgstr ""
 
@@ -747,7 +775,7 @@ msgstr ""
 msgid "Last Login"
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:133
+#: includes/views/live/tpl-reports.php:135
 msgid "Last Login Time"
 msgstr ""
 
@@ -783,6 +811,8 @@ msgstr ""
 msgid "Live Webinars"
 msgstr ""
 
+#: includes/views/webinars/tpl-edit-webinar.php:113
+#: includes/views/webinars/tpl-add-webinar.php:116
 #: includes/views/live/tpl-edit-meeting.php:148
 #: includes/views/post-type/tpl-meeting-fields.php:240
 msgid "Local"
@@ -869,7 +899,7 @@ msgstr ""
 msgid "Meeting is not defined. Try updating this meeting"
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:59
+#: includes/views/live/tpl-reports.php:61
 msgid "Meeting Minutes"
 msgstr ""
 
@@ -934,7 +964,7 @@ msgstr ""
 
 #: templates/archive-meetings.php:24
 #: includes/views/live/tpl-list-meetings.php:20
-#: includes/views/live/tpl-reports.php:56
+#: includes/views/live/tpl-reports.php:58
 msgid "Meetings"
 msgstr ""
 
@@ -942,7 +972,7 @@ msgstr ""
 msgid "Meetings Category"
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:130
+#: includes/views/live/tpl-reports.php:132
 msgid "Meetings Held"
 msgstr ""
 
@@ -983,7 +1013,7 @@ msgstr ""
 msgid "New meeting"
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:57
+#: includes/views/live/tpl-reports.php:59
 msgid "New Users"
 msgstr ""
 
@@ -1032,6 +1062,8 @@ msgstr ""
 msgid "No meetings found."
 msgstr ""
 
+#: includes/views/webinars/tpl-edit-webinar.php:111
+#: includes/views/webinars/tpl-add-webinar.php:115
 #: includes/views/live/tpl-edit-meeting.php:145
 #: includes/views/post-type/tpl-meeting-fields.php:237
 msgid "No Recordings"
@@ -1042,7 +1074,7 @@ msgstr ""
 msgid "No recordings found."
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:141
+#: includes/views/live/tpl-reports.php:143
 msgid "No Records Found.."
 msgstr ""
 
@@ -1099,7 +1131,7 @@ msgstr ""
 msgid "Parent meetings:"
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:58
+#: includes/views/live/tpl-reports.php:60
 msgid "Participants"
 msgstr ""
 
@@ -1197,7 +1229,7 @@ msgstr ""
 msgid "Practise Session"
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:118
+#: includes/views/live/tpl-reports.php:120
 msgid "Print"
 msgstr ""
 
@@ -1209,7 +1241,7 @@ msgstr ""
 msgid "PRO version is required for this meeting to be displayed."
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:21
+#: includes/views/live/tpl-reports.php:23
 msgid "Pro, Business, Enterprise, Education, or API Account. Check more"
 msgstr ""
 
@@ -1265,7 +1297,7 @@ msgid "Refresh is needed to change status."
 msgstr ""
 
 #: includes/admin/class-zvc-admin-settings.php:53
-#: includes/views/live/tpl-reports.php:10
+#: includes/views/live/tpl-reports.php:12
 msgid "Reports"
 msgstr ""
 
@@ -1298,6 +1330,10 @@ msgid ""
 "shortcode output only."
 msgstr ""
 
+#: includes/views/live/tpl-assign-host-id.php:38
+msgid "Save"
+msgstr ""
+
 #: includes/views/tabs/api-settings.php:149
 msgid "Save Changes"
 msgstr ""
@@ -1314,7 +1350,7 @@ msgstr ""
 msgid "Search.."
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:105
+#: includes/views/live/tpl-reports.php:107
 msgid "Searching From: "
 msgstr ""
 
@@ -1324,6 +1360,10 @@ msgstr ""
 
 #: templates/content-meeting.php:70 templates/shortcode/zoom-listing.php:74
 msgid "See More"
+msgstr ""
+
+#: includes/views/live/tpl-reports.php:80
+msgid "Select a Date to Check"
 msgstr ""
 
 #: includes/views/webinars/tpl-edit-webinar.php:124
@@ -1681,7 +1721,7 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:122
+#: includes/views/live/tpl-reports.php:124
 msgid "To"
 msgstr ""
 
@@ -1701,15 +1741,15 @@ msgstr ""
 msgid "Topic"
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:132
+#: includes/views/live/tpl-reports.php:134
 msgid "Total Meeting Minutes"
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:109
+#: includes/views/live/tpl-reports.php:111
 msgid "Total Meeting Minutes Combined: "
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:107
+#: includes/views/live/tpl-reports.php:109
 msgid "Total Meetings Held: "
 msgstr ""
 
@@ -1717,11 +1757,11 @@ msgstr ""
 msgid "Total Not Synced Records"
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:131
+#: includes/views/live/tpl-reports.php:133
 msgid "Total Participants"
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:108
+#: includes/views/live/tpl-reports.php:110
 msgid "Total Participants Involved: "
 msgstr ""
 
@@ -1729,7 +1769,7 @@ msgstr ""
 msgid "Total Records Found"
 msgstr ""
 
-#: includes/views/live/tpl-reports.php:106
+#: includes/views/live/tpl-reports.php:108
 msgid "Total Records Found: "
 msgstr ""
 
@@ -1762,6 +1802,10 @@ msgstr ""
 
 #: includes/Elementor/Widgets/EmbedMeetings.php:141
 msgid "Type your title here"
+msgstr ""
+
+#: includes/views/live/tpl-edit-meeting.php:178
+msgid "Update Meeting"
 msgstr ""
 
 #: includes/admin/class-zvc-admin-meetings.php:92
