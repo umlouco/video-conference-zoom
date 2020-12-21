@@ -14,7 +14,7 @@ jQuery(function ($) {
       this.changeMeetingState = $('.vczapi-meeting-state-change');
     },
     evntLoaders: function evntLoaders() {
-      $(window).on('load', this.setTimezone.bind(this)); //End and Resume Meetings
+      $(document).ready(this.setTimezone.bind(this)); //End and Resume Meetings
 
       $(this.changeMeetingState).on('click', this.meetingStateChange.bind(this));
     },

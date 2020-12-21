@@ -14,7 +14,7 @@ jQuery(function ($) {
         },
 
         evntLoaders: function () {
-            $(window).on('load', this.setTimezone.bind(this));
+            $(document).ready(this.setTimezone.bind(this));
             //End and Resume Meetings
             $(this.changeMeetingState).on('click', this.meetingStateChange.bind(this));
         },
