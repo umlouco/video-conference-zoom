@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Video Conferencing with Zoom API\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/video-"
 "conferencing-with-zoom-api\n"
-"POT-Creation-Date: 2020-12-18 08:50+0000\n"
+"POT-Creation-Date: 2020-12-18 10:04+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -111,11 +111,11 @@ msgstr ""
 msgid "All Meetings"
 msgstr ""
 
-#: includes/views/post-type/tpl-meeting-fields.php:228
+#: includes/views/post-type/tpl-meeting-fields.php:257
 msgid "Allow attendess to join from multiple devices."
 msgstr ""
 
-#: includes/views/post-type/tpl-meeting-fields.php:224
+#: includes/views/post-type/tpl-meeting-fields.php:253
 msgid "Allow Multiple Devices"
 msgstr ""
 
@@ -123,7 +123,7 @@ msgstr ""
 #: includes/views/webinars/tpl-add-webinar.php:124
 #: includes/views/live/tpl-edit-meeting.php:159
 #: includes/views/live/tpl-add-meetings.php:135
-#: includes/views/post-type/tpl-meeting-fields.php:254
+#: includes/views/post-type/tpl-meeting-fields.php:283
 msgid "Alternative Hosts"
 msgstr ""
 
@@ -190,7 +190,7 @@ msgstr ""
 #: includes/views/webinars/tpl-add-webinar.php:112
 #: includes/views/live/tpl-edit-meeting.php:141
 #: includes/views/live/tpl-add-meetings.php:123
-#: includes/views/post-type/tpl-meeting-fields.php:233
+#: includes/views/post-type/tpl-meeting-fields.php:262
 msgid "Auto Recording"
 msgstr ""
 
@@ -314,7 +314,7 @@ msgstr ""
 #: includes/views/webinars/tpl-edit-webinar.php:114
 #: includes/views/webinars/tpl-add-webinar.php:117
 #: includes/views/live/tpl-edit-meeting.php:151
-#: includes/views/post-type/tpl-meeting-fields.php:243
+#: includes/views/post-type/tpl-meeting-fields.php:272
 msgid "Cloud"
 msgstr ""
 
@@ -418,7 +418,7 @@ msgstr ""
 
 #: includes/views/webinars/tpl-edit-webinar.php:103
 #: includes/views/webinars/tpl-add-webinar.php:107
-#: includes/views/post-type/tpl-meeting-fields.php:218
+#: includes/views/post-type/tpl-meeting-fields.php:247
 msgid "Defaults to HD video."
 msgstr ""
 
@@ -439,9 +439,9 @@ msgstr ""
 msgid "Developer"
 msgstr ""
 
-#: includes/views/post-type/tpl-meeting-fields.php:58
-#: includes/views/post-type/tpl-meeting-fields.php:85
-#: includes/views/post-type/tpl-meeting-fields.php:265
+#: includes/views/post-type/tpl-meeting-fields.php:55
+#: includes/views/post-type/tpl-meeting-fields.php:114
+#: includes/views/post-type/tpl-meeting-fields.php:294
 #, php-format
 msgid ""
 "Did not find any hosts here ? Please %scheck here%s to verify your API keys "
@@ -505,7 +505,7 @@ msgstr ""
 #: includes/views/live/tpl-edit-meeting.php:92
 #: includes/views/live/tpl-list-recordings.php:22
 #: includes/views/live/tpl-add-meetings.php:74
-#: includes/views/post-type/tpl-meeting-fields.php:137
+#: includes/views/post-type/tpl-meeting-fields.php:166
 msgid "Duration"
 msgstr ""
 
@@ -561,7 +561,7 @@ msgstr ""
 msgid "Enable Meeting Join ?"
 msgstr ""
 
-#: includes/views/post-type/tpl-meeting-fields.php:208
+#: includes/views/post-type/tpl-meeting-fields.php:237
 msgid "Enable Practise Session."
 msgstr ""
 
@@ -648,7 +648,7 @@ msgstr ""
 
 #: includes/views/webinars/tpl-edit-webinar.php:100
 #: includes/views/webinars/tpl-add-webinar.php:104
-#: includes/views/post-type/tpl-meeting-fields.php:214
+#: includes/views/post-type/tpl-meeting-fields.php:243
 msgid "HD Video"
 msgstr ""
 
@@ -736,13 +736,13 @@ msgstr ""
 
 #: includes/views/live/tpl-edit-meeting.php:106
 #: includes/views/live/tpl-add-meetings.php:88
-#: includes/views/post-type/tpl-meeting-fields.php:159
+#: includes/views/post-type/tpl-meeting-fields.php:188
 msgid "Join Before Host"
 msgstr ""
 
 #: includes/views/live/tpl-edit-meeting.php:109
 #: includes/views/live/tpl-add-meetings.php:91
-#: includes/views/post-type/tpl-meeting-fields.php:162
+#: includes/views/post-type/tpl-meeting-fields.php:191
 msgid ""
 "Join meeting before host start the meeting. Only for scheduled or recurring "
 "meetings."
@@ -814,7 +814,7 @@ msgstr ""
 #: includes/views/webinars/tpl-edit-webinar.php:113
 #: includes/views/webinars/tpl-add-webinar.php:116
 #: includes/views/live/tpl-edit-meeting.php:148
-#: includes/views/post-type/tpl-meeting-fields.php:240
+#: includes/views/post-type/tpl-meeting-fields.php:269
 msgid "Local"
 msgstr ""
 
@@ -828,7 +828,7 @@ msgstr ""
 msgid "Meeting Agenda"
 msgstr ""
 
-#: includes/views/post-type/tpl-meeting-fields.php:151
+#: includes/views/post-type/tpl-meeting-fields.php:180
 msgid "Meeting Authentication"
 msgstr ""
 
@@ -843,7 +843,7 @@ msgstr ""
 
 #: includes/views/live/tpl-edit-meeting.php:95
 #: includes/views/live/tpl-add-meetings.php:77
-#: includes/views/post-type/tpl-meeting-fields.php:140
+#: includes/views/post-type/tpl-meeting-fields.php:169
 msgid "Meeting duration (minutes). (optional)"
 msgstr ""
 
@@ -874,8 +874,9 @@ msgstr ""
 
 #: includes/views/live/tpl-edit-meeting.php:54
 #: includes/views/live/tpl-add-meetings.php:43
-#: includes/views/post-type/tpl-meeting-fields.php:42
-#: includes/views/post-type/tpl-meeting-fields.php:75
+#: includes/views/post-type/tpl-meeting-fields.php:39
+#: includes/views/post-type/tpl-meeting-fields.php:74
+#: includes/views/post-type/tpl-meeting-fields.php:95
 msgid "Meeting Host *"
 msgstr ""
 
@@ -943,7 +944,7 @@ msgstr ""
 
 #: includes/views/live/tpl-edit-meeting.php:88
 #: includes/views/live/tpl-add-meetings.php:70
-#: includes/views/post-type/tpl-meeting-fields.php:133
+#: includes/views/post-type/tpl-meeting-fields.php:162
 msgid "Meeting Timezone"
 msgstr ""
 
@@ -957,8 +958,8 @@ msgstr ""
 msgid "Meeting topic. (Required)."
 msgstr ""
 
-#: includes/views/post-type/tpl-meeting-fields.php:64
-#: includes/views/post-type/tpl-meeting-fields.php:91
+#: includes/views/post-type/tpl-meeting-fields.php:61
+#: includes/views/post-type/tpl-meeting-fields.php:120
 msgid "Meeting Type"
 msgstr ""
 
@@ -995,13 +996,13 @@ msgstr ""
 
 #: includes/views/live/tpl-edit-meeting.php:132
 #: includes/views/live/tpl-add-meetings.php:114
-#: includes/views/post-type/tpl-meeting-fields.php:184
+#: includes/views/post-type/tpl-meeting-fields.php:213
 msgid "Mute Participants upon entry"
 msgstr ""
 
 #: includes/views/live/tpl-edit-meeting.php:136
 #: includes/views/live/tpl-add-meetings.php:118
-#: includes/views/post-type/tpl-meeting-fields.php:188
+#: includes/views/post-type/tpl-meeting-fields.php:217
 msgid "Mutes Participants when entering the meeting."
 msgstr ""
 
@@ -1065,7 +1066,7 @@ msgstr ""
 #: includes/views/webinars/tpl-edit-webinar.php:111
 #: includes/views/webinars/tpl-add-webinar.php:115
 #: includes/views/live/tpl-edit-meeting.php:145
-#: includes/views/post-type/tpl-meeting-fields.php:237
+#: includes/views/post-type/tpl-meeting-fields.php:266
 msgid "No Recordings"
 msgstr ""
 
@@ -1104,7 +1105,7 @@ msgstr ""
 msgid "Only logged in users of this site will be able to join this meeting."
 msgstr ""
 
-#: includes/views/post-type/tpl-meeting-fields.php:154
+#: includes/views/post-type/tpl-meeting-fields.php:183
 msgid "Only loggedin users in Zoom App can join this Meeting."
 msgstr ""
 
@@ -1116,7 +1117,7 @@ msgstr ""
 
 #: includes/views/webinars/tpl-edit-webinar.php:139
 #: includes/views/live/tpl-edit-meeting.php:173
-#: includes/views/post-type/tpl-meeting-fields.php:267
+#: includes/views/post-type/tpl-meeting-fields.php:296
 msgid ""
 "Paid Zoom Account is required for this !! Alternative hosts IDs. Multiple "
 "value separated by comma."
@@ -1137,11 +1138,11 @@ msgstr ""
 
 #: includes/views/live/tpl-edit-meeting.php:123
 #: includes/views/live/tpl-add-meetings.php:105
-#: includes/views/post-type/tpl-meeting-fields.php:175
+#: includes/views/post-type/tpl-meeting-fields.php:204
 msgid "Participants Video"
 msgstr ""
 
-#: includes/views/post-type/tpl-meeting-fields.php:144
+#: includes/views/post-type/tpl-meeting-fields.php:173
 msgid "Password"
 msgstr ""
 
@@ -1149,7 +1150,7 @@ msgstr ""
 #: includes/views/webinars/tpl-add-webinar.php:84
 #: includes/views/live/tpl-edit-meeting.php:102
 #: includes/views/live/tpl-add-meetings.php:84
-#: includes/views/post-type/tpl-meeting-fields.php:147
+#: includes/views/post-type/tpl-meeting-fields.php:176
 msgid ""
 "Password to join the meeting. Password may only contain the following "
 "characters: [a-z A-Z 0-9]. Max of 10 characters.( Leave blank for auto "
@@ -1171,7 +1172,8 @@ msgstr ""
 msgid "Play"
 msgstr ""
 
-#: includes/views/post-type/tpl-meeting-fields.php:55
+#: includes/views/post-type/tpl-meeting-fields.php:52
+#: includes/views/post-type/tpl-meeting-fields.php:86
 msgid "Please check your internet connection or API connection."
 msgstr ""
 
@@ -1225,7 +1227,7 @@ msgid ""
 " %d"
 msgstr ""
 
-#: includes/views/post-type/tpl-meeting-fields.php:204
+#: includes/views/post-type/tpl-meeting-fields.php:233
 msgid "Practise Session"
 msgstr ""
 
@@ -1373,8 +1375,8 @@ msgstr ""
 #: includes/views/live/tpl-edit-meeting.php:162
 #: includes/views/live/tpl-add-meetings.php:46
 #: includes/views/live/tpl-add-meetings.php:138
-#: includes/views/post-type/tpl-meeting-fields.php:79
-#: includes/views/post-type/tpl-meeting-fields.php:259
+#: includes/views/post-type/tpl-meeting-fields.php:106
+#: includes/views/post-type/tpl-meeting-fields.php:288
 msgid "Select a Host"
 msgstr ""
 
@@ -1412,7 +1414,7 @@ msgstr ""
 #: includes/views/webinars/tpl-add-webinar.php:119
 #: includes/views/live/tpl-edit-meeting.php:154
 #: includes/views/live/tpl-add-meetings.php:130
-#: includes/views/post-type/tpl-meeting-fields.php:246
+#: includes/views/post-type/tpl-meeting-fields.php:275
 msgid ""
 "Set what type of auto recording feature you want to add. Default is none."
 msgstr ""
@@ -1515,7 +1517,7 @@ msgstr ""
 #: includes/views/webinars/tpl-add-webinar.php:55
 #: includes/views/live/tpl-edit-meeting.php:66
 #: includes/views/live/tpl-add-meetings.php:55
-#: includes/views/post-type/tpl-meeting-fields.php:105
+#: includes/views/post-type/tpl-meeting-fields.php:134
 msgid "Start Date/Time *"
 msgstr ""
 
@@ -1550,7 +1552,7 @@ msgstr ""
 #: includes/views/webinars/tpl-add-webinar.php:91
 #: includes/views/live/tpl-edit-meeting.php:117
 #: includes/views/live/tpl-add-meetings.php:99
-#: includes/views/post-type/tpl-meeting-fields.php:170
+#: includes/views/post-type/tpl-meeting-fields.php:199
 msgid "Start video when host join meeting."
 msgstr ""
 
@@ -1559,23 +1561,23 @@ msgstr ""
 msgid "Start video when panelists join meeting."
 msgstr ""
 
-#: includes/views/post-type/tpl-meeting-fields.php:198
+#: includes/views/post-type/tpl-meeting-fields.php:227
 msgid "Start video when panelists join webinar."
 msgstr ""
 
 #: includes/views/live/tpl-edit-meeting.php:126
 #: includes/views/live/tpl-add-meetings.php:108
-#: includes/views/post-type/tpl-meeting-fields.php:178
+#: includes/views/post-type/tpl-meeting-fields.php:207
 msgid "Start video when participants join meeting."
 msgstr ""
 
-#: includes/views/post-type/tpl-meeting-fields.php:167
+#: includes/views/post-type/tpl-meeting-fields.php:196
 msgid "Start When Host Joins"
 msgstr ""
 
 #: includes/views/live/tpl-edit-meeting.php:76
 #: includes/views/live/tpl-add-meetings.php:58
-#: includes/views/post-type/tpl-meeting-fields.php:108
+#: includes/views/post-type/tpl-meeting-fields.php:137
 msgid "Starting Date and Time of the Meeting (Required)."
 msgstr ""
 
@@ -1669,8 +1671,9 @@ msgstr ""
 #: includes/views/webinars/tpl-add-webinar.php:51
 #: includes/views/live/tpl-edit-meeting.php:62
 #: includes/views/live/tpl-add-meetings.php:51
-#: includes/views/post-type/tpl-meeting-fields.php:60
-#: includes/views/post-type/tpl-meeting-fields.php:87
+#: includes/views/post-type/tpl-meeting-fields.php:57
+#: includes/views/post-type/tpl-meeting-fields.php:89
+#: includes/views/post-type/tpl-meeting-fields.php:112
 msgid "This is host ID for the meeting (Required)."
 msgstr ""
 
@@ -1713,7 +1716,7 @@ msgstr ""
 #: includes/views/webinars/tpl-add-webinar.php:62
 #: includes/views/live/tpl-edit-meeting.php:80
 #: includes/views/live/tpl-add-meetings.php:62
-#: includes/views/post-type/tpl-meeting-fields.php:115
+#: includes/views/post-type/tpl-meeting-fields.php:144
 msgid "Timezone"
 msgstr ""
 
@@ -1950,11 +1953,11 @@ msgstr ""
 msgid "What does this do ? Check out"
 msgstr ""
 
-#: includes/views/post-type/tpl-meeting-fields.php:194
+#: includes/views/post-type/tpl-meeting-fields.php:223
 msgid "When Panelists Join"
 msgstr ""
 
-#: includes/views/post-type/tpl-meeting-fields.php:97
+#: includes/views/post-type/tpl-meeting-fields.php:126
 msgid ""
 "Which type of meeting do you want to create. Note: Webinar requires Zoom "
 "Webinar Plan enabled in your account."
@@ -1968,7 +1971,7 @@ msgstr ""
 msgid "You are seeing this because you are the author of this post."
 msgstr ""
 
-#: includes/views/post-type/tpl-meeting-fields.php:67
+#: includes/views/post-type/tpl-meeting-fields.php:64
 msgid ""
 "You cannot update meeting type. This is not allowed to avoid any conflict "
 "issues."
@@ -1994,7 +1997,7 @@ msgid "Zoom Integration Settings"
 msgstr ""
 
 #: includes/Elementor/Widgets/MeetingByID.php:45
-#: includes/views/post-type/tpl-meeting-fields.php:66
+#: includes/views/post-type/tpl-meeting-fields.php:63
 msgid "Zoom Meeting"
 msgstr ""
 
@@ -2026,7 +2029,7 @@ msgstr ""
 msgid "Zoom Users"
 msgstr ""
 
-#: includes/views/post-type/tpl-meeting-fields.php:66
+#: includes/views/post-type/tpl-meeting-fields.php:63
 msgid "Zoom Webinar"
 msgstr ""
 

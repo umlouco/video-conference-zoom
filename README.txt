@@ -179,6 +179,7 @@ Join our facebook group which we have created in order to stay up to date with u
 
 = 3.6.17 =
 * Updated: Translations from WordPress language directly. Thanks to WordPress language community.
+* Updated: Show default host if selected user has explictly assigned host id in user meta.
 
 = 3.6.16 =
 * Added: Enable/Disable gutenberg support when editing a meeting post type.
