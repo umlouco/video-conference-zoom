@@ -227,8 +227,8 @@ function vczapi_get_cache( $key ) {
  */
 function video_conferencing_zoom_api_get_user_transients() {
 	if ( isset( $_GET['page'] ) && $_GET['page'] === "zoom-video-conferencing-list-users" && isset( $_GET['pg'] ) ) {
-		$page                             = $_GET['pg'];
-		$decoded_users                    = json_decode( zoom_conference()->listUsers( $page ) );
+		$page          = $_GET['pg'];
+		$decoded_users = json_decode( zoom_conference()->listUsers( $page ) );
 		if ( ! empty( $decoded_users->code ) ) {
 			$users = false;
 		} else {
@@ -452,7 +452,7 @@ function vczapi_check_author( $post_id ) {
  * @param        $start_time
  * @param        $tz
  * @param string $format
- * @param bool   $defaults
+ * @param bool $defaults
  *
  * @return DateTime|string
  * @author Deepen
@@ -481,23 +481,26 @@ function vczapi_dateConverter( $start_time, $tz, $format = 'F j, Y, g:i a ( T )'
 		if ( $defaults && ! empty( $locale ) && ! empty( $date_format ) ) {
 			setlocale( LC_TIME, $locale );
 			$start_timestamp      = $date->getTimestamp() + $date->getOffset();
-			$time_indicator       = ! empty( $twentyfourhour_format ) ? '%R' : '%I:%M %p';
-			$full_month_indicator = ! empty( $full_month_format ) ? '%B' : '%b';
+			$time_indicator       = ! empty( $twentyfourhour_format ) ? 'H:i' : 'h:i A';
+			$full_month_indicator = ! empty( $full_month_format ) ? 'F' : 'M';
 
 			switch ( $date_format ) {
 				case 'L LT':
 				case 'l LT':
-					return strftime( '%D, ' . $time_indicator, $start_timestamp );
+				    return date_i18n( 'm/d/Y ' . $time_indicator, $start_timestamp );
+					#return strftime( '%D, ' . $time_indicator, $start_timestamp );
 					break;
 				case 'llll':
-					return strftime( '%a, ' . $full_month_indicator . ' %e, %G ' . $time_indicator, $start_timestamp );
+					return date_i18n( 'D, ' . $full_month_indicator . ' j, Y ' . $time_indicator, $start_timestamp );
+					#return strftime( '%a, ' . $full_month_indicator . ' %e, %G ' . $time_indicator, $start_timestamp );
 					break;
 				case 'lll':
-					return strftime( $full_month_indicator . ' %e, %G ' . $time_indicator, $start_timestamp );
+					return date_i18n( $full_month_indicator . ' j, Y ' . $time_indicator, $start_timestamp );
+					#return strftime( $full_month_indicator . ' %e, %G ' . $time_indicator, $start_timestamp );
 					break;
 				case 'LLLL':
-					//return date_i18n('l, F j, Y, g:H A',$start_timestamp);
-					return strftime( '%A ' . $full_month_indicator . ' %e, %G ' . $time_indicator, $start_timestamp );
+					return date_i18n( 'l, ' . $full_month_indicator . ' j, Y ' . $time_indicator, $start_timestamp );
+					#return strftime( '%A ' . $full_month_indicator . ' %e, %G ' . $time_indicator, $start_timestamp );
 					break;
 				case 'custom':
 					$date_format = get_option( 'zoom_api_custom_date_time_format' );
