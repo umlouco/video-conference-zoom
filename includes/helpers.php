@@ -491,15 +491,12 @@ function vczapi_dateConverter( $start_time, $tz, $format = 'F j, Y, g:i a ( T )'
 					break;
 				case 'llll':
 					return date_i18n( 'D, ' . $full_month_indicator . ' j, Y ' . $time_indicator, $start_timestamp );
-					#return strftime( '%a, ' . $full_month_indicator . ' %e, %G ' . $time_indicator, $start_timestamp );
 					break;
 				case 'lll':
 					return date_i18n( $full_month_indicator . ' j, Y ' . $time_indicator, $start_timestamp );
-					#return strftime( $full_month_indicator . ' %e, %G ' . $time_indicator, $start_timestamp );
 					break;
 				case 'LLLL':
 					return date_i18n( 'l, ' . $full_month_indicator . ' j, Y ' . $time_indicator, $start_timestamp );
-					#return strftime( '%A ' . $full_month_indicator . ' %e, %G ' . $time_indicator, $start_timestamp );
 					break;
 				case 'custom':
 					$date_format = get_option( 'zoom_api_custom_date_time_format' );

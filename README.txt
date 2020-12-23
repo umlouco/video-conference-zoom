@@ -177,9 +177,10 @@ Join our facebook group which we have created in order to stay up to date with u
 
 == Changelog ==
 
-= 3.6.19 =
+= 3.6.19 December 23rd, 2020 =
 * Updated: WebSDK to verion 1.8.5
 * Changed: Join via browser output format changed.
+* Fixed: Date Format display issue.
 
 = 3.6.18 =
 * Fixed: jQuery on load event not triggered in mozilla firefox resulting in join display links errors.
