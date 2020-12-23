@@ -483,12 +483,11 @@ function vczapi_dateConverter( $start_time, $tz, $format = 'F j, Y, g:i a ( T )'
 			$start_timestamp      = $date->getTimestamp() + $date->getOffset();
 			$time_indicator       = ! empty( $twentyfourhour_format ) ? 'H:i' : 'h:i A';
 			$full_month_indicator = ! empty( $full_month_format ) ? 'F' : 'M';
-
 			switch ( $date_format ) {
 				case 'L LT':
+					return date_i18n( 'm/d/Y ' . $time_indicator, $start_timestamp );
 				case 'l LT':
-				    return date_i18n( 'm/d/Y ' . $time_indicator, $start_timestamp );
-					#return strftime( '%D, ' . $time_indicator, $start_timestamp );
+					return date_i18n('n/j/Y ' .$time_indicator, $start_timestamp);
 					break;
 				case 'llll':
 					return date_i18n( 'D, ' . $full_month_indicator . ' j, Y ' . $time_indicator, $start_timestamp );
