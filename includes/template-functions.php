@@ -450,11 +450,23 @@ function video_conference_zoom_get_current_theme_slug() {
 }
 
 /**
+ * REMOVE WHITESPACES
+ *
+ * @param $buffer
+ *
+ * @return string|string[]|null
+ */
+function vczapi_removeWhitespace( $buffer ) {
+	return preg_replace( '/\s+/', ' ', $buffer );
+}
+
+/**
  * Before join before host
  *
  * @param $zoom
  */
 function video_conference_zoom_before_jbh_html( $zoom ) {
+	ob_start( 'vczapi_removeWhitespace' );
 	?>
     <!DOCTYPE html><html>
     <head>
@@ -468,6 +480,7 @@ function video_conference_zoom_before_jbh_html( $zoom ) {
         <link rel='stylesheet' type="text/css" href="<?php echo ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/css/style.min.css?ver=' . ZVC_PLUGIN_VERSION; ?>" media='all'>
     </head><body class="join-via-browser-body">
 	<?php
+	ob_end_flush();
 }
 
 /**
@@ -475,10 +488,40 @@ function video_conference_zoom_before_jbh_html( $zoom ) {
  */
 function video_conference_zoom_after_jbh_html() {
 	do_action( 'vczapi_join_via_browser_footer' );
-	wp_footer();
+
+	ob_start( 'vczapi_removeWhitespace' );
+	$localize = array(
+		'ajaxurl'       => admin_url( 'admin-ajax.php' ),
+		'zvc_security'  => wp_create_nonce( "_nonce_zvc_security" ),
+		'redirect_page' => apply_filters( 'vczapi_api_redirect_join_browser', esc_url( home_url( '/' ) ) ),
+		'meeting_id'    => absint( vczapi_encrypt_decrypt( 'decrypt', $_GET['join'] ) ),
+		'meeting_pwd'   => ! empty( $_GET['pak'] ) ? sanitize_text_field( vczapi_encrypt_decrypt( 'decrypt', $_GET['pak'] ) ) : false
+	);
 	?>
-    </body></html>
+    <script id='video-conferencing-with-zoom-api-browser-js-extra'>
+        var zvc_ajx = <?php echo wp_json_encode( $localize ); ?>;
+    </script>
+    <script src="<?php echo ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/jquery.min.js?ver=' . ZVC_PLUGIN_VERSION; ?>"></script>
+<?php if ( defined( 'VCZAPI_STATIC_CDN' ) ) { ?>
+    <script src="<?php echo ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react.production.min.js?ver=' . ZVC_PLUGIN_VERSION; ?>"></script>
+    <script src="<?php echo ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/react-dom.production.min.js?ver=' . ZVC_PLUGIN_VERSION; ?>"></script>
+    <script src="<?php echo ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/redux.min.js?ver=' . ZVC_PLUGIN_VERSION; ?>"></script>
+    <script src="<?php echo ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/redux-thunk.min.js?ver=' . ZVC_PLUGIN_VERSION; ?>"></script>
+    <script src="<?php echo ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/lodash.min.js?ver=' . ZVC_PLUGIN_VERSION; ?>"></script>
+    <script src="<?php echo ZVC_PLUGIN_VENDOR_ASSETS_URL . '/zoom/zoom-meeting.min.js?ver=' . ZVC_PLUGIN_VERSION; ?>"></script>
+<?php } else { ?>
+    <script src="<?php echo 'https://source.zoom.us/' . ZVC_ZOOM_WEBSDK_VERSION . '/lib/vendor/react.min.js?ver=' . ZVC_PLUGIN_VERSION; ?>"></script>
+    <script src="<?php echo 'https://source.zoom.us/' . ZVC_ZOOM_WEBSDK_VERSION . '/lib/vendor/react-dom.min.js?ver=' . ZVC_PLUGIN_VERSION; ?>"></script>
+    <script src="<?php echo 'https://source.zoom.us/' . ZVC_ZOOM_WEBSDK_VERSION . '/lib/vendor/redux.min.js?ver=' . ZVC_PLUGIN_VERSION; ?>"></script>
+    <script src="<?php echo 'https://source.zoom.us/' . ZVC_ZOOM_WEBSDK_VERSION . '/lib/vendor/redux-thunk.min.js?ver=' . ZVC_PLUGIN_VERSION; ?>"></script>
+    <script src="<?php echo 'https://source.zoom.us/' . ZVC_ZOOM_WEBSDK_VERSION . '/lib/vendor/lodash.min.js?ver=' . ZVC_PLUGIN_VERSION; ?>"></script>
+    <script src="<?php echo 'https://source.zoom.us/zoom-meeting-' . ZVC_ZOOM_WEBSDK_VERSION . '.min.js?ver=' . ZVC_PLUGIN_VERSION; ?>"></script>
+<?php } ?>
+    <script src="<?php echo ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/js/zoom-meeting.min.js?ver=' . ZVC_PLUGIN_VERSION; ?>"></script>
+    </body>
+    </html>
 	<?php
+	ob_end_flush();
 }
 
 /**

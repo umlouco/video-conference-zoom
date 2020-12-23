@@ -91,7 +91,8 @@ jQuery(function ($) {
                                 leaveUrl: REDIRECTION,
                                 isSupportAV: true,
                                 success: function () {
-                                    $.i18n.reload(meetConfig.lang);
+                                    ZoomMtg.i18n.load(meetConfig.lang);
+                                    ZoomMtg.i18n.reload(meetConfig.lang);
                                     ZoomMtg.join({
                                         meetingNumber: meetConfig.meetingNumber,
                                         userName: meetConfig.userName,
