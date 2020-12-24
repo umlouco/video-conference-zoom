@@ -32,20 +32,8 @@ global $zoom_recordings;
                 <td><?php echo date( 'F j, Y, g:i a', strtotime( $recording->start_time ) ); ?></td>
                 <td><?php echo vczapi_filesize_converter( $recording->total_size ); ?></td>
                 <td>
-					<?php if ( ! empty( $recording->recording_files ) ) {
-						foreach ( $recording->recording_files as $files ) {
-							if ( $files->file_type === "MP4" ) {
-								?>
-                                <a href="<?php echo $files->play_url; ?>" target="_blank"><?php _e( 'Play', 'video-conferencing-with-zoom-api' ); ?></a>
-								<?php if ( $zoom_recordings->downloadable ) { ?>
-                                    <a href="<?php echo $files->download_url; ?>" target="_blank"><?php _e( 'Download', 'video-conferencing-with-zoom-api' ); ?></a>
-									<?php
-								}
-							}
-						}
-					} else {
-						echo "N/A";
-					} ?>
+                    <a href="javascript:void(0);" class="vczapi-view-recording" data-recording-id="<?php echo $recording->id; ?>"><?php _e( 'View Recordings', 'video-conferencing-with-zoom-api' ); ?></a>
+                    <div class="vczapi-modal"></div>
                 </td>
             </tr>
 			<?php

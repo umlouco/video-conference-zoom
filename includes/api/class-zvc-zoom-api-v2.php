@@ -511,7 +511,7 @@ if ( ! class_exists( 'Zoom_Video_Conferencing_Api' ) ) {
 		 * @return bool|mixed
 		 */
 		public function listRecording( $host_id, $data = array() ) {
-			$from = date( 'Y-m-d', strtotime( '-1 year', time() ) );
+			$from = date( 'Y-m-d', strtotime( '-2 month', time() ) );
 			$to   = date( 'Y-m-d' );
 
 			$data['from'] = ! empty( $data['from'] ) ? $data['from'] : $from;

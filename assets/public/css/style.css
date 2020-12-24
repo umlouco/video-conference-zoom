@@ -146,3 +146,20 @@
   .vczapi-col-3 { flex: 0 0 25%; max-width: 25%; } }
 
 .vczapi-filters-wrapper { margin-bottom: 2em; margin-top: 1em; align-items: center; }
+
+/* The Modal (background) */
+.vczapi-modal { display: none; /* Hidden by default */ position: fixed; /* Stay in place */ z-index: 9999; /* Sit on top */ padding-top: 100px; /* Location of the box */ left: 0; top: 0; width: 100%; /* Full width */ height: 100%; /* Full height */ overflow: auto; /* Enable scroll if needed */ background-color: black; /* Fallback color */ background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */ /* Modal Content */ /* The Close Button */ }
+
+.vczapi-modal .vczapi-modal-content { position: relative; background-color: #fefefe; margin: auto; padding: 0; border: 1px solid #888; width: 80%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
+
+.vczapi-modal .vczapi-modal-close { color: #000; float: right; font-size: 28px; font-weight: bold; }
+
+.vczapi-modal .vczapi-modal-close:hover, .vczapi-modal .vczapi-modal-close:focus { color: #000; text-decoration: none; cursor: pointer; }
+
+.vczapi-modal .vczapi-modal-header { padding: 2px 16px; color: white; }
+
+.vczapi-modal .vczapi-modal-body { padding: 2px 16px; }
+
+.vczapi-modal .vczapi-modal-list { padding: 40px; list-style: none; margin: 0; border-bottom: 1px solid #efefef; }
+
+.vczapi-modal-loader { text-align: center; color: #424242; background: #fff; width: 400px; margin: 0 auto; padding: 20px; border-radius: 20px; }
