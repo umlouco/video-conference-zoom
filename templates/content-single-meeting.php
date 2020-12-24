@@ -54,6 +54,7 @@ do_action( 'vczoom_before_content' );
 				?>
             </div>
         </div>
+        <div class="clearfix"></div>
     </div>
 
 <?php
