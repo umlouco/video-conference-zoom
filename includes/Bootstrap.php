@@ -114,7 +114,9 @@ final class Bootstrap {
 			) );
 			wp_localize_script( 'video-conferencing-with-zoom-api', 'zvc_strings', $translation_array );
 		}
-
+		//Enqeue Full Callendar
+		wp_enqueue_script( 'full-calendar-min', ZVC_PLUGIN_PUBLIC_ASSETS_URL. '/js/fullcalendar.min.js', array(), $this->plugin_version, true );
+		wp_enqueue_style( 'full-calendar-min', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/css/fullcalendar.min.css', false, $this->plugin_version );
 	}
 
 	/**

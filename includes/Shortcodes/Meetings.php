@@ -2,6 +2,8 @@
 
 namespace Codemanas\VczApi\Shortcodes;
 
+use stdClass;
+
 class Meetings {
 
 	/**
@@ -16,6 +18,23 @@ class Meetings {
 	 * @var null
 	 */
 	private static $_instance = null;
+
+	public function __construct()
+	{
+		add_action('wp_ajax_nopriv_get_free_meetings', array($this, 'get_free_meetings')); 
+		add_action('wp_ajax_get_free_meetings', array($this, 'get_free_meetings')); 
+		wp_enqueue_script( 'calendar-main', ZVC_PLUGIN_PUBLIC_ASSETS_URL. '/js/calendar-main.js', array('jquery'), $this->plugin_version, true );
+
+		$store_locator = wp_create_nonce( 'calendar-main' );
+		wp_localize_script(
+			'calendar-main',
+			'my_ajax_obj',
+			array(
+				'ajax_url' => admin_url( 'admin-ajax.php' ),
+				'nonce'    => $store_locator,
+			)
+		);
+	}
 
 	/**
 	 * Create only one instance so that it may not Repeat
@@ -232,7 +251,7 @@ class Meetings {
 		?>
         <table id="vczapi-show-meetings-list-table" class="vczapi-user-meeting-list">
             <thead>
-            <tr>
+            <tr>wp_register_
                 <th><?php _e( 'Topic', 'video-conferencing-with-zoom-api' ); ?></th>
                 <th><?php _e( 'Meeting Status', 'video-conferencing-with-zoom-api' ); ?></th>
                 <th><?php _e( 'Start Time', 'video-conferencing-with-zoom-api' ); ?></th>
@@ -276,5 +295,47 @@ class Meetings {
         </table>
 		<?php
 		return ob_get_clean();
+	}
+	/**
+	 * Lists Free meetings in a calendar
+	 *
+	 *
+	 * @return false|string|void
+	 * @author umlouco
+	 *
+	 * @since  3.0.4
+	 */
+	public function list_free_meetings(){
+		$content       = '';
+		ob_start();
+		vczapi_get_template( 'shortcode-free-calendar.php', true, false );
+		$content .= ob_get_clean();
+		return $content;
+	}
+
+	public function get_free_meetings(){
+		global $wpdb;
+		$results = $wpdb->get_results("SELECT a.ID, a.post_title as 'title', b.meta_value as 'start_date', c.meta_value as 'fields' FROM {$wpdb->prefix}posts as a
+		join {$wpdb->prefix}postmeta as b on b.post_id = a.ID and b.meta_key = '_meeting_field_start_date_utc'
+		join {$wpdb->prefix}postmeta as c on c.post_id = a.ID and c.meta_key = '_meeting_fields'
+		where a.post_type = '".$this->post_type."'"); 
+		$meeting_list = array(); 
+		if(!empty($results)){
+			foreach($results as $r){
+				$r->fields = unserialize($r->fields); 
+				$date= new \DateTime($r->start_date); 
+				$meeting = new stdClass; 
+				$meeting->title = ''; 
+				$meeting->start = $date->format("c"); 
+				$date->modify('+'.$r->fields['duration'].' minutes'); 
+				$meeting->end = $date->format("c"); 
+				$meeting->id = $r->ID; 
+				$meeting_list[] = $meeting; 
+			}
+		}
+
+
+		wp_send_json($meeting_list); 
+		wp_die(); 
 	}
 }

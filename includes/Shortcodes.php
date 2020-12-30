@@ -39,6 +39,7 @@ class Shortcodes {
 			'zoom_api_link'              => array( $meetings, 'show_meeting_by_ID' ),
 			'zoom_list_meetings'         => array( $meetings, 'list_cpt_meetings' ),
 			'zoom_list_host_meetings'    => array( $meetings, 'list_live_host_meetings' ),
+			'zoom_free_meetings' 		 => array($meetings, 'list_free_meetings'),
 
 			//Embed Browser
 			'zoom_join_via_browser'      => array( $this, 'join_via_browser' ),
@@ -87,6 +88,7 @@ class Shortcodes {
 			'jquery',
 			'video-conferencing-with-zoom-api-datable-js'
 		], ZVC_PLUGIN_VERSION, true );
+		
 	}
 
 	/**
