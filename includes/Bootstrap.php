@@ -117,6 +117,21 @@ final class Bootstrap {
 		//Enqeue Full Callendar
 		wp_enqueue_script( 'full-calendar-min', ZVC_PLUGIN_PUBLIC_ASSETS_URL. '/js/fullcalendar.min.js', array(), $this->plugin_version, true );
 		wp_enqueue_style( 'full-calendar-min', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/css/fullcalendar.min.css', false, $this->plugin_version );
+		wp_enqueue_script( 'fancybox', ZVC_PLUGIN_PUBLIC_ASSETS_URL. '/js/jquery.fancybox.min.js', array('jquery'), $this->plugin_version, true );
+		wp_enqueue_style( 'fancybox', ZVC_PLUGIN_PUBLIC_ASSETS_URL . '/css/jquery.fancybox.min.css', false, $this->plugin_version );
+
+		wp_enqueue_script( 'calendar-main', ZVC_PLUGIN_PUBLIC_ASSETS_URL. '/js/calendar-main.js', array('jquery'), '1.0', true );
+
+		$calendar_nonce = wp_create_nonce( 'calendar-main' );
+		wp_localize_script(
+			'calendar-main',
+			'my_ajax_obj',
+			array(
+				'ajax_url' => admin_url( 'admin-ajax.php' ),
+				'nonce'    => $calendar_nonce,
+				'loader' => ZVC_PLUGIN_IMAGES_PATH.'/ajax-loader.gif'
+			)
+		);
 	}
 
 	/**

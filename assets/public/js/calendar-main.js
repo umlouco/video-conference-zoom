@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var calendarEl = document.getElementById('calendar');
 
   var calendar = new FullCalendar.Calendar(calendarEl, {
-
+   
     initialView: 'timeGridWeek',
     timeZone: initialTimeZone,
     headerToolbar: {
@@ -48,6 +48,60 @@ document.addEventListener('DOMContentLoaded', function () {
   calendar.render();
 });
 
-function addUserToMeeting(meetingId){
-  console.log(meetingId); 
+function addUserToMeeting(meetingId) {
+  jQuery.fancybox.open({
+    src: '#calendar-light-box',
+    type: 'inline',
+    autoSize: false,
+    opts: {
+      afterShow: function (instance, current) {
+        jQuery.ajax({
+          method: 'post',
+          url: my_ajax_obj.ajax_url,
+          data: {
+            _ajax_nonce: my_ajax_obj.nonce,
+            action: "reserve_meeting",
+            meetingId: meetingId
+          },
+          success: function (data) {
+            jQuery("#calendar-light-box").html(data);
+          },
+          async: false
+        });
+      }, 
+      beforeClose: function(){
+        window.location.reload(true); 
+      }
+    }
+  });
 }
+
+jQuery(document).ready(function ($) {
+  $('body').delegate("#calendar-login", 'click', function (e) {
+    e.preventDefault();
+    var username = $('input[name="calendar_username"]').val();
+    var password = $('input[name="calendar_password"]').val();
+    var meetingId = $('input[name="meetingId"]').val(); 
+    if (username.length > 0 && password.length > 0) {
+      $("#calendar-light-box").html('<img src="' + my_ajax_obj.loader + '">'); 
+      jQuery.ajax({
+        method: 'post',
+        url: my_ajax_obj.ajax_url,
+        data: {
+          _ajax_nonce: my_ajax_obj.nonce,
+          action: "calendarLoginUser",
+          meetingId: meetingId, 
+          username: username,
+          password: password
+        },
+        success: function (data) {
+          jQuery("#calendar-light-box").html(data);
+        },
+        async: false
+      });
+    }
+  });
+
+
+  
+});
