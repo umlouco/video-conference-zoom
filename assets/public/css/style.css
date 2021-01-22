@@ -165,3 +165,6 @@
 .vczapi-modal .vczapi-modal-list { padding: 40px; list-style: none; margin: 0; border-bottom: 1px solid #efefef; }
 
 .vczapi-modal-loader { text-align: center; color: #424242; background: #fff; width: 400px; margin: 0 auto; padding: 20px; border-radius: 20px; }
+
+/* CUSTOM DIOGO*/
+.fc-other-month .fc-day-number { display:none;}

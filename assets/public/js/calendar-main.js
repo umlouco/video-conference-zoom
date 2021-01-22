@@ -3,7 +3,10 @@ document.addEventListener('DOMContentLoaded', function () {
   jQuery.ajax({
     method: 'post',
     url: my_ajax_obj.ajax_url,
-    data: { _ajax_nonce: my_ajax_obj.nonce, action: "get_free_meetings" },
+    data: {
+      _ajax_nonce: my_ajax_obj.nonce,
+      action: "get_free_meetings"
+    },
     success: function (data) {
       meeting_list = data;
     },
@@ -15,25 +18,37 @@ document.addEventListener('DOMContentLoaded', function () {
   var calendarEl = document.getElementById('calendar');
 
   var calendar = new FullCalendar.Calendar(calendarEl, {
-   
-    initialView: 'timeGridWeek',
+
+    //initialView: 'timeGridWeek',
+    locale: 'it',
     timeZone: initialTimeZone,
     headerToolbar: {
-      left: 'prev,next today',
+      left: '',
       center: 'title',
-      right: 'timeGridWeek,timeGridDay,listWeek'
+      right: 'dayGridMonth',
     },
-    initialDate: new Date(),
+    buttonText: {
+      today: 'today',
+      month: 'indietro',
+      week: 'week',
+      day: 'day',
+      list: 'list'
+
+    },
+    initialDate: new Date("2021-01-01"),
     navLinks: true, // can click day/week names to navigate views
-    editable: true,
-    selectable: true,
+    editable: false,
+    selectable: false,
     dayMaxEvents: true, // allow "more" link when too many events
     events: meeting_list,
     loading: function (bool) {
       if (bool) {
+
         loadingEl.style.display = 'inline'; // show
       } else {
         loadingEl.style.display = 'none'; // hide
+
+
       }
     },
     eventClick: function (info) {
@@ -41,12 +56,36 @@ document.addEventListener('DOMContentLoaded', function () {
     },
     eventDidMount: function (info) {
       jQuery(info.el).attr("id", info.event.id);
-    }
+      var dateString = info.event.start.toISOString().split("T")[0];
+      jQuery('#calendar').find('.fc-daygrid-day[data-date="' + dateString + '"]').addClass('has-event');
+    },
+    navLinkDayClick: function (date, jsEvent) {
+      var events = calendar.getEvents();
+      var eventsCount = 0;
+      for (var i = 0; i < events.length; i++) {
+        if (date.toISOString().split("T")[0] == events[i].start.toISOString().split("T")[0])
+          eventsCount++;
+      }
+      if (eventsCount == 0)
+        return false;
+      else {
+        jQuery('.fc-dayGridMonth-button').off("click");
+        jQuery('.fc-dayGridMonth-button').on("click", function () {
+          jQuery('.fc-dayGridMonth-button').attr('style', 'display: none !important');
+        })
+        jQuery('.fc-dayGridMonth-button').attr('style', 'display: block !important');
+        calendar.changeView('listDay', date.toISOString().split("T")[0]);
+        jQuery('#calendar').find('.fc-list-event-title').html('Prenota!');
+      }
+    },
+   
+
 
   });
 
   calendar.render();
 });
+
 
 function addUserToMeeting(meetingId) {
   jQuery.fancybox.open({
@@ -68,9 +107,9 @@ function addUserToMeeting(meetingId) {
           },
           async: false
         });
-      }, 
-      beforeClose: function(){
-        window.location.reload(true); 
+      },
+      beforeClose: function () {
+        window.location.reload(true);
       }
     }
   });
@@ -81,16 +120,16 @@ jQuery(document).ready(function ($) {
     e.preventDefault();
     var username = $('input[name="calendar_username"]').val();
     var password = $('input[name="calendar_password"]').val();
-    var meetingId = $('input[name="meetingId"]').val(); 
+    var meetingId = $('input[name="meetingId"]').val();
     if (username.length > 0 && password.length > 0) {
-      $("#calendar-light-box").html('<img src="' + my_ajax_obj.loader + '">'); 
+      $("#calendar-light-box").html('<img src="' + my_ajax_obj.loader + '">');
       jQuery.ajax({
         method: 'post',
         url: my_ajax_obj.ajax_url,
         data: {
           _ajax_nonce: my_ajax_obj.nonce,
           action: "calendarLoginUser",
-          meetingId: meetingId, 
+          meetingId: meetingId,
           username: username,
           password: password
         },
@@ -103,5 +142,5 @@ jQuery(document).ready(function ($) {
   });
 
 
-  
+
 });
